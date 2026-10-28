@@ -1,6 +1,6 @@
 # Vie Agentic Skill (VAS) - Catalog
 
-Tổng hợp **2,951** kỹ năng Agentic tiêu chuẩn hóa, chia theo **118** danh mục chuyên biệt.
+Tổng hợp **3,045** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
 
 | Danh mục | Số lượng | Lệnh cài đặt nhanh |
 | :--- | :---: | :--- |
@@ -23,6 +23,7 @@ Tổng hợp **2,951** kỹ năng Agentic tiêu chuẩn hóa, chia theo **118** 
 | **architecture** | 34 skills | `./vas install --category architecture --target codex` |
 | **automation** | 64 skills | `./vas install --category automation --target codex` |
 | **backend** | 46 skills | `./vas install --category backend --target codex` |
+| **blender** | 94 skills | `./vas install --category blender --target codex` |
 | **blockchain** | 13 skills | `./vas install --category blockchain --target codex` |
 | **browser-automation** | 8 skills | `./vas install --category browser-automation --target codex` |
 | **business** | 179 skills | `./vas install --category business --target codex` |
@@ -650,6 +651,105 @@ Tổng hợp **2,951** kỹ năng Agentic tiêu chuẩn hóa, chia theo **118** 
 | `upstash-redis` | `critical` | Use the @upstash/redis HTTP client for caching, sessions, counters, and Redis... |
 | `whatsapp-cloud-api` | `critical` | Integracao com WhatsApp Business Cloud API (Meta). Mensagens, templates, webh... |
 | `x402-express-wrapper` | `critical` | Wrapper oficial de M2MCent (Node.js) para inyectar muros de pago x402 en APIs... |
+
+### BLENDER (94 skills)
+
+| Skill ID | Rủi ro | Mô tả tóm tắt |
+| :--- | :---: | :--- |
+| `blender-skills/analog-found-footage-horror` | `unknown` | Analog, VHS, CRT, and found-footage horror aesthetics for Blender shots inclu... |
+| `blender-skills/animation` | `unknown` | Game-ready animation in Blender including walk/run/idle cycles, combat, mecha... |
+| `blender-skills/anime-style` | `unknown` | Anime and cel-shaded art direction for Blender with hard color breaks, toon s... |
+| `blender-skills/apocalypse-worlds` | `unknown` | Apocalyptic and dystopian world art direction for Blender including post-apoc... |
+| `blender-skills/archviz` | `unknown` | Architectural visualization in Blender for interiors/exteriors with real-worl... |
+| `blender-skills/asset-optimization` | `unknown` | Validates and optimizes Blender assets for polycount, topology, UV efficiency... |
+| `blender-skills/biome-worlds` | `unknown` | Biome and setting art direction for Blender covering underwater, desert, arct... |
+| `blender-skills/blender-director` | `unknown` | Use when starting any Blender asset task, planning a production pipeline, coo... |
+| `blender-skills/blender-modeler` | `unknown` | Core Blender modeling specialist for Edit Mode, modifiers, collections, preci... |
+| `blender-skills/body-horror-style` | `unknown` | Body horror art direction for Blender focusing on flesh wrongness, mutation, ... |
+| `blender-skills/brutalist-mood` | `unknown` | Brutalist and concrete-monument mood direction for Blender architecture and s... |
+| `blender-skills/camera-cinematography` | `unknown` | Cinematic camera work in Blender including framing, lenses, composition, came... |
+| `blender-skills/cartoon-style` | `unknown` | Cartoon art direction for Blender with squash-stretch readable shapes, bold c... |
+| `blender-skills/character-archetypes` | `unknown` | Character archetype art direction for Blender covering fantasy races, horror ... |
+| `blender-skills/character-artist` | `unknown` | AAA character modeling for human anatomy, stylization, facial topology, cloth... |
+| `blender-skills/chibi-style` | `unknown` | Chibi and SD proportion art direction for Blender characters with oversized h... |
+| `blender-skills/cloth-sim` | `unknown` | Garment blockout, cloth simulation, pin groups, and bake to shape keys or cac... |
+| `blender-skills/collision-proxy` | `unknown` | Collision proxy authoring for games including UCX/UHX naming, convex hulls, c... |
+| `blender-skills/comic-book-style` | `unknown` | Comic book and graphic-novel art direction for Blender with ink-line emphasis... |
+| `blender-skills/compositing` | `unknown` | Blender compositor workflows for beauty stacks, render passes, color grade, g... |
+| `blender-skills/cosmic-eldritch-horror` | `unknown` | Cosmic, eldritch, and Lovecraftian horror art direction for Blender with non-... |
+| `blender-skills/cozy-wholesome-mood` | `unknown` | Cozy, cute, wholesome, relaxing, and peaceful mood direction for Blender asse... |
+| `blender-skills/creature-artist` | `unknown` | AAA creature modeling for fantasy, aliens, monsters, and organic creature des... |
+| `blender-skills/dark-gritty-mood` | `unknown` | Dark, grim, gritty, rusty, abandoned, decayed, industrial, lonely, and melanc... |
+| `blender-skills/dream-surreal-mood` | `unknown` | Dreamlike, surreal, mysterious, mystical, hopeful, and chaotic mood direction... |
+| `blender-skills/dream-weirdcore-style` | `unknown` | Dreamcore, weirdcore, and traumacore-inspired art direction for Blender with ... |
+| `blender-skills/environment-artist` | `unknown` | AAA environment art for modular kits, buildings, terrain, vegetation, archite... |
+| `blender-skills/export-pipeline` | `unknown` | Production export from Blender to FBX, GLTF, OBJ, USD, and Alembic with scale... |
+| `blender-skills/fantasy-worlds` | `unknown` | Fantasy world-building art direction for Blender covering medieval, high fant... |
+| `blender-skills/folk-horror-style` | `unknown` | Folk horror art direction for Blender with rural ritual uncanny, pastoral day... |
+| `blender-skills/frutiger-aero-style` | `unknown` | Frutiger Aero art direction for Blender with glossy skeuomorphism, aqua UI cu... |
+| `blender-skills/genre-action-combat` | `unknown` | Art direction for action, hack-and-slash, beat 'em up, and fighting-game read... |
+| `blender-skills/genre-card-party-idle` | `unknown` | Art direction for card games, deck builders, party games, idle/incremental, e... |
+| `blender-skills/genre-metroidvania-roguelike` | `unknown` | Art direction for metroidvania, roguelike, and roguelite games in Blender wit... |
+| `blender-skills/genre-narrative-vn` | `unknown` | Art direction for visual novel, interactive movie, walking simulator, and sto... |
+| `blender-skills/genre-open-world-sandbox` | `unknown` | Art direction for open world and sandbox games in Blender with biome landmark... |
+| `blender-skills/genre-puzzle-platformer` | `unknown` | Art direction for puzzle and platformer games in Blender with readable intera... |
+| `blender-skills/genre-racing-sports` | `unknown` | Art direction for racing and sports games in Blender with track landmarks, st... |
+| `blender-skills/genre-rpg` | `unknown` | Art direction for RPG, JRPG, CRPG, ARPG, and MMORPG worlds in Blender includi... |
+| `blender-skills/genre-shooter` | `unknown` | Art direction for FPS, TPS, shooter, battle royale, and extraction-shooter ma... |
+| `blender-skills/genre-soulslike` | `unknown` | Art direction for soulslike games in Blender with monumental melancholy space... |
+| `blender-skills/genre-stealth` | `unknown` | Art direction for stealth-game spaces in Blender with shadow volumes, patrol-... |
+| `blender-skills/genre-strategy-sim` | `unknown` | Art direction for strategy, RTS, turn-based strategy, tower defense, MOBA, ci... |
+| `blender-skills/genre-survival` | `unknown` | Art direction for survival and survival-horror gameplay spaces in Blender emp... |
+| `blender-skills/geometry-nodes` | `unknown` | Blender Geometry Nodes for procedural modeling, scatter systems, vegetation, ... |
+| `blender-skills/godot-export` | `unknown` | Godot-specific Blender export favoring GLTF/GLB with correct scale, materials... |
+| `blender-skills/hair-groom` | `unknown` | Hair and fur grooming in Blender using curves, particle hair, geometry nodes,... |
+| `blender-skills/hand-painted-style` | `unknown` | Hand-painted texture art direction for Blender with brushwork albedo, soft va... |
+| `blender-skills/hard-surface` | `unknown` | AAA hard surface modeling for sci-fi, industrial, military, vehicles, weapons... |
+| `blender-skills/hd-2d-style` | `unknown` | HD-2D art direction combining pixel characters/sprites with 3D environments, ... |
+| `blender-skills/historical-worlds` | `unknown` | Historical and period world art direction for Blender including Western, pira... |
+| `blender-skills/horror-style` | `unknown` | Psychological horror art direction for Blender assets inspired by Silent Hill... |
+| `blender-skills/indie-horror-aesthetics` | `unknown` | Indie horror aesthetic pack for Blender covering Silent Hill, Fear to Fathom,... |
+| `blender-skills/isometric-style` | `unknown` | Isometric and strategy-game art direction for Blender including diorama frami... |
+| `blender-skills/lighting` | `unknown` | Cinematic and game lighting in Blender including three-point lighting, HDRI, ... |
+| `blender-skills/liminal-space-style` | `unknown` | Liminal space and Backrooms art direction for Blender with empty transitional... |
+| `blender-skills/lod-pipeline` | `unknown` | Dedicated LOD generation, naming, screen-size targets, and validation for gam... |
+| `blender-skills/lookdev` | `unknown` | Look development loop for Blender assets combining materials, lighting, camer... |
+| `blender-skills/lowpoly-style` | `unknown` | Low-poly art direction for Blender inspired by PS1/PS2, Lethal Company, Mouth... |
+| `blender-skills/manga-style` | `unknown` | Manga-inspired art direction for Blender emphasizing monochrome value design,... |
+| `blender-skills/mascot-puppet-horror` | `unknown` | Mascot and puppet horror art direction for Blender with cheerful brand charac... |
+| `blender-skills/materials` | `unknown` | Blender PBR and stylized material creation for metal, wood, concrete, fabric,... |
+| `blender-skills/minimalist-style` | `unknown` | Minimalist and abstract-leaning art direction for Blender with reduced forms,... |
+| `blender-skills/neon-retrofuturism` | `unknown` | Neon, vaporwave, synthwave, and retrofuturistic mood/art direction for Blende... |
+| `blender-skills/noir-style` | `unknown` | Noir art direction for Blender with high-contrast lighting, wet streets, silh... |
+| `blender-skills/painterly-style` | `unknown` | Painterly art direction spanning watercolor and oil-painting looks for Blende... |
+| `blender-skills/physics-sim` | `unknown` | Rigid body, soft body, and destruction setups in Blender including constraint... |
+| `blender-skills/pixel-art-style` | `unknown` | Pixel-art and texel-constrained art direction for Blender assets destined for... |
+| `blender-skills/procedural-modeling` | `unknown` | Procedural asset creation for rocks, buildings, vegetation, roads, terrain, p... |
+| `blender-skills/prop-artist` | `unknown` | Everyday and hero prop modeling for furniture, tools, household objects, kitb... |
+| `blender-skills/psx-horror-style` | `unknown` | PS1/PSX-era horror art direction combining low-poly affine textures, limited ... |
+| `blender-skills/qa-review` | `unknown` | Production QA gate for Blender assets using viewport screenshots, validation ... |
+| `blender-skills/realistic-style` | `unknown` | Photorealistic AAA art direction for Blender including photogrammetry cleanup... |
+| `blender-skills/rendering` | `unknown` | Blender rendering with Cycles and Eevee including sampling, denoising, camera... |
+| `blender-skills/retopology` | `unknown` | Production retopology for animation-ready, low-poly, quad-dominant meshes wit... |
+| `blender-skills/retro-16bit-style` | `unknown` | Retro 16-bit art direction for Blender-assisted SNES/Genesis-era color richne... |
+| `blender-skills/retro-8bit-style` | `unknown` | Retro 8-bit art direction for Blender-assisted pixel/low-res aesthetics inspi... |
+| `blender-skills/rigging` | `unknown` | Production rigging in Blender with armatures, IK/FK, constraints, weight pain... |
+| `blender-skills/scene-assembly` | `unknown` | Large scene layout in Blender with collections, linking, overrides, streaming... |
+| `blender-skills/sci-fi-punk-worlds` | `unknown` | Sci-fi and punk world art direction for Blender including hard sci-fi, space,... |
+| `blender-skills/sculpting` | `unknown` | Blender sculpting for organic and hard surface detail using Dyntopo, multires... |
+| `blender-skills/set-dressing` | `unknown` | Set dressing and environmental storytelling placement for interiors and exter... |
+| `blender-skills/stop-motion-craft-style` | `unknown` | Stop-motion and craft aesthetics for Blender including claymation, paper craf... |
+| `blender-skills/stylized-style` | `unknown` | Stylized art direction for Blender with shape language, exaggeration, color h... |
+| `blender-skills/texture-workflow` | `unknown` | Production texture workflow for atlases, baking AO/curvature/normal/roughness... |
+| `blender-skills/unity-export` | `unknown` | Unity-specific Blender export for scale, axis, materials, humanoid/generic ri... |
+| `blender-skills/unreal-export` | `unknown` | Unreal Engine-specific Blender export for FBX scale, LODs, UCX collision, soc... |
+| `blender-skills/uv-workflow` | `unknown` | Production UV unwrapping for seam placement, UV packing, texel density, UDIM,... |
+| `blender-skills/vector-style` | `unknown` | Vector-clean art direction for Blender with flat fills, sharp silhouettes, an... |
+| `blender-skills/vegetation-artist` | `unknown` | Vegetation and foliage authoring for Blender including trees, plants, grass c... |
+| `blender-skills/vehicle-artist` | `unknown` | Dedicated vehicle modeling for cars, trucks, aircraft, ships, boats, mechs, a... |
+| `blender-skills/vfx-fx` | `unknown` | Cinematic and game VFX in Blender including smoke, fire, particles, trails, a... |
+| `blender-skills/visual-console-eras` | `unknown` | Visual era art direction for Blender covering PS1–PS5 stylistic cues, retro a... |
+| `blender-skills/voxel-style` | `unknown` | Voxel and Minecraft-adjacent art direction for Blender with block grid modeli... |
 
 ### BLOCKCHAIN (13 skills)
 

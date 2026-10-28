@@ -27,6 +27,7 @@
     "tags": "python3 vas.py tags",
     "status": "python3 vas.py status",
     "sync": "python3 vas.py sync",
+    "build:pages": "python3 scripts/build_pages.py",
     "guide": "python3 vas.py guide",
     "test": "python3 -m unittest discover -s tests -p 'test_*.py' && node --test tests/*.test.cjs",
     "preview": "python3 -m http.server 8765 --bind 127.0.0.1"

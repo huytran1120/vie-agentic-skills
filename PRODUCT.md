@@ -1,0 +1,61 @@
+# Product
+
+<!-- impeccable:product-schema 1 -->
+
+## Platform
+
+web
+
+## Users
+
+Developers using AI coding agents who need to discover a relevant runbook, inspect
+its origin and requirements, and install it into their chosen agent.
+
+## Product Purpose
+
+Vie Agentic Skill is a searchable, multi-agent skill library with a local,
+dependency-free Python manager. Success means finding an applicable skill,
+understanding its constraints and copying a correct installation command.
+
+## Operating Context
+
+The public repository is https://github.com/huytran1120/vie-agentic-skills.
+The user requested adding arjun988/blender-skills, redesigning the website with
+https://blender-skills.vercel.app/ as its reference, and publishing GitHub Pages.
+The CLI remains `./vas`; individual task dependencies are not CLI dependencies.
+
+## Capabilities and Constraints
+
+- Preserve search, category filters, sorting, list/grid views, shared links,
+  source/license information, explicit target agents and project/global scope.
+- The website generates commands; it never installs software into a visitor's machine.
+- Preserve the existing library and independently authored document runbooks.
+- Imported content retains its own licenses, support files and provenance.
+- Blender skills require a separately configured Blender MCP connection. Importing
+  runbooks does not install or activate that connection.
+- GitHub Pages is static and must work under the repository URL prefix.
+- Do not invent download counts, popularity, customer claims or safety guarantees.
+
+## Brand Commitments
+
+Keep the Vie Agentic Skill identity and Vietnamese-first interface. The requested
+Blender site is the visual reference, not a reason to rename this general catalog.
+
+## Evidence on Hand
+
+The catalog and actual skill files provide skill/category counts. The Blender
+source provides 94 MIT-licensed runbooks, their references and a credited render.
+
+## Product Principles
+
+- Make a working library, not a promotional dead end.
+- Explain prerequisites before execution and show provenance.
+- Keep local use and the published site consistent.
+- Preserve users' local paths: never put installation paths in shared URLs.
+
+## Open Decisions and Inferences
+
+The user was unavailable for the scope confirmation. Applying the redesign to
+the whole catalog, with Blender as a featured collection, is an inference from
+the request rather than an additional confirmed requirement. No commercial
+positioning or new supported agent is inferred.

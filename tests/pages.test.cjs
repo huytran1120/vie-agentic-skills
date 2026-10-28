@@ -139,13 +139,17 @@ test('local skill links encode filenames and cannot escape the skill tree', () =
   }
 });
 
-test('the local page has its own identity without upstream deployment settings', () => {
+test('the public page has its own identity and supports both local and Pages builds', () => {
   const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
   assert.ok(html.includes('<title>Vie Agentic Skill'));
   assert.ok(html.includes('Nguồn upstream'));
   assert.ok(html.includes('href="../README.md"'));
   assert.ok(html.includes('href="../CATALOG.md"'));
-  for (const setting of ['rel="canonical"', 'google-site-verification', '/_vercel/', 'git clone ']) {
+  assert.ok(html.includes('https://huytran1120.github.io/vie-agentic-skills/'));
+  assert.ok(html.includes('git clone https://github.com/huytran1120/vie-agentic-skills.git'));
+  assert.ok(html.includes('data-skill-base=".."'));
+  assert.ok(html.includes('data-theme="dark"'));
+  for (const setting of ['noindex', 'google-site-verification', '/_vercel/']) {
     assert.ok(!html.includes(setting), setting);
   }
   for (const id of ['pdf', 'docx', 'pptx', 'xlsx']) {
@@ -154,6 +158,32 @@ test('the local page has its own identity without upstream deployment settings',
     assert.equal(skill.license, 'MIT');
     assert.equal(catalog.skillUrl(skill), `../skills/${id}/SKILL.md`);
     assert.equal(catalog.sourceUrl(skill), null);
+  }
+});
+
+test('the Blender collection finds exactly the 94 namespaced skills and retains unrelated Blender skills', () => {
+  const blender = catalog.filterSkills(skills, { group: 'blender' });
+  assert.equal(blender.length, 94);
+  assert.ok(blender.every(skill => skill.id.startsWith('blender-skills/')));
+  assert.equal(catalog.readCatalogState('?group=blender').group, 'blender');
+  assert.ok(catalog.filterSkills(skills, { query: 'blender-mcp' }).some(skill => skill.id === 'blender-mcp'));
+  assert.equal(catalog.filterSkills(skills, { query: 'arjun988/blender-skills' }).length, 94);
+  const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
+  for (const match of html.matchAll(/data-discover="([^"]+)"/g)) {
+    assert.ok(skills.some(skill => skill.id === match[1]), match[1]);
+  }
+});
+
+test('published runbook URLs stay inside the repository prefix, including namespaced skills', () => {
+  for (const skill of skills) {
+    const url = catalog.skillUrl(skill, '.');
+    const published = new URL(url, 'https://huytran1120.github.io/vie-agentic-skills/');
+    assert.ok(published.pathname.startsWith('/vie-agentic-skills/skills/'));
+  }
+  assert.equal(catalog.skillUrl({ path: 'skills/blender-skills/blender-director' }, '.'),
+    './skills/blender-skills/blender-director/SKILL.md');
+  for (const base of ['../../', 'https://example.com', '/']) {
+    assert.throws(() => catalog.skillUrl({ id: 'pdf' }, base));
   }
 });
 

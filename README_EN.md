@@ -1,6 +1,6 @@
 # 🇻🇳 Vie Agentic Skill (VAS) - English Edition
 
-> **Local adaptation:** based on [vietnam-agentic-skills](https://github.com/huytran1120/vietnam-agentic-skills), revision `8dd77cd14fea84ad3a9f51573461a227ae06082e`. The `./vas` command is unchanged. Repository: [huytran1120/vie-agentic-skills](https://github.com/huytran1120/vie-agentic-skills). No public website deployment is configured.
+> **Project:** based on [vietnam-agentic-skills](https://github.com/huytran1120/vietnam-agentic-skills), revision `8dd77cd14fea84ad3a9f51573461a227ae06082e`. The `./vas` command is unchanged. Repository: [huytran1120/vie-agentic-skills](https://github.com/huytran1120/vie-agentic-skills). Website: [GitHub Pages](https://huytran1120.github.io/vie-agentic-skills/).
 > **Licensing:** project code retains MIT; skills retain their individual licenses. `pdf`, `docx`, `pptx`, `xlsx` are independently authored replacements, not copies of the restricted originals. Old full-text distribution dumps are omitted.
 > **Preview:** run `python3 -m http.server 8765 --bind 127.0.0.1` from the project root and open http://127.0.0.1:8765/docs/. Serve both `docs/` and `skills/`, not just `docs/`.
 
@@ -23,14 +23,34 @@
   <a href="https://github.com/huytran1120/vietnam-agentic-skills"><img src="https://img.shields.io/badge/Windsurf-09B6A2?style=for-the-badge&logo=codeium&logoColor=white" alt="Windsurf" /></a>
 </p>
 <p align="center">
-  <a href="http://127.0.0.1:8765/docs/"><img src="https://img.shields.io/badge/Local%20Catalog-Python%20HTTP-00C853?style=for-the-badge&logo=githubpages&logoColor=white" alt="Local Catalog" /></a>
-  <a href="CATALOG.md"><img src="https://img.shields.io/badge/Catalog-2%2C951%2B%20Skills-00C853?style=for-the-badge" alt="Skills Count" /></a>
+  <a href="https://huytran1120.github.io/vie-agentic-skills/"><img src="https://img.shields.io/badge/Live%20Catalog-GitHub%20Pages-00C853?style=for-the-badge&logo=githubpages&logoColor=white" alt="GitHub Pages Catalog" /></a>
+  <a href="CATALOG.md"><img src="https://img.shields.io/badge/Catalog-3%2C045%2B%20Skills-00C853?style=for-the-badge" alt="Skills Count" /></a>
   <a href="vas.py"><img src="https://img.shields.io/badge/Zero--NPX-Pure%20Python%203-FF6D00?style=for-the-badge" alt="Zero NPX" /></a>
   <a href="https://github.com/huytran1120"><img src="https://img.shields.io/badge/Author-huytran1120-6200EA?style=for-the-badge&logo=github" alt="Author" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" alt="License: MIT" /></a>
 </p>
 
-> **Local Web Explorer**: [http://127.0.0.1:8765/docs/](http://127.0.0.1:8765/docs/)
+> **Web Explorer**: [GitHub Pages](https://huytran1120.github.io/vie-agentic-skills/) · [Local preview](http://127.0.0.1:8765/docs/)
+
+### Blender Studio — 94 skills
+
+The MIT-licensed [arjun988/blender-skills](https://github.com/arjun988/blender-skills)
+pack is pinned to `8f778d2405a214b508d4c7d80742be8e43acdd52` and imported once
+under `blender-skills/<name>`. Each skill includes its reference files and MIT
+notice. See [import notes](skills/blender-skills/README.md) and
+[source/vendored hashes](data/blender-import.json).
+
+```bash
+./vas list --category blender
+./vas install blender-skills/blender-director blender-skills/blender-modeler --target claude --global
+```
+
+Blender and a compatible Blender MCP connection are separate prerequisites:
+VAS does not install Blender, start a server or grant MCP permissions.
+Use `--mode copy` for an independent copy; links require keeping the source.
+GitHub Pages deploys from `main`. `python3 scripts/build_pages.py` stages the
+complete site in `_site/`, including runbooks and support files; serve the
+repository root and open `http://127.0.0.1:8765/_site/` to preview that artifact.
 
 The catalog-first website supports keyword/author/source search, category filters, agent selection, and inline install commands. Counts come from the actual catalog; no download or rating figures are fabricated. The website copies commands, not installs software on your machine. Preview locally with `python3 -m http.server 8765 --bind 127.0.0.1`. Run the UI logic regressions with `node --test tests/pages.test.cjs`.
 
@@ -55,7 +75,7 @@ The catalog-first website supports keyword/author/source search, category filter
 
 ### 1. Overview
 
-**Vie Agentic Skill (VAS)** is a vendor-neutral, production-ready catalog of **2,951+ modular agentic skills**, adapted locally from the upstream catalog curated by **Huy Tran** ([@huytran1120](https://github.com/huytran1120)).
+**Vie Agentic Skill (VAS)** is a vendor-neutral, production-ready catalog of **3,045+ modular agentic skills**, adapted locally from the upstream catalog curated by **Huy Tran** ([@huytran1120](https://github.com/huytran1120)).
 
 VAS strictly adheres to the **Open Agent Skills specification ([agentskills.io](https://agentskills.io/))** and is engineered specifically for modern AI coding agents such as **Google Antigravity, OpenAI Codex / OpenCode, Claude Code, Cursor, Windsurf (Codeium), Cline / Roo Code, and GitHub Copilot CLI**.
 
@@ -335,7 +355,7 @@ During `/ship` pre-flight or code auditing, 4 specialist personas can be fanned 
 
 | Dimension | Vie Agentic Skill (VAS) | Addy Osmani (`agent-skills`) | Superpowers (`obra`) | Matt Pocock Skills |
 | :--- | :--- | :--- | :--- | :--- |
-| **Catalog Scale** | **2,951+ Skills** (World's most extensive) | 25 Core Skills | ~14 Skills | ~30 Skills |
+| **Catalog Scale** | **3,045+ Skills** (World's most extensive) | 25 Core Skills | ~14 Skills | ~30 Skills |
 | **Tooling & Engine** | **Native Python 3 CLI (`./vas`) — Zero-NPX** | `npx skills` / Plugins | Git Worktrees / Shell scripts | Claude Code / `npx skills` |
 | **Dependencies & Offline**| **100% Offline, Zero external dependencies** | Requires Node & remote NPX | Requires clone & git setup | Requires Node & remote NPX |
 | **Agent Support** | **7+ AI Coding Assistants** (Antigravity, Codex, Claude, Cursor, Windsurf, Cline, Copilot) | Claude Code, Codex, Antigravity, Cursor, Copilot | Claude Code, Codex, Cursor | Claude Code primary |
@@ -348,7 +368,7 @@ During `/ship` pre-flight or code auditing, 4 specialist personas can be fanned 
 
 ### 11. Featured & Viral Skills Showcase (Top 20)
 
-VAS includes **2,951+ skills** across **118 specialized categories**. Browse the full directory in [CATALOG.md](CATALOG.md).
+VAS includes **3,045+ skills** across **119 specialized categories**. Browse the full directory in [CATALOG.md](CATALOG.md).
 
 | # | Skill ID | Stars | Capability Overview | Quick Install Command |
 | :-: | :--- | :---: | :--- | :--- |

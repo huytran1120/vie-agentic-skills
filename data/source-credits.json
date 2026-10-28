@@ -417,6 +417,9 @@
       "Vie Agentic Skill is a local adaptation of https://github.com/huytran1120/vietnam-agentic-skills at 8dd77cd14fea84ad3a9f51573461a227ae06082e; original copyright and individual licenses are preserved.",
       "The pdf, docx, pptx and xlsx runbooks were independently authored for this project under MIT. The restricted upstream versions and their scripts/assets were not imported.",
       "The upstream data/aas-v1 full-text distribution was not imported. This project does not claim that every bundled skill is MIT licensed."
+    ],
+    "blender": [
+      "- **[arjun988/blender-skills](https://github.com/arjun988/blender-skills/tree/8f778d2405a214b508d4c7d80742be8e43acdd52)**: 94 MIT-licensed skills from `.claude/skills` at `8f778d2405a214b508d4c7d80742be8e43acdd52`; the equivalent `.cursor/skills` tree is not duplicated. Each installed skill includes its own MIT notice and shared reference copies. Relative shared-reference paths are adjusted for independent installation, and three cross-skill links point to the pinned source. The catalog banner is from `site/public/banner.png` under the same MIT notice. See `data/blender-import.json` for source and vendored SHA-256 hashes."
     ]
   }
 }

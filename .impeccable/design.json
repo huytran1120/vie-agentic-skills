@@ -1,0 +1,291 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-28T17:26:17.157Z",
+  "title": "Design System: Vie Agentic Skill",
+  "extensions": {
+    "colorMeta": {
+      "paper": {
+        "role": "neutral",
+        "displayName": "Charcoal Ground",
+        "canonical": "#151515",
+        "tonalRamp": ["oklch(15.00% 0.00000 0.00)", "oklch(26.43% 0.00000 0.00)", "oklch(37.86% 0.00000 0.00)", "oklch(49.29% 0.00000 0.00)", "oklch(60.71% 0.00000 0.00)", "oklch(72.14% 0.00000 0.00)", "oklch(83.57% 0.00000 0.00)", "oklch(95.00% 0.00000 0.00)"]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Raised Work Surface",
+        "canonical": "#1d1d1c",
+        "tonalRamp": ["oklch(15.00% 0.00189 106.55)", "oklch(26.43% 0.00189 106.55)", "oklch(37.86% 0.00189 106.55)", "oklch(49.29% 0.00189 106.55)", "oklch(60.71% 0.00189 106.55)", "oklch(72.14% 0.00189 106.55)", "oklch(83.57% 0.00189 106.55)", "oklch(95.00% 0.00189 106.55)"]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Reading Ink",
+        "canonical": "#f0eee9",
+        "tonalRamp": ["oklch(15.00% 0.00701 88.64)", "oklch(26.43% 0.00701 88.64)", "oklch(37.86% 0.00701 88.64)", "oklch(49.29% 0.00701 88.64)", "oklch(60.71% 0.00701 88.64)", "oklch(72.14% 0.00701 88.64)", "oklch(83.57% 0.00701 88.64)", "oklch(95.00% 0.00701 88.64)"]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Quiet Ink",
+        "canonical": "#b0ada7",
+        "tonalRamp": ["oklch(15.00% 0.00915 84.58)", "oklch(26.43% 0.00915 84.58)", "oklch(37.86% 0.00915 84.58)", "oklch(49.29% 0.00915 84.58)", "oklch(60.71% 0.00915 84.58)", "oklch(72.14% 0.00915 84.58)", "oklch(83.57% 0.00915 84.58)", "oklch(95.00% 0.00915 84.58)"]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Rule",
+        "canonical": "#393835",
+        "tonalRamp": ["oklch(15.00% 0.00533 91.54)", "oklch(26.43% 0.00533 91.54)", "oklch(37.86% 0.00533 91.54)", "oklch(49.29% 0.00533 91.54)", "oklch(60.71% 0.00533 91.54)", "oklch(72.14% 0.00533 91.54)", "oklch(83.57% 0.00533 91.54)", "oklch(95.00% 0.00533 91.54)"]
+      },
+      "soft": {
+        "role": "neutral",
+        "displayName": "Soft Surface",
+        "canonical": "#252523",
+        "tonalRamp": ["oklch(15.00% 0.00365 106.65)", "oklch(26.43% 0.00365 106.65)", "oklch(37.86% 0.00365 106.65)", "oklch(49.29% 0.00365 106.65)", "oklch(60.71% 0.00365 106.65)", "oklch(72.14% 0.00365 106.65)", "oklch(83.57% 0.00365 106.65)", "oklch(95.00% 0.00365 106.65)"]
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Studio Orange",
+        "canonical": "#f59962",
+        "tonalRamp": ["oklch(15.00% 0.13123 50.64)", "oklch(26.43% 0.13123 50.64)", "oklch(37.86% 0.13123 50.64)", "oklch(49.29% 0.13123 50.64)", "oklch(60.71% 0.13123 50.64)", "oklch(72.14% 0.13123 50.64)", "oklch(83.57% 0.13123 50.64)", "oklch(95.00% 0.13123 50.64)"]
+      },
+      "accent-hover": {
+        "role": "primary",
+        "displayName": "Action Hover",
+        "canonical": "#ffb585",
+        "tonalRamp": ["oklch(15.00% 0.10683 53.69)", "oklch(26.43% 0.10683 53.69)", "oklch(37.86% 0.10683 53.69)", "oklch(49.29% 0.10683 53.69)", "oklch(60.71% 0.10683 53.69)", "oklch(72.14% 0.10683 53.69)", "oklch(83.57% 0.10683 53.69)", "oklch(95.00% 0.10683 53.69)"]
+      },
+      "on-accent": {
+        "role": "neutral",
+        "displayName": "Action Ink",
+        "canonical": "#241a13",
+        "tonalRamp": ["oklch(15.00% 0.02058 56.46)", "oklch(26.43% 0.02058 56.46)", "oklch(37.86% 0.02058 56.46)", "oklch(49.29% 0.02058 56.46)", "oklch(60.71% 0.02058 56.46)", "oklch(72.14% 0.02058 56.46)", "oklch(83.57% 0.02058 56.46)", "oklch(95.00% 0.02058 56.46)"]
+      },
+      "selected": {
+        "role": "neutral",
+        "displayName": "Selected Surface",
+        "canonical": "#302720",
+        "tonalRamp": ["oklch(15.00% 0.01837 59.81)", "oklch(26.43% 0.01837 59.81)", "oklch(37.86% 0.01837 59.81)", "oklch(49.29% 0.01837 59.81)", "oklch(60.71% 0.01837 59.81)", "oklch(72.14% 0.01837 59.81)", "oklch(83.57% 0.01837 59.81)", "oklch(95.00% 0.01837 59.81)"]
+      },
+      "selected-line": {
+        "role": "neutral",
+        "displayName": "Selected Edge",
+        "canonical": "#916545",
+        "tonalRamp": ["oklch(15.00% 0.07318 56.54)", "oklch(26.43% 0.07318 56.54)", "oklch(37.86% 0.07318 56.54)", "oklch(49.29% 0.07318 56.54)", "oklch(60.71% 0.07318 56.54)", "oklch(72.14% 0.07318 56.54)", "oklch(83.57% 0.07318 56.54)", "oklch(95.00% 0.07318 56.54)"]
+      },
+      "warning": {
+        "role": "status",
+        "displayName": "Caution Amber",
+        "canonical": "#edbe7c",
+        "tonalRamp": ["oklch(15.00% 0.09941 75.11)", "oklch(26.43% 0.09941 75.11)", "oklch(37.86% 0.09941 75.11)", "oklch(49.29% 0.09941 75.11)", "oklch(60.71% 0.09941 75.11)", "oklch(72.14% 0.09941 75.11)", "oklch(83.57% 0.09941 75.11)", "oklch(95.00% 0.09941 75.11)"]
+      },
+      "paper-light": {
+        "role": "neutral",
+        "displayName": "Warm Off-White Ground",
+        "canonical": "#f6f4ef",
+        "tonalRamp": ["oklch(15.00% 0.00697 88.64)", "oklch(26.43% 0.00697 88.64)", "oklch(37.86% 0.00697 88.64)", "oklch(49.29% 0.00697 88.64)", "oklch(60.71% 0.00697 88.64)", "oklch(72.14% 0.00697 88.64)", "oklch(83.57% 0.00697 88.64)", "oklch(95.00% 0.00697 88.64)"]
+      },
+      "surface-light": {
+        "role": "neutral",
+        "displayName": "Light Work Surface",
+        "canonical": "#fffefa",
+        "tonalRamp": ["oklch(15.00% 0.00537 95.10)", "oklch(26.43% 0.00537 95.10)", "oklch(37.86% 0.00537 95.10)", "oklch(49.29% 0.00537 95.10)", "oklch(60.71% 0.00537 95.10)", "oklch(72.14% 0.00537 95.10)", "oklch(83.57% 0.00537 95.10)", "oklch(95.00% 0.00537 95.10)"]
+      },
+      "ink-light": {
+        "role": "neutral",
+        "displayName": "Light-Theme Reading Ink",
+        "canonical": "#242321",
+        "tonalRamp": ["oklch(15.00% 0.00398 84.58)", "oklch(26.43% 0.00398 84.58)", "oklch(37.86% 0.00398 84.58)", "oklch(49.29% 0.00398 84.58)", "oklch(60.71% 0.00398 84.58)", "oklch(72.14% 0.00398 84.58)", "oklch(83.57% 0.00398 84.58)", "oklch(95.00% 0.00398 84.58)"]
+      },
+      "muted-light": {
+        "role": "neutral",
+        "displayName": "Light-Theme Quiet Ink",
+        "canonical": "#615e58",
+        "tonalRamp": ["oklch(15.00% 0.01018 84.59)", "oklch(26.43% 0.01018 84.59)", "oklch(37.86% 0.01018 84.59)", "oklch(49.29% 0.01018 84.59)", "oklch(60.71% 0.01018 84.59)", "oklch(72.14% 0.01018 84.59)", "oklch(83.57% 0.01018 84.59)", "oklch(95.00% 0.01018 84.59)"]
+      },
+      "line-light": {
+        "role": "neutral",
+        "displayName": "Light Rule",
+        "canonical": "#d7d2c9",
+        "tonalRamp": ["oklch(15.00% 0.01344 82.40)", "oklch(26.43% 0.01344 82.40)", "oklch(37.86% 0.01344 82.40)", "oklch(49.29% 0.01344 82.40)", "oklch(60.71% 0.01344 82.40)", "oklch(72.14% 0.01344 82.40)", "oklch(83.57% 0.01344 82.40)", "oklch(95.00% 0.01344 82.40)"]
+      },
+      "soft-light": {
+        "role": "neutral",
+        "displayName": "Light Soft Surface",
+        "canonical": "#ebe7de",
+        "tonalRamp": ["oklch(15.00% 0.01280 86.83)", "oklch(26.43% 0.01280 86.83)", "oklch(37.86% 0.01280 86.83)", "oklch(49.29% 0.01280 86.83)", "oklch(60.71% 0.01280 86.83)", "oklch(72.14% 0.01280 86.83)", "oklch(83.57% 0.01280 86.83)", "oklch(95.00% 0.01280 86.83)"]
+      },
+      "accent-light": {
+        "role": "primary",
+        "displayName": "Deep Studio Orange",
+        "canonical": "#a64416",
+        "tonalRamp": ["oklch(15.00% 0.14085 42.13)", "oklch(26.43% 0.14085 42.13)", "oklch(37.86% 0.14085 42.13)", "oklch(49.29% 0.14085 42.13)", "oklch(60.71% 0.14085 42.13)", "oklch(72.14% 0.14085 42.13)", "oklch(83.57% 0.14085 42.13)", "oklch(95.00% 0.14085 42.13)"]
+      },
+      "accent-hover-light": {
+        "role": "primary",
+        "displayName": "Deep Action Hover",
+        "canonical": "#84330d",
+        "tonalRamp": ["oklch(15.00% 0.12098 41.77)", "oklch(26.43% 0.12098 41.77)", "oklch(37.86% 0.12098 41.77)", "oklch(49.29% 0.12098 41.77)", "oklch(60.71% 0.12098 41.77)", "oklch(72.14% 0.12098 41.77)", "oklch(83.57% 0.12098 41.77)", "oklch(95.00% 0.12098 41.77)"]
+      },
+      "on-accent-light": {
+        "role": "neutral",
+        "displayName": "Light Action Ink",
+        "canonical": "#fff9f3",
+        "tonalRamp": ["oklch(15.00% 0.01023 67.71)", "oklch(26.43% 0.01023 67.71)", "oklch(37.86% 0.01023 67.71)", "oklch(49.29% 0.01023 67.71)", "oklch(60.71% 0.01023 67.71)", "oklch(72.14% 0.01023 67.71)", "oklch(83.57% 0.01023 67.71)", "oklch(95.00% 0.01023 67.71)"]
+      },
+      "selected-light": {
+        "role": "neutral",
+        "displayName": "Light Selected Surface",
+        "canonical": "#f8e9dc",
+        "tonalRamp": ["oklch(15.00% 0.02386 63.49)", "oklch(26.43% 0.02386 63.49)", "oklch(37.86% 0.02386 63.49)", "oklch(49.29% 0.02386 63.49)", "oklch(60.71% 0.02386 63.49)", "oklch(72.14% 0.02386 63.49)", "oklch(83.57% 0.02386 63.49)", "oklch(95.00% 0.02386 63.49)"]
+      },
+      "selected-line-light": {
+        "role": "neutral",
+        "displayName": "Light Selected Edge",
+        "canonical": "#be8d6b",
+        "tonalRamp": ["oklch(15.00% 0.07620 55.81)", "oklch(26.43% 0.07620 55.81)", "oklch(37.86% 0.07620 55.81)", "oklch(49.29% 0.07620 55.81)", "oklch(60.71% 0.07620 55.81)", "oklch(72.14% 0.07620 55.81)", "oklch(83.57% 0.07620 55.81)", "oklch(95.00% 0.07620 55.81)"]
+      },
+      "warning-light": {
+        "role": "status",
+        "displayName": "Deep Caution Amber",
+        "canonical": "#82500b",
+        "tonalRamp": ["oklch(15.00% 0.10085 67.18)", "oklch(26.43% 0.10085 67.18)", "oklch(37.86% 0.10085 67.18)", "oklch(49.29% 0.10085 67.18)", "oklch(60.71% 0.10085 67.18)", "oklch(72.14% 0.10085 67.18)", "oklch(83.57% 0.10085 67.18)", "oklch(95.00% 0.10085 67.18)"]
+      }
+    },
+    "typographyMeta": {
+      "headline": { "displayName": "Section Headline", "purpose": "Recurring major headings; contextual sizes remain documented in Typography." },
+      "title": { "displayName": "Support Title", "purpose": "Recurring support headings and subordinate task titles." },
+      "body": { "displayName": "System Body", "purpose": "Default Vietnamese-first reading rhythm." },
+      "description": { "displayName": "Runbook Description", "purpose": "Compact descriptions with open line spacing." },
+      "label": { "displayName": "Supporting Label", "purpose": "Filters, form labels, provenance and supporting instructions." },
+      "button": { "displayName": "Action Label", "purpose": "Medium-weight button and text-action labels." },
+      "mono": { "displayName": "Command", "purpose": "Wrapping installation commands; inline code remains relative to surrounding type." }
+    },
+    "shadows": [
+      { "name": "status-overlay", "value": "0 8px 24px #00000040", "purpose": "Transient toast only." },
+      { "name": "manual-copy-overlay", "value": "0 8px 30px #00000040", "purpose": "Clipboard fallback panel above the page." }
+    ],
+    "motion": [
+      { "name": "button-state", "value": "background-color .18s ease-out, border-color .18s ease-out", "purpose": "Filled and icon button feedback without lift or scale." },
+      { "name": "anchor-scroll", "value": "scroll-behavior: smooth", "purpose": "Normal document anchors; targeted search focus uses an instant move." },
+      { "name": "reduced-motion", "value": "@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; } }", "purpose": "Disable transitions and smooth scrolling when reduced motion is requested." }
+    ],
+    "breakpoints": [
+      { "name": "compact-desktop", "value": "1200px" },
+      { "name": "collapsed-navigation", "value": "980px" },
+      { "name": "mobile", "value": "640px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Solid orange action with paired text color and a visible keyboard state.",
+      "html": "<button type=\"button\" class=\"ds-primary\">Khám phá kho kỹ năng <span aria-hidden=\"true\">↗</span></button>",
+      "css": ".ds-primary { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 44px; padding: 10px 16px; border: 1px solid transparent; border-radius: 6px; background: var(--accent, #f59962); color: var(--on-accent, #241a13); font: 600 13px/1.65 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; cursor: pointer; touch-action: manipulation; transition: background-color .18s ease-out, border-color .18s ease-out; } .ds-primary:hover { background: var(--accent-hover, #ffb585); } .ds-primary:focus-visible { outline: 2px solid var(--accent, #f59962); outline-offset: 4px; } .ds-primary:disabled { opacity: .6; cursor: not-allowed; } @media (prefers-reduced-motion: reduce) { .ds-primary { transition: none !important; } }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Bordered work-surface action for supporting navigation and pagination.",
+      "html": "<button type=\"button\" class=\"ds-secondary\">Hướng dẫn cài đặt</button>",
+      "css": ".ds-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 44px; padding: 10px 16px; border: 1px solid var(--line, #393835); border-radius: 6px; background: var(--surface, #1d1d1c); color: var(--ink, #f0eee9); font: 600 13px/1.65 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; cursor: pointer; touch-action: manipulation; transition: background-color .18s ease-out, border-color .18s ease-out; } .ds-secondary:hover { background: var(--soft, #252523); border-color: var(--muted, #b0ada7); } .ds-secondary:focus-visible { outline: 2px solid var(--accent, #f59962); outline-offset: 4px; } .ds-secondary:disabled { opacity: .6; cursor: not-allowed; } @media (prefers-reduced-motion: reduce) { .ds-secondary { transition: none !important; } }"
+    },
+    {
+      "name": "Text Button",
+      "kind": "button",
+      "refersTo": "button-text",
+      "description": "Quiet orange action for sharing and collection entry.",
+      "html": "<button type=\"button\" class=\"ds-text-button\">Sao chép liên kết</button>",
+      "css": ".ds-text-button { min-height: 44px; padding: 8px 0; border: 0; background: none; color: var(--accent, #f59962); font: 600 13px/1.65 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; text-align: left; cursor: pointer; touch-action: manipulation; } .ds-text-button:hover { color: var(--accent, #f59962); } .ds-text-button:focus-visible { outline: 2px solid var(--accent, #f59962); outline-offset: 4px; } .ds-text-button:disabled { opacity: .6; cursor: not-allowed; }"
+    },
+    {
+      "name": "Catalog Search",
+      "kind": "input",
+      "refersTo": "search",
+      "description": "Full-width native search with a tonal surface and accent focus boundary.",
+      "html": "<label class=\"ds-search\"><svg class=\"ds-search-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"10.5\" cy=\"10.5\" r=\"6.5\"/><path d=\"m16 16 4.5 4.5\"/></svg><input class=\"ds-search-input\" type=\"search\" aria-label=\"Tìm kỹ năng, công nghệ hoặc tác giả\" placeholder=\"Tìm skill, công nghệ hoặc tác giả…\" autocomplete=\"off\"><kbd class=\"ds-search-hint\" aria-hidden=\"true\">⌘ / Ctrl K</kbd></label>",
+      "css": ".ds-search { display: flex; align-items: center; gap: 14px; min-height: 60px; padding: 0 18px; border: 1px solid var(--line, #393835); border-radius: var(--radius, 8px); background: var(--surface, #1d1d1c); color: var(--ink, #f0eee9); font: 15px/1.65 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; } .ds-search:focus-within { border-color: var(--accent, #f59962); } .ds-search-icon { width: 20px; height: 20px; flex-shrink: 0; fill: none; stroke: var(--accent, #f59962); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; } .ds-search-input { width: 100%; min-width: 0; height: 58px; border: 0; background: transparent; color: var(--ink, #f0eee9); font: 16px/1.65 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; outline: none; } .ds-search-input::placeholder { color: var(--muted, #b0ada7); opacity: 1; } .ds-search-input::-webkit-search-cancel-button { display: none; } .ds-search-input:focus-visible { outline: 2px solid var(--accent, #f59962); outline-offset: -3px; border-radius: 4px; } .ds-search-hint { white-space: nowrap; padding: 2px 6px; border: 1px solid var(--line, #393835); border-radius: 4px; color: var(--muted, #b0ada7); font: 11px/1.7 ui-monospace, SFMono-Regular, Consolas, monospace; } @media (max-width: 640px) { .ds-search { padding-inline: 12px; gap: 10px; } .ds-search-input { font-size: 14px; } .ds-search-hint { display: none; } }"
+    },
+    {
+      "name": "Primary Navigation",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Text navigation with orange current text and a thin inset baseline.",
+      "html": "<nav class=\"ds-navigation\" aria-label=\"Điều hướng chính\"><a class=\"ds-nav-link ds-nav-current\" href=\"#catalog\" aria-current=\"location\">Khám phá</a><a class=\"ds-nav-link\" href=\"#blender\">Blender</a><a class=\"ds-nav-link\" href=\"#quickstart\">Bắt đầu</a></nav>",
+      "css": ".ds-navigation { display: flex; align-items: center; gap: 28px; background: var(--paper, #151515); color: var(--ink, #f0eee9); font: 13px/1.65 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; } .ds-nav-link { padding-block: 30px; color: inherit; text-decoration: none; white-space: nowrap; text-underline-offset: 4px; } .ds-nav-link:hover { color: var(--accent, #f59962); } .ds-nav-current { color: var(--accent, #f59962); box-shadow: inset 0 -2px var(--accent, #f59962); } .ds-nav-link:focus-visible { outline: 2px solid var(--accent, #f59962); outline-offset: 4px; } @media (max-width: 1200px) { .ds-navigation { gap: 18px; } } @media (max-width: 980px) { .ds-navigation { flex-wrap: wrap; gap: 24px; padding-block: 16px; } .ds-nav-link { display: flex; align-items: center; min-height: 44px; padding-block: 0; } .ds-nav-current { color: inherit; box-shadow: none; } }"
+    },
+    {
+      "name": "Filter Chips",
+      "kind": "chip",
+      "refersTo": "filter-chip",
+      "description": "Rectangular native filter buttons with explicit pressed state.",
+      "html": "<div class=\"ds-filters\" role=\"group\" aria-label=\"Lọc nhanh theo chủ đề\"><button type=\"button\" class=\"ds-filter\" aria-pressed=\"true\">Tất cả kỹ năng</button><button type=\"button\" class=\"ds-filter\" aria-pressed=\"false\">Blender Studio</button><button type=\"button\" class=\"ds-filter\" aria-pressed=\"false\">Phát triển web</button></div>",
+      "css": ".ds-filters { display: flex; flex-wrap: wrap; gap: 8px; background: var(--paper, #151515); color: var(--ink, #f0eee9); } .ds-filter { min-height: 44px; padding: 8px 14px; border: 1px solid var(--line, #393835); border-radius: 5px; background: transparent; color: inherit; font: 12px/1.65 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; white-space: nowrap; cursor: pointer; touch-action: manipulation; } .ds-filter:hover { border-color: var(--muted, #b0ada7); } .ds-filter[aria-pressed='true'] { background: var(--selected, #302720); color: var(--accent, #f59962); border-color: var(--selected-line, #916545); } .ds-filter:focus-visible { outline: 2px solid var(--accent, #f59962); outline-offset: 4px; } @media (max-width: 640px) { .ds-filters { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 18px; } .ds-filter { flex-shrink: 0; } }"
+    },
+    {
+      "name": "Catalog Grid Card",
+      "kind": "card",
+      "refersTo": "catalog-card",
+      "description": "The optional grid counterpart to a ruled catalog row; no floating shadow.",
+      "html": "<article class=\"ds-card\"><h3 class=\"ds-card-heading\"><button type=\"button\" class=\"ds-card-name\" aria-expanded=\"false\">blender-skills/materials</button></h3><div class=\"ds-card-tags\"><span class=\"ds-card-tag\">blender</span><span class=\"ds-card-tag\">materials</span></div><p class=\"ds-card-description\">Vật liệu, texture và ánh sáng cho asset.</p><button type=\"button\" class=\"ds-card-open\" aria-label=\"Xem chi tiết và lệnh cài blender-skills/materials\" aria-expanded=\"false\"><svg class=\"ds-card-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"m9 5 7 7-7 7\"/></svg></button></article>",
+      "css": ".ds-card { display: flex; flex-direction: column; align-items: stretch; gap: 12px; min-width: 0; padding: 20px; border: 1px solid var(--line, #393835); border-radius: var(--radius, 8px); background: var(--surface, #1d1d1c); color: var(--ink, #f0eee9); font: 15px/1.65 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; } .ds-card-heading { margin: 0; line-height: 1.2; } .ds-card-name { min-height: 44px; border: 0; padding: 0; background: none; color: inherit; font: 650 15px/1.4 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; letter-spacing: -.015em; text-align: left; overflow-wrap: anywhere; cursor: pointer; } .ds-card-name:hover { color: var(--accent, #f59962); } .ds-card-tags { display: flex; flex-wrap: wrap; gap: 8px; } .ds-card-tag { color: var(--muted, #b0ada7); font-size: 11px; overflow-wrap: anywhere; } .ds-card-tag + .ds-card-tag::before { content: '/'; margin-right: 8px; } .ds-card-description { margin: 0; color: var(--muted, #b0ada7); font-size: 13px; line-height: 1.75; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; overflow-wrap: anywhere; } .ds-card-open { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-width: 44px; min-height: 44px; padding: 10px; margin-left: auto; margin-top: auto; border: 1px solid transparent; border-radius: 6px; background: transparent; color: var(--muted, #b0ada7); cursor: pointer; transition: background-color .18s ease-out, border-color .18s ease-out; } .ds-card-open:hover { background: var(--soft, #252523); } .ds-card-icon { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; } .ds-card-name:focus-visible, .ds-card-open:focus-visible { outline: 2px solid var(--accent, #f59962); outline-offset: 4px; } @media (prefers-reduced-motion: reduce) { .ds-card-open { transition: none !important; } }"
+    },
+    {
+      "name": "Installation Preferences",
+      "kind": "custom",
+      "refersTo": "install-disclosure",
+      "description": "Native progressive disclosure for project/global scope and installation destination.",
+      "html": "<details class=\"ds-preferences\"><summary class=\"ds-preferences-summary\">Thiết lập nơi cài <span class=\"ds-preferences-hint\">Dự án cụ thể hoặc toàn máy</span></summary><fieldset class=\"ds-settings\"><legend class=\"ds-settings-legend\">Nơi cài skill</legend><div class=\"ds-settings-fields\"><label class=\"ds-settings-label\">Phạm vi cài đặt<select class=\"ds-settings-select\"><option>Dự án cụ thể</option><option>Toàn máy cho agent đã chọn</option></select></label><label class=\"ds-settings-label\">Đường dẫn tuyệt đối đến dự án<input class=\"ds-settings-input\" type=\"text\" placeholder=\"/Users/ban/my-project hoặc C:/Projects/my-app\" autocomplete=\"off\" spellcheck=\"false\"></label></div><p class=\"ds-settings-help\">Đường dẫn chỉ dùng trong phiên này và không được đưa vào liên kết chia sẻ.</p></fieldset></details>",
+      "css": ".ds-preferences { padding: 0 16px; border: 1px solid var(--line, #393835); border-radius: var(--radius, 8px); background: var(--surface, #1d1d1c); color: var(--ink, #f0eee9); font: 15px/1.65 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; } .ds-preferences-summary { min-height: 52px; padding-block: 14px; font-size: 13px; font-weight: 600; cursor: pointer; } .ds-preferences-hint { margin-left: 12px; color: var(--muted, #b0ada7); font-size: 12px; font-weight: 400; } .ds-settings { min-width: 0; border: 0; margin: 0; padding: 12px 0 18px; } .ds-settings-legend { font-size: 14px; padding: 0; } .ds-settings-fields { display: grid; grid-template-columns: minmax(160px, .7fr) minmax(0, 1.3fr); gap: 14px; } .ds-settings-label { display: block; min-width: 0; font-size: 12px; } .ds-settings-select, .ds-settings-input { display: block; width: 100%; min-height: 44px; margin-top: 6px; border: 1px solid var(--line, #393835); border-radius: 5px; color: var(--ink, #f0eee9); font: 13px/1.65 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; } .ds-settings-select { padding: 8px; background: var(--surface, #1d1d1c); cursor: pointer; } .ds-settings-input { padding: 8px 10px; background: var(--paper, #151515); } .ds-settings-input[aria-invalid='true'] { border-color: var(--warning, #edbe7c); } .ds-settings-help { margin: 12px 0 0; color: var(--muted, #b0ada7); font-size: 12px; } .ds-preferences-summary:focus-visible, .ds-settings-select:focus-visible, .ds-settings-input:focus-visible { outline: 2px solid var(--accent, #f59962); outline-offset: 4px; } @media (max-width: 640px) { .ds-preferences { padding-inline: 12px; } .ds-preferences-hint { display: block; margin: 4px 0 0 16px; } .ds-settings-fields { grid-template-columns: 1fr; } }"
+    },
+    {
+      "name": "Ruled Catalog Row",
+      "kind": "custom",
+      "refersTo": "catalog-row",
+      "description": "List-first discovery with a wrapped name, quiet metadata and an explicit open target.",
+      "html": "<article class=\"ds-row\"><div class=\"ds-row-info\"><h3 class=\"ds-row-heading\"><button type=\"button\" class=\"ds-row-name\" aria-expanded=\"false\">blender-skills/materials</button></h3><div class=\"ds-row-tags\"><span class=\"ds-row-tag\">blender</span><span class=\"ds-row-tag\">materials</span></div></div><p class=\"ds-row-description\">Vật liệu, texture và ánh sáng cho asset.</p><button type=\"button\" class=\"ds-row-open\" aria-label=\"Xem chi tiết và lệnh cài blender-skills/materials\" aria-expanded=\"false\"><svg class=\"ds-row-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"m9 5 7 7-7 7\"/></svg></button></article>",
+      "css": ".ds-row { display: grid; grid-template-columns: minmax(180px, 1fr) minmax(160px, 1.2fr) 44px; align-items: center; gap: 24px; padding: 20px 8px; border-bottom: 1px solid var(--line, #393835); background: var(--paper, #151515); color: var(--ink, #f0eee9); font: 15px/1.65 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; } .ds-row-info { min-width: 0; } .ds-row-heading { margin: 0; line-height: 1.2; } .ds-row-name { min-height: 44px; border: 0; padding: 0; background: none; color: inherit; font: 650 15px/1.4 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; letter-spacing: -.015em; text-align: left; overflow-wrap: anywhere; cursor: pointer; } .ds-row-name:hover { color: var(--accent, #f59962); } .ds-row-tags { display: flex; flex-wrap: wrap; gap: 8px; } .ds-row-tag { color: var(--muted, #b0ada7); font-size: 11px; overflow-wrap: anywhere; } .ds-row-tag + .ds-row-tag::before { content: '/'; margin-right: 8px; } .ds-row-description { margin: 0; color: var(--muted, #b0ada7); font-size: 13px; line-height: 1.75; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; overflow-wrap: anywhere; } .ds-row-open { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-width: 44px; min-height: 44px; padding: 10px; border: 1px solid transparent; border-radius: 6px; background: transparent; color: var(--muted, #b0ada7); cursor: pointer; transition: background-color .18s ease-out, border-color .18s ease-out; } .ds-row-open:hover { background: var(--soft, #252523); } .ds-row-icon { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; } .ds-row-name:focus-visible, .ds-row-open:focus-visible { outline: 2px solid var(--accent, #f59962); outline-offset: 4px; } @media (max-width: 1200px) { .ds-row { gap: 16px; } } @media (max-width: 640px) { .ds-row { grid-template-columns: minmax(0, 1fr) 44px; gap: 4px 12px; padding: 16px 0; } .ds-row-description { grid-column: 1; grid-row: 2; padding-top: 8px; } .ds-row-open { grid-column: 2; grid-row: 1 / 3; } } @media (prefers-reduced-motion: reduce) { .ds-row-open { transition: none !important; } }"
+    },
+    {
+      "name": "Installation Command",
+      "kind": "custom",
+      "refersTo": "command",
+      "description": "Wrapping command well with an explicit copy action; installation runs in the user's terminal.",
+      "html": "<div class=\"ds-command\"><code class=\"ds-command-code\">./vas install blender-skills/materials --target claude --mode link --global</code><button type=\"button\" class=\"ds-command-copy\"><svg class=\"ds-command-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><rect x=\"8\" y=\"8\" width=\"12\" height=\"13\" rx=\"2\"/><path d=\"M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3\"/></svg>Sao chép lệnh</button></div>",
+      "css": ".ds-command { display: flex; flex-direction: column; align-items: stretch; gap: 8px; min-width: 0; padding: 8px; border: 1px solid var(--line, #393835); border-radius: 6px; background: var(--paper, #151515); color: var(--ink, #f0eee9); } .ds-command-code { flex: 1; flex-basis: auto; min-width: 0; padding: 6px; white-space: pre-wrap; overflow-wrap: anywhere; font: 12px/1.7 ui-monospace, SFMono-Regular, Consolas, monospace; } .ds-command-copy { display: inline-flex; align-items: center; justify-content: center; gap: 10px; flex-shrink: 0; min-height: 44px; padding: 10px 12px; border: 1px solid transparent; border-radius: 6px; background: var(--accent, #f59962); color: var(--on-accent, #241a13); font: 600 12px/1.65 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; cursor: pointer; touch-action: manipulation; transition: background-color .18s ease-out, border-color .18s ease-out; } .ds-command-copy:hover { background: var(--accent-hover, #ffb585); } .ds-command-copy:focus-visible { outline: 2px solid var(--accent, #f59962); outline-offset: 4px; } .ds-command-copy:disabled { opacity: .6; cursor: not-allowed; } .ds-command-icon { width: 20px; height: 20px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; } @media (prefers-reduced-motion: reduce) { .ds-command-copy { transition: none !important; } }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Warm Charcoal Technical-Art Studio",
+    "overview": "The website combines a technical library's precision with a working 3D studio's warm, dark surround. This describes the built world, not a new brand proposition: Vie Agentic Skill remains a Vietnamese-first, multi-agent runbook library. The pinned Blender Skills reference informs the charcoal/orange material language; it does not replace the identity or make the whole library a Blender product.\n\nExpression comes from the actual credited Blender render, tightly spaced system headings, orange actions and readable ruled surfaces. Task controls stay familiar: native form elements, inline detail, clear prerequisites and compact metadata. Dark is the default; the light alternative preserves the same hierarchy and changes the palette by role. This root system covers the public website only, not the independent design instructions contained inside individual skills.",
+    "keyCharacteristics": [
+      "Warm charcoal surfaces with a restrained orange action hierarchy.",
+      "System sans for Vietnamese text; monospace reserved for commands and shortcuts.",
+      "Flat ruled lists, modest corners and tonal selection rather than floating panels.",
+      "Real credited imagery and visible source, license and prerequisite information.",
+      "Native disclosure, keyboard-visible states and responsive task controls."
+    ],
+    "rules": [
+      { "name": "The Action Orange Rule", "body": "Use orange for actions, links and selection; keep ordinary descriptions and provenance muted.", "section": "colors" },
+      { "name": "The Paired Theme Rule", "body": "Switch the whole set of role values together, including action text, warning and selection colors.", "section": "colors" },
+      { "name": "The Readable Density Rule", "body": "Create compactness through hierarchy and grouping, not by compressing description line-height or clipping an expanded runbook's only full-text access.", "section": "typography" },
+      { "name": "The Flat Workspace Rule", "body": "Keep ordinary content flat; reserve drop shadows for the toast and manual-copy overlays.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do use the complete theme role set and the paired text color on orange actions.",
+      "Do preserve Vietnamese-first labels, system-font rendering and readable supporting text.",
+      "Do keep ruled list discovery and the optional grid consistent with the same selected state.",
+      "Do retain visible focus, native disclosure and the reduced-motion alternative.",
+      "Do keep the credited Blender render, VAS identity, provenance and explicit prerequisites.",
+      "Do let long commands, paths and runbook names wrap within responsive containers."
+    ],
+    "donts": [
+      "Don't turn the orange action hierarchy into decorative full-surface color.",
+      "Don't add floating shadows to ordinary catalog rows, cards or settings.",
+      "Don't replace plain metadata with interactive-looking badges.",
+      "Don't substitute the reference site's identity for Vie Agentic Skill or imply every runbook operates Blender.",
+      "Don't present catalog risk metadata as a safety guarantee or hide requirements behind promotional copy.",
+      "Don't introduce movement that survives the existing reduced-motion preference."
+    ]
+  }
+}

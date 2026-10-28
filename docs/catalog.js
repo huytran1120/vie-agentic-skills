@@ -9,6 +9,7 @@
   ];
   const groups = [
     { id: 'all', label: 'Tất cả kỹ năng', categories: [] },
+    { id: 'blender', label: 'Blender Studio', categories: ['blender'] },
     { id: 'web', label: 'Phát triển web', categories: ['front-end', 'frontend', 'web-development', 'full-stack', 'fullstack', 'web'] },
     { id: 'development', label: 'Development', categories: ['development'] },
     { id: 'devops', label: 'DevOps', categories: ['devops', 'ci-cd'] },
@@ -21,16 +22,16 @@
   ];
   const recommended = ['ui-ux-pro-max', 'code-review', 'cloudflare-security-audit', 'impeccable', 'webapp-testing', 'frontend-design', 'research', 'landing-page-design', 'writing-for-agents', 'setup-pre-commit', 'web-performance-optimization'];
   const showcases = [
-    ['landing-page-design', '🚀 landing-page-design', 'Kiến trúc trang đích chuyển đổi cao & Fluid Nav', 'landing-page-design.svg', 'design'],
-    ['ui-ux-pro-max', '🎨 ui-ux-pro-max', 'Hệ thống Design System, 192 bảng màu & font pairing', 'ui-ux-pro-max.svg', 'design'],
-    ['impeccable', '🛡️ impeccable', 'Bộ công cụ chống AI-slop với 62 quy tắc định lượng', 'impeccable.svg', 'design'],
-    ['blender-mcp', '🧊 blender-mcp & img2threejs', 'Điều khiển Blender 3D & Three.js thuần code', 'blender-and-3d.svg', '3d'],
-    ['hyperframes', '🎬 video-shotcraft, hyperframes, remotion', 'Lập trình video trong React/HTML', 'video-and-motion.svg', 'video'],
-    ['diagram-design', '📊 diagram-design', 'Sơ đồ kiến trúc cloud HTML+SVG', 'diagram-design.svg', 'cloud'],
-    ['chrome-devtools', '🛠️ chrome-devtools', 'Gỡ lỗi LCP, rò rỉ bộ nhớ & A11y', 'chrome-devtools.svg', 'cloud'],
-    ['bigquery-sql', '⚡ bigquery-sql', 'Tối ưu hóa chi phí & hiệu năng BigQuery', 'bigquery-sql.svg', 'cloud'],
-    ['firebase-firestore', '🔒 firebase-firestore', 'Kiểm toán bảo mật rules & data model', 'firebase-firestore.svg', 'cloud'],
-    ['alphafold-database-fetch-and-analyze', '🧬 alphafold-fetch', 'Phân tích sinh học phân tử 3D & pLDDT', 'alphafold-science.svg', 'cloud']
+    ['landing-page-design', 'Landing page design', 'Thiết kế cấu trúc và trải nghiệm trang đích.', 'landing-page-design.svg', 'design'],
+    ['ui-ux-pro-max', 'UI/UX Pro Max', 'Hệ thống giao diện, bảng màu và typography.', 'ui-ux-pro-max.svg', 'design'],
+    ['impeccable', 'Impeccable', 'Thiết kế và cải thiện giao diện có chủ đích.', 'impeccable.svg', 'design'],
+    ['blender-mcp', 'Blender MCP', 'Workflow điều khiển Blender qua MCP.', 'blender-and-3d.svg', '3d'],
+    ['hyperframes', 'Hyperframes', 'Xây dựng video bằng HTML.', 'video-and-motion.svg', 'video'],
+    ['diagram-design', 'Diagram design', 'Sơ đồ kiến trúc bằng HTML và SVG.', 'diagram-design.svg', 'cloud'],
+    ['chrome-devtools', 'Chrome DevTools', 'Quan sát và gỡ lỗi trong trình duyệt.', 'chrome-devtools.svg', 'cloud'],
+    ['bigquery-sql', 'BigQuery SQL', 'Truy vấn và tối ưu dữ liệu BigQuery.', 'bigquery-sql.svg', 'cloud'],
+    ['firebase-firestore', 'Firebase Firestore', 'Dữ liệu và security rules cho Firestore.', 'firebase-firestore.svg', 'cloud'],
+    ['alphafold-database-fetch-and-analyze', 'AlphaFold', 'Truy xuất và phân tích cấu trúc protein.', 'alphafold-science.svg', 'cloud']
   ];
 
   function normalize(value) {
@@ -115,12 +116,13 @@
     if (value.view === 'grid') params.set('view', 'grid');
     return params.toString();
   }
-  function skillUrl(skill) {
+  function skillUrl(skill, base = '..') {
+    if (!['.', '..'].includes(base)) throw new Error('Gốc đường dẫn skill không hợp lệ');
     const path = String(skill.path || `skills/${skill.id}`).replace(/\/SKILL\.md$/, '');
     if (!path.startsWith('skills/') || path.split('/').some(part => !part || part === '.' || part === '..' || part.includes('\\'))) {
       throw new Error(`Đường dẫn skill không hợp lệ: ${skill.id}`);
     }
-    return `../${path.split('/').map(encodeURIComponent).join('/')}/SKILL.md`;
+    return `${base}/${path.split('/').map(encodeURIComponent).join('/')}/SKILL.md`;
   }
   function sourceUrl(skill) {
     if (!/^[a-zA-Z0-9_.-]+\/[a-zA-Z0-9_.-]+$/.test(skill.source_repo || '')) return null;
@@ -134,6 +136,7 @@
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   if (typeof document === 'undefined') return;
 
+  const skillBase = document.documentElement?.dataset.skillBase || '..';
   const state = { skills: [], query: '', group: 'all', category: 'all', sort: 'recommended', target: 'antigravity', view: 'list', page: 1, selected: null, loaded: false, scope: 'project', projectPath: '' };
   if (typeof window !== 'undefined') Object.assign(state, readCatalogState(window.location.search));
   const pageSize = 18;
@@ -174,7 +177,7 @@
       return `<button type="button" data-group="${group.id}" aria-pressed="${state.group === group.id && state.category === 'all'}"><span>${group.label}</span><span>${count(total)}</span></button>`;
     });
     byId('category-navigation').innerHTML = buttons.join('');
-    byId('category-pills').innerHTML = groups.slice(0, 9).map(group => `<button type="button" data-group="${group.id}" aria-pressed="${state.group === group.id && state.category === 'all'}">${group.label === 'Development' ? 'Lập trình' : group.label}</button>`).join('');
+    byId('category-pills').innerHTML = groups.map(group => `<button type="button" data-group="${group.id}" aria-pressed="${state.group === group.id && state.category === 'all'}">${group.label === 'Development' ? 'Lập trình' : group.label}</button>`).join('');
   }
   function updateNavigation() {
     document.querySelectorAll('[data-group]').forEach(button => {
@@ -233,7 +236,7 @@
       <p class="install-destination">${state.scope === 'global' ? 'Toàn máy' : 'Dự án cụ thể'} · <a href="#install-scope">Đổi nơi cài</a></p>
       <div class="command-box"><code data-install-command>${escapeHtml(preview.command || preview.error)}</code><button class="button primary" data-copy-skill="${escapeHtml(skill.id)}"${preview.command ? '' : ' disabled'}>${icon('copy')}Sao chép lệnh</button></div>
       <p class="install-footnote">Chạy tại thư mục gốc Vie Agentic Skill. <a href="#quickstart">Xem hướng dẫn local</a>.</p>
-      <div class="install-links"><a href="${escapeHtml(skillUrl(skill))}" target="_blank" rel="noopener noreferrer">Đọc SKILL.md ↗</a><button class="text-button" data-share-skill="${escapeHtml(skill.id)}">Sao chép liên kết</button><button class="text-button" data-show-command="${escapeHtml(skill.id)}">Sao chép lệnh xem playbook</button></div>
+      <div class="install-links"><a href="${escapeHtml(skillUrl(skill, skillBase))}" target="_blank" rel="noopener noreferrer">Đọc SKILL.md ↗</a><button class="text-button" data-share-skill="${escapeHtml(skill.id)}">Sao chép liên kết</button><button class="text-button" data-show-command="${escapeHtml(skill.id)}">Sao chép lệnh xem playbook</button></div>
     </div>`;
   }
   function renderResults() {
@@ -249,12 +252,10 @@
     byId('filter-description').textContent = state.category !== 'all' ? `Danh mục: ${state.category}` : `Đang lọc: ${categoryLabel}`;
     byId('empty-state').hidden = filtered.length !== 0;
     byId('skills-results').classList.toggle('is-grid', state.view === 'grid');
-    byId('skills-results').innerHTML = visible.map((skill, index) => {
+    byId('skills-results').innerHTML = visible.map(skill => {
       const selected = skill.id === state.selected;
       const tags = [skill.category || 'general', ...(skill.tags || []).filter(tag => tag !== skill.category)].slice(0, 2);
       return `<article class="skill-row${selected ? ' is-open' : ''}" data-skill="${escapeHtml(skill.id)}">
-        <span class="skill-number" aria-hidden="true">${String(index + 1).padStart(2, '0')}</span>
-        <div class="skill-symbol" aria-hidden="true">${icon(skill.category === 'design' ? 'grid' : 'code')}</div>
         <div class="skill-info">
           <h3><button class="skill-name" data-open-skill="${escapeHtml(skill.id)}" aria-expanded="${selected}"${selected ? ` aria-controls="install-${escapeHtml(skill.id)}"` : ''}>${escapeHtml(skill.id)}</button></h3>
           <div class="skill-tags">${tags.map(tag => `<span class="skill-tag">${escapeHtml(tag)}</span>`).join('')}</div>
@@ -329,12 +330,9 @@
         if (!Array.isArray(data) || data.length === 0 || data.some(skill => !skill || typeof skill.id !== 'string' || !skill.id || typeof skill.category !== 'string' || (skill.tags && (!Array.isArray(skill.tags) || skill.tags.some(tag => typeof tag !== 'string'))))) {
           throw new Error('Dữ liệu catalog không hợp lệ');
         }
-        data.forEach(skillUrl);
+        data.forEach(skill => skillUrl(skill, skillBase));
         state.skills = data;
         state.loaded = true;
-        if (typeof window === 'undefined' || !new URLSearchParams(window.location.search).has('skill')) {
-          state.selected = recommended.find(id => data.some(skill => skill.id === id)) || data[0].id;
-        }
         renderNavigation();
         renderCategories();
         if (typeof window !== 'undefined' && window.location.search) restoreLocation();
@@ -463,9 +461,17 @@
     }
   });
   document.addEventListener('click', event => {
+    if (event.target.closest('a[href="#install-scope"]')) byId('install-preferences').open = true;
     const button = event.target.closest('button');
     if (!button) return;
-    if (button.dataset.group) {
+    if (button.hasAttribute('data-blender')) {
+      state.query = '';
+      state.group = 'blender';
+      state.category = 'all';
+      byId('search-input').value = '';
+      applyFilters();
+      focusSearch();
+    } else if (button.dataset.group) {
       state.group = button.dataset.group;
       state.category = 'all';
       applyFilters();

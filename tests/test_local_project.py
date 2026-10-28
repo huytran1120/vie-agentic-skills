@@ -81,9 +81,9 @@ class LocalProjectTests(unittest.TestCase):
                     ast.parse(example)
 
     def test_catalog_retains_all_skills_and_matches_local_scan(self):
-        self.assertEqual(len(self.index), 2951)
+        self.assertEqual(len(self.index), 3045)
         self.assertEqual(len(self.by_id), len(self.index))
-        self.assertEqual(len({s["category"] for s in self.index}), 118)
+        self.assertEqual(len({s["category"] for s in self.index}), 119)
         self.assertEqual(VAS.scan_skills_locally(), self.index)
         website = json.loads((ROOT / "docs/skills.min.json").read_text())
         self.assertEqual(website, self.index)

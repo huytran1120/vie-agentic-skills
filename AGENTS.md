@@ -1,7 +1,7 @@
 # Vie Agentic Skill (VAS) - Instructions for AI Agents
 
 This is **Vie Agentic Skill (VAS)**, a local adaptation of the upstream catalog curated by **Huy Tran** (`huytran1120`).
-It serves as a comprehensive catalog of 2,951+ modular, agentic skills designed for **Google Antigravity, Claude Code, Cursor, Windsurf (Codeium), OpenAI Codex / OpenCode, Cline / Roo Code, and GitHub Copilot CLI**.
+It serves as a comprehensive catalog of 3,045+ modular, agentic skills designed for **Google Antigravity, Claude Code, Cursor, Windsurf (Codeium), OpenAI Codex / OpenCode, Cline / Roo Code, and GitHub Copilot CLI**.
 
 The upstream snapshot is `8dd77cd14fea84ad3a9f51573461a227ae06082e` from
 https://github.com/huytran1120/vietnam-agentic-skills. Keep individual skill

@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://huytran1120.github.io/vie-agentic-skills/sitemap.xml
