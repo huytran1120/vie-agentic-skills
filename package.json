@@ -1,0 +1,45 @@
+{
+  "name": "vie-agentic-skill",
+  "version": "1.2.0",
+  "description": "Vie Agentic Skill (VAS) - local multi-agent skills catalog with a dependency-free Python CLI.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huytran1120/vie-agentic-skills.git"
+  },
+  "author": "Huy Tran <66549585+huytran1120@users.noreply.github.com> (https://github.com/huytran1120)",
+  "license": "MIT",
+  "keywords": [
+    "antigravity",
+    "agentic-skills",
+    "vie-agentic-skill",
+    "vas",
+    "ai-coding",
+    "playbooks",
+    "gemini"
+  ],
+  "bin": {
+    "vas": "vas"
+  },
+  "scripts": {
+    "search": "python3 vas.py search",
+    "list": "python3 vas.py list",
+    "categories": "python3 vas.py categories",
+    "tags": "python3 vas.py tags",
+    "status": "python3 vas.py status",
+    "sync": "python3 vas.py sync",
+    "guide": "python3 vas.py guide",
+    "test": "python3 -m unittest discover -s tests -p 'test_*.py' && node --test tests/*.test.cjs",
+    "preview": "python3 -m http.server 8765 --bind 127.0.0.1"
+  },
+  "files": [
+    "skills",
+    "skills_index.json",
+    "data",
+    "vas",
+    "vas.py",
+    "CATALOG.md",
+    "AGENTS.md",
+    "README.md"
+  ],
+  "private": true
+}
