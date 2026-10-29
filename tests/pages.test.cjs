@@ -485,6 +485,8 @@ test('source filters combine as a union and intersect with search and categories
   assert.equal(catalog.filterSkills(skills, { sources: ['addy'] }).length, 25);
   assert.equal(catalog.filterSkills(skills, { sources: ['blender'] }).length, 94);
   assert.equal(catalog.filterSkills(skills, { sources: ['youtube'] }).length, 11);
+  assert.equal(catalog.filterSkills(skills, { sources: ['hallmark'] }).length, 1);
+  assert.equal(catalog.filterSkills(skills, { sources: ['hallmark', 'youtube'] }).length, 12);
   assert.equal(catalog.filterSkills(skills, { sources: ['youtube', 'blender'] }).length, 105);
   assert.equal(catalog.filterSkills(skills, { sources: ['mattpocock', 'blender'] }).length, 129);
   const filtered = catalog.filterSkills(skills, { sources: ['mattpocock'], query: 'review' });
@@ -497,7 +499,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
   const youtube = catalog.filterSkills(skills, { sources: ['youtube'] });
   assert.equal(youtube.length, 11);
   assert.equal(catalog.filterSkills(skills, { query: 'youtube-agent-skill' }).length, 11);
-  assert.equal(skills.length, 3056);
+  assert.equal(skills.length, 3057);
   for (const skill of youtube) {
     assert.ok(skill.id.startsWith('youtube-agent-skill/'));
     assert.equal(skill.source_repo, 'Jakeschincariol/youtube-agent-skill');
@@ -512,12 +514,47 @@ test('YouTube collection retains its pinned source, standalone install paths and
     assert.deepEqual(state.sources, ['youtube']);
     assert.equal(state.selected, youtube[0].id);
     assert.ok(i18n.translate('collections.youtube', language).startsWith('11 '));
-    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '3.056' : '3,056'));
+    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '3.057' : '3,057'));
   }
   assert.equal(catalog.filterSkills(skills, { sources: ['youtube'], category: 'security' }).length, 0);
   const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
   assert.ok(html.includes('name="source" value="youtube"'));
   assert.ok(html.includes('id="youtube-collection"'));
+});
+
+test('Hallmark retains its pinned source and complete no-clone prompts for every agent and language', () => {
+  const [skill] = catalog.filterSkills(skills, { sources: ['hallmark'] });
+  assert.equal(skill.id, 'hallmark');
+  assert.equal(skill.source_repo, 'Nutlope/hallmark');
+  assert.equal(skill.license, 'MIT');
+  assert.deepEqual(catalog.filterSkills(skills, { query: 'Nutlope' }).map(skill => skill.id), ['hallmark']);
+  assert.ok(catalog.sourceUrl(skill).includes('/8f6969f8922caabde9de1784959eae11ddf68073/'));
+  for (const language of ['vi', 'en']) {
+    for (const [agent] of catalog.agents) {
+      const state = catalog.readCatalogState(catalog.catalogParams({
+        language, sources: ['hallmark'], selected: skill.id, target: agent
+      }));
+      assert.equal(state.language, language);
+      assert.equal(state.target, agent);
+      assert.equal(state.selected, 'hallmark');
+      assert.deepEqual(state.sources, ['hallmark']);
+      const prompt = catalog.agentInstallPrompt(skill, agent, language);
+      assert.ok(prompt.startsWith(language === 'vi' ? 'Hãy cài đặt skill' : 'Please install'));
+      assert.ok(prompt.includes('/install-manifests/hallmark.json'));
+      assert.ok(prompt.includes('SHA-256') && prompt.includes('.vas-manifest.json'));
+      assert.ok(!prompt.includes('8f6969f8922caabde9de1784959eae11ddf68073'));
+      const targets = agent === 'all' ? Object.keys(catalog.targetFolders) : [agent];
+      for (const target of targets) {
+        assert.ok(prompt.includes(`"${catalog.targetFolders[target]}/hallmark/"`));
+        const plan = catalog.installationPlan('hallmark', target, { mode: 'copy' });
+        assert.deepEqual(plan.paths, [`${catalog.targetFolders[target]}/hallmark/SKILL.md`]);
+      }
+    }
+  }
+  const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
+  assert.ok(html.includes('name="source" value="hallmark"'));
+  assert.ok(html.includes('data-source-count="hallmark">1<'));
+  assert.ok(html.includes('data-discover="hallmark"'));
 });
 
 test('shared links retain selected sources and reject unknown source keys', () => {

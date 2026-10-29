@@ -75,7 +75,7 @@ The catalog-first website supports keyword/author/source search, category filter
 
 ### 1. Overview
 
-**Vie Agentic Skill (VAS)** is a vendor-neutral, production-ready catalog of **3,056+ modular agentic skills**, adapted locally from the upstream catalog curated by **Huy Tran** ([@huytran1120](https://github.com/huytran1120)).
+**Vie Agentic Skill (VAS)** is a vendor-neutral, production-ready catalog of **3,057+ modular agentic skills**, adapted locally from the upstream catalog curated by **Huy Tran** ([@huytran1120](https://github.com/huytran1120)).
 
 VAS strictly adheres to the **Open Agent Skills specification ([agentskills.io](https://agentskills.io/))** and is engineered specifically for modern AI coding agents such as **Google Antigravity, OpenAI Codex / OpenCode, Claude Code, Cursor, Windsurf (Codeium), Cline / Roo Code, and GitHub Copilot CLI**.
 
@@ -194,6 +194,27 @@ installed runbook before applying it. The website provides matching status and
 uninstall commands and a sample prompt, including for namespaced Blender skills.
 
 ---
+
+#### Hallmark: frontend design on request
+
+[Open Hallmark in the catalog](https://huytran1120.github.io/vie-agentic-skills/?lang=en&skill=hallmark),
+choose an agent and use **Copy Agent Prompt** to install all 182 files without
+cloning. Hallmark is **one skill**, with 50 themes, references, previews, scripts
+and its MIT notice; installation never redesigns a page or runs helpers.
+
+From your VAS checkout, replace `/Projects/my-app` with your actual project:
+
+```bash
+./vas install hallmark --target cursor --mode copy --dest "/Projects/my-app/.cursor/skills"
+./vas status --target cursor --dest "/Projects/my-app/.cursor/skills"
+./vas uninstall hallmark --target cursor --dest "/Projects/my-app/.cursor/skills"
+```
+
+Use `--mode link` for symlinks, retaining the VAS checkout. Reading needs no Node;
+helpers require Node.js 18+, and rendered checks need separate Chrome/Puppeteer.
+Together AI generation is optional and may incur costs; photo licenses and
+credits remain separate from MIT. See the [Hallmark VI/EN guide](docs/hallmark.md)
+for every agent destination and complete prerequisites.
 
 ### 5. Agent-Specific Setup Guides
 
@@ -411,7 +432,7 @@ During `/ship` pre-flight or code auditing, 4 specialist personas can be fanned 
 
 | Dimension | Vie Agentic Skill (VAS) | Addy Osmani (`agent-skills`) | Superpowers (`obra`) | Matt Pocock Skills |
 | :--- | :--- | :--- | :--- | :--- |
-| **Catalog Scale** | **3,056+ Skills** (World's most extensive) | 25 Core Skills | ~14 Skills | ~30 Skills |
+| **Catalog Scale** | **3,057+ Skills** (World's most extensive) | 25 Core Skills | ~14 Skills | ~30 Skills |
 | **Tooling & Engine** | **Native Python 3 CLI (`./vas`) — Zero-NPX** | `npx skills` / Plugins | Git Worktrees / Shell scripts | Claude Code / `npx skills` |
 | **Dependencies & Offline**| **100% Offline, Zero external dependencies** | Requires Node & remote NPX | Requires clone & git setup | Requires Node & remote NPX |
 | **Agent Support** | **7+ AI Coding Assistants** (Antigravity, Codex, Claude, Cursor, Windsurf, Cline, Copilot) | Claude Code, Codex, Antigravity, Cursor, Copilot | Claude Code, Codex, Cursor | Claude Code primary |
@@ -424,7 +445,7 @@ During `/ship` pre-flight or code auditing, 4 specialist personas can be fanned 
 
 ### 11. Featured & Viral Skills Showcase (Top 20)
 
-VAS includes **3,056+ skills** across **119 specialized categories**. Browse the full directory in [CATALOG.md](CATALOG.md).
+VAS includes **3,057+ skills** across **119 specialized categories**. Browse the full directory in [CATALOG.md](CATALOG.md).
 
 | # | Skill ID | Stars | Capability Overview | Quick Install Command |
 | :-: | :--- | :---: | :--- | :--- |

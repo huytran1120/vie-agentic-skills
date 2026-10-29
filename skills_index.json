@@ -23338,6 +23338,30 @@
     "risk": "safe"
   },
   {
+    "id": "hallmark",
+    "canonical_id": "hallmark",
+    "name": "hallmark",
+    "path": "skills/hallmark",
+    "description": "Design skill for websites and new pages that look designed, not generated. Use when the user asks to build or design something new, or names Hallmark. Never use it on an existing design unless the user names Hallmark, as in `/hallmark redesign <path>`.",
+    "category": "front-end",
+    "tags": [
+      "frontend",
+      "design",
+      "hallmark",
+      "themes",
+      "audit",
+      "redesign"
+    ],
+    "risk": "unknown",
+    "source": "https://github.com/Nutlope/hallmark/tree/8f6969f8922caabde9de1784959eae11ddf68073/skills/hallmark",
+    "source_repo": "Nutlope/hallmark",
+    "author": "Hallmark contributors / Together AI",
+    "license": "MIT",
+    "license_source": "https://github.com/Nutlope/hallmark/blob/8f6969f8922caabde9de1784959eae11ddf68073/skills/hallmark/LICENSE",
+    "source_revision": "8f6969f8922caabde9de1784959eae11ddf68073",
+    "source_path": "skills/hallmark/SKILL.md"
+  },
+  {
     "id": "handoff",
     "canonical_id": "handoff",
     "name": "handoff",

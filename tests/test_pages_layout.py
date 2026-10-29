@@ -71,6 +71,7 @@ class PagesLayoutTests(unittest.TestCase):
                 command.append("--force-prefers-reduced-motion")
             command.append(
                 f"http://127.0.0.1:{self.server.server_port}/tests/pages-layout.html"
+                + ("?artifact" if reduced_motion else "")
             )
             result = subprocess.run(
                 command, capture_output=True, text=True, timeout=60,

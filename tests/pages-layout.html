@@ -205,6 +205,40 @@
     const voiceTemplate = d.querySelector('#runbook-content a[href$="/yt-audit/templates/voice.md"]');
     check(Boolean(voiceTemplate) && (await w.fetch(voiceTemplate.href)).ok, 'Voice profile template must be available beside the installed runbook');
     check(d.documentElement.scrollWidth <= w.innerWidth, 'YouTube details must fit mobile');
+    d.querySelector('[data-back-library]').click();
+    d.getElementById('open-filters').click();
+    d.getElementById('mobile-reset').click();
+    d.querySelector('input[name="mobile-source"][value="hallmark"]').click();
+    d.getElementById('apply-mobile-filters').click();
+    check(new URL(w.location.href).searchParams.get('sources') === 'hallmark', 'Hallmark source filtering must be shareable');
+    check(d.querySelectorAll('#skills-results [data-skill]').length === 1, 'Hallmark must be one skill, not 50 theme skills');
+    check(d.querySelector('input[name="source"][value="hallmark"]').checked, 'Desktop and mobile Hallmark source filters must agree');
+    d.querySelector('[data-open-skill="hallmark"]').click();
+    await waitFor(() => d.getElementById('runbook-content').getAttribute('aria-busy') === 'false', 'Hallmark runbook must finish loading');
+    check(d.getElementById('runbook-content').textContent.includes('TOGETHER_API_KEY'), 'Hallmark must expose optional service prerequisites');
+    const hallmarkReference = d.querySelector('#runbook-content a[href*="/hallmark/references/"][href$=".md"]');
+    check(Boolean(hallmarkReference) && (await w.fetch(hallmarkReference.href)).ok, 'Hallmark local references must load beside the runbook');
+    const manifestBase = new URL(d.documentElement.dataset.skillBase === '..' ? '../_site/' : './', w.location.href);
+    const hallmarkManifest = await (await w.fetch(new URL('install-manifests/hallmark.json', manifestBase))).json();
+    check(hallmarkManifest.available && hallmarkManifest.files.length === 182, 'Hallmark copy must use a complete committed manifest');
+    check(hallmarkManifest.revision !== '8f6969f8922caabde9de1784959eae11ddf68073', 'Manifest must pin VAS, not the upstream commit');
+    const preview = hallmarkManifest.files.find(file => file.path.endsWith('.jpg'));
+    const skillRoot = new URL(`${d.documentElement.dataset.skillBase}/skills/hallmark/`, w.location.href);
+    const previewResponse = await w.fetch(new URL(preview.path, skillRoot));
+    check(previewResponse.ok && (await previewResponse.arrayBuffer()).byteLength === preview.bytes, 'Bundled Hallmark theme previews must be complete');
+    for (const locale of ['vi', 'en']) {
+      language(locale);
+      installPrompt = null;
+      d.querySelector('#skill-detail [data-copy-agent-prompt]').click();
+      await waitFor(() => Boolean(installPrompt), 'Hallmark installation prompt must copy');
+      check(installPrompt.startsWith(locale === 'vi' ? 'Hãy cài đặt skill' : 'Please install'), 'Hallmark copied prompts must follow the interface language');
+      check(installPrompt.includes('".cursor/skills/hallmark/"'), 'Hallmark prompts must retain the selected Cursor destination');
+      for (const width of [1440, 390, 320]) {
+        frame.style.width = `${width}px`;
+        await wait(80);
+        check(d.documentElement.scrollWidth <= w.innerWidth, `Hallmark ${locale} ${width}px: details must fit the viewport`);
+      }
+    }
     language('vi');
     const probe = document.createElement('iframe');
     probe.style.cssText = 'display:block;border:0;height:1000px;width:390px';

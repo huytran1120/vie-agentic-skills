@@ -74101,5 +74101,29 @@
     "license": "MIT",
     "license_source": "https://github.com/Jakeschincariol/youtube-agent-skill/blob/a2feb2104981a375ffd4f87ee04f4f5344ac43c6/LICENSE",
     "path": "skills/youtube-agent-skill/yt-viral"
+  },
+  {
+    "id": "hallmark",
+    "canonical_id": "hallmark",
+    "name": "hallmark",
+    "description": "Design skill for websites and new pages that look designed, not generated. Use when the user asks to build or design something new, or names Hallmark. Never use it on an existing design unless the user names Hallmark, as in `/hallmark redesign <path>`.",
+    "category": "front-end",
+    "risk": "unknown",
+    "tags": [
+      "frontend",
+      "design",
+      "hallmark",
+      "themes",
+      "audit",
+      "redesign"
+    ],
+    "source": "https://github.com/Nutlope/hallmark/tree/8f6969f8922caabde9de1784959eae11ddf68073/skills/hallmark",
+    "source_repo": "Nutlope/hallmark",
+    "source_revision": "8f6969f8922caabde9de1784959eae11ddf68073",
+    "source_path": "skills/hallmark/SKILL.md",
+    "author": "Hallmark contributors / Together AI",
+    "license": "MIT",
+    "license_source": "https://github.com/Nutlope/hallmark/blob/8f6969f8922caabde9de1784959eae11ddf68073/skills/hallmark/LICENSE",
+    "path": "skills/hallmark"
   }
 ]

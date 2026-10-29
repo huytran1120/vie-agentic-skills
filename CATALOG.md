@@ -1,6 +1,6 @@
 # Vie Agentic Skill (VAS) - Catalog
 
-Tổng hợp **3,056** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
+Tổng hợp **3,057** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
 
 | Danh mục | Số lượng | Lệnh cài đặt nhanh |
 | :--- | :---: | :--- |
@@ -63,7 +63,7 @@ Tổng hợp **3,056** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **engineering** | 21 skills | `./vas install --category engineering --target codex` |
 | **finance** | 33 skills | `./vas install --category finance --target codex` |
 | **framework** | 13 skills | `./vas install --category framework --target codex` |
-| **front-end** | 14 skills | `./vas install --category front-end --target codex` |
+| **front-end** | 15 skills | `./vas install --category front-end --target codex` |
 | **frontend** | 47 skills | `./vas install --category frontend --target codex` |
 | **fullstack** | 1 skills | `./vas install --category fullstack --target codex` |
 | **game-development** | 22 skills | `./vas install --category game-development --target codex` |
@@ -2199,7 +2199,7 @@ Tổng hợp **3,056** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `typescript-expert` | `critical` | TypeScript and JavaScript expert with deep knowledge of type-level programmin... |
 | `zod-validation-expert` | `safe` | Expert in Zod — TypeScript-first schema validation. Covers parsing, custom er... |
 
-### FRONT-END (14 skills)
+### FRONT-END (15 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
@@ -2211,6 +2211,7 @@ Tổng hợp **3,056** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `frontend-design` | `critical` | Guidance for distinctive, intentional visual design when building new UI or r... |
 | `frontend-dev-guidelines` | `critical` | You are a senior frontend engineer operating under strict architectural and p... |
 | `frontend-developer` | `critical` | Build React components, implement responsive layouts, and handle client-side ... |
+| `hallmark` | `unknown` | Design skill for websites and new pages that look designed, not generated. Us... |
 | `interactive-portfolio` | `critical` | Expert in building portfolios that actually land jobs and clients - |
 | `landing-page-generator` | `critical` | Generates high-converting Next.js/React landing pages with Tailwind CSS. Uses... |
 | `progressive-web-app` | `critical` | Build Progressive Web Apps (PWAs) with offline support, installability, and c... |

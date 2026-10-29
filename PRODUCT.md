@@ -54,6 +54,9 @@ The CLI remains `./vas`; individual task dependencies are not CLI dependencies.
   or publish videos automatically.
 - Blender skills require a separately configured Blender MCP connection. Importing
   runbooks does not install or activate that connection.
+- Hallmark is one MIT frontend skill with 50 bundled themes and optional Node.js
+  helpers. Browser helpers need separately provided Chrome and Puppeteer; paid
+  Together AI generation and individually licensed photos remain opt-in.
 - GitHub Pages is static and must work under the repository URL prefix.
 - Shared links use a branded 1280-by-640 PNG with matching Open Graph and Twitter
   metadata. GitHub repository previews require a separate upload in Settings >
