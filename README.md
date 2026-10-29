@@ -24,7 +24,7 @@
 </p>
 <p align="center">
   <a href="https://huytran1120.github.io/vie-agentic-skills/"><img src="https://img.shields.io/badge/Live%20Catalog-GitHub%20Pages-00C853?style=for-the-badge&logo=githubpages&logoColor=white" alt="GitHub Pages Catalog" /></a>
-  <a href="CATALOG.md"><img src="https://img.shields.io/badge/Catalog-3%2C045%2B%20Skills-00C853?style=for-the-badge" alt="Skills Count" /></a>
+  <a href="CATALOG.md"><img src="https://img.shields.io/badge/Catalog-3%2C056%2B%20Skills-00C853?style=for-the-badge" alt="Skills Count" /></a>
   <a href="vas.py"><img src="https://img.shields.io/badge/Zero--NPX-Pure%20Python%203-FF6D00?style=for-the-badge" alt="Zero NPX" /></a>
   <a href="https://github.com/huytran1120"><img src="https://img.shields.io/badge/Author-huytran1120-6200EA?style=for-the-badge&logo=github" alt="Author" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" alt="License: MIT" /></a>
@@ -82,7 +82,7 @@ chính artifact xuất bản, phục vụ gốc dự án rồi mở `http://127.
 
 **Vie Agentic Skill (VAS)** là bản local kế thừa kho kỹ năng agentic được tuyển chọn bởi **Huy Tran** ([@huytran1120](https://github.com/huytran1120)).
 
-Dự án cung cấp **3,045+ playbooks (`SKILL.md`)** chuyên sâu thuộc 119 danh mục công nghệ, tuân thủ nghiêm ngặt **Chuẩn mở Agent Skills Quốc tế ([agentskills.io](https://agentskills.io/))**.
+Dự án cung cấp **3,056+ playbooks (`SKILL.md`)** chuyên sâu thuộc 119 danh mục công nghệ, tuân thủ nghiêm ngặt **Chuẩn mở Agent Skills Quốc tế ([agentskills.io](https://agentskills.io/))**.
 
 Với VAS, các AI Coding Agent không còn là lập trình viên chung chung, mà biến thành các cộng sự kỹ thuật cấp Senior thực thụ: có checklist bảo mật, quy trình kiểm thử, công thức tối ưu và kịch bản thực thi chính xác.
 
@@ -380,7 +380,7 @@ Trước khi ra mắt sản phẩm (`/ship`), hệ thống hỗ trợ kích ho�
 
 | Tiêu Chí Đánh Giá | Vie Agentic Skill (VAS) | Addy Osmani (`agent-skills`) | Superpowers (`obra`) | Matt Pocock Skills |
 | :--- | :--- | :--- | :--- | :--- |
-| **Quy mô Catalog** | **3,045+ Kỹ năng** (Toàn diện nhất thế giới) | 25 Kỹ năng cốt lõi | ~14 Kỹ năng | ~30 Kỹ năng |
+| **Quy mô Catalog** | **3,056+ Kỹ năng** (Toàn diện nhất thế giới) | 25 Kỹ năng cốt lõi | ~14 Kỹ năng | ~30 Kỹ năng |
 | **Công cụ Quản trị** | **Native Python 3 CLI (`./vas`) — Zero-NPX** | `npx skills` / Plugin | Git Worktrees / Scripts | Claude Code / `npx skills` |
 | **Phụ thuộc Mạng & NPX**| **100% Offline & Không cần Node/NPX** | Cần Node & npx khi cài | Cần clone & setup | Cần Node & npx khi cài |
 | **Hỗ trợ Đa Agent** | **7+ AI Agents** (Antigravity, Codex, Claude, Cursor, Windsurf, Cline, Copilot) | Claude Code, Codex, Antigravity, Cursor, Copilot | Claude Code, Codex, Cursor | Claude Code ưu tiên |
@@ -393,7 +393,7 @@ Trước khi ra mắt sản phẩm (`/ship`), hệ thống hỗ trợ kích ho�
 
 ### 11. Danh Mục & Top 20 Siêu Kỹ Năng Nổi Bật
 
-Kho lưu trữ gồm **3,045+ skills** chia theo **119 danh mục**. Xem chi tiết tại [CATALOG.md](CATALOG.md).
+Kho lưu trữ gồm **3,056+ skills** chia theo **119 danh mục**. Xem chi tiết tại [CATALOG.md](CATALOG.md).
 
 | # | Skill ID | Stars | Mô Tả Năng Lực | Lệnh Cài Đặt Nhanh |
 | :-: | :--- | :---: | :--- | :--- |
@@ -765,7 +765,7 @@ Dù bạn cài hàng trăm kỹ năng, AI agent chỉ quét phần tóm tắt ng
 
 ### 1. Overview
 
-**Vie Agentic Skill (VAS)** is a vendor-neutral, production-ready catalog of **3,045+ modular agentic skills**, adapted locally from the upstream catalog curated by **Huy Tran** ([@huytran1120](https://github.com/huytran1120)).
+**Vie Agentic Skill (VAS)** is a vendor-neutral, production-ready catalog of **3,056+ modular agentic skills**, adapted locally from the upstream catalog curated by **Huy Tran** ([@huytran1120](https://github.com/huytran1120)).
 
 VAS strictly adheres to the **Open Agent Skills specification ([agentskills.io](https://agentskills.io/))** and is engineered specifically for AI coding agents such as **Google Antigravity, OpenAI Codex / OpenCode, Claude Code, Cursor, Windsurf (Codeium), Cline / Roo Code, and GitHub Copilot CLI**.
 
@@ -1065,7 +1065,7 @@ During `/ship` pre-flight or code auditing, 4 specialist personas can be fanned 
 
 | Dimension | Vie Agentic Skill (VAS) | Addy Osmani (`agent-skills`) | Superpowers (`obra`) | Matt Pocock Skills |
 | :--- | :--- | :--- | :--- | :--- |
-| **Catalog Scale** | **3,045+ Skills** (World's most extensive) | 25 Core Skills | ~14 Skills | ~30 Skills |
+| **Catalog Scale** | **3,056+ Skills** (World's most extensive) | 25 Core Skills | ~14 Skills | ~30 Skills |
 | **Tooling & Engine** | **Native Python 3 CLI (`./vas`) — Zero-NPX** | `npx skills` / Plugins | Git Worktrees / Shell scripts | Claude Code / `npx skills` |
 | **Dependencies & Offline**| **100% Offline, Zero external dependencies** | Requires Node & remote NPX | Requires clone & git setup | Requires Node & remote NPX |
 | **Agent Support** | **7+ AI Coding Assistants** (Antigravity, Codex, Claude, Cursor, Windsurf, Cline, Copilot) | Claude Code, Codex, Antigravity, Cursor, Copilot | Claude Code, Codex, Cursor | Claude Code primary |
@@ -1078,7 +1078,7 @@ During `/ship` pre-flight or code auditing, 4 specialist personas can be fanned 
 
 ### 11. Featured & Viral Skills Showcase (Top 20)
 
-VAS includes **3,045+ skills** across **119 specialized categories**. Browse the full directory in [CATALOG.md](CATALOG.md).
+VAS includes **3,056+ skills** across **119 specialized categories**. Browse the full directory in [CATALOG.md](CATALOG.md).
 
 | # | Skill ID | Stars | Capability Overview | Quick Install Command |
 | :-: | :--- | :---: | :--- | :--- |
