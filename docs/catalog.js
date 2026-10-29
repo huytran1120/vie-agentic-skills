@@ -400,7 +400,16 @@
   byId('addy-collection').addEventListener('click', () => selectSource('addy')); byId('matt-collection').addEventListener('click', () => selectSource('mattpocock'));
   byId('menu-toggle').addEventListener('click', () => { const menu = byId('mobile-menu'); menu.hidden = !menu.hidden; byId('menu-toggle').setAttribute('aria-expanded', String(!menu.hidden)); });
   byId('mobile-menu').addEventListener('click', event => { if (event.target.closest('a')) { byId('mobile-menu').hidden = true; byId('menu-toggle').setAttribute('aria-expanded', 'false'); } });
-  byId('theme-toggle').addEventListener('click', () => { const dark = document.documentElement.dataset.theme !== 'dark'; document.documentElement.dataset.theme = dark ? 'dark' : 'light'; byId('theme-toggle').setAttribute('aria-pressed', String(dark)); byId('theme-toggle').setAttribute('aria-label', dark ? 'Bật giao diện sáng' : 'Bật giao diện tối'); });
+  byId('theme-toggle').addEventListener('click', event => {
+    const apply = () => {
+      const dark = document.documentElement.dataset.theme !== 'dark';
+      document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+      byId('theme-toggle').setAttribute('aria-pressed', String(dark));
+      byId('theme-toggle').setAttribute('aria-label', dark ? 'Bật giao diện sáng' : 'Bật giao diện tối');
+    };
+    if (typeof window !== 'undefined' && window.VASMotion) window.VASMotion.changeTheme(apply, event.currentTarget);
+    else apply();
+  });
   byId('close-manual-copy').addEventListener('click', closeManualCopy);
   document.addEventListener('keydown', event => {
     const editing = event.target.closest('input, textarea, select, [contenteditable="true"]');
@@ -437,8 +446,10 @@
   });
   function syncHeroAgent() {
     const agent = agents.find(agent => agent[0] === state.target);
-    byId('hero-agent').textContent = agent ? agent[1] : 'Codex';
-    byId('hero-agent').setAttribute('aria-label', `Đổi agent mục tiêu. Hiện tại: ${agent ? agent[1] : 'Codex'}`);
+    const label = agent ? agent[1] : 'Antigravity';
+    if (typeof window !== 'undefined' && window.VASMotion) window.VASMotion.setAgent(label, agents.map(agent => agent[1]));
+    else byId('hero-agent').textContent = label;
+    byId('hero-agent').setAttribute('aria-label', `Đổi agent mục tiêu. Hiện tại: ${label}`);
   }
   byId('hero-agent').addEventListener('click', () => {
     const options = agents.filter(agent => agent[0] !== 'all');

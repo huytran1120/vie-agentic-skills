@@ -24,6 +24,10 @@ The user requested publishing GitHub Pages and subsequently selected
 https://chen08209.github.io/FlClash/ and its repository as the visual reference.
 Use its warm palette, large typography and numbered sections as design cues,
 with an original implementation for the VAS catalog.
+Motion also follows this reference: an interactive capsule field, rolling agent
+names, staggered entrances and scroll reveals, navigation hover and a theme wipe.
+Decorative motion must respect reduced-motion preferences, pause the field when
+offscreen or hidden, and never change the selected installation agent by itself.
 The CLI remains `./vas`; individual task dependencies are not CLI dependencies.
 
 ## Capabilities and Constraints
