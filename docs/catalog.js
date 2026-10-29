@@ -286,8 +286,20 @@
     toastTimer = setTimeout(() => { byId('toast').hidden = true; }, 3500);
   }
   async function copy(text, button, message = t('copy.command')) {
-    try { if (!navigator.clipboard) throw new Error('Clipboard không khả dụng'); await navigator.clipboard.writeText(text); toast(message); }
-    catch (_) { copyReturnFocus = button; byId('manual-copy').hidden = false; byId('manual-copy-text').value = text; byId('manual-copy-text').focus(); byId('manual-copy-text').select(); }
+    const pending = typeof text !== 'string';
+    try {
+      if (!navigator.clipboard) throw new Error('Clipboard không khả dụng');
+      if (pending && navigator.clipboard.write && typeof ClipboardItem !== 'undefined') {
+        // WebKit requires starting the write in the click, before the manifest fetch resolves.
+        await navigator.clipboard.write([new ClipboardItem({
+          'text/plain': Promise.resolve(text).then(value => new Blob([value], { type: 'text/plain' }))
+        })]);
+      } else await navigator.clipboard.writeText(pending ? await text : text);
+      toast(message);
+    } catch (_) {
+      const value = pending ? await text : text;
+      copyReturnFocus = button; byId('manual-copy').hidden = false; byId('manual-copy-text').value = value; byId('manual-copy-text').focus(); byId('manual-copy-text').select();
+    }
   }
   async function copyInstallPrompt(skill, button) {
     button.disabled = true; button.setAttribute('aria-busy', 'true');
@@ -300,10 +312,13 @@
           return validateInstallManifest(await response.json(), skill);
         })());
       }
-      await manifestCache.get(skill.id);
-      if (button.isConnected === false) return;
-      await copy(agentInstallPrompt(skill, state.target, state.language), button, t('quick.copied'));
+      const text = manifestCache.get(skill.id).then(() => {
+        if (button.isConnected === false) throw new Error('Installation prompt selection changed');
+        return agentInstallPrompt(skill, state.target, state.language);
+      });
+      await copy(text, button, t('quick.copied'));
     } catch (error) {
+      if (button.isConnected === false) return;
       manifestCache.delete(skill.id);
       console.error('Cannot prepare the VAS installation prompt:', error);
       toast(t(skillBase === '..' ? 'quick.localError' : 'quick.error'));

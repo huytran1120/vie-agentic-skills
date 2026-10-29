@@ -286,7 +286,7 @@ function browserRuntime(fetch, window) {
     addEventListener(name, handler) { this.listeners.set(name, handler); }
   };
   vm.runInNewContext(fs.readFileSync(path.join(root, 'docs/catalog.js'), 'utf8'), {
-    document, fetch, window, navigator: window?.navigator || {}, VASI18n: i18n, URLSearchParams, URL,
+    document, fetch, window, navigator: window?.navigator || {}, ClipboardItem: window?.ClipboardItem, Blob, VASI18n: i18n, URLSearchParams, URL,
     console: { error: (...args) => errors.push(args), warn: (...args) => warnings.push(args) },
     setTimeout, clearTimeout
   });
@@ -416,6 +416,29 @@ test('manifest failure does not copy an unsafe prompt and retry supports manual 
   const field = runtime.document.getElementById('manual-copy-text');
   assert.equal(field.value, catalog.agentInstallPrompt(skill, 'codex', 'en'));
   assert.ok(field.focused && field.selected);
+});
+
+test('WebKit clipboard writes begin in the click gesture and wait for validated manifest data', async () => {
+  const skill = skills.find(skill => skill.id === 'code-review');
+  const window = languageWindow('?lang=en&agent=cursor');
+  let release, copied, started = false;
+  window.ClipboardItem = class { constructor(data) { this.data = data; } };
+  window.navigator = { clipboard: { write(items) {
+    started = true;
+    return items[0].data['text/plain'].then(blob => blob.text()).then(text => { copied = text; });
+  } } };
+  const runtime = browserRuntime(url => url === './skills.min.json'
+    ? Promise.resolve({ ok: true, json: async () => skills })
+    : new Promise(resolve => { release = resolve; }), window);
+  await new Promise(setImmediate);
+  const button = clickInstallPrompt(runtime, skill);
+  assert.ok(started, 'Clipboard API must start before awaiting network, as required by WebKit');
+  assert.equal(copied, undefined, 'Unverified contents must not be copied');
+  release({ ok: true, json: async () => manifestFixture(skill) });
+  await new Promise(setImmediate);
+  assert.equal(copied, catalog.agentInstallPrompt(skill, 'cursor', 'en'));
+  assert.equal(button.disabled, false);
+  assert.equal(runtime.errors.length, 0);
 });
 
 test('an initial HTTP failure shows an explicit error and retry recovers', async () => {
