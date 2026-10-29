@@ -1,11 +1,13 @@
 import functools
 from hashlib import sha256
+from html.parser import HTMLParser
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 import importlib.util
 import json
 import os
 from pathlib import Path
 import shutil
+import struct
 import subprocess
 import tempfile
 import threading
@@ -23,6 +25,43 @@ SPEC.loader.exec_module(PAGES)
 
 
 class PagesBuildTests(unittest.TestCase):
+    def test_social_preview_has_complete_metadata_and_an_uploadable_png(self):
+        class MetadataParser(HTMLParser):
+            def __init__(self):
+                super().__init__()
+                self.metadata = {}
+
+            def handle_starttag(self, tag, attrs):
+                if tag == "meta":
+                    attrs = dict(attrs)
+                    key = attrs.get("property", attrs.get("name"))
+                    self.metadata[key] = attrs.get("content")
+
+        parser = MetadataParser()
+        parser.feed((ROOT / "docs/index.html").read_text())
+        metadata = parser.metadata
+        image = urlparse(metadata["og:image"])
+        self.assertEqual(image.scheme, "https")
+        self.assertEqual(image.netloc, "huytran1120.github.io")
+        self.assertEqual(image.path, "/vie-agentic-skills/assets/social-preview.png")
+        self.assertEqual(metadata["og:image:secure_url"], metadata["og:image"])
+        self.assertEqual(metadata["twitter:image"], metadata["og:image"])
+        self.assertEqual(metadata["og:image:type"], "image/png")
+        self.assertEqual(metadata["twitter:card"], "summary_large_image")
+        self.assertEqual(metadata["twitter:title"], metadata["og:title"])
+        self.assertEqual(metadata["twitter:description"], metadata["og:description"])
+        self.assertEqual(metadata["twitter:image:alt"], metadata["og:image:alt"])
+        for key in ("og:title", "og:description", "og:image:alt"):
+            self.assertTrue(metadata[key])
+        self.assertLessEqual(len(metadata["og:title"]), 60)
+        self.assertLessEqual(len(metadata["og:description"]), 160)
+        data = (ROOT / "docs/assets/social-preview.png").read_bytes()
+        self.assertEqual(data[:8], b"\x89PNG\r\n\x1a\n")
+        self.assertEqual(struct.unpack(">II", data[16:24]), (1280, 640))
+        self.assertEqual((metadata["og:image:width"], metadata["og:image:height"]),
+                         ("1280", "640"))
+        self.assertLess(len(data), 1024 * 1024)
+
     def fixture(self, root):
         (root / "docs/assets").mkdir(parents=True)
         (root / "docs/index.html").write_text(

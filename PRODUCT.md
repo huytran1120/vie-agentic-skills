@@ -55,6 +55,9 @@ The CLI remains `./vas`; individual task dependencies are not CLI dependencies.
 - Blender skills require a separately configured Blender MCP connection. Importing
   runbooks does not install or activate that connection.
 - GitHub Pages is static and must work under the repository URL prefix.
+- Shared links use a branded 1280-by-640 PNG with matching Open Graph and Twitter
+  metadata. GitHub repository previews require a separate upload in Settings >
+  Social preview; website metadata cannot change GitHub's repository card.
 - The header's EN/VI button switches the complete interface between Vietnamese
   and English without resetting search, filters or installation settings.
   Vietnamese is the default; `?lang=vi` or `?lang=en` overrides the saved browser

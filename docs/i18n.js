@@ -3,9 +3,10 @@
   const messages = {
     'page.title': ['Vie Agentic Skill — Thư viện skill cho quy trình kỹ thuật', 'Vie Agentic Skill — Runbooks for engineering workflows'],
     'page.description': ['Tra cứu 3.056 runbook cho AI coding agents. Copy Agent Prompt để cài đủ tệp vào dự án, không cần clone; hoặc quản lý offline bằng CLI.', 'Explore 3,056 runbooks for AI coding agents. Copy Agent Prompt to install complete skills without cloning, or manage them offline with the CLI.'],
-    'page.ogTitle': ['Vie Agentic Skill — Khám phá kỹ năng cho mọi AI coding agent', 'Vie Agentic Skill — Discover skills for your AI coding agent'],
-    'page.ogDescription': ['3.056 runbook cho AI agents. Bộ 94 skill Blender: modeling, materials, animation và export.', '3,056 runbooks for AI agents, including 94 Blender skills for modeling, materials, animation and export.'],
-    'page.twitterDescription': ['3.056 kỹ năng cho AI agents, gồm bộ Blender 94 skill. Quản lý bằng Python 3.', '3,056 skills for AI agents, including 94 Blender skills. Managed with Python 3.'],
+    'page.ogTitle': ['Vie Agentic Skill — Thư viện skill AI', 'Vie Agentic Skill — AI Agent Skills'],
+    'page.ogDescription': ['Tìm skill, sao chép prompt và cài vào AI agent của bạn. Không cần clone repo.', 'Find a skill, copy a prompt, and install it in your AI agent. No repository clone needed.'],
+    'page.twitterDescription': ['Tìm skill, sao chép prompt và cài vào AI agent của bạn. Không cần clone repo.', 'Find a skill, copy a prompt, and install it in your AI agent. No repository clone needed.'],
+    'page.imageAlt': ['Vie Agentic Skill — Tìm skill, sao chép prompt và cài vào dự án.', 'Vie Agentic Skill — Find a skill. Copy a prompt. Install it in your project.'],
     'skip': ['Đến nội dung chính', 'Skip to main content'],
     'home': ['Vie Agentic Skill — Trang chủ', 'Vie Agentic Skill — Home'],
     'navigation': ['Điều hướng chính', 'Main navigation'],
