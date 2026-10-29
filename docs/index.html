@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vie Agentic Skill — Thư viện skill cho quy trình kỹ thuật</title>
-  <meta name="description" data-i18n-content="page.description" content="Tra cứu 3,056 runbook kỹ thuật cho AI coding agents. Tìm theo tác vụ, stack và nguồn; đọc SKILL.md và tạo lệnh cài bằng Python CLI.">
+  <meta name="description" data-i18n-content="page.description" content="Tra cứu 3,056 runbook cho AI coding agents. Copy Agent Prompt để cài đủ tệp vào dự án, không cần clone; hoặc quản lý offline bằng CLI.">
   <meta name="author" content="Vie Agentic Skill contributors; upstream catalog by Huy Tran">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#f3efea">
@@ -89,6 +89,7 @@
     <div class="catalog-main">
       <div class="results-toolbar"><div><h2 id="results-title" class="sr-only" data-i18n="results.all">Tất cả kỹ năng</h2><p id="results-status" role="status" aria-live="polite">Đang tải 3,056 runbook…</p></div><div class="results-controls"><label class="sr-only" for="sort-select" data-i18n="results.sort">Sắp xếp kỹ năng</label><select id="sort-select"><option value="recommended" data-i18n="results.recommended">Sắp xếp: Độ phù hợp</option><option value="az" data-i18n="results.az">Tên: A → Z</option><option value="za" data-i18n="results.za">Tên: Z → A</option></select><div class="view-switch" role="group" aria-label="Chế độ hiển thị" data-i18n-aria-label="results.view"><button id="view-list-btn" class="icon-button" data-view="list" aria-label="Xem danh sách" data-i18n-aria-label="results.list" aria-pressed="true"><svg class="icon"><use href="#i-list"/></svg></button><button id="view-grid-btn" class="icon-button" data-view="grid" aria-label="Xem dạng lưới" data-i18n-aria-label="results.grid" aria-pressed="false"><svg class="icon"><use href="#i-grid"/></svg></button></div></div></div>
       <div id="filter-summary" class="filter-summary"><div id="filter-description"><span data-i18n="filters.none">Chưa áp dụng bộ lọc</span></div><button id="reset-filters" class="text-button" data-i18n="filters.reset">Xóa bộ lọc</button></div>
+      <div class="quick-agent-picker"><label for="quick-agent-select" data-i18n="quick.agent">Agent nhận skill</label><select id="quick-agent-select"><option value="antigravity">Antigravity</option></select></div>
       <div id="loading-state" class="loading-skeleton" aria-label="Đang tải danh mục" data-i18n-aria-label="catalog.loading"><div></div><div></div><div></div></div>
       <div id="error-state" class="empty-state" role="alert" hidden><h3 data-i18n="catalog.errorTitle">Chưa tải được danh mục</h3><p data-i18n="catalog.errorHelp">Kiểm tra kết nối rồi thử lại, hoặc đọc danh mục và hướng dẫn local.</p><button id="retry-load" class="button primary" data-i18n="catalog.retry">Tải lại danh mục</button><a href="../CATALOG.md" data-i18n="catalog.read">Đọc catalog</a></div>
       <div id="empty-state" class="empty-state" hidden><svg class="icon"><use href="#i-search"/></svg><h3 data-i18n="results.emptyTitle">Chưa có skill khớp với bộ lọc</h3><p data-i18n="results.emptyHelp">Thử từ khóa ngắn hơn như “react”, “docker”, hoặc xóa bộ lọc.</p><button id="empty-reset" class="button secondary" data-i18n="results.showAll">Xem tất cả skill</button></div>
@@ -108,11 +109,11 @@
 <section id="quickstart" class="shell quickstart">
   <div class="section-heading"><div><p class="section-number">03</p><h2 data-i18n="setup.title">Bắt đầu với VAS</h2></div><a id="readme-link" class="text-link" href="../README.md" data-i18n="setup.read">Đọc hướng dẫn →</a></div>
   <ol class="steps">
-    <li><span>01</span><div><h3 data-i18n="setup.cloneTitle">Tải kho một lần</h3><p data-i18n="setup.cloneDescription">Chuẩn bị Git và Python 3. Clone kho VAS về máy để tìm, đọc và cài skill bằng CLI.</p></div></li>
-    <li><span>02</span><div><h3 data-i18n="setup.installTitle">Tìm, đọc và cài skill</h3><p data-i18n="setup.installDescription">Tìm theo tác vụ, đọc runbook và giấy phép. Chọn agent, nơi cài và cách cài link hoặc copy.</p></div></li>
-    <li><span>03</span><div><h3 data-i18n="setup.useTitle">Dùng trong agent</h3><p data-i18n="setup.useDescription">Kiểm tra bằng lệnh status, mở dự án trong agent rồi yêu cầu đọc SKILL.md và áp dụng vào tác vụ.</p></div></li>
+    <li><span>01</span><div><h3 data-i18n="setup.cloneTitle">Tìm skill và chọn agent</h3><p data-i18n="setup.cloneDescription">Duyệt catalog, xem nguồn và yêu cầu của runbook rồi chọn agent bạn muốn cài cho.</p></div></li>
+    <li><span>02</span><div><h3 data-i18n="setup.installTitle">Copy prompt cài skill</h3><p data-i18n="setup.installDescription">Bấm “Copy Agent Prompt” ở skill, dán vào chat trong dự án đang mở. Agent tải đủ tệp mà không cần clone kho.</p></div></li>
+    <li><span>03</span><div><h3 data-i18n="setup.useTitle">Dùng trong agent</h3><p data-i18n="setup.useDescription">Agent xác nhận đủ tệp, đọc SKILL.md và nêu yêu cầu còn thiếu. Nạp lại danh sách skill nếu ứng dụng yêu cầu rồi giao tác vụ của bạn.</p></div></li>
   </ol>
-  <details id="cli-setup" class="quickstart-details"><summary data-i18n="setup.steps">Các bước cài đặt và sử dụng bằng CLI</summary><div class="quickstart-commands">
+  <details id="cli-setup" class="quickstart-details"><summary data-i18n="setup.steps">Cách 2: quản lý bằng CLI — clone kho một lần</summary><div class="quickstart-commands">
     <div><h3 data-i18n="setup.cloneStep">1. Tải kho và mở thư mục</h3><div class="command-box"><code id="clone-command">git clone https://github.com/huytran1120/vie-agentic-skills.git &amp;&amp;
 cd vie-agentic-skills &amp;&amp;
 chmod +x vas vas.py &amp;&amp;

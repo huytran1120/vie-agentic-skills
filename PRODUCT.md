@@ -15,7 +15,8 @@ its origin and requirements, and install it into their chosen agent.
 
 Vie Agentic Skill is a searchable, multi-agent skill library with a local,
 dependency-free Python manager. Success means finding an applicable skill,
-understanding its constraints and copying a correct installation command.
+understanding its constraints and copying an Agent Chat installation prompt or
+a correct CLI command.
 
 ## Operating Context
 
@@ -34,7 +35,17 @@ The CLI remains `./vas`; individual task dependencies are not CLI dependencies.
 
 - Preserve search, category filters, sorting, list/grid views, shared links,
   source/license information, explicit target agents and project/global scope.
-- The website generates commands; it never installs software into a visitor's machine.
+- The website generates prompts and commands; it never installs software into a visitor's machine.
+- Copy Agent Prompt targets the selected agent in the current project, without
+  cloning VAS or requiring the CLI, Python or an absolute project path. Static
+  per-skill manifests inventory all support files and immutable catalog-commit
+  URLs with byte sizes, hashes, executable flags and compatible CLI receipts.
+  Agents must check completeness, skip matching installations and ask before
+  conflicting contents or identities are replaced. Downloaded tools are not run
+  automatically; network/file permissions and individual prerequisites still apply.
+- Quick installation and CLI installation are distinct. Global scope and
+  link/copy controls affect only the CLI; quick `all` means seven current-project
+  destinations. Both the install prompt and post-install usage prompt are localized.
 - Preserve the existing library and independently authored document runbooks.
 - Imported content retains its own licenses, support files and provenance.
 - The YouTube collection includes 11 MIT runbooks and six Python helpers from

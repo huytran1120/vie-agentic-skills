@@ -120,10 +120,43 @@ VAS hỗ trợ cài đặt bằng một câu lệnh duy nhất cho tất cả c�
 
 ### 4. Cài Đặt & Sử Dụng Nhanh (Quickstart)
 
+#### Cách 1: Copy Agent Prompt — không cần clone kho
+
+Mở [thư viện skill](https://huytran1120.github.io/vie-agentic-skills/?lang=vi),
+tìm skill, chọn agent rồi bấm **Copy prompt** ở kết quả hoặc **Copy Agent Prompt**
+trong trang chi tiết. Dán prompt vào chat của agent trong dự án đang mở.
+Prompt tự điền đúng ID, thư mục agent và manifest chính thức.
+
+Agent tải **đủ bộ tệp**, gồm `SKILL.md`, scripts, templates, references, license
+và tài nguyên đi kèm; kiểm tra SHA-256 từ cùng một snapshot VAS. Đã cài đúng thì
+bỏ qua; nội dung khác hoặc trùng tên skill khác thì hỏi trước, không tự ghi đè.
+Không cần clone, chạy `./vas` hay cài thêm Python cho cách này.
+
+Ví dụ cho Cursor với skill YouTube:
+
+```text
+Hãy cài skill "youtube-agent-skill/yt-script" vào dự án hiện tại cho Cursor,
+tại ".cursor/skills/yt-script/". Đọc manifest chính thức:
+https://huytran1120.github.io/vie-agentic-skills/install-manifests/youtube-agent-skill/yt-script.json
+Kiểm tra đúng skill và available = true; tải đủ các tệp được liệt kê, giữ cấu trúc
+và kiểm tra SHA-256 trước khi hoàn tất. Không clone kho, đi xuyên symlink hay ghi
+ra ngoài dự án. Đã có đúng nội dung thì bỏ qua; khác nội dung hoặc receipt hỏng
+thì hỏi trước, không ghi đè. Ghi receipt vào .vas-manifest.json trong thư mục skills
+của agent, giữ các mục khác. Đọc SKILL.md, báo đường dẫn và yêu cầu còn thiếu.
+Không tự chạy scripts, cài dependency hoặc kết nối dịch vụ; lỗi tải/hash thì dừng.
+```
+
+Agent cần quyền mạng và ghi tệp; runbook có thể cần runtime/MCP riêng hoặc nạp
+lại danh sách skill của ứng dụng. Website chỉ sao chép hướng dẫn, không tự cài
+lên máy. Các lựa chọn global/link/đường dẫn tuyệt đối chỉ dành cho CLI bên dưới.
+Chọn `all` trong luồng chat chỉ cài vào bảy thư mục agent của **dự án hiện tại**.
+
+#### Cách 2: CLI — quản lý offline, link/copy và nhiều skill
+
 ```bash
-# Bước 1: Mở thư mục dự án local
-# Open the existing local project; no GitHub repository is required.
-cd /path/to/vie-agentic-skills
+# Bước 1: Clone hoặc mở thư mục dự án
+git clone https://github.com/huytran1120/vie-agentic-skills.git
+cd vie-agentic-skills
 chmod +x vas vas.py
 
 # Bước 2: Tìm kiếm kỹ năng
@@ -805,10 +838,46 @@ VAS installs skills into native target directories across all leading AI coding 
 
 ### 4. Quickstart
 
+#### Option 1: Copy Agent Prompt — no repository clone
+
+Open the [skill library](https://huytran1120.github.io/vie-agentic-skills/?lang=en),
+find a skill, choose your agent, and click **Copy prompt** in the results or
+**Copy Agent Prompt** in its details. Paste it into your agent chat in the open
+project. The prompt includes the correct ID, agent folder and official manifest.
+
+Your agent downloads the **complete skill**, including `SKILL.md`, scripts,
+templates, references, licenses and assets, checking SHA-256 at one VAS snapshot.
+Matching installations are skipped; differing files or another skill using the
+same folder require confirmation, never silent replacement. This route does not
+require cloning VAS, running `./vas` or installing Python.
+
+Example for Cursor and a YouTube skill:
+
+```text
+Install "youtube-agent-skill/yt-script" into this project for Cursor at
+".cursor/skills/yt-script/". Read the official manifest:
+https://huytran1120.github.io/vie-agentic-skills/install-manifests/youtube-agent-skill/yt-script.json
+Check the skill identity and available = true; download every listed file,
+preserve its tree and verify SHA-256 before completing. Do not clone VAS, follow
+symlinks or write outside this project. Skip matching installations; ask before
+overwriting differing contents or an invalid receipt. Record receipt in
+.vas-manifest.json in the agent skills folder, preserving other entries.
+Read SKILL.md and report its path and missing prerequisites. Do not run scripts,
+install dependencies or connect services automatically; stop on download/hash errors.
+```
+
+The agent needs network and file access. Individual runbooks may need additional
+runtimes/MCP or an application skill reload. The website only copies instructions;
+it does not install software. Global/link/absolute-path settings apply only to the
+CLI below. Selecting `all` in chat installation means the seven agent folders in
+the **current project**, not user-wide installation.
+
+#### Option 2: CLI — offline, linked/copied and multi-skill management
+
 ```bash
-# Step 1: Open the local project
-# Open the existing local project; no GitHub repository is required.
-cd /path/to/vie-agentic-skills
+# Step 1: Clone or enter the project directory
+git clone https://github.com/huytran1120/vie-agentic-skills.git
+cd vie-agentic-skills
 chmod +x vas vas.py
 
 # Step 2: Search for skills

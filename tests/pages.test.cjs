@@ -258,13 +258,14 @@ function browserRuntime(fetch, window) {
   const errors = [];
   const warnings = [];
   const document = {
+    listeners: new Map(),
     documentElement: { dataset: { theme: 'light' }, lang: 'vi' },
     querySelector: () => null,
     getElementById(id) {
       if (!elements.has(id)) {
         const classes = new Set();
         elements.set(id, {
-          hidden: ['error-state', 'empty-state'].includes(id),
+          hidden: ['error-state', 'empty-state', 'manual-copy', 'toast'].includes(id),
           textContent: '',
           innerHTML: '',
           value: '',
@@ -272,6 +273,8 @@ function browserRuntime(fetch, window) {
           listeners: new Map(),
           addEventListener(name, handler) { this.listeners.set(name, handler); },
           setAttribute(name, value) { this.attributes.set(name, value); },
+          focus() { this.focused = true; },
+          select() { this.selected = true; },
           classList: {
             toggle(name, enabled) { if (enabled) classes.add(name); else classes.delete(name); }
           }
@@ -280,15 +283,140 @@ function browserRuntime(fetch, window) {
       return elements.get(id);
     },
     querySelectorAll: () => [],
-    addEventListener() {}
+    addEventListener(name, handler) { this.listeners.set(name, handler); }
   };
   vm.runInNewContext(fs.readFileSync(path.join(root, 'docs/catalog.js'), 'utf8'), {
-    document, fetch, window, VASI18n: i18n, URLSearchParams, URL,
+    document, fetch, window, navigator: window?.navigator || {}, VASI18n: i18n, URLSearchParams, URL,
     console: { error: (...args) => errors.push(args), warn: (...args) => warnings.push(args) },
     setTimeout, clearTimeout
   });
   return { document, elements, errors, warnings };
 }
+
+function manifestFixture(skill) {
+  const revision = 'a'.repeat(40);
+  return {
+    schema_version: 1, available: true, repository: 'huytran1120/vie-agentic-skills',
+    skill_id: skill.id, source_path: skill.path, revision,
+    target_name: path.basename(skill.path),
+    files: [{ path: 'SKILL.md', bytes: 3, sha256: 'b'.repeat(64), executable: false,
+      url: `https://raw.githubusercontent.com/huytran1120/vie-agentic-skills/${revision}/${skill.path}/SKILL.md` }],
+    receipt: { filename: '.vas-manifest.json', key: skill.id,
+      entry: { mode: 'copy', target_name: path.basename(skill.path) } }
+  };
+}
+
+function clickInstallPrompt(runtime, skill) {
+  const button = {
+    dataset: { copyAgentPrompt: skill.id }, disabled: false, attributes: new Map(),
+    hasAttribute() { return false; },
+    setAttribute(name, value) { this.attributes.set(name, value); }
+  };
+  runtime.document.listeners.get('click')({ target: { closest: selector => selector === 'button' ? button : null } });
+  return button;
+}
+
+test('every skill has a short no-clone prompt using its real canonical identity and target folder', () => {
+  for (const skill of skills) {
+    const prompt = catalog.agentInstallPrompt(skill, 'codex', 'en');
+    assert.ok(prompt.includes(`.codex/skills/${path.basename(skill.path)}/`), skill.id);
+    assert.ok(prompt.includes(JSON.stringify(skill.id)), skill.id);
+    assert.ok(prompt.includes(catalog.installManifestUrl(skill)), skill.id);
+    assert.ok(prompt.length < 2300, skill.id);
+    assert.ok(!/\{(?:id|agent|paths|manifest)\}/.test(prompt));
+  }
+  assert.throws(() => catalog.agentInstallPrompt(skills[0], 'invalid'));
+  for (const id of ['../escape', '/absolute', 'x//y', 'x\\y', 'x\ncommand']) {
+    assert.throws(() => catalog.installManifestUrl({ id }));
+  }
+});
+
+test('localized chat installation always uses project copy destinations independently of CLI settings', () => {
+  const skill = skills.find(skill => skill.id === 'youtube-agent-skill/yt-audit');
+  for (const language of ['vi', 'en']) {
+    for (const [agent] of catalog.agents) {
+      const prompt = catalog.agentInstallPrompt(skill, agent, language);
+      assert.ok(prompt.startsWith(language === 'vi' ? 'Hãy cài đặt skill' : 'Please install'));
+      const targets = agent === 'all' ? Object.keys(catalog.targetFolders) : [agent];
+      for (const target of targets) assert.ok(prompt.includes(`"${catalog.targetFolders[target]}/yt-audit/"`));
+      for (const required of ['SHA-256', 'SKILL.md', 'LICENSE', 'scripts', 'templates', 'references', '.vas-manifest.json', 'receipt', 'available = true']) assert.ok(prompt.includes(required), required);
+      for (const forbidden of ['--global', '--mode link', '/Projects/', '~/', 'npx ', 'python3 ']) assert.ok(!prompt.includes(forbidden));
+      if (agent === 'all') assert.ok(prompt.includes('7 agent'));
+    }
+  }
+});
+
+test('manifest validation rejects mixed snapshots, unsafe paths, incomplete files and conflicting identities', () => {
+  const skill = skills.find(skill => skill.id === 'youtube-agent-skill/yt-audit');
+  assert.ok(catalog.validateInstallManifest(manifestFixture(skill), skill));
+  for (const edit of [
+    m => { m.skill_id = 'other'; }, m => { m.available = false; },
+    m => { m.source_path = 'skills/other'; }, m => { m.target_name = '../outside'; },
+    m => { m.files = []; }, m => { m.files[0].path = '../outside'; },
+    m => { m.files[0].path = '/absolute'; }, m => { m.files[0].path = 'x\\y'; },
+    m => { m.files[0].url = m.files[0].url.replace(m.revision, 'main'); },
+    m => { m.files[0].url = m.files[0].url.replace('raw.githubusercontent.com', 'example.invalid'); },
+    m => { m.files[0].sha256 = 'invalid'; }, m => { m.files[0].bytes = -1; },
+    m => { m.files.push({ ...m.files[0] }); }, m => { m.receipt.key = 'other'; },
+    m => { m.receipt.filename = '../.vas-manifest.json'; }
+  ]) {
+    const manifest = manifestFixture(skill);
+    edit(manifest);
+    assert.throws(() => catalog.validateInstallManifest(manifest, skill));
+  }
+});
+
+test('copying an installation prompt uses the selected agent and reuses a validated file manifest', async () => {
+  const skill = skills.find(skill => skill.id === 'code-review');
+  const window = languageWindow('?lang=en&agent=cursor');
+  let copied, requests = 0;
+  window.navigator = { clipboard: { writeText: async text => { copied = text; } } };
+  const runtime = browserRuntime(async url => {
+    if (url === './skills.min.json') return { ok: true, json: async () => skills };
+    assert.equal(url, '../_site/install-manifests/code-review.json');
+    requests++;
+    return { ok: true, json: async () => manifestFixture(skill) };
+  }, window);
+  await new Promise(setImmediate);
+  const button = clickInstallPrompt(runtime, skill);
+  await new Promise(setImmediate);
+  assert.equal(copied, catalog.agentInstallPrompt(skill, 'cursor', 'en'));
+  assert.equal(button.disabled, false);
+  assert.equal(button.attributes.get('aria-busy'), 'false');
+  assert.match(runtime.elements.get('toast').textContent, /Install prompt copied/);
+  runtime.document.listeners.get('change')({ target: { id: 'quick-agent-select', value: 'claude' } });
+  clickInstallPrompt(runtime, skill);
+  await new Promise(setImmediate);
+  assert.equal(copied, catalog.agentInstallPrompt(skill, 'claude', 'en'));
+  assert.equal(requests, 1);
+  assert.equal(runtime.errors.length, 0);
+});
+
+test('manifest failure does not copy an unsafe prompt and retry supports manual clipboard fallback', async () => {
+  const skill = skills.find(skill => skill.id === 'code-review');
+  const window = languageWindow('?lang=en&agent=codex');
+  let fail = true;
+  window.navigator = { clipboard: { writeText: async () => { throw new Error('Clipboard blocked'); } } };
+  const runtime = browserRuntime(async url => {
+    if (url === './skills.min.json') return { ok: true, json: async () => skills };
+    if (fail) return { ok: false, status: 404 };
+    return { ok: true, json: async () => manifestFixture(skill) };
+  }, window);
+  await new Promise(setImmediate);
+  const button = clickInstallPrompt(runtime, skill);
+  await new Promise(setImmediate);
+  assert.equal(button.disabled, false);
+  assert.equal(runtime.document.getElementById('manual-copy').hidden, true);
+  assert.match(runtime.elements.get('toast').textContent, /No valid local manifest/);
+  assert.equal(runtime.errors.length, 1);
+  fail = false;
+  clickInstallPrompt(runtime, skill);
+  await new Promise(setImmediate);
+  assert.equal(runtime.document.getElementById('manual-copy').hidden, false);
+  const field = runtime.document.getElementById('manual-copy-text');
+  assert.equal(field.value, catalog.agentInstallPrompt(skill, 'codex', 'en'));
+  assert.ok(field.focused && field.selected);
+});
 
 test('an initial HTTP failure shows an explicit error and retry recovers', async () => {
   let requests = 0;

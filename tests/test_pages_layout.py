@@ -8,6 +8,7 @@ with content-versioned assets rather than potentially cached development assets.
 
 import functools
 import html
+import importlib.util
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 import json
 import os
@@ -44,6 +45,10 @@ class PagesLayoutTests(unittest.TestCase):
             if os.environ.get("CI"):
                 raise RuntimeError("Chrome or Chromium is required for CI layout tests")
             raise unittest.SkipTest("Chrome/Chromium not installed; browser layout tests unavailable")
+        spec = importlib.util.spec_from_file_location("layout_build", ROOT / "scripts/build_pages.py")
+        pages = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(pages)
+        pages.build(ROOT)
         handler = functools.partial(QuietHandler, directory=str(ROOT))
         cls.server = ThreadingHTTPServer(("127.0.0.1", 0), handler)
         cls.thread = threading.Thread(target=cls.server.serve_forever, daemon=True)

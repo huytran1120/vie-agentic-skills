@@ -68,6 +68,46 @@
   }
   const targetFolders = { antigravity: '.agents/skills', codex: '.codex/skills', claude: '.claude/skills', cursor: '.cursor/skills', windsurf: '.windsurf/skills', cline: '.cline/skills', copilot: '.github/skills' };
   const globalFolders = { antigravity: '~/.gemini/antigravity/skills', codex: '~/.codex/skills', claude: '~/.claude/skills', cursor: '~/.cursor/skills', windsurf: '~/.codeium/windsurf/skills', cline: '~/.cline/skills', copilot: '~/.copilot/skills' };
+  const publishedSite = 'https://huytran1120.github.io/vie-agentic-skills';
+  const encodePath = path => path.split('/').map(part => encodeURIComponent(part).replace(/[!'()*]/g, char => '%' + char.charCodeAt(0).toString(16).toUpperCase())).join('/');
+  function installManifestUrl(skill, base = publishedSite) {
+    if (typeof skill.id !== 'string' || /[\\\x00-\x20\x7f]/.test(skill.id) || skill.id.split('/').some(part => !part || part === '.' || part === '..')) {
+      throw new Error('Invalid canonical skill ID');
+    }
+    return `${base}/install-manifests/${encodePath(skill.id)}.json`;
+  }
+  function agentInstallPrompt(skill, target, language = 'vi') {
+    if (!agents.some(agent => agent[0] === target)) throw new Error(i18n.translate('install.invalidAgent', language));
+    const leaf = skillUrl(skill).split('/').slice(-2, -1)[0];
+    const targets = target === 'all' ? Object.keys(targetFolders) : [target];
+    return i18n.translate('quick.prompt', language, {
+      id: JSON.stringify(skill.id),
+      agent: target === 'all' ? i18n.translate('quick.allAgents', language) : agents.find(agent => agent[0] === target)[1],
+      paths: targets.map(agent => JSON.stringify(`${targetFolders[agent]}/${decodeURIComponent(leaf)}/`)).join('\n'),
+      manifest: installManifestUrl(skill)
+    });
+  }
+  function validateInstallManifest(manifest, skill) {
+    if (!manifest || manifest.schema_version !== 1 || manifest.repository !== 'huytran1120/vie-agentic-skills'
+        || manifest.skill_id !== skill.id || manifest.source_path !== String(skill.path || `skills/${skill.id}`).replace(/\/SKILL\.md$/, '')
+        || manifest.target_name !== decodeURIComponent(skillUrl(skill).split('/').slice(-2, -1)[0])
+        || !/^[0-9a-f]{40}$/.test(manifest.revision || '')) throw new Error('Invalid installation manifest');
+    if (manifest.available !== true) throw new Error('Unpublished installation snapshot');
+    if (!Array.isArray(manifest.files) || !manifest.files.length || !manifest.files.some(file => file.path === 'SKILL.md')) throw new Error('Missing installation files');
+    const seen = new Set();
+    for (const file of manifest.files) {
+      if (typeof file.path !== 'string' || /[\\\x00-\x1f\x7f]/.test(file.path) || file.path.split('/').some(part => !part || part === '.' || part === '..')
+          || seen.has(file.path) || !Number.isSafeInteger(file.bytes) || file.bytes < 0 || !/^[0-9a-f]{64}$/.test(file.sha256 || '')
+          || typeof file.executable !== 'boolean'
+          || file.url !== `https://raw.githubusercontent.com/${manifest.repository}/${manifest.revision}/${encodePath(`${manifest.source_path}/${file.path}`)}`) {
+        throw new Error('Invalid installation file inventory');
+      }
+      seen.add(file.path);
+    }
+    if (manifest.receipt?.filename !== '.vas-manifest.json' || manifest.receipt.key !== skill.id
+        || manifest.receipt.entry?.target_name !== manifest.target_name || manifest.receipt.entry?.mode !== 'copy') throw new Error('Invalid installation receipt');
+    return manifest;
+  }
   function installationPlan(id, target, { scope = 'repository', projectPath = '', mode = 'link', language = 'vi' } = {}) {
     const text = (key, values) => i18n.translate(key, language, values);
     if (!agents.some(agent => agent[0] === target)) throw new Error(text('install.invalidAgent'));
@@ -217,7 +257,7 @@
     return { html: parts.join('\n'), headings };
   }
 
-  const api = { normalize, matchesGroup, filterSkills, installCommand, installationPlan, skillUrl, sourceUrl, groups, agents, targetFolders, globalFolders, readCatalogState, catalogParams, matchesSource, renderMarkdown };
+  const api = { normalize, matchesGroup, filterSkills, installCommand, installationPlan, skillUrl, sourceUrl, groups, agents, targetFolders, globalFolders, readCatalogState, catalogParams, matchesSource, renderMarkdown, agentInstallPrompt, installManifestUrl, validateInstallManifest };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   if (typeof document === 'undefined') return;
 
@@ -238,6 +278,7 @@
   const runbookNoun = total => total === 1 ? 'runbook' : 'runbooks';
   let toastTimer, copyReturnFocus, loadingPromise, detailRendered = null, runbookRequest = 0, libraryScroll = 0, filterDraft;
   const runbookCache = new Map();
+  const manifestCache = new Map();
   const skillIcon = skill => skill.id.includes('review') ? 'branch' : /security|pentest/.test(skill.category) ? 'shield' : /test/.test(skill.category) ? 'flask' : /design|front/.test(skill.category) ? (skill.id === 'ui-ux-pro-max' ? 'pen' : 'layout') : 'terminal';
 
   function toast(message) {
@@ -248,9 +289,30 @@
     try { if (!navigator.clipboard) throw new Error('Clipboard không khả dụng'); await navigator.clipboard.writeText(text); toast(message); }
     catch (_) { copyReturnFocus = button; byId('manual-copy').hidden = false; byId('manual-copy-text').value = text; byId('manual-copy-text').focus(); byId('manual-copy-text').select(); }
   }
+  async function copyInstallPrompt(skill, button) {
+    button.disabled = true; button.setAttribute('aria-busy', 'true');
+    try {
+      if (!manifestCache.has(skill.id)) {
+        const base = skillBase === '..' ? '../_site' : '.';
+        manifestCache.set(skill.id, (async () => {
+          const response = await fetch(installManifestUrl(skill, base));
+          if (!response.ok) throw new Error(`Installation manifest: HTTP ${response.status}`);
+          return validateInstallManifest(await response.json(), skill);
+        })());
+      }
+      await manifestCache.get(skill.id);
+      if (button.isConnected === false) return;
+      await copy(agentInstallPrompt(skill, state.target, state.language), button, t('quick.copied'));
+    } catch (error) {
+      manifestCache.delete(skill.id);
+      console.error('Cannot prepare the VAS installation prompt:', error);
+      toast(t(skillBase === '..' ? 'quick.localError' : 'quick.error'));
+    } finally { button.disabled = false; button.setAttribute('aria-busy', 'false'); }
+  }
   function closeManualCopy() { byId('manual-copy').hidden = true; if (copyReturnFocus?.isConnected) copyReturnFocus.focus(); }
   function applyLanguage() {
     const afterInstallationOpen = document.querySelector('#installation-after')?.open;
+    const cliOpen = document.querySelector('#cli-installation')?.open;
     i18n.apply(document, state.language);
     const toggle = byId('language-toggle');
     toggle.textContent = state.language === 'vi' ? 'EN' : 'VI';
@@ -263,6 +325,7 @@
     if (state.loaded) {
       renderNavigation(); renderCategories(); renderResults();
       if (afterInstallationOpen && byId('installation-after')) byId('installation-after').open = true;
+      if (cliOpen && byId('cli-installation')) byId('cli-installation').open = true;
     } else {
       byId('results-status').textContent = t(byId('error-state').hidden ? 'catalog.loading' : 'catalog.error');
     }
@@ -281,6 +344,8 @@
     document.querySelectorAll('input[name="source"]').forEach(input => { input.checked = state.sources.includes(input.value); });
   }
   function renderNavigation() {
+    byId('quick-agent-select').innerHTML = agents.map(agent => `<option value="${agent[0]}">${agentLabel(agent)}</option>`).join('');
+    byId('quick-agent-select').value = state.target;
     byId('category-navigation').innerHTML = groups.map(group => `<button type="button" data-group="${group.id}" aria-pressed="${state.group === group.id && state.category === 'all'}"><span>${escapeHtml(groupLabel(group))}</span><span>${count(state.skills.filter(skill => matchesGroup(skill, group.id)).length)}</span></button>`).join('');
     document.querySelectorAll('[data-source-count]').forEach(node => { node.textContent = count(state.skills.filter(skill => matchesSource(skill, node.dataset.sourceCount)).length); });
   }
@@ -303,6 +368,7 @@
     if (!state.selected || !byId('agent-select')) return;
     const preview = commandPreview(state.selected);
     byId('agent-select').value = state.target; byId('install-scope').value = state.scope;
+    byId('agent-install-prompt').textContent = agentInstallPrompt(state.skills.find(skill => skill.id === state.selected), state.target, state.language);
     byId('install-scope').setAttribute('aria-invalid', String(state.scope === 'global' && state.target === 'all'));
     byId('install-mode').value = state.mode;
     byId('project-path-field').hidden = state.scope !== 'project';
@@ -320,20 +386,29 @@
   function installation(skill) {
     return `<aside class="detail-sidebar"><section class="install-panel"><h2>${icon('terminal')}${t('install.title')}</h2><p>${t('install.description')}</p>
       <label for="agent-select">Agent</label><select id="agent-select">${agents.map(agent => `<option value="${agent[0]}">${agentLabel(agent)}</option>`).join('')}</select>
+      <section class="quick-install" aria-labelledby="quick-install-title"><h3 id="quick-install-title">${t('quick.title')}</h3><p class="field-help">${t('quick.description')}</p>
+        <button class="button primary copy-install" data-copy-agent-prompt="${escapeHtml(skill.id)}">${icon('copy')}${t('quick.copy')}</button>
+        <p class="field-help">${t('quick.requirements')}</p>${skillBase === '..' ? `<p class="field-help">${t('quick.preview')}</p>` : ''}
+        <details><summary>${t('quick.previewPrompt')}</summary><pre class="installation-code"><code id="agent-install-prompt"></code></pre></details>
+      </section><details id="cli-installation" class="cli-installation"><summary>${t('quick.cli')}</summary><p class="field-help">${t('quick.cliHelp')}</p>
       <label for="install-scope">${t('install.scope')}</label><select id="install-scope" aria-describedby="install-location-help"><option value="project">${t('install.project')}</option><option value="global">${t('install.global')}</option></select>
       <div id="project-path-field"><label for="project-path">${t('install.path')}</label><input id="project-path" type="text" placeholder="/Projects/my-app" value="${escapeHtml(state.projectPath)}" autocomplete="off" spellcheck="false" aria-describedby="install-location-help"></div>
       <p id="install-location-help" class="field-help" role="status"></p>
       <label for="install-mode">${t('install.mode')}</label><select id="install-mode" aria-describedby="install-mode-help"><option value="link">${t('install.link')}</option><option value="copy">${t('install.copy')}</option></select><p id="install-mode-help" class="field-help"></p>
-      <div class="code-heading"><label for="installation-command">${t('install.command')}</label><span>BASH / ZSH</span></div><pre class="installation-code"><code id="installation-command"></code></pre><button class="button primary copy-install" data-copy-skill="${escapeHtml(skill.id)}">${icon('copy')}${t('install.copyCommand')}</button>
+      <div class="code-heading"><label for="installation-command">${t('install.command')}</label><span>BASH / ZSH</span></div><pre class="installation-code"><code id="installation-command"></code></pre><button class="button secondary copy-install" data-copy-skill="${escapeHtml(skill.id)}">${icon('copy')}${t('install.copyCommand')}</button>
       <p class="field-help">${t('install.missingRepo')}<a href="#quickstart" data-library-link>${t('install.setup')}</a>${t('install.windows')}</p>
       <details id="installation-after" class="quickstart-details"><summary>${t('install.after')}</summary><div class="quickstart-commands">
         <div><h3>${t('install.statusTitle')}</h3><pre class="installation-code"><code id="install-status"></code></pre><button class="button secondary" data-copy-element="install-status">${t('install.copyStatus')}</button></div>
         <div><h3>${t('install.openTitle')}</h3><p class="field-help">${t('install.reload')}</p><pre class="installation-code"><code id="installed-paths"></code></pre></div>
         <div><h3>${t('install.promptTitle')}</h3><pre class="installation-code"><code id="install-prompt"></code></pre><button class="button secondary" data-copy-element="install-prompt" data-copy-message="${t('copy.prompt')}">${t('install.copyPrompt')}</button></div>
         <div><h3>${t('install.uninstallTitle')}</h3><p class="field-help">${t('install.uninstallHelp')}</p><pre class="installation-code"><code id="install-uninstall"></code></pre><button class="button secondary" data-copy-element="install-uninstall">${t('install.copyUninstall')}</button></div>
-      </div></details></section>
+      </div></details></details></section>
       <nav class="runbook-toc" aria-label="${t('runbook.toc')}"><h2>${t('runbook.toc')}</h2><div id="runbook-toc-links"><p>${t('runbook.structure')}</p></div></nav>
       <p class="detail-source-note">${icon('shield')}${escapeHtml(t('install.risk', { risk: skill.risk || 'unknown' }))}</p></aside>`;
+  }
+  function quickCopyButton(skill) {
+    const agent = agentLabel(agents.find(agent => agent[0] === state.target));
+    return `<button class="button secondary skill-open" data-copy-agent-prompt="${escapeHtml(skill.id)}" aria-label="${escapeHtml(t('quick.copyLabel', { id: skill.id, agent }))}">${icon('copy')}<span data-agent-install-label>${escapeHtml(t('quick.copyFor', { agent }))}</span></button>`;
   }
   function renderResults() {
     if (!state.loaded) return;
@@ -355,7 +430,7 @@
     byId('active-filter-count').hidden = !chips.length; byId('active-filter-count').textContent = chips.length;
     byId('empty-state').hidden = filtered.length !== 0;
     byId('skills-results').classList.toggle('is-grid', state.view === 'grid');
-    byId('skills-results').innerHTML = visible.map(skill => `<article class="skill-row" data-skill="${escapeHtml(skill.id)}"><div class="skill-symbol">${icon(skillIcon(skill))}</div><div class="skill-info"><h3><button class="skill-name" data-open-skill="${escapeHtml(skill.id)}">${escapeHtml(skill.id)}</button></h3><p class="skill-description">${escapeHtml(Object.hasOwn(i18n.messages, `summary.${skill.id}`) ? t(`summary.${skill.id}`) : skill.description)}</p><div class="skill-metadata"><div class="skill-tags">${[skill.category, ...(skill.tags || []).filter(tag => tag !== skill.category)].slice(0, 3).map(tag => `<span>${escapeHtml(tag)}</span>`).join('')}</div>${skill.author ? `<span class="skill-author">${escapeHtml(t('skill.source', { author: skill.author }))}${skill.license === 'MIT' ? ' · MIT' : ''}</span>` : ''}</div></div><button class="button secondary skill-open" data-open-skill="${escapeHtml(skill.id)}" aria-label="${escapeHtml(t('skill.openLabel', { id: skill.id }))}"><span aria-hidden="true">↗</span>${t('skill.open')}</button></article>`).join('');
+    byId('skills-results').innerHTML = visible.map(skill => `<article class="skill-row" data-skill="${escapeHtml(skill.id)}"><div class="skill-symbol">${icon(skillIcon(skill))}</div><div class="skill-info"><h3><button class="skill-name" data-open-skill="${escapeHtml(skill.id)}">${escapeHtml(skill.id)}</button></h3><p class="skill-description">${escapeHtml(Object.hasOwn(i18n.messages, `summary.${skill.id}`) ? t(`summary.${skill.id}`) : skill.description)}</p><div class="skill-metadata"><div class="skill-tags">${[skill.category, ...(skill.tags || []).filter(tag => tag !== skill.category)].slice(0, 3).map(tag => `<span>${escapeHtml(tag)}</span>`).join('')}</div>${skill.author ? `<span class="skill-author">${escapeHtml(t('skill.source', { author: skill.author }))}${skill.license === 'MIT' ? ' · MIT' : ''}</span>` : ''}</div></div><div class="skill-actions">${quickCopyButton(skill)}<button class="button secondary skill-open" data-open-skill="${escapeHtml(skill.id)}" aria-label="${escapeHtml(t('skill.openLabel', { id: skill.id }))}"><span aria-hidden="true">↗</span>${t('skill.open')}</button></div></article>`).join('');
     byId('pagination-controls').hidden = !visible.length; byId('pagination-status').textContent = t('results.pagination', { visible: count(visible.length), total: count(filtered.length), noun: runbookNoun(filtered.length) });
     byId('load-more').hidden = visible.length >= filtered.length;
     document.querySelectorAll('[data-view]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.view === state.view)));
@@ -451,7 +526,7 @@
   byId('category-select').addEventListener('change', event => { state.category = event.target.value; state.group = 'all'; applyFilters(); });
   document.addEventListener('change', event => {
     const target = event.target;
-    if (target.id === 'agent-select') { state.target = target.value; syncHeroAgent(); syncInstallation(); syncUrl(); }
+    if (target.id === 'agent-select' || target.id === 'quick-agent-select') { state.target = target.value; syncHeroAgent(); syncInstallation(); if (!state.selected) renderResults(); syncUrl(); }
     else if (target.id === 'install-scope') { state.scope = target.value; syncInstallation(); }
     else if (target.id === 'install-mode') { state.mode = target.value; syncInstallation(); }
     else if (target.matches('input[name="source"]')) { state.sources = [...document.querySelectorAll('input[name="source"]:checked')].map(input => input.value); applyFilters(); }
@@ -499,8 +574,9 @@
     else if (button.dataset.draftGroup) { filterDraft.group = button.dataset.draftGroup; filterDraft.category = 'all'; renderMobileFilters(); }
     else if (button.dataset.view) { state.view = button.dataset.view; renderResults(); syncUrl(); }
     else if (button.dataset.openSkill) openSkill(button.dataset.openSkill);
-    else if (button.dataset.installSkill) { openSkill(button.dataset.installSkill); byId('agent-select').focus(); }
+    else if (button.dataset.installSkill) { openSkill(button.dataset.installSkill); byId('cli-installation').open = true; byId('agent-select').focus(); }
     else if (button.dataset.copySkill) { const preview = commandPreview(button.dataset.copySkill); if (preview.command) copy(preview.command, button); }
+    else if (button.dataset.copyAgentPrompt) copyInstallPrompt(state.skills.find(skill => skill.id === button.dataset.copyAgentPrompt), button);
     else if (button.dataset.shareSkill) { const url = new URL(window.location.href); url.search = catalogParams({ selected: button.dataset.shareSkill, target: state.target, language: state.language }); url.hash = ''; copy(url.href, button, t('copy.link')); }
     else if (button.dataset.copyElement) copy(byId(button.dataset.copyElement).textContent, button, button.dataset.copyMessage);
     else if (button.dataset.discover) discover(button.dataset.discover);
@@ -518,6 +594,12 @@
     if (typeof window !== 'undefined' && window.VASMotion) window.VASMotion.setAgent(label, agents.map(agentLabel));
     else byId('hero-agent').textContent = label;
     byId('hero-agent').setAttribute('aria-label', t('hero.agent', { agent: label }));
+    byId('quick-agent-select').value = state.target;
+    document.querySelectorAll('[data-agent-install-label]').forEach(node => {
+      node.textContent = t('quick.copyFor', { agent: label });
+      const button = node.closest('button');
+      button.setAttribute('aria-label', t('quick.copyLabel', { id: button.dataset.copyAgentPrompt, agent: label }));
+    });
   }
   byId('hero-agent').addEventListener('click', () => {
     const options = agents.filter(agent => agent[0] !== 'all');
