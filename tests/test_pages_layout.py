@@ -60,7 +60,7 @@ class PagesLayoutTests(unittest.TestCase):
             command = [
                 CHROME, "--headless", "--no-first-run", "--no-default-browser-check",
                 f"--user-data-dir={temp}", "--dump-dom", "--window-size=1600,1100",
-                "--virtual-time-budget=15000",
+                "--virtual-time-budget=25000",
             ]
             if reduced_motion:
                 command.append("--force-prefers-reduced-motion")
@@ -78,7 +78,8 @@ class PagesLayoutTests(unittest.TestCase):
             self.assertIn('data-layout-complete="true"', result.stdout)
             report = json.loads(html.unescape(match[1]))
             self.assertEqual(report["errors"], [], json.dumps(report, indent=2))
-            self.assertEqual(len(report["measurements"]), 5)
+            self.assertEqual(len(report["measurements"]), 10)
+            self.assertEqual({row["language"] for row in report["measurements"]}, {"vi", "en"})
 
     def test_motion_layout_and_catalog_interactions(self):
         self.check_layout(reduced_motion=False)

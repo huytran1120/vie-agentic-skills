@@ -1,6 +1,7 @@
 /* Catalog logic is shared with the dependency-free Node regression tests. */
 (function () {
   'use strict';
+  const i18n = typeof module !== 'undefined' && module.exports ? require('./i18n.js') : globalThis.VASI18n;
   const agents = [
     ['antigravity', 'Antigravity', 'A'], ['codex', 'Codex', 'Co'],
     ['claude', 'Claude', 'Cl'], ['cursor', 'Cursor', 'Cu'],
@@ -67,16 +68,17 @@
   }
   const targetFolders = { antigravity: '.agents/skills', codex: '.codex/skills', claude: '.claude/skills', cursor: '.cursor/skills', windsurf: '.windsurf/skills', cline: '.cline/skills', copilot: '.github/skills' };
   const globalFolders = { antigravity: '~/.gemini/antigravity/skills', codex: '~/.codex/skills', claude: '~/.claude/skills', cursor: '~/.cursor/skills', windsurf: '~/.codeium/windsurf/skills', cline: '~/.cline/skills', copilot: '~/.copilot/skills' };
-  function installationPlan(id, target, { scope = 'repository', projectPath = '', mode = 'link' } = {}) {
-    if (!agents.some(agent => agent[0] === target)) throw new Error('Agent không được hỗ trợ');
-    if (!['link', 'copy'].includes(mode)) throw new Error('Chọn chế độ link hoặc copy.');
-    if (!['repository', 'project', 'global'].includes(scope)) throw new Error('Nơi cài không được hỗ trợ.');
-    if (scope === 'global' && target === 'all') throw new Error('Chọn một agent để cài toàn máy.');
+  function installationPlan(id, target, { scope = 'repository', projectPath = '', mode = 'link', language = 'vi' } = {}) {
+    const text = (key, values) => i18n.translate(key, language, values);
+    if (!agents.some(agent => agent[0] === target)) throw new Error(text('install.invalidAgent'));
+    if (!['link', 'copy'].includes(mode)) throw new Error(text('install.invalidMode'));
+    if (!['repository', 'project', 'global'].includes(scope)) throw new Error(text('install.invalidScope'));
+    if (scope === 'global' && target === 'all') throw new Error(text('install.globalAll'));
     let root = '';
     if (scope === 'project') {
       root = projectPath.trim();
       if (!root || /[\x00-\x1f\x7f]/.test(root) || !(/^(\/|[A-Za-z]:[\\/])/.test(root))) {
-        throw new Error('Nhập đường dẫn tuyệt đối đến dự án, ví dụ /Users/ban/my-project hoặc C:/Projects/my-app.');
+        throw new Error(text('install.invalidPath'));
       }
       if (/^[A-Za-z]:/.test(root)) root = root.replace(/\\/g, '/');
       root = root.replace(/\/+$/, '');
@@ -92,16 +94,17 @@
       status: targets.map(agent => `./vas status --target ${agent}${location(agent)}`).join('\n'),
       uninstall: targets.map(agent => `./vas uninstall ${shellQuote(id)} --target ${agent}${location(agent)}`).join('\n'),
       paths,
-      prompt: `Hãy đọc runbook của skill ${JSON.stringify(id)} tại:\n${paths.map(path => JSON.stringify(path)).join('\n')}\nÁp dụng quy trình đó vào tác vụ tôi mô tả trong dự án này. Kiểm tra yêu cầu công cụ, script và quyền truy cập trước khi thực thi; hỏi lại nếu chưa rõ phạm vi.`
+      prompt: text('install.prompt', { id: JSON.stringify(id), paths: paths.map(path => JSON.stringify(path)).join('\n') })
     };
   }
   function installCommand(id, target, options) {
     return installationPlan(id, target, options).install;
   }
-  function readCatalogState(search) {
+  function readCatalogState(search, preferredLanguage = 'vi') {
     const params = new URLSearchParams(search);
     return {
       query: params.get('q') || '', selected: params.get('skill') || null,
+      language: i18n.resolveLanguage(search, preferredLanguage),
       target: agents.some(agent => agent[0] === params.get('agent')) ? params.get('agent') : 'antigravity',
       group: groups.some(group => group.id === params.get('group')) ? params.get('group') : 'all',
       category: params.get('category') || 'all',
@@ -112,6 +115,7 @@
   }
   function catalogParams(value) {
     const params = new URLSearchParams();
+    if (['vi', 'en'].includes(value.language)) params.set('lang', value.language);
     if (value.query) params.set('q', value.query);
     if (value.selected) params.set('skill', value.selected);
     if (value.target && value.target !== 'antigravity') params.set('agent', value.target);
@@ -148,7 +152,7 @@
 
   // Render repository Markdown as text and a small, explicit set of safe elements.
   // Raw HTML is always escaped; link destinations must use an approved protocol.
-  function renderMarkdown(markdown, baseUrl = 'https://example.invalid/skills/') {
+  function renderMarkdown(markdown, baseUrl = 'https://example.invalid/skills/', language = 'vi') {
     const lines = String(markdown).replace(/^\uFEFF/, '').replace(/^---\s*\r?\n[\s\S]*?\r?\n---\s*(?:\r?\n|$)/, '').replace(/\r\n?/g, '\n').split('\n');
     const headings = [], parts = [], ids = new Map();
     function inline(value) {
@@ -176,7 +180,7 @@
         const code = []; i++;
         while (i < lines.length && !lines[i].trim().startsWith(fence[1])) code.push(lines[i++]);
         if (i < lines.length) i++;
-        parts.push(`<div class="code-block"><div class="code-heading"><span>${escapeHtml(fence[2] || 'TEXT')}</span><button class="text-button" data-copy-code>Sao chép mã</button></div><pre><code>${escapeHtml(code.join('\n'))}</code></pre></div>`); continue;
+        parts.push(`<div class="code-block"><div class="code-heading"><span>${escapeHtml(fence[2] || 'TEXT')}</span><button class="text-button" data-copy-code>${i18n.translate('copy.codeButton', language)}</button></div><pre><code>${escapeHtml(code.join('\n'))}</code></pre></div>`); continue;
       }
       const heading = line.match(/^(#{1,6})\s+(.+?)\s*#*$/);
       if (heading) {
@@ -217,20 +221,20 @@
   if (typeof document === 'undefined') return;
 
   const skillBase = document.documentElement?.dataset.skillBase || '..';
-  const state = { skills: [], query: '', group: 'all', category: 'all', sort: 'recommended', sources: [], target: 'antigravity', view: 'list', page: 1, selected: null, loaded: false, scope: 'project', projectPath: '', mode: 'link' };
-  if (typeof window !== 'undefined') Object.assign(state, readCatalogState(window.location.search));
+  const state = { skills: [], query: '', group: 'all', category: 'all', sort: 'recommended', sources: [], target: 'antigravity', view: 'list', page: 1, selected: null, loaded: false, scope: 'project', projectPath: '', mode: 'link', language: 'vi' };
+  function preferredLanguage() {
+    try { return typeof window === 'undefined' ? 'vi' : window.localStorage.getItem('vas-language'); }
+    catch (error) { console.warn('Cannot read the saved VAS language preference:', error); return 'vi'; }
+  }
+  if (typeof window !== 'undefined') Object.assign(state, readCatalogState(window.location.search, preferredLanguage()));
   const pageSize = 6;
   const byId = id => document.getElementById(id);
   const icon = name => `<svg class="icon" aria-hidden="true"><use href="#i-${name}"/></svg>`;
-  const count = number => number.toLocaleString('en-US');
-  const summaries = {
-    'ui-ux-pro-max': 'Thiết kế UI/UX, typography và design systems cho web, mobile và desktop.',
-    'code-review': 'Review thay đổi theo coding standards và specification. Báo lỗi có bằng chứng và hướng sửa cụ thể.',
-    'cloudflare-security-audit': 'Rà soát access control, luồng dữ liệu và bề mặt tấn công theo quy trình security review.',
-    'webapp-testing': 'Kiểm thử luồng người dùng bằng Playwright; kiểm tra giao diện, chụp màn hình và đọc browser logs.',
-    'frontend-design': 'Xây dựng giao diện frontend có chủ đích: bố cục, typography và phân cấp thị giác.',
-    'setup-pre-commit': 'Thiết lập Husky và lint-staged để chạy format, type checking và kiểm tra trước commit.'
-  };
+  const t = (key, values) => i18n.translate(key, state.language, values);
+  const count = number => number.toLocaleString(state.language === 'en' ? 'en-US' : 'vi-VN');
+  const groupLabel = group => t(`group.${group.id}`);
+  const agentLabel = ([id, label]) => id === 'all' ? t('all') : label;
+  const runbookNoun = total => total === 1 ? 'runbook' : 'runbooks';
   let toastTimer, copyReturnFocus, loadingPromise, detailRendered = null, runbookRequest = 0, libraryScroll = 0, filterDraft;
   const runbookCache = new Map();
   const skillIcon = skill => skill.id.includes('review') ? 'branch' : /security|pentest/.test(skill.category) ? 'shield' : /test/.test(skill.category) ? 'flask' : /design|front/.test(skill.category) ? (skill.id === 'ui-ux-pro-max' ? 'pen' : 'layout') : 'terminal';
@@ -239,16 +243,44 @@
     clearTimeout(toastTimer); byId('toast').textContent = message; byId('toast').hidden = false;
     toastTimer = setTimeout(() => { byId('toast').hidden = true; }, 3500);
   }
-  async function copy(text, button, message = 'Đã sao chép. Chạy lệnh từ thư mục gốc VAS.') {
+  async function copy(text, button, message = t('copy.command')) {
     try { if (!navigator.clipboard) throw new Error('Clipboard không khả dụng'); await navigator.clipboard.writeText(text); toast(message); }
     catch (_) { copyReturnFocus = button; byId('manual-copy').hidden = false; byId('manual-copy-text').value = text; byId('manual-copy-text').focus(); byId('manual-copy-text').select(); }
   }
   function closeManualCopy() { byId('manual-copy').hidden = true; if (copyReturnFocus?.isConnected) copyReturnFocus.focus(); }
+  function applyLanguage() {
+    const afterInstallationOpen = document.querySelector('#installation-after')?.open;
+    i18n.apply(document, state.language);
+    const toggle = byId('language-toggle');
+    toggle.textContent = state.language === 'vi' ? 'EN' : 'VI';
+    toggle.setAttribute('lang', state.language === 'vi' ? 'en' : 'vi');
+    toggle.setAttribute('aria-label', t('language.switch'));
+    toggle.setAttribute('title', state.language === 'vi' ? 'English' : 'Tiếng Việt');
+    byId('theme-toggle').setAttribute('aria-label', t(document.documentElement.dataset.theme === 'dark' ? 'theme.light' : 'theme.dark'));
+    byId('home-link').setAttribute('href', `./?lang=${state.language}`);
+    byId('readme-link').setAttribute('href', `${skillBase}/README${state.language === 'en' ? '_EN' : ''}.md`);
+    if (state.loaded) {
+      renderNavigation(); renderCategories(); renderResults();
+      if (afterInstallationOpen && byId('installation-after')) byId('installation-after').open = true;
+    } else {
+      byId('results-status').textContent = t(byId('error-state').hidden ? 'catalog.loading' : 'catalog.error');
+    }
+    if (byId('filters-dialog').open) renderMobileFilters();
+    syncHeroAgent();
+  }
+  function changeLanguage() {
+    clearTimeout(toastTimer); byId('toast').hidden = true;
+    syncUrl(false, true);
+    state.language = state.language === 'vi' ? 'en' : 'vi';
+    applyLanguage(); syncUrl(true, true);
+    try { window.localStorage.setItem('vas-language', state.language); }
+    catch (error) { console.warn('Cannot save the VAS language preference:', error); toast(t('language.storage')); }
+  }
   function syncSources() {
     document.querySelectorAll('input[name="source"]').forEach(input => { input.checked = state.sources.includes(input.value); });
   }
   function renderNavigation() {
-    byId('category-navigation').innerHTML = groups.map(group => `<button type="button" data-group="${group.id}" aria-pressed="${state.group === group.id && state.category === 'all'}"><span>${group.label}</span><span>${count(state.skills.filter(skill => matchesGroup(skill, group.id)).length)}</span></button>`).join('');
+    byId('category-navigation').innerHTML = groups.map(group => `<button type="button" data-group="${group.id}" aria-pressed="${state.group === group.id && state.category === 'all'}"><span>${escapeHtml(groupLabel(group))}</span><span>${count(state.skills.filter(skill => matchesGroup(skill, group.id)).length)}</span></button>`).join('');
     document.querySelectorAll('[data-source-count]').forEach(node => { node.textContent = count(state.skills.filter(skill => matchesSource(skill, node.dataset.sourceCount)).length); });
   }
   function updateNavigation() {
@@ -258,10 +290,10 @@
   function renderCategories() {
     const counts = new Map();
     state.skills.forEach(skill => counts.set(skill.category || 'general', (counts.get(skill.category || 'general') || 0) + 1));
-    byId('category-select').innerHTML = `<option value="all">Tất cả ${counts.size} danh mục</option>` + [...counts].sort(([a], [b]) => a.localeCompare(b)).map(([category, total]) => `<option value="${escapeHtml(category)}">${escapeHtml(category)} (${count(total)})</option>`).join('');
+    byId('category-select').innerHTML = `<option value="all">${t('filters.categories', { count: count(counts.size) })}</option>` + [...counts].sort(([a], [b]) => a.localeCompare(b)).map(([category, total]) => `<option value="${escapeHtml(category)}">${escapeHtml(category)} (${count(total)})</option>`).join('');
   }
-  function syncUrl(push = false) {
-    if (typeof window === 'undefined' || !state.loaded) return;
+  function syncUrl(push = false, beforeLoad = false) {
+    if (typeof window === 'undefined' || (!state.loaded && !beforeLoad)) return;
     const params = catalogParams(state), url = window.location.pathname + (params ? '?' + params : '') + window.location.hash;
     if (url !== window.location.pathname + window.location.search + window.location.hash) window.history[push ? 'pushState' : 'replaceState'](null, '', url);
   }
@@ -275,9 +307,9 @@
     byId('project-path-field').hidden = state.scope !== 'project';
     byId('project-path').setAttribute('aria-invalid', String(state.scope === 'project' && Boolean(state.projectPath) && !preview.command));
     byId('installation-command').textContent = preview.command || preview.error;
-    byId('install-location-help').textContent = preview.error || (state.scope === 'global' ? 'Dùng ở nhiều dự án của tài khoản hiện tại. Chọn một agent; không hỗ trợ toàn máy cho “Tất cả”.' : 'Nhập thư mục dự án, không phải thư mục kho VAS. Đường dẫn chỉ dùng trong phiên này, không được chia sẻ.');
-    byId('install-mode-help').textContent = state.mode === 'copy' ? 'Copy tạo bản sao độc lập. Cập nhật kho VAS không tự cập nhật bản sao; cài lại khi cần.' : 'Link tạo symlink. Giữ nguyên vị trí kho VAS; dùng copy nếu không thể tạo symlink.';
-    byId('installed-paths').textContent = preview.plan ? preview.plan.paths.join('\n') : 'Chọn nơi cài hợp lệ để xem vị trí SKILL.md.';
+    byId('install-location-help').textContent = preview.error || t(state.scope === 'global' ? 'install.globalHelp' : 'install.projectHelp');
+    byId('install-mode-help').textContent = t(state.mode === 'copy' ? 'install.copyHelp' : 'install.linkHelp');
+    byId('installed-paths').textContent = preview.plan ? preview.plan.paths.join('\n') : t('install.choosePath');
     for (const [id, key] of [['install-status', 'status'], ['install-uninstall', 'uninstall'], ['install-prompt', 'prompt']]) {
       byId(id).textContent = preview.plan ? preview.plan[key] : preview.error;
       document.querySelectorAll(`[data-copy-element="${id}"]`).forEach(button => { button.disabled = !preview.plan; });
@@ -285,22 +317,22 @@
     document.querySelectorAll('[data-copy-skill]').forEach(button => { button.disabled = !preview.command; });
   }
   function installation(skill) {
-    return `<aside class="detail-sidebar"><section class="install-panel"><h2>${icon('terminal')}Cài skill</h2><p>Chỉ cần Git và Python 3. Tải kho VAS một lần, chọn nơi cài rồi chạy lệnh trong terminal tại thư mục kho. Website không tự cài lên máy.</p>
-      <label for="agent-select">Agent</label><select id="agent-select">${agents.map(([id, label]) => `<option value="${id}">${label}</option>`).join('')}</select>
-      <label for="install-scope">Phạm vi cài đặt</label><select id="install-scope" aria-describedby="install-location-help"><option value="project">Dự án cụ thể</option><option value="global">Toàn máy</option></select>
-      <div id="project-path-field"><label for="project-path">Đường dẫn tuyệt đối đến dự án</label><input id="project-path" type="text" placeholder="/Projects/my-app" value="${escapeHtml(state.projectPath)}" autocomplete="off" spellcheck="false" aria-describedby="install-location-help"></div>
+    return `<aside class="detail-sidebar"><section class="install-panel"><h2>${icon('terminal')}${t('install.title')}</h2><p>${t('install.description')}</p>
+      <label for="agent-select">Agent</label><select id="agent-select">${agents.map(agent => `<option value="${agent[0]}">${agentLabel(agent)}</option>`).join('')}</select>
+      <label for="install-scope">${t('install.scope')}</label><select id="install-scope" aria-describedby="install-location-help"><option value="project">${t('install.project')}</option><option value="global">${t('install.global')}</option></select>
+      <div id="project-path-field"><label for="project-path">${t('install.path')}</label><input id="project-path" type="text" placeholder="/Projects/my-app" value="${escapeHtml(state.projectPath)}" autocomplete="off" spellcheck="false" aria-describedby="install-location-help"></div>
       <p id="install-location-help" class="field-help" role="status"></p>
-      <label for="install-mode">Cách cài</label><select id="install-mode" aria-describedby="install-mode-help"><option value="link">Link — liên kết với kho VAS</option><option value="copy">Copy — bản sao độc lập</option></select><p id="install-mode-help" class="field-help"></p>
-      <div class="code-heading"><label for="installation-command">Lệnh cài đặt</label><span>BASH / ZSH</span></div><pre class="installation-code"><code id="installation-command"></code></pre><button class="button primary copy-install" data-copy-skill="${escapeHtml(skill.id)}">${icon('copy')}Sao chép lệnh cài</button>
-      <p class="field-help">Chưa tải kho? <a href="#quickstart" data-library-link>Xem các bước bắt đầu</a>. Trên Windows, dùng Git Bash với Python 3; chọn copy nếu symlink không được phép.</p>
-      <details class="quickstart-details"><summary>Sau khi cài: kiểm tra và dùng skill</summary><div class="quickstart-commands">
-        <div><h3>1. Kiểm tra đã cài</h3><pre class="installation-code"><code id="install-status"></code></pre><button class="button secondary" data-copy-element="install-status">Sao chép lệnh kiểm tra</button></div>
-        <div><h3>2. Mở dự án trong agent</h3><p class="field-help">Nếu agent chưa thấy skill, mở lại phiên hoặc nạp lại danh sách skill. Không phải agent nào cũng có cùng slash command.</p><pre class="installation-code"><code id="installed-paths"></code></pre></div>
-        <div><h3>3. Dán prompt và nêu tác vụ</h3><pre class="installation-code"><code id="install-prompt"></code></pre><button class="button secondary" data-copy-element="install-prompt" data-copy-message="Đã sao chép prompt. Dán vào agent sau khi cài skill.">Sao chép prompt</button></div>
-        <div><h3>Gỡ khi không cần</h3><p class="field-help">Lệnh chỉ gỡ bản đã cài trong phạm vi đã chọn, không xóa skill trong kho nguồn VAS.</p><pre class="installation-code"><code id="install-uninstall"></code></pre><button class="button secondary" data-copy-element="install-uninstall">Sao chép lệnh gỡ</button></div>
+      <label for="install-mode">${t('install.mode')}</label><select id="install-mode" aria-describedby="install-mode-help"><option value="link">${t('install.link')}</option><option value="copy">${t('install.copy')}</option></select><p id="install-mode-help" class="field-help"></p>
+      <div class="code-heading"><label for="installation-command">${t('install.command')}</label><span>BASH / ZSH</span></div><pre class="installation-code"><code id="installation-command"></code></pre><button class="button primary copy-install" data-copy-skill="${escapeHtml(skill.id)}">${icon('copy')}${t('install.copyCommand')}</button>
+      <p class="field-help">${t('install.missingRepo')}<a href="#quickstart" data-library-link>${t('install.setup')}</a>${t('install.windows')}</p>
+      <details id="installation-after" class="quickstart-details"><summary>${t('install.after')}</summary><div class="quickstart-commands">
+        <div><h3>${t('install.statusTitle')}</h3><pre class="installation-code"><code id="install-status"></code></pre><button class="button secondary" data-copy-element="install-status">${t('install.copyStatus')}</button></div>
+        <div><h3>${t('install.openTitle')}</h3><p class="field-help">${t('install.reload')}</p><pre class="installation-code"><code id="installed-paths"></code></pre></div>
+        <div><h3>${t('install.promptTitle')}</h3><pre class="installation-code"><code id="install-prompt"></code></pre><button class="button secondary" data-copy-element="install-prompt" data-copy-message="${t('copy.prompt')}">${t('install.copyPrompt')}</button></div>
+        <div><h3>${t('install.uninstallTitle')}</h3><p class="field-help">${t('install.uninstallHelp')}</p><pre class="installation-code"><code id="install-uninstall"></code></pre><button class="button secondary" data-copy-element="install-uninstall">${t('install.copyUninstall')}</button></div>
       </div></details></section>
-      <nav class="runbook-toc" aria-label="Trong runbook này"><h2>Trong runbook này</h2><div id="runbook-toc-links"><p>Đang đọc cấu trúc tài liệu…</p></div></nav>
-      <p class="detail-source-note">${icon('shield')}Nhãn risk: ${escapeHtml(skill.risk || 'unknown')}. Đây là metadata nguồn, không thay thế việc kiểm tra script và quyền truy cập.</p></aside>`;
+      <nav class="runbook-toc" aria-label="${t('runbook.toc')}"><h2>${t('runbook.toc')}</h2><div id="runbook-toc-links"><p>${t('runbook.structure')}</p></div></nav>
+      <p class="detail-source-note">${icon('shield')}${escapeHtml(t('install.risk', { risk: skill.risk || 'unknown' }))}</p></aside>`;
   }
   function renderResults() {
     if (!state.loaded) return;
@@ -308,22 +340,22 @@
     if (state.selected) { renderDetail(); return; }
     detailRendered = null; runbookRequest++;
     const filtered = filterSkills(state.skills, state), visible = filtered.slice(0, state.page * pageSize);
-    const categoryLabel = state.category !== 'all' ? state.category : groups.find(group => group.id === state.group).label;
+    const categoryLabel = state.category !== 'all' ? state.category : groupLabel(groups.find(group => group.id === state.group));
     byId('results-title').textContent = categoryLabel;
-    byId('results-status').textContent = `${count(filtered.length)} runbook${state.query ? ` cho “${state.query}”` : ''}`;
+    byId('results-status').textContent = t('results.total', { count: count(filtered.length), noun: runbookNoun(filtered.length) }) + (state.query ? t('results.query', { query: state.query }) : '');
     byId('clear-search').hidden = !state.query;
     const chips = [];
     if (state.query) chips.push(['query', state.query]);
     if (state.group !== 'all') chips.push(['group', categoryLabel]);
     if (state.category !== 'all') chips.push(['category', state.category]);
     state.sources.forEach(source => chips.push([source, sourceNames[source]]));
-    byId('filter-description').innerHTML = chips.length ? chips.map(([key, label]) => `<button class="filter-chip" data-remove-filter="${key}" aria-label="Bỏ bộ lọc ${escapeHtml(label)}">${escapeHtml(label)} <span aria-hidden="true">×</span></button>`).join('') : '<span class="filter-chip">Tất cả</span><span>Chưa áp dụng bộ lọc</span>';
+    byId('filter-description').innerHTML = chips.length ? chips.map(([key, label]) => `<button class="filter-chip" data-remove-filter="${key}" aria-label="${escapeHtml(t('filters.remove', { label }))}">${escapeHtml(label)} <span aria-hidden="true">×</span></button>`).join('') : `<span class="filter-chip">${t('all')}</span><span>${t('filters.none')}</span>`;
     byId('reset-filters').disabled = !chips.length;
     byId('active-filter-count').hidden = !chips.length; byId('active-filter-count').textContent = chips.length;
     byId('empty-state').hidden = filtered.length !== 0;
     byId('skills-results').classList.toggle('is-grid', state.view === 'grid');
-    byId('skills-results').innerHTML = visible.map(skill => `<article class="skill-row" data-skill="${escapeHtml(skill.id)}"><div class="skill-symbol">${icon(skillIcon(skill))}</div><div class="skill-info"><h3><button class="skill-name" data-open-skill="${escapeHtml(skill.id)}">${escapeHtml(skill.id)}</button></h3><p class="skill-description">${escapeHtml(summaries[skill.id] || skill.description)}</p><div class="skill-metadata"><div class="skill-tags">${[skill.category, ...(skill.tags || []).filter(tag => tag !== skill.category)].slice(0, 3).map(tag => `<span>${escapeHtml(tag)}</span>`).join('')}</div>${skill.author ? `<span class="skill-author">Nguồn: ${escapeHtml(skill.author)}${skill.license === 'MIT' ? ' · MIT' : ''}</span>` : ''}</div></div><button class="button secondary skill-open" data-open-skill="${escapeHtml(skill.id)}" aria-label="Xem runbook ${escapeHtml(skill.id)}"><span aria-hidden="true">↗</span>Xem runbook</button></article>`).join('');
-    byId('pagination-controls').hidden = !visible.length; byId('pagination-status').textContent = `Đang hiển thị ${count(visible.length)} / ${count(filtered.length)} runbook`;
+    byId('skills-results').innerHTML = visible.map(skill => `<article class="skill-row" data-skill="${escapeHtml(skill.id)}"><div class="skill-symbol">${icon(skillIcon(skill))}</div><div class="skill-info"><h3><button class="skill-name" data-open-skill="${escapeHtml(skill.id)}">${escapeHtml(skill.id)}</button></h3><p class="skill-description">${escapeHtml(Object.hasOwn(i18n.messages, `summary.${skill.id}`) ? t(`summary.${skill.id}`) : skill.description)}</p><div class="skill-metadata"><div class="skill-tags">${[skill.category, ...(skill.tags || []).filter(tag => tag !== skill.category)].slice(0, 3).map(tag => `<span>${escapeHtml(tag)}</span>`).join('')}</div>${skill.author ? `<span class="skill-author">${escapeHtml(t('skill.source', { author: skill.author }))}${skill.license === 'MIT' ? ' · MIT' : ''}</span>` : ''}</div></div><button class="button secondary skill-open" data-open-skill="${escapeHtml(skill.id)}" aria-label="${escapeHtml(t('skill.openLabel', { id: skill.id }))}"><span aria-hidden="true">↗</span>${t('skill.open')}</button></article>`).join('');
+    byId('pagination-controls').hidden = !visible.length; byId('pagination-status').textContent = t('results.pagination', { visible: count(visible.length), total: count(filtered.length), noun: runbookNoun(filtered.length) });
     byId('load-more').hidden = visible.length >= filtered.length;
     document.querySelectorAll('[data-view]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.view === state.view)));
     byId('sort-select').value = state.sort; updateNavigation(); syncInstallation();
@@ -331,28 +363,30 @@
   function renderDetail() {
     const skill = state.skills.find(skill => skill.id === state.selected);
     if (!skill) { state.selected = null; renderResults(); return; }
-    if (detailRendered === skill.id) { syncInstallation(); return; }
-    detailRendered = skill.id;
+    const detailKey = `${skill.id}:${state.language}`;
+    if (detailRendered === detailKey) { syncInstallation(); return; }
+    detailRendered = detailKey;
     const source = sourceUrl(skill);
-    byId('skill-detail').innerHTML = `<nav class="breadcrumb" aria-label="Đường dẫn thư viện"><button data-back-library>Thư viện</button><span>›</span><code>${escapeHtml(skill.id)}</code></nav>
-      <div class="detail-heading"><div class="detail-title-group"><div class="skill-symbol">${icon(skillIcon(skill))}</div><div><p class="eyebrow">Skill / Runbook</p><h1 tabindex="-1" id="detail-title">${escapeHtml(skill.id)}</h1></div></div><div class="detail-actions"><a class="button secondary" href="${escapeHtml(skillUrl(skill, skillBase))}" target="_blank" rel="noopener noreferrer">${icon('book')}Đọc SKILL.md</a><button class="button secondary" data-share-skill="${escapeHtml(skill.id)}">Chia sẻ ↗</button></div></div>
-      <p class="detail-description">${escapeHtml(skill.description)}</p><div class="detail-provenance">${skill.author ? `<span>${escapeHtml(skill.author)}</span>` : ''}<span>${escapeHtml(skill.license || 'Giấy phép: xem trong skill')}</span><span class="skill-tag">${escapeHtml(skill.category)}</span>${source ? `<a href="${escapeHtml(source)}" target="_blank" rel="noopener noreferrer">${escapeHtml(skill.source_repo)} ↗</a>` : ''}</div>
-      <div class="detail-layout"><div><section class="runbook-panel"><header>${icon('book')}<code>SKILL.md</code><span>Bản đọc runbook</span></header><div id="runbook-content" class="runbook-content" aria-busy="true"><p role="status">Đang tải nội dung SKILL.md…</p></div></section><div class="next-skills"><div><h2>Tìm skill cho bước tiếp theo</h2><p>Khám phá kiểm thử, frontend và bảo mật.</p></div><button class="button secondary" data-back-library>Về thư viện →</button></div></div>${installation(skill)}</div>`;
+    byId('skill-detail').innerHTML = `<nav class="breadcrumb" aria-label="${t('detail.breadcrumb')}"><button data-back-library>${t('library')}</button><span>›</span><code>${escapeHtml(skill.id)}</code></nav>
+      <div class="detail-heading"><div class="detail-title-group"><div class="skill-symbol">${icon(skillIcon(skill))}</div><div><p class="eyebrow">Skill / Runbook</p><h1 tabindex="-1" id="detail-title">${escapeHtml(skill.id)}</h1></div></div><div class="detail-actions"><a class="button secondary" href="${escapeHtml(skillUrl(skill, skillBase))}" target="_blank" rel="noopener noreferrer">${icon('book')}${t('detail.read')}</a><button class="button secondary" data-share-skill="${escapeHtml(skill.id)}">${t('detail.share')}</button></div></div>
+      <p class="detail-description">${escapeHtml(skill.description)}</p><div class="detail-provenance">${skill.author ? `<span>${escapeHtml(skill.author)}</span>` : ''}<span>${escapeHtml(skill.license || t('detail.license'))}</span><span class="skill-tag">${escapeHtml(skill.category)}</span>${source ? `<a href="${escapeHtml(source)}" target="_blank" rel="noopener noreferrer">${escapeHtml(skill.source_repo)} ↗</a>` : ''}</div>
+      <div class="detail-layout"><div><section class="runbook-panel"><header>${icon('book')}<code>SKILL.md</code><span>${t('detail.reader')}</span></header><p class="runbook-language-note">${t('detail.original')}</p><div id="runbook-content" class="runbook-content" aria-busy="true"><p role="status">${t('runbook.loading')}</p></div></section><div class="next-skills"><div><h2>${t('detail.next')}</h2><p>${t('detail.nextDescription')}</p></div><button class="button secondary" data-back-library>${t('detail.back')}</button></div></div>${installation(skill)}</div>`;
     syncInstallation(); loadRunbook(skill);
   }
   async function loadRunbook(skill) {
     const request = ++runbookRequest;
     try {
       let text = runbookCache.get(skill.id);
-      if (text === undefined) { const response = await fetch(skillUrl(skill, skillBase)); if (!response.ok) throw new Error(`HTTP ${response.status}`); text = await response.text(); if (text.length > 2000000) throw new Error('Runbook vượt giới hạn đọc'); runbookCache.set(skill.id, text); }
+      if (text === undefined) { const response = await fetch(skillUrl(skill, skillBase)); if (!response.ok) throw new Error(`HTTP ${response.status}`); text = await response.text(); if (text.length > 2000000) throw new Error(t('runbook.tooLarge')); runbookCache.set(skill.id, text); }
       if (request !== runbookRequest || state.selected !== skill.id) return;
-      const parsed = renderMarkdown(text, new URL(skillUrl(skill, skillBase), window.location.href).href);
+      const parsed = renderMarkdown(text, new URL(skillUrl(skill, skillBase), window.location.href).href, state.language);
       byId('runbook-content').innerHTML = parsed.html;
-      byId('runbook-toc-links').innerHTML = parsed.headings.slice(0, 8).map(heading => `<a href="#${heading.id}">${escapeHtml(heading.text)}</a>`).join('') || '<a href="#detail-title">Nội dung runbook</a>';
+      byId('runbook-toc-links').innerHTML = parsed.headings.slice(0, 8).map(heading => `<a href="#${heading.id}">${escapeHtml(heading.text)}</a>`).join('') || `<a href="#detail-title">${t('runbook.content')}</a>`;
     } catch (error) {
       if (request !== runbookRequest || state.selected !== skill.id) return;
-      byId('runbook-content').innerHTML = `<div class="empty-state"><h2>Chưa tải được nội dung runbook</h2><p>Bạn vẫn có thể mở file SKILL.md hoặc thử tải lại.</p><button class="button secondary" data-retry-runbook>Thử lại</button></div>`;
-      byId('runbook-toc-links').textContent = 'Nội dung chưa tải được.';
+      console.error('Cannot load the VAS runbook:', error);
+      byId('runbook-content').innerHTML = `<div class="empty-state"><h2>${t('runbook.errorTitle')}</h2><p>${t('runbook.errorHelp')}</p><button class="button secondary" data-retry-runbook>${t('runbook.retry')}</button></div>`;
+      byId('runbook-toc-links').textContent = t('runbook.error');
     } finally { if (request === runbookRequest && state.selected === skill.id) byId('runbook-content').setAttribute('aria-busy', 'false'); }
   }
   function applyFilters() { state.page = 1; state.selected = null; renderResults(); syncUrl(); }
@@ -370,35 +404,37 @@
   function closeDetail() { state.selected = null; renderResults(); syncUrl(true); window.scrollTo({ top: libraryScroll, behavior: 'instant' }); }
   function validateState() {
     if (!state.skills.some(skill => skill.category === state.category)) state.category = 'all';
-    if (state.selected && !state.skills.some(skill => skill.id === state.selected)) { state.selected = null; toast('Skill không còn trong catalog. Bạn có thể tìm lại bên dưới.'); }
+    if (state.selected && !state.skills.some(skill => skill.id === state.selected)) { state.selected = null; toast(t('skill.missing')); }
   }
   function restoreLocation() {
-    Object.assign(state, readCatalogState(window.location.search)); validateState();
+    clearTimeout(toastTimer); byId('toast').hidden = true;
+    Object.assign(state, readCatalogState(window.location.search, preferredLanguage()));
+    if (state.loaded) validateState();
     byId('search-input').value = state.query; byId('sort-select').value = state.sort;
-    state.page = 1; renderResults(); syncHeroAgent();
-    if (state.selected) byId('detail-view').scrollIntoView({ block: 'start', behavior: 'instant' });
+    state.page = 1; applyLanguage();
+    if (state.selected && state.loaded) byId('detail-view').scrollIntoView({ block: 'start', behavior: 'instant' });
   }
   async function loadCatalog() {
     if (loadingPromise) return loadingPromise;
     byId('loading-state').hidden = false; byId('error-state').hidden = true; byId('empty-state').hidden = true;
-    byId('skills-results').setAttribute('aria-busy', 'true'); byId('results-status').textContent = 'Đang tải danh mục…';
+    byId('skills-results').setAttribute('aria-busy', 'true'); byId('results-status').textContent = t('catalog.loading');
     loadingPromise = (async () => {
       try {
         const response = await fetch('./skills.min.json'); if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const data = await response.json();
-        if (!Array.isArray(data) || !data.length || data.some(skill => !skill || typeof skill.id !== 'string' || !skill.id || typeof skill.category !== 'string' || (skill.tags && (!Array.isArray(skill.tags) || skill.tags.some(tag => typeof tag !== 'string'))))) throw new Error('Dữ liệu catalog không hợp lệ');
+        if (!Array.isArray(data) || !data.length || data.some(skill => !skill || typeof skill.id !== 'string' || !skill.id || typeof skill.category !== 'string' || (skill.tags && (!Array.isArray(skill.tags) || skill.tags.some(tag => typeof tag !== 'string'))))) throw new Error(t('catalog.invalid'));
         data.forEach(skill => skillUrl(skill, skillBase)); state.skills = data; state.loaded = true;
         renderNavigation(); renderCategories();
         validateState(); byId('search-input').value = state.query; renderResults();
         return true;
-      } catch (error) { console.error('Lỗi tải danh mục:', error); byId('error-state').hidden = false; byId('results-status').textContent = 'Không thể tải danh mục. Vui lòng thử lại.'; return false; }
+      } catch (error) { console.error('Cannot load the VAS catalog:', error); byId('error-state').hidden = false; byId('results-status').textContent = t('catalog.error'); return false; }
       finally { byId('loading-state').hidden = true; byId('skills-results').setAttribute('aria-busy', 'false'); loadingPromise = null; }
     })(); return loadingPromise;
   }
   async function discover(id) { if (!state.loaded && !(await loadCatalog())) return; openSkill(id); }
   function renderMobileFilters() {
     const options = byId('category-select').innerHTML;
-    byId('mobile-filter-content').innerHTML = `<h3>Chuyên môn</h3><div class="category-navigation">${groups.map(group => `<button data-draft-group="${group.id}" aria-pressed="${filterDraft.group === group.id && filterDraft.category === 'all'}"><span>${group.label}</span><span>${count(state.skills.filter(skill => matchesGroup(skill, group.id)).length)}</span></button>`).join('')}</div><label for="mobile-category">Danh mục chi tiết</label><select id="mobile-category">${options}</select><fieldset class="source-filters"><legend>Nguồn</legend>${Object.entries(sourceNames).map(([id, label]) => `<label><input type="checkbox" name="mobile-source" value="${id}"${filterDraft.sources.includes(id) ? ' checked' : ''}><span>${label}</span><span>${count(state.skills.filter(skill => matchesSource(skill, id)).length)}</span></label>`).join('')}</fieldset>`;
+    byId('mobile-filter-content').innerHTML = `<h3>${t('filters.specialty')}</h3><div class="category-navigation">${groups.map(group => `<button data-draft-group="${group.id}" aria-pressed="${filterDraft.group === group.id && filterDraft.category === 'all'}"><span>${escapeHtml(groupLabel(group))}</span><span>${count(state.skills.filter(skill => matchesGroup(skill, group.id)).length)}</span></button>`).join('')}</div><label for="mobile-category">${t('filters.category')}</label><select id="mobile-category">${options}</select><fieldset class="source-filters"><legend>${t('filters.source')}</legend>${Object.entries(sourceNames).map(([id, label]) => `<label><input type="checkbox" name="mobile-source" value="${id}"${filterDraft.sources.includes(id) ? ' checked' : ''}><span>${label}</span><span>${count(state.skills.filter(skill => matchesSource(skill, id)).length)}</span></label>`).join('')}</fieldset>`;
     byId('mobile-category').value = filterDraft.category;
   }
   byId('open-filters').addEventListener('click', () => { filterDraft = { group: state.group, category: state.category, sources: [...state.sources] }; renderMobileFilters(); byId('filters-dialog').showModal(); });
@@ -422,7 +458,7 @@
     else if (target.matches('input[name="mobile-source"]')) filterDraft.sources = [...document.querySelectorAll('input[name="mobile-source"]:checked')].map(input => input.value);
   });
   document.addEventListener('input', event => { if (event.target.id === 'project-path') { state.projectPath = event.target.value; syncInstallation(); } });
-  if (typeof window !== 'undefined') window.addEventListener('popstate', () => { if (state.loaded) restoreLocation(); });
+  if (typeof window !== 'undefined') window.addEventListener('popstate', restoreLocation);
   byId('load-more').addEventListener('click', () => { const firstNew = state.page * pageSize; state.page++; renderResults(); const next = byId('skills-results').querySelectorAll('.skill-name')[firstNew]; if (next) next.focus({ preventScroll: true }); });
   function selectSource(source) { state.query = ''; state.group = 'all'; state.category = 'all'; state.sources = [source]; byId('search-input').value = ''; applyFilters(); focusSearch(); }
   byId('addy-collection').addEventListener('click', () => selectSource('addy')); byId('matt-collection').addEventListener('click', () => selectSource('mattpocock'));
@@ -433,7 +469,7 @@
       const dark = document.documentElement.dataset.theme !== 'dark';
       document.documentElement.dataset.theme = dark ? 'dark' : 'light';
       byId('theme-toggle').setAttribute('aria-pressed', String(dark));
-      byId('theme-toggle').setAttribute('aria-label', dark ? 'Bật giao diện sáng' : 'Bật giao diện tối');
+      byId('theme-toggle').setAttribute('aria-label', t(dark ? 'theme.light' : 'theme.dark'));
     };
     if (typeof window !== 'undefined' && window.VASMotion) window.VASMotion.changeTheme(apply, event.currentTarget);
     else apply();
@@ -463,11 +499,11 @@
     else if (button.dataset.openSkill) openSkill(button.dataset.openSkill);
     else if (button.dataset.installSkill) { openSkill(button.dataset.installSkill); byId('agent-select').focus(); }
     else if (button.dataset.copySkill) { const preview = commandPreview(button.dataset.copySkill); if (preview.command) copy(preview.command, button); }
-    else if (button.dataset.shareSkill) { const url = new URL(window.location.href); url.search = catalogParams({ selected: button.dataset.shareSkill, target: state.target }); url.hash = ''; copy(url.href, button, 'Đã sao chép liên kết đến skill.'); }
+    else if (button.dataset.shareSkill) { const url = new URL(window.location.href); url.search = catalogParams({ selected: button.dataset.shareSkill, target: state.target, language: state.language }); url.hash = ''; copy(url.href, button, t('copy.link')); }
     else if (button.dataset.copyElement) copy(byId(button.dataset.copyElement).textContent, button, button.dataset.copyMessage);
     else if (button.dataset.discover) discover(button.dataset.discover);
     else if (button.hasAttribute('data-retry-runbook')) loadRunbook(state.skills.find(skill => skill.id === state.selected));
-    else if (button.hasAttribute('data-copy-code')) copy(button.closest('.code-block').querySelector('code').textContent, button, 'Đã sao chép đoạn mã.');
+    else if (button.hasAttribute('data-copy-code')) copy(button.closest('.code-block').querySelector('code').textContent, button, t('copy.code'));
     else if (button.dataset.removeFilter) {
       const key = button.dataset.removeFilter;
       if (key === 'query') { state.query = ''; byId('search-input').value = ''; } else if (key === 'group') state.group = 'all'; else if (key === 'category') state.category = 'all'; else state.sources = state.sources.filter(source => source !== key);
@@ -476,10 +512,10 @@
   });
   function syncHeroAgent() {
     const agent = agents.find(agent => agent[0] === state.target);
-    const label = agent ? agent[1] : 'Antigravity';
-    if (typeof window !== 'undefined' && window.VASMotion) window.VASMotion.setAgent(label, agents.map(agent => agent[1]));
+    const label = agent ? agentLabel(agent) : 'Antigravity';
+    if (typeof window !== 'undefined' && window.VASMotion) window.VASMotion.setAgent(label, agents.map(agentLabel));
     else byId('hero-agent').textContent = label;
-    byId('hero-agent').setAttribute('aria-label', `Đổi agent mục tiêu. Hiện tại: ${label}`);
+    byId('hero-agent').setAttribute('aria-label', t('hero.agent', { agent: label }));
   }
   byId('hero-agent').addEventListener('click', () => {
     const options = agents.filter(agent => agent[0] !== 'all');
@@ -487,6 +523,7 @@
     state.target = options[(index + 1) % options.length][0]; syncHeroAgent(); syncInstallation(); syncUrl();
   });
   byId('hero-explore').addEventListener('click', focusSearch);
-  syncHeroAgent();
+  byId('language-toggle').addEventListener('click', changeLanguage);
+  applyLanguage();
   byId('search-input').value = state.query; loadCatalog();
 })();

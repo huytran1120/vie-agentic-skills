@@ -9,10 +9,15 @@
   const measurements = [];
   const check = (condition, message) => { if (!condition) errors.push(message); };
   const wait = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds));
+  const waitFor = async (test, message) => {
+    for (let attempt = 0; attempt < 200 && !test(); attempt++) await wait(25);
+    if (!test()) throw new Error(message);
+  };
+  const savedLanguage = localStorage.getItem('vas-language');
   const frame = document.createElement('iframe');
   frame.style.cssText = 'display:block;border:0;height:1000px;width:1440px';
   const page = new URLSearchParams(location.search).has('artifact') ? '../_site/index.html' : '../docs/index.html';
-  frame.src = `${page}?layout-check=${Date.now()}`;
+  frame.src = `${page}?lang=vi&layout-check=${Date.now()}`;
   const ready = new Promise((resolve, reject) => {
     frame.onload = resolve;
     frame.onerror = () => reject(new Error('Could not load catalog iframe'));
@@ -35,31 +40,43 @@
     await wait(1800);
     check(selected() === initialAgent, 'Decorative introduction must not change the installation agent');
     check(agent.getBoundingClientRect().width > 20, 'Agent reel must be visible on first load');
-    for (const width of [1440, 1024, 768, 390, 320]) {
-      frame.style.width = `${width}px`;
-      await wait(80);
-      for (let option = 0; option < 7; option++) {
-        const label = agent.getAttribute('aria-label');
-        const before = selected();
-        agent.click();
-        check(selected() !== before, `${width}px: agent click must change selection`);
-        check(agent.getAttribute('aria-label') !== label, `${width}px: accessible agent label must update`);
-        await wait(30);
-        const titleBox = heading.getBoundingClientRect();
-        const reelBox = agent.getBoundingClientRect();
-        check(titleBox.height < (width <= 540 ? 200 : 340), `${width}px: heading height ${titleBox.height} includes offscreen reel rows`);
-        check(reelBox.height > 20 && reelBox.width > 20, `${width}px: agent reel must remain visible`);
-        check(titleBox.right <= w.innerWidth + 1, `${width}px: heading overflows the viewport`);
-        check(d.documentElement.scrollWidth <= w.innerWidth, `${width}px: horizontal page overflow`);
-        check(cta.getBoundingClientRect().bottom < 760, `${width}px: primary action pushed outside the first viewport`);
+    const language = value => { if (d.documentElement.lang !== value) d.getElementById('language-toggle').click(); };
+    for (const locale of ['vi', 'en']) {
+      language(locale);
+      check(d.documentElement.lang === locale, `${locale}: document language must update`);
+      check(d.getElementById('readme-link').getAttribute('href').endsWith(locale === 'en' ? '/README_EN.md' : '/README.md'), `${locale}: guide link must match the language`);
+      for (const node of d.querySelectorAll('[data-i18n]')) {
+        if (node.id !== 'results-title') check(node.textContent === w.VASI18n.translate(node.dataset.i18n, locale), `${locale}: stale translation ${node.dataset.i18n}`);
       }
-      measurements.push({
-        width,
-        headingHeight: Math.round(heading.getBoundingClientRect().height),
-        actionBottom: Math.round(cta.getBoundingClientRect().bottom),
-        searchTop: Math.round(d.getElementById('search-input').getBoundingClientRect().top),
-        overflow: d.documentElement.scrollWidth > w.innerWidth
-      });
+      for (const width of [1440, 1024, 768, 390, 320]) {
+        frame.style.width = `${width}px`;
+        await wait(80);
+        const languageBox = d.getElementById('language-toggle').getBoundingClientRect();
+        check(languageBox.width >= 44 && languageBox.left >= 0 && languageBox.right <= w.innerWidth, `${locale} ${width}px: language switch must be visible and touch accessible`);
+        for (let option = 0; option < 7; option++) {
+          const label = agent.getAttribute('aria-label');
+          const before = selected();
+          agent.click();
+          check(selected() !== before, `${width}px: agent click must change selection`);
+          check(agent.getAttribute('aria-label') !== label, `${width}px: accessible agent label must update`);
+          await wait(30);
+          const titleBox = heading.getBoundingClientRect();
+          const reelBox = agent.getBoundingClientRect();
+          check(titleBox.height < (width <= 540 ? 200 : 340), `${width}px: heading height ${titleBox.height} includes offscreen reel rows`);
+          check(reelBox.height > 20 && reelBox.width > 20, `${width}px: agent reel must remain visible`);
+          check(titleBox.right <= w.innerWidth + 1, `${width}px: heading overflows the viewport`);
+          check(d.documentElement.scrollWidth <= w.innerWidth, `${width}px: horizontal page overflow`);
+          check(cta.getBoundingClientRect().bottom < 760, `${width}px: primary action pushed outside the first viewport`);
+        }
+        measurements.push({
+          language: locale,
+          width,
+          headingHeight: Math.round(heading.getBoundingClientRect().height),
+          actionBottom: Math.round(cta.getBoundingClientRect().bottom),
+          searchTop: Math.round(d.getElementById('search-input').getBoundingClientRect().top),
+          overflow: d.documentElement.scrollWidth > w.innerWidth
+        });
+      }
     }
     frame.style.width = '390px';
     await wait(80);
@@ -82,6 +99,38 @@
     check(d.getElementById('install-status').textContent.includes('--dest '), 'Status must check the same project destination');
     check(d.getElementById('install-uninstall').textContent.includes('--dest '), 'Uninstall must use the same project destination');
     check(d.getElementById('install-prompt').textContent.includes('/Projects/example app/'), 'Prompt must point at the installed runbook');
+    d.getElementById('installation-after').open = true;
+    await waitFor(() => d.getElementById('runbook-content').getAttribute('aria-busy') === 'false', 'Runbook must finish loading');
+    const originalRunbook = () => {
+      const content = d.getElementById('runbook-content').cloneNode(true);
+      content.querySelectorAll('button').forEach(button => button.remove());
+      return content.textContent;
+    };
+    const originalText = originalRunbook();
+    const lifecycle = ['installation-command', 'install-status', 'install-uninstall', 'installed-paths'];
+    const commands = lifecycle.map(id => d.getElementById(id).textContent);
+    for (const locale of ['en', 'vi']) {
+      language(locale);
+      check(d.getElementById('project-path').value === '/Projects/example app', `${locale}: switching language must preserve the project path`);
+      check(d.getElementById('install-mode').value === 'copy' && d.getElementById('install-scope').value === 'project', `${locale}: installation choices must be preserved`);
+      check(d.getElementById('installation-after').open, `${locale}: post-install instructions must stay open`);
+      check(JSON.stringify(lifecycle.map(id => d.getElementById(id).textContent)) === JSON.stringify(commands), `${locale}: executable commands and paths must not be translated`);
+      check(d.getElementById('install-prompt').textContent.startsWith(locale === 'en' ? 'Read the runbook' : 'Hãy đọc runbook'), `${locale}: sample prompt must be translated`);
+      await waitFor(() => d.getElementById('runbook-content').getAttribute('aria-busy') === 'false', 'Translated runbook controls must finish loading');
+      check(originalRunbook() === originalText, `${locale}: original runbook content must not change`);
+      const codeButton = d.querySelector('[data-copy-code]');
+      if (codeButton) check(codeButton.textContent === (locale === 'en' ? 'Copy code' : 'Sao chép mã'), `${locale}: runbook controls must be translated`);
+    }
+    w.history.back();
+    await waitFor(() => d.documentElement.lang === 'en', 'Back must restore English');
+    w.history.forward();
+    await waitFor(() => d.documentElement.lang === 'vi', 'Forward must restore Vietnamese');
+    check(d.getElementById('project-path').value === '/Projects/example app', 'History navigation must preserve the private installation path');
+    let sharedLink;
+    Object.defineProperty(w.navigator, 'clipboard', { configurable: true, value: { writeText: async text => { sharedLink = text; } } });
+    d.querySelector('[data-share-skill]').click();
+    check(new URL(sharedLink).searchParams.get('lang') === 'vi', 'Shared links must retain the interface language');
+    check(!sharedLink.includes('Projects') && !sharedLink.includes('scope=') && !sharedLink.includes('mode='), 'Sharing must never disclose installation paths or settings');
     change('agent-select', 'all');
     change('install-scope', 'global');
     check(d.querySelector('[data-copy-skill]').disabled, 'Global all must not provide a misleading install command');
@@ -102,17 +151,49 @@
     d.querySelector('[data-install-skill]').click();
     check(d.activeElement.id === 'agent-select', 'Getting started must reach the actual installation controls');
     d.querySelector('[data-back-library]').click();
+    language('en');
     d.getElementById('open-filters').click();
     check(d.getElementById('filters-dialog').open, 'Mobile filters must open');
+    check(d.getElementById('filters-title').textContent === 'Filters', 'Mobile filter dialog must be translated');
     d.querySelector('[data-draft-group="blender"]').click();
     d.getElementById('apply-mobile-filters').click();
     check(!d.getElementById('filters-dialog').open, 'Applying filters must close the dialog');
     check(d.getElementById('results-status').textContent.includes('94'), 'Blender filter must show 94 skills');
+    const search = d.getElementById('search-input');
+    search.value = 'blender';
+    search.dispatchEvent(new w.Event('input', { bubbles: true }));
+    language('vi');
+    check(search.value === 'blender' && new URL(w.location.href).searchParams.get('group') === 'blender', 'Language switch must preserve search and category filters');
     d.getElementById('hero-explore').click();
     check(d.activeElement.id === 'search-input', 'Explore action must focus search');
     check(d.getElementById('search-input').getBoundingClientRect().top < 300, 'Explore action must scroll to visible search');
+    const probe = document.createElement('iframe');
+    probe.style.cssText = 'display:block;border:0;height:1000px;width:390px';
+    document.body.append(probe);
+    try {
+      const loadProbe = async query => {
+        const loaded = new Promise(resolve => { probe.onload = resolve; });
+        probe.src = `${page}?${query}&language-check=${Date.now()}`;
+        await loaded;
+        await waitFor(() => probe.contentDocument.querySelector('[data-skill], #agent-select'), 'Language preference probe must load');
+        return probe.contentDocument;
+      };
+      localStorage.setItem('vas-language', 'vi');
+      const english = await loadProbe('lang=en&skill=blender-skills%2Fblender-director&agent=codex');
+      check(english.documentElement.lang === 'en', 'Explicit English deep link must override the saved Vietnamese preference');
+      check(english.getElementById('home-link').getAttribute('href') === './?lang=en', 'Home navigation must retain the active language');
+      check(english.getElementById('detail-title').textContent === 'blender-skills/blender-director', 'Language deep link must open the selected namespaced skill');
+      check(english.getElementById('installation-command').textContent.startsWith('Enter an absolute project path'), 'Invalid project paths must have English guidance');
+      check(english.documentElement.scrollWidth <= probe.contentWindow.innerWidth, 'English detail must fit mobile');
+      localStorage.setItem('vas-language', 'en');
+      check((await loadProbe('lang=vi')).documentElement.lang === 'vi', 'Explicit Vietnamese link must override saved English');
+      check((await loadProbe('')).documentElement.lang === 'en', 'A fresh visit must restore the saved language');
+    } finally { probe.remove(); }
   } catch (error) {
     errors.push(error.stack || String(error));
+  } finally {
+    if (savedLanguage === null) localStorage.removeItem('vas-language');
+    else localStorage.setItem('vas-language', savedLanguage);
   }
   document.getElementById('layout-result').textContent = JSON.stringify({ errors, measurements });
   document.documentElement.dataset.layoutComplete = 'true';

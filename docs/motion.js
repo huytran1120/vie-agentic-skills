@@ -49,7 +49,8 @@
   }
   function setAgent(label, options) {
     const first = !track;
-    if (first) {
+    if (first || options.some((option, i) => option !== labels[i]) || options.length !== labels.length) {
+      cancelAnimationFrame(introFrame); clearTimeout(reelTimer); reelGeneration++;
       labels = options;
       track = document.createElement('span'); track.className = 'agent-track'; track.setAttribute('aria-hidden', 'true');
       for (let cycle = 0; cycle < 3; cycle++) for (const text of labels) {
@@ -57,7 +58,7 @@
       }
       reel.replaceChildren(track); reel.classList.add('agent-reel');
       selectedLabel = label; index = labels.indexOf(label); fitReel(0);
-      if (!reduce.matches) introFrame = requestAnimationFrame(() => rollReel(selectedLabel, true));
+      if (first && !reduce.matches) introFrame = requestAnimationFrame(() => rollReel(selectedLabel, true));
     } else if (selectedLabel !== label) {
       selectedLabel = label; rollReel(label); fieldSurge();
     } else fitReel();

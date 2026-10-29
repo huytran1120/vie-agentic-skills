@@ -40,6 +40,12 @@ The CLI remains `./vas`; individual task dependencies are not CLI dependencies.
 - Blender skills require a separately configured Blender MCP connection. Importing
   runbooks does not install or activate that connection.
 - GitHub Pages is static and must work under the repository URL prefix.
+- The header's EN/VI button switches the complete interface between Vietnamese
+  and English without resetting search, filters or installation settings.
+  Vietnamese is the default; `?lang=vi` or `?lang=en` overrides the saved browser
+  preference and is included in shared links. Only the language preference is
+  saved, never local project paths. Runbooks and source metadata retain their
+  original language; CLI commands are identical in both modes.
 - Do not invent download counts, popularity, customer claims or safety guarantees.
 
 ## Brand Commitments

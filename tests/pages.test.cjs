@@ -4,6 +4,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
 const catalog = require('../docs/catalog.js');
+const i18n = require('../docs/i18n.js');
 const skills = require('../docs/skills.min.json');
 const root = path.resolve(__dirname, '..');
 
@@ -252,10 +253,13 @@ test('the static page ships local assets, structured data and accessible control
   assert.ok(html.includes('id="manual-copy"'));
 });
 
-function browserRuntime(fetch) {
+function browserRuntime(fetch, window) {
   const elements = new Map();
   const errors = [];
+  const warnings = [];
   const document = {
+    documentElement: { dataset: { theme: 'light' }, lang: 'vi' },
+    querySelector: () => null,
     getElementById(id) {
       if (!elements.has(id)) {
         const classes = new Set();
@@ -279,10 +283,11 @@ function browserRuntime(fetch) {
     addEventListener() {}
   };
   vm.runInNewContext(fs.readFileSync(path.join(root, 'docs/catalog.js'), 'utf8'), {
-    document, fetch, console: { error: (...args) => errors.push(args) },
+    document, fetch, window, VASI18n: i18n, URLSearchParams, URL,
+    console: { error: (...args) => errors.push(args), warn: (...args) => warnings.push(args) },
     setTimeout, clearTimeout
   });
-  return { document, elements, errors };
+  return { document, elements, errors, warnings };
 }
 
 test('an initial HTTP failure shows an explicit error and retry recovers', async () => {
@@ -298,7 +303,7 @@ test('an initial HTTP failure shows an explicit error and retry recovers', async
   assert.equal(runtime.errors.length, 1);
   await runtime.elements.get('retry-load').listeners.get('click')();
   assert.equal(runtime.elements.get('error-state').hidden, true);
-  assert.ok(runtime.elements.get('results-status').textContent.includes(skills.length.toLocaleString('en-US')));
+  assert.ok(runtime.elements.get('results-status').textContent.includes(skills.length.toLocaleString('vi-VN')));
 });
 
 test('search typed while loading is applied once the catalog arrives', async () => {
@@ -366,4 +371,130 @@ test('runbook headings have stable unique anchors and tables remain structured',
   assert.ok(result.html.includes('<table>'));
   assert.ok(result.html.includes('<th>Tool</th>'));
   assert.ok(result.html.includes('<td>Python</td>'));
+});
+
+test('every interface message and static translation binding supports both languages', () => {
+  for (const [key, pair] of Object.entries(i18n.messages)) {
+    assert.equal(pair.length, 2, key);
+    const values = Object.fromEntries([...pair.join('').matchAll(/\{(\w+)\}/g)].map(match => [match[1], 'example']));
+    for (const language of ['vi', 'en']) {
+      assert.ok(i18n.translate(key, language, values).trim(), `${language}: ${key}`);
+    }
+  }
+  const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
+  for (const [, key] of html.matchAll(/data-i18n(?:-(?:aria-label|title|placeholder|content|copy-message))?="([^"]+)"/g)) {
+    assert.ok(Object.hasOwn(i18n.messages, key), key);
+    assert.doesNotThrow(() => i18n.translate(key, 'en'), key);
+  }
+  assert.ok(html.indexOf('src="./i18n.js"') < html.indexOf('src="./catalog.js"'));
+  assert.ok(html.includes('id="language-toggle"'));
+  assert.throws(() => i18n.translate('missing'), /Missing translation/);
+  assert.throws(() => i18n.translate('library', 'invalid'), /Unsupported interface language/);
+  assert.throws(() => i18n.translate('hero.agent', 'en'), /Missing translation value/);
+});
+
+test('explicit language links override preferences and only known languages are accepted', () => {
+  assert.equal(i18n.resolveLanguage('', null), 'vi');
+  assert.equal(i18n.resolveLanguage('', 'en'), 'en');
+  assert.equal(i18n.resolveLanguage('?lang=vi', 'en'), 'vi');
+  assert.equal(i18n.resolveLanguage('?lang=en', 'vi'), 'en');
+  for (const invalid of ['constructor', 'toString', 'fr', '<script>']) {
+    assert.equal(i18n.resolveLanguage(`?lang=${encodeURIComponent(invalid)}`), 'vi');
+  }
+  const state = { language: 'en', selected: 'code-review', target: 'codex', query: 'docker', sources: ['blender'], view: 'grid', projectPath: '/private/project', scope: 'project', mode: 'copy' };
+  const params = catalog.catalogParams(state);
+  assert.equal(catalog.readCatalogState(params).language, 'en');
+  assert.equal(catalog.readCatalogState('', 'en').language, 'en');
+  assert.equal(catalog.readCatalogState('?lang=vi', 'en').language, 'vi');
+  for (const forbidden of ['private', 'projectPath', 'scope', 'mode']) assert.ok(!params.includes(forbidden));
+});
+
+test('language changes prompts and validation, never executable commands or installed paths', () => {
+  for (const [target] of catalog.agents) {
+    for (const mode of ['link', 'copy']) {
+      for (const scope of ['repository', 'project', ...(target === 'all' ? [] : ['global'])]) {
+        const options = { scope, projectPath: '/Projects/my app', mode };
+        const vi = catalog.installationPlan('blender-skills/blender-director', target, options);
+        const en = catalog.installationPlan('blender-skills/blender-director', target, { ...options, language: 'en' });
+        for (const key of ['install', 'status', 'uninstall', 'paths']) assert.deepEqual(en[key], vi[key]);
+        assert.ok(en.prompt.startsWith('Read the runbook'));
+        assert.ok(vi.prompt.startsWith('Hãy đọc runbook'));
+        assert.ok(en.paths.every(path => en.prompt.includes(JSON.stringify(path))));
+      }
+    }
+  }
+  assert.throws(() => catalog.installationPlan('code-review', 'codex', { scope: 'project', language: 'en' }), /Enter an absolute project path/);
+  assert.throws(() => catalog.installationPlan('code-review', 'all', { scope: 'global', language: 'en' }), /Choose one agent/);
+});
+
+test('localized Markdown controls preserve source text, code and safe links', () => {
+  const md = '# Hướng dẫn\n\nGiữ nguyên nội dung.\n\n```sh\necho \"Tiếng Việt & English\"\n```\n\n[Guide](references/guide.md)';
+  const vi = catalog.renderMarkdown(md);
+  const en = catalog.renderMarkdown(md, 'https://example.invalid/skills/', 'en');
+  assert.deepEqual(en.headings, vi.headings);
+  assert.equal(en.html.replace('Copy code', 'Sao chép mã'), vi.html);
+});
+
+function languageWindow(search = '', saved = null, blocked = false) {
+  const location = new URL(`https://example.com/docs/${search}`);
+  const storage = new Map(saved ? [['vas-language', saved]] : []);
+  const listeners = new Map();
+  return {
+    location, storage, listeners,
+    localStorage: {
+      getItem(key) { if (blocked) throw new Error('Storage blocked'); return storage.get(key) || null; },
+      setItem(key, value) { if (blocked) throw new Error('Storage blocked'); storage.set(key, value); }
+    },
+    history: {
+      replaceState(_state, _title, url) { location.href = new URL(url, location).href; },
+      pushState(_state, _title, url) { location.href = new URL(url, location).href; }
+    },
+    addEventListener(name, handler) { listeners.set(name, handler); }
+  };
+}
+
+test('language switching works during loading and preserves query, agent and privacy', async () => {
+  let release;
+  const window = languageWindow('?q=docker&agent=codex&sources=blender');
+  const runtime = browserRuntime(() => new Promise(resolve => { release = resolve; }), window);
+  runtime.elements.get('language-toggle').listeners.get('click')();
+  assert.equal(runtime.document.documentElement.lang, 'en');
+  assert.equal(window.storage.get('vas-language'), 'en');
+  assert.deepEqual([...window.storage.keys()], ['vas-language']);
+  assert.equal(window.location.search, '?lang=en&q=docker&agent=codex&sources=blender');
+  release({ ok: true, json: async () => skills });
+  await new Promise(setImmediate);
+  assert.ok(runtime.elements.get('results-status').textContent.endsWith(' for “docker”'));
+  assert.equal(runtime.elements.get('search-input').value, 'docker');
+  assert.equal(runtime.elements.get('language-toggle').textContent, 'VI');
+});
+
+test('English loading failures remain actionable and unavailable storage is reported', async () => {
+  const window = languageWindow('?lang=en', 'vi', true);
+  const runtime = browserRuntime(async () => ({ ok: false, status: 503 }), window);
+  await new Promise(setImmediate);
+  assert.equal(runtime.elements.get('error-state').hidden, false);
+  assert.equal(runtime.elements.get('results-status').textContent, 'Unable to load the catalog. Please try again.');
+  assert.equal(runtime.warnings.length, 1);
+  runtime.elements.get('language-toggle').listeners.get('click')();
+  assert.equal(runtime.document.documentElement.lang, 'vi');
+  assert.ok(window.location.search.includes('lang=vi'));
+  assert.equal(runtime.elements.get('toast').hidden, false);
+  assert.equal(runtime.warnings.length, 2);
+});
+
+test('language changes retain theme state and history still reports missing skills', async () => {
+  const window = languageWindow('?lang=en');
+  const runtime = browserRuntime(async () => ({ ok: true, json: async () => skills }), window);
+  await new Promise(setImmediate);
+  runtime.elements.get('theme-toggle').listeners.get('click')({});
+  assert.equal(runtime.document.documentElement.dataset.theme, 'dark');
+  assert.equal(runtime.elements.get('theme-toggle').attributes.get('aria-label'), 'Switch to light theme');
+  runtime.elements.get('language-toggle').listeners.get('click')();
+  assert.equal(runtime.document.documentElement.dataset.theme, 'dark');
+  assert.equal(runtime.elements.get('theme-toggle').attributes.get('aria-label'), 'Bật giao diện sáng');
+  window.location.search = '?lang=en&skill=missing-skill';
+  window.listeners.get('popstate')();
+  assert.equal(runtime.elements.get('toast').hidden, false);
+  assert.equal(runtime.elements.get('toast').textContent, 'This skill is no longer in the catalog. Search for another one below.');
 });

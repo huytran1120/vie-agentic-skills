@@ -16,10 +16,12 @@ class PagesBuildTests(unittest.TestCase):
         (root / "docs/assets").mkdir(parents=True)
         (root / "docs/index.html").write_text(
             '<html data-skill-base=".."><link rel="stylesheet" href="./catalog.css">'
+            '<script src="./i18n.js" defer></script>'
             '<script src="./motion.js" defer></script><script src="catalog.js" defer></script>'
             '<a href="../README.md">Read</a></html>'
         )
         (root / "docs/catalog.css").write_text("body { margin: 0; }")
+        (root / "docs/i18n.js").write_text("window.VASI18n = {};")
         (root / "docs/motion.js").write_text("window.motionReady = true;")
         (root / "docs/catalog.js").write_text("window.catalogReady = true;")
         (root / "docs/assets/test.svg").write_text("<svg/>")
@@ -53,7 +55,8 @@ class PagesBuildTests(unittest.TestCase):
             self.fixture(root)
             output = PAGES.build(root)
             original = (output / "index.html").read_text()
-            for name, prefix in (("catalog.css", "./"), ("motion.js", "./"), ("catalog.js", "")):
+            for name, prefix in (("catalog.css", "./"), ("i18n.js", "./"),
+                                 ("motion.js", "./"), ("catalog.js", "")):
                 version = sha256((root / "docs" / name).read_bytes()).hexdigest()[:12]
                 self.assertIn(f'"{prefix}{name}?v={version}"', original)
                 self.assertIn(f'"{prefix}{name}"', (root / "docs/index.html").read_text())

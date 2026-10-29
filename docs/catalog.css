@@ -222,6 +222,7 @@ button.filter-chip { min-height: 32px; }
 .detail-layout { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 28px; align-items: start; }
 .detail-layout > div { min-width: 0; }
 .runbook-panel { border: 1px solid var(--line); border-radius: 12px; background: var(--surface); overflow: hidden; }
+.runbook-language-note { padding: 16px 28px 0; color: var(--muted); font-size: 12px; }
 .runbook-panel > header { display: flex; align-items: center; gap: 10px; padding: 16px 24px; border-bottom: 1px solid var(--line); font-size: 11px; }
 .runbook-panel > header > span { margin-left: auto; color: var(--muted); font-size: 10px; }
 .runbook-content { padding: 28px; font-size: 13px; color: var(--muted); overflow-wrap: anywhere; }
@@ -336,7 +337,7 @@ button.filter-chip { min-height: 32px; }
   .catalog-layout { grid-template-columns: 1fr; }
   .catalog-sidebar { display: none; }
   .mobile-filter-button { display: flex; justify-content: center; align-items: center; gap: 10px; width: 100%; min-height: 44px; margin-bottom: 16px; border: 1px solid var(--line); border-radius: 10px; color: var(--accent); background: var(--selected); font-size: 13px; font-weight: 600; }
-  .mobile-filter-button > span { background: var(--accent); color: var(--on-accent); padding: 1px 7px; border-radius: 12px; font-size: 11px; }
+  .mobile-filter-button > #active-filter-count { background: var(--accent); color: var(--on-accent); padding: 1px 7px; border-radius: 12px; font-size: 11px; }
   .skill-row { grid-template-columns: 36px minmax(0, 1fr) auto; }
   .skill-open { grid-column: 3; }
   .detail-heading { align-items: start; flex-direction: column; }
@@ -423,6 +424,7 @@ button.filter-chip { min-height: 32px; }
   .detail-provenance { gap: 10px 16px; }
   .install-panel, .runbook-toc { padding: 20px; }
   .runbook-content { padding: 20px; font-size: 12px; }
+  .runbook-language-note { padding-inline: 20px; }
   .runbook-content h2 { font-size: 21px; }
   .runbook-content h3 { font-size: 18px; }
   .runbook-panel > header { padding-inline: 20px; }
