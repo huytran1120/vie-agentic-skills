@@ -148,7 +148,7 @@ test('the public page has its own identity and supports both local and Pages bui
   assert.ok(html.includes('https://huytran1120.github.io/vie-agentic-skills/'));
   assert.ok(html.includes('git clone https://github.com/huytran1120/vie-agentic-skills.git'));
   assert.ok(html.includes('data-skill-base=".."'));
-  assert.ok(html.includes('data-theme="dark"'));
+  assert.ok(html.includes('data-theme="light"'));
   for (const setting of ['noindex', 'google-site-verification', '/_vercel/']) {
     assert.ok(!html.includes(setting), setting);
   }
@@ -274,4 +274,48 @@ test('malformed catalog data never turns into a success-shaped empty state', asy
     assert.equal(runtime.elements.get('empty-state').hidden, true);
     assert.equal(runtime.errors.length, 1);
   }
+});
+
+test('source filters combine as a union and intersect with search and categories', () => {
+  assert.equal(catalog.filterSkills(skills, { sources: ['mattpocock'] }).length, 35);
+  assert.equal(catalog.filterSkills(skills, { sources: ['addy'] }).length, 25);
+  assert.equal(catalog.filterSkills(skills, { sources: ['blender'] }).length, 94);
+  assert.equal(catalog.filterSkills(skills, { sources: ['mattpocock', 'blender'] }).length, 129);
+  const filtered = catalog.filterSkills(skills, { sources: ['mattpocock'], query: 'review' });
+  assert.ok(filtered.length > 0);
+  assert.ok(filtered.every(skill => skill.source_repo === 'mattpocock/skills'));
+  assert.equal(catalog.filterSkills(skills, { sources: ['blender'], category: 'security' }).length, 0);
+});
+
+test('shared links retain selected sources and reject unknown source keys', () => {
+  const params = catalog.catalogParams({ sources: ['blender', 'mattpocock'], projectPath: '/private/project' });
+  assert.deepEqual(catalog.readCatalogState(params).sources, ['blender', 'mattpocock']);
+  assert.deepEqual(catalog.readCatalogState('?sources=blender,unknown,constructor,toString,blender').sources, ['blender']);
+  assert.ok(!params.includes('private'));
+});
+
+test('runbook rendering preserves code verbatim and strips YAML frontmatter', () => {
+  const md = '---\nname: example\ndescription: Hidden metadata\n---\n# Runbook\n\n```sh\n./vas install code-review --target codex\necho "<script>"\n```';
+  const result = catalog.renderMarkdown(md);
+  assert.ok(!result.html.includes('Hidden metadata'));
+  assert.ok(result.html.includes('./vas install code-review --target codex'));
+  assert.ok(result.html.includes('&lt;script&gt;'));
+  assert.equal(result.headings[0].text, 'Runbook');
+});
+
+test('untrusted Markdown cannot inject HTML or executable link protocols', () => {
+  const result = catalog.renderMarkdown('<img src=x onerror=alert(1)>\n\n[Bad](javascript:alert) [Data](data:text/html,test) [File](file:///etc/passwd)\n\n[Guide](references/guide.md)', 'https://example.com/skills/example/SKILL.md');
+  assert.ok(!result.html.includes('<img'));
+  assert.ok(!result.html.includes('href="javascript:'));
+  assert.ok(!result.html.includes('href="data:'));
+  assert.ok(!result.html.includes('href="file:'));
+  assert.ok(result.html.includes('href="https://example.com/skills/example/references/guide.md"'));
+});
+
+test('runbook headings have stable unique anchors and tables remain structured', () => {
+  const result = catalog.renderMarkdown('## Cài đặt\n\nFirst\n\n## Cài đặt\n\n| Tool | Required |\n| --- | --- |\n| Python | Yes |');
+  assert.equal(new Set(result.headings.map(h => h.id)).size, 2);
+  assert.ok(result.html.includes('<table>'));
+  assert.ok(result.html.includes('<th>Tool</th>'));
+  assert.ok(result.html.includes('<td>Python</td>'));
 });

@@ -20,8 +20,10 @@ understanding its constraints and copying a correct installation command.
 ## Operating Context
 
 The public repository is https://github.com/huytran1120/vie-agentic-skills.
-The user requested adding arjun988/blender-skills, redesigning the website with
-https://blender-skills.vercel.app/ as its reference, and publishing GitHub Pages.
+The user requested publishing GitHub Pages and subsequently selected
+https://chen08209.github.io/FlClash/ and its repository as the visual reference.
+Use its warm palette, large typography and numbered sections as design cues,
+with an original implementation for the VAS catalog.
 The CLI remains `./vas`; individual task dependencies are not CLI dependencies.
 
 ## Capabilities and Constraints
@@ -38,8 +40,8 @@ The CLI remains `./vas`; individual task dependencies are not CLI dependencies.
 
 ## Brand Commitments
 
-Keep the Vie Agentic Skill identity and Vietnamese-first interface. The requested
-Blender site is the visual reference, not a reason to rename this general catalog.
+Keep the Vie Agentic Skill identity and Vietnamese-first interface. Adapt the
+FlClash layout to skill discovery, technical documentation and installation.
 
 ## Evidence on Hand
 
@@ -55,7 +57,6 @@ source provides 94 MIT-licensed runbooks, their references and a credited render
 
 ## Open Decisions and Inferences
 
-The user was unavailable for the scope confirmation. Applying the redesign to
-the whole catalog, with Blender as a featured collection, is an inference from
-the request rather than an additional confirmed requirement. No commercial
-positioning or new supported agent is inferred.
+The latest request covers the whole catalog. Blender remains a featured
+collection alongside other technical domains. No commercial positioning or new
+supported agent is inferred.
