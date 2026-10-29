@@ -72,9 +72,10 @@ code, kbd, pre { font-family: var(--mono); }
 .hero-inner h1 .hero-second { font-size: 1.04em; margin-top: 12px; color: var(--muted); }
 #hero-agent { font: inherit; letter-spacing: inherit; color: var(--accent); border: 0; background: none; padding: 0; text-decoration: underline; text-decoration-color: var(--line); text-decoration-thickness: 3px; text-underline-offset: 11px; max-width: 100%; }
 #hero-agent:hover { text-decoration-color: var(--accent); }
-#hero-agent.agent-reel { display: inline-block; position: relative; height: 1.14em; vertical-align: -.14em; overflow: clip; text-decoration: none; border-bottom: 3px solid var(--line); }
+#hero-agent.agent-reel { display: inline-block; position: relative; height: 1.14em; vertical-align: bottom; overflow: hidden; text-decoration: none; border-bottom: 3px solid var(--line); }
 #hero-agent.agent-reel:hover { border-color: var(--accent); }
-.agent-track { display: flex; align-items: flex-start; flex-direction: column; width: max-content; will-change: transform; }
+/* Offscreen reel rows must not contribute to Safari's inline baseline. */
+.agent-track { position: absolute; top: 0; left: 0; display: flex; align-items: flex-start; flex-direction: column; width: max-content; will-change: transform; }
 .agent-track > span { display: block; flex: 0 0 auto; height: 1.14em; line-height: 1.14; padding-right: .08em; white-space: nowrap; }
 .hero-wordmark { white-space: nowrap; }
 .hero-letter { display: inline-block; }

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>VAS browser layout regression</title></head>
+<body>
+<pre id="layout-result">Running</pre>
+<script>
+(async () => {
+  const errors = [];
+  const measurements = [];
+  const check = (condition, message) => { if (!condition) errors.push(message); };
+  const wait = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds));
+  const frame = document.createElement('iframe');
+  frame.style.cssText = 'display:block;border:0;height:1000px;width:1440px';
+  const page = new URLSearchParams(location.search).has('artifact') ? '../_site/index.html' : '../docs/index.html';
+  frame.src = `${page}?layout-check=${Date.now()}`;
+  const ready = new Promise((resolve, reject) => {
+    frame.onload = resolve;
+    frame.onerror = () => reject(new Error('Could not load catalog iframe'));
+  });
+  document.body.append(frame);
+  try {
+    await ready;
+    const w = frame.contentWindow;
+    const d = frame.contentDocument;
+    w.addEventListener('error', event => errors.push(`Browser error: ${event.message}`));
+    for (let attempt = 0; attempt < 200 && !d.querySelector('[data-skill]'); attempt++) await wait(25);
+    check(Boolean(d.querySelector('[data-skill]')), 'Catalog must load real results');
+    check(Boolean(w.VASMotion), 'Motion layer must initialize');
+    const agent = d.getElementById('hero-agent');
+    const heading = d.getElementById('intro-title');
+    const cta = d.getElementById('hero-explore');
+    const selected = () => new URL(w.location.href).searchParams.get('agent') || 'antigravity';
+    const initialAgent = selected();
+    await wait(1800);
+    check(selected() === initialAgent, 'Decorative introduction must not change the installation agent');
+    check(agent.getBoundingClientRect().width > 20, 'Agent reel must be visible on first load');
+    for (const width of [1440, 1024, 768, 390, 320]) {
+      frame.style.width = `${width}px`;
+      await wait(80);
+      for (let option = 0; option < 7; option++) {
+        const label = agent.getAttribute('aria-label');
+        const before = selected();
+        agent.click();
+        check(selected() !== before, `${width}px: agent click must change selection`);
+        check(agent.getAttribute('aria-label') !== label, `${width}px: accessible agent label must update`);
+        await wait(30);
+        const titleBox = heading.getBoundingClientRect();
+        const reelBox = agent.getBoundingClientRect();
+        check(titleBox.height < (width <= 540 ? 200 : 340), `${width}px: heading height ${titleBox.height} includes offscreen reel rows`);
+        check(reelBox.height > 20 && reelBox.width > 20, `${width}px: agent reel must remain visible`);
+        check(titleBox.right <= w.innerWidth + 1, `${width}px: heading overflows the viewport`);
+        check(d.documentElement.scrollWidth <= w.innerWidth, `${width}px: horizontal page overflow`);
+        check(cta.getBoundingClientRect().bottom < 760, `${width}px: primary action pushed outside the first viewport`);
+      }
+      measurements.push({
+        width,
+        headingHeight: Math.round(heading.getBoundingClientRect().height),
+        actionBottom: Math.round(cta.getBoundingClientRect().bottom),
+        searchTop: Math.round(d.getElementById('search-input').getBoundingClientRect().top),
+        overflow: d.documentElement.scrollWidth > w.innerWidth
+      });
+    }
+    frame.style.width = '390px';
+    await wait(80);
+    const chosenAgent = selected();
+    d.querySelector('[data-open-skill="code-review"]').click();
+    check(!d.getElementById('detail-view').hidden, 'Runbook details must open');
+    check(d.getElementById('agent-select').value === chosenAgent, 'Hero selection must reach the install panel');
+    d.getElementById('install-scope').value = 'global';
+    d.getElementById('install-scope').dispatchEvent(new w.Event('change', { bubbles: true }));
+    check(d.getElementById('installation-command').textContent.includes(`--target ${chosenAgent} --mode link`), 'Generated command must use the selected agent');
+    d.querySelector('[data-back-library]').click();
+    await wait(80);
+    check(!d.getElementById('library-view').hidden, 'Library must be restored after closing detail');
+    check(heading.getBoundingClientRect().height < 200, 'Returning to library must not expand the reel');
+    check(agent.getBoundingClientRect().width > 20, 'Returning to library must restore the reel width');
+    d.getElementById('open-filters').click();
+    check(d.getElementById('filters-dialog').open, 'Mobile filters must open');
+    d.querySelector('[data-draft-group="blender"]').click();
+    d.getElementById('apply-mobile-filters').click();
+    check(!d.getElementById('filters-dialog').open, 'Applying filters must close the dialog');
+    check(d.getElementById('results-status').textContent.includes('94'), 'Blender filter must show 94 skills');
+    d.getElementById('hero-explore').click();
+    check(d.activeElement.id === 'search-input', 'Explore action must focus search');
+    check(d.getElementById('search-input').getBoundingClientRect().top < 300, 'Explore action must scroll to visible search');
+  } catch (error) {
+    errors.push(error.stack || String(error));
+  }
+  document.getElementById('layout-result').textContent = JSON.stringify({ errors, measurements });
+  document.documentElement.dataset.layoutComplete = 'true';
+})();
+</script>
+</body>
+</html>

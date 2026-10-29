@@ -16,9 +16,9 @@
   let track, labels = [], index = 0, selectedLabel, reelTimer, introFrame, reelGeneration = 0;
   function fitReel(duration) {
     const word = track?.children[index];
-    if (!word || !reel.getBoundingClientRect().width) return;
-    const height = word.getBoundingClientRect().height;
-    const width = word.getBoundingClientRect().width;
+    if (!word) return;
+    const { height, width } = word.getBoundingClientRect();
+    if (!height || !width) return;
     if (duration !== undefined) {
       track.style.transition = duration ? `transform ${duration}ms ${spring}` : 'none';
       reel.style.transition = duration ? `width ${duration}ms ${spring}, border-color .2s` : 'none';

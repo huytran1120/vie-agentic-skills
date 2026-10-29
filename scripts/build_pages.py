@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-"""Stage a complete static site under the GitHub Pages repository prefix."""
+"""Stage a complete static site with content-versioned CSS and script URLs."""
 
+from hashlib import sha256
 from pathlib import Path
 import shutil
 
@@ -22,6 +23,16 @@ def build(root=ROOT):
     documents = ("README.md", "README_EN.md", "CATALOG.md", "LICENSE")
     for name in documents:
         html = html.replace(f'href="../{name}"', f'href="./{name}"')
+    for asset in sorted((root / "docs").iterdir()):
+        if asset.suffix not in (".css", ".js") or not asset.is_file():
+            continue
+        attribute = "href" if asset.suffix == ".css" else "src"
+        version = sha256(asset.read_bytes()).hexdigest()[:12]
+        for prefix in ("", "./"):
+            html = html.replace(
+                f'{attribute}="{prefix}{asset.name}"',
+                f'{attribute}="{prefix}{asset.name}?v={version}"',
+            )
     if output.is_symlink():
         raise ValueError(f"Refusing to replace a symlink: {output}")
     if output.exists():
