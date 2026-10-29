@@ -66,23 +66,37 @@
     return /^[a-zA-Z0-9_./-]+$/.test(value) ? value : "'" + value.replace(/'/g, "'\\''") + "'";
   }
   const targetFolders = { antigravity: '.agents/skills', codex: '.codex/skills', claude: '.claude/skills', cursor: '.cursor/skills', windsurf: '.windsurf/skills', cline: '.cline/skills', copilot: '.github/skills' };
-  function installCommand(id, target, { scope = 'repository', projectPath = '' } = {}) {
+  const globalFolders = { antigravity: '~/.gemini/antigravity/skills', codex: '~/.codex/skills', claude: '~/.claude/skills', cursor: '~/.cursor/skills', windsurf: '~/.codeium/windsurf/skills', cline: '~/.cline/skills', copilot: '~/.copilot/skills' };
+  function installationPlan(id, target, { scope = 'repository', projectPath = '', mode = 'link' } = {}) {
     if (!agents.some(agent => agent[0] === target)) throw new Error('Agent không được hỗ trợ');
-    const command = agent => `./vas install ${shellQuote(id)} --target ${agent} --mode link`;
-    if (scope === 'repository') return command(target);
-    if (scope === 'global') {
-      if (target === 'all') throw new Error('Chọn một agent để cài toàn máy.');
-      return command(target) + ' --global';
+    if (!['link', 'copy'].includes(mode)) throw new Error('Chọn chế độ link hoặc copy.');
+    if (!['repository', 'project', 'global'].includes(scope)) throw new Error('Nơi cài không được hỗ trợ.');
+    if (scope === 'global' && target === 'all') throw new Error('Chọn một agent để cài toàn máy.');
+    let root = '';
+    if (scope === 'project') {
+      root = projectPath.trim();
+      if (!root || /[\x00-\x1f\x7f]/.test(root) || !(/^(\/|[A-Za-z]:[\\/])/.test(root))) {
+        throw new Error('Nhập đường dẫn tuyệt đối đến dự án, ví dụ /Users/ban/my-project hoặc C:/Projects/my-app.');
+      }
+      if (/^[A-Za-z]:/.test(root)) root = root.replace(/\\/g, '/');
+      root = root.replace(/\/+$/, '');
     }
-    if (scope !== 'project') throw new Error('Nơi cài không được hỗ trợ.');
-    let root = projectPath.trim();
-    if (!root || /[\x00-\x1f\x7f]/.test(root) || !(/^(\/|[A-Za-z]:[\\/])/.test(root))) {
-      throw new Error('Nhập đường dẫn tuyệt đối đến dự án, ví dụ /Users/ban/my-project hoặc C:/Projects/my-app.');
-    }
-    if (/^[A-Za-z]:/.test(root)) root = root.replace(/\\/g, '/');
-    root = root.replace(/\/+$/, '');
-    const targets = target === 'all' ? Object.keys(targetFolders) : [target];
-    return targets.map(agent => command(agent) + ' --dest ' + shellQuote(`${root}/${targetFolders[agent]}`)).join('\n');
+    const targets = target === 'all' && scope === 'project' ? Object.keys(targetFolders) : [target];
+    const location = agent => scope === 'global' ? ' --global' : scope === 'project' ? ' --dest ' + shellQuote(`${root}/${targetFolders[agent]}`) : '';
+    const paths = (target === 'all' ? Object.keys(targetFolders) : [target]).map(agent => {
+      const folder = scope === 'global' ? globalFolders[agent] : scope === 'project' ? `${root}/${targetFolders[agent]}` : targetFolders[agent];
+      return `${folder}/${id.split('/').pop()}/SKILL.md`;
+    });
+    return {
+      install: targets.map(agent => `./vas install ${shellQuote(id)} --target ${agent} --mode ${mode}${location(agent)}`).join('\n'),
+      status: targets.map(agent => `./vas status --target ${agent}${location(agent)}`).join('\n'),
+      uninstall: targets.map(agent => `./vas uninstall ${shellQuote(id)} --target ${agent}${location(agent)}`).join('\n'),
+      paths,
+      prompt: `Hãy đọc runbook của skill ${JSON.stringify(id)} tại:\n${paths.map(path => JSON.stringify(path)).join('\n')}\nÁp dụng quy trình đó vào tác vụ tôi mô tả trong dự án này. Kiểm tra yêu cầu công cụ, script và quyền truy cập trước khi thực thi; hỏi lại nếu chưa rõ phạm vi.`
+    };
+  }
+  function installCommand(id, target, options) {
+    return installationPlan(id, target, options).install;
   }
   function readCatalogState(search) {
     const params = new URLSearchParams(search);
@@ -198,12 +212,12 @@
     return { html: parts.join('\n'), headings };
   }
 
-  const api = { normalize, matchesGroup, filterSkills, installCommand, skillUrl, sourceUrl, groups, agents, targetFolders, readCatalogState, catalogParams, matchesSource, renderMarkdown };
+  const api = { normalize, matchesGroup, filterSkills, installCommand, installationPlan, skillUrl, sourceUrl, groups, agents, targetFolders, globalFolders, readCatalogState, catalogParams, matchesSource, renderMarkdown };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   if (typeof document === 'undefined') return;
 
   const skillBase = document.documentElement?.dataset.skillBase || '..';
-  const state = { skills: [], query: '', group: 'all', category: 'all', sort: 'recommended', sources: [], target: 'antigravity', view: 'list', page: 1, selected: null, loaded: false, scope: 'project', projectPath: '' };
+  const state = { skills: [], query: '', group: 'all', category: 'all', sort: 'recommended', sources: [], target: 'antigravity', view: 'list', page: 1, selected: null, loaded: false, scope: 'project', projectPath: '', mode: 'link' };
   if (typeof window !== 'undefined') Object.assign(state, readCatalogState(window.location.search));
   const pageSize = 6;
   const byId = id => document.getElementById(id);
@@ -251,27 +265,40 @@
     const params = catalogParams(state), url = window.location.pathname + (params ? '?' + params : '') + window.location.hash;
     if (url !== window.location.pathname + window.location.search + window.location.hash) window.history[push ? 'pushState' : 'replaceState'](null, '', url);
   }
-  function commandPreview(id) { try { return { command: installCommand(id, state.target, state) }; } catch (error) { return { error: error.message }; } }
+  function commandPreview(id) { try { const plan = installationPlan(id, state.target, state); return { command: plan.install, plan }; } catch (error) { return { error: error.message }; } }
   function syncInstallation() {
-    const preview = commandPreview(state.selected || 'ui-ux-pro-max');
-    byId('quickstart-command').textContent = state.selected ? preview.command || preview.error : 'Chọn một skill trong catalog để tạo lệnh cài.';
-    document.querySelectorAll('[data-copy-element="quickstart-command"]').forEach(button => { button.disabled = !state.selected || !preview.command; });
     if (!state.selected || !byId('agent-select')) return;
+    const preview = commandPreview(state.selected);
     byId('agent-select').value = state.target; byId('install-scope').value = state.scope;
+    byId('install-scope').setAttribute('aria-invalid', String(state.scope === 'global' && state.target === 'all'));
+    byId('install-mode').value = state.mode;
     byId('project-path-field').hidden = state.scope !== 'project';
     byId('project-path').setAttribute('aria-invalid', String(state.scope === 'project' && Boolean(state.projectPath) && !preview.command));
     byId('installation-command').textContent = preview.command || preview.error;
-    byId('install-location-help').textContent = state.scope === 'global' ? (state.target === 'all' ? preview.error : 'Cài vào thư mục skill toàn máy của agent đã chọn.') : 'Đường dẫn chỉ dùng trong phiên này, không xuất hiện trong liên kết chia sẻ.';
+    byId('install-location-help').textContent = preview.error || (state.scope === 'global' ? 'Dùng ở nhiều dự án của tài khoản hiện tại. Chọn một agent; không hỗ trợ toàn máy cho “Tất cả”.' : 'Nhập thư mục dự án, không phải thư mục kho VAS. Đường dẫn chỉ dùng trong phiên này, không được chia sẻ.');
+    byId('install-mode-help').textContent = state.mode === 'copy' ? 'Copy tạo bản sao độc lập. Cập nhật kho VAS không tự cập nhật bản sao; cài lại khi cần.' : 'Link tạo symlink. Giữ nguyên vị trí kho VAS; dùng copy nếu không thể tạo symlink.';
+    byId('installed-paths').textContent = preview.plan ? preview.plan.paths.join('\n') : 'Chọn nơi cài hợp lệ để xem vị trí SKILL.md.';
+    for (const [id, key] of [['install-status', 'status'], ['install-uninstall', 'uninstall'], ['install-prompt', 'prompt']]) {
+      byId(id).textContent = preview.plan ? preview.plan[key] : preview.error;
+      document.querySelectorAll(`[data-copy-element="${id}"]`).forEach(button => { button.disabled = !preview.plan; });
+    }
     document.querySelectorAll('[data-copy-skill]').forEach(button => { button.disabled = !preview.command; });
   }
   function installation(skill) {
-    return `<aside class="detail-sidebar"><section class="install-panel"><h2>${icon('terminal')}Cài skill</h2><p>Chọn môi trường, sao chép lệnh và chạy từ thư mục gốc VAS. Yêu cầu Python 3.</p>
+    return `<aside class="detail-sidebar"><section class="install-panel"><h2>${icon('terminal')}Cài skill</h2><p>Chỉ cần Git và Python 3. Tải kho VAS một lần, chọn nơi cài rồi chạy lệnh trong terminal tại thư mục kho. Website không tự cài lên máy.</p>
       <label for="agent-select">Agent</label><select id="agent-select">${agents.map(([id, label]) => `<option value="${id}">${label}</option>`).join('')}</select>
-      <label for="install-scope">Phạm vi cài đặt</label><select id="install-scope"><option value="project">Dự án cụ thể</option><option value="global">Toàn máy</option></select>
+      <label for="install-scope">Phạm vi cài đặt</label><select id="install-scope" aria-describedby="install-location-help"><option value="project">Dự án cụ thể</option><option value="global">Toàn máy</option></select>
       <div id="project-path-field"><label for="project-path">Đường dẫn tuyệt đối đến dự án</label><input id="project-path" type="text" placeholder="/Projects/my-app" value="${escapeHtml(state.projectPath)}" autocomplete="off" spellcheck="false" aria-describedby="install-location-help"></div>
-      <p id="install-location-help" class="field-help" role="status"></p><p class="mode-note"><code>mode: link</code> Liên kết skill vào thư mục đích</p>
-      <div class="code-heading"><label for="installation-command">Lệnh cài đặt</label><span>SHELL</span></div><pre class="installation-code"><code id="installation-command"></code></pre><button class="button primary copy-install" data-copy-skill="${escapeHtml(skill.id)}">${icon('copy')}Sao chép lệnh</button>
-      <p class="field-help">Giữ nguyên vị trí kho nguồn khi dùng link. Kiểm tra đường dẫn trước khi chạy. <a href="#quickstart" data-library-link>Hướng dẫn CLI</a>.</p></section>
+      <p id="install-location-help" class="field-help" role="status"></p>
+      <label for="install-mode">Cách cài</label><select id="install-mode" aria-describedby="install-mode-help"><option value="link">Link — liên kết với kho VAS</option><option value="copy">Copy — bản sao độc lập</option></select><p id="install-mode-help" class="field-help"></p>
+      <div class="code-heading"><label for="installation-command">Lệnh cài đặt</label><span>BASH / ZSH</span></div><pre class="installation-code"><code id="installation-command"></code></pre><button class="button primary copy-install" data-copy-skill="${escapeHtml(skill.id)}">${icon('copy')}Sao chép lệnh cài</button>
+      <p class="field-help">Chưa tải kho? <a href="#quickstart" data-library-link>Xem các bước bắt đầu</a>. Trên Windows, dùng Git Bash với Python 3; chọn copy nếu symlink không được phép.</p>
+      <details class="quickstart-details"><summary>Sau khi cài: kiểm tra và dùng skill</summary><div class="quickstart-commands">
+        <div><h3>1. Kiểm tra đã cài</h3><pre class="installation-code"><code id="install-status"></code></pre><button class="button secondary" data-copy-element="install-status">Sao chép lệnh kiểm tra</button></div>
+        <div><h3>2. Mở dự án trong agent</h3><p class="field-help">Nếu agent chưa thấy skill, mở lại phiên hoặc nạp lại danh sách skill. Không phải agent nào cũng có cùng slash command.</p><pre class="installation-code"><code id="installed-paths"></code></pre></div>
+        <div><h3>3. Dán prompt và nêu tác vụ</h3><pre class="installation-code"><code id="install-prompt"></code></pre><button class="button secondary" data-copy-element="install-prompt" data-copy-message="Đã sao chép prompt. Dán vào agent sau khi cài skill.">Sao chép prompt</button></div>
+        <div><h3>Gỡ khi không cần</h3><p class="field-help">Lệnh chỉ gỡ bản đã cài trong phạm vi đã chọn, không xóa skill trong kho nguồn VAS.</p><pre class="installation-code"><code id="install-uninstall"></code></pre><button class="button secondary" data-copy-element="install-uninstall">Sao chép lệnh gỡ</button></div>
+      </div></details></section>
       <nav class="runbook-toc" aria-label="Trong runbook này"><h2>Trong runbook này</h2><div id="runbook-toc-links"><p>Đang đọc cấu trúc tài liệu…</p></div></nav>
       <p class="detail-source-note">${icon('shield')}Nhãn risk: ${escapeHtml(skill.risk || 'unknown')}. Đây là metadata nguồn, không thay thế việc kiểm tra script và quyền truy cập.</p></aside>`;
   }
@@ -389,6 +416,7 @@
     const target = event.target;
     if (target.id === 'agent-select') { state.target = target.value; syncHeroAgent(); syncInstallation(); syncUrl(); }
     else if (target.id === 'install-scope') { state.scope = target.value; syncInstallation(); }
+    else if (target.id === 'install-mode') { state.mode = target.value; syncInstallation(); }
     else if (target.matches('input[name="source"]')) { state.sources = [...document.querySelectorAll('input[name="source"]:checked')].map(input => input.value); applyFilters(); }
     else if (target.id === 'mobile-category') { filterDraft.category = target.value; filterDraft.group = 'all'; renderMobileFilters(); }
     else if (target.matches('input[name="mobile-source"]')) filterDraft.sources = [...document.querySelectorAll('input[name="mobile-source"]:checked')].map(input => input.value);
@@ -422,9 +450,10 @@
     }
   });
   document.addEventListener('click', event => {
+    if (event.target.closest('a[href="#quickstart"]')) byId('cli-setup').open = true;
     const link = event.target.closest('[data-library-link]');
     if (link && state.selected) { state.selected = null; renderResults(); syncUrl(true); }
-    const button = event.target.closest('button'); if (!button) return;
+    const button = event.target.closest('button'); if (!button || button.disabled) return;
     if (button.hasAttribute('data-back-library')) closeDetail();
     else if (button.hasAttribute('data-query')) { state.query = button.dataset.query; state.group = 'all'; state.category = 'all'; state.sources = []; byId('search-input').value = state.query; applyFilters(); focusSearch(); }
     else if (button.hasAttribute('data-blender')) { state.query = ''; state.group = 'blender'; state.category = 'all'; state.sources = []; byId('search-input').value = ''; applyFilters(); focusSearch(); }
@@ -432,9 +461,10 @@
     else if (button.dataset.draftGroup) { filterDraft.group = button.dataset.draftGroup; filterDraft.category = 'all'; renderMobileFilters(); }
     else if (button.dataset.view) { state.view = button.dataset.view; renderResults(); syncUrl(); }
     else if (button.dataset.openSkill) openSkill(button.dataset.openSkill);
+    else if (button.dataset.installSkill) { openSkill(button.dataset.installSkill); byId('agent-select').focus(); }
     else if (button.dataset.copySkill) { const preview = commandPreview(button.dataset.copySkill); if (preview.command) copy(preview.command, button); }
     else if (button.dataset.shareSkill) { const url = new URL(window.location.href); url.search = catalogParams({ selected: button.dataset.shareSkill, target: state.target }); url.hash = ''; copy(url.href, button, 'Đã sao chép liên kết đến skill.'); }
-    else if (button.dataset.copyElement) copy(byId(button.dataset.copyElement).textContent, button);
+    else if (button.dataset.copyElement) copy(byId(button.dataset.copyElement).textContent, button, button.dataset.copyMessage);
     else if (button.dataset.discover) discover(button.dataset.discover);
     else if (button.hasAttribute('data-retry-runbook')) loadRunbook(state.skills.find(skill => skill.id === state.selected));
     else if (button.hasAttribute('data-copy-code')) copy(button.closest('.code-block').querySelector('code').textContent, button, 'Đã sao chép đoạn mã.');

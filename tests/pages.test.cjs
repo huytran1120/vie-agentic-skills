@@ -85,6 +85,54 @@ test('global installation uses supported CLI semantics and rejects global all', 
   assert.throws(() => catalog.installCommand('code-review', 'all', { scope: 'global' }));
 });
 
+test('installation plans keep install, status, uninstall and prompts on the same destination', () => {
+  for (const [target, folder] of Object.entries(catalog.targetFolders)) {
+    for (const mode of ['link', 'copy']) {
+      const plan = catalog.installationPlan('code-review', target, { scope: 'project', projectPath: '/Projects/my app', mode });
+      assert.equal(plan.install, `./vas install code-review --target ${target} --mode ${mode} --dest '/Projects/my app/${folder}'`);
+      assert.equal(plan.status, `./vas status --target ${target} --dest '/Projects/my app/${folder}'`);
+      assert.equal(plan.uninstall, `./vas uninstall code-review --target ${target} --dest '/Projects/my app/${folder}'`);
+      assert.deepEqual(plan.paths, [`/Projects/my app/${folder}/code-review/SKILL.md`]);
+      assert.ok(plan.prompt.includes(plan.paths[0]));
+    }
+    const global = catalog.installationPlan('code-review', target, { scope: 'global', mode: 'copy' });
+    assert.equal(global.install, `./vas install code-review --target ${target} --mode copy --global`);
+    assert.equal(global.status, `./vas status --target ${target} --global`);
+    assert.equal(global.uninstall, `./vas uninstall code-review --target ${target} --global`);
+    assert.deepEqual(global.paths, [`${catalog.globalFolders[target]}/code-review/SKILL.md`]);
+  }
+  assert.throws(() => catalog.installationPlan('code-review', 'codex', { mode: 'invalid' }));
+  assert.throws(() => catalog.installationPlan('code-review', 'codex', { scope: 'invalid' }));
+});
+
+test('all-agent plans preserve CLI scopes and namespaced skills use the actual installed folder', () => {
+  const project = catalog.installationPlan('blender-skills/blender-director', 'all', { scope: 'project', projectPath: '/Projects/app', mode: 'copy' });
+  assert.equal(project.install.split('\n').length, 7);
+  assert.equal(project.status.split('\n').length, 7);
+  assert.equal(project.uninstall.split('\n').length, 7);
+  assert.equal(project.paths.length, 7);
+  assert.ok(project.paths.every(path => path.endsWith('/blender-director/SKILL.md')));
+  const repository = catalog.installationPlan('code-review', 'all');
+  assert.equal(repository.install, './vas install code-review --target all --mode link');
+  assert.equal(repository.status, './vas status --target all');
+  assert.equal(repository.paths.length, 7);
+  for (const skill of skills) {
+    const plan = catalog.installationPlan(skill.id, 'codex');
+    assert.equal(plan.paths[0], `.codex/skills/${path.basename(skill.path)}/SKILL.md`, skill.id);
+  }
+});
+
+test('getting started has usable CLI examples before a skill is selected', () => {
+  const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
+  assert.ok(html.includes('id="cli-setup"'));
+  assert.ok(html.includes('chmod +x vas vas.py'));
+  assert.ok(html.includes('./vas search code-review'));
+  assert.ok(html.includes('./vas show code-review'));
+  assert.ok(html.includes('data-install-skill="code-review"'));
+  assert.ok(!html.includes('Chọn một skill trong catalog để tạo lệnh cài.'));
+  assert.ok(!/data-copy-element="quickstart-command"[^>]*disabled/.test(html));
+});
+
 test('search ranks exact names, name prefixes and tags before description matches', () => {
   const fixtures = [
     { id: 'a-description', category: 'general', description: 'docker frontend' },

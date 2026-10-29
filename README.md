@@ -142,6 +142,25 @@ chmod +x vas vas.py
 ```
 *(Hệ thống hỗ trợ bí danh tự động: các lệnh gọi như `docker-security`, `fastapi-best-practices`, `react-performance`, `nextjs-perf` sẽ tự động trỏ tới skill thực).*
 
+**Chọn đúng nơi cài:** lệnh không có `--dest` hoặc `--global` cài vào thư mục
+agent bên trong thư mục đang chạy lệnh, không tự tìm dự án khác. Trên website,
+mở một skill, chọn agent và “Dự án cụ thể” hoặc “Toàn máy”; lệnh cài, kiểm tra
+và gỡ đều dùng cùng nơi đã chọn. Ví dụ chạy từ kho VAS để cài cho dự án khác:
+
+```bash
+./vas install code-review --target codex --mode link --dest "/Projects/my-app/.codex/skills"
+./vas status --target codex --dest "/Projects/my-app/.codex/skills"
+./vas uninstall code-review --target codex --dest "/Projects/my-app/.codex/skills"
+```
+
+Thay `/Projects/my-app` bằng đường dẫn dự án thật. Dùng `--global` thay cho
+`--dest` nếu cài toàn máy cho một agent; không kết hợp `--target all` với
+`--global`. `--mode link` cần giữ nguyên vị trí kho VAS; `--mode copy` tạo bản
+sao độc lập, cần cài lại để cập nhật. Sau khi cài, mở dự án trong agent, nạp lại
+danh sách skill nếu cần và yêu cầu đọc runbook đã cài trước khi thực hiện tác vụ.
+Website có lệnh `status`, lệnh gỡ và prompt mẫu với đúng đường dẫn, kể cả skill
+có namespace như `blender-skills/blender-director`.
+
 ---
 
 ### 5. Hướng Dẫn Từng AI Agent
@@ -807,6 +826,26 @@ chmod +x vas vas.py
 ./vas install ui-ux-pro-max 007 pdf --target all
 ```
 *(Smart alias system included: invoking `docker-security`, `fastapi-best-practices`, `react-performance`, or `nextjs-perf` will automatically map to the canonical skill).*
+
+**Choose the destination explicitly:** without `--dest` or `--global`, the CLI
+installs into the agent directory under the current working directory. It does
+not locate another project automatically. On the website, open a skill and select
+an agent and either a project or user-wide installation. Install, status and
+uninstall commands share the same destination. For a separate project, run:
+
+```bash
+./vas install code-review --target codex --mode link --dest "/Projects/my-app/.codex/skills"
+./vas status --target codex --dest "/Projects/my-app/.codex/skills"
+./vas uninstall code-review --target codex --dest "/Projects/my-app/.codex/skills"
+```
+
+Replace `/Projects/my-app` with your actual project path. Use `--global` instead
+of `--dest` for one agent across your user account; do not combine it with
+`--target all`. Link mode requires keeping the VAS checkout in place; copy mode
+creates an independent snapshot that must be reinstalled to update. Open your
+project in the agent, reload its skill list if necessary, and ask it to read the
+installed runbook before applying it. The website provides matching status and
+uninstall commands and a sample prompt, including for namespaced Blender skills.
 
 ---
 
