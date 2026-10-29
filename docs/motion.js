@@ -224,7 +224,15 @@
   window.addEventListener('resize', () => {
     cancelAnimationFrame(resizeFrame); resizeFrame = requestAnimationFrame(() => { settleReel(); measureField(); syncScroll(); ink.classList.remove('is-visible'); });
   }, { passive: true });
-  if ('ResizeObserver' in window) new ResizeObserver(() => { measureField(); fitReel(); syncScroll(); }).observe(intro);
+  if ('ResizeObserver' in window) {
+    let measureFrame = 0;
+    // Layout writes must not resize the observed intro during observer delivery.
+    new ResizeObserver(() => {
+      if (!measureFrame) measureFrame = requestAnimationFrame(() => {
+        measureFrame = 0; measureField(); fitReel(); syncScroll();
+      });
+    }).observe(intro);
+  }
   // Re-measure when the library returns from a skill detail view.
   new MutationObserver(() => { measureField(); fitReel(); syncScroll(); }).observe(byId('library-view'), { attributes: true, attributeFilter: ['hidden'] });
 
