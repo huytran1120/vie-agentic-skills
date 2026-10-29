@@ -31,6 +31,13 @@ class PagesBuildTests(unittest.TestCase):
         skill.mkdir(parents=True)
         (skill / "SKILL.md").write_text("Example")
         (skill / "reference.md").write_text("Reference")
+        youtube = root / "skills/youtube-agent-skill/yt-chapters"
+        (youtube / "shared-tools").mkdir(parents=True)
+        (youtube / "templates").mkdir()
+        (youtube / "SKILL.md").write_text("YouTube chapters")
+        (youtube / "LICENSE").write_text("MIT License")
+        (youtube / "shared-tools/deadair.py").write_text("def load(path): return []")
+        (youtube / "templates/voice.md").write_text("Voice template")
 
     def test_artifact_contains_runbooks_references_assets_and_correct_base(self):
         with tempfile.TemporaryDirectory(prefix="vie-pages-") as temp:
@@ -43,7 +50,11 @@ class PagesBuildTests(unittest.TestCase):
             self.assertIn('data-skill-base=".."', (root / "docs/index.html").read_text())
             for path in ("README.md", "README_EN.md", "CATALOG.md", "LICENSE",
                          "assets/test.svg", "skills/blender-skills/example/SKILL.md",
-                         "skills/blender-skills/example/reference.md", ".nojekyll"):
+                         "skills/blender-skills/example/reference.md", ".nojekyll",
+                         "skills/youtube-agent-skill/yt-chapters/SKILL.md",
+                         "skills/youtube-agent-skill/yt-chapters/LICENSE",
+                         "skills/youtube-agent-skill/yt-chapters/shared-tools/deadair.py",
+                         "skills/youtube-agent-skill/yt-chapters/templates/voice.md"):
                 self.assertTrue((output / path).is_file(), path)
             (output / "stale.txt").touch()
             PAGES.build(root)

@@ -37,6 +37,10 @@ The CLI remains `./vas`; individual task dependencies are not CLI dependencies.
 - The website generates commands; it never installs software into a visitor's machine.
 - Preserve the existing library and independently authored document runbooks.
 - Imported content retains its own licenses, support files and provenance.
+- The YouTube collection includes 11 MIT runbooks and six Python helpers from
+  Jakeschincariol/youtube-agent-skill. Each skill ships its helper dependencies
+  and voice template for standalone installation; it does not connect accounts
+  or publish videos automatically.
 - Blender skills require a separately configured Blender MCP connection. Importing
   runbooks does not install or activate that connection.
 - GitHub Pages is static and must work under the repository URL prefix.

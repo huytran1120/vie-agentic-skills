@@ -333,11 +333,40 @@ test('source filters combine as a union and intersect with search and categories
   assert.equal(catalog.filterSkills(skills, { sources: ['mattpocock'] }).length, 35);
   assert.equal(catalog.filterSkills(skills, { sources: ['addy'] }).length, 25);
   assert.equal(catalog.filterSkills(skills, { sources: ['blender'] }).length, 94);
+  assert.equal(catalog.filterSkills(skills, { sources: ['youtube'] }).length, 11);
+  assert.equal(catalog.filterSkills(skills, { sources: ['youtube', 'blender'] }).length, 105);
   assert.equal(catalog.filterSkills(skills, { sources: ['mattpocock', 'blender'] }).length, 129);
   const filtered = catalog.filterSkills(skills, { sources: ['mattpocock'], query: 'review' });
   assert.ok(filtered.length > 0);
   assert.ok(filtered.every(skill => skill.source_repo === 'mattpocock/skills'));
   assert.equal(catalog.filterSkills(skills, { sources: ['blender'], category: 'security' }).length, 0);
+});
+
+test('YouTube collection retains its pinned source, standalone install paths and bilingual links', () => {
+  const youtube = catalog.filterSkills(skills, { sources: ['youtube'] });
+  assert.equal(youtube.length, 11);
+  assert.equal(catalog.filterSkills(skills, { query: 'youtube-agent-skill' }).length, 11);
+  assert.equal(skills.length, 3056);
+  for (const skill of youtube) {
+    assert.ok(skill.id.startsWith('youtube-agent-skill/'));
+    assert.equal(skill.source_repo, 'Jakeschincariol/youtube-agent-skill');
+    assert.ok(catalog.sourceUrl(skill).includes('/a2feb2104981a375ffd4f87ee04f4f5344ac43c6/'));
+    const plan = catalog.installationPlan(skill.id, 'claude', { mode: 'copy' });
+    assert.deepEqual(plan.paths, [`.claude/skills/${skill.name}/SKILL.md`]);
+    assert.ok(plan.install.includes(`install ${skill.id} --target claude --mode copy`));
+  }
+  for (const language of ['vi', 'en']) {
+    const state = catalog.readCatalogState(catalog.catalogParams({ language, sources: ['youtube'], selected: youtube[0].id }));
+    assert.equal(state.language, language);
+    assert.deepEqual(state.sources, ['youtube']);
+    assert.equal(state.selected, youtube[0].id);
+    assert.ok(i18n.translate('collections.youtube', language).startsWith('11 '));
+    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '3.056' : '3,056'));
+  }
+  assert.equal(catalog.filterSkills(skills, { sources: ['youtube'], category: 'security' }).length, 0);
+  const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
+  assert.ok(html.includes('name="source" value="youtube"'));
+  assert.ok(html.includes('id="youtube-collection"'));
 });
 
 test('shared links retain selected sources and reject unknown source keys', () => {

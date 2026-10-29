@@ -1,6 +1,6 @@
 # Vie Agentic Skill (VAS) - Catalog
 
-Tổng hợp **3,045** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
+Tổng hợp **3,056** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
 
 | Danh mục | Số lượng | Lệnh cài đặt nhanh |
 | :--- | :---: | :--- |
@@ -36,7 +36,7 @@ Tổng hợp **3,045** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **collaboration** | 1 skills | `./vas install --category collaboration --target codex` |
 | **communication** | 2 skills | `./vas install --category communication --target codex` |
 | **consulting** | 1 skills | `./vas install --category consulting --target codex` |
-| **content** | 77 skills | `./vas install --category content --target codex` |
+| **content** | 88 skills | `./vas install --category content --target codex` |
 | **content-writing** | 1 skills | `./vas install --category content-writing --target codex` |
 | **context-optimization** | 1 skills | `./vas install --category context-optimization --target codex` |
 | **core-dev** | 1 skills | `./vas install --category core-dev --target codex` |
@@ -1254,7 +1254,7 @@ Tổng hợp **3,045** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | :--- | :---: | :--- |
 | `web-project-brainstorming` | `safe` | Masterclass framework for brainstorming web development projects and page des... |
 
-### CONTENT (77 skills)
+### CONTENT (88 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
@@ -1333,6 +1333,17 @@ Tổng hợp **3,045** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `wiki-vitepress` | `critical` | Transform generated wiki Markdown files into a polished VitePress static site... |
 | `wordpress-centric-high-seo-optimized-blogwriting-skill` | `safe` | Generate clean, human-sounding, SEO-optimized WordPress blog posts with optio... |
 | `writing-guidelines` | `unknown` | Curated upstream guidance for Writing Guidelines; use when the workflow match... |
+| `youtube-agent-skill/yt-audit` | `unknown` | Audit a YouTube channel end to end - packaging, consistency, the first fiftee... |
+| `youtube-agent-skill/yt-chapters` | `unknown` | Write YouTube chapters from a transcript, validated against YouTube's own rul... |
+| `youtube-agent-skill/yt-comment` | `unknown` | Draft replies to YouTube comments in the creator's voice, triaged by which on... |
+| `youtube-agent-skill/yt-edit` | `unknown` | Turn a raw recording's transcript into an edit decision list - dead air, fill... |
+| `youtube-agent-skill/yt-package` | `unknown` | Write and lint the title and thumbnail for a YouTube video as one pairing, ch... |
+| `youtube-agent-skill/yt-plan` | `unknown` | Plan a week or a month of YouTube uploads - what to post, when, and in what o... |
+| `youtube-agent-skill/yt-retention` | `unknown` | Read a YouTube Studio audience-retention export and find where viewers actual... |
+| `youtube-agent-skill/yt-script` | `unknown` | Write a YouTube video script from a raw idea - hook options off 21 formulas, ... |
+| `youtube-agent-skill/yt-seo` | `unknown` | Write the description, tags and search-facing text for a YouTube video, aimed... |
+| `youtube-agent-skill/yt-shorts` | `unknown` | Find the Shorts hiding inside a long video and write them, using the transcri... |
+| `youtube-agent-skill/yt-viral` | `unknown` | Find what is actually working in the user's niche on YouTube and rank it by h... |
 | `youtube-seo-optimizer` | `safe` | Generate complete YouTube & podcast SEO packages with live-researched keyword... |
 | `youtube-summarizer` | `safe` | Extract transcripts from YouTube videos and generate comprehensive, detailed ... |
 

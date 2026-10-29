@@ -1,0 +1,355 @@
+{
+  "source_repo": "Jakeschincariol/youtube-agent-skill",
+  "revision": "a2feb2104981a375ffd4f87ee04f4f5344ac43c6",
+  "skill_count": 11,
+  "adaptations": [
+    "Namespace all eleven canonical skills under youtube-agent-skill.",
+    "Bundle the MIT notice and original voice profile template in every installable skill.",
+    "Bundle shared parsers, hook formulas and scoring tools wherever required for standalone installation.",
+    "Rewrite cross-skill helper paths to local shared-tools or hooks.json; preserve tool behavior.",
+    "Append VAS installation notes without changing the original workflows or publication gates."
+  ],
+  "skill_notes": "\n\n## VAS installation notes\n\nRun Python helper commands from this installed skill's directory. The helpers use\nonly the Python 3 standard library. Any helper dependencies needed by this skill\nare bundled locally, so installing sibling skills is not required to run them.\n\nThe optional voice profile template is [templates/voice.md](templates/voice.md).\nThe upstream profile location is `~/.claude/youtube/voice.md`; create or update it\nonly with the user's permission. Installing this skill does not create that file.\n\nThe `/yt-*` names in this runbook refer to the upstream Claude commands. Other\nagents can read this `SKILL.md` directly; related workflows are separate VAS\nskills. Nothing in this pack connects to an account or publishes automatically.\n",
+  "files": [
+    {
+      "source_path": "LICENSE",
+      "path": "skills/youtube-agent-skill/LICENSE",
+      "source_sha256": "857c8d5276809c8196b3cd7cb3300324768bfc562b2b6281b06d6865058e186c",
+      "sha256": "857c8d5276809c8196b3cd7cb3300324768bfc562b2b6281b06d6865058e186c"
+    },
+    {
+      "source_path": "templates/voice.md",
+      "path": "skills/youtube-agent-skill/templates/voice.md",
+      "source_sha256": "b24b25e5692e1ae27d00889e3fdda9d528d434b4a1a893f9cdd58b369c62d17d",
+      "sha256": "b24b25e5692e1ae27d00889e3fdda9d528d434b4a1a893f9cdd58b369c62d17d"
+    },
+    {
+      "source_path": "skills/yt-audit/SKILL.md",
+      "path": "skills/youtube-agent-skill/yt-audit/SKILL.md",
+      "source_sha256": "a4d6583d9d8ef274bb589abd3c222330bcd5d731b1a05d921dd0d25b8b1ecb98",
+      "sha256": "1c8bc624bab5a6cd55cc3345732e2bee4d7b7af4f9d625b889b88a01c1a68508",
+      "replacements": [
+        {
+          "old": "../yt-package/title.py",
+          "new": "shared-tools/title.py"
+        },
+        {
+          "old": "../yt-script/hookscore.py",
+          "new": "shared-tools/hookscore.py"
+        }
+      ]
+    },
+    {
+      "source_path": "skills/yt-package/title.py",
+      "path": "skills/youtube-agent-skill/yt-audit/shared-tools/title.py",
+      "source_sha256": "e5f2ba4e205cc5d4bca9c8c0dd92890ea964158ee8266759e2c75c3958cef723",
+      "sha256": "e5f2ba4e205cc5d4bca9c8c0dd92890ea964158ee8266759e2c75c3958cef723"
+    },
+    {
+      "source_path": "skills/yt-script/hookscore.py",
+      "path": "skills/youtube-agent-skill/yt-audit/shared-tools/hookscore.py",
+      "source_sha256": "8205dca03de1d5d8e25614e7c0d8d40fd756a99b838320462195b342d5eb0545",
+      "sha256": "8205dca03de1d5d8e25614e7c0d8d40fd756a99b838320462195b342d5eb0545"
+    },
+    {
+      "source_path": "skills/yt-script/hooks.json",
+      "path": "skills/youtube-agent-skill/yt-audit/shared-tools/hooks.json",
+      "source_sha256": "76c47b4ad410a8856c9d27aa489d7c447b3ebe30a9024f03e2d59fefe267f5cb",
+      "sha256": "76c47b4ad410a8856c9d27aa489d7c447b3ebe30a9024f03e2d59fefe267f5cb"
+    },
+    {
+      "source_path": "LICENSE",
+      "path": "skills/youtube-agent-skill/yt-audit/LICENSE",
+      "source_sha256": "857c8d5276809c8196b3cd7cb3300324768bfc562b2b6281b06d6865058e186c",
+      "sha256": "857c8d5276809c8196b3cd7cb3300324768bfc562b2b6281b06d6865058e186c"
+    },
+    {
+      "source_path": "templates/voice.md",
+      "path": "skills/youtube-agent-skill/yt-audit/templates/voice.md",
+      "source_sha256": "b24b25e5692e1ae27d00889e3fdda9d528d434b4a1a893f9cdd58b369c62d17d",
+      "sha256": "b24b25e5692e1ae27d00889e3fdda9d528d434b4a1a893f9cdd58b369c62d17d"
+    },
+    {
+      "source_path": "skills/yt-chapters/SKILL.md",
+      "path": "skills/youtube-agent-skill/yt-chapters/SKILL.md",
+      "source_sha256": "06d2fc094d59ec6da73d812bd7b21590f8099352922ea2e3151b45922bf315b3",
+      "sha256": "f6a1933da2beb67da3047b479262ab84a8ab42a256b40dbfba3ed9dc559ade0f"
+    },
+    {
+      "source_path": "skills/yt-chapters/chapters.py",
+      "path": "skills/youtube-agent-skill/yt-chapters/chapters.py",
+      "source_sha256": "f21f17a74f0b2b6719bbf45b16bf404acb4fa639fc765df46b2aec442ab2dcbe",
+      "sha256": "ff822e52d1b72e27a857bbe3fbe2534ccbc2df5023aa96926df1aa4b9616f61c",
+      "replacements": [
+        {
+          "old": "\"..\", \"yt-edit\"",
+          "new": "\"shared-tools\""
+        }
+      ]
+    },
+    {
+      "source_path": "skills/yt-edit/deadair.py",
+      "path": "skills/youtube-agent-skill/yt-chapters/shared-tools/deadair.py",
+      "source_sha256": "61d13cd77e7c31e5e12b6e9e016c7d1ffb92d4a5ec5597dd69b98545c81eb9c3",
+      "sha256": "61d13cd77e7c31e5e12b6e9e016c7d1ffb92d4a5ec5597dd69b98545c81eb9c3"
+    },
+    {
+      "source_path": "LICENSE",
+      "path": "skills/youtube-agent-skill/yt-chapters/LICENSE",
+      "source_sha256": "857c8d5276809c8196b3cd7cb3300324768bfc562b2b6281b06d6865058e186c",
+      "sha256": "857c8d5276809c8196b3cd7cb3300324768bfc562b2b6281b06d6865058e186c"
+    },
+    {
+      "source_path": "templates/voice.md",
+      "path": "skills/youtube-agent-skill/yt-chapters/templates/voice.md",
+      "source_sha256": "b24b25e5692e1ae27d00889e3fdda9d528d434b4a1a893f9cdd58b369c62d17d",
+      "sha256": "b24b25e5692e1ae27d00889e3fdda9d528d434b4a1a893f9cdd58b369c62d17d"
+    },
+    {
+      "source_path": "skills/yt-comment/SKILL.md",
+      "path": "skills/youtube-agent-skill/yt-comment/SKILL.md",
+      "source_sha256": "5b569ef7564d9ca271fd158f0cdbd835073eacc887139c7d6d15899142d46892",
+      "sha256": "3ad19af73e5f37b5c9667b75a1628f64b15475a6787b7ef330b42bed52608674"
+    },
+    {
+      "source_path": "LICENSE",
+      "path": "skills/youtube-agent-skill/yt-comment/LICENSE",
+      "source_sha256": "857c8d5276809c8196b3cd7cb3300324768bfc562b2b6281b06d6865058e186c",
+      "sha256": "857c8d5276809c8196b3cd7cb3300324768bfc562b2b6281b06d6865058e186c"
+    },
+    {
+      "source_path": "templates/voice.md",
+      "path": "skills/youtube-agent-skill/yt-comment/templates/voice.md",
+      "source_sha256": "b24b25e5692e1ae27d00889e3fdda9d528d434b4a1a893f9cdd58b369c62d17d",
+      "sha256": "b24b25e5692e1ae27d00889e3fdda9d528d434b4a1a893f9cdd58b369c62d17d"
+    },
+    {
+      "source_path": "skills/yt-edit/SKILL.md",
+      "path": "skills/youtube-agent-skill/yt-edit/SKILL.md",
+      "source_sha256": "b9f83e8b972e91a4abb5e0f4f9fc4b5cde9e8727609ce1213b0e583718cd8aeb",
+      "sha256": "eaefa464326dcdba743801bb7037351866a655d8e7b4b2b2339dcdb85ae7c325"
+    },
+    {
+      "source_path": "skills/yt-edit/deadair.py",
+      "path": "skills/youtube-agent-skill/yt-edit/deadair.py",
+      "source_sha256": "61d13cd77e7c31e5e12b6e9e016c7d1ffb92d4a5ec5597dd69b98545c81eb9c3",
+      "sha256": "61d13cd77e7c31e5e12b6e9e016c7d1ffb92d4a5ec5597dd69b98545c81eb9c3"
+    },
+    {
+      "source_path": "LICENSE",
+      "path": "skills/youtube-agent-skill/yt-edit/LICENSE",
+      "source_sha256": "857c8d5276809c8196b3cd7cb3300324768bfc562b2b6281b06d6865058e186c",
+      "sha256": "857c8d5276809c8196b3cd7cb3300324768bfc562b2b6281b06d6865058e186c"
+    },
+    {
+      "source_path": "templates/voice.md",
+      "path": "skills/youtube-agent-skill/yt-edit/templates/voice.md",
+      "source_sha256": "b24b25e5692e1ae27d00889e3fdda9d528d434b4a1a893f9cdd58b369c62d17d",
+      "sha256": "b24b25e5692e1ae27d00889e3fdda9d528d434b4a1a893f9cdd58b369c62d17d"
+    },
+    {
+      "source_path": "skills/yt-package/SKILL.md",
+      "path": "skills/youtube-agent-skill/yt-package/SKILL.md",
+      "source_sha256": "0347a791664ff5d05eda87b2535e34ef8177c9e9b5e5c077c2f8113942108506",
+      "sha256": "904f34f697ab0d130249d537c9665fb8697d6d166637cc2b9dbc4257b5d9a3b9"
+    },
+    {
+      "source_path": "skills/yt-package/title.py",
+      "path": "skills/youtube-agent-skill/yt-package/title.py",
+      "source_sha256": "e5f2ba4e205cc5d4bca9c8c0dd92890ea964158ee8266759e2c75c3958cef723",
+      "sha256": "e5f2ba4e205cc5d4bca9c8c0dd92890ea964158ee8266759e2c75c3958cef723"
+    },
+    {
+      "source_path": "LICENSE",
+      "path": "skills/youtube-agent-skill/yt-package/LICENSE",
+      "source_sha256": "857c8d5276809c8196b3cd7cb3300324768bfc562b2b6281b06d6865058e186c",
+      "sha256": "857c8d5276809c8196b3cd7cb3300324768bfc562b2b6281b06d6865058e186c"
+    },
+    {
+      "source_path": "templates/voice.md",
+      "path": "skills/youtube-agent-skill/yt-package/templates/voice.md",
+      "source_sha256": "b24b25e5692e1ae27d00889e3fdda9d528d434b4a1a893f9cdd58b369c62d17d",
+      "sha256": "b24b25e5692e1ae27d00889e3fdda9d528d434b4a1a893f9cdd58b369c62d17d"
+    },
+    {
+      "source_path": "skills/yt-plan/SKILL.md",
+      "path": "skills/youtube-agent-skill/yt-plan/SKILL.md",
+      "source_sha256": "c82983c91e69b1d816a978157dd1b3c37241611ad2a22463ad2c9291ca1b94cd",
+      "sha256": "77e4369e2a13179e41d401a67dc0b3f1bd14e9a43d7dae1696648e384c9e203a"
+    },
+    {
+      "source_path": "LICENSE",
+      "path": "skills/youtube-agent-skill/yt-plan/LICENSE",
+      "source_sha256": "857c8d5276809c8196b3cd7cb3300324768bfc562b2b6281b06d6865058e186c",
+      "sha256": "857c8d5276809c8196b3cd7cb3300324768bfc562b2b6281b06d6865058e186c"
+    },
+    {
+      "source_path": "templates/voice.md",
+      "path": "skills/youtube-agent-skill/yt-plan/templates/voice.md",
+      "source_sha256": "b24b25e5692e1ae27d00889e3fdda9d528d434b4a1a893f9cdd58b369c62d17d",
+      "sha256": "b24b25e5692e1ae27d00889e3fdda9d528d434b4a1a893f9cdd58b369c62d17d"
+    },
+    {
+      "source_path": "skills/yt-retention/SKILL.md",
+      "path": "skills/youtube-agent-skill/yt-retention/SKILL.md",
+      "source_sha256": "2777dd1f8f9ea04174bf13c9dc0132be907fb3852380376db359bcf786ba4f8e",
+      "sha256": "8ec867c0981dfd2976d966ec77a15ed08ec586949d112f4f620c8a3bd894d40b"
+    },
+    {
+      "source_path": "skills/yt-retention/retention.py",
+      "path": "skills/youtube-agent-skill/yt-retention/retention.py",
+      "source_sha256": "2ed29f0bc24e7b65e9661a879692fe954b4f29e486ebf19f3c2c672e21b0a906",
+      "sha256": "988ec145f1f9db2a964757769f37e558ceb42b8afa74ffe2da8ab17c8a743a03",
+      "replacements": [
+        {
+          "old": "\"..\", \"yt-edit\"",
+          "new": "\"shared-tools\""
+        }
+      ]
+    },
+    {
+      "source_path": "skills/yt-edit/deadair.py",
+      "path": "skills/youtube-agent-skill/yt-retention/shared-tools/deadair.py",
+      "source_sha256": "61d13cd77e7c31e5e12b6e9e016c7d1ffb92d4a5ec5597dd69b98545c81eb9c3",
+      "sha256": "61d13cd77e7c31e5e12b6e9e016c7d1ffb92d4a5ec5597dd69b98545c81eb9c3"
+    },
+    {
+      "source_path": "LICENSE",
+      "path": "skills/youtube-agent-skill/yt-retention/LICENSE",
+      "source_sha256": "857c8d5276809c8196b3cd7cb3300324768bfc562b2b6281b06d6865058e186c",
+      "sha256": "857c8d5276809c8196b3cd7cb3300324768bfc562b2b6281b06d6865058e186c"
+    },
+    {
+      "source_path": "templates/voice.md",
+      "path": "skills/youtube-agent-skill/yt-retention/templates/voice.md",
+      "source_sha256": "b24b25e5692e1ae27d00889e3fdda9d528d434b4a1a893f9cdd58b369c62d17d",
+      "sha256": "b24b25e5692e1ae27d00889e3fdda9d528d434b4a1a893f9cdd58b369c62d17d"
+    },
+    {
+      "source_path": "skills/yt-script/SKILL.md",
+      "path": "skills/youtube-agent-skill/yt-script/SKILL.md",
+      "source_sha256": "23fe2c4c52b4dbdae03295d71a8bdede254a94b3d6b0da83b025e8b622020366",
+      "sha256": "664ffe087ed469b14a144e5c98bd585db0ca2c24c1bb98fe37c2fed7fdfd09e6"
+    },
+    {
+      "source_path": "skills/yt-script/hooks.json",
+      "path": "skills/youtube-agent-skill/yt-script/hooks.json",
+      "source_sha256": "76c47b4ad410a8856c9d27aa489d7c447b3ebe30a9024f03e2d59fefe267f5cb",
+      "sha256": "76c47b4ad410a8856c9d27aa489d7c447b3ebe30a9024f03e2d59fefe267f5cb"
+    },
+    {
+      "source_path": "skills/yt-script/hookscore.py",
+      "path": "skills/youtube-agent-skill/yt-script/hookscore.py",
+      "source_sha256": "8205dca03de1d5d8e25614e7c0d8d40fd756a99b838320462195b342d5eb0545",
+      "sha256": "8205dca03de1d5d8e25614e7c0d8d40fd756a99b838320462195b342d5eb0545"
+    },
+    {
+      "source_path": "LICENSE",
+      "path": "skills/youtube-agent-skill/yt-script/LICENSE",
+      "source_sha256": "857c8d5276809c8196b3cd7cb3300324768bfc562b2b6281b06d6865058e186c",
+      "sha256": "857c8d5276809c8196b3cd7cb3300324768bfc562b2b6281b06d6865058e186c"
+    },
+    {
+      "source_path": "templates/voice.md",
+      "path": "skills/youtube-agent-skill/yt-script/templates/voice.md",
+      "source_sha256": "b24b25e5692e1ae27d00889e3fdda9d528d434b4a1a893f9cdd58b369c62d17d",
+      "sha256": "b24b25e5692e1ae27d00889e3fdda9d528d434b4a1a893f9cdd58b369c62d17d"
+    },
+    {
+      "source_path": "skills/yt-seo/SKILL.md",
+      "path": "skills/youtube-agent-skill/yt-seo/SKILL.md",
+      "source_sha256": "7ce49d03104f4f94698ba57a3ef7aa826b697cd01cbc95d7d18dca912287c046",
+      "sha256": "ff03d53a4a6822246e5bdbef105d74b8d2efd56235def39029f4129994ef9a93"
+    },
+    {
+      "source_path": "LICENSE",
+      "path": "skills/youtube-agent-skill/yt-seo/LICENSE",
+      "source_sha256": "857c8d5276809c8196b3cd7cb3300324768bfc562b2b6281b06d6865058e186c",
+      "sha256": "857c8d5276809c8196b3cd7cb3300324768bfc562b2b6281b06d6865058e186c"
+    },
+    {
+      "source_path": "templates/voice.md",
+      "path": "skills/youtube-agent-skill/yt-seo/templates/voice.md",
+      "source_sha256": "b24b25e5692e1ae27d00889e3fdda9d528d434b4a1a893f9cdd58b369c62d17d",
+      "sha256": "b24b25e5692e1ae27d00889e3fdda9d528d434b4a1a893f9cdd58b369c62d17d"
+    },
+    {
+      "source_path": "skills/yt-shorts/SKILL.md",
+      "path": "skills/youtube-agent-skill/yt-shorts/SKILL.md",
+      "source_sha256": "cbaaaf907bb14491baba0ea23e3415f268f7fff21897c6eb487e7cb1113b32c8",
+      "sha256": "9edb1ab886d3f492263d7f49499aede3fdf9969ce0b587692c979f7734028645",
+      "replacements": [
+        {
+          "old": "../yt-script/hookscore.py",
+          "new": "shared-tools/hookscore.py"
+        }
+      ]
+    },
+    {
+      "source_path": "skills/yt-script/hookscore.py",
+      "path": "skills/youtube-agent-skill/yt-shorts/shared-tools/hookscore.py",
+      "source_sha256": "8205dca03de1d5d8e25614e7c0d8d40fd756a99b838320462195b342d5eb0545",
+      "sha256": "8205dca03de1d5d8e25614e7c0d8d40fd756a99b838320462195b342d5eb0545"
+    },
+    {
+      "source_path": "skills/yt-script/hooks.json",
+      "path": "skills/youtube-agent-skill/yt-shorts/shared-tools/hooks.json",
+      "source_sha256": "76c47b4ad410a8856c9d27aa489d7c447b3ebe30a9024f03e2d59fefe267f5cb",
+      "sha256": "76c47b4ad410a8856c9d27aa489d7c447b3ebe30a9024f03e2d59fefe267f5cb"
+    },
+    {
+      "source_path": "LICENSE",
+      "path": "skills/youtube-agent-skill/yt-shorts/LICENSE",
+      "source_sha256": "857c8d5276809c8196b3cd7cb3300324768bfc562b2b6281b06d6865058e186c",
+      "sha256": "857c8d5276809c8196b3cd7cb3300324768bfc562b2b6281b06d6865058e186c"
+    },
+    {
+      "source_path": "templates/voice.md",
+      "path": "skills/youtube-agent-skill/yt-shorts/templates/voice.md",
+      "source_sha256": "b24b25e5692e1ae27d00889e3fdda9d528d434b4a1a893f9cdd58b369c62d17d",
+      "sha256": "b24b25e5692e1ae27d00889e3fdda9d528d434b4a1a893f9cdd58b369c62d17d"
+    },
+    {
+      "source_path": "skills/yt-viral/SKILL.md",
+      "path": "skills/youtube-agent-skill/yt-viral/SKILL.md",
+      "source_sha256": "2dae2b23919464450e66dde15eaa0fd6d82dac4ca5c6c553d8bf2d604d38bdb4",
+      "sha256": "f4bd4be6224ca2afaa819329e3ff3e63e00708aab462a23e1c962f0ff514121a",
+      "replacements": [
+        {
+          "old": "../yt-script/hooks.json",
+          "new": "hooks.json"
+        }
+      ]
+    },
+    {
+      "source_path": "skills/yt-viral/swipe.py",
+      "path": "skills/youtube-agent-skill/yt-viral/swipe.py",
+      "source_sha256": "8035c0868f66929d8b63dfa4997c8b1abc3ac29a19165ba17487242616cb0d96",
+      "sha256": "9dd92c803074f0e40a7c0ed3f34a979207f7c4d9c758efbb4f339e4fb701ab6b",
+      "replacements": [
+        {
+          "old": "os.path.join(HERE, \"..\", \"yt-script\", \"hooks.json\")",
+          "new": "os.path.join(HERE, \"hooks.json\")"
+        }
+      ]
+    },
+    {
+      "source_path": "skills/yt-script/hooks.json",
+      "path": "skills/youtube-agent-skill/yt-viral/hooks.json",
+      "source_sha256": "76c47b4ad410a8856c9d27aa489d7c447b3ebe30a9024f03e2d59fefe267f5cb",
+      "sha256": "76c47b4ad410a8856c9d27aa489d7c447b3ebe30a9024f03e2d59fefe267f5cb"
+    },
+    {
+      "source_path": "LICENSE",
+      "path": "skills/youtube-agent-skill/yt-viral/LICENSE",
+      "source_sha256": "857c8d5276809c8196b3cd7cb3300324768bfc562b2b6281b06d6865058e186c",
+      "sha256": "857c8d5276809c8196b3cd7cb3300324768bfc562b2b6281b06d6865058e186c"
+    },
+    {
+      "source_path": "templates/voice.md",
+      "path": "skills/youtube-agent-skill/yt-viral/templates/voice.md",
+      "source_sha256": "b24b25e5692e1ae27d00889e3fdda9d528d434b4a1a893f9cdd58b369c62d17d",
+      "sha256": "b24b25e5692e1ae27d00889e3fdda9d528d434b4a1a893f9cdd58b369c62d17d"
+    }
+  ]
+}
