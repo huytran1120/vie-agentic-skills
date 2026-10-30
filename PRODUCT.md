@@ -64,6 +64,10 @@ The CLI remains `./vas`; individual task dependencies are not CLI dependencies.
   local helpers; the existing android-cli stays unchanged. SDKs, optional protobuf,
   Perfetto binary downloads, devices and network operations require separate setup
   and permission, not automatic execution during installation.
+- GameDev includes 77 specialized skills plus a standalone router under Apache-2.0.
+  The router bundles read-only companion payloads without duplicate catalog entries.
+  Two distinct name collisions use gamedev- folders. Engines, Pillow, platform
+  accounts, asset generation and publishing remain separately authorized prerequisites.
 - GitHub Pages is static and must work under the repository URL prefix.
 - Shared links use a branded 1280-by-640 PNG with matching Open Graph and Twitter
   metadata. GitHub repository previews require a separate upload in Settings >

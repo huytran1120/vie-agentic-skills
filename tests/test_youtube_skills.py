@@ -25,7 +25,7 @@ class YouTubeSkillsTests(unittest.TestCase):
         }
         self.assertEqual({s["name"] for s in self.skills}, expected)
         self.assertEqual(len(self.skills), self.manifest["skill_count"])
-        self.assertEqual(len(self.index) - len(self.skills), 3082)
+        self.assertEqual(len(self.index) - len(self.skills), 3160)
         self.assertEqual(self.manifest["source_repo"], "Jakeschincariol/youtube-agent-skill")
         self.assertEqual(self.manifest["revision"], "a2feb2104981a375ffd4f87ee04f4f5344ac43c6")
         for skill in self.skills:

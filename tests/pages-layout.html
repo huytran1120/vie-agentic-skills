@@ -329,6 +329,56 @@
     await waitFor(() => !d.getElementById('manual-copy').hidden, 'Android clipboard failure must show manual recovery');
     check(d.getElementById('manual-copy-text').value.includes('/install-manifests/play-policy-insights.json'), 'Android fallback must preserve the safe prompt');
     d.getElementById('close-manual-copy').click();
+    d.querySelector('[data-back-library]').click();
+    d.getElementById('gamedev-collection').click();
+    check(new URL(w.location.href).searchParams.get('sources') === 'gamedev', 'GameDev shortcut must select its source');
+    check(d.getElementById('results-status').textContent.includes('78'), 'GameDev must have 78 records, not additional companion skills');
+    d.getElementById('open-filters').click();
+    check(d.querySelector('input[name="mobile-source"][value="gamedev"]').checked, 'GameDev mobile source must remain selected');
+    d.getElementById('apply-mobile-filters').click();
+    check(d.querySelector('input[name="source"][value="gamedev"]').checked, 'GameDev desktop source must agree');
+    while (!d.getElementById('load-more').hidden) d.getElementById('load-more').click();
+    Object.defineProperty(w.navigator, 'clipboard', { configurable: true, value: { writeText: async text => { installPrompt = text; } } });
+    for (const id of ['router', 'ebitengine-game', 'gamedev-performance-optimization']) {
+      d.querySelector(`[data-open-skill="${id}"]`).click();
+      await waitFor(() => d.getElementById('runbook-content').getAttribute('aria-busy') === 'false', `${id}: GameDev runbook must load`);
+      check(d.getElementById('runbook-content').textContent.includes('VAS installation notes'), `${id}: installation prerequisites must be visible`);
+      check(d.getElementById('skill-detail').textContent.includes('Apache-2.0'), `${id}: license must be visible`);
+      const manifest = await (await w.fetch(new URL(`install-manifests/${id}.json`, manifestBase))).json();
+      check(manifest.available && manifest.files.some(file => file.path === 'NOTICE'), `${id}: complete committed manifest must include NOTICE`);
+      check(manifest.revision !== '19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9', `${id}: pin the VAS publication, not upstream`);
+      const root = new URL(`${d.documentElement.dataset.skillBase}/skills/${id}/`, w.location.href);
+      const notice = await w.fetch(new URL('NOTICE', root));
+      check(notice.ok && (await notice.text()).includes('Abhishek Barali'), `${id}: original notice must load`);
+      if (id === 'router') {
+        const companion = manifest.files.find(file => file.path.endsWith('/ebitengine-game/RUNBOOK.md'));
+        check(Boolean(companion) && (await w.fetch(new URL(companion.path, root))).ok, 'Standalone router companions must be publicly readable');
+      }
+      for (const locale of ['vi', 'en']) {
+        language(locale);
+        for (const target of ['cursor', 'copilot']) {
+          change('agent-select', target);
+          installPrompt = null;
+          d.querySelector('#skill-detail [data-copy-agent-prompt]').click();
+          await waitFor(() => Boolean(installPrompt), `${id}: GameDev prompt must copy`);
+          check(installPrompt.startsWith(locale === 'vi' ? 'Hãy cài đặt skill' : 'Please install'), `${id}: prompt language must switch`);
+          const folder = target === 'cursor' ? '.cursor' : '.github';
+          check(installPrompt.includes(`"${folder}/skills/${id}/"`), `${id}: selected agent destination must be retained`);
+        }
+        for (const width of [1440, 390, 320]) {
+          frame.style.width = `${width}px`;
+          await wait(80);
+          check(d.documentElement.scrollWidth <= w.innerWidth, `${id} ${locale} ${width}px: no overflow`);
+        }
+      }
+      d.querySelector('[data-back-library]').click();
+    }
+    d.querySelector('[data-open-skill="router"]').click();
+    Object.defineProperty(w.navigator, 'clipboard', { configurable: true, value: { writeText: async () => { throw new Error('GameDev clipboard blocked for test'); } } });
+    d.querySelector('#skill-detail [data-copy-agent-prompt]').click();
+    await waitFor(() => !d.getElementById('manual-copy').hidden, 'GameDev clipboard failure must show manual recovery');
+    check(d.getElementById('manual-copy-text').value.includes('/install-manifests/router.json'), 'GameDev recovery must retain the safe router prompt');
+    d.getElementById('close-manual-copy').click();
     language('vi');
     const probe = document.createElement('iframe');
     probe.style.cssText = 'display:block;border:0;height:1000px;width:390px';

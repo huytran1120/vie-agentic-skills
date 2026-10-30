@@ -1,6 +1,6 @@
 # Vie Agentic Skill (VAS) - Catalog
 
-Tổng hợp **3,093** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
+Tổng hợp **3,171** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
 
 | Danh mục | Số lượng | Lệnh cài đặt nhanh |
 | :--- | :---: | :--- |
@@ -66,7 +66,7 @@ Tổng hợp **3,093** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **front-end** | 15 skills | `./vas install --category front-end --target codex` |
 | **frontend** | 47 skills | `./vas install --category frontend --target codex` |
 | **fullstack** | 1 skills | `./vas install --category fullstack --target codex` |
-| **game-development** | 22 skills | `./vas install --category game-development --target codex` |
+| **game-development** | 100 skills | `./vas install --category game-development --target codex` |
 | **general** | 65 skills | `./vas install --category general --target codex` |
 | **granular-workflow-bundle** | 16 skills | `./vas install --category granular-workflow-bundle --target codex` |
 | **graphics-processing** | 10 skills | `./vas install --category graphics-processing --target codex` |
@@ -2278,11 +2278,22 @@ Tổng hợp **3,093** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | :--- | :---: | :--- |
 | `vibe-code-cleanup` | `safe` | Safe production cleanup and hardening for vibe-coded fullstack apps (Next.js,... |
 
-### GAME-DEVELOPMENT (22 skills)
+### GAME-DEVELOPMENT (100 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
+| `ai-behavior-trees-utility-ai` | `unknown` | Build a production behavior-tree runtime (Blackboard, action/condition leaves... |
+| `audio-design` | `unknown` | Implement game audio practice — bus/mixer architecture and gain in decibels, ... |
+| `bevy-ecs` | `unknown` | Structure a Bevy app around its Entity Component System: build the App with p... |
 | `bevy-ecs-expert` | `safe` | Master Bevy's Entity Component System (ECS) in Rust, covering Systems, Querie... |
+| `camera-systems` | `unknown` | Build game cameras that feel good — 2D follow with a deadzone, look-ahead, sm... |
+| `card-game` | `unknown` | Build a card game: card data, deck/hand/discard zones, draw/shuffle/reshuffle... |
+| `create-game-assets` | `unknown` | Plan, generate, source, normalize, and validate cohesive visual game assets. ... |
+| `defold-core` | `unknown` | Build and debug the core of a Defold game in Lua: game.project settings, coll... |
+| `dialogue-systems` | `unknown` | Build branching dialogue and narrative — a node/choice graph with conditions,... |
+| `ebitengine-game` | `unknown` | Create, improve, debug and package playable 2D games in Go with Ebitengine (g... |
+| `fps-shooter` | `unknown` | Build a first-person shooter: move+mouse-look controller, hitscan or projecti... |
+| `game-ai` | `unknown` | Design NPC and enemy decision-making with finite state machines, behavior tre... |
 | `game-development` | `none` | Game development orchestrator. Routes by platform, dimension, and engine fit ... |
 | `game-development/2d-games` | `none` | 2D game development principles. Sprites, atlases, tilemaps, physics, cameras,... |
 | `game-development/3d-games` | `none` | 3D game development principles. Rendering, shaders, physics, cameras. |
@@ -2295,15 +2306,82 @@ Tổng hợp **3,093** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `game-development/pc-games` | `safe` | PC and console game development principles. Engine selection, platform featur... |
 | `game-development/vr-ar` | `none` | VR/AR development principles. Comfort, interaction, performance requirements. |
 | `game-development/web-games` | `none` | Web browser game development. Framework selection (Phaser, PixiJS, Kaplay, Ca... |
+| `game-feel` | `unknown` | Add "juice" and game feel that makes actions satisfying — screen shake, hit-s... |
+| `game-jam` | `unknown` | Plan and ship a game under a jam deadline: lock scope to the clock, schedule ... |
+| `game-ui-ux` | `unknown` | Design and build game UI/UX — HUDs, menus, and overlays — that survive every ... |
+| `gamedev-godot-export` | `unknown` | Export and build a Godot 4.7 project for distribution: install export templat... |
+| `gamedev-performance-optimization` | `unknown` | Find and fix game performance problems methodically — measure with the engine... |
+| `godot-2d-movement` | `unknown` | Implement 2D kinematic character movement in Godot 4.7 with CharacterBody2D a... |
+| `godot-3d-essentials` | `unknown` | Set up a Godot 4.7 3D scene: Node3D transforms, Camera3D, lighting (Direction... |
 | `godot-4-migration` | `safe` | Specialized guide for migrating Godot 3.x projects to Godot 4 (GDScript 2.0),... |
+| `godot-animation` | `unknown` | Animate in Godot 4.7 three ways: AnimationPlayer for keyframed clips (incl. C... |
+| `godot-audio` | `unknown` | Play and mix audio in Godot 4.7: AudioStreamPlayer (2D/3D variants), audio bu... |
+| `godot-csharp` | `unknown` | Use C#/.NET in Godot 4.7: partial classes extending nodes, the PascalCase lif... |
+| `godot-gdscript` | `unknown` | Write idiomatic GDScript for Godot 4.7: static typing, the node lifecycle (_r... |
+| `godot-gdscript-headless-testing` | `unknown` | Run GDScript test suites from the command line with `godot --headless`, using... |
 | `godot-gdscript-patterns` | `safe` | Master Godot 4 GDScript patterns including signals, scenes, state machines, a... |
+| `godot-multiplayer` | `unknown` | Build networked games with Godot 4.7 high-level multiplayer: set up an ENetMu... |
+| `godot-nodes-scenes` | `unknown` | Structure a Godot 4.7 project with the scene tree and node composition: build... |
+| `godot-physics` | `unknown` | Use Godot 4.7 physics bodies and detection in 2D and 3D: RigidBody, StaticBod... |
+| `godot-resources` | `unknown` | Design data-driven Godot 4.7 games with custom Resource classes: define typed... |
+| `godot-shaders` | `unknown` | Write Godot 4.7 shaders in the Godot Shading Language: canvas_item shaders fo... |
+| `godot-signals-groups` | `unknown` | Build event-driven, decoupled Godot 4.7 gameplay with signals and node groups... |
+| `godot-tilemap` | `unknown` | Build and edit tile-based 2D levels in Godot 4.7 with TileMapLayer and TileSe... |
+| `godot-ui-control` | `unknown` | Build Godot 4.7 user interfaces with Control nodes: anchors and offsets for r... |
+| `input-systems` | `unknown` | Architect game input — action mapping (abstracting keys into named actions), ... |
+| `itch-publish` | `unknown` | Publish and update a game on itch.io: create the project page and upload buil... |
+| `level-design` | `unknown` | Design and build playable levels — the blockout/whitebox-to-playable workflow... |
+| `love2d-core` | `unknown` | Structure and debug a LÖVE (Love2D) game in Lua: the love.load/update/draw lo... |
 | `matterjs` | `safe` | 2D rigid body physics simulation with Matter.js. Covers Engine, World, Bodies... |
 | `minecraft-bukkit-pro` | `safe` | Master Minecraft server plugin development with Bukkit, Spigot, and Paper APIs. |
+| `phaser-arcade-physics` | `unknown` | Use Phaser 4 Arcade Physics: enable the world, give sprites bodies, set veloc... |
+| `phaser-core` | `unknown` | Set up and debug a Phaser 4 game: the Game config, the Scene lifecycle (init/... |
+| `physics-tuning` | `unknown` | Tune game physics for stable, good-feeling motion — fixed vs variable timeste... |
+| `pixijs-rendering` | `unknown` | Build a PixiJS v8 render layer: create the async Application, load textures w... |
+| `platformer` | `unknown` | Build a 2D platformer: run/jump control with coyote time, jump buffering, and... |
+| `procedural-gen` | `unknown` | Generate game content procedurally — seeded deterministic RNG, value/Perlin/ ... |
+| `prototype-fast` | `unknown` | Build a playable prototype in about an hour to answer one question — is it fu... |
+| `puzzle` | `unknown` | Build a puzzle game: grid/board state, move input, rule-based resolution (mat... |
+| `pygame-core` | `unknown` | Structure a pygame (pygame-ce) game in Python: the init/event/update/draw loo... |
 | `rapier` | `safe` | Cross-platform 2D and 3D physics engine written in Rust with fast WebAssembly... |
+| `roblox-characters` | `unknown` | Build respawn-safe Roblox character systems around Players, CharacterAdded/Ch... |
+| `roblox-datastores` | `unknown` | Persist player data in Roblox with DataStoreService: GetDataStore, GetAsync/ ... |
+| `roblox-luau` | `unknown` | Script a Roblox experience in Luau: get services, create and parent Instances... |
+| `roblox-networking` | `unknown` | Design and harden Roblox client/server networking with RemoteEvent, RemoteFun... |
+| `roblox-physics` | `unknown` | Implement Roblox physical simulation and queries with assemblies, anchoring, ... |
+| `roblox-simulator-economy` | `unknown` | Design, balance, and implement the economy of a Roblox simulator, tycoon, cli... |
+| `roblox-studio-workflow` | `unknown` | Modify living Roblox Studio projects safely: inspect Explorer and execution l... |
+| `roblox-ui` | `unknown` | Build production Roblox interfaces with ScreenGui/PlayerGui lifecycle, respon... |
+| `roguelike` | `unknown` | Build a roguelike: turn-based grid movement, procedural dungeons, permadeath,... |
+| `router` | `unknown` | Routes any game-development request to the right specialized skill(s): it det... |
+| `rpg` | `unknown` | Build an RPG: stats and leveling, inventory and equipment, quests, branching ... |
+| `save-systems` | `unknown` | Design save/load for game state — choosing what to serialize, file formats, s... |
+| `shader-programming` | `unknown` | Write game shaders from cross-engine fundamentals — the vertex→fragment pipel... |
 | `shader-programming-glsl` | `safe` | Expert guide for writing efficient GLSL shaders (Vertex/Fragment) for web and... |
+| `steam-publish` | `unknown` | Publish or update a game on Steam with Steamworks and SteamPipe: configure de... |
+| `survival-crafting` | `unknown` | Build a survival-crafting game: resource gathering, inventory, crafting and a... |
+| `threejs-gltf-loading` | `unknown` | Load glTF/GLB models in three.js with GLTFLoader and play their skinned anima... |
+| `threejs-materials-lighting` | `unknown` | Light and shade a three.js scene: choose materials (MeshStandardMaterial PBR ... |
+| `threejs-scene-setup` | `unknown` | Stand up a three.js scene: import maps and the three/addons path, the Scene/P... |
+| `tower-defense` | `unknown` | Build a tower defense: enemies pathing along lanes, wave spawning, towers tha... |
 | `unity-ai-game-creator` | `safe` | Transform raw game ideas into complete Unity projects with AI-powered asset g... |
+| `unity-animation` | `unknown` | Drive Unity 6.3 LTS character animation with Animator Controllers: states, tr... |
+| `unity-build-pipeline` | `unknown` | Build and ship Unity 6.3 LTS players: build settings and scenes, player/quali... |
+| `unity-csharp-scripting` | `unknown` | Write Unity 6.3 LTS C# gameplay scripts: the MonoBehaviour lifecycle (Awake/O... |
 | `unity-developer` | `critical` | Build Unity games with optimized C# scripts, efficient rendering, and proper ... |
 | `unity-ecs-patterns` | `safe` | Production patterns for Unity's Data-Oriented Technology Stack (DOTS) includi... |
+| `unity-input-system` | `unknown` | Wire player input in Unity 6.3 LTS with the Input System package: Input Actio... |
+| `unity-navmesh` | `unknown` | Add AI navigation in Unity 6.3 LTS: bake a NavMesh with the AI Navigation pac... |
+| `unity-physics` | `unknown` | Set up 3D physics in Unity 6.3 LTS: Rigidbody movement and forces, colliders,... |
+| `unity-scriptableobjects` | `unknown` | Architect Unity 6.3 LTS data and decoupling with ScriptableObjects: config/da... |
+| `unity-tilemap-2d` | `unknown` | Build and script 2D tilemaps in Unity 6.3 LTS: the Grid + Tilemap components,... |
+| `unreal-behavior-trees` | `unknown` | Build NPC AI in Unreal Engine 5 with Behavior Trees and Blackboards: composit... |
+| `unreal-blueprints` | `unknown` | Build Unreal Engine 5 gameplay with Blueprint visual scripting: Blueprint Cla... |
+| `unreal-cpp-gameplay` | `unknown` | Write Unreal Engine 5 C++ gameplay code: the UCLASS/UPROPERTY/UFUNCTION refle... |
+| `unreal-enhanced-input` | `unknown` | Set up player input in Unreal Engine 5 with Enhanced Input: Input Actions, In... |
+| `unreal-niagara` | `unknown` | Create and control VFX in Unreal Engine 5 with Niagara: systems and emitters,... |
+| `unreal-packaging` | `unknown` | Package and ship an Unreal Engine 5 project: the Platforms menu Package Proje... |
+| `visual-novel` | `unknown` | Build a visual novel: a branching script, character and background display, a... |
 
 ### GENERAL (65 skills)
 

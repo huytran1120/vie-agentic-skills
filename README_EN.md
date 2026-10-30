@@ -58,7 +58,7 @@ The catalog-first website supports keyword/author/source search, category filter
 
 **Vie Agentic Skill (VAS)** is an open-source project authored, curated, and maintained by **Huy Tran** ([@huytran1120](https://github.com/huytran1120)) with the mission to **aggregate, curate, and standardize the world's best agentic skills** for modern AI coding assistants.
 
-Rather than leaving skills fragmented across different tools, isolated plugins, or proprietary repositories, VAS consolidates **3,093+ production-grade playbooks (`SKILL.md`)** across **119 specialized categories** into a unified ecosystem adhering to the **Open Agent Skills specification ([agentskills.io](https://agentskills.io/))**. It brings together the finest engineering runbooks from premier open-source contributors and industry organizations worldwide—including Addy Osmani, Cloudflare, Matt Pocock, Blender Studio, Google Devs, and Open Agent Skills.
+Rather than leaving skills fragmented across different tools, isolated plugins, or proprietary repositories, VAS consolidates **3,171+ production-grade playbooks (`SKILL.md`)** across **119 specialized categories** into a unified ecosystem adhering to the **Open Agent Skills specification ([agentskills.io](https://agentskills.io/))**. It brings together the finest engineering runbooks from premier open-source contributors and industry organizations worldwide—including Addy Osmani, Cloudflare, Matt Pocock, Blender Studio, Google Devs, and Open Agent Skills.
 
 Instead of treating your AI coding assistant as an entry-level intern that generates shallow answers, VAS equips agents with Senior-grade playbooks: deep diagnostic checklists, security hardening rules, performance formulas, and deterministic execution scripts.
 
@@ -233,6 +233,26 @@ Apache-2.0, `LICENSE.txt`, references, code samples and local helpers.
 SDK/JDK/Gradle, optional R8 protobuf, devices and Perfetto binary downloads are
 separate prerequisites, never automatic installation, execution or data submission.
 See the [Android VI/EN guide](docs/android.md) for all skills, agent paths and requirements.
+
+#### GameDev — 77 specialized skills and one router
+
+[Open the GameDev collection](https://huytran1120.github.io/vie-agentic-skills/?lang=en&sources=gamedev),
+choose a skill and agent, then **Copy Agent Prompt** without cloning.
+The standalone router bundles all 77 specialized companions as read-only
+references, not additional catalog entries. From a VAS checkout:
+
+```bash
+./vas install router --target cursor --mode copy --dest "/Projects/my-app/.cursor/skills"
+./vas status --target cursor --dest "/Projects/my-app/.cursor/skills"
+./vas uninstall router --target cursor --dest "/Projects/my-app/.cursor/skills"
+```
+
+`--mode link` requires keeping the checkout in place. Apache-2.0 LICENSE/NOTICE,
+support files, executable modes and the separate Go-Fonts notice are preserved.
+Only two genuinely different name collisions use `gamedev-performance-optimization`
+and `gamedev-godot-export`; existing skills stay unchanged. Engine/Pillow setup,
+helper execution and publishing are never automatic. See the
+[GameDev VI/EN guide](docs/gamedev.md) for all agent paths and prerequisites.
 
 ### 5. Agent-Specific Setup Guides
 
@@ -450,7 +470,7 @@ During `/ship` pre-flight or code auditing, 4 specialist personas can be fanned 
 
 | Dimension | Vie Agentic Skill (VAS) | Addy Osmani (`agent-skills`) | Superpowers (`obra`) | Matt Pocock Skills |
 | :--- | :--- | :--- | :--- | :--- |
-| **Catalog Scale** | **3,093+ Skills** (World's most extensive) | 25 Core Skills | ~14 Skills | ~30 Skills |
+| **Catalog Scale** | **3,171+ Skills** (World's most extensive) | 25 Core Skills | ~14 Skills | ~30 Skills |
 | **Tooling & Engine** | **Native Python 3 CLI (`./vas`) — Zero-NPX** | `npx skills` / Plugins | Git Worktrees / Shell scripts | Claude Code / `npx skills` |
 | **Dependencies & Offline**| **100% Offline, Zero external dependencies** | Requires Node & remote NPX | Requires clone & git setup | Requires Node & remote NPX |
 | **Agent Support** | **7+ AI Coding Assistants** (Antigravity, Codex, Claude, Cursor, Windsurf, Cline, Copilot) | Claude Code, Codex, Antigravity, Cursor, Copilot | Claude Code, Codex, Cursor | Claude Code primary |
@@ -463,7 +483,7 @@ During `/ship` pre-flight or code auditing, 4 specialist personas can be fanned 
 
 ### 11. Featured & Viral Skills Showcase (Top 20)
 
-VAS includes **3,093+ skills** across **119 specialized categories**. Browse the full directory in [CATALOG.md](CATALOG.md).
+VAS includes **3,171+ skills** across **119 specialized categories**. Browse the full directory in [CATALOG.md](CATALOG.md).
 
 | # | Skill ID | Stars | Capability Overview | Quick Install Command |
 | :-: | :--- | :---: | :--- | :--- |

@@ -433,6 +433,11 @@
     "android": [
       "- **[android/skills](https://github.com/android/skills/tree/6daa53ef27fa2aa87827d183a85c06cedceca833)**: 35 standalone Apache-2.0 Android development skills by Google LLC and the Android Open Source Project, including full references, Kotlin/XML samples, Python helpers, trace configurations and the upstream LICENSE.txt in every skill. Existing `android-cli` is skipped without upgrading. Only documented reversible metadata/installation notes differ; original headers and executable modes are preserved.",
       "- SDK/JDK/Gradle, compatible devices, service access and optional runtimes are separate prerequisites. The R8 converter declares protobuf 6.33.4; Play Policy helpers can fetch public Play Store pages; the Perfetto launcher can download/cache a native binary. No helper, SDK, installer, model, plugin/MCP server or network workflow runs during skill installation; explicit approval and privacy review are required before such use."
+    ],
+    "gamedev": [
+      "- **[gamedev-skills/awesome-gamedev-agent-skills](https://github.com/gamedev-skills/awesome-gamedev-agent-skills/tree/19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9)**: 77 specialized skills plus one router under Apache-2.0, Copyright 2026 Abhishek Barali and contributors. Exact LICENSE/NOTICE, local references, helper code, templates, assets, agent metadata and executable modes are retained; Ebitengine's Go-Fonts notice stays separately licensed.",
+      "- The standalone router includes the complete specialized library as read-only RUNBOOK.md companions, not additional indexed skills. Only the genuinely different game-performance and whole-Godot-build name collisions use the gamedev- prefix; existing Addy/Blender skills remain unchanged.",
+      "- Python/Pillow, Go/Ebitengine, Luau and game-engine/SDK runtimes are optional workflow prerequisites, not VAS dependencies. Installation runs no helper, installs no runtime/MCP, uses no paid generation service and never publishes, uploads builds or connects platform accounts."
     ]
   }
 }
