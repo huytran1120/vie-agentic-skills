@@ -1,12 +1,9 @@
 # 🇻🇳 Vie Agentic Skill (VAS)
 
-> **Dự án:** kế thừa [vietnam-agentic-skills](https://github.com/huytran1120/vietnam-agentic-skills) tại commit `8dd77cd14fea84ad3a9f51573461a227ae06082e`. Giữ lệnh `./vas`. Repository: [huytran1120/vie-agentic-skills](https://github.com/huytran1120/vie-agentic-skills). Website: [GitHub Pages](https://huytran1120.github.io/vie-agentic-skills/).
-> **Giấy phép:** giữ MIT của mã dự án và giấy phép riêng của từng skill. Bốn skill `pdf`, `docx`, `pptx`, `xlsx` được viết mới độc lập; không nhập các bản gốc bị cấm sao chép hoặc dump full-text cũ.
-> **Xem web:** chạy server từ gốc dự án bằng `python3 -m http.server 8765 --bind 127.0.0.1`, sau đó mở http://127.0.0.1:8765/docs/. Server phải phục vụ cả `docs/` và `skills/`.
-
 <p align="center">
   <a href="#vietnamese"><b>🇻🇳 Tiếng Việt</b></a> &nbsp;|&nbsp;
-  <a href="#english"><b>🇬🇧 English</b></a>
+  <a href="#english"><b>🇬🇧 English (In-page)</b></a> &nbsp;|&nbsp;
+  <a href="README_EN.md"><b>🇬🇧 English Edition (README_EN.md)</b></a>
 </p>
 
 <p align="center">
@@ -15,46 +12,28 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/huytran1120/vietnam-agentic-skills"><img src="https://img.shields.io/badge/Agents-Antigravity%20%7C%20Codex%20%7C%20Claude%20%7C%20Cursor%20%7C%20Windsurf%20%7C%20Cline%20%7C%20Copilot-blueviolet?style=for-the-badge" alt="Universal Agents" /></a>
-  <a href="https://github.com/huytran1120/vietnam-agentic-skills"><img src="https://img.shields.io/badge/Google%20Antigravity-4285F4?style=for-the-badge&logo=google&logoColor=white" alt="Antigravity" /></a>
-  <a href="https://github.com/huytran1120/vietnam-agentic-skills"><img src="https://img.shields.io/badge/OpenAI%20Codex-412991?style=for-the-badge&logo=openai&logoColor=white" alt="Codex" /></a>
-  <a href="https://github.com/huytran1120/vietnam-agentic-skills"><img src="https://img.shields.io/badge/Claude%20Code-D97706?style=for-the-badge&logo=anthropic&logoColor=white" alt="Claude Code" /></a>
-  <a href="https://github.com/huytran1120/vietnam-agentic-skills"><img src="https://img.shields.io/badge/Cursor-000000?style=for-the-badge&logo=cursor&logoColor=white" alt="Cursor" /></a>
-  <a href="https://github.com/huytran1120/vietnam-agentic-skills"><img src="https://img.shields.io/badge/Windsurf-09B6A2?style=for-the-badge&logo=codeium&logoColor=white" alt="Windsurf" /></a>
+  <a href="https://github.com/huytran1120/vie-agentic-skills"><img src="https://img.shields.io/badge/Agents-Antigravity%20%7C%20Codex%20%7C%20Claude%20%7C%20Cursor%20%7C%20Windsurf%20%7C%20Cline%20%7C%20Copilot-blueviolet?style=for-the-badge" alt="Universal Agents" /></a>
+  <a href="https://github.com/huytran1120/vie-agentic-skills"><img src="https://img.shields.io/badge/Google%20Antigravity-4285F4?style=for-the-badge&logo=google&logoColor=white" alt="Antigravity" /></a>
+  <a href="https://github.com/huytran1120/vie-agentic-skills"><img src="https://img.shields.io/badge/OpenAI%20Codex-412991?style=for-the-badge&logo=openai&logoColor=white" alt="Codex" /></a>
+  <a href="https://github.com/huytran1120/vie-agentic-skills"><img src="https://img.shields.io/badge/Claude%20Code-D97706?style=for-the-badge&logo=anthropic&logoColor=white" alt="Claude Code" /></a>
+  <a href="https://github.com/huytran1120/vie-agentic-skills"><img src="https://img.shields.io/badge/Cursor-000000?style=for-the-badge&logo=cursor&logoColor=white" alt="Cursor" /></a>
+  <a href="https://github.com/huytran1120/vie-agentic-skills"><img src="https://img.shields.io/badge/Windsurf-09B6A2?style=for-the-badge&logo=codeium&logoColor=white" alt="Windsurf" /></a>
 </p>
 <p align="center">
   <a href="https://huytran1120.github.io/vie-agentic-skills/"><img src="https://img.shields.io/badge/Live%20Catalog-GitHub%20Pages-00C853?style=for-the-badge&logo=githubpages&logoColor=white" alt="GitHub Pages Catalog" /></a>
-  <a href="CATALOG.md"><img src="https://img.shields.io/badge/Catalog-3%2C056%2B%20Skills-00C853?style=for-the-badge" alt="Skills Count" /></a>
+  <a href="CATALOG.md"><img src="https://img.shields.io/badge/Catalog-3%2C057%2B%20Skills-00C853?style=for-the-badge" alt="Skills Count" /></a>
   <a href="vas.py"><img src="https://img.shields.io/badge/Zero--NPX-Pure%20Python%203-FF6D00?style=for-the-badge" alt="Zero NPX" /></a>
   <a href="https://github.com/huytran1120"><img src="https://img.shields.io/badge/Author-huytran1120-6200EA?style=for-the-badge&logo=github" alt="Author" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" alt="License: MIT" /></a>
 </p>
 
-> **Web Explorer / Tra cứu kỹ năng**: [GitHub Pages](https://huytran1120.github.io/vie-agentic-skills/) · [Local preview](http://127.0.0.1:8765/docs/)
+> 🌐 **Web Explorer / Tra cứu kỹ năng trực quan**: [GitHub Pages](https://huytran1120.github.io/vie-agentic-skills/) · [Bản xem trước local](http://127.0.0.1:8765/docs/)  
+> 🎨 **Bộ sưu tập mới nổi bật**: Đã tích hợp trọn bộ **94 kỹ năng Blender Studio** ([arjun988/blender-skills](https://github.com/arjun988/blender-skills)) cho 3D modeling, texturing, animation và pipeline! Xem chi tiết tại mục [Blender Studio](#blender-studio).
 
-Giao diện web ưu tiên danh mục: tìm theo từ khóa/tác giả/nguồn, lọc danh mục, chọn agent và sao chép lệnh cài ngay trong kết quả. Số lượng lấy trực tiếp từ catalog; không có số lượt tải hoặc đánh giá giả. Website chỉ cung cấp lệnh, không tự cài vào máy. Chạy `python3 -m http.server 8765 --bind 127.0.0.1` để xem bản local. Kiểm tra giao diện: `node --test tests/pages.test.cjs`.
-
-### Blender Studio — 94 skill
-
-Đã nhập bộ [arjun988/blender-skills](https://github.com/arjun988/blender-skills)
-tại commit `8f778d2405a214b508d4c7d80742be8e43acdd52` với namespace
-`blender-skills/<name>`, không ghi đè các skill hiện có. Giữ tài liệu tham chiếu
-và giấy phép MIT trong từng skill; chỉ nhập một bản canonical, không nhân đôi
-bản Cursor. Xem [ghi chú nhập bộ Blender](skills/blender-skills/README.md).
-
-```bash
-./vas list --category blender
-./vas install blender-skills/blender-director blender-skills/blender-modeler --target claude --global
-```
-
-Blender và kết nối Blender MCP là yêu cầu riêng. VAS không tự cài Blender,
-khởi chạy server hay cấp quyền MCP. Chế độ link cần giữ nguyên kho nguồn;
-dùng `--mode copy` nếu muốn sao chép skill cùng tài liệu tham chiếu.
-
-GitHub Pages tự triển khai từ `main` bằng `.github/workflows/deploy-pages.yml`.
-Build `python3 scripts/build_pages.py` tạo `_site/` gồm website, toàn bộ skill
-và tài liệu liên quan, với đường dẫn đúng dưới `/vie-agentic-skills/`. Để xem
-chính artifact xuất bản, phục vụ gốc dự án rồi mở `http://127.0.0.1:8765/_site/`.
+Giao diện web ưu tiên danh mục: tìm theo từ khóa/tác giả/nguồn, lọc danh mục, chọn agent và sao chép lệnh cài ngay trong kết quả. Số lượng lấy trực tiếp từ catalog; không có số lượt tải hoặc đánh giá giả. Website chỉ cung cấp lệnh, không tự cài vào máy.  
+* **Chạy local**: `python3 -m http.server 8765 --bind 127.0.0.1` và mở `http://127.0.0.1:8765/docs/`.  
+* **Kiểm tra giao diện**: `node --test tests/pages.test.cjs`.  
+* **Tự động triển khai**: GitHub Pages tự triển khai từ `main` qua `.github/workflows/deploy-pages.yml` (hoặc build artifact bằng `python3 scripts/build_pages.py` tạo `_site/`).
 
 ---
 
@@ -80,11 +59,11 @@ chính artifact xuất bản, phục vụ gốc dự án rồi mở `http://127.
 
 ### 1. Giới Thiệu
 
-**Vie Agentic Skill (VAS)** là bản local kế thừa kho kỹ năng agentic được tuyển chọn bởi **Huy Tran** ([@huytran1120](https://github.com/huytran1120)).
+**Vie Agentic Skill (VAS)** là dự án do **Huy Tran** ([@huytran1120](https://github.com/huytran1120)) sáng lập và phát triển, với mục tiêu **tổng hợp, chọn lọc và chuẩn hóa toàn bộ các kỹ năng agentic (agent skills) tốt nhất trên thế giới** cho các AI Coding Agent.
 
-Dự án cung cấp **3,057+ playbooks (`SKILL.md`)** chuyên sâu thuộc 119 danh mục công nghệ, tuân thủ nghiêm ngặt **Chuẩn mở Agent Skills Quốc tế ([agentskills.io](https://agentskills.io/))**.
+Thay vì để các kỹ năng bị phân mảnh ở nhiều công cụ, định dạng hay nền tảng khác nhau, VAS quy tụ hơn **3,057+ playbooks (`SKILL.md`)** chuyên sâu thuộc **119 danh mục công nghệ**, được chuẩn hóa nghiêm ngặt theo **Chuẩn mở Agent Skills Quốc tế ([agentskills.io](https://agentskills.io/))**. Dự án tổng hợp tinh hoa từ các chuyên gia, tổ chức kỹ thuật và cộng đồng mã nguồn mở uy tín nhất toàn cầu (như Addy Osmani, Cloudflare, Matt Pocock, Blender Studio, Google Devs, Open Agent Skills...).
 
-Với VAS, các AI Coding Agent không còn là lập trình viên chung chung, mà biến thành các cộng sự kỹ thuật cấp Senior thực thụ: có checklist bảo mật, quy trình kiểm thử, công thức tối ưu và kịch bản thực thi chính xác.
+Với VAS, các AI Coding Agent không còn là lập trình viên chung chung sinh code nông cạn, mà biến thành các cộng sự kỹ thuật cấp Senior thực thụ: có checklist bảo mật, quy trình kiểm thử TDD, công thức tối ưu và kịch bản thực thi chính xác.
 
 ---
 
@@ -92,7 +71,7 @@ Với VAS, các AI Coding Agent không còn là lập trình viên chung chung, 
 
 VAS hỗ trợ cài đặt bằng một câu lệnh duy nhất cho tất cả các AI coding tools thịnh hành nhất hiện nay:
 
-| AI Agent / IDE | Thư Mục Mục Tiêu | Lệnh Cài Đặt Nhanh |
+| AI Agent / IDE | Thư Mục Đích | Lệnh Cài Đặt Nhanh |
 | :--- | :--- | :--- |
 | **Google Antigravity** | `.agents/skills/` hoặc `~/.gemini/antigravity/skills/` | `./vas install <skill> --target antigravity` |
 | **OpenAI Codex / OpenCode** | `.codex/skills/` hoặc `.agents/skills/` | `./vas install <skill> --target codex` |
@@ -372,7 +351,7 @@ Lấy cảm hứng và đồng bộ trực tiếp từ bộ kỹ năng tiêu chu
 | [`context-engineering`](skills/context-engineering/SKILL.md) | Nạp đúng thông tin vào đúng thời điểm: rules files, context packing, MCP tool scoping | Bắt đầu phiên làm việc, chuyển đổi tác vụ, hoặc khi chất lượng output giảm sút |
 | [`source-driven-development`](skills/source-driven-development/SKILL.md) | Căn cứ mọi quyết định framework trên tài liệu chính thức (official docs), dẫn nguồn đầy đủ, cảnh báo pattern lỗi thời | Cần code chính xác tuyệt đối, tránh pattern bị deprecated |
 | [`doubt-driven-development`](skills/doubt-driven-development/SKILL.md) | Đánh giá nghịch đảo trong ngữ cảnh tươi mới: YÊU CẦU → TRÍCH XUẤT → HOÀI NGHI → ĐỐI CHIẾU → DỪNG LẠI | Mã nguồn ở hệ thống trọng yếu (production, security), hoặc code lạ |
-| [`frontend-ui-engineering`](skills/frontend-ui-engineering/SKILL.md) | Kiến trúc component, quản lý state, responsive design, tiêu chuẩn tiếp cận tiếp cận WCAG 2.1 AA | Xây dựng hoặc tinh chỉnh giao diện người dùng frontend |
+| [`frontend-ui-engineering`](skills/frontend-ui-engineering/SKILL.md) | Kiến trúc component, quản lý state, responsive design, tiêu chuẩn tiếp cận WCAG 2.1 AA | Xây dựng hoặc tinh chỉnh giao diện người dùng frontend |
 | [`api-and-interface-design`](skills/api-and-interface-design/SKILL.md) | Thiết kế Contract-first, định luật Hyrum, One-Version Rule, ngữ nghĩa mã lỗi, kiểm tra ranh giới dữ liệu | Thiết kế API endpoint, ranh giới module hoặc public interface |
 
 ##### 🔍 4. Verify - Kiểm Chứng & Gỡ Lỗi
@@ -677,6 +656,24 @@ Tích hợp trực tiếp từ repo mã nguồn mở chính thức của Cloudfl
 
 ---
 
+<a id="blender-studio"></a>
+#### 🧊 Blender Studio — Bộ 94 Kỹ Năng 3D Animation & Pipeline
+
+Đã nhập trọn bộ [arjun988/blender-skills](https://github.com/arjun988/blender-skills) tại commit `8f778d2405a214b508d4c7d80742be8e43acdd52` với namespace `blender-skills/<name>`, không ghi đè các skill hiện có. Giữ nguyên tài liệu tham chiếu và giấy phép MIT trong từng skill; chỉ nhập một bản canonical, không nhân đôi bản Cursor. Xem [ghi chú nhập bộ Blender](skills/blender-skills/README.md) và [bản ghi mã băm sha256](data/blender-import.json).
+
+```bash
+# Liệt kê tất cả 94 kỹ năng trong danh mục blender:
+./vas list --category blender
+
+# Cài đặt các kỹ năng điều phối & dựng hình Blender:
+./vas install blender-skills/blender-director blender-skills/blender-modeler --target claude --global
+./vas install blender-skills/geometry-nodes blender-skills/texture-workflow --target antigravity
+```
+
+*Lưu ý:* Phần mềm Blender và kết nối Blender MCP là yêu cầu riêng độc lập. VAS không tự cài Blender, khởi chạy server hay cấp quyền MCP. Chế độ link (`--mode link`) cần giữ nguyên kho nguồn; dùng `--mode copy` nếu muốn sao chép skill cùng tài liệu tham chiếu sang dự án đích.
+
+---
+
 #### 🎬 Siêu Bộ 20 Kỹ Năng Creative Coding, Motion Design & Lập Trình Video
 
 VAS tích hợp trọn bộ 20 công cụ tiêu chuẩn hàng đầu cho AI Agent trong lĩnh vực đồ họa, animation, mô phỏng vật lý 2D/3D, audio và kết xuất video thuần code:
@@ -770,6 +767,9 @@ Bộ công cụ 42 kịch bản tự động hóa xử lý âm thanh và video b
 
 ### 12. Câu Hỏi Thường Gặp (FAQ)
 
+**Q: Mục đích ra đời của Vie Agentic Skill (VAS) là gì?**  
+Dự án do tác giả Huy Tran sáng lập nhằm giải quyết sự phân mảnh các kỹ năng agent trên toàn thế giới. Thay vì người dùng phải tìm kiếm rời rạc, đối mặt với lỗi cài đặt hoặc phụ thuộc `npx` qua mạng, VAS tổng hợp, tinh tuyển và chuẩn hóa toàn bộ các kỹ năng AI hàng đầu thế giới (từ Google, Addy Osmani, Cloudflare, Matt Pocock, Blender Studio...) vào một kho lưu trữ duy nhất theo chuẩn mở [agentskills.io](https://agentskills.io/), hỗ trợ cài đặt tức thì vào mọi AI coding agent chỉ bằng một câu lệnh Python thuần 100% offline.
+
 **Q: Bộ 25 kỹ năng kỹ sư cấp cao của Addy Osmani mang lại giá trị gì cho AI Agent?**  
 AI coding agent mặc định thường chọn con đường tắt có điện trở thấp nhất: bỏ qua PRD/spec, nhảy vào viết code ngay mà không viết test, bỏ qua rà soát bảo mật OWASP, hoặc ngụy biện rằng "chắc là code chạy được". Bộ 25 kỹ năng cung cấp quy trình chặt chẽ (SDLC), trạm kiểm soát bắt buộc (checkpoints), bảng phản bác ngụy biện (Anti-Rationalization) và yêu cầu cung cấp bằng chứng định lượng (test pass, log trace, DOM thực tế) trước khi chuyển bước.
 
@@ -789,11 +789,19 @@ Dù bạn cài hàng trăm kỹ năng, AI agent chỉ quét phần tóm tắt ng
 
 ### 13. Tác Giả & Giấy Phép
 
-* **Tác giả & Duy trì**: **Huy Tran** ([@huytran1120](https://github.com/huytran1120))
+* **Tác giả & Sáng lập**: **Huy Tran** ([@huytran1120](https://github.com/huytran1120))
 * **Email**: `66549585+huytran1120@users.noreply.github.com`
-* **Kho nguồn upstream**: [https://github.com/huytran1120/vietnam-agentic-skills](https://github.com/huytran1120/vietnam-agentic-skills)
-* **Website Catalog**: [http://127.0.0.1:8765/docs/](http://127.0.0.1:8765/docs/)
-* **Giấy phép**: [MIT License](LICENSE) — Áp dụng cho mã dự án; từng skill giữ giấy phép riêng, không mặc định tất cả đều là MIT.
+* **Repository**: [https://github.com/huytran1120/vie-agentic-skills](https://github.com/huytran1120/vie-agentic-skills)
+* **Website Catalog**: [GitHub Pages](https://huytran1120.github.io/vie-agentic-skills/) · [Local preview](http://127.0.0.1:8765/docs/)
+* **Mục tiêu dự án**: Tổng hợp, chuẩn hóa và cung cấp kho kỹ năng AI agent toàn diện nhất thế giới cho cộng đồng lập trình viên.
+* **Giấy phép**: [MIT License](LICENSE) — Áp dụng cho mã nguồn công cụ dự án; các kỹ năng được tổng hợp giữ nguyên giấy phép và quyền tác giả ban đầu.
+
+---
+
+<p align="center">
+  <b>Được sáng lập, tổng hợp & phát triển bởi Huy Tran 🇻🇳 🌏</b><br>
+  <i>Mọi đóng góp, đề xuất tổng hợp kỹ năng mới hoặc báo lỗi vui lòng gửi qua <a href="https://github.com/huytran1120/vie-agentic-skills/issues">GitHub Issues</a>.</i>
+</p>
 
 ---
 
@@ -819,9 +827,9 @@ Dù bạn cài hàng trăm kỹ năng, AI agent chỉ quét phần tóm tắt ng
 
 ### 1. Overview
 
-**Vie Agentic Skill (VAS)** is a vendor-neutral, production-ready catalog of **3,057+ modular agentic skills**, adapted locally from the upstream catalog curated by **Huy Tran** ([@huytran1120](https://github.com/huytran1120)).
+**Vie Agentic Skill (VAS)** is an open-source project authored, curated, and maintained by **Huy Tran** ([@huytran1120](https://github.com/huytran1120)) with the mission to **aggregate, curate, and standardize the world's best agentic skills** for modern AI coding assistants.
 
-VAS strictly adheres to the **Open Agent Skills specification ([agentskills.io](https://agentskills.io/))** and is engineered specifically for AI coding agents such as **Google Antigravity, OpenAI Codex / OpenCode, Claude Code, Cursor, Windsurf (Codeium), Cline / Roo Code, and GitHub Copilot CLI**.
+Rather than leaving skills fragmented across different tools, isolated plugins, or proprietary repositories, VAS consolidates **3,057+ production-grade playbooks (`SKILL.md`)** across **119 specialized categories** into a unified ecosystem adhering to the **Open Agent Skills specification ([agentskills.io](https://agentskills.io/))**. It brings together the finest engineering runbooks from premier open-source contributors and industry organizations worldwide—including Addy Osmani, Cloudflare, Matt Pocock, Blender Studio, Google Devs, and Open Agent Skills.
 
 Instead of treating your AI coding assistant as an entry-level intern that generates shallow answers, VAS equips agents with Senior-grade playbooks: deep diagnostic checklists, security hardening rules, performance formulas, and deterministic execution scripts.
 
@@ -1418,6 +1426,24 @@ Enterprise-grade security guidance and adversarial vulnerability review pipeline
 
 ---
 
+<a id="blender-studio-en"></a>
+#### 🧊 Blender Studio — 94-Skill 3D Modeling & Animation Suite
+
+The MIT-licensed [arjun988/blender-skills](https://github.com/arjun988/blender-skills) pack is pinned to `8f778d2405a214b508d4c7d80742be8e43acdd52` and imported once under `blender-skills/<name>`. Each skill includes its complete reference files and MIT notice. See [import notes](skills/blender-skills/README.md) and [source/vendored hashes](data/blender-import.json).
+
+```bash
+# List all 94 Blender skills:
+./vas list --category blender
+
+# Install core skills for your preferred AI agent:
+./vas install blender-skills/blender-director blender-skills/blender-modeler --target claude --global
+./vas install blender-skills/geometry-nodes blender-skills/texture-workflow --target antigravity
+```
+
+*Prerequisites Note:* Blender and a compatible Blender MCP server connection are separate prerequisites. VAS provides standardized agent playbooks and execution guides; it does not install Blender or launch external daemons. Use `--mode copy` for an independent workspace copy; `--mode link` requires preserving the repository source tree.
+
+---
+
 #### 🎬 The 20 Creative Coding, Motion & Programmatic Video Stack
 
 VAS integrates the comprehensive modern stack of 20 creative coding, animation, 2D/3D physics, audio, and programmatic video rendering tools for AI agents:
@@ -1511,6 +1537,9 @@ A comprehensive 42-script automation toolkit for pure Python local video and aud
 
 ### 12. Frequently Asked Questions (FAQ)
 
+**Q: What is the primary purpose and mission of Vie Agentic Skill (VAS)?**  
+Created and curated by author Huy Tran, VAS was founded to solve skill fragmentation across modern AI coding assistants. Instead of scattered repositories or brittle remote `npx` installs, VAS aggregates, standardizes, and curates world-class agentic workflows from industry leaders and open-source pioneers (Google, Addy Osmani, Cloudflare, Matt Pocock, Blender Studio, and more) into a unified open specification ([agentskills.io](https://agentskills.io/)), empowering developers with instant, offline, zero-NPX tooling across 7+ major AI coding agents.
+
 **Q: What value does the 25 Addy Osmani Senior Engineering skills suite bring to AI coding agents?**  
 AI coding agents default to the path of least resistance: bypassing specs, jumping straight to code without test coverage, ignoring OWASP threat boundaries, and rationalizing that "it seems to work". The 25 production-grade skills enforce a disciplined 6-phase SDLC (Define → Plan → Build → Verify → Review → Ship) with anti-rationalization tables and strict evidence requirements before code can ship.
 
@@ -1530,15 +1559,16 @@ Even with hundreds of skills installed, AI agents initially only load the short 
 
 ### 13. Author & License
 
-* **Curator & Maintainer**: **Huy Tran** ([@huytran1120](https://github.com/huytran1120))
+* **Author & Curator**: **Huy Tran** ([@huytran1120](https://github.com/huytran1120))
 * **Email**: `66549585+huytran1120@users.noreply.github.com`
-* **Upstream Repository**: [https://github.com/huytran1120/vietnam-agentic-skills](https://github.com/huytran1120/vietnam-agentic-skills)
-* **Local Catalog**: [http://127.0.0.1:8765/docs/](http://127.0.0.1:8765/docs/)
-* **License**: [MIT License](LICENSE) — Applies to project code; individual skills retain their own licenses and restrictions.
+* **Repository**: [https://github.com/huytran1120/vie-agentic-skills](https://github.com/huytran1120/vie-agentic-skills)
+* **Website Catalog**: [GitHub Pages](https://huytran1120.github.io/vie-agentic-skills/) · [Local preview](http://127.0.0.1:8765/docs/)
+* **Project Mission**: Aggregating, standardizing, and curating world-class agentic skills for AI developers and coding agents worldwide.
+* **License**: [MIT License](LICENSE) — Applies to project engine and tooling; individual aggregated skills preserve their original licenses and attribution.
 
 ---
 
 <p align="center">
-  <b>Proudly developed & optimized for the global developer and AI agent community 🇻🇳 🌏</b><br>
-  <i>Upstream feedback can be directed to the original project via <a href="https://github.com/huytran1120/vietnam-agentic-skills/issues">GitHub Issues</a>.</i>
+  <b>Proudly created, aggregated & maintained by Huy Tran 🇻🇳 🌏</b><br>
+  <i>Feedback, new skill suggestions, and issues are welcomed via <a href="https://github.com/huytran1120/vie-agentic-skills/issues">GitHub Issues</a>.</i>
 </p>

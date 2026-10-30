@@ -1,12 +1,8 @@
 # 🇻🇳 Vie Agentic Skill (VAS) - English Edition
 
-> **Project:** based on [vietnam-agentic-skills](https://github.com/huytran1120/vietnam-agentic-skills), revision `8dd77cd14fea84ad3a9f51573461a227ae06082e`. The `./vas` command is unchanged. Repository: [huytran1120/vie-agentic-skills](https://github.com/huytran1120/vie-agentic-skills). Website: [GitHub Pages](https://huytran1120.github.io/vie-agentic-skills/).
-> **Licensing:** project code retains MIT; skills retain their individual licenses. `pdf`, `docx`, `pptx`, `xlsx` are independently authored replacements, not copies of the restricted originals. Old full-text distribution dumps are omitted.
-> **Preview:** run `python3 -m http.server 8765 --bind 127.0.0.1` from the project root and open http://127.0.0.1:8765/docs/. Serve both `docs/` and `skills/`, not just `docs/`.
-
 <p align="center">
-  <a href="README.md#vietnamese"><b>🇻🇳 Tiếng Việt</b></a> &nbsp;|&nbsp;
-  <a href="README.md#english"><b>🇬🇧 English (Bilingual README)</b></a>
+  <a href="README.md#vietnamese"><b>🇻🇳 Tiếng Việt (Bilingual README)</b></a> &nbsp;|&nbsp;
+  <a href="README_EN.md"><b>🇬🇧 English Edition</b></a>
 </p>
 
 <p align="center">
@@ -15,44 +11,29 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/huytran1120/vietnam-agentic-skills"><img src="https://img.shields.io/badge/Agents-Antigravity%20%7C%20Codex%20%7C%20Claude%20%7C%20Cursor%20%7C%20Windsurf%20%7C%20Cline%20%7C%20Copilot-blueviolet?style=for-the-badge" alt="Universal Agents" /></a>
-  <a href="https://github.com/huytran1120/vietnam-agentic-skills"><img src="https://img.shields.io/badge/Google%20Antigravity-4285F4?style=for-the-badge&logo=google&logoColor=white" alt="Antigravity" /></a>
-  <a href="https://github.com/huytran1120/vietnam-agentic-skills"><img src="https://img.shields.io/badge/OpenAI%20Codex-412991?style=for-the-badge&logo=openai&logoColor=white" alt="Codex" /></a>
-  <a href="https://github.com/huytran1120/vietnam-agentic-skills"><img src="https://img.shields.io/badge/Claude%20Code-D97706?style=for-the-badge&logo=anthropic&logoColor=white" alt="Claude Code" /></a>
-  <a href="https://github.com/huytran1120/vietnam-agentic-skills"><img src="https://img.shields.io/badge/Cursor-000000?style=for-the-badge&logo=cursor&logoColor=white" alt="Cursor" /></a>
-  <a href="https://github.com/huytran1120/vietnam-agentic-skills"><img src="https://img.shields.io/badge/Windsurf-09B6A2?style=for-the-badge&logo=codeium&logoColor=white" alt="Windsurf" /></a>
+  <a href="https://github.com/huytran1120/vie-agentic-skills"><img src="https://img.shields.io/badge/Agents-Antigravity%20%7C%20Codex%20%7C%20Claude%20%7C%20Cursor%20%7C%20Windsurf%20%7C%20Cline%20%7C%20Copilot-blueviolet?style=for-the-badge" alt="Universal Agents" /></a>
+  <a href="https://github.com/huytran1120/vie-agentic-skills"><img src="https://img.shields.io/badge/Google%20Antigravity-4285F4?style=for-the-badge&logo=google&logoColor=white" alt="Antigravity" /></a>
+  <a href="https://github.com/huytran1120/vie-agentic-skills"><img src="https://img.shields.io/badge/OpenAI%20Codex-412991?style=for-the-badge&logo=openai&logoColor=white" alt="Codex" /></a>
+  <a href="https://github.com/huytran1120/vie-agentic-skills"><img src="https://img.shields.io/badge/Claude%20Code-D97706?style=for-the-badge&logo=anthropic&logoColor=white" alt="Claude Code" /></a>
+  <a href="https://github.com/huytran1120/vie-agentic-skills"><img src="https://img.shields.io/badge/Cursor-000000?style=for-the-badge&logo=cursor&logoColor=white" alt="Cursor" /></a>
+  <a href="https://github.com/huytran1120/vie-agentic-skills"><img src="https://img.shields.io/badge/Windsurf-09B6A2?style=for-the-badge&logo=codeium&logoColor=white" alt="Windsurf" /></a>
 </p>
 <p align="center">
   <a href="https://huytran1120.github.io/vie-agentic-skills/"><img src="https://img.shields.io/badge/Live%20Catalog-GitHub%20Pages-00C853?style=for-the-badge&logo=githubpages&logoColor=white" alt="GitHub Pages Catalog" /></a>
-  <a href="CATALOG.md"><img src="https://img.shields.io/badge/Catalog-3%2C056%2B%20Skills-00C853?style=for-the-badge" alt="Skills Count" /></a>
+  <a href="CATALOG.md"><img src="https://img.shields.io/badge/Catalog-3%2C057%2B%20Skills-00C853?style=for-the-badge" alt="Skills Count" /></a>
   <a href="vas.py"><img src="https://img.shields.io/badge/Zero--NPX-Pure%20Python%203-FF6D00?style=for-the-badge" alt="Zero NPX" /></a>
   <a href="https://github.com/huytran1120"><img src="https://img.shields.io/badge/Author-huytran1120-6200EA?style=for-the-badge&logo=github" alt="Author" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" alt="License: MIT" /></a>
 </p>
 
-> **Web Explorer**: [GitHub Pages](https://huytran1120.github.io/vie-agentic-skills/) · [Local preview](http://127.0.0.1:8765/docs/)
+> 🌐 **Web Explorer / Live Interactive Catalog**: [GitHub Pages](https://huytran1120.github.io/vie-agentic-skills/) · [Local preview](http://127.0.0.1:8765/docs/)  
+> 🎨 **New Feature Suite**: Integrated the complete **94 Blender Studio skills** ([arjun988/blender-skills](https://github.com/arjun988/blender-skills)) for 3D modeling, texturing, animation & pipeline! See [Blender Studio Suite](#blender-studio).
 
-### Blender Studio — 94 skills
-
-The MIT-licensed [arjun988/blender-skills](https://github.com/arjun988/blender-skills)
-pack is pinned to `8f778d2405a214b508d4c7d80742be8e43acdd52` and imported once
-under `blender-skills/<name>`. Each skill includes its reference files and MIT
-notice. See [import notes](skills/blender-skills/README.md) and
-[source/vendored hashes](data/blender-import.json).
-
-```bash
-./vas list --category blender
-./vas install blender-skills/blender-director blender-skills/blender-modeler --target claude --global
-```
-
-Blender and a compatible Blender MCP connection are separate prerequisites:
-VAS does not install Blender, start a server or grant MCP permissions.
-Use `--mode copy` for an independent copy; links require keeping the source.
-GitHub Pages deploys from `main`. `python3 scripts/build_pages.py` stages the
-complete site in `_site/`, including runbooks and support files; serve the
-repository root and open `http://127.0.0.1:8765/_site/` to preview that artifact.
-
-The catalog-first website supports keyword/author/source search, category filters, agent selection, and inline install commands. Counts come from the actual catalog; no download or rating figures are fabricated. The website copies commands, not installs software on your machine. Preview locally with `python3 -m http.server 8765 --bind 127.0.0.1`. Run the UI logic regressions with `node --test tests/pages.test.cjs`.
+The catalog-first website supports keyword/author/source search, category filters, agent selection, and inline install commands. Counts come directly from the actual catalog; no download or rating figures are fabricated. The website copies commands, not installs software on your machine.  
+* **Local preview**: `python3 -m http.server 8765 --bind 127.0.0.1` and open `http://127.0.0.1:8765/docs/`.  
+* **UI logic tests**: `node --test tests/pages.test.cjs`.  
+* **Layout regressions**: `python3 -B -m unittest discover -s tests -p 'test_pages_layout.py'` or open `http://127.0.0.1:8765/tests/pages-layout.html`.  
+* **Automated deployment**: GitHub Pages automatically deploys from `main` via `.github/workflows/deploy-pages.yml` (or build manually with `python3 scripts/build_pages.py` staging into `_site/`).
 
 ---
 
@@ -75,9 +56,9 @@ The catalog-first website supports keyword/author/source search, category filter
 
 ### 1. Overview
 
-**Vie Agentic Skill (VAS)** is a vendor-neutral, production-ready catalog of **3,057+ modular agentic skills**, adapted locally from the upstream catalog curated by **Huy Tran** ([@huytran1120](https://github.com/huytran1120)).
+**Vie Agentic Skill (VAS)** is an open-source project authored, curated, and maintained by **Huy Tran** ([@huytran1120](https://github.com/huytran1120)) with the mission to **aggregate, curate, and standardize the world's best agentic skills** for modern AI coding assistants.
 
-VAS strictly adheres to the **Open Agent Skills specification ([agentskills.io](https://agentskills.io/))** and is engineered specifically for modern AI coding agents such as **Google Antigravity, OpenAI Codex / OpenCode, Claude Code, Cursor, Windsurf (Codeium), Cline / Roo Code, and GitHub Copilot CLI**.
+Rather than leaving skills fragmented across different tools, isolated plugins, or proprietary repositories, VAS consolidates **3,057+ production-grade playbooks (`SKILL.md`)** across **119 specialized categories** into a unified ecosystem adhering to the **Open Agent Skills specification ([agentskills.io](https://agentskills.io/))**. It brings together the finest engineering runbooks from premier open-source contributors and industry organizations worldwide—including Addy Osmani, Cloudflare, Matt Pocock, Blender Studio, Google Devs, and Open Agent Skills.
 
 Instead of treating your AI coding assistant as an entry-level intern that generates shallow answers, VAS equips agents with Senior-grade playbooks: deep diagnostic checklists, security hardening rules, performance formulas, and deterministic execution scripts.
 
@@ -674,6 +655,24 @@ Enterprise-grade security guidance and adversarial vulnerability review pipeline
 
 ---
 
+<a id="blender-studio"></a>
+#### 🧊 Blender Studio — 94-Skill 3D Modeling & Animation Suite
+
+The MIT-licensed [arjun988/blender-skills](https://github.com/arjun988/blender-skills) pack is pinned to `8f778d2405a214b508d4c7d80742be8e43acdd52` and imported once under `blender-skills/<name>`. Each skill includes its complete reference files and MIT notice. See [import notes](skills/blender-skills/README.md) and [source/vendored hashes](data/blender-import.json).
+
+```bash
+# List all 94 Blender skills:
+./vas list --category blender
+
+# Install core skills for your preferred AI agent:
+./vas install blender-skills/blender-director blender-skills/blender-modeler --target claude --global
+./vas install blender-skills/geometry-nodes blender-skills/texture-workflow --target antigravity
+```
+
+*Prerequisites Note:* Blender and a compatible Blender MCP server connection are separate prerequisites. VAS provides standardized agent playbooks and execution guides; it does not install Blender or launch external daemons. Use `--mode copy` for an independent workspace copy; `--mode link` requires preserving the repository source tree.
+
+---
+
 #### 🎬 The 20 Creative Coding, Motion & Programmatic Video Stack
 
 VAS integrates the comprehensive modern stack of 20 creative coding, animation, 2D/3D physics, audio, and programmatic video rendering tools for AI agents:
@@ -767,6 +766,9 @@ A comprehensive 42-script automation toolkit for pure Python local video and aud
 
 ### 12. Frequently Asked Questions (FAQ)
 
+**Q: What is the primary purpose and mission of Vie Agentic Skill (VAS)?**  
+Created and curated by author Huy Tran, VAS was founded to solve skill fragmentation across modern AI coding assistants. Instead of scattered repositories or brittle remote `npx` installs, VAS aggregates, standardizes, and curates world-class agentic workflows from industry leaders and open-source pioneers (Google, Addy Osmani, Cloudflare, Matt Pocock, Blender Studio, and more) into a unified open specification ([agentskills.io](https://agentskills.io/)), empowering developers with instant, offline, zero-NPX tooling across 7+ major AI coding agents.
+
 **Q: What value does the 25 Addy Osmani Senior Engineering skills suite bring to AI coding agents?**  
 AI coding agents default to the path of least resistance: bypassing specs, jumping straight to code without test coverage, ignoring OWASP threat boundaries, and rationalizing that "it seems to work". The 25 production-grade skills enforce a disciplined 6-phase SDLC (Define → Plan → Build → Verify → Review → Ship) with anti-rationalization tables and strict evidence requirements before code can ship.
 
@@ -786,15 +788,16 @@ Even with hundreds of skills installed, AI agents initially only load the short 
 
 ### 13. Author & License
 
-* **Curator & Maintainer**: **Huy Tran** ([@huytran1120](https://github.com/huytran1120))
+* **Author & Curator**: **Huy Tran** ([@huytran1120](https://github.com/huytran1120))
 * **Email**: `66549585+huytran1120@users.noreply.github.com`
-* **Upstream Repository**: [https://github.com/huytran1120/vietnam-agentic-skills](https://github.com/huytran1120/vietnam-agentic-skills)
-* **Local Catalog**: [http://127.0.0.1:8765/docs/](http://127.0.0.1:8765/docs/)
-* **License**: [MIT License](LICENSE) — Applies to project code; individual skills retain their own licenses and restrictions.
+* **Repository**: [https://github.com/huytran1120/vie-agentic-skills](https://github.com/huytran1120/vie-agentic-skills)
+* **Website Catalog**: [GitHub Pages](https://huytran1120.github.io/vie-agentic-skills/) · [Local preview](http://127.0.0.1:8765/docs/)
+* **Project Mission**: Aggregating, standardizing, and curating world-class agentic skills for AI developers and coding agents worldwide.
+* **License**: [MIT License](LICENSE) — Applies to project engine and tooling; individual aggregated skills preserve their original licenses and attribution.
 
 ---
 
 <p align="center">
-  <b>Proudly developed & optimized for the global developer and AI agent community 🇻🇳 🌏</b><br>
-  <i>Upstream feedback can be directed to the original project via <a href="https://github.com/huytran1120/vietnam-agentic-skills/issues">GitHub Issues</a>.</i>
+  <b>Proudly created, aggregated & maintained by Huy Tran 🇻🇳 🌏</b><br>
+  <i>Feedback, new skill suggestions, and issues are welcomed via <a href="https://github.com/huytran1120/vie-agentic-skills/issues">GitHub Issues</a>.</i>
 </p>
