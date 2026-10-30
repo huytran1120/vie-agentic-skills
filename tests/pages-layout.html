@@ -239,6 +239,46 @@
         check(d.documentElement.scrollWidth <= w.innerWidth, `Hallmark ${locale} ${width}px: details must fit the viewport`);
       }
     }
+    d.querySelector('[data-back-library]').click();
+    d.getElementById('typesafe-collection').click();
+    check(new URL(w.location.href).searchParams.get('sources') === 'typesafe', 'TypeSafe shortcut must select its source');
+    check(d.querySelectorAll('#skills-results [data-skill]').length === 1, 'TypeSafe source must contain exactly one skill');
+    d.getElementById('open-filters').click();
+    check(d.querySelector('input[name="mobile-source"][value="typesafe"]').checked, 'Mobile filters must retain the TypeSafe source');
+    d.getElementById('apply-mobile-filters').click();
+    check(d.querySelector('input[name="source"][value="typesafe"]').checked, 'Desktop and mobile TypeSafe sources must agree');
+    d.querySelector('[data-open-skill="typesafe-ai"]').click();
+    await waitFor(() => d.getElementById('runbook-content').getAttribute('aria-busy') === 'false', 'TypeSafe runbook must finish loading');
+    check(d.getElementById('runbook-content').textContent.includes('TYPESAFE_API_KEY'), 'TypeSafe must expose service prerequisites');
+    check(d.getElementById('runbook-content').textContent.replace(/\s+/g, ' ').includes('Ask the user for permission first'), 'TypeSafe must retain API consent instructions');
+    const typesafeManifest = await (await w.fetch(new URL('install-manifests/typesafe-ai.json', manifestBase))).json();
+    check(typesafeManifest.available && typesafeManifest.files.length === 2, 'TypeSafe quick installation must use the complete committed payload');
+    check(typesafeManifest.revision !== '302eea662c54bca6730873fe245bec1d69ebc23d', 'TypeSafe manifest must pin VAS, not upstream');
+    const typesafeRoot = new URL(`${d.documentElement.dataset.skillBase}/skills/typesafe-ai/`, w.location.href);
+    const licenseResponse = await w.fetch(new URL('LICENSE', typesafeRoot));
+    check(licenseResponse.ok && (await licenseResponse.text()).includes('Copyright (c) 2026 TypeSafe AI'), 'TypeSafe license must ship beside the runbook');
+    for (const locale of ['vi', 'en']) {
+      language(locale);
+      for (const target of ['cursor', 'copilot']) {
+        change('agent-select', target);
+        installPrompt = null;
+        d.querySelector('#skill-detail [data-copy-agent-prompt]').click();
+        await waitFor(() => Boolean(installPrompt), 'TypeSafe installation prompt must copy');
+        check(installPrompt.startsWith(locale === 'vi' ? 'Hãy cài đặt skill' : 'Please install'), 'TypeSafe prompts must follow the interface language');
+        const folder = target === 'cursor' ? '.cursor' : '.github';
+        check(installPrompt.includes(`"${folder}/skills/typesafe-ai/"`), 'TypeSafe prompts must follow agent changes');
+      }
+      for (const width of [1440, 390, 320]) {
+        frame.style.width = `${width}px`;
+        await wait(80);
+        check(d.documentElement.scrollWidth <= w.innerWidth, `TypeSafe ${locale} ${width}px: details must fit the viewport`);
+      }
+    }
+    Object.defineProperty(w.navigator, 'clipboard', { configurable: true, value: { writeText: async () => { throw new Error('Clipboard blocked for test'); } } });
+    d.querySelector('#skill-detail [data-copy-agent-prompt]').click();
+    await waitFor(() => !d.getElementById('manual-copy').hidden, 'TypeSafe clipboard failure must show manual recovery');
+    check(d.getElementById('manual-copy-text').value.includes('/install-manifests/typesafe-ai.json'), 'Manual recovery must contain the same safe TypeSafe prompt');
+    d.getElementById('close-manual-copy').click();
     language('vi');
     const probe = document.createElement('iframe');
     probe.style.cssText = 'display:block;border:0;height:1000px;width:390px';

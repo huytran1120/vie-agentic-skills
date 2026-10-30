@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-10-25T11:50:59+00:00",
-  "total": 2877,
+  "total": 2878,
   "skills": [
     {
       "id": "00-andruia-consultant",
@@ -85678,6 +85678,30 @@
       "license": "MIT",
       "license_source": "https://github.com/Nutlope/hallmark/blob/8f6969f8922caabde9de1784959eae11ddf68073/skills/hallmark/LICENSE",
       "path": "skills/hallmark/SKILL.md"
+    },
+    {
+      "id": "typesafe-ai",
+      "canonical_id": "typesafe-ai",
+      "name": "typesafe-ai",
+      "description": "TypeSafe integration craft for System One models (sometimes called Decision Models) such as Jev, which answer typed questions about text, images, and application state with calibrated probabilities. Use when building, reviewing, or debugging code that calls TypeSafe; when writing its questions or state; when replacing an LLM prompt-and-parse step, keyword matching, or a brittle heuristic with a typed question; or when brainstorming where programmable common sense fits in an app.",
+      "category": "ai-ml",
+      "risk": "unknown",
+      "tags": [
+        "typesafe",
+        "jev",
+        "system-one",
+        "api",
+        "probabilities",
+        "integration"
+      ],
+      "source": "https://github.com/typesafe-ai/skills/tree/302eea662c54bca6730873fe245bec1d69ebc23d/skills/typesafe-ai",
+      "source_repo": "typesafe-ai/skills",
+      "source_revision": "302eea662c54bca6730873fe245bec1d69ebc23d",
+      "source_path": "skills/typesafe-ai/SKILL.md",
+      "author": "TypeSafe AI",
+      "license": "MIT",
+      "license_source": "https://github.com/typesafe-ai/skills/blob/302eea662c54bca6730873fe245bec1d69ebc23d/skills/typesafe-ai/LICENSE",
+      "path": "skills/typesafe-ai/SKILL.md"
     }
   ]
 }

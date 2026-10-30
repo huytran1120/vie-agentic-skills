@@ -57,6 +57,9 @@ The CLI remains `./vas`; individual task dependencies are not CLI dependencies.
 - Hallmark is one MIT frontend skill with 50 bundled themes and optional Node.js
   helpers. Browser helpers need separately provided Chrome and Puppeteer; paid
   Together AI generation and individually licensed photos remain opt-in.
+- TypeSafe is one MIT integration runbook with its license and live-doc links.
+  API access, server-side keys, SDKs and paid probes are separate from installation;
+  probes require permission, data disclosure and a budget.
 - GitHub Pages is static and must work under the repository URL prefix.
 - Shared links use a branded 1280-by-640 PNG with matching Open Graph and Twitter
   metadata. GitHub repository previews require a separate upload in Settings >

@@ -1,6 +1,6 @@
 # Vie Agentic Skill (VAS) - Catalog
 
-Tổng hợp **3,057** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
+Tổng hợp **3,058** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
 
 | Danh mục | Số lượng | Lệnh cài đặt nhanh |
 | :--- | :---: | :--- |
@@ -12,7 +12,7 @@ Tổng hợp **3,057** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **agent-tooling** | 3 skills | `./vas install --category agent-tooling --target codex` |
 | **ai** | 1 skills | `./vas install --category ai --target codex` |
 | **ai-agents** | 24 skills | `./vas install --category ai-agents --target codex` |
-| **ai-ml** | 135 skills | `./vas install --category ai-ml --target codex` |
+| **ai-ml** | 136 skills | `./vas install --category ai-ml --target codex` |
 | **ai-research** | 1 skills | `./vas install --category ai-research --target codex` |
 | **ai-testing** | 1 skills | `./vas install --category ai-testing --target codex` |
 | **analysis** | 3 skills | `./vas install --category analysis --target codex` |
@@ -253,7 +253,7 @@ Tổng hợp **3,057** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `pydantic-ai` | `safe` | Build production-ready AI agents with PydanticAI — type-safe tool use, struct... |
 | `superpowers-lab` | `safe` | Evaluate experimental Claude workflow skills in an isolated lab with reproduc... |
 
-### AI-ML (135 skills)
+### AI-ML (136 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
@@ -382,6 +382,7 @@ Tổng hợp **3,057** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `tool-design` | `safe` | Build tools that agents can use effectively, including architectural reductio... |
 | `train-sentence-transformers` | `critical` | Train or fine-tune SentenceTransformer, CrossEncoder, and SparseEncoder model... |
 | `trl-training` | `critical` | Train and fine-tune transformer language models using TRL (Transformers Reinf... |
+| `typesafe-ai` | `unknown` | TypeSafe integration craft for System One models (sometimes called Decision M... |
 | `ui-skills` | `safe` | Opinionated, evolving constraints to guide agents when building interfaces |
 | `unified-ai-gateway` | `critical` | Operate and evaluate Unified AI System through fifteen governed MCP tools, in... |
 | `unslop-commit` | `critical` | Rewrites commit messages so they sound like a careful human engineer wrote th... |

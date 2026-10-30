@@ -486,6 +486,8 @@ test('source filters combine as a union and intersect with search and categories
   assert.equal(catalog.filterSkills(skills, { sources: ['blender'] }).length, 94);
   assert.equal(catalog.filterSkills(skills, { sources: ['youtube'] }).length, 11);
   assert.equal(catalog.filterSkills(skills, { sources: ['hallmark'] }).length, 1);
+  assert.equal(catalog.filterSkills(skills, { sources: ['typesafe'] }).length, 1);
+  assert.equal(catalog.filterSkills(skills, { sources: ['typesafe', 'hallmark'] }).length, 2);
   assert.equal(catalog.filterSkills(skills, { sources: ['hallmark', 'youtube'] }).length, 12);
   assert.equal(catalog.filterSkills(skills, { sources: ['youtube', 'blender'] }).length, 105);
   assert.equal(catalog.filterSkills(skills, { sources: ['mattpocock', 'blender'] }).length, 129);
@@ -499,7 +501,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
   const youtube = catalog.filterSkills(skills, { sources: ['youtube'] });
   assert.equal(youtube.length, 11);
   assert.equal(catalog.filterSkills(skills, { query: 'youtube-agent-skill' }).length, 11);
-  assert.equal(skills.length, 3057);
+  assert.equal(skills.length, 3058);
   for (const skill of youtube) {
     assert.ok(skill.id.startsWith('youtube-agent-skill/'));
     assert.equal(skill.source_repo, 'Jakeschincariol/youtube-agent-skill');
@@ -514,7 +516,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
     assert.deepEqual(state.sources, ['youtube']);
     assert.equal(state.selected, youtube[0].id);
     assert.ok(i18n.translate('collections.youtube', language).startsWith('11 '));
-    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '3.057' : '3,057'));
+    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '3.058' : '3,058'));
   }
   assert.equal(catalog.filterSkills(skills, { sources: ['youtube'], category: 'security' }).length, 0);
   const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
@@ -555,6 +557,76 @@ test('Hallmark retains its pinned source and complete no-clone prompts for every
   assert.ok(html.includes('name="source" value="hallmark"'));
   assert.ok(html.includes('data-source-count="hallmark">1<'));
   assert.ok(html.includes('data-discover="hallmark"'));
+});
+
+test('TypeSafe source, search and localized install plans preserve its canonical identity', () => {
+  const [skill] = catalog.filterSkills(skills, { sources: ['typesafe'] });
+  assert.equal(skill.id, 'typesafe-ai');
+  assert.equal(skill.license, 'MIT');
+  assert.equal(skill.source_repo, 'typesafe-ai/skills');
+  assert.ok(catalog.filterSkills(skills, { query: 'Jev' }).some(skill => skill.id === 'typesafe-ai'));
+  assert.deepEqual(catalog.filterSkills(skills, { query: 'Jev', sources: ['typesafe'] }).map(skill => skill.id), ['typesafe-ai']);
+  assert.deepEqual(catalog.filterSkills(skills, { sources: ['typesafe'], group: 'data-ai' }), [skill]);
+  assert.equal(catalog.filterSkills(skills, { sources: ['typesafe'], category: 'security' }).length, 0);
+  assert.ok(catalog.sourceUrl(skill).includes('/302eea662c54bca6730873fe245bec1d69ebc23d/'));
+  for (const language of ['vi', 'en']) {
+    assert.ok(i18n.translate('collections.typesafe', language).startsWith('1 skill'));
+    for (const [agent] of catalog.agents) {
+      const state = catalog.readCatalogState(catalog.catalogParams({
+        language, sources: ['typesafe'], selected: skill.id, target: agent
+      }));
+      assert.equal(state.language, language);
+      assert.equal(state.target, agent);
+      assert.equal(state.selected, 'typesafe-ai');
+      assert.deepEqual(state.sources, ['typesafe']);
+      const prompt = catalog.agentInstallPrompt(skill, agent, language);
+      assert.ok(prompt.startsWith(language === 'vi' ? 'Hãy cài đặt skill' : 'Please install'));
+      for (const required of ['/install-manifests/typesafe-ai.json', 'SHA-256', 'LICENSE', '.vas-manifest.json']) assert.ok(prompt.includes(required));
+      assert.ok(!prompt.includes('302eea662c54bca6730873fe245bec1d69ebc23d'));
+      const targets = agent === 'all' ? Object.keys(catalog.targetFolders) : [agent];
+      for (const target of targets) {
+        assert.ok(prompt.includes(`"${catalog.targetFolders[target]}/typesafe-ai/"`));
+        for (const mode of ['link', 'copy']) {
+          const plan = catalog.installationPlan(skill.id, target, { mode });
+          assert.deepEqual(plan.paths, [`${catalog.targetFolders[target]}/typesafe-ai/SKILL.md`]);
+          assert.ok(plan.install.includes(`--target ${target} --mode ${mode}`));
+          assert.ok(plan.status.includes(`--target ${target}`));
+          assert.ok(plan.uninstall.includes(`uninstall typesafe-ai --target ${target}`));
+        }
+      }
+    }
+  }
+  const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
+  assert.ok(html.includes('name="source" value="typesafe"'));
+  assert.ok(html.includes('data-source-count="typesafe">1<'));
+  assert.ok(html.includes('id="typesafe-collection"'));
+});
+
+test('TypeSafe invalid snapshots never copy and clipboard rejection provides the localized manual prompt', async () => {
+  const skill = skills.find(skill => skill.id === 'typesafe-ai');
+  for (const language of ['vi', 'en']) {
+    const window = languageWindow(`?lang=${language}&agent=copilot`);
+    window.navigator = { clipboard: { writeText: async () => { throw new Error('Clipboard blocked'); } } };
+    let available = false;
+    const runtime = browserRuntime(async url => {
+      if (url === './skills.min.json') return { ok: true, json: async () => skills };
+      assert.equal(url, '../_site/install-manifests/typesafe-ai.json');
+      return { ok: true, json: async () => ({ ...manifestFixture(skill), available }) };
+    }, window);
+    await new Promise(setImmediate);
+    clickInstallPrompt(runtime, skill);
+    await new Promise(setImmediate);
+    assert.equal(runtime.document.getElementById('manual-copy').hidden, true);
+    assert.equal(runtime.errors.length, 1);
+    available = true;
+    const button = clickInstallPrompt(runtime, skill);
+    await new Promise(setImmediate);
+    assert.equal(button.disabled, false);
+    assert.equal(runtime.document.getElementById('manual-copy').hidden, false);
+    const field = runtime.document.getElementById('manual-copy-text');
+    assert.equal(field.value, catalog.agentInstallPrompt(skill, 'copilot', language));
+    assert.ok(field.focused && field.selected);
+  }
 });
 
 test('shared links retain selected sources and reject unknown source keys', () => {

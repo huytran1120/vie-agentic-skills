@@ -1,0 +1,29 @@
+{
+  "source_repo": "typesafe-ai/skills",
+  "revision": "302eea662c54bca6730873fe245bec1d69ebc23d",
+  "skill_count": 1,
+  "adaptations": [
+    "Preserve both upstream skill files and their non-executable modes.",
+    "Append reversible VAS installation, API-consent and prerequisite notes to SKILL.md.",
+    "Keep live documentation links; no SDK, plugin, service or downloaded code is installed or executed."
+  ],
+  "skill_notes": "\n\n## VAS installation notes\n\nThis copy is distributed by Vie Agentic Skill from typesafe-ai/skills at\n`302eea662c54bca6730873fe245bec1d69ebc23d`, under the bundled MIT license,\nCopyright (c) 2026 TypeSafe AI. The upstream runbook above is unchanged.\nThe complete standalone payload is SKILL.md and LICENSE; upstream provides no\nlocal scripts, templates, references or runtime dependencies for this skill.\nIts external documentation links remain live references, not bundled snapshots.\n\nUse the VAS website's Copy Agent Prompt or `./vas install typesafe-ai --target <agent>`\nwith VAS's existing destination mapping and receipt. Installing or reading this\nskill does not install an SDK, configure a plugin/MCP server, read API keys,\nsend application data, connect to TypeSafe or make paid requests.\n\nUsing Jev requires separately provisioned TypeSafe API access and the user's own\nTYPESAFE_API_KEY, kept on the server. An SDK is optional; use the live documentation\nor installed types for the chosen integration rather than guessing package names,\nversions or schemas. Before any live probe, obtain explicit permission, agree a\nbudget and disclose the exact data to be sent. Do not send personal, private or\nproprietary data without the required authorization. Never treat a failed request\nas a model answer. The bundled MIT license does not grant service access or waive\nTypeSafe's separate service terms, pricing or data-handling requirements.\n",
+  "files": [
+    {
+      "source_path": "skills/typesafe-ai/LICENSE",
+      "path": "skills/typesafe-ai/LICENSE",
+      "source_sha256": "835f233f1d6ed84a9b9a351aba0689b47644a4137d6316911fc7957bde523b02",
+      "sha256": "835f233f1d6ed84a9b9a351aba0689b47644a4137d6316911fc7957bde523b02",
+      "source_git_blob": "8c73b41b89d9a76ddf0fdb0edfaafdda800d36e8",
+      "executable": false
+    },
+    {
+      "source_path": "skills/typesafe-ai/SKILL.md",
+      "path": "skills/typesafe-ai/SKILL.md",
+      "source_sha256": "d1513cb2e0f72f58c11ac004ce99fd828fce8668a741b6a274247201e57db724",
+      "sha256": "7ea43b13f67d34a1be54a79dbd20b15a4291fa58fa697f8b2f76d430f0c22b68",
+      "source_git_blob": "5e4fd5507990f3b67fe65b3e0e345cbea1192357",
+      "executable": false
+    }
+  ]
+}
