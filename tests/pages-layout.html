@@ -288,6 +288,7 @@
     d.getElementById('apply-mobile-filters').click();
     check(d.querySelector('input[name="source"][value="android"]').checked, 'Android desktop and mobile filters must agree');
     Object.defineProperty(w.navigator, 'clipboard', { configurable: true, value: { writeText: async text => { installPrompt = text; } } });
+    while (!d.getElementById('load-more').hidden) d.getElementById('load-more').click();
     for (const id of ['navigation-3', 'play-policy-insights', 'android-profiler']) {
       d.querySelector(`[data-open-skill="${id}"]`).click();
       await waitFor(() => d.getElementById('runbook-content').getAttribute('aria-busy') === 'false', `${id}: Android runbook must finish loading`);
