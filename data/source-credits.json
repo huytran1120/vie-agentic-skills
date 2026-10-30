@@ -429,6 +429,10 @@
     ],
     "blender": [
       "- **[arjun988/blender-skills](https://github.com/arjun988/blender-skills/tree/8f778d2405a214b508d4c7d80742be8e43acdd52)**: 94 MIT-licensed skills from `.claude/skills` at `8f778d2405a214b508d4c7d80742be8e43acdd52`; the equivalent `.cursor/skills` tree is not duplicated. Each installed skill includes its own MIT notice and shared reference copies. Relative shared-reference paths are adjusted for independent installation, and three cross-skill links point to the pinned source. The catalog banner is from `site/public/banner.png` under the same MIT notice. See `data/blender-import.json` for source and vendored SHA-256 hashes."
+    ],
+    "android": [
+      "- **[android/skills](https://github.com/android/skills/tree/6daa53ef27fa2aa87827d183a85c06cedceca833)**: 35 standalone Apache-2.0 Android development skills by Google LLC and the Android Open Source Project, including full references, Kotlin/XML samples, Python helpers, trace configurations and the upstream LICENSE.txt in every skill. Existing `android-cli` is skipped without upgrading. Only documented reversible metadata/installation notes differ; original headers and executable modes are preserved.",
+      "- SDK/JDK/Gradle, compatible devices, service access and optional runtimes are separate prerequisites. The R8 converter declares protobuf 6.33.4; Play Policy helpers can fetch public Play Store pages; the Perfetto launcher can download/cache a native binary. No helper, SDK, installer, model, plugin/MCP server or network workflow runs during skill installation; explicit approval and privacy review are required before such use."
     ]
   }
 }

@@ -1,6 +1,6 @@
 # Vie Agentic Skill (VAS) - Catalog
 
-Tổng hợp **3,058** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
+Tổng hợp **3,093** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
 
 | Danh mục | Số lượng | Lệnh cài đặt nhanh |
 | :--- | :---: | :--- |
@@ -83,7 +83,7 @@ Tổng hợp **3,058** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **memory** | 7 skills | `./vas install --category memory --target codex` |
 | **meta** | 38 skills | `./vas install --category meta --target codex` |
 | **ml-ops** | 1 skills | `./vas install --category ml-ops --target codex` |
-| **mobile** | 38 skills | `./vas install --category mobile --target codex` |
+| **mobile** | 73 skills | `./vas install --category mobile --target codex` |
 | **monopoly** | 4 skills | `./vas install --category monopoly --target codex` |
 | **office-productivity** | 1 skills | `./vas install --category office-productivity --target codex` |
 | **operations** | 8 skills | `./vas install --category operations --target codex` |
@@ -2738,20 +2738,32 @@ Tổng hợp **3,058** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | :--- | :---: | :--- |
 | `remote-gpu-trainer` | `critical` | Deploy, monitor, and debug long GPU jobs on RENTED/remote instances (AutoDL, ... |
 
-### MOBILE (38 skills)
+### MOBILE (73 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
+| `adaptive` | `unknown` | Instructions to make or update an app's UI so that it adapts to different And... |
 | `add-app-clip` | `critical` | Add an iOS App Clip target to an Expo app. Use when the user mentions App Cli... |
+| `agp-9-upgrade` | `unknown` | Upgrades, or migrates, an Android project to use Android Gradle Plugin (AGP) ... |
 | `android-dev` | `safe` | Production-grade Android app development guide covering native (Kotlin/Java),... |
+| `android-for-cars-parked-apps` | `unknown` | Adapt existing Android video streaming apps, games, and web browsers to run a... |
+| `android-intent-security` | `unknown` | Best practices for Android Intent security. Use this skill when auditing comp... |
 | `android-jetpack-compose-expert` | `safe` | Expert guidance for building modern Android UIs with Jetpack Compose, coverin... |
+| `android-permissions-security` | `unknown` | Audits, detects gaps, and remediates Android permissions and IPC component se... |
+| `android-profiler` | `unknown` | Records and analyzes Android performance data and diagnoses performance bottl... |
+| `anr-audit-and-fix` | `unknown` | Audits Android codebases for ANR risks and diagnoses ANR stack dumps. Use thi... |
+| `appfunctions` | `unknown` | Analyzes Android apps to find user workflows to expose as AppFunctions, such ... |
 | `appium-skill` | `critical` | Generates production-grade Appium mobile automation scripts for Android and i... |
 | `building-native-ui` | `critical` | Complete guide for building beautiful apps with Expo Router. Covers fundament... |
+| `camerax` | `unknown` | Provide technical guidance for Android camera development with CameraX. Use w... |
+| `display-glasses-with-jetpack-compose-glimmer` | `unknown` | Provides guidelines for developing projected Android XR apps for display glas... |
 | `earllm-build` | `safe` | Build, maintain, and extend the EarLLM One Android project — a Kotlin/Compose... |
 | `eas-app-stores` | `critical` | Curated upstream guidance for Eas App Stores; use when the workflow matches t... |
 | `eas-simulator` | `critical` | Curated upstream guidance for Eas Simulator; use when the workflow matches th... |
 | `eas-update-insights` | `critical` | Check the health of published EAS Updates: crash rates, install/launch counts... |
 | `eas-workflows` | `critical` | Use when writing or reviewing Expo EAS workflow YAML: inspect current schema ... |
+| `edge-to-edge` | `unknown` | Use this skill to migrate your Jetpack Compose app to add adaptive edge-to-ed... |
+| `engage-sdk-integration` | `unknown` | Helps developers integrate, debug, and resolve Play Engage SDK implementation... |
 | `expo-animation` | `unknown` | Curated upstream guidance for Expo Animation; use when the workflow matches t... |
 | `expo-api-routes` | `critical` | Guidelines for creating API routes in Expo Router with EAS Hosting |
 | `expo-brownfield` | `critical` | Integrate Expo and React Native into an existing native iOS or Android app. U... |
@@ -2766,20 +2778,43 @@ Tổng hợp **3,058** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `expo-ui-jetpack-compose` | `critical` | Build Android-native Expo SDK 55 UI with Jetpack Compose views/modifiers, Hos... |
 | `expo-ui-swift-ui` | `critical` | Build iOS-native Expo SDK 55 UI with SwiftUI views/modifiers, Host/RNHostView... |
 | `flutter-expert` | `safe` | Master Flutter development with Dart 3, advanced widgets, and multi-platform ... |
+| `glance-appwidget-updates-and-memory` | `unknown` | Manages Android AppWidget state updates, background syncs, and RemoteViews bi... |
+| `glance-canonical-layouts` | `unknown` | Use this skill to create home screen widgets using Jetpack Glance Canonical L... |
+| `ink-app-builder` | `unknown` | Adds inking and freehand drawing capabilities to an Android app using Jetpack... |
+| `ink-custom-brush-builder` | `unknown` | Creates custom BrushFamily definitions for an Android app using Jetpack Ink (... |
 | `ios-debugger-agent` | `safe` | Debug the current iOS project on a booted simulator with XcodeBuildMCP. |
 | `ios-developer` | `critical` | Develop native iOS applications with Swift/SwiftUI. Masters iOS 18, SwiftUI, ... |
+| `jetpack-compose-performance` | `unknown` | Diagnose and optimize Android Jetpack Compose UI code. Use this skill when an... |
+| `leanback-to-compose-tv-migration` | `unknown` | Provides instructions and architectural patterns for migrating Android TV app... |
+| `litert-lm` | `unknown` | Builds an Android app that runs an open text LLM on the device, on the CPU or... |
+| `litert-runtime` | `unknown` | Configures and implements LiteRT (.tflite) on-device inference on Android in ... |
+| `media3-cast-integration` | `unknown` | Implements Google Cast support in Android apps using Jetpack Media3. Handles ... |
+| `migrate-xml-views-to-jetpack-compose` | `unknown` | Provides a structured workflow for migrating an Android XML View to Jetpack C... |
+| `ml-kit-genai-prompt-api` | `unknown` | Analyzes Android codebases to implement ML Kit GenAI Prompt API. Use this ski... |
+| `mlkit-agent-api` | `unknown` | Builds autonomous on-device agentic workflows in Android apps using the ML Ki... |
 | `mobile-design` | `critical` | Design and review iOS, Android, React Native or Flutter interfaces for touch,... |
 | `mobile-developer` | `critical` | Develop React Native, Flutter, or native mobile apps with modern architecture... |
 | `mobile-reverse` | `offensive` | Authorized Android/iOS application reverse engineering and security testing: ... |
 | `mobile-security-coder` | `critical` | Expert in secure mobile coding practices specializing in input validation, We... |
+| `navigation-3` | `unknown` | Learn how to install and migrate to Jetpack Navigation 3, and how to implemen... |
+| `navigation-event` | `unknown` | Intercept back gestures and run Predictive Back animations using the Navigati... |
+| `play-billing-library-version-upgrade` | `unknown` | Use this skill when upgrading or migrating an Android project from any legacy... |
+| `play-policy-insights` | `unknown` | Automated auditor designed to verify Android applications against Google Play... |
+| `projected-hardware` | `unknown` | Provides instructions and workflows for accessing and managing hardware on An... |
+| `r8-analyzer` | `unknown` | Analyzes Android build files and R8 keep rules to identify redundancies, broa... |
+| `restore-credentials` | `unknown` | Provides knowledge and workflows to implement Android's Restore Credentials f... |
 | `swiftui-expert-skill` | `critical` | Write, review, and refactor SwiftUI for iOS or macOS, covering data flow, vie... |
 | `swiftui-liquid-glass` | `safe` | Implement or review SwiftUI Liquid Glass APIs with correct fallbacks and modi... |
 | `swiftui-performance-audit` | `safe` | Audit SwiftUI performance issues from code review and profiling evidence. |
 | `swiftui-ui-patterns` | `safe` | Apply proven SwiftUI UI patterns for navigation, sheets, async state, and reu... |
 | `swiftui-view-refactor` | `safe` | Refactor SwiftUI views into smaller components with stable, explicit data flow. |
+| `testing-setup` | `unknown` | Analyze and create a testing strategy for Android apps - install testing libr... |
 | `update-swiftui-apis` | `critical` | Scan Apple's SwiftUI documentation for deprecated APIs and update the SwiftUI... |
 | `upgrading-expo` | `critical` | Guidelines for upgrading Expo SDK versions and fixing dependency issues |
 | `use-dom` | `critical` | Use Expo DOM components to run web code in a webview on native and as-is on w... |
+| `verified-email` | `unknown` | Provides a complete workflow for implementing verified email retrieval on And... |
+| `wear-compose-m3` | `unknown` | Guidance for Wear OS Compose Material3 (Wear Compose Material 3 / Wear Compos... |
+| `wear-widgets` | `unknown` | Create, migrate, update, and verify Wear OS widgets using Glance Wear and Rem... |
 
 ### MONOPOLY (4 skills)
 

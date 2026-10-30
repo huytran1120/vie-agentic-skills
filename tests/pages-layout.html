@@ -279,6 +279,55 @@
     await waitFor(() => !d.getElementById('manual-copy').hidden, 'TypeSafe clipboard failure must show manual recovery');
     check(d.getElementById('manual-copy-text').value.includes('/install-manifests/typesafe-ai.json'), 'Manual recovery must contain the same safe TypeSafe prompt');
     d.getElementById('close-manual-copy').click();
+    d.querySelector('[data-back-library]').click();
+    d.getElementById('android-collection').click();
+    check(new URL(w.location.href).searchParams.get('sources') === 'android', 'Android collection must select its source');
+    check(d.getElementById('results-status').textContent.includes('35'), 'Android source must contain 35 skills, excluding existing android-cli');
+    d.getElementById('open-filters').click();
+    check(d.querySelector('input[name="mobile-source"][value="android"]').checked, 'Android mobile source must remain selected');
+    d.getElementById('apply-mobile-filters').click();
+    check(d.querySelector('input[name="source"][value="android"]').checked, 'Android desktop and mobile filters must agree');
+    Object.defineProperty(w.navigator, 'clipboard', { configurable: true, value: { writeText: async text => { installPrompt = text; } } });
+    for (const id of ['navigation-3', 'play-policy-insights', 'android-profiler']) {
+      d.querySelector(`[data-open-skill="${id}"]`).click();
+      await waitFor(() => d.getElementById('runbook-content').getAttribute('aria-busy') === 'false', `${id}: Android runbook must finish loading`);
+      check(d.getElementById('runbook-content').textContent.includes('VAS installation notes'), `${id}: prerequisites must be available`);
+      check(d.getElementById('skill-detail').textContent.includes('Apache-2.0'), `${id}: source license must be visible`);
+      const manifest = await (await w.fetch(new URL(`install-manifests/${id}.json`, manifestBase))).json();
+      check(manifest.available && manifest.files.some(file => file.path === 'LICENSE.txt'), `${id}: complete committed manifest must include its license`);
+      check(manifest.revision !== '6daa53ef27fa2aa87827d183a85c06cedceca833', `${id}: pin VAS, not upstream`);
+      const root = new URL(`${d.documentElement.dataset.skillBase}/skills/${id}/`, w.location.href);
+      const license = await w.fetch(new URL('LICENSE.txt', root));
+      check(license.ok && (await license.text()).includes('Apache License'), `${id}: bundled license must load`);
+      if (id === 'play-policy-insights') {
+        const helper = manifest.files.find(file => file.path === 'scripts/template_engine.py');
+        check(Boolean(helper) && (await w.fetch(new URL(helper.path, root))).ok, 'Android helper dependencies must load beside the runbook');
+      }
+      for (const locale of ['vi', 'en']) {
+        language(locale);
+        for (const target of ['cursor', 'copilot']) {
+          change('agent-select', target);
+          installPrompt = null;
+          d.querySelector('#skill-detail [data-copy-agent-prompt]').click();
+          await waitFor(() => Boolean(installPrompt), `${id}: copy prompt must work`);
+          check(installPrompt.startsWith(locale === 'vi' ? 'Hãy cài đặt skill' : 'Please install'), `${id}: copy language must update`);
+          const folder = target === 'cursor' ? '.cursor' : '.github';
+          check(installPrompt.includes(`"${folder}/skills/${id}/"`), `${id}: copy destination must follow agent changes`);
+        }
+        for (const width of [1440, 390, 320]) {
+          frame.style.width = `${width}px`;
+          await wait(80);
+          check(d.documentElement.scrollWidth <= w.innerWidth, `${id} ${locale} ${width}px: no page overflow`);
+        }
+      }
+      d.querySelector('[data-back-library]').click();
+    }
+    d.querySelector('[data-open-skill="play-policy-insights"]').click();
+    Object.defineProperty(w.navigator, 'clipboard', { configurable: true, value: { writeText: async () => { throw new Error('Clipboard blocked for Android test'); } } });
+    d.querySelector('#skill-detail [data-copy-agent-prompt]').click();
+    await waitFor(() => !d.getElementById('manual-copy').hidden, 'Android clipboard failure must show manual recovery');
+    check(d.getElementById('manual-copy-text').value.includes('/install-manifests/play-policy-insights.json'), 'Android fallback must preserve the safe prompt');
+    d.getElementById('close-manual-copy').click();
     language('vi');
     const probe = document.createElement('iframe');
     probe.style.cssText = 'display:block;border:0;height:1000px;width:390px';

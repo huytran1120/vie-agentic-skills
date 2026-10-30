@@ -60,6 +60,10 @@ The CLI remains `./vas`; individual task dependencies are not CLI dependencies.
 - TypeSafe is one MIT integration runbook with its license and live-doc links.
   API access, server-side keys, SDKs and paid probes are separate from installation;
   probes require permission, data disclosure and a budget.
+- Android includes 35 Apache-2.0 skills with complete references, samples and
+  local helpers; the existing android-cli stays unchanged. SDKs, optional protobuf,
+  Perfetto binary downloads, devices and network operations require separate setup
+  and permission, not automatic execution during installation.
 - GitHub Pages is static and must work under the repository URL prefix.
 - Shared links use a branded 1280-by-640 PNG with matching Open Graph and Twitter
   metadata. GitHub repository previews require a separate upload in Settings >

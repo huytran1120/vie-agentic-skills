@@ -487,6 +487,7 @@ test('source filters combine as a union and intersect with search and categories
   assert.equal(catalog.filterSkills(skills, { sources: ['youtube'] }).length, 11);
   assert.equal(catalog.filterSkills(skills, { sources: ['hallmark'] }).length, 1);
   assert.equal(catalog.filterSkills(skills, { sources: ['typesafe'] }).length, 1);
+  assert.equal(catalog.filterSkills(skills, { sources: ['android'] }).length, 35);
   assert.equal(catalog.filterSkills(skills, { sources: ['typesafe', 'hallmark'] }).length, 2);
   assert.equal(catalog.filterSkills(skills, { sources: ['hallmark', 'youtube'] }).length, 12);
   assert.equal(catalog.filterSkills(skills, { sources: ['youtube', 'blender'] }).length, 105);
@@ -501,7 +502,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
   const youtube = catalog.filterSkills(skills, { sources: ['youtube'] });
   assert.equal(youtube.length, 11);
   assert.equal(catalog.filterSkills(skills, { query: 'youtube-agent-skill' }).length, 11);
-  assert.equal(skills.length, 3058);
+  assert.equal(skills.length, 3093);
   for (const skill of youtube) {
     assert.ok(skill.id.startsWith('youtube-agent-skill/'));
     assert.equal(skill.source_repo, 'Jakeschincariol/youtube-agent-skill');
@@ -516,7 +517,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
     assert.deepEqual(state.sources, ['youtube']);
     assert.equal(state.selected, youtube[0].id);
     assert.ok(i18n.translate('collections.youtube', language).startsWith('11 '));
-    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '3.058' : '3,058'));
+    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '3.093' : '3,093'));
   }
   assert.equal(catalog.filterSkills(skills, { sources: ['youtube'], category: 'security' }).length, 0);
   const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
@@ -626,6 +627,78 @@ test('TypeSafe invalid snapshots never copy and clipboard rejection provides the
     const field = runtime.document.getElementById('manual-copy-text');
     assert.equal(field.value, catalog.agentInstallPrompt(skill, 'copilot', language));
     assert.ok(field.focused && field.selected);
+  }
+});
+
+test('all 35 Android skills retain exact source filtering, Apache notices and every localized agent prompt', () => {
+  const android = catalog.filterSkills(skills, { sources: ['android'] });
+  assert.equal(android.length, 35);
+  assert.ok(!android.some(skill => skill.id === 'android-cli'));
+  assert.deepEqual(catalog.filterSkills(skills, { query: 'android/skills' }), android);
+  assert.equal(catalog.filterSkills(skills, { sources: ['android'], category: 'mobile' }).length, 35);
+  assert.equal(catalog.filterSkills(skills, { sources: ['android'], category: 'security' }).length, 0);
+  for (const skill of android) {
+    assert.equal(skill.source_repo, 'android/skills');
+    assert.equal(skill.license, 'Apache-2.0');
+    assert.equal(skill.id, path.basename(skill.path));
+    assert.ok(catalog.sourceUrl(skill).includes('/6daa53ef27fa2aa87827d183a85c06cedceca833/'));
+    for (const language of ['vi', 'en']) {
+      assert.ok(i18n.translate('collections.android', language).startsWith('35 '));
+      for (const [agent] of catalog.agents) {
+        const state = catalog.readCatalogState(catalog.catalogParams({
+          language, sources: ['android'], selected: skill.id, target: agent
+        }));
+        assert.equal(state.language, language);
+        assert.equal(state.target, agent);
+        assert.equal(state.selected, skill.id);
+        assert.deepEqual(state.sources, ['android']);
+        const prompt = catalog.agentInstallPrompt(skill, agent, language);
+        assert.ok(prompt.startsWith(language === 'vi' ? 'Hãy cài đặt skill' : 'Please install'));
+        for (const required of [`/install-manifests/${skill.id}.json`, 'SHA-256', 'LICENSE', '.vas-manifest.json']) assert.ok(prompt.includes(required));
+        assert.ok(!prompt.includes('6daa53ef27fa2aa87827d183a85c06cedceca833'));
+        const targets = agent === 'all' ? Object.keys(catalog.targetFolders) : [agent];
+        for (const target of targets) {
+          assert.ok(prompt.includes(`"${catalog.targetFolders[target]}/${skill.id}/"`));
+          for (const mode of ['link', 'copy']) {
+            const plan = catalog.installationPlan(skill.id, target, { mode });
+            assert.deepEqual(plan.paths, [`${catalog.targetFolders[target]}/${skill.id}/SKILL.md`]);
+            assert.ok(plan.install.includes(`--target ${target} --mode ${mode}`));
+            assert.ok(plan.status.includes(`--target ${target}`));
+            assert.ok(plan.uninstall.includes(`uninstall ${skill.id} --target ${target}`));
+          }
+        }
+      }
+    }
+  }
+  const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
+  assert.ok(html.includes('name="source" value="android"'));
+  assert.ok(html.includes('data-source-count="android">35<'));
+  assert.ok(html.includes('id="android-collection"'));
+});
+
+test('Android snapshots must be available before copying and clipboard failure retains safe manual recovery', async () => {
+  const skill = skills.find(skill => skill.id === 'play-policy-insights');
+  for (const language of ['vi', 'en']) {
+    const window = languageWindow(`?lang=${language}&agent=cursor`);
+    window.navigator = { clipboard: { writeText: async () => { throw new Error('Clipboard blocked'); } } };
+    let available = false;
+    const runtime = browserRuntime(async url => {
+      if (url === './skills.min.json') return { ok: true, json: async () => skills };
+      assert.equal(url, '../_site/install-manifests/play-policy-insights.json');
+      return { ok: true, json: async () => ({ ...manifestFixture(skill), available }) };
+    }, window);
+    await new Promise(setImmediate);
+    clickInstallPrompt(runtime, skill);
+    await new Promise(setImmediate);
+    assert.equal(runtime.document.getElementById('manual-copy').hidden, true);
+    assert.equal(runtime.errors.length, 1);
+    available = true;
+    const button = clickInstallPrompt(runtime, skill);
+    await new Promise(setImmediate);
+    assert.equal(button.disabled, false);
+    assert.equal(runtime.document.getElementById('manual-copy').hidden, false);
+    assert.equal(runtime.document.getElementById('manual-copy-text').value,
+      catalog.agentInstallPrompt(skill, 'cursor', language));
   }
 });
 

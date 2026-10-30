@@ -61,7 +61,7 @@ Giao diện web ưu tiên danh mục: tìm theo từ khóa/tác giả/nguồn, l
 
 **Vie Agentic Skill (VAS)** là dự án do **Huy Tran** ([@huytran1120](https://github.com/huytran1120)) sáng lập và phát triển, với mục tiêu **tổng hợp, chọn lọc và chuẩn hóa toàn bộ các kỹ năng agentic (agent skills) tốt nhất trên thế giới** cho các AI Coding Agent.
 
-Thay vì để các kỹ năng bị phân mảnh ở nhiều công cụ, định dạng hay nền tảng khác nhau, VAS quy tụ hơn **3,058+ playbooks (`SKILL.md`)** chuyên sâu thuộc **119 danh mục công nghệ**, được chuẩn hóa nghiêm ngặt theo **Chuẩn mở Agent Skills Quốc tế ([agentskills.io](https://agentskills.io/))**. Dự án tổng hợp tinh hoa từ các chuyên gia, tổ chức kỹ thuật và cộng đồng mã nguồn mở uy tín nhất toàn cầu (như Addy Osmani, Cloudflare, Matt Pocock, Blender Studio, Google Devs, Open Agent Skills...).
+Thay vì để các kỹ năng bị phân mảnh ở nhiều công cụ, định dạng hay nền tảng khác nhau, VAS quy tụ hơn **3,093+ playbooks (`SKILL.md`)** chuyên sâu thuộc **119 danh mục công nghệ**, được chuẩn hóa nghiêm ngặt theo **Chuẩn mở Agent Skills Quốc tế ([agentskills.io](https://agentskills.io/))**. Dự án tổng hợp tinh hoa từ các chuyên gia, tổ chức kỹ thuật và cộng đồng mã nguồn mở uy tín nhất toàn cầu (như Addy Osmani, Cloudflare, Matt Pocock, Blender Studio, Google Devs, Open Agent Skills...).
 
 Với VAS, các AI Coding Agent không còn là lập trình viên chung chung sinh code nông cạn, mà biến thành các cộng sự kỹ thuật cấp Senior thực thụ: có checklist bảo mật, quy trình kiểm thử TDD, công thức tối ưu và kịch bản thực thi chính xác.
 
@@ -213,6 +213,25 @@ API mới cần quyền truy cập TypeSafe và `TYPESAFE_API_KEY` ở server. K
 SDK, đọc key hoặc gửi dữ liệu; probe API cần xin phép, công bố dữ liệu và thống
 nhất ngân sách trước. Xem [hướng dẫn TypeSafe VI/EN](docs/typesafe.md) để chọn đúng
 thư mục cho mọi agent và xem đầy đủ prerequisites.
+
+#### Android — 35 skill mới từ Google
+
+[Mở bộ Android](https://huytran1120.github.io/vie-agentic-skills/?lang=vi&sources=android),
+chọn skill và agent rồi **Copy Agent Prompt** để cài đủ tệp mà không cần clone.
+Đã giữ nguyên `android-cli` có sẵn; không nâng cấp hay đổi tên để nhập lại.
+Ví dụ từ kho VAS:
+
+```bash
+./vas install navigation-3 --target cursor --mode link --dest "/Projects/my-app/.cursor/skills"
+./vas status --target cursor --dest "/Projects/my-app/.cursor/skills"
+./vas uninstall navigation-3 --target cursor --dest "/Projects/my-app/.cursor/skills"
+```
+
+`--mode copy` tạo bản sao độc lập. Mỗi skill giữ Apache-2.0, `LICENSE.txt`,
+references, mẫu code và helper liên quan. SDK/JDK/Gradle, protobuf cho R8,
+thiết bị và tải binary Perfetto là prerequisites riêng; không tự chạy/cài hoặc
+gửi dữ liệu. Xem [hướng dẫn Android VI/EN](docs/android.md) để chọn đúng thư mục
+agent, xem đủ danh sách và yêu cầu trước khi sử dụng.
 
 ### 5. Hướng Dẫn Từng AI Agent
 
@@ -431,7 +450,7 @@ Trước khi ra mắt sản phẩm (`/ship`), hệ thống hỗ trợ kích ho�
 
 | Tiêu Chí Đánh Giá | Vie Agentic Skill (VAS) | Addy Osmani (`agent-skills`) | Superpowers (`obra`) | Matt Pocock Skills |
 | :--- | :--- | :--- | :--- | :--- |
-| **Quy mô Catalog** | **3,058+ Kỹ năng** (Toàn diện nhất thế giới) | 25 Kỹ năng cốt lõi | ~14 Kỹ năng | ~30 Kỹ năng |
+| **Quy mô Catalog** | **3,093+ Kỹ năng** (Toàn diện nhất thế giới) | 25 Kỹ năng cốt lõi | ~14 Kỹ năng | ~30 Kỹ năng |
 | **Công cụ Quản trị** | **Native Python 3 CLI (`./vas`) — Zero-NPX** | `npx skills` / Plugin | Git Worktrees / Scripts | Claude Code / `npx skills` |
 | **Phụ thuộc Mạng & NPX**| **100% Offline & Không cần Node/NPX** | Cần Node & npx khi cài | Cần clone & setup | Cần Node & npx khi cài |
 | **Hỗ trợ Đa Agent** | **7+ AI Agents** (Antigravity, Codex, Claude, Cursor, Windsurf, Cline, Copilot) | Claude Code, Codex, Antigravity, Cursor, Copilot | Claude Code, Codex, Cursor | Claude Code ưu tiên |
@@ -444,7 +463,7 @@ Trước khi ra mắt sản phẩm (`/ship`), hệ thống hỗ trợ kích ho�
 
 ### 11. Danh Mục & Top 20 Siêu Kỹ Năng Nổi Bật
 
-Kho lưu trữ gồm **3,058+ skills** chia theo **119 danh mục**. Xem chi tiết tại [CATALOG.md](CATALOG.md).
+Kho lưu trữ gồm **3,093+ skills** chia theo **119 danh mục**. Xem chi tiết tại [CATALOG.md](CATALOG.md).
 
 | # | Skill ID | Stars | Mô Tả Năng Lực | Lệnh Cài Đặt Nhanh |
 | :-: | :--- | :---: | :--- | :--- |
@@ -847,7 +866,7 @@ Dù bạn cài hàng trăm kỹ năng, AI agent chỉ quét phần tóm tắt ng
 
 **Vie Agentic Skill (VAS)** is an open-source project authored, curated, and maintained by **Huy Tran** ([@huytran1120](https://github.com/huytran1120)) with the mission to **aggregate, curate, and standardize the world's best agentic skills** for modern AI coding assistants.
 
-Rather than leaving skills fragmented across different tools, isolated plugins, or proprietary repositories, VAS consolidates **3,058+ production-grade playbooks (`SKILL.md`)** across **119 specialized categories** into a unified ecosystem adhering to the **Open Agent Skills specification ([agentskills.io](https://agentskills.io/))**. It brings together the finest engineering runbooks from premier open-source contributors and industry organizations worldwide—including Addy Osmani, Cloudflare, Matt Pocock, Blender Studio, Google Devs, and Open Agent Skills.
+Rather than leaving skills fragmented across different tools, isolated plugins, or proprietary repositories, VAS consolidates **3,093+ production-grade playbooks (`SKILL.md`)** across **119 specialized categories** into a unified ecosystem adhering to the **Open Agent Skills specification ([agentskills.io](https://agentskills.io/))**. It brings together the finest engineering runbooks from premier open-source contributors and industry organizations worldwide—including Addy Osmani, Cloudflare, Matt Pocock, Blender Studio, Google Devs, and Open Agent Skills.
 
 Instead of treating your AI coding assistant as an entry-level intern that generates shallow answers, VAS equips agents with Senior-grade playbooks: deep diagnostic checklists, security hardening rules, performance formulas, and deterministic execution scripts.
 
@@ -1003,6 +1022,25 @@ actual API calls need TypeSafe access and a server-side `TYPESAFE_API_KEY`.
 Installation never installs an SDK, reads keys or sends data. Live probes need
 permission, data disclosure and an agreed budget. See the [TypeSafe VI/EN guide](docs/typesafe.md)
 for every agent destination and complete prerequisites.
+
+#### Android — 35 new skills from Google
+
+[Open the Android collection](https://huytran1120.github.io/vie-agentic-skills/?lang=en&sources=android),
+choose a skill and agent, then **Copy Agent Prompt** to install every file without
+cloning. The existing `android-cli` is preserved, not upgraded or renamed.
+From a VAS checkout:
+
+```bash
+./vas install navigation-3 --target cursor --mode copy --dest "/Projects/my-app/.cursor/skills"
+./vas status --target cursor --dest "/Projects/my-app/.cursor/skills"
+./vas uninstall navigation-3 --target cursor --dest "/Projects/my-app/.cursor/skills"
+```
+
+`--mode link` requires keeping the checkout in place. Each skill retains
+Apache-2.0, `LICENSE.txt`, references, code samples and local helpers.
+SDK/JDK/Gradle, optional R8 protobuf, devices and Perfetto binary downloads are
+separate prerequisites, never automatic installation, execution or data submission.
+See the [Android VI/EN guide](docs/android.md) for all skills, agent paths and requirements.
 
 ### 5. Agent-Specific Setup Guides
 
@@ -1220,7 +1258,7 @@ During `/ship` pre-flight or code auditing, 4 specialist personas can be fanned 
 
 | Dimension | Vie Agentic Skill (VAS) | Addy Osmani (`agent-skills`) | Superpowers (`obra`) | Matt Pocock Skills |
 | :--- | :--- | :--- | :--- | :--- |
-| **Catalog Scale** | **3,058+ Skills** (World's most extensive) | 25 Core Skills | ~14 Skills | ~30 Skills |
+| **Catalog Scale** | **3,093+ Skills** (World's most extensive) | 25 Core Skills | ~14 Skills | ~30 Skills |
 | **Tooling & Engine** | **Native Python 3 CLI (`./vas`) — Zero-NPX** | `npx skills` / Plugins | Git Worktrees / Shell scripts | Claude Code / `npx skills` |
 | **Dependencies & Offline**| **100% Offline, Zero external dependencies** | Requires Node & remote NPX | Requires clone & git setup | Requires Node & remote NPX |
 | **Agent Support** | **7+ AI Coding Assistants** (Antigravity, Codex, Claude, Cursor, Windsurf, Cline, Copilot) | Claude Code, Codex, Antigravity, Cursor, Copilot | Claude Code, Codex, Cursor | Claude Code primary |
@@ -1233,7 +1271,7 @@ During `/ship` pre-flight or code auditing, 4 specialist personas can be fanned 
 
 ### 11. Featured & Viral Skills Showcase (Top 20)
 
-VAS includes **3,058+ skills** across **119 specialized categories**. Browse the full directory in [CATALOG.md](CATALOG.md).
+VAS includes **3,093+ skills** across **119 specialized categories**. Browse the full directory in [CATALOG.md](CATALOG.md).
 
 | # | Skill ID | Stars | Capability Overview | Quick Install Command |
 | :-: | :--- | :---: | :--- | :--- |
