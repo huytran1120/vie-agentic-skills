@@ -128,19 +128,18 @@ class MattPocockCatalogTests(unittest.TestCase):
         script = (ROOT / "docs/catalog.js").read_text(encoding="utf-8")
         self.assertIn("skill.category", script)
         self.assertIn("counts.set", script)
-        for filename in ("README.md", "README_EN.md", "docs/index.html"):
-            with self.subTest(filename=filename):
-                text = (ROOT / filename).read_text(encoding="utf-8")
-                self.assertIn(f"{len(self.index):,}", text)
-                if filename.endswith(".md"):
-                    for label, category in (
-                        ("Development", "development"),
-                        ("DevOps", "devops"),
-                        ("Testing & QA", "testing"),
-                    ):
-                        self.assertRegex(
-                            text, rf"{label}\s*:\s*{counts[category]} skills"
-                        )
+        self.assertIn(f"{len(self.index):,}", page)
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        vietnamese_total = f"{len(self.index):,}".replace(",", ".")
+        self.assertIn(f"**{vietnamese_total} skill**", readme)
+        self.assertIn(f"**{len(counts)} danh mục**", readme)
+        for category in ("development", "security", "devops", "cloud", "testing", "ai-ml"):
+            with self.subTest(category=category):
+                self.assertRegex(
+                    readme, rf"\|\s*`{category}`\s*\|\s*{counts[category]}\s*\|"
+                )
+        legacy_readme = (ROOT / "README_EN.md").read_text(encoding="utf-8")
+        self.assertIn("[README.md](README.md)", legacy_readme)
 
     def test_imported_skills_can_be_installed_with_support_files(self):
         ids = [skill["id"] for skill in self.manifest["imported"]]

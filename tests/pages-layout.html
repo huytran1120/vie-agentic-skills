@@ -44,7 +44,7 @@
     for (const locale of ['vi', 'en']) {
       language(locale);
       check(d.documentElement.lang === locale, `${locale}: document language must update`);
-      check(d.getElementById('readme-link').getAttribute('href').endsWith(locale === 'en' ? '/README_EN.md' : '/README.md'), `${locale}: guide link must match the language`);
+      check(d.getElementById('readme-link').getAttribute('href').endsWith('/README.md'), `${locale}: guide link must use the shared Vietnamese README`);
       for (const node of d.querySelectorAll('[data-i18n]')) {
         if (node.id !== 'results-title') check(node.textContent === w.VASI18n.translate(node.dataset.i18n, locale), `${locale}: stale translation ${node.dataset.i18n}`);
       }

@@ -982,6 +982,19 @@ test('language switching works during loading and preserves query, agent and pri
   assert.equal(runtime.elements.get('language-toggle').textContent, 'VI');
 });
 
+test('both interface languages link to the same Vietnamese guide without changing interface localization', async () => {
+  for (const language of ['vi', 'en']) {
+    const window = languageWindow(`?lang=${language}`);
+    const runtime = browserRuntime(async () => ({ ok: true, json: async () => skills }), window);
+    await new Promise(setImmediate);
+    assert.equal(runtime.document.documentElement.lang, language);
+    assert.equal(runtime.elements.get('readme-link').attributes.get('href'), '../README.md');
+    runtime.elements.get('language-toggle').listeners.get('click')();
+    assert.equal(runtime.document.documentElement.lang, language === 'vi' ? 'en' : 'vi');
+    assert.equal(runtime.elements.get('readme-link').attributes.get('href'), '../README.md');
+  }
+});
+
 test('English loading failures remain actionable and unavailable storage is reported', async () => {
   const window = languageWindow('?lang=en', 'vi', true);
   const runtime = browserRuntime(async () => ({ ok: false, status: 503 }), window);

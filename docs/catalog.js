@@ -398,7 +398,7 @@
     toggle.setAttribute('title', state.language === 'vi' ? 'English' : 'Tiếng Việt');
     byId('theme-toggle').setAttribute('aria-label', t(document.documentElement.dataset.theme === 'dark' ? 'theme.light' : 'theme.dark'));
     byId('home-link').setAttribute('href', `./?lang=${state.language}`);
-    byId('readme-link').setAttribute('href', `${skillBase}/README${state.language === 'en' ? '_EN' : ''}.md`);
+    byId('readme-link').setAttribute('href', `${skillBase}/README.md`);
     if (state.loaded) {
       renderNavigation(); renderCategories(); renderResults();
       if (afterInstallationOpen && byId('installation-after')) byId('installation-after').open = true;
