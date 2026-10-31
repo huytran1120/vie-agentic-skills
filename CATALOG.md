@@ -1,6 +1,6 @@
 # Vie Agentic Skill (VAS) - Catalog
 
-Tổng hợp **3,186** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
+Tổng hợp **3,353** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
 
 | Danh mục | Số lượng | Lệnh cài đặt nhanh |
 | :--- | :---: | :--- |
@@ -66,7 +66,7 @@ Tổng hợp **3,186** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **front-end** | 16 skills | `./vas install --category front-end --target codex` |
 | **frontend** | 47 skills | `./vas install --category frontend --target codex` |
 | **fullstack** | 1 skills | `./vas install --category fullstack --target codex` |
-| **game-development** | 100 skills | `./vas install --category game-development --target codex` |
+| **game-development** | 189 skills | `./vas install --category game-development --target codex` |
 | **general** | 65 skills | `./vas install --category general --target codex` |
 | **granular-workflow-bundle** | 16 skills | `./vas install --category granular-workflow-bundle --target codex` |
 | **graphics-processing** | 10 skills | `./vas install --category graphics-processing --target codex` |
@@ -78,7 +78,7 @@ Tổng hợp **3,186** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **lifestyle** | 1 skills | `./vas install --category lifestyle --target codex` |
 | **marketing** | 115 skills | `./vas install --category marketing --target codex` |
 | **mcp** | 8 skills | `./vas install --category mcp --target codex` |
-| **media** | 67 skills | `./vas install --category media --target codex` |
+| **media** | 145 skills | `./vas install --category media --target codex` |
 | **media-processing** | 1 skills | `./vas install --category media-processing --target codex` |
 | **memory** | 7 skills | `./vas install --category memory --target codex` |
 | **meta** | 38 skills | `./vas install --category meta --target codex` |
@@ -2279,7 +2279,7 @@ Tổng hợp **3,186** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | :--- | :---: | :--- |
 | `vibe-code-cleanup` | `safe` | Safe production cleanup and hardening for vibe-coded fullstack apps (Next.js,... |
 
-### GAME-DEVELOPMENT (100 skills)
+### GAME-DEVELOPMENT (189 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
@@ -2357,6 +2357,95 @@ Tổng hợp **3,186** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `router` | `unknown` | Routes any game-development request to the right specialized skill(s): it det... |
 | `rpg` | `unknown` | Build an RPG: stats and leveling, inventory and equipment, quests, branching ... |
 | `save-systems` | `unknown` | Design save/load for game state — choosing what to serialize, file formats, s... |
+| `scenario-blender` | `safe` | Use when an agent works in an open Blender scene through the Scenario for Ble... |
+| `scenario-blender-2d-animation` | `safe` | Use when a 2D side-scroller shot, platformer cutscene, game trailer or parall... |
+| `scenario-blender-animation` | `safe` | Use when animating characters or objects in Blender through Python, a bouncin... |
+| `scenario-blender-blockout` | `safe` | Use when a text brief or a reference image must become a Blender blockout who... |
+| `scenario-blender-expert` | `safe` | Use when doing any 3D work in Blender through Python or an MCP bridge, headle... |
+| `scenario-blender-export` | `safe` | Use when exporting a model, character or animation from Blender to a game eng... |
+| `scenario-blender-geometry-nodes` | `safe` | Use when building or debugging Geometry Nodes, headless or live: procedural m... |
+| `scenario-blender-grease-pencil` | `safe` | Use when drawing or animating with Grease Pencil in Blender 5.x from Python: ... |
+| `scenario-blender-hair` | `safe` | Use when grooming hair or fur in Blender with hair curves, such as a characte... |
+| `scenario-blender-hard-surface` | `safe` | Use when modeling hard-surface objects in Blender (sci-fi panels, props, weap... |
+| `scenario-blender-lighting-rendering` | `safe` | Use when lighting, rendering or compositing in Blender: light a character, pr... |
+| `scenario-blender-previs-storyboard` | `safe` | Use when turning a script or story into previs, layout, storyboards or an ani... |
+| `scenario-blender-retopology` | `safe` | Use when turning a dense sculpt, scan or AI-generated mesh into clean topolog... |
+| `scenario-blender-rigging` | `safe` | Use when rigging a character, creature or prop in Blender through Python: "ri... |
+| `scenario-blender-sculpting` | `safe` | Use when sculpting in Blender through Python: sculpt a head, face or bust, a ... |
+| `scenario-blender-texturing-shading` | `safe` | Use when texturing, shading or look-developing in Blender: building a PBR mat... |
+| `scenario-blender-uv-baking` | `safe` | Use when UV unwrapping, placing seams, straightening or packing UVs, setting ... |
+| `scenario-godot-2d` | `safe` | Use when building a 2D game in Godot 4.7: make a platformer or top-down contr... |
+| `scenario-godot-3d-world` | `safe` | Use when building 3D levels and worlds in Godot 4.7: third-person or FPS cont... |
+| `scenario-godot-animation` | `safe` | Use when animating characters or scenes in Godot 4.7: AnimationPlayer clips a... |
+| `scenario-godot-architecture` | `safe` | Use when structuring Godot 4.7 game code: folders, scenes and nodes, signals ... |
+| `scenario-godot-audio` | `safe` | Use when adding or fixing sound in Godot 4.7: audio buses and effects, volume... |
+| `scenario-godot-expert` | `safe` | Use when an agent drives Godot 4.7 on macOS or Windows for any task: headless... |
+| `scenario-godot-gameplay` | `safe` | Use when building gameplay systems in Godot 4.7: enemy AI that patrols, chase... |
+| `scenario-godot-multiplayer` | `safe` | Use when a Godot 4 game goes online or co-op: host and join with ENet, WebSoc... |
+| `scenario-godot-performance-export` | `safe` | Use when a Godot game stutters, drops frames, hitches when entering new areas... |
+| `scenario-godot-pipeline-automation` | `safe` | Use when Godot 4.7 work must run without a mouse or at scale: batch import of... |
+| `scenario-godot-rendering-lighting` | `safe` | Use when lighting or rendering a Godot 4.7 3D scene: pick a renderer (Forward... |
+| `scenario-godot-shaders` | `safe` | Use when writing or fixing Godot 4.7 shaders: .gdshader code (spatial, canvas... |
+| `scenario-godot-ui` | `safe` | Use when building or fixing game UI in Godot 4.7: main menu, settings screen,... |
+| `scenario-godot-vfx` | `safe` | Use when making or fixing particle effects and game feel in Godot 4.7: GPUPar... |
+| `scenario-maya-animation` | `safe` | Use when animating a character or prop in Maya through Python: a walk or run ... |
+| `scenario-maya-deformation` | `safe` | Use when skinning a character in Maya ("bind skin", "fix the weights", weight... |
+| `scenario-maya-expert` | `safe` | Use when doing any Autodesk Maya task through Python or a bridge, headless or... |
+| `scenario-maya-fx` | `safe` | Use when a Maya task involves simulation or procedural effects: nCloth or Nuc... |
+| `scenario-maya-groom` | `safe` | Use when grooming hair or fur in Maya with XGen (Interactive Groom splines or... |
+| `scenario-maya-lighting-rendering` | `safe` | Use when lighting or rendering in Maya with Arnold: a product hero shot, a ch... |
+| `scenario-maya-lookdev` | `safe` | Use when shading an asset in Maya with Arnold: OpenPBR or aiStandardSurface m... |
+| `scenario-maya-modeling` | `safe` | Use when modeling in Autodesk Maya, such as hard-surface props, weapons, vehi... |
+| `scenario-maya-pipeline-scripting` | `safe` | Use when writing or fixing Maya pipeline code in Python: mayapy batch jobs ov... |
+| `scenario-maya-retopology-uv` | `safe` | Use when turning a dense sculpt, scan, ZBrush export or AI-generated mesh int... |
+| `scenario-maya-rigging` | `safe` | Use when rigging a character, creature or prop in Maya: "rig this character",... |
+| `scenario-roblox-animation` | `safe` | Use when animating Roblox characters, NPCs or creatures: animation not playin... |
+| `scenario-roblox-architecture` | `safe` | Use when structuring Roblox game code: where scripts go (ServerScriptService,... |
+| `scenario-roblox-assets` | `safe` | Use when bringing 3D assets into Roblox Studio or preparing avatar items: imp... |
+| `scenario-roblox-data` | `safe` | Use when a Roblox game saves or loads player data, or when players report dat... |
+| `scenario-roblox-environment` | `safe` | Use when building or lighting a Roblox map: graybox or blockout, level layout... |
+| `scenario-roblox-expert` | `safe` | Use when an agent builds, fixes or tests anything in Roblox Studio: \"make a ... |
+| `scenario-roblox-gameplay` | `safe` | Use when building Roblox gameplay systems: NPC or enemy AI that patrols, chas... |
+| `scenario-roblox-luau` | `safe` | Use when writing, reviewing or debugging Luau in a Roblox experience: task.sp... |
+| `scenario-roblox-monetization` | `safe` | Use when a Roblox game sells something or plans live ops: Developer Products,... |
+| `scenario-roblox-networking` | `safe` | Use when securing a Roblox experience against exploiters or designing its net... |
+| `scenario-roblox-performance` | `safe` | Use when a Roblox experience is slow, laggy, stuttering, crashing or out of m... |
+| `scenario-roblox-tooling` | `safe` | Use when setting up or repairing a Roblox team project outside Studio: Rojo o... |
+| `scenario-roblox-ui` | `safe` | Use when building or fixing Roblox game UI or input: HUD (health bar, currenc... |
+| `scenario-roblox-vfx-audio` | `safe` | Use when making or fixing Roblox visual effects or game audio: ParticleEmitte... |
+| `scenario-unity-2d` | `safe` | Use when building a 2D game in Unity 6.3 URP: pixel-art or HD sprite import a... |
+| `scenario-unity-animation` | `safe` | Use when a Unity 6.3 task involves character animation or cameras: Mixamo or ... |
+| `scenario-unity-architecture` | `safe` | Use when structuring Unity 6.3 C# code: ScriptableObject data vs runtime stat... |
+| `scenario-unity-expert` | `safe` | Use when an agent drives Unity 6.3 (6000.3) on a Mac for any task: batch mode... |
+| `scenario-unity-gameplay` | `safe` | Use when building or debugging Unity gameplay systems: enemy AI that patrols,... |
+| `scenario-unity-mobile` | `safe` | Use when a Unity 6.3 game targets Android or iOS: phone frame budget, overhea... |
+| `scenario-unity-performance` | `safe` | Use when a Unity 6.3 game is slow or stutters: low fps, frame spikes, hitches... |
+| `scenario-unity-pipeline-automation` | `safe` | Use when automating a Unity 6.3 content pipeline or build: importing an art d... |
+| `scenario-unity-rendering-lighting` | `safe` | Use when setting up URP (or choosing URP vs HDRP), configuring URP assets and... |
+| `scenario-unity-shaders` | `safe` | Use when a Unity 6.3 URP task involves shaders: hand-written HLSL, Shader Gra... |
+| `scenario-unity-ui` | `safe` | Use when building or fixing game UI in Unity 6.3: main menu, settings screen ... |
+| `scenario-unity-vfx` | `safe` | Use when making or fixing real-time VFX in Unity 6.3: explosions, fireballs, ... |
+| `scenario-unity-web` | `safe` | Use when a Unity 6.3 game must run in a browser: 'export to WebGL', Web build... |
+| `scenario-unity-world-building` | `safe` | Use when building a Unity 6.3 level or open world: terrain from code or heigh... |
+| `scenario-unreal-animation` | `safe` | Use when a UE5 task involves characters in motion: "import FBX from Maya" wit... |
+| `scenario-unreal-cinematics` | `safe` | Use when making a trailer, cutscene, cinematic or short film in Unreal Engine... |
+| `scenario-unreal-expert` | `safe` | Use when an agent drives Unreal Engine 5.8 on a Mac for any task: Editor Pyth... |
+| `scenario-unreal-gameplay` | `safe` | Use when building or debugging UE5 gameplay: a character with double jump or ... |
+| `scenario-unreal-lighting-rendering` | `safe` | Use when lighting or rendering in Unreal Engine 5.8: physical light units and... |
+| `scenario-unreal-materials` | `safe` | Use when a UE5 task involves materials or textures: a master material and ins... |
+| `scenario-unreal-performance` | `safe` | Use when an Unreal Engine 5.8 project misses its frame rate or stutters: "opt... |
+| `scenario-unreal-pipeline-automation` | `safe` | Use when importing FBX, USD, OBJ or glTF from Maya, ZBrush or Blender into Un... |
+| `scenario-unreal-vfx` | `safe` | Use when a UE5 task involves Niagara or Chaos destruction: a Niagara fireball... |
+| `scenario-unreal-world-building` | `safe` | Use when building or fixing an Unreal Engine 5 level or open world: World Par... |
+| `scenario-zbrush-automation` | `safe` | Use when automating ZBrush 2026: batch processing a folder of OBJ or ZTL file... |
+| `scenario-zbrush-character-creature` | `safe` | Use when sculpting a realistic head, face, portrait, body or creature in ZBru... |
+| `scenario-zbrush-expert` | `safe` | Use when an agent drives Maxon ZBrush 2026 for any task (sculpt in ZBrush, Dy... |
+| `scenario-zbrush-hard-surface` | `safe` | Use when modeling hard surface in ZBrush 2026 (sci-fi helmet, weapon, prop, a... |
+| `scenario-zbrush-paint-render` | `safe` | Use when polypainting in ZBrush (skin color zones, fills, cavity or AO passes... |
+| `scenario-zbrush-pose-print` | `safe` | Use when posing a sculpt or preparing it for 3D printing in ZBrush: "pose thi... |
+| `scenario-zbrush-retopology-export` | `safe` | Use when a ZBrush sculpt, scan or AI-generated mesh must become production to... |
+| `scenario-zbrush-sculpting` | `safe` | Use when an agent sculpts organic forms in ZBrush 2026 (sculpt a head, bust o... |
+| `scenario-zbrush-stylized` | `safe` | Use when sculpting a stylized or cartoon character, bust, collectible or toy ... |
 | `shader-programming` | `unknown` | Write game shaders from cross-engine fundamentals — the vertex→fragment pipel... |
 | `shader-programming-glsl` | `safe` | Expert guide for writing efficient GLSL shaders (Vertex/Fragment) for web and... |
 | `steam-publish` | `unknown` | Publish or update a game on Steam with Steamworks and SteamPipe: configure de... |
@@ -2692,7 +2781,7 @@ Tổng hợp **3,186** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `protect-mcp-governance` | `critical` | Agent governance skill for MCP tool calls — Cedar policy authoring, shadow-to... |
 | `serply-search-mcp` | `safe` | Search Google, Bing, Google News and Google Scholar, and read public pages, w... |
 
-### MEDIA (67 skills)
+### MEDIA (145 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
@@ -2742,6 +2831,84 @@ Tổng hợp **3,186** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `remotion-render` | `unknown` | Export a Remotion video |
 | `resolve-scripting` | `safe` | Practical DaVinci Resolve Studio scripting knowledge for building edits from ... |
 | `rough-cut` | `safe` | Editorial rules for choosing what to keep in talking-head footage (retakes, f... |
+| `scenario` | `safe` | Use when connecting an AI agent to Scenario (scenario.com) through MCP, or wh... |
+| `scenario-3d` | `safe` | Use when generating or handling 3D assets through the Scenario MCP server, in... |
+| `scenario-3d-worlds` | `safe` | Use when generating navigable 3D worlds or Gaussian splat scenes on Scenario ... |
+| `scenario-ace-step` | `safe` | Use when creating or editing music with ACE-Step models on Scenario via MCP: ... |
+| `scenario-ad-variants` | `safe` | Use when making multiple independent ad or campaign edits from existing foota... |
+| `scenario-admin-analytics` | `safe` | Use when answering Scenario admin analytics questions about Creative Unit con... |
+| `scenario-asset-analysis` | `safe` | Use when finished Scenario assets have to give something back: a caption for ... |
+| `scenario-audio` | `safe` | Use when generating or handling audio on Scenario via MCP. Triggers include m... |
+| `scenario-brand-kit` | `safe` | Use when building a visual identity or brand kit with Scenario: a logo, wordm... |
+| `scenario-caption-studio` | `safe` | Use when a video needs its spoken words on screen through Scenario via MCP: b... |
+| `scenario-chatgpt-pet-create` | `safe` | Use when creating a ChatGPT pet or Codex pet with Scenario: hatching an anima... |
+| `scenario-chatgpt-pet-update` | `safe` | Use when changing an existing ChatGPT pet or Codex pet sprite sheet with Scen... |
+| `scenario-consistency` | `safe` | Use when one look must hold across Scenario generations: one character across... |
+| `scenario-elevenlabs` | `safe` | Use when generating or transforming audio with ElevenLabs models on Scenario ... |
+| `scenario-fan-cam` | `safe` | Use when putting a person from a photo into live-broadcast crowd footage with... |
+| `scenario-formats` | `safe` | Use when one approved visual, image or video, must ship at many sizes or plac... |
+| `scenario-game-assets` | `safe` | Use when creating game art through Scenario MCP: sprites, sprite sheets, icon... |
+| `scenario-gemini-image` | `safe` | Use when generating or editing images with Google's Gemini image models (Nano... |
+| `scenario-gemini-omni` | `safe` | Use when generating, extending, or editing video with Gemini Omni models on S... |
+| `scenario-gpt-image` | `safe` | Use when generating or editing images with OpenAI's GPT Image models on Scena... |
+| `scenario-grok-imagine-image` | `safe` | Use when generating or editing images with Grok Imagine models on Scenario vi... |
+| `scenario-grok-imagine-video` | `safe` | Use when generating or editing video with Grok Imagine models on Scenario via... |
+| `scenario-identity-library` | `safe` | Use when a named character or prop must become a reusable identity in Scenari... |
+| `scenario-ideogram` | `safe` | Use when generating or editing images with Ideogram models on Scenario via MC... |
+| `scenario-image` | `safe` | Use when generating or editing images with Scenario through MCP: text-to-imag... |
+| `scenario-image-editing` | `safe` | Use when editing an existing image on Scenario through MCP with a tool model,... |
+| `scenario-inspiration` | `safe` | Use when a creative task has no direction yet: finding inspiration, exploring... |
+| `scenario-kinetic-music-video` | `safe` | Use when turning a song into a kinetic-typography or motion-design music vide... |
+| `scenario-kling` | `safe` | Use when generating or editing video with Kling models on Scenario via MCP: t... |
+| `scenario-luma-image` | `safe` | Use when generating or editing images with Luma Uni-1 models on Scenario via ... |
+| `scenario-luma-video` | `safe` | Use when generating or editing video with Luma Ray models on Scenario via MCP... |
+| `scenario-mai-image` | `safe` | Use when generating or editing images with Microsoft MAI Image models on Scen... |
+| `scenario-meshy` | `safe` | Use when creating or refining 3D assets with Meshy models on Scenario via MCP... |
+| `scenario-minimax-music` | `safe` | Use when generating music with MiniMax models on Scenario via MCP: full songs... |
+| `scenario-minimax-video` | `safe` | Use when generating or editing video with MiniMax Hailuo models on Scenario v... |
+| `scenario-model-comparison` | `safe` | Use when comparing Scenario models on the same brief through MCP: a bake-off ... |
+| `scenario-model-training` | `safe` | Use when generated assets must keep a consistent style, character, or product... |
+| `scenario-moderation` | `safe` | Use when a Scenario generation is blocked, refused, or returns a moderation o... |
+| `scenario-motion-loops` | `safe` | Use when someone wants seamless looping motion graphics for video in their ow... |
+| `scenario-multi-reference` | `safe` | Use when one image must be composed from several reference pictures through t... |
+| `scenario-orbit-views` | `safe` | Use when a single image of a character, creature, prop, vehicle, or building ... |
+| `scenario-patina-retexture` | `safe` | Use when retexturing an existing 3D asset with PATINA PBR materials through t... |
+| `scenario-product-shots` | `safe` | Use when producing product photography with Scenario from a real product phot... |
+| `scenario-quality-gate` | `safe` | Use when a generated Scenario image needs a quality check or a brand-brief co... |
+| `scenario-reel-recast` | `safe` | Use when recreating a trending reel, TikTok or Short with a different perform... |
+| `scenario-refine-loop` | `safe` | Use when a Scenario output must be checked and improved rather than accepted ... |
+| `scenario-report` | `safe` | Use when a Scenario user wants to report a bug or request a change, on the pu... |
+| `scenario-reve` | `safe` | Use when generating or editing images with Reve models on Scenario via MCP: t... |
+| `scenario-rodin` | `safe` | Use when generating 3D assets with Rodin Hyper3D models on Scenario via MCP: ... |
+| `scenario-runway` | `safe` | Use when generating or editing video with Runway models on Scenario via MCP: ... |
+| `scenario-seedance` | `safe` | Use when generating or editing video with Seedance models on Scenario via MCP... |
+| `scenario-seedance-drafts` | `safe` | Use when exploring several Seedance video takes before paying for a final: ch... |
+| `scenario-seedance-music-video` | `safe` | Use when turning a song, track, or audio master into a finished music video w... |
+| `scenario-seedance-storyboard` | `safe` | Use when a Seedance video must hold continuous movement across shots: dance c... |
+| `scenario-seedream` | `safe` | Use when generating or editing images with Seedream models on Scenario via MC... |
+| `scenario-side-view-game-kit` | `safe` | Use when making the art for a side-scroller or 2D platformer: side-view pixel... |
+| `scenario-skyboxes` | `safe` | Use when a task involves generating or iterating on skyboxes, 360 panoramas, ... |
+| `scenario-sonilo` | `safe` | Use when adding sound to a video or generating standalone audio with Sonilo m... |
+| `scenario-sparc3d` | `safe` | Use when turning images or photos into 3D meshes with Sparc3D models on Scena... |
+| `scenario-sprite-animation` | `safe` | Use when animating 2D game art with Scenario: walk, idle or attack cycles in ... |
+| `scenario-storyboards` | `safe` | Use when a story must unfold across a sequence of Scenario images: a comic pa... |
+| `scenario-team-admin` | `safe` | Use when administering a Scenario team from an agent through MCP: restricting... |
+| `scenario-text-overlay` | `safe` | Use when text must appear letter-perfect on generated media: taglines, CTAs, ... |
+| `scenario-textures` | `safe` | Use when a task involves game textures or materials through the Scenario MCP:... |
+| `scenario-thumbnails` | `safe` | Use when creating or revising finished video thumbnails or cover images with ... |
+| `scenario-ugc` | `safe` | Use when producing UGC-style creator video with Scenario: a talking-head ad o... |
+| `scenario-veo` | `safe` | Use when generating or extending video with Google Veo models on Scenario via... |
+| `scenario-video` | `safe` | Use when generating or editing video on Scenario via MCP: text-to-video, a mu... |
+| `scenario-video-ads` | `safe` | Use when producing a video ad with Scenario from a product shot or brand asse... |
+| `scenario-video-assembly` | `safe` | Use when generated clips must become a finished video on Scenario via MCP: cu... |
+| `scenario-video-color-grade` | `safe` | Use when color grading, color correcting, or relighting an existing video or ... |
+| `scenario-video-editing` | `safe` | Use when editing footage already on Scenario through MCP with a tool model, n... |
+| `scenario-video-to-motion` | `safe` | Use when turning a reference video into 3D character animation through the Sc... |
+| `scenario-vidu` | `safe` | Use when generating video with Vidu models on Scenario via MCP: text-to-video... |
+| `scenario-walkable-room` | `safe` | Use when one interior photo, uploaded or generated on Scenario, should become... |
+| `scenario-wan` | `safe` | Use when generating or editing video with Wan models on Scenario via MCP: tex... |
+| `scenario-workflow-authoring` | `safe` | Use when a task involves creating or editing a Scenario workflow graph throug... |
+| `scenario-workflows` | `safe` | Use when a task involves running a Scenario workflow through MCP, including a... |
 | `screenstudio-alt` | `critical` | Open-source headless Screen Studio alternative: auto speed-up of idle, auto-z... |
 | `slack-gif-creator` | `critical` | Knowledge and utilities for creating animated GIFs optimized for Slack. Provi... |
 | `stability-ai` | `critical` | Geracao de imagens via Stability AI (SD3.5, Ultra, Core). Text-to-image, img2... |

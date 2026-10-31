@@ -505,7 +505,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
   const youtube = catalog.filterSkills(skills, { sources: ['youtube'] });
   assert.equal(youtube.length, 11);
   assert.equal(catalog.filterSkills(skills, { query: 'youtube-agent-skill' }).length, 11);
-  assert.equal(skills.length, 3186);
+  assert.equal(skills.length, 3353);
   for (const skill of youtube) {
     assert.ok(skill.id.startsWith('youtube-agent-skill/'));
     assert.equal(skill.source_repo, 'Jakeschincariol/youtube-agent-skill');
@@ -520,7 +520,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
     assert.deepEqual(state.sources, ['youtube']);
     assert.equal(state.selected, youtube[0].id);
     assert.ok(i18n.translate('collections.youtube', language).startsWith('11 '));
-    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '3.186' : '3,186'));
+    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '3.353' : '3,353'));
   }
   assert.equal(catalog.filterSkills(skills, { sources: ['youtube'], category: 'security' }).length, 0);
   const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
@@ -1114,4 +1114,34 @@ test('teardown retains exact source filtering, MIT license and agent prompts', (
   assert.ok(html.includes('name="source" value="teardown"'));
   assert.ok(html.includes('data-source-count="teardown">1<'));
   assert.ok(html.includes('id="teardown-collection"'));
+});
+
+test('scenario retains exact source filtering, MIT license and agent prompts', () => {
+  const scenarioSkills = catalog.filterSkills(skills, { sources: ['scenario'] });
+  assert.equal(scenarioSkills.length, 167);
+  assert.equal(catalog.filterSkills(skills, { query: 'scenario-labs/skills' }).length, 167);
+  for (const skill of scenarioSkills) {
+    assert.equal(skill.source_repo, 'scenario-labs/skills');
+    assert.equal(skill.author, 'Scenario Inc.');
+    assert.equal(skill.license, 'MIT');
+    assert.ok(['media', 'blender', 'game-development'].includes(skill.category));
+    assert.equal(skill.risk, 'safe');
+  }
+
+  const sample = scenarioSkills.find(s => s.id === 'scenario-blender-expert') || scenarioSkills[0];
+  for (const language of ['vi', 'en']) {
+    assert.ok(i18n.translate('collections.scenario', language).startsWith('167 '));
+    for (const [agent] of catalog.agents.filter(([key]) => key !== 'all')) {
+      const prompt = catalog.agentInstallPrompt(sample, agent, language);
+      assert.ok(prompt.includes(`/install-manifests/${sample.id}.json`));
+      assert.ok(prompt.includes(catalog.targetFolders[agent]));
+      assert.ok(prompt.includes('SHA-256'));
+      assert.ok(prompt.includes('.vas-manifest.json'));
+    }
+  }
+
+  const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
+  assert.ok(html.includes('name="source" value="scenario"'));
+  assert.ok(html.includes('data-source-count="scenario">167<'));
+  assert.ok(html.includes('id="scenario-collection"'));
 });
