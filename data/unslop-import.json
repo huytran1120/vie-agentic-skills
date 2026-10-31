@@ -1,0 +1,227 @@
+{
+  "source_repo": "heydamir/unslop",
+  "revision": "4652254daff586ff4739849395a127b56f7f8cc7",
+  "skill_count": 1,
+  "skipped": [],
+  "namespaces": {
+    "unslop": "heydamir-unslop"
+  },
+  "duplicate_check": {
+    "catalog_count_before": 3171,
+    "upstream_is_fork": false,
+    "methods": [
+      "canonical-id/name",
+      "source-repo/path",
+      "raw-sha256",
+      "normalized-body",
+      "renamed-body",
+      "body-containment",
+      "7-word-shingles"
+    ],
+    "collision_rationale": "Existing MohamedAbdallah-14/unslop is a prose-processing CLI workflow; heydamir/unslop redesigns UI through nine passes. No duplicate body/source/mirror was found."
+  },
+  "skill_notes": "\n\n## VAS installation notes\n\nThis is the UI-design Unslop by Damir Sokolovsky ([@heydamir](https://x.com/heydamir)),\nfrom [heydamir/unslop](https://github.com/heydamir/unslop/tree/4652254daff586ff4739849395a127b56f7f8cc7),\nupstream revision `4652254daff586ff4739849395a127b56f7f8cc7`.\nIts original CC-BY-4.0 license, attribution, references and authored visual\nexamples are retained. Preserve this credit, the original repository link and\nLICENSE in every copy/adaptation, and identify your changes. No endorsement by\nthe author is implied.\n\nVAS canonical ID and installed folder: `heydamir-unslop`. The existing `unslop`\nskill from MohamedAbdallah-14 processes prose through a CLI; it is a different\nworkflow and stays unchanged. Use this namespaced ID, not the prose CLI's name,\nfor installation, status and uninstall. Read SKILL.md through your agent's\nexisting skill discovery or request the UI workflow in natural language.\n\nCopy Agent Prompt in the VAS catalog installs the complete verified snapshot\nwithout cloning. CLI: `./vas install heydamir-unslop --target <agent> --mode copy`.\nLink mode requires keeping the VAS checkout in place. Installation only\ncopies/links files and writes a CLI-compatible receipt: it never executes the\nbundled helpers or examples, installs packages/browser binaries, connects an\nMCP server or image service, generates paid images, captures a site or publishes\na story. References, examples/assets/blob.webp, LICENSE, CITATION.cff and all\nscripts are included in this standalone folder.\n\nOptional snapshot/story helpers need Node.js, separately approved\nPlaywright or playwright-core plus a compatible existing browser; story video\nalso needs ffmpeg. Use CHROME_PATH where applicable. Request permission before\ndependency/browser installation or downloads and use the project's package\nmanager, never NPX. Missing prerequisites must be reported, not silently skipped.\nFor snapshotting, use only an authorized page: navigation executes site\nJavaScript and may fetch remote styles/images/fonts; respect copyright, privacy,\nauthentication and service terms. Do not bypass site warnings or obtain access\nwithout permission. Story playback executes the local HTML, serves its directory,\nand video rendering writes output and removes its temporary frames; review\nthe helper and ask before overwriting files. Rendering, sensitive-data submission,\naccount/MCP connection, paid generation, uploads and publishing each require\nseparate authorization and an agreed budget where relevant.\n\nVAS changes are documented in ADAPTATIONS.md and data/unslop-import.json:\nnamespace the YAML name, replace only the helpers' missing-Playwright NPX advice\nwith approval-first setup guidance, and append these packaging notes. The\noriginal UI workflow, author credit, references, visual assets, examples and\nhelper logic remain intact. This import does not redesign the VAS website.\n",
+  "generated_notes": "# VAS packaging and attribution\n\nOriginal work: Unslop by Damir Sokolovsky ([@heydamir](https://x.com/heydamir)).\nSource: https://github.com/heydamir/unslop/tree/4652254daff586ff4739849395a127b56f7f8cc7\nOriginal revision: `4652254daff586ff4739849395a127b56f7f8cc7`.\nLicense: CC-BY-4.0; full original text is in LICENSE, author citation in CITATION.cff.\nThe references and visual examples retain the author's credit and license.\nKeep attribution, the source link and license in copies/adaptations; identify\nlater changes. VAS does not imply endorsement or relicense the upstream content.\n\nVAS adaptation:\n\n- Rename only the SKILL.md YAML name to `heydamir-unslop`, because the existing\n  `unslop` prose-cleanup CLI skill is unrelated; both can be installed together.\n- Add reversible installation, attribution, prerequisites and consent notes.\n- In snapshot.mjs and story.mjs, change only the missing-Playwright diagnostic\n  to approval-first setup guidance without NPX; mark each changed helper.\n- Include the original top-level examples directory, LICENSE and CITATION.cff\n  in the standalone payload. Reference images and helper logic remain unchanged.\n\nOriginal/vendored SHA-256, Git blobs, modes and exact reversible replacements\nare recorded in VAS data/unslop-import.json. No bundled code was executed and\nno package, browser runtime, MCP server or service was installed/connected.\n",
+  "replacements": {
+    "skills/heydamir-unslop/SKILL.md": [
+      {
+        "before": "name: unslop\n",
+        "after": "name: heydamir-unslop\n"
+      }
+    ],
+    "skills/heydamir-unslop/scripts/snapshot.mjs": [
+      {
+        "before": "import { createRequire } from \"node:module\";",
+        "after": "// VAS change: missing-Playwright advice now requires approved setup without NPX; see ADAPTATIONS.md.\nimport { createRequire } from \"node:module\";"
+      },
+      {
+        "before": "Playwright is not installed. Run `npm i -D playwright` in the project, or `npx playwright install chromium`.",
+        "after": "Playwright is not installed. Obtain approval before adding playwright or playwright-core and browser dependencies with the project package manager; use an existing compatible browser via CHROME_PATH where applicable."
+      }
+    ],
+    "skills/heydamir-unslop/scripts/story.mjs": [
+      {
+        "before": "import { createRequire } from \"node:module\";",
+        "after": "// VAS change: missing-Playwright advice now requires approved setup without NPX; see ADAPTATIONS.md.\nimport { createRequire } from \"node:module\";"
+      },
+      {
+        "before": "Playwright is not installed. Run `npm i -D playwright` in the project, or `npx playwright install chromium`.",
+        "after": "Playwright is not installed. Obtain approval before adding playwright or playwright-core and browser dependencies with the project package manager; use an existing compatible browser via CHROME_PATH where applicable."
+      }
+    ]
+  },
+  "files": [
+    {
+      "source_path": "skills/unslop/SKILL.md",
+      "path": "skills/heydamir-unslop/SKILL.md",
+      "source_sha256": "5039a0146128fa25ccf0d8cad33c9cf42d15bbb17145615f5685873e372758dd",
+      "sha256": "cd9f357b1e3a5b722a7b09360eb65e3104d10464dd53e49c55830e3092006788",
+      "source_git_blob": "07741545979f0362b3f79072af9b723b73e3843d",
+      "executable": false,
+      "appended_notes": true
+    },
+    {
+      "source_path": "skills/unslop/references/effects.md",
+      "path": "skills/heydamir-unslop/references/effects.md",
+      "source_sha256": "ded4f679e22843a8f68860e6cda0396fa8b8fa27202400e08337143b485c86a4",
+      "sha256": "ded4f679e22843a8f68860e6cda0396fa8b8fa27202400e08337143b485c86a4",
+      "source_git_blob": "621f8ec43153d396d7e2cd7c4309a00d4aa27d32",
+      "executable": false,
+      "appended_notes": false
+    },
+    {
+      "source_path": "skills/unslop/references/refs/beacon-engraving.webp",
+      "path": "skills/heydamir-unslop/references/refs/beacon-engraving.webp",
+      "source_sha256": "44e7680e9c944f03c8fe45df999bdf74077a106925a8189eebf89e751e306e5b",
+      "sha256": "44e7680e9c944f03c8fe45df999bdf74077a106925a8189eebf89e751e306e5b",
+      "source_git_blob": "cf8af41fa080808a3f715e8f3d7d58ea789abd1e",
+      "executable": false,
+      "appended_notes": false
+    },
+    {
+      "source_path": "skills/unslop/references/refs/meadow-3d.webp",
+      "path": "skills/heydamir-unslop/references/refs/meadow-3d.webp",
+      "source_sha256": "84f526b68021a06fc6d32f162406fab6cc8074da1ef76d2ae4530e1b58219b14",
+      "sha256": "84f526b68021a06fc6d32f162406fab6cc8074da1ef76d2ae4530e1b58219b14",
+      "source_git_blob": "d8284c8d16fb3fd5f4436adbb04e8119819e36f1",
+      "executable": false,
+      "appended_notes": false
+    },
+    {
+      "source_path": "skills/unslop/references/refs/story-dashboard-frames.webp",
+      "path": "skills/heydamir-unslop/references/refs/story-dashboard-frames.webp",
+      "source_sha256": "cfbf837e40b7626d5a5789dbce54f5c197aab303aa350d13a042048310717137",
+      "sha256": "cfbf837e40b7626d5a5789dbce54f5c197aab303aa350d13a042048310717137",
+      "source_git_blob": "b9a08721f366269b234727d4f6eddc403a85fc21",
+      "executable": false,
+      "appended_notes": false
+    },
+    {
+      "source_path": "skills/unslop/references/refs/unslop-dashboard-after.webp",
+      "path": "skills/heydamir-unslop/references/refs/unslop-dashboard-after.webp",
+      "source_sha256": "48067794f86b43dab20515b3810f245d67bff05d10bfa83c0f5885bee93cea52",
+      "sha256": "48067794f86b43dab20515b3810f245d67bff05d10bfa83c0f5885bee93cea52",
+      "source_git_blob": "9836639938830aac335963b8d1536178bc107fce",
+      "executable": false,
+      "appended_notes": false
+    },
+    {
+      "source_path": "skills/unslop/references/refs/unslop-hero-after.webp",
+      "path": "skills/heydamir-unslop/references/refs/unslop-hero-after.webp",
+      "source_sha256": "92b2d796c5b6116a2039f5ca2b0f3edf700c92b41846b11b9501a4e32f72af6e",
+      "sha256": "92b2d796c5b6116a2039f5ca2b0f3edf700c92b41846b11b9501a4e32f72af6e",
+      "source_git_blob": "ad9059318bd3ca85b008a622090f495ad42cf12e",
+      "executable": false,
+      "appended_notes": false
+    },
+    {
+      "source_path": "skills/unslop/references/refs.md",
+      "path": "skills/heydamir-unslop/references/refs.md",
+      "source_sha256": "12a70ce17d574914ea69eb0809e5a9605de044df1b66619159c6d0b38d6b8353",
+      "sha256": "12a70ce17d574914ea69eb0809e5a9605de044df1b66619159c6d0b38d6b8353",
+      "source_git_blob": "e6c23aa433b9ef191a75f16a65ce1b4b1a2a8505",
+      "executable": false,
+      "appended_notes": false
+    },
+    {
+      "source_path": "skills/unslop/references/signs.md",
+      "path": "skills/heydamir-unslop/references/signs.md",
+      "source_sha256": "6250d3c222c2aaa4ef4f31557d99d249e5be86d8720cd1157df14798caf1c8c4",
+      "sha256": "6250d3c222c2aaa4ef4f31557d99d249e5be86d8720cd1157df14798caf1c8c4",
+      "source_git_blob": "e9bae0369394d56ed080ef8a7e3d15bd4ec70a7f",
+      "executable": false,
+      "appended_notes": false
+    },
+    {
+      "source_path": "skills/unslop/references/tokens.md",
+      "path": "skills/heydamir-unslop/references/tokens.md",
+      "source_sha256": "988b754612b3e2d42d87b1bbaca0b4a61f3e07a2b2eef782d3614e8fdb6db5b0",
+      "sha256": "988b754612b3e2d42d87b1bbaca0b4a61f3e07a2b2eef782d3614e8fdb6db5b0",
+      "source_git_blob": "431cdc3f68650819274b22b91df9764d8f0a64d6",
+      "executable": false,
+      "appended_notes": false
+    },
+    {
+      "source_path": "skills/unslop/references/visuals.md",
+      "path": "skills/heydamir-unslop/references/visuals.md",
+      "source_sha256": "7247da579d2d95ace1e051b867c757bd1e05aa02f3ab8dea0ead4cd4bf14d7d7",
+      "sha256": "7247da579d2d95ace1e051b867c757bd1e05aa02f3ab8dea0ead4cd4bf14d7d7",
+      "source_git_blob": "d7e89c14ddc675def22a46435ef1f2053d8d9362",
+      "executable": false,
+      "appended_notes": false
+    },
+    {
+      "source_path": "skills/unslop/scripts/snapshot.mjs",
+      "path": "skills/heydamir-unslop/scripts/snapshot.mjs",
+      "source_sha256": "a0cd251b9e58655709558cffab29b1685cd1465a5dc5499c5181fe4185cdd3ab",
+      "sha256": "cc7ba50200c55d961a3aff7860b2b08a0681690578a3a117d406a742d7c9d106",
+      "source_git_blob": "4ad33a5aa05e36d7922f909ef16b5d9d8619702e",
+      "executable": false,
+      "appended_notes": false
+    },
+    {
+      "source_path": "skills/unslop/scripts/story.mjs",
+      "path": "skills/heydamir-unslop/scripts/story.mjs",
+      "source_sha256": "ed83ac65c92290378fe874ebc3f7e61aab51a9128628f2057651dfb0f01c1815",
+      "sha256": "31e28359b2e77d0247208032705dce6e459c44b3db7be9d4be6cf37fcd08a573",
+      "source_git_blob": "88fd86a7a039167ef73dde73394a259438b70240",
+      "executable": false,
+      "appended_notes": false
+    },
+    {
+      "source_path": "examples/assets/blob.webp",
+      "path": "skills/heydamir-unslop/examples/assets/blob.webp",
+      "source_sha256": "eb1e1e40c5a26ec64f9e518c91cd1f111e7b2946d3042f3b956ab2c128b576b1",
+      "sha256": "eb1e1e40c5a26ec64f9e518c91cd1f111e7b2946d3042f3b956ab2c128b576b1",
+      "source_git_blob": "c59663579ddd8ba92e5f992067de48ab61ec685d",
+      "executable": false,
+      "appended_notes": false
+    },
+    {
+      "source_path": "examples/dashboard.html",
+      "path": "skills/heydamir-unslop/examples/dashboard.html",
+      "source_sha256": "063e4ada46ce0fe878f555556f2cfbc6f28c9b97d7cee326e002a86b5bdcb8bc",
+      "sha256": "063e4ada46ce0fe878f555556f2cfbc6f28c9b97d7cee326e002a86b5bdcb8bc",
+      "source_git_blob": "4381a17ddd43ca6c8008eb88a9e5d0c5a8560ab5",
+      "executable": false,
+      "appended_notes": false
+    },
+    {
+      "source_path": "examples/hero.html",
+      "path": "skills/heydamir-unslop/examples/hero.html",
+      "source_sha256": "3d28548e44b928ba13704e44251f334e93cc4224a090ae865f4c69b868b95d08",
+      "sha256": "3d28548e44b928ba13704e44251f334e93cc4224a090ae865f4c69b868b95d08",
+      "source_git_blob": "5199afcf1d34113e309d1149bf6d562b1a51db40",
+      "executable": false,
+      "appended_notes": false
+    },
+    {
+      "source_path": "LICENSE",
+      "path": "skills/heydamir-unslop/LICENSE",
+      "source_sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+      "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+      "source_git_blob": "da6ab6cc8f333d7e89a99812866df8f24374d47c",
+      "executable": false,
+      "appended_notes": false
+    },
+    {
+      "source_path": "CITATION.cff",
+      "path": "skills/heydamir-unslop/CITATION.cff",
+      "source_sha256": "05a1d33a8c94660a6240afa2adf2e0331abeccf178bf00827b8ebd7a4796fb11",
+      "sha256": "05a1d33a8c94660a6240afa2adf2e0331abeccf178bf00827b8ebd7a4796fb11",
+      "source_git_blob": "048591f33cba9f86ade4234df30a06e984877dd3",
+      "executable": false,
+      "appended_notes": false
+    },
+    {
+      "source_path": null,
+      "path": "skills/heydamir-unslop/ADAPTATIONS.md",
+      "source_sha256": null,
+      "source_git_blob": null,
+      "sha256": "1bc0da958b6af979e88797560f83afe5e084945d4f26333ef3cab278d7e61fb7",
+      "executable": false,
+      "appended_notes": false,
+      "generated": true
+    }
+  ]
+}

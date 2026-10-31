@@ -24657,6 +24657,30 @@
     "source": "community"
   },
   {
+    "id": "heydamir-unslop",
+    "canonical_id": "heydamir-unslop",
+    "name": "heydamir-unslop",
+    "path": "skills/heydamir-unslop",
+    "description": "Turns vibecoded, AI-looking UI into a designed interface with its own character. Finds a direction from the product itself, then fixes spacing, color, icons, copy, type, layout, details, visuals and motion in that order, and can generate a real hero visual with an image tool when one is available. Use when the user asks to unslop, polish, clean up or redesign a screen so it stops looking AI-generated, or when a UI shows the usual tells like purple gradients, glows, gradient text, emoji labels, \"New ✨\" badges, glossy blobs, uppercase tracked labels, pulsing elements or uneven spacing. Works on React, Tailwind, HTML and CSS, for dashboards, apps and landing pages.",
+    "category": "front-end",
+    "tags": [
+      "frontend",
+      "design",
+      "ui",
+      "unslop",
+      "redesign",
+      "motion"
+    ],
+    "risk": "unknown",
+    "source": "https://github.com/heydamir/unslop/tree/4652254daff586ff4739849395a127b56f7f8cc7/skills/unslop",
+    "source_repo": "heydamir/unslop",
+    "author": "Damir Sokolovsky",
+    "license": "CC-BY-4.0",
+    "license_source": "https://github.com/heydamir/unslop/blob/4652254daff586ff4739849395a127b56f7f8cc7/LICENSE",
+    "source_revision": "4652254daff586ff4739849395a127b56f7f8cc7",
+    "source_path": "skills/unslop/SKILL.md"
+  },
+  {
     "id": "hf-cli",
     "canonical_id": "hf-cli",
     "name": "hf-cli",

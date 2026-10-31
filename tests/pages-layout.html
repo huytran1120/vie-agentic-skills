@@ -379,6 +379,52 @@
     await waitFor(() => !d.getElementById('manual-copy').hidden, 'GameDev clipboard failure must show manual recovery');
     check(d.getElementById('manual-copy-text').value.includes('/install-manifests/router.json'), 'GameDev recovery must retain the safe router prompt');
     d.getElementById('close-manual-copy').click();
+    d.querySelector('[data-back-library]').click();
+    d.getElementById('unslop-collection').click();
+    check(new URL(w.location.href).searchParams.get('sources') === 'heydamir', 'UI Unslop shortcut must select only its source');
+    check(d.getElementById('results-status').textContent.includes('1'), 'UI Unslop must have one canonical record');
+    d.getElementById('open-filters').click();
+    check(d.querySelector('input[name="mobile-source"][value="heydamir"]').checked, 'UI Unslop mobile source must stay selected');
+    d.getElementById('apply-mobile-filters').click();
+    check(d.querySelector('input[name="source"][value="heydamir"]').checked, 'UI Unslop desktop source must agree');
+    d.querySelector('[data-open-skill="heydamir-unslop"]').click();
+    await waitFor(() => d.getElementById('runbook-content').getAttribute('aria-busy') === 'false', 'UI Unslop runbook must load');
+    check(d.getElementById('runbook-content').textContent.includes('Damir Sokolovsky'), 'UI Unslop must retain author credit');
+    check(d.getElementById('skill-detail').textContent.includes('CC-BY-4.0'), 'UI Unslop original license must be visible');
+    const unslopManifest = await (await w.fetch(new URL('install-manifests/heydamir-unslop.json', manifestBase))).json();
+    check(unslopManifest.available && unslopManifest.files.length === 19, 'UI Unslop committed manifest must inventory all 19 files');
+    check(unslopManifest.revision !== '4652254daff586ff4739849395a127b56f7f8cc7', 'UI Unslop URLs must pin VAS, not upstream');
+    const unslopRoot = new URL(`${d.documentElement.dataset.skillBase}/skills/heydamir-unslop/`, w.location.href);
+    for (const file of unslopManifest.files) {
+      const response = await w.fetch(new URL(file.path, unslopRoot));
+      check(response.ok && (await response.arrayBuffer()).byteLength === file.bytes, `UI Unslop support file must load with exact size: ${file.path}`);
+    }
+    Object.defineProperty(w.navigator, 'clipboard', { configurable: true, value: { writeText: async text => { installPrompt = text; } } });
+    for (const locale of ['vi', 'en']) {
+      language(locale);
+      for (const target of ['cursor', 'copilot']) {
+        change('agent-select', target);
+        installPrompt = null;
+        d.querySelector('#skill-detail [data-copy-agent-prompt]').click();
+        await waitFor(() => Boolean(installPrompt), 'UI Unslop prompt must copy');
+        check(installPrompt.startsWith(locale === 'vi' ? 'Hãy cài đặt skill' : 'Please install'), 'UI Unslop copy must follow language');
+        const folder = target === 'cursor' ? '.cursor' : '.github';
+        check(installPrompt.includes(`"${folder}/skills/heydamir-unslop/"`), 'UI Unslop must use the distinct folder for the selected agent');
+        check(installPrompt.includes('/install-manifests/heydamir-unslop.json'), 'UI Unslop must use the exact canonical manifest');
+      }
+      for (const width of [1440, 1024, 768, 390, 320]) {
+        frame.style.width = `${width}px`;
+        await wait(80);
+        check(d.documentElement.scrollWidth <= w.innerWidth, `UI Unslop ${locale} ${width}px: no overflow`);
+      }
+      Object.defineProperty(w.navigator, 'clipboard', { configurable: true, value: { writeText: async () => { throw new Error('UI Unslop clipboard blocked for test'); } } });
+      d.querySelector('#skill-detail [data-copy-agent-prompt]').click();
+      await waitFor(() => !d.getElementById('manual-copy').hidden, 'UI Unslop clipboard errors must have manual recovery');
+      check(d.getElementById('manual-copy-text').value.includes('/install-manifests/heydamir-unslop.json'), 'UI Unslop recovery must retain its safe prompt');
+      check(d.getElementById('manual-copy-text').value.startsWith(locale === 'vi' ? 'Hãy cài đặt skill' : 'Please install'), 'UI Unslop manual recovery must preserve locale');
+      d.getElementById('close-manual-copy').click();
+      Object.defineProperty(w.navigator, 'clipboard', { configurable: true, value: { writeText: async text => { installPrompt = text; } } });
+    }
     language('vi');
     const probe = document.createElement('iframe');
     probe.style.cssText = 'display:block;border:0;height:1000px;width:390px';

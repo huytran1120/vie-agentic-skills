@@ -68,6 +68,10 @@ The CLI remains `./vas`; individual task dependencies are not CLI dependencies.
   The router bundles read-only companion payloads without duplicate catalog entries.
   Two distinct name collisions use gamedev- folders. Engines, Pillow, platform
   accounts, asset generation and publishing remain separately authorized prerequisites.
+- UI Unslop by Damir Sokolovsky is a distinct CC-BY-4.0 workflow installed as
+  heydamir-unslop, not the existing prose CLI skill. Complete references, visuals,
+  examples, helpers and attribution are preserved; optional Node/Playwright/browser,
+  ffmpeg, image services and site capture require separate setup and authorization.
 - GitHub Pages is static and must work under the repository URL prefix.
 - Shared links use a branded 1280-by-640 PNG with matching Open Graph and Twitter
   metadata. GitHub repository previews require a separate upload in Settings >
