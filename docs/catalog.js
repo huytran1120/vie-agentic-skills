@@ -182,7 +182,7 @@
   function escapeHtml(value) {
     return String(value == null ? '' : value).replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
   }
-  const sourceNames = { mattpocock: 'Matt Pocock', addy: 'Addy Osmani', blender: 'Blender Skills', youtube: 'YouTube Skills', hallmark: 'Hallmark', typesafe: 'TypeSafe AI', android: 'Android Skills', gamedev: 'GameDev Skills', heydamir: 'UI Unslop · Damir Sokolovsky', videoeditor: 'Video Editor · DaVinci Resolve', editonny: 'editonny · Matheus Gomes' };
+  const sourceNames = { mattpocock: 'Matt Pocock', addy: 'Addy Osmani', blender: 'Blender Skills', youtube: 'YouTube Skills', hallmark: 'Hallmark', typesafe: 'TypeSafe AI', android: 'Android Skills', gamedev: 'GameDev Skills', heydamir: 'UI Unslop · Damir Sokolovsky', videoeditor: 'Video Editor · DaVinci Resolve', editonny: 'editonny · Matheus Gomes', teardown: 'Teardown · 3D Simulator' };
   function matchesSource(skill, source) {
     if (source === 'mattpocock') return skill.source_repo === 'mattpocock/skills';
     if (source === 'addy') return normalize(skill.author).includes('addy osmani');
@@ -195,6 +195,7 @@
     if (source === 'heydamir') return skill.source_repo === 'heydamir/unslop';
     if (source === 'videoeditor') return skill.source_repo === 'appariciojunior/video-editor-skills';
     if (source === 'editonny') return skill.source_repo === 'soumatheusgomes/editonny';
+    if (source === 'teardown') return skill.source_repo === 'elvarofficial/teardown';
     return false;
   }
 
@@ -654,6 +655,7 @@
   byId('unslop-collection').addEventListener('click', () => selectSource('heydamir'));
   byId('videoeditor-collection').addEventListener('click', () => selectSource('videoeditor'));
   byId('editonny-collection').addEventListener('click', () => selectSource('editonny'));
+  byId('teardown-collection').addEventListener('click', () => selectSource('teardown'));
   byId('menu-toggle').addEventListener('click', () => { const menu = byId('mobile-menu'); menu.hidden = !menu.hidden; byId('menu-toggle').setAttribute('aria-expanded', String(!menu.hidden)); });
   byId('mobile-menu').addEventListener('click', event => { if (event.target.closest('a')) { byId('mobile-menu').hidden = true; byId('menu-toggle').setAttribute('aria-expanded', 'false'); } });
   byId('theme-toggle').addEventListener('click', event => {

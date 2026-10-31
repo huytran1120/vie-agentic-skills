@@ -2,7 +2,7 @@
 
 **Thư viện kỹ năng cho trợ lý AI lập trình, có hướng dẫn sử dụng bằng tiếng Việt.**
 
-VAS tập hợp **3.185 skill** thuộc **119 danh mục**, do [Huy Tran](https://github.com/huytran1120) tuyển chọn và duy trì. Bạn có thể tìm quy trình phù hợp với công việc, đọc nội dung rồi cài vào dự án đang dùng với Antigravity, Codex, Claude Code, Cursor, Windsurf, Cline hoặc GitHub Copilot CLI.
+VAS tập hợp **3.186 skill** thuộc **119 danh mục**, do [Huy Tran](https://github.com/huytran1120) tuyển chọn và duy trì. Bạn có thể tìm quy trình phù hợp với công việc, đọc nội dung rồi cài vào dự án đang dùng với Antigravity, Codex, Claude Code, Cursor, Windsurf, Cline hoặc GitHub Copilot CLI.
 
 **[Mở thư viện skill](https://huytran1120.github.io/vie-agentic-skills/?lang=vi)** · [Xem toàn bộ danh mục](CATALOG.md) · [Báo lỗi hoặc đề xuất](https://github.com/huytran1120/vie-agentic-skills/issues)
 
@@ -201,6 +201,7 @@ Các hướng dẫn chi tiết được tách riêng để bạn chỉ mở ph�
 | UI Unslop | 1 | Tinh chỉnh giao diện; ID `heydamir-unslop`, giấy phép CC-BY-4.0; xem [hướng dẫn UI Unslop](docs/unslop.md) |
 | DaVinci Video Editor | 12 | Dựng video với DaVinci Resolve Studio; CC-BY-NC-4.0, giới hạn sử dụng phi thương mại; xem [hướng dẫn DaVinci](docs/video-editor.md) |
 | editonny | 1 | Dựng video trên máy, phụ đề và cảnh chuyển động; xem [hướng dẫn editonny](docs/editonny.md) |
+| Teardown | 1 | Mô phỏng 3D máy móc cơ khí tương tác và render video 60 fps; xem [hướng dẫn Teardown](docs/teardown.md) |
 
 Các tài liệu kiểm tra kỹ thuật dùng chung nằm trong [references/](references/), gồm kiểm thử, bảo mật, hiệu năng, khả năng tiếp cận, vận hành và điều phối agent.
 

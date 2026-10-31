@@ -1,0 +1,612 @@
+{
+  "source_repo": "elvarofficial/teardown",
+  "revision": "e7e668cd44f48ba79a3c575e9f55c7e194d26eef",
+  "skill_count": 1,
+  "skipped": [],
+  "namespaces": {},
+  "duplicate_check": {
+    "catalog_count_before": 3185,
+    "upstream_is_fork": false,
+    "methods": [
+      "canonical-id/name",
+      "source-repo/path",
+      "raw-sha256",
+      "normalized-body",
+      "renamed-body",
+      "body-containment",
+      "7-word-shingles"
+    ],
+    "collision_rationale": "No collision found across all 3,185 catalog skills. teardown is a unique, genuine new addition."
+  },
+  "adaptations": [
+    "Preserve upstream payload structure, 3D simulations, sfx synthesis modules, audio samples, and scripts.",
+    "Append reversible VAS installation, attribution, prerequisites and consent notes to SKILL.md.",
+    "No runtime/dependency or MCP service is executed during installation."
+  ],
+  "files": [
+    {
+      "source_path": ".gitignore",
+      "path": "skills/teardown/.gitignore",
+      "source_sha256": "63df382d21483b30e255f410358cc24fb6052643287fe25df0ea270bd9ea79e8",
+      "sha256": "63df382d21483b30e255f410358cc24fb6052643287fe25df0ea270bd9ea79e8",
+      "source_git_blob": "14e2c2ef366b3786885945698c6d60d171166b94",
+      "executable": false
+    },
+    {
+      "source_path": "LICENSE",
+      "path": "skills/teardown/LICENSE",
+      "source_sha256": "489451d9c7bd0c07b21c7f094f24d290d52c757bf71fc988ec880aa673fb3820",
+      "sha256": "489451d9c7bd0c07b21c7f094f24d290d52c757bf71fc988ec880aa673fb3820",
+      "source_git_blob": "ce935de9b08f13fc0ee7135ebe31044e7c2ef733",
+      "executable": false
+    },
+    {
+      "source_path": "README.md",
+      "path": "skills/teardown/README.md",
+      "source_sha256": "b8b7779f5deb35421a703a2b7b757b35e79269921de920484b1f7064089a09d4",
+      "sha256": "b8b7779f5deb35421a703a2b7b757b35e79269921de920484b1f7064089a09d4",
+      "source_git_blob": "f1e9e0e933f0ede73bb61215c64b42eaae53c37d",
+      "executable": false
+    },
+    {
+      "source_path": "SKILL.md",
+      "path": "skills/teardown/SKILL.md",
+      "source_sha256": "9395e463e8ff733c4cadafe8dafeceb72fd462a2a1fc89a58c17d3b756b5929b",
+      "sha256": "c9da5764e24a1eed7f1d2207521f9a5b5909c3e1379fe89d8e00836c89c956c5",
+      "source_git_blob": "9505e4aa15caa097260cd982d1a91312dd45859a",
+      "executable": false
+    },
+    {
+      "source_path": "docs/cessna.jpg",
+      "path": "skills/teardown/docs/cessna.jpg",
+      "source_sha256": "158867a5388a53e1113a1f00c7bcda86e60b5005bb64dd64619baf42a810f369",
+      "sha256": "158867a5388a53e1113a1f00c7bcda86e60b5005bb64dd64619baf42a810f369",
+      "source_git_blob": "9a6f12a221c6d033f7e525a944f6c181cc7415f0",
+      "executable": false
+    },
+    {
+      "source_path": "docs/strandbeest.jpg",
+      "path": "skills/teardown/docs/strandbeest.jpg",
+      "source_sha256": "9d27955b8be4b6f9edb3ed4bf02ed50e0b921e6c35a507842bbf648087221be1",
+      "sha256": "9d27955b8be4b6f9edb3ed4bf02ed50e0b921e6c35a507842bbf648087221be1",
+      "source_git_blob": "6836c8523f14c786aff1d19d7108365ca82aae7f",
+      "executable": false
+    },
+    {
+      "source_path": "docs/v8.gif",
+      "path": "skills/teardown/docs/v8.gif",
+      "source_sha256": "244b5c3a917d2ee9852f8824c54830cf565f6ec6aadc361abe2a14181c794b46",
+      "sha256": "244b5c3a917d2ee9852f8824c54830cf565f6ec6aadc361abe2a14181c794b46",
+      "source_git_blob": "ddfc8df0151665965b7458848c462032c301951a",
+      "executable": false
+    },
+    {
+      "source_path": "package-lock.json",
+      "path": "skills/teardown/package-lock.json",
+      "source_sha256": "39297ac60ef6ae04a93f4716c6bbd6ae48bbd3f116e583d6700274a113012b1e",
+      "sha256": "39297ac60ef6ae04a93f4716c6bbd6ae48bbd3f116e583d6700274a113012b1e",
+      "source_git_blob": "61d09d85a520eb129b62c2c7573e6b4577e0978b",
+      "executable": false
+    },
+    {
+      "source_path": "package.json",
+      "path": "skills/teardown/package.json",
+      "source_sha256": "7d7ae4a1af0cf35f086686e40e7255fa940d490bdc933795a44c186780d72565",
+      "sha256": "7d7ae4a1af0cf35f086686e40e7255fa940d490bdc933795a44c186780d72565",
+      "source_git_blob": "40a6b126a76dc64c6cc539acc9d61abc8ecc5c8b",
+      "executable": false
+    },
+    {
+      "source_path": "paths.mjs",
+      "path": "skills/teardown/paths.mjs",
+      "source_sha256": "36f6c0b2bfde23bb66215b5b3ff86933b121b83dd8e3f04c87aea9f1320aec68",
+      "sha256": "36f6c0b2bfde23bb66215b5b3ff86933b121b83dd8e3f04c87aea9f1320aec68",
+      "source_git_blob": "265c70e31773573c88ba3adcc74a4d3f28313254",
+      "executable": false
+    },
+    {
+      "source_path": "run_sfx.py",
+      "path": "skills/teardown/run_sfx.py",
+      "source_sha256": "83f6a9bb4a31e124747be2dfa043d6c683b1d1239c985713939b00326fa79e80",
+      "sha256": "83f6a9bb4a31e124747be2dfa043d6c683b1d1239c985713939b00326fa79e80",
+      "source_git_blob": "ff8b1468ffb25846d2e315230657620af03a3678",
+      "executable": false
+    },
+    {
+      "source_path": "sfx/__init__.py",
+      "path": "skills/teardown/sfx/__init__.py",
+      "source_sha256": "d7d7ebd1514062fe836473293f5918b4fb76a594dd296dd387838ab0dcdce29a",
+      "sha256": "d7d7ebd1514062fe836473293f5918b4fb76a594dd296dd387838ab0dcdce29a",
+      "source_git_blob": "d38f6b10511d6ef3053523c63bc4fab530b2a767",
+      "executable": false
+    },
+    {
+      "source_path": "sfx/__main__.py",
+      "path": "skills/teardown/sfx/__main__.py",
+      "source_sha256": "bea54753ffc1391f4bb31789ee2ace66623ff02cf53f0fdb693ad12b742a18f1",
+      "sha256": "bea54753ffc1391f4bb31789ee2ace66623ff02cf53f0fdb693ad12b742a18f1",
+      "source_git_blob": "84ebe11f84f2753ddcc3430676b5cf8aedd9ebed",
+      "executable": false
+    },
+    {
+      "source_path": "sfx/dsp.py",
+      "path": "skills/teardown/sfx/dsp.py",
+      "source_sha256": "9ef82489ca92f2730778879224a7a0352a580badbb56f1041408f03599c63e86",
+      "sha256": "9ef82489ca92f2730778879224a7a0352a580badbb56f1041408f03599c63e86",
+      "source_git_blob": "63631608a5be19bc94c77690215ee3a35aa53451",
+      "executable": false
+    },
+    {
+      "source_path": "sfx/loudness.py",
+      "path": "skills/teardown/sfx/loudness.py",
+      "source_sha256": "884d6ec244a28f62cb26c28465dac31de3d783e2187a1ed8f2718e4be3885173",
+      "sha256": "884d6ec244a28f62cb26c28465dac31de3d783e2187a1ed8f2718e4be3885173",
+      "source_git_blob": "6dce8971f3a3171560d6d4329a698f05e1ea2b78",
+      "executable": false
+    },
+    {
+      "source_path": "sfx/mix.py",
+      "path": "skills/teardown/sfx/mix.py",
+      "source_sha256": "c6fb37d90546907a8fe149284bcdc183802fd79d8b6dff2480aeb86e2f9f1b34",
+      "sha256": "c6fb37d90546907a8fe149284bcdc183802fd79d8b6dff2480aeb86e2f9f1b34",
+      "source_git_blob": "358294bb95f375fab94d91303120c7610351b446",
+      "executable": false
+    },
+    {
+      "source_path": "sfx/samples/SOURCES.md",
+      "path": "skills/teardown/sfx/samples/SOURCES.md",
+      "source_sha256": "df4170ce50ab1860b4c283d3bf963f154cf853ec5e1b42abc412dbed38344435",
+      "sha256": "df4170ce50ab1860b4c283d3bf963f154cf853ec5e1b42abc412dbed38344435",
+      "source_git_blob": "1d81701092748ea13ea31896c402a1f1de3cce00",
+      "executable": false
+    },
+    {
+      "source_path": "sfx/samples/fs-258269-mouth-pop.ogg",
+      "path": "skills/teardown/sfx/samples/fs-258269-mouth-pop.ogg",
+      "source_sha256": "1833370e9af7c5ea1072d4addcf89d8a610b13ed814bc23d1429c9f64d22afdf",
+      "sha256": "1833370e9af7c5ea1072d4addcf89d8a610b13ed814bc23d1429c9f64d22afdf",
+      "source_git_blob": "269f5784c0187e5221a8752cc2040fbb02e7a2cf",
+      "executable": false
+    },
+    {
+      "source_path": "sfx/samples/fs-323432-typing.ogg",
+      "path": "skills/teardown/sfx/samples/fs-323432-typing.ogg",
+      "source_sha256": "fca8597cbe2b45ef969ee1ed72be89e0324406c2a3d5b2386a8960edb8ffc650",
+      "sha256": "fca8597cbe2b45ef969ee1ed72be89e0324406c2a3d5b2386a8960edb8ffc650",
+      "source_git_blob": "3a13e8855621d168b3f25f73fbce0a1af17f986e",
+      "executable": false
+    },
+    {
+      "source_path": "sfx/samples/fs-329533-room-tone-in-an-apartment-livi.ogg",
+      "path": "skills/teardown/sfx/samples/fs-329533-room-tone-in-an-apartment-livi.ogg",
+      "source_sha256": "f43ca0744dfe39a0697a0c891cccbcb38504a07ffe225ea4301f3586b9eef786",
+      "sha256": "f43ca0744dfe39a0697a0c891cccbcb38504a07ffe225ea4301f3586b9eef786",
+      "source_git_blob": "aa2f3a906e2f9de543ef72bfe7430b6573a2d126",
+      "executable": false
+    },
+    {
+      "source_path": "sfx/samples/fs-329569-roomtone-bedroom-yew.ogg",
+      "path": "skills/teardown/sfx/samples/fs-329569-roomtone-bedroom-yew.ogg",
+      "source_sha256": "7fd91a16809038f6d6ec4d4812376b771296717b5beab94108b72ad35c4d928c",
+      "sha256": "7fd91a16809038f6d6ec4d4812376b771296717b5beab94108b72ad35c4d928c",
+      "source_git_blob": "8a95cf27cac491025acc804eca7ec9b97866c10c",
+      "executable": false
+    },
+    {
+      "source_path": "sfx/samples/fs-339521-vhs-rewind-forward-and-eject.ogg",
+      "path": "skills/teardown/sfx/samples/fs-339521-vhs-rewind-forward-and-eject.ogg",
+      "source_sha256": "ce3a427db68b8f009c1891b59f7d140be6723dcf24cf508d4e01ac45ea900304",
+      "sha256": "ce3a427db68b8f009c1891b59f7d140be6723dcf24cf508d4e01ac45ea900304",
+      "source_git_blob": "0db8f8b9031a4c9b32e481b9cde9c9b37a4d0b02",
+      "executable": false
+    },
+    {
+      "source_path": "sfx/samples/fs-349504-triangle-open-04.ogg",
+      "path": "skills/teardown/sfx/samples/fs-349504-triangle-open-04.ogg",
+      "source_sha256": "0845b985edbfd8f4a294da75228135bef9193a2f168bbed6b85d2a9cf054f9e7",
+      "sha256": "0845b985edbfd8f4a294da75228135bef9193a2f168bbed6b85d2a9cf054f9e7",
+      "source_git_blob": "4fd791a6c791a88d1dc39e9ed2727b3452317b1f",
+      "executable": false
+    },
+    {
+      "source_path": "sfx/samples/fs-416777-digital-typing-wav.ogg",
+      "path": "skills/teardown/sfx/samples/fs-416777-digital-typing-wav.ogg",
+      "source_sha256": "b816df0aa9883726d3afb0b0b29430446a982180e10f6ed75e5d4932cdba0136",
+      "sha256": "b816df0aa9883726d3afb0b0b29430446a982180e10f6ed75e5d4932cdba0136",
+      "source_git_blob": "ab86f2e73fe922a3b211c81429ecae20135f3649",
+      "executable": false
+    },
+    {
+      "source_path": "sfx/samples/fs-426767-apartment-room-tone-wav.ogg",
+      "path": "skills/teardown/sfx/samples/fs-426767-apartment-room-tone-wav.ogg",
+      "source_sha256": "ef77f82b969af2ce90cfdda45536a50e228fc2699e2894e97a59939a325c14e4",
+      "sha256": "ef77f82b969af2ce90cfdda45536a50e228fc2699e2894e97a59939a325c14e4",
+      "source_git_blob": "c10315fe079aa437954b02ecb9b8db85dfa80eff",
+      "executable": false
+    },
+    {
+      "source_path": "sfx/samples/fs-447909-keyboard-typing.ogg",
+      "path": "skills/teardown/sfx/samples/fs-447909-keyboard-typing.ogg",
+      "source_sha256": "cedc80acbe29b897956cab7e7c98fb237753480acee3933346ed6f997b7627ea",
+      "sha256": "cedc80acbe29b897956cab7e7c98fb237753480acee3933346ed6f997b7627ea",
+      "source_git_blob": "9c3e272b4a5fbde47c8510b33975c4e2b36d6adc",
+      "executable": false
+    },
+    {
+      "source_path": "sfx/samples/fs-447910-plop.ogg",
+      "path": "skills/teardown/sfx/samples/fs-447910-plop.ogg",
+      "source_sha256": "9da33408ec0919ed09bf000d5cd44f8b2881e6a52480ff256827ee3c0fd9cbbd",
+      "sha256": "9da33408ec0919ed09bf000d5cd44f8b2881e6a52480ff256827ee3c0fd9cbbd",
+      "source_git_blob": "fda1ba261e7303e150915bd7ebb008448351e7ca",
+      "executable": false
+    },
+    {
+      "source_path": "sfx/samples/fs-79388-keyboard-typing-wav.ogg",
+      "path": "skills/teardown/sfx/samples/fs-79388-keyboard-typing-wav.ogg",
+      "source_sha256": "9e1195d8108b4fa9c85fddcb91cda642744dfe1e11ce4f2f7c0b52d57b4aecf0",
+      "sha256": "9e1195d8108b4fa9c85fddcb91cda642744dfe1e11ce4f2f7c0b52d57b4aecf0",
+      "source_git_blob": "5f52d61a5ec017b59b053320e0abce196a9b3c16",
+      "executable": false
+    },
+    {
+      "source_path": "sfx/samples/fs-824189-pop-in-sfx.ogg",
+      "path": "skills/teardown/sfx/samples/fs-824189-pop-in-sfx.ogg",
+      "source_sha256": "5807f8fc52bd799bec333697bb3a09d770c7ba8d56556d0723d3410d5fb56d3e",
+      "sha256": "5807f8fc52bd799bec333697bb3a09d770c7ba8d56556d0723d3410d5fb56d3e",
+      "source_git_blob": "9388203281aeafd2b747e36a9fbaba315efcb3b6",
+      "executable": false
+    },
+    {
+      "source_path": "sfx/score_kit.py",
+      "path": "skills/teardown/sfx/score_kit.py",
+      "source_sha256": "8a1e459e4995dbdd0b8cc97a440e17cee8ca4f2bce9a97c2edc9f31358467470",
+      "sha256": "8a1e459e4995dbdd0b8cc97a440e17cee8ca4f2bce9a97c2edc9f31358467470",
+      "source_git_blob": "ad2299197eed036096eb6214fe2381e4ac408cd4",
+      "executable": false
+    },
+    {
+      "source_path": "sfx/synth.py",
+      "path": "skills/teardown/sfx/synth.py",
+      "source_sha256": "cca00a40d799915b68e163e3163e495b89124261ef93a239320975048adb12c3",
+      "sha256": "cca00a40d799915b68e163e3163e495b89124261ef93a239320975048adb12c3",
+      "source_git_blob": "28089ceef43a2cd1e61f11d8dc15fc1d0143a01c",
+      "executable": false
+    },
+    {
+      "source_path": "sheet.mjs",
+      "path": "skills/teardown/sheet.mjs",
+      "source_sha256": "de2c26ee4e237d939352f7de86192b681a7d46c710b509fbf08dd64a77ca5daf",
+      "sha256": "de2c26ee4e237d939352f7de86192b681a7d46c710b509fbf08dd64a77ca5daf",
+      "source_git_blob": "ef335ca9b5e169b70777649d2155398f15e7cddf",
+      "executable": false
+    },
+    {
+      "source_path": "sims/beats.py",
+      "path": "skills/teardown/sims/beats.py",
+      "source_sha256": "f366621f0f1f6264ad6c55d485c6f1eb0677eb88ed4c6860ed0d8be4451f90e8",
+      "sha256": "f366621f0f1f6264ad6c55d485c6f1eb0677eb88ed4c6860ed0d8be4451f90e8",
+      "source_git_blob": "92888aae0cf05e751d6620248e6716ed818817ee",
+      "executable": false
+    },
+    {
+      "source_path": "sims/build.mjs",
+      "path": "skills/teardown/sims/build.mjs",
+      "source_sha256": "e2d5cb5eba2c1d8e1fb2d343f9219f1a4040cf38924952b92e2c53d6413ee22a",
+      "sha256": "e2d5cb5eba2c1d8e1fb2d343f9219f1a4040cf38924952b92e2c53d6413ee22a",
+      "source_git_blob": "cf9f635c6a44d99775b46498bbff7c26b68db19b",
+      "executable": false
+    },
+    {
+      "source_path": "sims/capture.mjs",
+      "path": "skills/teardown/sims/capture.mjs",
+      "source_sha256": "1213f808d950e26a66a16a646cec5b74f8c2069b696bd79afa13e6702898ad2d",
+      "sha256": "1213f808d950e26a66a16a646cec5b74f8c2069b696bd79afa13e6702898ad2d",
+      "source_git_blob": "4a6f0eb838e679387ec0eb2b7841dab1842d6f87",
+      "executable": false
+    },
+    {
+      "source_path": "sims/cessna-film/main.js",
+      "path": "skills/teardown/sims/cessna-film/main.js",
+      "source_sha256": "d6dbb520411167d953b08e38fe661a60411606466974825ccff4dfaee7b38dec",
+      "sha256": "d6dbb520411167d953b08e38fe661a60411606466974825ccff4dfaee7b38dec",
+      "source_git_blob": "10c87f8419b015a7a87b4d80f6ce568a55ee1001",
+      "executable": false
+    },
+    {
+      "source_path": "sims/cessna-film/timeline.json",
+      "path": "skills/teardown/sims/cessna-film/timeline.json",
+      "source_sha256": "2bbb47bc64d041015c1ca3185ea684e0eaba60f03a3cb8673f24248192079a72",
+      "sha256": "2bbb47bc64d041015c1ca3185ea684e0eaba60f03a3cb8673f24248192079a72",
+      "source_git_blob": "2c07c4667d3b64bfa7c880f6ea07f08f128b346a",
+      "executable": false
+    },
+    {
+      "source_path": "sims/cessna-live/main.js",
+      "path": "skills/teardown/sims/cessna-live/main.js",
+      "source_sha256": "8b3c4f876ac14a2b64c85809d1f4b80d459aa5ae273f30ece6b70a52c09433a3",
+      "sha256": "8b3c4f876ac14a2b64c85809d1f4b80d459aa5ae273f30ece6b70a52c09433a3",
+      "source_git_blob": "5d6e34c797339d19d1353ddb9b7eb6e134b287e2",
+      "executable": false
+    },
+    {
+      "source_path": "sims/cessna-shared/console.js",
+      "path": "skills/teardown/sims/cessna-shared/console.js",
+      "source_sha256": "a16b34cf8f41506cc92c783b4a63e18a923b580b83cd380fe620f352f68174ba",
+      "sha256": "a16b34cf8f41506cc92c783b4a63e18a923b580b83cd380fe620f352f68174ba",
+      "source_git_blob": "c21884e15647f15f24efba44103e202ea7b2a5e1",
+      "executable": false
+    },
+    {
+      "source_path": "sims/cessna-shared/film.js",
+      "path": "skills/teardown/sims/cessna-shared/film.js",
+      "source_sha256": "349a3317d215bb4b3d3e369e2c80319d3e89d9cd7ccf6c6ce4223754020a6160",
+      "sha256": "349a3317d215bb4b3d3e369e2c80319d3e89d9cd7ccf6c6ce4223754020a6160",
+      "source_git_blob": "51df5206ce93c92f64938066a9fffead8493ffeb",
+      "executable": false
+    },
+    {
+      "source_path": "sims/cessna-shared/flight.js",
+      "path": "skills/teardown/sims/cessna-shared/flight.js",
+      "source_sha256": "2a2f3470fb50b5df2d0e0273b6b9893c614c923735441a500d3a6e430599ab19",
+      "sha256": "2a2f3470fb50b5df2d0e0273b6b9893c614c923735441a500d3a6e430599ab19",
+      "source_git_blob": "d5b8a11b0b0b887a9114887d25d75d793c3a7a18",
+      "executable": false
+    },
+    {
+      "source_path": "sims/cessna-shared/gear.js",
+      "path": "skills/teardown/sims/cessna-shared/gear.js",
+      "source_sha256": "bc7c221a4bd1df93982a23c753af030ccd1b4785ca2eb96218d1ee96747f1491",
+      "sha256": "bc7c221a4bd1df93982a23c753af030ccd1b4785ca2eb96218d1ee96747f1491",
+      "source_git_blob": "9f5d3d2b4901ed0acf6c0b0f266c4fe47de80203",
+      "executable": false
+    },
+    {
+      "source_path": "sims/cessna-shared/live.js",
+      "path": "skills/teardown/sims/cessna-shared/live.js",
+      "source_sha256": "70e9f8e6a0cd2090d29cc17a5932cf40272093b66efbd073db3e3492a77d8b44",
+      "sha256": "70e9f8e6a0cd2090d29cc17a5932cf40272093b66efbd073db3e3492a77d8b44",
+      "source_git_blob": "06ac5fb5020b4abbfd3dd94f0ced88a9a9c5ee16",
+      "executable": false
+    },
+    {
+      "source_path": "sims/cessna-shared/score.py",
+      "path": "skills/teardown/sims/cessna-shared/score.py",
+      "source_sha256": "e74edb630c1e5ec5178c2395b388fa6bb95ebd6d3e199899d0965d4fe229d32d",
+      "sha256": "e74edb630c1e5ec5178c2395b388fa6bb95ebd6d3e199899d0965d4fe229d32d",
+      "source_git_blob": "b1adeed74bccf0747eaa98dd309598cae093161a",
+      "executable": false
+    },
+    {
+      "source_path": "sims/cessna-shared/stage.js",
+      "path": "skills/teardown/sims/cessna-shared/stage.js",
+      "source_sha256": "ebcd1d9078b0dd89b0133e9611487744e3d951cc77b6c9e476bafd1cea3302ec",
+      "sha256": "ebcd1d9078b0dd89b0133e9611487744e3d951cc77b6c9e476bafd1cea3302ec",
+      "source_git_blob": "bf6c4e17c7061ea65ef23a6cf24b8888e3d9478d",
+      "executable": false
+    },
+    {
+      "source_path": "sims/kit/director.js",
+      "path": "skills/teardown/sims/kit/director.js",
+      "source_sha256": "212507760f382f483a1969a967854890032449fa1f5147a71913279dc6b8375f",
+      "sha256": "212507760f382f483a1969a967854890032449fa1f5147a71913279dc6b8375f",
+      "source_git_blob": "aacf2d90ef83a37f09a146f06fda6af04337fda0",
+      "executable": false
+    },
+    {
+      "source_path": "sims/kit/hud.js",
+      "path": "skills/teardown/sims/kit/hud.js",
+      "source_sha256": "27bb5404f5e1a61df6ca65dd17358d55f2aee9c8195b6ee870ccb29db1505322",
+      "sha256": "27bb5404f5e1a61df6ca65dd17358d55f2aee9c8195b6ee870ccb29db1505322",
+      "source_git_blob": "289f0f548f67701b8069e3dab88eafba18b00e34",
+      "executable": false
+    },
+    {
+      "source_path": "sims/kit/runtime.js",
+      "path": "skills/teardown/sims/kit/runtime.js",
+      "source_sha256": "b9432ab999cb18873edc9d1aa68a4837e55c6652e805c6f1fbdf6231c1b8b7b2",
+      "sha256": "b9432ab999cb18873edc9d1aa68a4837e55c6652e805c6f1fbdf6231c1b8b7b2",
+      "source_git_blob": "db073e16015355a03cd04a126abe4f47baa2ba99",
+      "executable": false
+    },
+    {
+      "source_path": "sims/kit/stage3d.js",
+      "path": "skills/teardown/sims/kit/stage3d.js",
+      "source_sha256": "0ede46cb807508d236c3e0c7053a050c8ffc03dcb913a1eef8601bbcb3062343",
+      "sha256": "0ede46cb807508d236c3e0c7053a050c8ffc03dcb913a1eef8601bbcb3062343",
+      "source_git_blob": "09950f2d01cb4e1397aba5c18308461c72a5b615",
+      "executable": false
+    },
+    {
+      "source_path": "sims/kit/style.css",
+      "path": "skills/teardown/sims/kit/style.css",
+      "source_sha256": "a788aaa4fbed26ddc9ed892adbcbdebbb3682110bc5ede1a88d7765427114fe3",
+      "sha256": "a788aaa4fbed26ddc9ed892adbcbdebbb3682110bc5ede1a88d7765427114fe3",
+      "source_git_blob": "7bf7ca8f3402f8376cb873852d02018ee8a31d01",
+      "executable": false
+    },
+    {
+      "source_path": "sims/kit/util.js",
+      "path": "skills/teardown/sims/kit/util.js",
+      "source_sha256": "d469dbe34188b426a40228347d9e6796a26256dc5a6fa83e857d69c2384f5f73",
+      "sha256": "d469dbe34188b426a40228347d9e6796a26256dc5a6fa83e857d69c2384f5f73",
+      "source_git_blob": "1dbf9d0c6d87c9375d424f4ae24e0b225cfa6e5a",
+      "executable": false
+    },
+    {
+      "source_path": "sims/kit/warm.js",
+      "path": "skills/teardown/sims/kit/warm.js",
+      "source_sha256": "825dbbe4c84f2ef283d13538c5b13bea6504301104df737a8badbfe751acb21e",
+      "sha256": "825dbbe4c84f2ef283d13538c5b13bea6504301104df737a8badbfe751acb21e",
+      "source_git_blob": "6c54d75f67d0ced18b52db814f0c6fddb81b65f7",
+      "executable": false
+    },
+    {
+      "source_path": "sims/strandbeest-film/main.js",
+      "path": "skills/teardown/sims/strandbeest-film/main.js",
+      "source_sha256": "214e4488977c9390a74f189e53598c57c4ce2e7b7434d0f61e8d959a635ab83b",
+      "sha256": "214e4488977c9390a74f189e53598c57c4ce2e7b7434d0f61e8d959a635ab83b",
+      "source_git_blob": "2f5c920571459229d848ce3470dadf00b1964868",
+      "executable": false
+    },
+    {
+      "source_path": "sims/strandbeest-film/timeline.json",
+      "path": "skills/teardown/sims/strandbeest-film/timeline.json",
+      "source_sha256": "8126aaa2345a43977ba5a75bdfc20a9d92d80683a960902b90887a84c277834d",
+      "sha256": "8126aaa2345a43977ba5a75bdfc20a9d92d80683a960902b90887a84c277834d",
+      "source_git_blob": "a7efe8308f92012b40ddfde2943233391a1458d2",
+      "executable": false
+    },
+    {
+      "source_path": "sims/strandbeest-live/main.js",
+      "path": "skills/teardown/sims/strandbeest-live/main.js",
+      "source_sha256": "723dcd58498b782964e4003fbfc0a42887863d3728a7da5594fcae41432aceec",
+      "sha256": "723dcd58498b782964e4003fbfc0a42887863d3728a7da5594fcae41432aceec",
+      "source_git_blob": "048b86975a0e75085e2e5f6fdcf98b8127408c52",
+      "executable": false
+    },
+    {
+      "source_path": "sims/strandbeest-shared/beast.js",
+      "path": "skills/teardown/sims/strandbeest-shared/beast.js",
+      "source_sha256": "f71cb1c672eb6e65c93f304f43b783ca0252b3e43917229f44f96000fa51a4c5",
+      "sha256": "f71cb1c672eb6e65c93f304f43b783ca0252b3e43917229f44f96000fa51a4c5",
+      "source_git_blob": "61b705cc5d7cf5eab9b92653bc5b26c936e8a09d",
+      "executable": false
+    },
+    {
+      "source_path": "sims/strandbeest-shared/console.js",
+      "path": "skills/teardown/sims/strandbeest-shared/console.js",
+      "source_sha256": "c71562d6656693c3e4e0e554f545a39d035ed7a1aa3c678a5cddea98e6d7184a",
+      "sha256": "c71562d6656693c3e4e0e554f545a39d035ed7a1aa3c678a5cddea98e6d7184a",
+      "source_git_blob": "219c7ccf7e203c566e11ccc185c7638099aa837c",
+      "executable": false
+    },
+    {
+      "source_path": "sims/strandbeest-shared/film.js",
+      "path": "skills/teardown/sims/strandbeest-shared/film.js",
+      "source_sha256": "01751f78b48e9dc2178f313f4688512d957ec674a98d9cb5c82107961c633789",
+      "sha256": "01751f78b48e9dc2178f313f4688512d957ec674a98d9cb5c82107961c633789",
+      "source_git_blob": "91e72c5280b19f1a18440d4c6cc8746ecbdd23a4",
+      "executable": false
+    },
+    {
+      "source_path": "sims/strandbeest-shared/jansen.js",
+      "path": "skills/teardown/sims/strandbeest-shared/jansen.js",
+      "source_sha256": "41729383c3635ae8bdf7ec11da172a7d938e504053f966070bd11f0209e1158f",
+      "sha256": "41729383c3635ae8bdf7ec11da172a7d938e504053f966070bd11f0209e1158f",
+      "source_git_blob": "3e510416f4833fbfdf0d22477cec1f5db1044470",
+      "executable": false
+    },
+    {
+      "source_path": "sims/strandbeest-shared/live.js",
+      "path": "skills/teardown/sims/strandbeest-shared/live.js",
+      "source_sha256": "e8c5224bdb11f659cef4c77eaac279e5a32fd7a07f2dec0d50cae47c1120528e",
+      "sha256": "e8c5224bdb11f659cef4c77eaac279e5a32fd7a07f2dec0d50cae47c1120528e",
+      "source_git_blob": "aee1af12f04a5e7cb0b58af4aa0ad5947f51b7a5",
+      "executable": false
+    },
+    {
+      "source_path": "sims/strandbeest-shared/score.py",
+      "path": "skills/teardown/sims/strandbeest-shared/score.py",
+      "source_sha256": "4efa3f519384787fd7efe62b997bffb202bfb08bd46e170776b72598cf6852c6",
+      "sha256": "4efa3f519384787fd7efe62b997bffb202bfb08bd46e170776b72598cf6852c6",
+      "source_git_blob": "c4373463d9ffc3273780add10ac23dc61ca0f78b",
+      "executable": false
+    },
+    {
+      "source_path": "sims/strandbeest-shared/stage.js",
+      "path": "skills/teardown/sims/strandbeest-shared/stage.js",
+      "source_sha256": "e965f7ba66a333e69f7cd502e9d535e58efcbddc87ab1d5b3e9697e3a231d7ad",
+      "sha256": "e965f7ba66a333e69f7cd502e9d535e58efcbddc87ab1d5b3e9697e3a231d7ad",
+      "source_git_blob": "ec7edffb38f6db6a33304260570a08aa1d2b3d40",
+      "executable": false
+    },
+    {
+      "source_path": "sims/v8-film/main.js",
+      "path": "skills/teardown/sims/v8-film/main.js",
+      "source_sha256": "4ec9c7ec84bc04bf29819c14fcaf2199bd4d193139310fbaefe33de90bac7225",
+      "sha256": "4ec9c7ec84bc04bf29819c14fcaf2199bd4d193139310fbaefe33de90bac7225",
+      "source_git_blob": "279b7a58d17f9c46d84c534eaef7ec028dafdd9a",
+      "executable": false
+    },
+    {
+      "source_path": "sims/v8-film/timeline.json",
+      "path": "skills/teardown/sims/v8-film/timeline.json",
+      "source_sha256": "8f3e4eccc59aedba29bf34044ae0c5c86a6dcf5b3ce1a9e6092e9f15eea38673",
+      "sha256": "8f3e4eccc59aedba29bf34044ae0c5c86a6dcf5b3ce1a9e6092e9f15eea38673",
+      "source_git_blob": "6d761a9732033ee4a0118d0e95fcd1d469a5e471",
+      "executable": false
+    },
+    {
+      "source_path": "sims/v8-live/main.js",
+      "path": "skills/teardown/sims/v8-live/main.js",
+      "source_sha256": "98e4e96386e96b7df88bb26606919f48ec965d4e3fc4ea4e2fa1e2fb162c82d8",
+      "sha256": "98e4e96386e96b7df88bb26606919f48ec965d4e3fc4ea4e2fa1e2fb162c82d8",
+      "source_git_blob": "b71e50971fe1ce50674d84e2483333b2957380f2",
+      "executable": false
+    },
+    {
+      "source_path": "sims/v8-shared/console.js",
+      "path": "skills/teardown/sims/v8-shared/console.js",
+      "source_sha256": "f5f181172260af44862137f60466cd02ebee8d94011d36fa92fce04f4c4a7ef9",
+      "sha256": "f5f181172260af44862137f60466cd02ebee8d94011d36fa92fce04f4c4a7ef9",
+      "source_git_blob": "242617806eb583413fcf72fadf059d3bd2d00b09",
+      "executable": false
+    },
+    {
+      "source_path": "sims/v8-shared/engine.js",
+      "path": "skills/teardown/sims/v8-shared/engine.js",
+      "source_sha256": "d97d46ecc48750c7698c22904d1732929bbf7f23d1f16844b4780dc86e8d10d0",
+      "sha256": "d97d46ecc48750c7698c22904d1732929bbf7f23d1f16844b4780dc86e8d10d0",
+      "source_git_blob": "d596eb9376885e9e592d0e76dfa608fda06117b5",
+      "executable": false
+    },
+    {
+      "source_path": "sims/v8-shared/film.js",
+      "path": "skills/teardown/sims/v8-shared/film.js",
+      "source_sha256": "54e1a893436c0a12558b142aac4bd9387bb50f3332f4e4248504b9a1f8134b00",
+      "sha256": "54e1a893436c0a12558b142aac4bd9387bb50f3332f4e4248504b9a1f8134b00",
+      "source_git_blob": "59c6bad951de0860f4adb396fa1b73022b0b855c",
+      "executable": false
+    },
+    {
+      "source_path": "sims/v8-shared/kin.js",
+      "path": "skills/teardown/sims/v8-shared/kin.js",
+      "source_sha256": "d75e2bac12d7797390ccd8e5991f869e072dbbfa5ae04a42dbc9bb091ff9c6b8",
+      "sha256": "d75e2bac12d7797390ccd8e5991f869e072dbbfa5ae04a42dbc9bb091ff9c6b8",
+      "source_git_blob": "af918c2837f4674f3b9934c63ebd8437ef1097da",
+      "executable": false
+    },
+    {
+      "source_path": "sims/v8-shared/live.js",
+      "path": "skills/teardown/sims/v8-shared/live.js",
+      "source_sha256": "5ebf6e53cf776831f2dddc46ccb7e33c81487cdb8cf80c1dfd335a1d37b0ba81",
+      "sha256": "5ebf6e53cf776831f2dddc46ccb7e33c81487cdb8cf80c1dfd335a1d37b0ba81",
+      "source_git_blob": "09ff54b53ffaf2a04e4849fce5482bc1d76c3f6a",
+      "executable": false
+    },
+    {
+      "source_path": "sims/v8-shared/score.py",
+      "path": "skills/teardown/sims/v8-shared/score.py",
+      "source_sha256": "f578c088da9e9d5e10b4eb90ebc7d9fe719e228ae60ad089e437abc32f35aa40",
+      "sha256": "f578c088da9e9d5e10b4eb90ebc7d9fe719e228ae60ad089e437abc32f35aa40",
+      "source_git_blob": "04d108a56895768c62df9c75afb9c5d554fc2b77",
+      "executable": false
+    },
+    {
+      "source_path": "sims/v8-shared/stage.js",
+      "path": "skills/teardown/sims/v8-shared/stage.js",
+      "source_sha256": "ef4308bade3a190dfa62482f6ac117737ff333d29450dba989e6a6b0f5ae92de",
+      "sha256": "ef4308bade3a190dfa62482f6ac117737ff333d29450dba989e6a6b0f5ae92de",
+      "source_git_blob": "fa9f696d14b00a70ff205cdbee52c71546a4c776",
+      "executable": false
+    },
+    {
+      "source_path": "wave.mjs",
+      "path": "skills/teardown/wave.mjs",
+      "source_sha256": "b4a52d2f7e6d68c66d0c18efc9e82d37198739ce06036347f262cd3d42d6b38a",
+      "sha256": "b4a52d2f7e6d68c66d0c18efc9e82d37198739ce06036347f262cd3d42d6b38a",
+      "source_git_blob": "12f7c69f7ff534ad113d54c0751973b939ee1f00",
+      "executable": false
+    }
+  ]
+}

@@ -88708,6 +88708,31 @@
       "license": "MIT",
       "license_source": "https://github.com/soumatheusgomes/editonny/blob/49714f2fba6eafb76b903376e1fe9f50b685506a/LICENSE.md",
       "path": "skills/editonny/SKILL.md"
+    },
+    {
+      "id": "teardown",
+      "canonical_id": "teardown",
+      "name": "teardown",
+      "description": "Build an interactive 3D simulator of a real machine or mechanism (an engine, a landing gear, a walking linkage, a pump, a gearbox) as one offline HTML page people can take apart, with live panels driven by the same model that moves the parts, a button for every subsystem, cutaways, camera views and an auto tour that hands control to the visitor; then record it frame by frame to a 60 fps video with a synced procedural score. Use when someone asks how a machine works, wants a \"visual explainer\", a \"simulator\", a \"cutaway\", an \"exploded view\" or an \"interactive 3D lesson\", or wants a 3D object shown working rather than described.",
+      "category": "media",
+      "risk": "safe",
+      "tags": [
+        "3d",
+        "simulator",
+        "teardown",
+        "interactive-3d",
+        "explainer",
+        "media",
+        "threejs"
+      ],
+      "source": "https://github.com/elvarofficial/teardown/tree/e7e668cd44f48ba79a3c575e9f55c7e194d26eef",
+      "source_repo": "elvarofficial/teardown",
+      "source_revision": "e7e668cd44f48ba79a3c575e9f55c7e194d26eef",
+      "source_path": "skills/teardown/SKILL.md",
+      "author": "Elvar",
+      "license": "MIT",
+      "license_source": "https://github.com/elvarofficial/teardown/blob/e7e668cd44f48ba79a3c575e9f55c7e194d26eef/LICENSE",
+      "path": "skills/teardown/SKILL.md"
     }
   ]
 }

@@ -19,7 +19,7 @@ class BlenderSkillsTests(unittest.TestCase):
         self.assertEqual(len(self.skills), 94)
         self.assertEqual(self.manifest["skill_count"], 94)
         self.assertEqual(len({s["name"] for s in self.skills}), 94)
-        self.assertEqual(len(self.index) - len(self.skills), 3091)
+        self.assertEqual(len(self.index) - len(self.skills), 3092)
         for skill in self.skills:
             self.assertEqual(skill["canonical_id"], skill["id"])
             self.assertEqual(skill["category"], "blender")

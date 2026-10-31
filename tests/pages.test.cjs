@@ -505,7 +505,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
   const youtube = catalog.filterSkills(skills, { sources: ['youtube'] });
   assert.equal(youtube.length, 11);
   assert.equal(catalog.filterSkills(skills, { query: 'youtube-agent-skill' }).length, 11);
-  assert.equal(skills.length, 3185);
+  assert.equal(skills.length, 3186);
   for (const skill of youtube) {
     assert.ok(skill.id.startsWith('youtube-agent-skill/'));
     assert.equal(skill.source_repo, 'Jakeschincariol/youtube-agent-skill');
@@ -520,7 +520,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
     assert.deepEqual(state.sources, ['youtube']);
     assert.equal(state.selected, youtube[0].id);
     assert.ok(i18n.translate('collections.youtube', language).startsWith('11 '));
-    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '3.185' : '3,185'));
+    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '3.186' : '3,186'));
   }
   assert.equal(catalog.filterSkills(skills, { sources: ['youtube'], category: 'security' }).length, 0);
   const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
@@ -1086,4 +1086,32 @@ test('editonny retains exact source filtering, MIT license and agent prompts', (
   assert.ok(html.includes('name="source" value="editonny"'));
   assert.ok(html.includes('data-source-count="editonny">1<'));
   assert.ok(html.includes('id="editonny-collection"'));
+});
+
+test('teardown retains exact source filtering, MIT license and agent prompts', () => {
+  const teardownSkills = catalog.filterSkills(skills, { sources: ['teardown'] });
+  assert.equal(teardownSkills.length, 1);
+  const skill = teardownSkills[0];
+  assert.equal(skill.id, 'teardown');
+  assert.equal(skill.source_repo, 'elvarofficial/teardown');
+  assert.equal(skill.author, 'Elvar');
+  assert.equal(skill.license, 'MIT');
+  assert.equal(skill.category, 'media');
+  assert.equal(skill.risk, 'safe');
+
+  for (const language of ['vi', 'en']) {
+    assert.ok(i18n.translate('collections.teardown', language).startsWith('1 '));
+    for (const [agent] of catalog.agents.filter(([key]) => key !== 'all')) {
+      const prompt = catalog.agentInstallPrompt(skill, agent, language);
+      assert.ok(prompt.includes(`/install-manifests/teardown.json`));
+      assert.ok(prompt.includes(catalog.targetFolders[agent]));
+      assert.ok(prompt.includes('SHA-256'));
+      assert.ok(prompt.includes('.vas-manifest.json'));
+    }
+  }
+
+  const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
+  assert.ok(html.includes('name="source" value="teardown"'));
+  assert.ok(html.includes('data-source-count="teardown">1<'));
+  assert.ok(html.includes('id="teardown-collection"'));
 });
