@@ -174,6 +174,12 @@ project in the agent, reload its skill list if necessary, and ask it to read the
 installed runbook before applying it. The website provides matching status and
 uninstall commands and a sample prompt, including for namespaced Blender skills.
 
+The CLI replaces or removes only installations with a valid VAS receipt. It
+refuses existing unmanaged folders, malformed manifests and destination names
+owned by another skill, preserving their contents. When two skills share a
+directory name, choose one and uninstall its recorded owner before installing
+the other.
+
 ---
 
 #### Hallmark: frontend design on request

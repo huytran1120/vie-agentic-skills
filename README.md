@@ -173,6 +173,11 @@ danh sách skill nếu cần và yêu cầu đọc runbook đã cài trước kh
 Website có lệnh `status`, lệnh gỡ và prompt mẫu với đúng đường dẫn, kể cả skill
 có namespace như `blender-skills/blender-director`.
 
+CLI chỉ thay hoặc gỡ thư mục có receipt VAS hợp lệ. Thư mục có sẵn chưa do VAS
+quản lý, manifest lỗi hoặc tên đích đang thuộc skill khác sẽ bị từ chối và giữ
+nguyên dữ liệu. Với hai skill có cùng tên thư mục, hãy chọn một skill và gỡ đúng
+chủ sở hữu hiện tại trước khi cài skill còn lại.
+
 ---
 
 #### Hallmark: thiết kế frontend theo yêu cầu

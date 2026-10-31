@@ -11,7 +11,7 @@
   const wait = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds));
   const waitFor = async (test, message) => {
     for (let attempt = 0; attempt < 200 && !test(); attempt++) await wait(25);
-    if (!test()) throw new Error(message);
+    if (!test()) throw new Error(typeof message === 'function' ? message() : message);
   };
   const savedLanguage = localStorage.getItem('vas-language');
   const frame = document.createElement('iframe');
@@ -81,6 +81,46 @@
     frame.style.width = '390px';
     await wait(80);
     const chosenAgent = selected();
+    d.getElementById('load-more').click();
+    const laterResult = d.querySelectorAll('#skills-results .skill-name')[8];
+    check(Boolean(laterResult), 'Load more must expose a result beyond the first six skills');
+    laterResult.scrollIntoView({ block: 'center', behavior: 'instant' });
+    const listScroll = w.scrollY;
+    const laterId = laterResult.dataset.openSkill;
+    laterResult.click();
+    check(!d.getElementById('detail-view').hidden, 'A result from the second page must open');
+    w.history.back();
+    await waitFor(() => !d.getElementById('library-view').hidden, 'Back must restore the catalog');
+    await wait(80);
+    check(d.querySelectorAll('#skills-results [data-skill]').length === 12, 'Back must preserve loaded result pages');
+    check(Boolean(d.querySelector(`#skills-results [data-open-skill="${laterId}"]`)), 'The opened result must still be available after Back');
+    check(Math.abs(w.scrollY - listScroll) < 3, `Back must restore the previous list scroll position (expected ${listScroll}, got ${w.scrollY})`);
+    const readerSearch = d.getElementById('search-input');
+    readerSearch.value = 'senior-frontend';
+    readerSearch.dispatchEvent(new w.Event('input', { bubbles: true }));
+    d.querySelector('[data-open-skill="senior-frontend"]').click();
+    await waitFor(() => d.getElementById('runbook-content').getAttribute('aria-busy') === 'false', 'Senior frontend must load for TOC navigation');
+    const tocLink = d.querySelector('#runbook-content a[href="#runbook-project-scaffolding"]');
+    check(Boolean(tocLink) && !tocLink.target, 'The original runbook TOC must target its rendered heading in this tab');
+    const scrollBehavior = d.documentElement.style.scrollBehavior;
+    // Chromium's dump-dom virtual clock does not advance compositor smooth scrolling.
+    // Keep native fragment navigation and its geometry assertion deterministic here.
+    d.documentElement.style.scrollBehavior = 'auto';
+    try {
+      tocLink.click();
+      await waitFor(() => w.location.hash === '#runbook-project-scaffolding', 'Runbook TOC click must navigate to the rendered section');
+      check(!d.getElementById('detail-view').hidden, 'Fragment navigation must keep the current reader open');
+      await waitFor(() => d.getElementById('runbook-project-scaffolding').getBoundingClientRect().top < 300, () => `Runbook fragment navigation must scroll to the requested heading (top ${d.getElementById('runbook-project-scaffolding').getBoundingClientRect().top}, scroll ${w.scrollY}, hash ${w.location.hash})`);
+    } finally { d.documentElement.style.scrollBehavior = scrollBehavior; }
+    const detailScroll = w.scrollY;
+    d.querySelector('[data-back-library]').click();
+    w.history.back();
+    await waitFor(() => !d.getElementById('detail-view').hidden, 'Back from the library must restore the previous detail');
+    await wait(80);
+    check(Math.abs(w.scrollY - detailScroll) < 3, `Back must retain the outgoing detail scroll position (expected ${detailScroll}, got ${w.scrollY})`);
+    d.querySelector('[data-back-library]').click();
+    d.getElementById('clear-search').click();
+    w.scrollTo({ top: 0, behavior: 'instant' });
     let installPrompt;
     Object.defineProperty(w.navigator, 'clipboard', { configurable: true, value: { writeText: async text => { installPrompt = text; } } });
     const listCopy = d.querySelector('[data-copy-agent-prompt="code-review"]');
@@ -331,7 +371,7 @@
     d.getElementById('close-manual-copy').click();
     d.querySelector('[data-back-library]').click();
     d.getElementById('gamedev-collection').click();
-    check(new URL(w.location.href).searchParams.get('sources') === 'gamedev', 'GameDev shortcut must select its source');
+    check(new URL(w.location.href).searchParams.get('sources') === 'gamedev', `GameDev shortcut must select its source (${w.location.search}; ${d.getElementById('results-status').textContent})`);
     check(d.getElementById('results-status').textContent.includes('78'), 'GameDev must have 78 records, not additional companion skills');
     d.getElementById('open-filters').click();
     check(d.querySelector('input[name="mobile-source"][value="gamedev"]').checked, 'GameDev mobile source must remain selected');

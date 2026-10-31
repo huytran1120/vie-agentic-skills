@@ -275,6 +275,8 @@ function browserRuntime(fetch, window) {
           setAttribute(name, value) { this.attributes.set(name, value); },
           focus() { this.focused = true; },
           select() { this.selected = true; },
+          scrollIntoView() {},
+          querySelectorAll() { return []; },
           classList: {
             toggle(name, enabled) { if (enabled) classes.add(name); else classes.delete(name); }
           }
@@ -800,6 +802,41 @@ test('runbook headings have stable unique anchors and tables remain structured',
   assert.ok(result.html.includes('<td>Python</td>'));
 });
 
+test('the PDF runbook retains all four extraction steps and their wrapped prerequisites', () => {
+  const source = fs.readFileSync(path.join(root, 'skills/pdf/SKILL.md'), 'utf8');
+  const extraction = source.split('## Extract selectable text')[1].split('```')[0];
+  const result = catalog.renderMarkdown(extraction);
+  const lists = [...result.html.matchAll(/<ol(?: [^>]*)?>[\s\S]*?<\/ol>/g)];
+  assert.equal(lists.length, 1, 'Wrapped step text must not restart the list');
+  assert.equal([...lists[0][0].matchAll(/<li>/g)].length, 4);
+  assert.match(lists[0][0], /<li>Read the page count\.[\s\S]*workflow has been agreed; do not attempt password recovery\.<\/li>/);
+  assert.match(lists[0][0], /<li>If pages contain no selectable text,[\s\S]*do not present empty extraction as successful document understanding\.<\/li>/);
+});
+
+test('ordered lists preserve their start and nested list/code content stays in its parent item', () => {
+  const markdown = '3. Parent step\n   wrapped prerequisite\n   - Child task\n     1. Deep task\n     2. Another deep task\n   - Second child\n4. Next step\n\nOutside paragraph.\n\n7. Resumed step\n   ```sh\n   echo "<script>"\n     indented command\n   ```';
+  const result = catalog.renderMarkdown(markdown);
+  assert.match(result.html, /^<ol start="3"><li><p>Parent step wrapped prerequisite<\/p>\n<ul><li><p>Child task<\/p>\n<ol><li>Deep task<\/li><li>Another deep task<\/li><\/ol><\/li><li>Second child<\/li><\/ul><\/li><li>Next step<\/li><\/ol>/);
+  assert.match(result.html, /<p>Outside paragraph\.<\/p>\n<ol start="7"><li>/);
+  assert.ok(result.html.includes('echo &quot;&lt;script&gt;&quot;\n  indented command'));
+  assert.ok(!result.html.includes('<script>'));
+});
+
+test('the senior-frontend table of contents navigates rendered headings in the same reader', () => {
+  const source = fs.readFileSync(path.join(root, 'skills/senior-frontend/SKILL.md'), 'utf8');
+  const base = 'https://huytran1120.github.io/vie-agentic-skills/skills/senior-frontend/SKILL.md';
+  const result = catalog.renderMarkdown(source, base);
+  assert.ok(result.headings.some(heading => heading.id === 'runbook-project-scaffolding'));
+  assert.ok(result.html.includes('<a href="#runbook-project-scaffolding">Project Scaffolding</a>'));
+  assert.ok(!result.html.includes(`${base}#project-scaffolding`));
+  assert.ok(!result.html.includes('data-runbook-fragment='));
+  const aliases = catalog.renderMarkdown('[First](#setup) [Second](#setup-1) [Unicode](#c%C3%A0i-%C4%91%E1%BA%B7t)\n\n## Setup\n\n## Setup\n\n## Cài đặt');
+  for (const href of ['#runbook-setup', '#runbook-setup-2', '#runbook-cai-dat']) assert.ok(aliases.html.includes(`href="${href}"`), href);
+  const unsafe = catalog.renderMarkdown('[Local](#%22onfocus=alert) [Unsafe](javascript:alert)');
+  assert.ok(!unsafe.html.includes(' onfocus='));
+  assert.ok(!unsafe.html.includes('href="javascript:'));
+});
+
 test('every interface message and static translation binding supports both languages', () => {
   for (const [key, pair] of Object.entries(i18n.messages)) {
     assert.equal(pair.length, 2, key);
@@ -868,17 +905,66 @@ function languageWindow(search = '', saved = null, blocked = false) {
   const listeners = new Map();
   return {
     location, storage, listeners,
+    scrollY: 0,
+    scrollTo({ top }) { this.scrollY = top; },
     localStorage: {
       getItem(key) { if (blocked) throw new Error('Storage blocked'); return storage.get(key) || null; },
       setItem(key, value) { if (blocked) throw new Error('Storage blocked'); storage.set(key, value); }
     },
     history: {
-      replaceState(_state, _title, url) { location.href = new URL(url, location).href; },
-      pushState(_state, _title, url) { location.href = new URL(url, location).href; }
+      state: null,
+      replaceState(state, _title, url) { this.state = state; location.href = new URL(url, location).href; },
+      pushState(state, _title, url) { this.state = state; location.href = new URL(url, location).href; }
     },
     addEventListener(name, handler) { listeners.set(name, handler); }
   };
 }
+
+test('Back restores the loaded result pages and list scroll without sharing installation settings', async () => {
+  const window = languageWindow('?lang=en&agent=codex');
+  window.scrollY = 1800;
+  window.scrollTo = ({ top }) => { window.scrollY = top; };
+  const runtime = browserRuntime(async url => url === './skills.min.json'
+    ? { ok: true, json: async () => skills } : { ok: true, text: async () => '# Runbook' }, window);
+  await new Promise(setImmediate);
+  const result = catalog.filterSkills(skills)[8];
+  assert.ok(!runtime.elements.get('skills-results').innerHTML.includes(`data-skill="${result.id}"`));
+  runtime.elements.get('load-more').listeners.get('click')();
+  assert.equal(runtime.elements.get('pagination-status').textContent, `Showing 12 / ${skills.length.toLocaleString('en-US')} runbooks`);
+  runtime.document.listeners.get('input')({ target: { id: 'project-path', value: '/private/project' } });
+  let previous;
+  const push = window.history.pushState.bind(window.history);
+  window.history.pushState = (state, title, url) => {
+    previous = { state: window.history.state, href: window.location.href };
+    push(state, title, url);
+  };
+  const button = { dataset: { openSkill: result.id }, disabled: false, hasAttribute: () => false };
+  runtime.document.listeners.get('click')({ target: { closest: selector => selector === 'button' ? button : null } });
+  assert.equal(new URL(window.location.href).searchParams.get('skill'), result.id);
+  assert.ok(!JSON.stringify(previous.state).includes('private'));
+  assert.ok(!previous.href.includes('page=') && !previous.href.includes('scroll='));
+  window.scrollY = 0;
+  window.location.href = previous.href;
+  window.listeners.get('popstate')({ state: previous.state });
+  assert.equal(runtime.elements.get('pagination-status').textContent, `Showing 12 / ${skills.length.toLocaleString('en-US')} runbooks`);
+  assert.ok(runtime.elements.get('skills-results').innerHTML.includes(`data-skill="${result.id}"`));
+  assert.equal(window.scrollY, 1800);
+  assert.equal(runtime.elements.get('library-view').hidden, false);
+});
+
+test('runbook fragment history leaves native anchor scrolling and the current reader intact', async () => {
+  const window = languageWindow('?lang=en&skill=code-review');
+  const runtime = browserRuntime(async url => url === './skills.min.json'
+    ? { ok: true, json: async () => skills } : { ok: true, text: async () => '# Runbook' }, window);
+  await new Promise(setImmediate);
+  let scrolled = false;
+  runtime.elements.get('detail-view').scrollIntoView = () => { scrolled = true; };
+  const content = runtime.elements.get('skill-detail').innerHTML;
+  window.location.hash = '#runbook-runbook';
+  window.listeners.get('popstate')({ state: null });
+  assert.equal(scrolled, false, 'A hash history entry must not jump back to the detail header');
+  assert.equal(runtime.elements.get('skill-detail').innerHTML, content);
+});
 
 test('language switching works during loading and preserves query, agent and privacy', async () => {
   let release;
