@@ -199,7 +199,7 @@
   // Raw HTML is always escaped; link destinations must use an approved protocol.
   function renderMarkdown(markdown, baseUrl = 'https://example.invalid/skills/', language = 'vi') {
     const lines = String(markdown).replace(/^\uFEFF/, '').replace(/^---\s*\r?\n[\s\S]*?\r?\n---\s*(?:\r?\n|$)/, '').replace(/\r\n?/g, '\n').split('\n');
-    const headings = [], parts = [], ids = new Map();
+    const headings = [], ids = new Map(), aliases = new Map(), sourceIds = new Map(), fragments = [];
     function inline(value) {
       const tokens = String(value).split(/(`[^`]+`|!?\[[^\]]*\]\([^\s)]+\)|\*\*[^*]+\*\*|__[^_]+__)/g);
       return tokens.map(token => {
@@ -208,6 +208,10 @@
         const link = token.match(/^!?\[([^\]]*)\]\(([^\s)]+)\)$/);
         if (link) {
           try {
+            if (link[2].startsWith('#')) {
+              const position = fragments.push(link[2].slice(1)) - 1;
+              return `<a data-runbook-fragment="${position}" href="#">${escapeHtml(link[1] || link[2])}</a>`;
+            }
             const url = new URL(link[2], baseUrl);
             if (['https:', 'http:', 'mailto:'].includes(url.protocol)) return `<a href="${escapeHtml(url.href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(link[1] || link[2])}</a>`;
           } catch (_) { /* Invalid destinations remain plain text. */ }
@@ -217,48 +221,98 @@
     }
     const cells = line => line.trim().replace(/^\||\|$/g, '').split('|').map(cell => cell.trim());
     const tableRule = line => /^\s*\|?\s*:?-{3,}:?\s*(?:\|\s*:?-{3,}:?\s*)+\|?\s*$/.test(line || '');
-    for (let i = 0; i < lines.length;) {
-      const line = lines[i];
-      if (!line.trim()) { i++; continue; }
-      const fence = line.match(/^\s*(`{3,}|~{3,})([^\s]*)/);
-      if (fence) {
-        const code = []; i++;
-        while (i < lines.length && !lines[i].trim().startsWith(fence[1])) code.push(lines[i++]);
-        if (i < lines.length) i++;
-        parts.push(`<div class="code-block"><div class="code-heading"><span>${escapeHtml(fence[2] || 'TEXT')}</span><button class="text-button" data-copy-code>${i18n.translate('copy.codeButton', language)}</button></div><pre><code>${escapeHtml(code.join('\n'))}</code></pre></div>`); continue;
-      }
-      const heading = line.match(/^(#{1,6})\s+(.+?)\s*#*$/);
-      if (heading) {
-        const text = heading[2].replace(/[*`]/g, ''), slug = 'runbook-' + (normalize(text).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'section');
-        const suffix = ids.get(slug) || 0; ids.set(slug, suffix + 1); const id = slug + (suffix ? `-${suffix + 1}` : '');
-        const level = Math.max(2, Math.min(6, heading[1].length + 1));
-        parts.push(`<h${level} id="${id}">${inline(heading[2])}</h${level}>`); headings.push({ id, text, level }); i++; continue;
-      }
-      if (tableRule(lines[i + 1])) {
-        const header = cells(line); i += 2; const rows = [];
-        while (i < lines.length && lines[i].includes('|') && lines[i].trim()) rows.push(cells(lines[i++]));
-        parts.push(`<div class="table-scroll"><table><thead><tr>${header.map(cell => `<th>${inline(cell)}</th>`).join('')}</tr></thead><tbody>${rows.map(row => `<tr>${header.map((_, index) => `<td>${inline(row[index] || '')}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`); continue;
-      }
-      if (/^\s*(?:[-*_]\s*){3,}$/.test(line)) { parts.push('<hr>'); i++; continue; }
-      if (/^\s*>/.test(line)) {
-        const quote = []; while (i < lines.length && /^\s*>/.test(lines[i])) quote.push(lines[i++].replace(/^\s*>\s?/, ''));
-        parts.push(`<blockquote>${inline(quote.join(' '))}</blockquote>`); continue;
-      }
-      const list = line.match(/^\s*(?:([-+*])|(\d+)[.)])\s+(.+)/);
-      if (list) {
-        const ordered = Boolean(list[2]), items = [];
-        while (i < lines.length) {
-          const item = lines[i].match(/^\s*(?:([-+*])|(\d+)[.)])\s+(.+)/);
-          if (!item || Boolean(item[2]) !== ordered) break;
-          items.push(inline(item[3])); i++;
-        }
-        const tag = ordered ? 'ol' : 'ul'; parts.push(`<${tag}>${items.map(item => `<li>${item}</li>`).join('')}</${tag}>`); continue;
-      }
-      const paragraph = [line]; i++;
-      while (i < lines.length && lines[i].trim() && !/^\s*(?:#{1,6}\s|`{3,}|~{3,}|>|[-+*]\s|\d+[.)]\s)/.test(lines[i]) && !tableRule(lines[i + 1])) paragraph.push(lines[i++]);
-      parts.push(`<p>${inline(paragraph.join(' '))}</p>`);
+    const indentation = line => line.match(/^[ \t]*/)[0].replace(/\t/g, '    ').length;
+    function listItem(line) {
+      const match = line.match(/^([ \t]*)([-+*]|\d{1,9}[.)])([ \t]+)(.*)$/);
+      return match ? { indent: indentation(match[1]), ordered: /^\d/.test(match[2]), number: parseInt(match[2], 10), content: match[4], contentIndent: indentation(match[1]) + match[2].length + match[3].replace(/\t/g, '    ').length } : null;
     }
-    return { html: parts.join('\n'), headings };
+    const blockStart = line => /^(?:#{1,6}\s|`{3,}|~{3,}|>|(?:[-*_]\s*){3,}$)/.test(line.trim());
+    function renderList(input, start) {
+      const first = listItem(input[start]), items = [];
+      let i = start;
+      while (i < input.length) {
+        const marker = listItem(input[i]);
+        if (!marker || marker.indent !== first.indent || marker.ordered !== first.ordered) break;
+        const body = [marker.content]; i++;
+        while (i < input.length) {
+          if (!input[i].trim()) {
+            let next = i + 1;
+            while (next < input.length && !input[next].trim()) next++;
+            if (next === input.length || indentation(input[next]) <= first.indent) break;
+            body.push(''); i++; continue;
+          }
+          const nested = listItem(input[i]), indent = indentation(input[i]);
+          if (nested && nested.indent <= first.indent) break;
+          if (indent <= first.indent && blockStart(input[i])) break;
+          // Continuation text stays in the current item; deeper markers become nested lists.
+          const expanded = input[i].replace(/\t/g, '    ');
+          body.push(expanded.slice(Math.min(indent, marker.contentIndent))); i++;
+        }
+        let html = renderBlocks(body);
+        if (html.startsWith('<p>') && html.indexOf('</p>') === html.length - 4) html = html.slice(3, -4);
+        items.push(`<li>${html}</li>`);
+        // A blank line between sibling markers makes one list, rather than restarting at 1.
+        let next = i;
+        while (next < input.length && !input[next].trim()) next++;
+        const sibling = listItem(input[next] || '');
+        if (!sibling || sibling.indent !== first.indent || sibling.ordered !== first.ordered) break;
+        i = next;
+      }
+      const tag = first.ordered ? 'ol' : 'ul';
+      return { html: `<${tag}${first.ordered && first.number !== 1 ? ` start="${first.number}"` : ''}>${items.join('')}</${tag}>`, next: i };
+    }
+    function renderBlocks(input) {
+      const parts = [];
+      for (let i = 0; i < input.length;) {
+        const line = input[i];
+        if (!line.trim()) { i++; continue; }
+        const fence = line.match(/^\s*(`{3,}|~{3,})([^\s]*)/);
+        if (fence) {
+          const code = []; i++;
+          while (i < input.length && !input[i].trim().startsWith(fence[1])) code.push(input[i++]);
+          if (i < input.length) i++;
+          parts.push(`<div class="code-block"><div class="code-heading"><span>${escapeHtml(fence[2] || 'TEXT')}</span><button class="text-button" data-copy-code>${i18n.translate('copy.codeButton', language)}</button></div><pre><code>${escapeHtml(code.join('\n'))}</code></pre></div>`); continue;
+        }
+        const heading = line.match(/^(#{1,6})\s+(.+?)\s*#*$/);
+        if (heading) {
+          const text = heading[2].replace(/[*`]/g, ''), slug = 'runbook-' + (normalize(text).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'section');
+          const suffix = ids.get(slug) || 0; ids.set(slug, suffix + 1); const id = slug + (suffix ? `-${suffix + 1}` : '');
+          const sourceSlug = text.toLowerCase().replace(/[^\p{L}\p{N}_ -]/gu, '').replace(/ /g, '-');
+          const sourceSuffix = sourceIds.get(sourceSlug) || 0; sourceIds.set(sourceSlug, sourceSuffix + 1);
+          aliases.set(sourceSlug + (sourceSuffix ? `-${sourceSuffix}` : ''), id);
+          const normalizedAlias = slug.slice('runbook-'.length) + (suffix ? `-${suffix}` : '');
+          if (!aliases.has(normalizedAlias)) aliases.set(normalizedAlias, id);
+          aliases.set(id, id);
+          const level = Math.max(2, Math.min(6, heading[1].length + 1));
+          parts.push(`<h${level} id="${id}">${inline(heading[2])}</h${level}>`); headings.push({ id, text, level }); i++; continue;
+        }
+        if (tableRule(input[i + 1])) {
+          const header = cells(line); i += 2; const rows = [];
+          while (i < input.length && input[i].includes('|') && input[i].trim()) rows.push(cells(input[i++]));
+          parts.push(`<div class="table-scroll"><table><thead><tr>${header.map(cell => `<th>${inline(cell)}</th>`).join('')}</tr></thead><tbody>${rows.map(row => `<tr>${header.map((_, index) => `<td>${inline(row[index] || '')}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`); continue;
+        }
+        if (/^\s*(?:[-*_]\s*){3,}$/.test(line)) { parts.push('<hr>'); i++; continue; }
+        if (/^\s*>/.test(line)) {
+          const quote = []; while (i < input.length && /^\s*>/.test(input[i])) quote.push(input[i++].replace(/^\s*>\s?/, ''));
+          parts.push(`<blockquote>${inline(quote.join(' '))}</blockquote>`); continue;
+        }
+        const list = listItem(line);
+        if (list) {
+          const rendered = renderList(input, i); parts.push(rendered.html); i = rendered.next; continue;
+        }
+        const paragraph = [line]; i++;
+        while (i < input.length && input[i].trim() && !blockStart(input[i]) && !listItem(input[i]) && !tableRule(input[i + 1])) paragraph.push(input[i++]);
+        parts.push(`<p>${inline(paragraph.join(' '))}</p>`);
+      }
+      return parts.join('\n');
+    }
+    const html = renderBlocks(lines).replace(/ data-runbook-fragment="(\d+)" href="#"/g, (_, index) => {
+      const fragment = fragments[Number(index)];
+      let decoded = fragment;
+      try { decoded = decodeURIComponent(fragment); } catch (_) { /* Keep malformed escapes as a harmless local fragment. */ }
+      return ` href="#${escapeHtml(aliases.get(decoded) || fragment)}"`;
+    });
+    return { html, headings };
   }
 
   const api = { normalize, matchesGroup, filterSkills, installCommand, installationPlan, skillUrl, sourceUrl, groups, agents, targetFolders, globalFolders, readCatalogState, catalogParams, matchesSource, renderMarkdown, agentInstallPrompt, installManifestUrl, validateInstallManifest };
@@ -267,6 +321,7 @@
 
   const skillBase = document.documentElement?.dataset.skillBase || '..';
   const state = { skills: [], query: '', group: 'all', category: 'all', sort: 'recommended', sources: [], target: 'antigravity', view: 'list', page: 1, selected: null, loaded: false, scope: 'project', projectPath: '', mode: 'link', language: 'vi' };
+  let locationSearch = typeof window === 'undefined' ? '' : window.location.search;
   function preferredLanguage() {
     try { return typeof window === 'undefined' ? 'vi' : window.localStorage.getItem('vas-language'); }
     catch (error) { console.warn('Cannot read the saved VAS language preference:', error); return 'vi'; }
@@ -380,7 +435,14 @@
   function syncUrl(push = false, beforeLoad = false) {
     if (typeof window === 'undefined' || (!state.loaded && !beforeLoad)) return;
     const params = catalogParams(state), url = window.location.pathname + (params ? '?' + params : '') + window.location.hash;
-    if (url !== window.location.pathname + window.location.search + window.location.hash) window.history[push ? 'pushState' : 'replaceState'](null, '', url);
+    // Keep list navigation context in this tab's history, never in shared URLs.
+    const context = { page: state.page, scroll: Number.isFinite(window.scrollY) ? window.scrollY : 0, libraryScroll };
+    const history = { ...window.history.state, vas: context };
+    const changedUrl = url !== window.location.pathname + window.location.search + window.location.hash;
+    const previous = window.history.state?.vas;
+    const changedContext = !previous || previous.page !== context.page || previous.scroll !== context.scroll || previous.libraryScroll !== context.libraryScroll;
+    if (changedUrl || (!push && changedContext)) window.history[push ? 'pushState' : 'replaceState'](history, '', url);
+    locationSearch = window.location.search;
   }
   function commandPreview(id) { try { const plan = installationPlan(id, state.target, state); return { command: plan.install, plan }; } catch (error) { return { error: error.message }; } }
   function syncInstallation() {
@@ -493,21 +555,46 @@
   function openSkill(id) {
     if (!state.skills.some(skill => skill.id === id)) return;
     libraryScroll = typeof window !== 'undefined' ? window.scrollY : 0;
-    state.selected = id; renderResults(); syncUrl(true);
+    syncUrl();
+    // Leave the outgoing entry before hiding its content can clamp the browser's saved scroll.
+    state.selected = id; syncUrl(true); renderResults();
     byId('detail-view').scrollIntoView({ block: 'start', behavior: 'instant' }); byId('detail-title').focus({ preventScroll: true });
+    syncUrl();
   }
-  function closeDetail() { state.selected = null; renderResults(); syncUrl(true); window.scrollTo({ top: libraryScroll, behavior: 'instant' }); }
+  function closeDetail() {
+    syncUrl();
+    state.selected = null; syncUrl(true); renderResults();
+    window.scrollTo({ top: libraryScroll, behavior: 'instant' }); syncUrl();
+  }
   function validateState() {
     if (!state.skills.some(skill => skill.category === state.category)) state.category = 'all';
     if (state.selected && !state.skills.some(skill => skill.id === state.selected)) { state.selected = null; toast(t('skill.missing')); }
   }
-  function restoreLocation() {
+  function restoreLocation(event) {
+    // Native fragment history belongs to the visible runbook, not a new catalog view.
+    if (window.location.search === locationSearch) return;
+    locationSearch = window.location.search;
     clearTimeout(toastTimer); byId('toast').hidden = true;
     Object.assign(state, readCatalogState(window.location.search, preferredLanguage()));
     if (state.loaded) validateState();
     byId('search-input').value = state.query; byId('sort-select').value = state.sort;
-    state.page = 1; applyLanguage();
-    if (state.selected && state.loaded) byId('detail-view').scrollIntoView({ block: 'start', behavior: 'instant' });
+    const context = (event?.state || window.history.state)?.vas;
+    const pages = Math.max(1, Math.ceil(filterSkills(state.skills, state).length / pageSize));
+    state.page = Number.isSafeInteger(context?.page) && context.page > 0 ? Math.min(context.page, pages) : 1;
+    if (Number.isFinite(context?.libraryScroll) && context.libraryScroll >= 0) libraryScroll = context.libraryScroll;
+    applyLanguage();
+    const scroll = Number.isFinite(context?.scroll) && context.scroll >= 0 ? context.scroll : null;
+    const restoreScroll = () => {
+      if (scroll !== null) window.scrollTo({ top: scroll, behavior: 'instant' });
+      else if (state.selected && state.loaded) byId('detail-view').scrollIntoView({ block: 'start', behavior: 'instant' });
+    };
+    restoreScroll();
+    if (scroll !== null) {
+      const destination = window.location.href;
+      // Browsers restore their own persisted scroll after popstate has finished.
+      // Reapply this SPA entry's context afterward without intercepting fragment-only history.
+      setTimeout(() => { if (window.location.href === destination) restoreScroll(); }, 0);
+    }
   }
   async function loadCatalog() {
     if (loadingPromise) return loadingPromise;
@@ -554,7 +641,7 @@
   });
   document.addEventListener('input', event => { if (event.target.id === 'project-path') { state.projectPath = event.target.value; syncInstallation(); } });
   if (typeof window !== 'undefined') window.addEventListener('popstate', restoreLocation);
-  byId('load-more').addEventListener('click', () => { const firstNew = state.page * pageSize; state.page++; renderResults(); const next = byId('skills-results').querySelectorAll('.skill-name')[firstNew]; if (next) next.focus({ preventScroll: true }); });
+  byId('load-more').addEventListener('click', () => { const firstNew = state.page * pageSize; state.page++; renderResults(); syncUrl(); const next = byId('skills-results').querySelectorAll('.skill-name')[firstNew]; if (next) next.focus({ preventScroll: true }); });
   function selectSource(source) { state.query = ''; state.group = 'all'; state.category = 'all'; state.sources = [source]; byId('search-input').value = ''; applyFilters(); focusSearch(); }
   byId('addy-collection').addEventListener('click', () => selectSource('addy')); byId('matt-collection').addEventListener('click', () => selectSource('mattpocock'));
   byId('youtube-collection').addEventListener('click', () => selectSource('youtube'));
