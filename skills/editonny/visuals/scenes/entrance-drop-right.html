@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Entrance drop right</title></head>
+<body>
+<!-- Entrance drop right. When introducing an image, screenshot, or clip with impact: the card drops from above, holds, then exits right in the last 0.3 seconds. Set image to a file in the image folder. For footage, replace the image element with a video retaining its ID and class, and add src, data-start="0", data-duration, data-track-index="2", muted, and playsinline. Keep portrait cards beside or below the face; the default 16:9 card sits above it. -->
+
+<template id="entrance-drop-right-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+.entrancedropright-a{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;pointer-events:none}
+.entrancedropright-t{position:absolute;left:0;top:0;width:1080px;height:1920px}
+.entrancedropright-q{overflow:hidden}
+.entrancedropright-f{position:absolute;left:0;top:0;width:0;height:0;filter:url(#entrancedropright-bl)}
+.entrancedropright-c{position:absolute;left:0;top:0;width:100%;height:100%;overflow:hidden;background:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.2),0 8px 20px rgba(0,0,0,.26),0 30px 70px rgba(0,0,0,.4)}
+.entrancedropright-m{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;display:block}
+.entrancedropright-svg{position:absolute;left:0;top:0;width:0;height:0;overflow:hidden}
+</style>
+<div id="root" data-composition-id="entrance-drop-right" data-width="1080" data-height="1920" data-duration="3.0">
+<div id="entrancedropright-a" class="entrancedropright-a">
+
+  <div id="entrancedropright-s" class="entrancedropright-t entrancedropright-q"><div id="entrancedropright-e" class="entrancedropright-t" data-layout-allow-overflow><div id="entrancedropright-r" class="entrancedropright-t entrancedropright-q"><div id="entrancedropright-f" class="entrancedropright-f"><div id="entrancedropright-c" class="entrancedropright-c"><img id="entrancedropright-m" class="entrancedropright-m" src="assets/visuals/img/city.jpg" alt=""></div></div></div></div></div>
+  <svg class="entrancedropright-svg" xmlns="http://www.w3.org/2000/svg" width="0" height="0"><filter id="entrancedropright-bl" x="-60%" y="-60%" width="220%" height="220%" color-interpolation-filters="sRGB"><feGaussianBlur id="entrancedropright-g" stdDeviation="0 0"/></filter></svg>
+</div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["entrance-drop-right"] || { duration: 3.0 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 3.0, t0 = 0;
+
+  var P = {
+    x: 540, // Card center on the 1080×1920 canvas, in pixels.
+    y: 446, // Card center, in pixels; default upper band spans y=232–660, above the eyes.
+    width: 760, // Card width, in pixels.
+    height: 428, // Card height, in pixels; default aspect ratio is 16:9 and the image fills it with cropping.
+    radius: 28, // Corner radius, in pixels; zero gives square corners.
+    image: "city.jpg", // Image filename in the package image folder.
+  };
+
+
+  var CFG = { enter: "up", exit: "right", exitCurve: [1, .01, .89, .15] };
+  var pe = function (s) { return document.getElementById("entrancedropright-" + s); };
+  var LX = 1080, LY = 1920, FRAME = 1 / 30, POSE = FRAME / 2;
+
+  var lg = Math.max(60, +P.width || 760), al = Math.max(60, +P.height || 600), cx = +P.x, cy = +P.y;
+  var radius = P.radius == null ? 28 : Math.max(0, +P.radius);
+  var box = pe("f"); box.style.left = (cx - lg / 2) + "px"; box.style.top = (cy - al / 2) + "px";
+  box.style.width = lg + "px"; box.style.height = al + "px"; pe("c").style.borderRadius = radius + "px";
+  var media = pe("m"); if (P.image && media.tagName === "IMG") media.setAttribute("src", /[\/:]/.test(P.image) ? P.image : "assets/visuals/img/" + P.image);
+
+  var bz = function (x1, y1, x2, y2) {
+    var B = function (a, b, t) { var m = 1 - t; return 3 * m * m * t * a + 3 * m * t * t * b + t * t * t; };
+    var dB = function (a, b, t) { var m = 1 - t; return 3 * m * m * a + 6 * m * t * (b - a) + 3 * t * t * (1 - b); };
+    var rootNode = function (u) { var lo = 0, hi = 1; for (var i = 0; i < 46; i++) { var md = (lo + hi) / 2; if (B(x1, x2, md) < u) lo = md; else hi = md; } return (lo + hi) / 2; };
+    return {
+      y: function (u) { return u <= 0 ? 0 : u >= 1 ? 1 : B(y1, y2, rootNode(u)); },
+      v: function (u) { var t = rootNode(Math.min(1, Math.max(0, u))); return Math.abs(dB(y1, y2, t)) / Math.max(1e-6, dB(x1, x2, t)); }
+    };
+  };
+  var cEnt = bz(.06, .81, .09, 1.02), cSai = bz(CFG.exitCurve[0], CFG.exitCurve[1], CFG.exitCurve[2], CFG.exitCurve[3]);
+
+  var AXIS = { up: ["y", -1], bottom: ["y", 1], left: ["x", -1], right: ["x", 1] };
+  var SPAN = { up: "below", bottom: "above", left: "right", right: "left" };
+  var eE = AXIS[CFG.enter], eS = AXIS[CFG.exit], ampE = (eE[0] === "y" ? LY : LX) / 2, ampS = (eS[0] === "y" ? LY : LX) / 2;
+  pe("r").style.setProperty("-webkit-box-reflect", SPAN[CFG.enter]);
+  pe("s").style.setProperty("-webkit-box-reflect", SPAN[CFG.exit]);
+
+  var KE = .005, KS = 1.6e-6, FLOOR_VALUE = 2.5, CEILING = 95, padding = 3 * CEILING + 90;
+  var fl = pe("bl"); fl.setAttribute("x", (-100 * padding / lg).toFixed(1) + "%"); fl.setAttribute("width", (100 + 200 * padding / lg).toFixed(1) + "%");
+  fl.setAttribute("y", (-100 * padding / al).toFixed(1) + "%"); fl.setAttribute("height", (100 + 200 * padding / al).toFixed(1) + "%");
+  var sigma = function (vel, k) { return Math.min(CEILING, Math.max(0, k * vel - FLOOR_VALUE)); };
+  var sigmaS = function (vel) { return Math.min(CEILING, KS * vel * vel); };
+  var deviation = function (axis) { return function (s) { return { attr: { stdDeviation: axis === "y" ? "0 " + s.toFixed(2) : s.toFixed(2) + " 0" } }; }; };
+
+  var follow = function (target, tA, tB, f, assemble, extra) {
+    var a = f(tA), b = f(tB), difference = b - a; if (Math.abs(difference) < 1e-6) difference = 1e-6;
+    var start = assemble(a), targetState = assemble(b), k; targetState.duration = tB - tA; targetState.ease = function (p) { return (f(tA + p * (tB - tA)) - a) / difference; };
+    if (extra) for (k in extra) targetState[k] = extra[k];
+    tl.fromTo(target, start, targetState, tA);
+  };
+
+  var ent = t0 + .05, Se = Math.min(.7, Math.max(.4, D / 2)), Ss = Math.min(.85, Math.max(.4, D / 2)), end = t0 + D;
+  var uE = function (t) { return Math.max(0, (t - ent - POSE) / Se); };
+  var uS = function (t) { return Math.min(1, Math.max(0, (t - (end - Ss) - FRAME) / Ss)); };
+  var anchor = pe("a"), elE = pe("and"), elS = pe("s"), g = pe("g");
+  tl.fromTo(anchor, { opacity: 0 }, { opacity: 1, duration: .01, ease: "none" }, ent);
+
+  var endE = ent + POSE + Se;
+  follow(elE, ent, endE, function (t) { return eE[1] * ampE * (1 - cEnt.y(uE(t))); }, function (v) { var o = {}; o[eE[0]] = v; return o; });
+  var rot = eE[0] === "y" ? "rotationX" : "rotationY";
+  follow(elE, ent, endE, function (t) { return Math.acos(Math.min(1, .8 + .2 * cEnt.y(uE(t)))) * 180 / Math.PI; }, function (v) { var o = {}; o[rot] = v; return o; }, { immediateRender: false });
+  follow(g, ent, ent + POSE + .45 * Se, function (t) { var u = uE(t); return u >= .45 ? 0 : sigma(cEnt.v(u) * ampE / Se, KE); }, deviation(eE[0]));
+
+  var sceneStart = end - Ss + FRAME;
+  follow(elS, sceneStart, end, function (t) { return eS[1] * ampS * cSai.y(uS(t)); }, function (v) { var o = {}; o[eS[0]] = v; return o; });
+  follow(g, Math.max(sceneStart, end - .42), end, function (t) { return sigmaS(cSai.v(uS(t)) * ampS / Ss); }, deviation(eS[0]), { immediateRender: false });
+  tl.to(anchor, { opacity: 0, duration: .01, ease: "none", immediateRender: false }, end - .01);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["entrance-drop-right"] = tl;
+})();
+</script>
+</template>
+</body></html>

@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Editing behind scenes</title></head>
+<body>
+<!-- Editing behind scenes. When showing editing in progress: an editor panel displays footage, waveform, captions, a moving playhead, and successive cuts. -->
+
+<template id="editing-behind-scenes-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+#editingbehindscenes-a{position:absolute;left:0;top:0;width:0;height:0;opacity:0}
+#editingbehindscenes-c{position:absolute;left:0;top:0;width:680px;height:400px;border-radius:32px;background:rgba(22,22,27,.95);opacity:0;box-shadow:0 0 0 2px rgba(255,255,255,.14),0 4px 10px rgba(0,0,0,.25),0 24px 54px rgba(0,0,0,.5)}
+#editingbehindscenes-h{position:absolute;left:24px;top:34px;height:58px;padding:0 22px 0 18px;border-radius:29px;background:rgba(255,255,255,.1);display:flex;align-items:center;white-space:nowrap;opacity:0}
+#editingbehindscenes-d{width:16px;height:16px;border-radius:50%;background:#ff3b30;margin-right:12px;flex:none}
+#editingbehindscenes-r{font-family:"Inter";font-size:32px;font-weight:800;letter-spacing:.08em;color:#fff;line-height:1;white-space:nowrap}
+#editingbehindscenes-k{position:absolute;right:26px;top:6px;display:flex;align-items:baseline;white-space:nowrap;opacity:0}
+#editingbehindscenes-kn{display:inline-block;font-family:"Inter";font-size:96px;font-weight:900;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+#editingbehindscenes-kw{font-family:"Inter";font-size:38px;font-weight:800;color:#fff;margin-left:10px;line-height:1}
+#editingbehindscenes-w{position:absolute;left:24px;top:128px;width:632px;height:248px;overflow:hidden;border-radius:14px;background:rgba(255,255,255,.05)}
+.editingbehindscenes-L{position:absolute;left:0;top:0;width:632px;height:248px}
+.editingbehindscenes-g{position:absolute;top:0;height:248px}
+.editingbehindscenes-x{position:absolute;top:0;height:248px;border-radius:6px;border-left:2px solid #ff3b30;border-right:2px solid #ff3b30;background-color:rgba(255,59,48,.22);background-image:repeating-linear-gradient(135deg,rgba(255,59,48,.5) 0 4px,rgba(255,59,48,0) 4px 11px);opacity:0}
+.editingbehindscenes-f{position:absolute;top:0;width:4px;height:248px;margin-left:-2px;border-radius:2px;background:#fff;box-shadow:0 0 14px 4px rgba(255,255,255,.75);opacity:0}
+#editingbehindscenes-n{position:absolute;left:24px;top:108px;width:0;height:0;opacity:0}
+#editingbehindscenes-nl{position:absolute;left:-2px;top:16px;width:4px;height:262px;border-radius:2px}
+#editingbehindscenes-nh{position:absolute;left:-14px;top:0;overflow:visible}
+</style>
+<div id="root" data-composition-id="editing-behind-scenes" data-width="1080" data-height="1920" data-duration="4.5">
+<div id="editingbehindscenes-a"><div id="editingbehindscenes-c"><div id="editingbehindscenes-h"><div id="editingbehindscenes-d"></div><div id="editingbehindscenes-r"></div></div><div id="editingbehindscenes-k"><span id="editingbehindscenes-kn">0</span><span id="editingbehindscenes-kw">cuts</span></div><div id="editingbehindscenes-w"></div><div id="editingbehindscenes-n"><div id="editingbehindscenes-nl"></div><svg id="editingbehindscenes-nh" width="28" height="22" viewBox="0 0 28 22"><path id="editingbehindscenes-np" d="M2 1H26L14 20Z" stroke-linejoin="round" stroke-width="2"/></svg></div></div></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["editing-behind-scenes"] || { duration: 4.5 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 4.5, t0 = 0;
+
+  var P = {
+    x: 540, // Panel center on the 1080×1920 canvas, in pixels.
+    y: 240, // Panel top above the head, in pixels; panel height is 400 pixels.
+    cuts: 7, // Number of cuts, from one to twenty; the counter ends at this value.
+    label: "LIVE EDITING", // Uppercase panel label.
+    color: "#ff6a1f", // Accent color for the playhead, elapsed waveform, and counter.
+  };
+
+
+  var PW = 680, LW = 632, TH = 248, FW = 56, ns = "http://www.w3.org/2000/svg";
+  var cutCount = Math.max(1, Math.min(20, Math.round(+P.cuts || 7))), color = P.color || "#ff6a1f";
+  var label = String(P.label == null ? "" : P.label).trim().toUpperCase() || "LIVE EDITING";
+  var anchor = document.getElementById("editingbehindscenes-a"), card = document.getElementById("editingbehindscenes-c"), header = document.getElementById("editingbehindscenes-h"), point = document.getElementById("editingbehindscenes-d");
+  var rot = document.getElementById("editingbehindscenes-r"), cont = document.getElementById("editingbehindscenes-k"), countValue = document.getElementById("editingbehindscenes-kn"), countWidth = document.getElementById("editingbehindscenes-kw");
+  var track = document.getElementById("editingbehindscenes-w"), needle = document.getElementById("editingbehindscenes-n");
+  anchor.style.left = (P.x - PW / 2) + "px"; anchor.style.top = P.y + "px";
+  rot.textContent = label; countValue.style.color = color;
+  document.getElementById("editingbehindscenes-nl").style.background = color; document.getElementById("editingbehindscenes-nl").style.boxShadow = "0 0 10px " + color;
+  document.getElementById("editingbehindscenes-np").setAttribute("fill", color); document.getElementById("editingbehindscenes-np").setAttribute("stroke", color);
+
+  var weights = [], sum = 0, i;
+  for (i = 0; i <= cutCount; i++) { weights.push(1 + .45 * Math.sin(i * 2.3 + .7)); sum += weights[i]; }
+  var characterWidth = weights.map(function (q) { return q * LW / sum; }), slice = Math.min(.075, .34 / cutCount), extraWidth = [];
+  for (i = 0; i < cutCount; i++) extraWidth.push(LW * slice * (1 + .35 * Math.sin(i * 1.7 + .4)));
+  var items = [], leftValue = 0, before = 0, cutLocation = [], previousSum = [];
+  for (i = 0; i <= cutCount; i++) {
+    items.push({ t: "g", l: leftValue, w: characterWidth[i] }); leftValue += characterWidth[i]; before += characterWidth[i];
+    if (i < cutCount) { cutLocation.push(before); previousSum.push(leftValue - before); items.push({ t: "x", l: leftValue, w: extraWidth[i] }); leftValue += extraWidth[i]; }
+  }
+  var el = function (name, at) { var e = document.createElementNS(ns, name); for (var q in at) e.setAttribute(q, at[q]); return e; };
+  var wave = function (g) { return Math.abs(.62 * Math.sin(g * .47 + .3) + .38 * Math.sin(g * .13 + 1.1)) * (.55 + .45 * Math.abs(Math.sin(g * .071))); };
+  var perItem = items.map(function () { return []; }), layers = [];
+  [false, true].forEach(function (activeValue) {
+    var cam = document.createElement("div"); cam.className = "editingbehindscenes-L";
+    var word = 0;
+    items.forEach(function (it, idx) {
+      var layout = document.createElement("div"); layout.className = it.t === "g" ? "editingbehindscenes-g" : "editingbehindscenes-x";
+      layout.style.left = it.l + "px"; layout.style.width = it.w + "px";
+      var sv = el("svg", { width: Math.ceil(it.w), height: TH }); sv.style.position = "absolute"; sv.style.left = "0"; sv.style.top = "0";
+      if (it.t === "g") {
+        for (var fx = 0; fx < it.w; fx += FW) {
+          sv.appendChild(el("rect", { x: fx + 2, y: 2, width: FW - 4, height: 88, rx: 8, fill: activeValue ? "#3d4250" : "#2a2c34" }));
+          sv.appendChild(el("circle", { cx: fx + 28, cy: 38, r: 14, fill: activeValue ? "#dfe2ea" : "#4f525b" }));
+          sv.appendChild(el("path", { d: "M" + (fx + 7) + " 90Q" + (fx + 7) + " 60 " + (fx + 28) + " 60Q" + (fx + 49) + " 60 " + (fx + 49) + " 90Z", fill: activeValue ? "#dfe2ea" : "#4f525b" }));
+        }
+        for (var bx = Math.ceil(it.l / 8) * 8; bx < it.l + it.w - 4; bx += 8) {
+          var h = 6 + 64 * wave(bx / 8);
+          sv.appendChild(el("rect", { x: bx - it.l, y: 144 - h / 2, width: 4, height: h, rx: 2, fill: activeValue ? color : "#5c5e67" }));
+        }
+        for (var cx = 6; cx < it.w - 10; word++) {
+          var pw = 22 + 34 * Math.abs(Math.sin(word * 1.37 + .5)), end = Math.min(cx + pw, it.w - 4);
+          sv.appendChild(el("rect", { x: cx, y: 204, width: Math.max(6, end - cx), height: 32, rx: 8, fill: activeValue ? "#f5f5f7" : "none", stroke: activeValue ? "none" : "#4a4c55", "stroke-width": 2 }));
+          cx = end + 8;
+        }
+      } else {
+        sv.appendChild(el("rect", { x: 4, y: 142, width: Math.max(1, it.w - 8), height: 4, rx: 2, fill: "rgba(255,150,140,.9)" }));
+      }
+      layout.appendChild(sv); cam.appendChild(layout); perItem[idx].push(layout);
+    });
+    track.appendChild(cam); layers.push(cam);
+  });
+  var touched = layers[1];
+  var flashes = cutLocation.map(function (px) { var f = document.createElement("div"); f.className = "editingbehindscenes-f"; f.style.left = px + "px"; track.appendChild(f); return f; });
+
+  var measure = function (txt, style) {
+    if (!document.body) return txt.length * 20;
+    var s = document.createElement("span"); s.style.cssText = "position:absolute;left:-9999px;top:0;visibility:hidden;white-space:nowrap;font-family:Inter;" + style;
+    s.textContent = txt; document.body.appendChild(s); var w = s.getBoundingClientRect().width; document.body.removeChild(s); return w;
+  };
+  var adjust = function () {
+    var wc = measure(String(cutCount), "font-size:96px;font-weight:900;letter-spacing:-.04em") + 10 + measure("cuts", "font-size:38px;font-weight:800");
+    var free = PW - 24 - 26 - wc - 24 - (18 + 22 + 16 + 12), wr = measure(label, "font-size:32px;font-weight:800;letter-spacing:.08em");
+    rot.style.fontSize = (wr > free ? Math.max(14, 32 * free / wr) : 32) + "px";
+  };
+  adjust(); if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { adjust(); tl.invalidate(); });
+
+  var k = Math.min(1, Math.max(.45, (D - .4) / 4.1)), enter = t0 + .05, exit = t0 + D - .28, a = enter + .55 * k + .05, b = exit - .12;
+  var when = cutLocation.map(function (px) { return a + (px / LW) * (b - a); });
+  var cutDuration = when.map(function (q, c) { var next = c + 1 < when.length ? when[c + 1] : b; return Math.max(.06, Math.min(.24, .8 * (next - q))); });
+  tl.fromTo(anchor, { opacity: 0 }, { opacity: 1, duration: .05, ease: "none" }, enter);
+  tl.fromTo(card, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: .42, ease: "back.out(1.5)" }, enter);
+  tl.fromTo(header, { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: .3, ease: "power3.out" }, enter + .1);
+  tl.fromTo(cont, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: .3, ease: "power3.out" }, enter + .16);
+  tl.fromTo(track, { clipPath: "inset(0px " + LW + "px 0px 0px)" }, { clipPath: "inset(0px 0px 0px 0px)", duration: .45 * k, ease: "power2.out" }, enter + .12);
+  var marks = []; items.forEach(function (it, idx) { if (it.t === "x") marks.push(perItem[idx]); });
+  marks.forEach(function (m, c) { tl.fromTo(m, { opacity: 0 }, { opacity: 1, duration: .16, ease: "power2.out" }, enter + .3 * k + .02 * c); });
+  tl.fromTo(needle, { opacity: 0, x: 0 }, { opacity: 1, x: 0, duration: .16, ease: "power2.out" }, a - .16);
+  tl.fromTo(needle, { x: 0 }, { x: LW, duration: b - a, ease: "none", immediateRender: false }, a);
+  tl.fromTo(touched, { clipPath: "inset(0px " + LW + "px 0px 0px)" }, { clipPath: "inset(0px 0px 0px 0px)", duration: b - a, ease: "none" }, a);
+
+  when.forEach(function (q, c) {
+    var cutIndex = 2 * c + 1, right = [], dc = cutDuration[c];
+    for (var j = cutIndex + 1; j < items.length; j++) right = right.concat(perItem[j]);
+    var w = extraWidth[c];
+    tl.fromTo(perItem[cutIndex], { clipPath: "inset(0px 0px 0px 0px)" }, { clipPath: "inset(0px " + Math.ceil(w + 2) + "px 0px 0px)", duration: dc, ease: "power3.inOut", immediateRender: false }, q);
+    tl.fromTo(right, { x: -previousSum[c] }, { x: -(previousSum[c] + w), duration: dc, ease: "power3.inOut", immediateRender: false }, q);
+    tl.fromTo(flashes[c], { opacity: 0 }, { opacity: 1, duration: .05, ease: "none" }, q + dc * .7);
+    tl.fromTo(flashes[c], { opacity: 1 }, { opacity: 0, duration: .26, ease: "power2.out", immediateRender: false }, q + dc * .7 + .05);
+    tl.fromTo(countValue, { y: 0 }, { y: -10, duration: Math.min(.09, dc * .5), ease: "power2.out", yoyo: true, repeat: 1, immediateRender: false }, q + dc * .5);
+  });
+  var cutEnd = when.map(function (q, c) { return q + cutDuration[c] * .5; }), shown = -1;
+  var write = function (n) { if (n === shown) return; shown = n; countValue.textContent = String(n); countWidth.textContent = n === 1 ? "cut" : "cuts"; };
+  write(0);
+  var clock = { v: 0 };
+  tl.fromTo(clock, { v: 0 }, { v: 1, duration: b - a + .1, ease: "none", onUpdate: function () {
+    var tt = a + clock.v * (b - a + .1), n = 0; for (var c = 0; c < cutEnd.length; c++) if (cutEnd[c] <= tt) n++; write(n);
+  } }, a);
+
+  var live = enter + .3, turns = Math.max(1, Math.round((exit - live) / .7));
+  tl.fromTo(point, { opacity: 1 }, { opacity: .25, duration: (exit - live) / (turns * 2), ease: "sine.inOut", yoyo: true, repeat: turns * 2 - 1, immediateRender: false }, live);
+  tl.fromTo(anchor, { opacity: 1, y: 0 }, { opacity: 0, y: -26, duration: .26, ease: "power2.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["editing-behind-scenes"] = tl;
+})();
+</script>
+</template>
+</body></html>

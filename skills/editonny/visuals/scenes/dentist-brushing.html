@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Dentist brushing</title></head>
+<body>
+<!-- Dentist brushing. When correcting brushing technique: hard brushing marks the tooth red, the wrong title is crossed out, and a soft brush gently cleans a protected tooth. -->
+
+<template id="dentist-brushing-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+@font-face{font-family:"Playfair";src:url("assets/visuals/fonts/Playfair-Italic.ttf");font-style:italic;font-weight:400 900;font-display:block}
+@font-face{font-family:"Sora";src:url("assets/visuals/fonts/Sora.ttf");font-weight:100 800;font-display:block}
+.dentistbrushing-w{position:absolute;left:0;top:0;width:860px;height:430px;transform-origin:50% 0}
+.dentistbrushing-a{position:absolute;left:0;top:0;width:860px;height:430px;opacity:0}
+.dentistbrushing-pn{position:absolute;left:0;top:0;width:860px;height:430px;border-radius:46px;overflow:hidden;isolation:isolate;opacity:0;background:radial-gradient(ellipse 62% 75% at 50% 66%,#17463f 0%,#0b2523 52%,#061213 100%);box-shadow:inset 0 0 0 2px rgba(138,227,209,.24),inset 0 0 140px rgba(0,0,0,.6),0 8px 18px rgba(0,0,0,.3),0 34px 80px rgba(0,0,0,.5)}
+.dentistbrushing-gr{position:absolute;inset:0;background-image:radial-gradient(rgba(190,240,228,.10) 1.6px,transparent 1.8px);background-size:30px 30px;opacity:.55}
+.dentistbrushing-t{position:absolute;left:48px;top:24px;width:764px;white-space:nowrap;line-height:1.08;color:#e3f4ef;opacity:0}
+.dentistbrushing-t i{font-family:"Playfair",serif;font-style:italic;font-weight:500;font-size:.8em;letter-spacing:-.01em}
+.dentistbrushing-t b{position:relative;display:inline-block;font-family:"Sora",sans-serif;font-weight:800;font-size:1em;letter-spacing:-.045em}
+.dentistbrushing-k{position:absolute;left:0;height:9px;border-radius:5px;background:#ff6f59;opacity:0}
+.dentistbrushing-vw{position:absolute;left:160px;top:84px;width:540px;height:540px}
+.dentistbrushing-v{position:absolute;left:0;top:0;width:540px;height:540px;object-fit:contain;opacity:0}
+.dentistbrushing-au{position:absolute;left:34px;top:34px;width:472px;height:320px;border-radius:50%;opacity:0}
+.dentistbrushing-hit{position:absolute;left:213px;top:189px;width:160px;height:118px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(255,70,48,.8) 0%,rgba(255,70,48,.42) 40%,rgba(255,70,48,0) 70%);opacity:0}
+.dentistbrushing-bd{position:absolute;left:712px;top:104px;width:120px;height:120px}
+.dentistbrushing-bx,.dentistbrushing-bc{position:absolute;left:0;top:0;width:120px;height:120px;border-radius:50%;opacity:0;box-shadow:0 10px 24px rgba(0,0,0,.4)}
+.dentistbrushing-bx{background:#ff6f59}
+.dentistbrushing-bx svg,.dentistbrushing-bc svg{position:absolute;left:0;top:0;width:120px;height:120px;overflow:visible}
+</style>
+<div id="root" data-composition-id="dentist-brushing" data-width="1080" data-height="1920" data-duration="4.6">
+<div id="dentistbrushing-w" class="dentistbrushing-w"><div id="dentistbrushing-a" class="dentistbrushing-a"><div id="dentistbrushing-pn" class="dentistbrushing-pn">
+  <i class="dentistbrushing-gr"></i>
+  <div id="dentistbrushing-vw" class="dentistbrushing-vw" data-layout-allow-overflow><i id="dentistbrushing-au" class="dentistbrushing-au"></i>
+    <video id="dentistbrushing-vf" class="dentistbrushing-v" src="assets/visuals/video/hard-brushing.webm" data-start="0" data-duration="6" data-track-index="2" muted playsinline></video>
+    <video id="dentistbrushing-vm" class="dentistbrushing-v" src="assets/visuals/video/soft-brushing.webm" data-start="0" data-duration="6" data-track-index="3" muted playsinline></video>
+    <i id="dentistbrushing-hit" class="dentistbrushing-hit"></i>
+  </div>
+  <div id="dentistbrushing-t1" class="dentistbrushing-t"></div>
+  <div id="dentistbrushing-t2" class="dentistbrushing-t"></div>
+  <div id="dentistbrushing-bd" class="dentistbrushing-bd">
+    <div id="dentistbrushing-bx" class="dentistbrushing-bx"><svg viewBox="0 0 96 96"><path d="M32 32L64 64M64 32L32 64" fill="none" stroke="#fff" stroke-width="11" stroke-linecap="round"/></svg></div>
+    <div id="dentistbrushing-bc" class="dentistbrushing-bc"><svg viewBox="0 0 96 96"><path id="dentistbrushing-ck" d="M28 50L42 63L69 34" fill="none" stroke="#06201d" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg></div>
+  </div>
+</div></div></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["dentist-brushing"] || { duration: 4.6 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 4.6, t0 = 0;
+
+  var P = {
+    x: 540, // Panel center on the 1080×1920 canvas, in pixels; panel size is 860×430.
+    y: 230, // Panel top, in pixels; default 230 places the bottom at y=660, above the eyes.
+    size: 1, // Panel scale from 0.5 to 1.1, anchored at the top; automatically shrinks to clear high eyebrows.
+    wrongTitle: "Brushing *too hard*", // Incorrect-technique title; *asterisks* mark large red text that is crossed out.
+    correctTitle: "A *soft* brush", // Correct-technique title; *asterisks* mark large accent-colored text.
+    color: "#8ae3d1", // Correct-technique accent color for the word, check, and protective tooth glow.
+    switchAt: "", // Spoken word where the correct title appears, such as "soft", or a scene time in seconds; empty uses the midpoint.
+  };
+
+
+  var pe = function (s) { return document.getElementById("dentistbrushing-" + s); };
+
+  var sizeValue = Math.min(1.1, Math.max(.5, Number(String(P.size == null ? 1 : P.size).replace(",", ".")) || 1));
+
+  if (C.face && C.face.y1 > C.face.y0) { var fitText = (C.face.y0 + .2 * (C.face.y1 - C.face.y0) - Number(P.y)) / 430; if (fitText < sizeValue) sizeValue = Math.max(.5, fitText); }
+  pe("w").style.transform = "translate(" + (Number(P.x) - 430) + "px," + Number(P.y) + "px) scale(" + sizeValue + ")";
+  var anchor = pe("a");
+  var color = P.color || "#8ae3d1", TW = 764, TB = 72;
+
+  var title = function (el, txt, backgroundTint) {
+    String(txt || "").split(/(\*[^*]+\*)/).forEach(function (s) {
+      if (!s) return; var strong = /^\*.*\*$/.test(s), n = document.createElement(strong ? "b" : "i");
+      n.textContent = strong ? s.slice(1, -1) : s; if (strong) n.style.color = backgroundTint; el.appendChild(n);
+    });
+    return el.querySelector("b");
+  };
+  var t1 = pe("t1"), t2 = pe("t2"), b1 = title(t1, P.wrongTitle, "#ff8a73"), b2 = title(t2, P.successTitle, color);
+
+  var strike = document.createElement("i"); strike.className = "dentistbrushing-k"; if (b1) b1.appendChild(strike);
+  var sub = document.createElement("i"); sub.className = "dentistbrushing-k"; sub.style.background = color; if (b2) b2.appendChild(sub);
+  pe("bc").style.background = color; pe("au").style.background = "radial-gradient(ellipse at center," + color + "66 0%," + color + "22 45%,rgba(0,0,0,0) 72%)";
+
+  var widthValue = function (el) {
+    var c = el.cloneNode(true); c.removeAttribute("id"); c.querySelectorAll(".dentistbrushing-k").forEach(function (k) { k.parentNode.removeChild(k); });
+    c.style.cssText += ";position:absolute;left:-99999px;top:0;width:auto;visibility:hidden;white-space:nowrap";
+    document.body.appendChild(c); var w = c.getBoundingClientRect().width; document.body.removeChild(c); return w;
+  };
+  var measureHeight = function (el) {
+    var c = el.cloneNode(true); c.removeAttribute("id"); c.querySelectorAll(".dentistbrushing-k").forEach(function (k) { k.parentNode.removeChild(k); });
+    c.style.cssText += ";position:absolute;left:-99999px;top:0;visibility:hidden;width:" + TW + "px;white-space:normal";
+    document.body.appendChild(c); var h = c.getBoundingClientRect().height, w = 0; c.querySelectorAll("b,i").forEach(function (n) { w = Math.max(w, n.getBoundingClientRect().width); });
+    document.body.removeChild(c); return { h: h, w: w };
+  };
+  var fit = function () {
+
+    var background = 0;
+    [t1, t2].forEach(function (t) {
+      t.style.whiteSpace = "nowrap"; t.style.fontSize = TB + "px"; var w = widthValue(t), fs = TB;
+      if (w > TW && TB * TW / w >= 56) fs = TB * TW / w;
+      else if (w > TW) {
+        t.style.whiteSpace = "normal"; fs = 56;
+        for (var g = 0; g < 16; g++) { t.style.fontSize = fs + "px"; var r = measureHeight(t); if (r.h <= fs * 1.08 * 2 + 4 && r.w <= TW + 1) break; fs = Math.max(38, fs * .94); }
+      }
+      t.style.fontSize = fs + "px"; t.style.top = "24px";
+      background = Math.max(background, t.style.whiteSpace === "normal" ? 24 + fs * 1.08 * 2 : 24 + fs * 1.08);
+    });
+    var vt = Math.max(84, background - 18); pe("vw").style.top = vt + "px"; pe("bd").style.top = (vt + 20) + "px";
+    strike.style.top = "50%"; strike.style.width = "100%"; sub.style.top = "100%"; sub.style.width = "100%";
+  };
+  fit(); if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { fit(); tl.invalidate(); });
+
+  var enter = t0 + .05, exit = t0 + D - .3, switchTime = enter + Math.max(.9, (D - .35) * .45);
+
+  (function () {
+    var te = String(P.switchAt == null ? "" : P.switchAt).trim(), nrm = function (s) { return String(s).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]/g, ""); }, W = C.words || [], a, k, t = null;
+    if (!te) return;
+    if (/^[0-9]+([.,][0-9]+)?$/.test(te)) t = Number(te.replace(",", "."));
+    else { a = nrm(te.split(/\s+/)[0]); if (a.length >= 2) for (k = 0; k < W.length; k++) if (nrm(W[k].text).indexOf(a) === 0) { t = Number(W[k].t) - .2; break; } }
+    if (t != null && isFinite(t)) switchTime = Math.max(enter + .9, Math.min(exit - .9, t0 + t));
+  })();
+  var vf = pe("vf"), vm = pe("vm"), hit = pe("hit");
+  tl.fromTo(anchor, { opacity: 0 }, { opacity: 1, duration: .05, ease: "none" }, enter);
+  tl.fromTo(pe("pn"), { opacity: 0, y: -44 }, { opacity: 1, y: 0, duration: .46, ease: "power3.out" }, enter);
+  tl.fromTo(vf, { opacity: 0, x: 60, y: 30 }, { opacity: 1, x: 0, y: 0, duration: .5, ease: "power3.out" }, enter + .08);
+  tl.fromTo(t1, { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: .36, ease: "back.out(1.6)" }, enter + .16);
+  tl.fromTo(pe("bx"), { opacity: 0, rotation: -90 }, { opacity: 1, rotation: 0, duration: .36, ease: "back.out(2)" }, enter + .42);
+
+  var beginTime = enter + .4, holdEnd = switchTime - .05, pulses = Math.max(1, Math.round((holdEnd - beginTime) / .3)), mp = (holdEnd - beginTime) / (pulses * 2);
+  tl.fromTo(hit, { opacity: 0 }, { opacity: 1, duration: mp, ease: "sine.inOut", yoyo: true, repeat: pulses * 2 - 1 }, beginTime);
+  tl.fromTo(strike, { opacity: 1, clipPath: "inset(0 100% 0 0)" }, { opacity: 1, clipPath: "inset(0 0% 0 0)", duration: .26, ease: "power2.out" }, switchTime - .36);
+
+  tl.to(t1, { opacity: 0, y: -24, duration: .2, ease: "power2.in", immediateRender: false }, switchTime);
+  tl.to(vf, { opacity: 0, duration: .26, ease: "none", immediateRender: false }, switchTime);
+  tl.to(hit, { opacity: 0, duration: .15, immediateRender: false }, switchTime);
+  tl.fromTo(vm, { opacity: 0 }, { opacity: 1, duration: .3, ease: "none" }, switchTime + .02);
+  tl.fromTo(t2, { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: .36, ease: "back.out(1.6)" }, switchTime + .2);
+  tl.to(pe("bx"), { opacity: 0, rotation: 90, duration: .2, ease: "power2.in", immediateRender: false }, switchTime + .06);
+  tl.fromTo(pe("bc"), { opacity: 0, rotation: -90 }, { opacity: 1, rotation: 0, duration: .34, ease: "back.out(2)" }, switchTime + .2);
+  tl.fromTo(pe("ck"), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: .26, ease: "power2.out" }, switchTime + .36);
+  tl.fromTo(sub, { opacity: 1, clipPath: "inset(0 100% 0 0)" }, { opacity: 1, clipPath: "inset(0 0% 0 0)", duration: .3, ease: "power2.out" }, switchTime + .42);
+
+  var au = pe("au"), live = switchTime + .3, padding = exit - live, turns = Math.max(1, Math.round(padding / 1.1)), halfValue = padding / (turns * 2);
+  tl.fromTo(au, { opacity: 0 }, { opacity: 1, duration: .4, ease: "power2.out" }, live);
+  if (halfValue > .2) tl.to(au, { opacity: .55, duration: halfValue, ease: "sine.inOut", yoyo: true, repeat: turns * 2 - 1, immediateRender: false }, live + .4);
+  tl.to(anchor, { opacity: 0, y: -30, duration: .26, ease: "power2.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["dentist-brushing"] = tl;
+})();
+</script>
+</template>
+</body></html>

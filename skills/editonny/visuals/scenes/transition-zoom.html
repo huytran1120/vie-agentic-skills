@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Transition zoom</title></head>
+<body>
+<!-- Transition zoom. To move toward an important detail: speed rays and blur emphasize the cut. -->
+
+<template id="transition-zoom-template">
+<style>
+#root{position:absolute;inset:0;overflow:hidden}
+#transitionzoom-bk{position:absolute;inset:0;backdrop-filter:blur(20px) brightness(1.25);-webkit-backdrop-filter:blur(20px) brightness(1.25);opacity:0}
+#transitionzoom-r{position:absolute;left:-460px;top:-40px;width:2000px;height:2000px;border-radius:50%;background:repeating-conic-gradient(from 0deg,rgba(255,255,255,.9) 0deg 1.2deg,rgba(255,255,255,0) 1.2deg 7deg);-webkit-mask-image:radial-gradient(closest-side,rgba(0,0,0,0) 22%,#000 78%);mask-image:radial-gradient(closest-side,rgba(0,0,0,0) 22%,#000 78%);mix-blend-mode:screen;opacity:0}
+#transitionzoom-w{position:absolute;inset:0;background:radial-gradient(60% 50% at 50% 50%,rgba(255,255,255,.9),rgba(255,255,255,0) 70%);mix-blend-mode:screen;opacity:0}
+</style>
+<div id="root" data-composition-id="transition-zoom" data-width="1080" data-height="1920" data-duration="0.5">
+<div id="transitionzoom-bk"></div><div id="transitionzoom-r"></div><div id="transitionzoom-w"></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["transition-zoom"] || { duration: 0.5 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = 0.5, t0 = 0;
+
+  function rise(sel, a, b, c, peak, e1, e2) {
+    tl.fromTo(sel, { opacity: 0 }, { opacity: peak, duration: b - a, ease: e1 || "sine.inOut" }, t0 + a);
+    tl.to(sel, { opacity: 0, duration: c - b, ease: e2 || "sine.inOut", immediateRender: false }, t0 + b);
+  }
+
+  rise("#transitionzoom-bk", D * .05, D * .5, D * .95, 1);
+  rise("#transitionzoom-r", D * .1, D * .5, D * .9, .85);
+  tl.fromTo("#transitionzoom-r", { rotation: -6 }, { rotation: 6, duration: D, ease: "none" }, t0);
+  rise("#transitionzoom-w", D * .3, D * .5, D * .7, .8);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["transition-zoom"] = tl;
+})();
+</script>
+</template>
+</body></html>

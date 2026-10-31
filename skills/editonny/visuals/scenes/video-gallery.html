@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Video gallery</title></head>
+<body>
+<!-- Video gallery. When showcasing video work: six portrait cards fan out in 3D and one moves forward. Replace placeholder gradients with muted video elements; set data-start, data-duration, and the correct src. Optional views count below. -->
+
+<template id="video-gallery-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+.videogallery-a{position:absolute;left:0;top:0;width:0;height:0;opacity:0}
+
+.videogallery-esc{position:absolute;left:0;top:0;width:0;height:0;transform-origin:0 0}
+.videogallery-w{position:absolute;left:-480px;top:-293px;width:960px;height:600px;perspective:1300px;perspective-origin:480px 300px}
+.videogallery-st{position:absolute;left:480px;top:300px;width:0;height:0;transform-style:preserve-3d}
+.videogallery-c{position:absolute;left:-108px;top:-192px;width:216px;height:384px;border-radius:28px;overflow:hidden;box-shadow:0 0 0 3px rgba(255,255,255,.9),0 18px 36px rgba(0,0,0,.5);opacity:0}
+.videogallery-header{position:absolute;left:60px;top:144px;width:96px;height:96px;border-radius:50%;background:rgba(255,255,255,.28)}
+.videogallery-omb{position:absolute;left:26px;top:252px;width:164px;height:132px;border-radius:60px 60px 0 0;background:rgba(255,255,255,.22)}
+.videogallery-v{position:absolute;left:28px;top:70px;width:160px;height:160px;object-fit:contain;opacity:0}
+.videogallery-l1{position:absolute;left:23px;top:29px;width:150px;height:19px;border-radius:10px;background:#fff}
+.videogallery-l2{position:absolute;left:23px;top:58px;width:107px;height:19px;border-radius:10px;background:#ffd60a}
+.videogallery-bar{position:absolute;left:20px;bottom:20px;width:176px;height:8px;border-radius:4px;background:rgba(255,255,255,.35)}
+.videogallery-bar b{position:absolute;left:0;top:0;width:58%;height:100%;border-radius:3px;background:#fff}
+.videogallery-dim{position:absolute;inset:0;background:#000;opacity:0}
+.videogallery-play{position:absolute;left:62px;top:206px;width:92px;height:92px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;padding-left:6px;box-shadow:0 8px 22px rgba(0,0,0,.4);opacity:0}
+.videogallery-row{position:absolute;left:-400px;top:-283px;width:800px;display:flex;justify-content:center}
+.videogallery-tt{position:relative;display:flex;align-items:center;gap:16px;height:84px;padding:0 36px 0 28px;border-radius:42px;background:rgba(14,14,16,.9);box-shadow:inset 0 0 0 2px rgba(255,255,255,.16),0 14px 34px rgba(0,0,0,.45);font-family:"Inter";font-weight:800;font-size:46px;letter-spacing:-.01em;color:#fff;white-space:nowrap;opacity:0}
+.videogallery-dot{flex:none;width:22px;height:22px;border-radius:50%}
+.videogallery-vrow{position:absolute;left:-400px;width:800px;display:flex;justify-content:center}
+.videogallery-vw{position:relative;display:flex;align-items:center;gap:16px;height:98px;padding:0 36px 0 24px;border-radius:49px;background:#fff;box-shadow:0 0 0 2px rgba(0,0,0,.06),0 16px 38px rgba(0,0,0,.45);font-family:"Inter";color:#141416;white-space:nowrap;opacity:0}
+.videogallery-eye{flex:none}
+.videogallery-vw span{font-weight:900;font-size:58px;letter-spacing:-.03em;line-height:1}
+.videogallery-vw i,.videogallery-vw em{font-style:normal;font-size:.62em}
+.videogallery-vw i{margin-right:.15em}
+.videogallery-vw em{margin-left:.15em}
+.videogallery-vw small{font-weight:800;font-size:28px;letter-spacing:.1em;color:#6b6b73}
+</style>
+<div id="root" data-composition-id="video-gallery" data-width="1080" data-height="1920" data-duration="4.5">
+<div id="videogallery-a" class="videogallery-a"><div id="videogallery-esc" class="videogallery-esc">
+  <div id="videogallery-w" class="videogallery-w"><div id="videogallery-st" class="videogallery-st"><div id="videogallery-c0" class="videogallery-c" style="background:linear-gradient(160deg,#ff9a3c,#ff3d6e 60%,#7a1f6b)"><i class="videogallery-header"></i><i class="videogallery-omb"></i><i class="videogallery-l1"></i><i class="videogallery-l2"></i><i class="videogallery-bar"><b></b></i><i class="videogallery-dim"></i></div><div id="videogallery-c1" class="videogallery-c" style="background:linear-gradient(160deg,#4facfe,#2a4bd7 60%,#151a4a)"><i class="videogallery-header"></i><i class="videogallery-omb"></i><i class="videogallery-l1"></i><i class="videogallery-l2"></i><i class="videogallery-bar"><b></b></i><i class="videogallery-dim"></i></div><div id="videogallery-c2" class="videogallery-c" style="background:linear-gradient(160deg,#1c1c22,#2c2c36 50%,#ff6a1f 140%)"><video id="videogallery-v" class="videogallery-v" src="assets/visuals/video/06-chart.webm" data-start="0" data-duration="6" data-track-index="2" muted playsinline></video><i class="videogallery-l1"></i><i class="videogallery-l2"></i><i class="videogallery-bar"><b></b></i><i class="videogallery-dim"></i><div id="videogallery-play" class="videogallery-play"><svg width="46" height="52" viewBox="0 0 34 38"><path id="videogallery-tri" d="M6 4 L31 19 L6 34 Z" fill="#ff6a1f"/></svg></div></div><div id="videogallery-c3" class="videogallery-c" style="background:linear-gradient(160deg,#a18cd1,#6b4fd8 55%,#241a5a)"><i class="videogallery-header"></i><i class="videogallery-omb"></i><i class="videogallery-l1"></i><i class="videogallery-l2"></i><i class="videogallery-bar"><b></b></i><i class="videogallery-dim"></i></div><div id="videogallery-c4" class="videogallery-c" style="background:linear-gradient(160deg,#43e97b,#1a9e8f 60%,#0e3b45)"><i class="videogallery-header"></i><i class="videogallery-omb"></i><i class="videogallery-l1"></i><i class="videogallery-l2"></i><i class="videogallery-bar"><b></b></i><i class="videogallery-dim"></i></div><div id="videogallery-c5" class="videogallery-c" style="background:linear-gradient(160deg,#f6d365,#fda085 55%,#c0392b)"><i class="videogallery-header"></i><i class="videogallery-omb"></i><i class="videogallery-l1"></i><i class="videogallery-l2"></i><i class="videogallery-bar"><b></b></i><i class="videogallery-dim"></i></div></div></div>
+  <div id="videogallery-row" class="videogallery-row"><div id="videogallery-tt" class="videogallery-tt"><i id="videogallery-dot" class="videogallery-dot"></i><span id="videogallery-tx"></span></div></div>
+  <div id="videogallery-vrow" class="videogallery-vrow"><div id="videogallery-vw" class="videogallery-vw"><svg class="videogallery-eye" width="56" height="56" viewBox="0 0 46 46" fill="none"><path d="M3 23 C10 11 36 11 43 23 C36 35 10 35 3 23 Z" stroke="#141416" stroke-width="4.5" stroke-linejoin="round"/><circle id="videogallery-iris" cx="23" cy="23" r="7" fill="#ff6a1f"/></svg><span id="videogallery-vs"><i id="videogallery-vp"></i><b id="videogallery-vn"></b><em id="videogallery-vu"></em></span><small>VIEWS</small></div></div>
+</div></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["video-gallery"] || { duration: 4.5 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 4.5, t0 = 0;
+
+  var P = {
+    x: 540, // Gallery center on the 1080×1920 canvas, in pixels.
+    y: 515, // Cards center, in pixels; title is 283×size above and view count is 240×size below.
+    size: 1, // Gallery scale from 0.5 to 1; for a high face, reduce to about 0.6 and move y to about 420 until it clears the eyes.
+    title: "My best-selling video ads", // Top-pill text; an empty string hides the pill.
+    views: "", // Actual view count of the front video, such as "1.2 million" or "48 thousand"; counts up from zero. Empty hides the pill. Do not invent figures.
+    color: "#ff6a1f", // Accent color for the title dot, play triangle, and eye icon.
+  };
+
+
+  var pe = function (s) { return document.getElementById("videogallery-" + s); };
+  var anchor = pe("a"); anchor.style.left = P.x + "px"; anchor.style.top = P.y + "px";
+
+  var K = Math.max(.5, Math.min(1, Number(P.size) || 1)); if (K < .999) pe("esc").style.transform = "matrix(" + K + ",0,0," + K + ",0,0)";
+  var color = P.color || "#ff6a1f";
+  pe("dot").style.background = color; pe("tri").setAttribute("fill", color); pe("iris").setAttribute("fill", color);
+  pe("tx").textContent = String(P.title || ""); if (!String(P.title || "").trim()) pe("row").style.display = "none"; pe("vrow").style.top = (190 - 49) + "px";
+
+  var parts = function (s) {
+    s = String(s == null ? "" : s).trim(); var m = s.match(/\d[\d,]*(?:\.\d+)?/);
+    if (!m) return { pre: "", num: null, dec: 0, suf: "", txt: s };
+    var raw = m[0].replace(/\.$/, ""), dec = (raw.split(".")[1] || "").length;
+    return { pre: s.slice(0, m.index).trim(), num: parseFloat(raw.replace(/,/g, "")), dec: dec, suf: s.slice(m.index + raw.length).trim(), txt: raw };
+  };
+  var formatValue = function (v, dec) { var f = Math.abs(v).toFixed(dec).split("."); f[0] = f[0].replace(/\B(?=(\d{3})+(?!\d))/g, ","); return (v < 0 ? "-" : "") + f.join("."); };
+  var pt = parts(P.views), vn = pe("vn"), end = pt.num == null ? pt.txt : formatValue(pt.num, pt.dec);
+  pe("vp").textContent = pt.pre; pe("vu").textContent = pt.suf; vn.textContent = end;
+  if (!pt.pre) pe("vp").style.display = "none"; if (!pt.suf) pe("vu").style.display = "none";
+  if (!String(P.views || "").trim()) pe("vrow").style.display = "none";
+  var widthValue = function (txt, css) {
+    var m = document.createElement("span"); m.style.cssText = "position:absolute;left:-99999px;top:0;visibility:hidden;white-space:nowrap;font-family:Inter,sans-serif;" + css;
+    m.textContent = txt; document.body.appendChild(m); var w = m.getBoundingClientRect().width; document.body.removeChild(m); return w;
+  };
+  var fit = function () {
+    var tx = pe("tx"), w = widthValue(tx.textContent, "font-weight:800;font-size:46px;letter-spacing:-.01em"), free = 800 - 64 - 38;
+    tx.style.fontSize = (w > free ? Math.max(24, 46 * free / w) : 46) + "px";
+    var wv = widthValue((pt.pre ? pt.pre + " " : "") + end + (pt.suf ? " " + pt.suf : ""), "font-weight:900;font-size:58px;letter-spacing:-.03em") + 56 + 16 + 16 + widthValue("VIEWS", "font-weight:800;font-size:28px;letter-spacing:.1em") + 60, lv = 720;
+    pe("vs").style.fontSize = (wv > lv ? Math.max(30, 58 * (lv - 200) / (wv - 200)) : 58) + "px";
+  };
+  fit(); if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { fit(); tl.invalidate(); });
+
+  var XS = [-312, -190, -64, 64, 190, 312], RY = [36, 21, 7, -7, -21, -36], ZS = [40, 0, -30, -30, 0, 40], YS = [14, -16, 6, -10, 12, -4], HERO = 2;
+  var cards = []; for (var k = 0; k < 6; k++) cards.push(pe("c" + k));
+
+  var enter = t0 + .05, exit = t0 + D - .3, front = enter + Math.min(1.05, Math.max(.6, D * .23));
+  tl.fromTo(anchor, { opacity: 0 }, { opacity: 1, duration: .05, ease: "none" }, enter);
+  tl.fromTo(pe("tt"), { opacity: 0, y: -26 }, { opacity: 1, y: 0, duration: .4, ease: "back.out(1.8)" }, enter + .1);
+  cards.forEach(function (c, k) {
+    tl.fromTo(c, { opacity: 0, x: XS[k] * .6, y: YS[k] + 60, z: -260, rotationY: RY[k] * 2 }, { opacity: 1, x: XS[k], y: YS[k], z: ZS[k], rotationY: RY[k], duration: .55, ease: "power3.out" }, enter + Math.abs(k - 2.5) * .05);
+  });
+  tl.fromTo(pe("v"), { opacity: 0 }, { opacity: 1, duration: .3, ease: "none" }, enter + .2);
+
+  tl.to(cards[HERO], { x: 0, y: 8, z: 140, rotationY: 0, duration: .55, ease: "power3.inOut", immediateRender: false }, front);
+  cards.forEach(function (c, k) { if (k !== HERO) tl.fromTo(c.querySelector(".videogallery-dim"), { opacity: 0 }, { opacity: .5, duration: .4, ease: "power2.out" }, front + .1); });
+  tl.fromTo(pe("play"), { opacity: 0, y: 16, rotation: -30 }, { opacity: 1, y: 0, rotation: 0, duration: .36, ease: "back.out(2)" }, front + .38);
+  tl.fromTo(pe("vw"), { opacity: 0, y: 24, clipPath: "inset(0% 50% 0% 50% round 42px)" }, { opacity: 1, y: 0, clipPath: "inset(0% 0% 0% 0% round 42px)", duration: .42, ease: "power3.out" }, front + .45);
+  if (pt.num != null) {
+    var o = { v: 0 }; vn.textContent = formatValue(0, pt.dec);
+    tl.fromTo(o, { v: 0 }, { v: pt.num, duration: Math.min(.9, Math.max(.4, exit - front - 1)), ease: "power2.out", onUpdate: function () { vn.textContent = formatValue(o.v, pt.dec); } }, front + .5);
+  }
+
+  cards.forEach(function (c, k) {
+    var beginTime = (k === HERO ? front + .6 : enter + .65) + (k % 3) * .14, padding = exit - beginTime, turns = Math.max(1, Math.round(padding / (1.1 + (k % 2) * .25))), halfValue = padding / (turns * 2);
+    var base = k === HERO ? 8 : YS[k];
+    if (halfValue > .15) tl.to(c, { y: base - 12, duration: halfValue, ease: "sine.inOut", yoyo: true, repeat: turns * 2 - 1, immediateRender: false }, beginTime);
+  });
+  tl.to(anchor, { opacity: 0, y: -30, duration: .26, ease: "power2.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["video-gallery"] = tl;
+})();
+</script>
+</template>
+</body></html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Transition film burn</title></head>
+<body>
+<!-- Transition film burn. For a change of topic or time: film-burn shapes sweep across the screen. -->
+
+<template id="transition-film-burn-template">
+<style>
+#root{position:absolute;inset:0;overflow:hidden}
+.transitionfilmburn-m{position:absolute;width:1500px;height:1500px;border-radius:50%;mix-blend-mode:screen;opacity:0}
+#transitionfilmburn-m1{left:-700px;top:-300px;background:radial-gradient(closest-side,rgba(255,236,170,1),rgba(255,120,20,.9) 40%,rgba(200,20,0,.5) 70%,rgba(200,20,0,0))}
+#transitionfilmburn-m2{left:200px;top:500px;background:radial-gradient(closest-side,rgba(255,200,90,1),rgba(255,70,0,.85) 45%,rgba(160,10,0,.4) 72%,rgba(160,10,0,0))}
+#transitionfilmburn-m3{left:-300px;top:900px;background:radial-gradient(closest-side,rgba(255,250,220,1),rgba(255,150,40,.9) 38%,rgba(220,40,0,.45) 70%,rgba(220,40,0,0))}
+#transitionfilmburn-bk{position:absolute;inset:0;backdrop-filter:brightness(1.5) saturate(1.6) blur(4px);-webkit-backdrop-filter:brightness(1.5) saturate(1.6) blur(4px);opacity:0}
+</style>
+<div id="root" data-composition-id="transition-film-burn" data-width="1080" data-height="1920" data-duration="0.6">
+<div id="transitionfilmburn-bk"></div><div class="transitionfilmburn-m" id="transitionfilmburn-m1"></div><div class="transitionfilmburn-m" id="transitionfilmburn-m2"></div><div class="transitionfilmburn-m" id="transitionfilmburn-m3"></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["transition-film-burn"] || { duration: 0.6 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = 0.6, t0 = 0;
+
+  function rise(sel, a, b, c, peak, e1, e2) {
+    tl.fromTo(sel, { opacity: 0 }, { opacity: peak, duration: b - a, ease: e1 || "sine.inOut" }, t0 + a);
+    tl.to(sel, { opacity: 0, duration: c - b, ease: e2 || "sine.inOut", immediateRender: false }, t0 + b);
+  }
+
+  rise("#transitionfilmburn-bk", D * .2, D * .5, D * .8, 1);
+  rise("#transitionfilmburn-m1", D * .05, D * .42, D * .8, 1);  tl.fromTo("#transitionfilmburn-m1", { x: -500, y: -200 }, { x: 700, y: 300, duration: D, ease: "none" }, t0);
+  rise("#transitionfilmburn-m2", D * .15, D * .5, D * .9, 1);   tl.fromTo("#transitionfilmburn-m2", { x: 600, y: 200 }, { x: -600, y: -300, duration: D, ease: "none" }, t0);
+  rise("#transitionfilmburn-m3", D * .2, D * .55, D * .95, 1);  tl.fromTo("#transitionfilmburn-m3", { x: -400, y: 300 }, { x: 500, y: -500, duration: D, ease: "none" }, t0);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["transition-film-burn"] = tl;
+})();
+</script>
+</template>
+</body></html>

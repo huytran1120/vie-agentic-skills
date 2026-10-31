@@ -1,0 +1,460 @@
+{
+  "version": 1,
+  "videos": [
+    {
+      "file": "assets/visuals/video/orange-fluid.mp4",
+      "bytes": 4228755,
+      "sha256": "8fba7a4e8abd92876c798cc5c0c5b71e3d1806ce3715e9725d68d14c0ecd75ce",
+      "destination": "assets/visuals/video/orange-fluid.mp4"
+    },
+    {
+      "file": "assets/visuals/video/purple-fluid.mp4",
+      "bytes": 5164195,
+      "sha256": "dce265afd1b39f40c71abcd3798a08422692ad611b1e59e00253f2fb56259323",
+      "destination": "assets/visuals/video/purple-fluid.mp4"
+    },
+    {
+      "file": "assets/visuals/video/neon-green-fluid.mp4",
+      "bytes": 3971249,
+      "sha256": "0e1966576c5a53cb23b5427feea78d8ff2b48f2836b24727a5ad76662382d465",
+      "destination": "assets/visuals/video/neon-green-fluid.mp4"
+    },
+    {
+      "file": "assets/visuals/video/orange-neon-grid.mp4",
+      "bytes": 1990050,
+      "sha256": "47b88cc82464ae9155761cbd9ac5c4c977a1e92240a0aac410521ab61eab3fe9",
+      "destination": "assets/visuals/video/orange-neon-grid.mp4"
+    },
+    {
+      "file": "assets/visuals/video/golden-light.mp4",
+      "bytes": 3072756,
+      "sha256": "09ce3924754314ecc589b0a05d7ce29c9d88e77f35a53f593d8785dec3be014d",
+      "destination": "assets/visuals/video/golden-light.mp4"
+    },
+    {
+      "file": "assets/visuals/video/orange-light.mp4",
+      "bytes": 2851635,
+      "sha256": "d079d22aca2e0ef862cbf5bdf74a60a4515368e469941e5206e240e80f3f2c23",
+      "destination": "assets/visuals/video/orange-light.mp4"
+    },
+    {
+      "file": "assets/visuals/video/pink-blue-light.mp4",
+      "bytes": 3601531,
+      "sha256": "fcaff78d6c7b9cdf7e3592c8380862847b0425d85ee289a364385406a72fba8b",
+      "destination": "assets/visuals/video/pink-blue-light.mp4"
+    },
+    {
+      "file": "assets/visuals/video/rising-particles.mp4",
+      "bytes": 1560973,
+      "sha256": "3434d8981e59b8f52f8bd5ad4b18e794aed29c33f85fae944508176595b0526f",
+      "destination": "assets/visuals/video/rising-particles.mp4"
+    },
+    {
+      "file": "assets/visuals/video/hard-brushing.webm",
+      "bytes": 2678800,
+      "sha256": "8688264952fe71dd3f436556af39b41801c801b2459a835392ee6ddd7da187a5",
+      "destination": "assets/visuals/video/hard-brushing.webm"
+    },
+    {
+      "file": "assets/visuals/video/soft-brushing.webm",
+      "bytes": 3100077,
+      "sha256": "3d4b8b389de4f8d4ca4bc0f6694d1c43804884cfbc036f6472571b0b7c95a9d6",
+      "destination": "assets/visuals/video/soft-brushing.webm"
+    },
+    {
+      "file": "assets/visuals/video/floating-dust.mp4",
+      "bytes": 518302,
+      "sha256": "793a27029a1195837ec7e5402157d238f78c7ccaa1cc902f21c87d521d335425",
+      "destination": "assets/visuals/video/floating-dust.mp4"
+    },
+    {
+      "file": "assets/visuals/video/wave-dots.mp4",
+      "bytes": 849380,
+      "sha256": "73c6ac0609d33eeee5e563d66a9cc4493627f191971c743099a264352dd38b77",
+      "destination": "assets/visuals/video/wave-dots.mp4"
+    },
+    {
+      "file": "assets/visuals/video/light-grid.mp4",
+      "bytes": 1553712,
+      "sha256": "ee23e667713ec55de7a8147c15b0d26a7a35fcff92409bc87bf08611615c5c57",
+      "destination": "assets/visuals/video/light-grid.mp4"
+    },
+    {
+      "file": "assets/visuals/video/dark-grid.mp4",
+      "bytes": 1122942,
+      "sha256": "b9d7e2b28dfb1f44df6b50ea636e8cf475c6ec9e432a1af4c4f07b886a47057a",
+      "destination": "assets/visuals/video/dark-grid.mp4"
+    },
+    {
+      "file": "assets/visuals/video/dark-rays.mp4",
+      "bytes": 1705213,
+      "sha256": "2245e79e119ca47cdfb5e6ee599d1ae564ea17c772718e06238842fb9e6c6267",
+      "destination": "assets/visuals/video/dark-rays.mp4"
+    },
+    {
+      "file": "assets/visuals/video/spinning-rays.mp4",
+      "bytes": 1960184,
+      "sha256": "e17c764f6819bec6754afdb87bb4cd9cf34e681a6db40759e07dae5f95c901bd",
+      "destination": "assets/visuals/video/spinning-rays.mp4"
+    },
+    {
+      "file": "library/backgrounds/soft-light.mp4",
+      "bytes": 1594633,
+      "sha256": "83f91f0c763a31e0f605d7976d9ae46fc65a0268412acedcdee7d8bb44a3d604"
+    },
+    {
+      "file": "library/backgrounds/orange-fluid.mp4",
+      "bytes": 3737314,
+      "sha256": "2fba7a4df4d8cd95651f1e17d25f15de506f5e3d3b1331010bbaf3d2fc82a527"
+    },
+    {
+      "file": "library/backgrounds/purple-fluid.mp4",
+      "bytes": 4009411,
+      "sha256": "2426f120377f04e6445906c490530d6800ac786e9dce445c49eaac46a744a45a"
+    },
+    {
+      "file": "library/backgrounds/neon-green-fluid.mp4",
+      "bytes": 3514148,
+      "sha256": "449fb9db97efbc5854541ac47bb6b54ba6722393014e3ecd2b0b5567c0637ac4"
+    },
+    {
+      "file": "library/backgrounds/orange-neon-grid.mp4",
+      "bytes": 1904513,
+      "sha256": "4eb9ffb887e23ead5bc4593504037239e6580e0b8770d5f22a55b1c137f82625"
+    },
+    {
+      "file": "library/backgrounds/graph-paper.mp4",
+      "bytes": 1857546,
+      "sha256": "6e6597f01d8020bc3f47491a4206548f7a53b9ebd499769ec561e030d2b117c3"
+    },
+    {
+      "file": "library/backgrounds/rising-particles.mp4",
+      "bytes": 1350248,
+      "sha256": "c1fbd696b1cc667960d39ed95f776e363c1109bb2bec1237536eff8154751e5a"
+    },
+    {
+      "file": "library/backgrounds/wave-dots.mp4",
+      "bytes": 877238,
+      "sha256": "35f9585c5d70b8cfae9d4273fecfa81ad2c0d137c2ab9df1fe7d44b167d8cb5d"
+    },
+    {
+      "file": "library/backgrounds/light-grid.mp4",
+      "bytes": 1351876,
+      "sha256": "87a132758168e739f13ea47fe7e403227cef1c3540c18c0e60f2a8f0fa1c31af"
+    },
+    {
+      "file": "library/backgrounds/dark-grid.mp4",
+      "bytes": 985588,
+      "sha256": "8f5bd68f7c757065fd31f4b0cb00a704941e238491105f8c725a21fa7a2a4e15"
+    },
+    {
+      "file": "library/backgrounds/dark-rays.mp4",
+      "bytes": 1439359,
+      "sha256": "a6f3710f16243e97f9406d940234b3673e3d63be996a063294cef73a287ff4ec"
+    },
+    {
+      "file": "library/backgrounds/spinning-rays.mp4",
+      "bytes": 1833185,
+      "sha256": "6f36d09bfbf871749843f800c09928e37c4268a8686f2d58df0f6c25d3bf2108"
+    },
+    {
+      "file": "library/spinning-3d-objects/01-clock.webm",
+      "bytes": 541507,
+      "sha256": "7f2b535ca7f9834b2a24513e5d36c8189f58fe428b27cb72b7b5800add38ae7b",
+      "destination": "assets/visuals/video/01-clock.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/02-camera.webm",
+      "bytes": 1035903,
+      "sha256": "458dc523175b44f659009edd7de8eb578bd2569b328b793f06fd87aefc9a9d08",
+      "destination": "assets/visuals/video/02-camera.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/03-megaphone.webm",
+      "bytes": 713166,
+      "sha256": "429812d0f0497aada32c6f03bb303065c773d90c761c4812fddf29bba688021f",
+      "destination": "assets/visuals/video/03-megaphone.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/04-phone.webm",
+      "bytes": 278768,
+      "sha256": "0401a7ea7b73da428ef8cba9834dc8458e362581fbe7eba8551da59a4383c175",
+      "destination": "assets/visuals/video/04-phone.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/05-money.webm",
+      "bytes": 837272,
+      "sha256": "80c049772c74f40449de0b0dca43a94100aecaa94e19d465b003f39babd9cea8",
+      "destination": "assets/visuals/video/05-money.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/06-chart.webm",
+      "bytes": 538108,
+      "sha256": "b18a00e92a3bcd7752d0715f810fb7f57a8c69806dedb2833c76c1be9fce56fc",
+      "destination": "assets/visuals/video/06-chart.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/07-shopping-cart.webm",
+      "bytes": 1792861,
+      "sha256": "8d145971ff461c5bcec8fc1f83c03e98dd921a30717a177848d677c42673ee0e",
+      "destination": "assets/visuals/video/07-shopping-cart.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/08-light-bulb.webm",
+      "bytes": 282766,
+      "sha256": "f2cd0542760c31b695bf24517e25e8c958cb27234cb9023c5eaba17234213135",
+      "destination": "assets/visuals/video/08-light-bulb.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/09-badge.webm",
+      "bytes": 377812,
+      "sha256": "bb3155ac461f33d1be3c26aaba002b5ad3a77f85a5180b7c0e8115e64795471f",
+      "destination": "assets/visuals/video/09-badge.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/10-chip.webm",
+      "bytes": 1013958,
+      "sha256": "2f137d291ae1c722fa91233376ff92daec25a53b64f48224b4b93c6b3e671ae2",
+      "destination": "assets/visuals/video/10-chip.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/11-house.webm",
+      "bytes": 557029,
+      "sha256": "5a634695bb93df55ad989158058c922bbbb61919ad95b06d8f207d86d8bc7c27",
+      "destination": "assets/visuals/video/11-house.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/12-building.webm",
+      "bytes": 1382118,
+      "sha256": "f4c1bfa541e40d5b0fa3407fd40edfc0a5e629a2c16fbb336d3d6e400162912b",
+      "destination": "assets/visuals/video/12-building.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/13-key.webm",
+      "bytes": 724377,
+      "sha256": "7dd0423c6ae39ee68539b13cef85635b4d06437564839336f6a9fb6792c32ce6",
+      "destination": "assets/visuals/video/13-key.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/14-sign.webm",
+      "bytes": 455507,
+      "sha256": "4e2303e483f78b8c62f684e98f409daaa43f8d1985d237b7c994aedde9d555fa",
+      "destination": "assets/visuals/video/14-sign.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/15-floor-plan.webm",
+      "bytes": 609240,
+      "sha256": "f1267a52efc01991f3cd1a95d5b9e54b6cb5f3ed624325c8fd600cd759e25667",
+      "destination": "assets/visuals/video/15-floor-plan.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/16-stethoscope.webm",
+      "bytes": 831318,
+      "sha256": "36353472a62a84ac4918cc45d895f405d91fc0f8e6e71e8f8ad80544d8052048",
+      "destination": "assets/visuals/video/16-stethoscope.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/17-heart.webm",
+      "bytes": 378326,
+      "sha256": "6580f521d4ffbc5451e8093237686489a991eb2717c9f1e7c30688df968edfd4",
+      "destination": "assets/visuals/video/17-heart.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/18-clipboard.webm",
+      "bytes": 346734,
+      "sha256": "deed0b353b7af68931cdaefbd859895b1e1d93bf4a1bbcae756809f937b9ffce",
+      "destination": "assets/visuals/video/18-clipboard.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/19-syringe.webm",
+      "bytes": 477634,
+      "sha256": "d6beabb9bd808e97aa44aead8e3f0a062ea360e71e2b1b3d08915e14e09f3fc1",
+      "destination": "assets/visuals/video/19-syringe.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/20-cross.webm",
+      "bytes": 419898,
+      "sha256": "9eba927661bfd278686f87a6815ea0276e2dbc131eca584ff498eb5c456025d0",
+      "destination": "assets/visuals/video/20-cross.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/21-apple.webm",
+      "bytes": 314107,
+      "sha256": "29db50a51463b09accdba11bf195085b6162bcd1db48ca8744d59150cd58cb30",
+      "destination": "assets/visuals/video/21-apple.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/22-plate.webm",
+      "bytes": 1216982,
+      "sha256": "8b384dc012efb78953089e788e61a053e2db62312974a8796deb1855ed5e8fd0",
+      "destination": "assets/visuals/video/22-plate.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/23-scales.webm",
+      "bytes": 604544,
+      "sha256": "e582cbc926182e1012d087c2de2a4e6e5c1583fa7735bae759b07b6b159bf038",
+      "destination": "assets/visuals/video/23-scales.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/24-bottle.webm",
+      "bytes": 216354,
+      "sha256": "d7a09274fb40363e7000014db62cdef3e7338ae304080d4bad1bd6ce4aa53601",
+      "destination": "assets/visuals/video/24-bottle.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/25-basket.webm",
+      "bytes": 1099051,
+      "sha256": "82429a5001735e57664aa1c962e98a8034ab57c5ccd4ff6bc3c2955b5eb366d2",
+      "destination": "assets/visuals/video/25-basket.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/26-justice.webm",
+      "bytes": 870642,
+      "sha256": "e7e184264d0822a67cab53c0ae8a27141eee114359771f717f03cfc6235d7729",
+      "destination": "assets/visuals/video/26-justice.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/27-hammer.webm",
+      "bytes": 477040,
+      "sha256": "c65dfd2097b90d86c61e43b895cfdb30b28d7192c2c911a680d1d9ac06267c5f",
+      "destination": "assets/visuals/video/27-hammer.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/28-contract.webm",
+      "bytes": 458895,
+      "sha256": "69a5c6b8efed0ebeade3b1eb52156920dd769ed761102c8e0927564b2097a0e4",
+      "destination": "assets/visuals/video/28-contract.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/29-briefcase.webm",
+      "bytes": 552313,
+      "sha256": "17f9d56ca0d256b6f98fdfd791a51e6765e8f901c844de42aa2b1e4d275d3a36",
+      "destination": "assets/visuals/video/29-briefcase.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/30-stamp.webm",
+      "bytes": 392217,
+      "sha256": "8d2620a77c22d557969117d21bdc19f5b22a3949661c88142611432214d1d24d",
+      "destination": "assets/visuals/video/30-stamp.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/31-ringlight.webm",
+      "bytes": 501564,
+      "sha256": "3bec68d3b4c10e7aec519f14c0329b587ea36896a27eca396132906744e6d173",
+      "destination": "assets/visuals/video/31-ringlight.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/32-tripod.webm",
+      "bytes": 638884,
+      "sha256": "9b1faa734340822792d76296e9b1d6b803c186ada1805e7fc171ccaf8bad9df6",
+      "destination": "assets/visuals/video/32-tripod.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/33-microphone.webm",
+      "bytes": 775790,
+      "sha256": "a7f82bc9be1a2e58ad4f0306ab1cfddd92f03dff2a71aa27cc800e2e5ea8fde6",
+      "destination": "assets/visuals/video/33-microphone.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/34-clapperboard.webm",
+      "bytes": 499546,
+      "sha256": "ea85a016fbc7fb575a56e2f860220905bee49b2dd2102ef68cb506d1ff7b7066",
+      "destination": "assets/visuals/video/34-clapperboard.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/35-play.webm",
+      "bytes": 396488,
+      "sha256": "788e2cba94041c1e5a77e63e07f06541f2d32b4fb325a4f7589e2063cc0811f9",
+      "destination": "assets/visuals/video/35-play.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/36-house-construction.webm",
+      "bytes": 790583,
+      "sha256": "3595b95a046f5736aaba4603536069b5787c60100a5bf63ebd38b7f27ad13fa6",
+      "destination": "assets/visuals/video/36-house-construction.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/37-dna.webm",
+      "bytes": 1248137,
+      "sha256": "c60689d9b38f982cefe871cce3d112bff4054e2c30d4997526c47e11acc3c052",
+      "destination": "assets/visuals/video/37-dna.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/38-sun.webm",
+      "bytes": 1762386,
+      "sha256": "348f76ba6afe28787ae8afca76f11548a5571302360ba75d01880d0ce60933ec",
+      "destination": "assets/visuals/video/38-sun.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/39-opening-earth.webm",
+      "bytes": 1938942,
+      "sha256": "e10bda18b1353943abcd638dffb16807890ced5304701e7972ac6bdf250782d2",
+      "destination": "assets/visuals/video/39-opening-earth.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/40-anatomical-heart.webm",
+      "bytes": 1237529,
+      "sha256": "5f714a916f95e956a5fe16108f82b72b46ff7e94396ec8e2f65ba74ac2a8dbd4",
+      "destination": "assets/visuals/video/40-anatomical-heart.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/41-explosion.webm",
+      "bytes": 2681637,
+      "sha256": "1317d8160018580ce024676c1aa8112bdf0d16c98275056e003eadc8dbbf7c14",
+      "destination": "assets/visuals/video/41-explosion.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/42-fire.webm",
+      "bytes": 2163872,
+      "sha256": "6e0dd8c194fb20e258897a251c3fdbf366dd596ed9d7385fda2262a357ad4b3b",
+      "destination": "assets/visuals/video/42-fire.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/43-smoke.webm",
+      "bytes": 2168097,
+      "sha256": "307fc5cbab74bee2dc076a8c2d69f6bdb90807305c22068a5a08b35dda59e629",
+      "destination": "assets/visuals/video/43-smoke.webm"
+    },
+    {
+      "file": "library/spinning-3d-objects/44-glass.webm",
+      "bytes": 2826583,
+      "sha256": "325531b1770dc7c79a66293251f53e1898fc0ad1d0f76e4d0b630a072a1d246f",
+      "destination": "assets/visuals/video/44-glass.webm"
+    },
+    {
+      "file": "library/overlays/fine-grain.mp4",
+      "bytes": 14553287,
+      "sha256": "3fadced07b4af07d7f2c884b726437c9675bf6b3e32f9faa7ee2e2b1228c8cda"
+    },
+    {
+      "file": "library/overlays/heavy-grain.mp4",
+      "bytes": 26408168,
+      "sha256": "422a70fb7d1fbe5459bf023a26b4db9d56ea28767e6c4d01954b1f2d97430d13"
+    },
+    {
+      "file": "library/overlays/tv-lines.mp4",
+      "bytes": 242368,
+      "sha256": "73a9cb1a9011ffafdd18c98742a90a791a6e86d847e9ec278a5d0da92f5294d7"
+    },
+    {
+      "file": "library/overlays/golden-light.mp4",
+      "bytes": 2775112,
+      "sha256": "e3862f7e27984f7707372846189d6945962bceae6f43c6639860773fddfb05e0"
+    },
+    {
+      "file": "library/overlays/orange-light.mp4",
+      "bytes": 2558877,
+      "sha256": "141c9882441db88549b36dd8b93fa73a1aad908336d4bc6f2229eb74c04a3394"
+    },
+    {
+      "file": "library/overlays/pink-blue-light.mp4",
+      "bytes": 2883092,
+      "sha256": "49ddf7ddde2594defd3fa961e6aad49315c9d50b6072debc2f82985f27ff76ec"
+    },
+    {
+      "file": "library/overlays/floating-dust.mp4",
+      "bytes": 466976,
+      "sha256": "d640bbe96613b3ad7a4e306c06f2bb55b3de48e8ddd548096c80e56d9d1d450d"
+    }
+  ]
+}

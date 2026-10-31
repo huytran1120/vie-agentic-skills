@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Pointer toggle</title></head>
+<body>
+<!-- Pointer toggle. When asking viewers to enable or disable a feature or mode. -->
+
+<template id="pointer-toggle-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+#pointertoggle-a{position:absolute;left:0;top:0;width:10px;height:10px;opacity:0}
+#pointertoggle-b,#pointertoggle-f{position:absolute;left:0;top:0;width:10px;height:10px}
+#pointertoggle-f{filter:drop-shadow(0 0 1.5px rgba(0,0,0,.5)) drop-shadow(0 3px 4px rgba(0,0,0,.35)) drop-shadow(0 12px 18px rgba(0,0,0,.42))}
+#pointertoggle-w,#pointertoggle-s{position:absolute;left:0;top:0;overflow:visible}
+#pointertoggle-w{filter:drop-shadow(0 0 2px rgba(0,0,0,.4))}
+#pointertoggle-t{stroke:#fff}
+#pointertoggle-k{stroke:#fff;stroke-linecap:round}
+#pointertoggle-o{fill:none;stroke:#fff;opacity:0}
+</style>
+<div id="root" data-composition-id="pointer-toggle" data-width="1080" data-height="1920" data-duration="2.6">
+<div id="pointertoggle-a"><svg id="pointertoggle-w" xmlns="http://www.w3.org/2000/svg"><rect id="pointertoggle-o" x="0" y="0" width="10" height="10" rx="5" stroke-width="1"/></svg><div id="pointertoggle-b"><div id="pointertoggle-f"><svg id="pointertoggle-s" xmlns="http://www.w3.org/2000/svg"><defs><filter id="pointertoggle-fk" filterUnits="userSpaceOnUse" x="-300" y="-300" width="600" height="600"><feDropShadow id="pointertoggle-fd" dx="0" dy="4" stdDeviation="5" flood-color="#000" flood-opacity=".4"/></filter></defs><rect id="pointertoggle-t" x="0" y="0" width="10" height="10" rx="5"/><g filter="url(#pointertoggle-fk)"><line id="pointertoggle-k" x1="0" y1="0" x2="0.01" y2="0"/></g></svg></div></div></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["pointer-toggle"] || { duration: 2.6 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 2.6, t0 = 0;
+
+  var P = {
+    x: 540, // Button center on the 1080×1920 canvas, in pixels.
+    y: 420, // Button center, in pixels.
+    size: 280, // Button width, in pixels.
+    color: "#30d158", // Enabled-state background color.
+    beginsAt: "off", // Initial state, "off" or "on"; the toggle ends in the opposite state.
+  };
+
+
+  var box = document.getElementById("pointertoggle-a"), body = document.getElementById("pointertoggle-b"), track = document.getElementById("pointertoggle-t"),
+      ball = document.getElementById("pointertoggle-k"), wave = document.getElementById("pointertoggle-o");
+  var widthValue = Math.max(90, +P.size || 280), alt = widthValue * .58, border = Math.max(4, widthValue * .035), padding = alt * .05;
+  var diam = alt - 2 * border - 2 * padding, travel = (widthValue - 2 * border - 2 * padding - diam) / 2;
+  var startsOn = /^(on|true|1)/.test(String(P.beginsAt).toLowerCase().trim()), side = startsOn ? 1 : -1;
+  var gray = "#8a8a90", fromColor = startsOn ? P.color : gray, toColor = startsOn ? gray : P.color;
+
+  var pill = function (k, extra) { var w = (widthValue - border) * k + extra * 2, h = (alt - border) * k + extra * 2; return { x: -w / 2, y: -h / 2, width: w, height: h, rx: h / 2 }; };
+  var ballAt = function (k, pos) { return { x1: pos * travel * k, x2: pos * travel * k + .01, "stroke-width": diam * k }; };
+  var fs = alt / 160;
+  box.style.left = P.x + "px"; box.style.top = P.y + "px";
+  document.getElementById("pointertoggle-f").style.filter = "drop-shadow(0 0 1.5px rgba(0,0,0,.5)) drop-shadow(0 " + (3 * fs) + "px " + (4 * fs) + "px rgba(0,0,0,.35)) drop-shadow(0 " + (12 * fs) + "px " + (18 * fs) + "px rgba(0,0,0,.42))";
+  track.setAttribute("stroke-width", border); track.style.fill = fromColor;
+  document.getElementById("pointertoggle-fd").setAttribute("dy", alt * .03); document.getElementById("pointertoggle-fd").setAttribute("stdDeviation", alt * .03);
+  var filter = document.getElementById("pointertoggle-fk"); filter.setAttribute("x", -widthValue); filter.setAttribute("y", -alt); filter.setAttribute("width", widthValue * 2); filter.setAttribute("height", alt * 2);
+
+  var enter = t0 + .05, exit = t0 + D - .3, pop = .34, k0 = .45, spring = "back.out(2.4)";
+  var click = t0 + Math.min(1, Math.max(.62, D - .72));
+  tl.fromTo(box, { opacity: 0 }, { opacity: 1, duration: .14, ease: "power1.out" }, enter);
+  tl.fromTo(body, { y: alt * .2 }, { y: 0, duration: pop, ease: spring }, enter);
+  tl.fromTo(track, { attr: pill(k0, 0) }, { attr: pill(1, 0), duration: pop, ease: spring }, enter);
+  tl.fromTo(ball, { attr: ballAt(k0, side) }, { attr: ballAt(1, side), duration: pop, ease: spring }, enter);
+
+  tl.fromTo(ball, { attr: { x2: side * travel + .01 } }, { attr: { x2: -side * travel + .01 }, duration: .17, ease: "power2.inOut", immediateRender: false }, click - .22);
+  tl.fromTo(ball, { attr: { x1: side * travel } }, { attr: { x1: -side * travel }, duration: .17, ease: "power2.inOut", immediateRender: false }, click - .17);
+  tl.fromTo(track, { fill: fromColor }, { fill: toColor, duration: .18, ease: "power1.inOut", immediateRender: false }, click - .19);
+  tl.fromTo(body, { y: 0 }, { y: alt * .035, duration: .1, ease: "power2.out", immediateRender: false }, click - .22);
+  tl.fromTo(body, { y: alt * .035 }, { y: 0, duration: .22, ease: "back.out(3)", immediateRender: false }, click - .04);
+  var o0 = pill(1, border * .9), o1 = pill(1, alt * .2); o0["stroke-width"] = border * .75; o1["stroke-width"] = border * .2;
+  tl.fromTo(wave, { opacity: .8, attr: o0 }, { opacity: 0, attr: o1, duration: .45, ease: "power2.out", immediateRender: false }, click);
+
+  var liveFrom = click + .3, timeWindow = exit - liveFrom, turns = Math.max(1, Math.round(timeWindow / .95)), halfValue = timeWindow / (turns * 2);
+  if (timeWindow > .45) tl.fromTo(body, { y: 0 }, { y: -alt * .06, duration: halfValue, ease: "sine.inOut", yoyo: true, repeat: turns * 2 - 1, immediateRender: false }, liveFrom);
+
+  tl.fromTo(track, { attr: pill(1, 0) }, { attr: pill(.62, 0), duration: .24, ease: "power2.in", immediateRender: false }, exit);
+  tl.fromTo(ball, { attr: ballAt(1, -side) }, { attr: ballAt(.62, -side), duration: .24, ease: "power2.in", immediateRender: false }, exit);
+  tl.fromTo(box, { opacity: 1 }, { opacity: 0, duration: .22, ease: "power2.in", immediateRender: false }, exit + .02);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["pointer-toggle"] = tl;
+})();
+</script>
+</template>
+</body></html>

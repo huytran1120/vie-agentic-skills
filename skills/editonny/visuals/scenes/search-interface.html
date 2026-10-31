@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Search interface</title></head>
+<body>
+<!-- Search interface. When inviting a search or introducing a product: the query types in and a leading result appears. -->
+
+<template id="search-interface-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+#searchinterface-w{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;overflow:hidden}
+#searchinterface-bg{position:absolute;inset:0;opacity:0;background:#dcdde2}
+#searchinterface-cam{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0}
+#searchinterface-pg{position:absolute;left:-80px;top:-160px;width:1240px;height:2300px;background:linear-gradient(180deg,#ffffff 0%,#f5f6f8 100%)}
+#searchinterface-trk{position:absolute;left:0;top:0;width:1080px;height:1920px;color:#15161a}
+#searchinterface-bx{position:absolute;left:110px;width:860px;top:500px;height:150px;display:flex;align-items:center;gap:24px;padding:0 22px 0 40px;border-radius:75px;background:#fff;box-shadow:0 18px 50px rgba(30,40,60,.16),0 0 0 2px rgba(0,0,0,.05)}
+.searchinterface-lp{flex:0 0 auto;width:56px;height:56px;fill:none;stroke:#8a8d96;stroke-width:4.5;stroke-linecap:round}
+#searchinterface-tx{position:relative;flex:1 1 auto;height:80px;overflow:hidden;font-weight:500;line-height:80px;white-space:nowrap}
+#searchinterface-ph2{position:absolute;left:0;top:0;color:#9a9ca4;opacity:0}
+#searchinterface-tt{position:absolute;left:0;top:0;white-space:nowrap}
+#searchinterface-go{position:relative;flex:0 0 auto;width:106px;height:106px;border-radius:53px;background:#e2560c}
+#searchinterface-go svg{position:absolute;left:25px;top:25px;width:56px;height:56px;fill:none;stroke:#fff;stroke-width:5;stroke-linecap:round}
+#searchinterface-rp{position:absolute;left:-97px;top:-97px;width:300px;height:300px;opacity:0;overflow:visible}
+#searchinterface-rc{fill:rgba(226,86,12,.18);stroke:#e2560c;stroke-width:5}
+#searchinterface-sug{position:absolute;left:150px;top:700px;width:800px;opacity:0}
+.searchinterface-sg{display:flex;align-items:center;gap:30px;height:96px}
+.searchinterface-sg i{display:block;width:40px;height:40px;border-radius:50%;border:5px solid #c9cbd2}
+.searchinterface-sg b{display:block;height:34px;border-radius:17px;background:#e6e7eb}
+#searchinterface-tabs{position:absolute;left:150px;top:700px;width:800px;display:flex;gap:50px;font-size:42px;font-weight:600;color:#8a8d96;opacity:0}
+#searchinterface-t1{color:#15161a}
+#searchinterface-tbl{position:absolute;left:0;top:62px;height:7px;width:94px;border-radius:4px;background:#e2560c}
+#searchinterface-res{position:absolute;left:160px;top:820px;width:760px;opacity:0}
+#searchinterface-src{display:flex;align-items:center;gap:22px;opacity:0}
+#searchinterface-fav{width:80px;height:80px;border-radius:50%;background:#e2560c;color:#fff;font-size:44px;font-weight:800;line-height:80px;text-align:center}
+#searchinterface-snm{font-size:40px;font-weight:700}
+#searchinterface-sur{font-size:34px;font-weight:500;color:#8a8d96;white-space:nowrap}
+#searchinterface-tiw{position:relative;margin-top:30px;display:inline-block}
+#searchinterface-hl{background-image:linear-gradient(rgba(226,86,12,.26),rgba(226,86,12,.26));background-repeat:no-repeat;background-position:0 88%;background-size:0% 62%;-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:0 8px;margin:0 -8px}
+#searchinterface-ti{position:relative;font-weight:800;line-height:1.08;letter-spacing:-.025em;opacity:0}
+#searchinterface-ds{margin-top:22px;font-weight:500;line-height:1.28;color:#5d606a;opacity:0}
+#searchinterface-bt{display:inline-flex;align-items:center;gap:18px;margin-top:40px;padding:0 50px;height:118px;border-radius:59px;background:#e2560c;color:#fff;font-size:52px;font-weight:700;box-shadow:0 16px 36px rgba(226,86,12,.35);opacity:0}
+#searchinterface-bt svg{width:22px;height:38px;fill:none;stroke:#fff;stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+#searchinterface-sk{position:relative;width:800px;margin-top:90px;opacity:0}
+.searchinterface-sl{height:30px;margin-top:22px;border-radius:15px;background:#e6e7eb}
+.searchinterface-ch{position:relative;opacity:0}
+.searchinterface-z{position:relative}
+.searchinterface-k{position:absolute;right:-.07em;top:.12em;width:.07em;height:.95em;border-radius:3px;background:#e2560c;opacity:0}
+#searchinterface-gl{position:absolute;inset:0;background:linear-gradient(118deg,rgba(255,255,255,0) 30%,rgba(255,255,255,.18) 46%,rgba(255,255,255,0) 60%);mix-blend-mode:screen}
+#searchinterface-dof{position:absolute;inset:0;opacity:0;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);-webkit-mask-image:radial-gradient(ellipse 72% 50% at 50% 48%,transparent 56%,#000 100%);mask-image:radial-gradient(ellipse 72% 50% at 50% 48%,transparent 56%,#000 100%)}
+#searchinterface-vin{position:absolute;inset:0;opacity:0;background:radial-gradient(ellipse 82% 66% at 50% 48%,rgba(0,0,0,0) 52%,rgba(0,0,0,.42) 100%)}
+</style>
+<div id="root" data-composition-id="search-interface" data-width="1080" data-height="1920" data-duration="4.8">
+<div id="searchinterface-w"><div id="searchinterface-bg"></div><div id="searchinterface-cam"><div id="searchinterface-pg"></div><div id="searchinterface-trk"><div id="searchinterface-bx"><svg class="searchinterface-lp" viewBox="0 0 48 48"><circle cx="20" cy="20" r="13"/><path d="M30 30 L42 42"/></svg><div id="searchinterface-tx"><span id="searchinterface-ph2">Search</span><div id="searchinterface-tt"></div></div><div id="searchinterface-go"><svg viewBox="0 0 48 48"><circle cx="20" cy="20" r="11"/><path d="M28 28 L37 37"/></svg><svg id="searchinterface-rp" viewBox="0 0 300 300"><circle id="searchinterface-rc" cx="150" cy="150" r="20"/></svg></div></div><div id="searchinterface-sug"><div class="searchinterface-sg"><i></i><b style="width:420px"></b></div><div class="searchinterface-sg"><i></i><b style="width:330px"></b></div><div class="searchinterface-sg"><i></i><b style="width:510px"></b></div></div><div id="searchinterface-tabs"><span id="searchinterface-t1">All</span><span>Videos</span><span>Images</span><span>News</span><div id="searchinterface-tbl"></div></div><div id="searchinterface-res"><div id="searchinterface-src"><div id="searchinterface-fav"></div><div><div id="searchinterface-snm">Top result</div><div id="searchinterface-sur"></div></div></div><div id="searchinterface-tiw"><div id="searchinterface-ti"><span id="searchinterface-hl"></span></div></div><div id="searchinterface-ds"></div><div id="searchinterface-bt"><span id="searchinterface-btt"></span><svg viewBox="0 0 24 40"><path d="M6 6 L18 20 L6 34"/></svg></div></div><div id="searchinterface-sk"><div class="searchinterface-sl" style="width:300px"></div><div class="searchinterface-sl" style="width:640px;height:40px"></div><div class="searchinterface-sl" style="width:560px"></div><div class="searchinterface-sl" style="width:260px;margin-top:70px"></div><div class="searchinterface-sl" style="width:600px;height:40px"></div></div></div><div id="searchinterface-gl"></div></div><div id="searchinterface-dof"></div><div id="searchinterface-vin"></div></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["search-interface"] || { duration: 4.8 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 4.8, t0 = 0;
+
+  var P = {
+    term: "edit video with AI", // Query typed into the search box.
+    resultTitle: "Tap Learn more", // Large title of the first result.
+    description: "and compare a recording before and after editing", // Description line below the title.
+    button: "Learn more", // Search-result button text.
+    background: "light", // "light" or "dark" selects the page color.
+  };
+
+
+  var darkness = String(P.background || "light") === "dark";
+  var $ = function (id) { return document.getElementById(id); };
+  var term = String(P.term || "editonny"), title = String(P.resultTitle || "Tap Learn more");
+  $("searchinterface-btt").textContent = String(P.button || "Learn more");
+  $("searchinterface-ds").textContent = String(P.description || "");
+  $("searchinterface-hl").textContent = title;
+  $("searchinterface-fav").textContent = Array.from(title.trim() || "R")[0].toUpperCase();
+  var dom = term.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "").slice(0, 14) || "yoursite";
+  $("searchinterface-sur").textContent = "https://www." + dom + ".com.br";
+  if (darkness) {
+    $("searchinterface-bg").style.background = "#0b0c0f"; $("searchinterface-pg").style.background = "linear-gradient(180deg,#17181c 0%,#101114 100%)";
+    $("searchinterface-trk").style.color = "#f2f3f5"; $("searchinterface-t1").style.color = "#f2f3f5";
+    $("searchinterface-bx").style.background = "#24262c"; $("searchinterface-bx").style.boxShadow = "0 18px 50px rgba(0,0,0,.5),0 0 0 2px rgba(255,255,255,.07)";
+    $("searchinterface-ds").style.color = "#a3a6ae"; $("searchinterface-gl").style.opacity = .4;
+    document.querySelectorAll("#searchinterface-sk .searchinterface-sl, #searchinterface-sug b").forEach(function (e) { e.style.background = "#2a2c32"; });
+    document.querySelectorAll("#searchinterface-sug i").forEach(function (e) { e.style.borderColor = "#3a3c44"; });
+  }
+  function assemble(el, txt) {
+    var cs = Array.from(String(txt).normalize("NFC")), z = document.createElement("span"), k = document.createElement("i"), i, s;
+    el.innerHTML = ""; z.className = "searchinterface-z"; k.className = "searchinterface-k"; k.id = el.id + "k"; z.appendChild(k); el.appendChild(z);
+    for (i = 0; i < cs.length; i++) {
+      s = document.createElement("span"); s.className = "searchinterface-ch"; s.id = el.id + "_" + i; s.textContent = cs[i];
+      k = document.createElement("i"); k.className = "searchinterface-k"; k.id = el.id + "k" + i; s.appendChild(k); el.appendChild(s);
+    }
+    return cs.length;
+  }
+
+  function measure(txts, widthValue, maxPx, minPx, lines, lh, style) {
+    var m = document.createElement("div"), px = maxPx, ok, j;
+    m.style.cssText = "position:absolute;left:-99999px;top:0;visibility:hidden;font-family:Inter,sans-serif;white-space:normal;" + style + ";width:" + Math.round(widthValue * .93) + "px;line-height:" + lh;
+    document.body.appendChild(m);
+    for (; px > minPx; px -= 2) {
+      m.style.fontSize = px + "px"; ok = true;
+      for (j = 0; j < txts.length; j++) { m.textContent = txts[j]; if (m.offsetHeight > px * lh * lines + 4 || m.scrollWidth > widthValue * .93 + 2) { ok = false; break; } }
+      if (ok) break;
+    }
+    document.body.removeChild(m); return px;
+  }
+  function whenFont(f) { if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { f(); tl.invalidate(); }); }
+  function width(txt, px, style) {
+    var m = document.createElement("span"); m.style.cssText = "position:absolute;left:-99999px;top:0;visibility:hidden;white-space:nowrap;font-family:Inter,sans-serif;font-size:" + px + "px;" + style;
+    m.textContent = txt; document.body.appendChild(m); var w = m.offsetWidth; document.body.removeChild(m); return w;
+  }
+
+  var tt = $("searchinterface-tt"), nT = assemble(tt, term), textWidth = 588, pxT = 62, button = String(P.button || "Learn more");
+  var bt = $("searchinterface-bt"), res = $("searchinterface-res"), sk = $("searchinterface-sk");
+  res.appendChild(sk);
+  function adjust() {
+    for (pxT = 62; pxT > 44; pxT -= 2) if (width(term, pxT, "font-weight:500") <= textWidth * .9) break;
+    tt.style.fontSize = pxT + "px"; $("searchinterface-ph2").style.fontSize = Math.max(pxT, 52) + "px";
+    $("searchinterface-ti").style.fontSize = measure([title], 800, 98, 58, 2, 1.08, "font-weight:800;letter-spacing:-.025em") + "px";
+    $("searchinterface-ds").style.fontSize = measure([String(P.description || "")], 800, 52, 44, 3, 1.28, "font-weight:500") + "px";
+    for (var pxB = 52; pxB > 36; pxB -= 2) if (width(button, pxB, "font-weight:700") + 140 <= 800) break;
+    bt.style.fontSize = pxB + "px";
+  }
+  adjust(); whenFont(adjust);
+
+  function yR() { return Math.max(-500, Math.min(60, 1430 - (res.offsetTop + bt.offsetTop + bt.offsetHeight))); }
+
+
+  var enter = t0 + .05, exit = t0 + D - .32, u = exit - enter;
+  var ta = enter + .3, tb = ta + Math.max(.45, Math.min(1.1, .22 * u, nT * .07));
+  var tT = tb + .14, tS = tT + .16, tTi = tS + .22, tD = tTi + Math.max(.18, Math.min(.45, .08 * u)), tB = tD + Math.max(.15, Math.min(.4, .07 * u));
+  var yT = 300;
+  tl.fromTo("#searchinterface-w", { opacity: 0 }, { opacity: 1, duration: .01, ease: "none" }, enter);
+  tl.fromTo("#searchinterface-bg", { opacity: 0 }, { opacity: 1, duration: .2, ease: "power1.out" }, enter);
+  tl.fromTo("#searchinterface-cam", { opacity: 0 }, { opacity: 1, duration: .14, ease: "power1.out" }, enter);
+  tl.fromTo("#searchinterface-cam", { y: 300, rotationX: 24, rotationY: -12, rotation: -3, transformPerspective: 1600, filter: "blur(26px)" },
+    { y: 0, rotationX: 10, rotationY: -6, rotation: -2, transformPerspective: 1600, filter: "blur(0px)", duration: .5, ease: "power3.out", immediateRender: false }, enter);
+  tl.fromTo("#searchinterface-dof", { opacity: 0 }, { opacity: 1, duration: .3, ease: "none" }, enter + .1);
+  tl.fromTo("#searchinterface-vin", { opacity: 0 }, { opacity: 1, duration: .3, ease: "none" }, enter);
+  var vM = Math.max(1, Math.round((exit - enter - .5) / 1.3)), dM = (exit - enter - .5) / vM;
+  tl.fromTo("#searchinterface-cam", { rotation: -2 }, { rotation: -1, duration: dM, ease: "sine.inOut", yoyo: true, repeat: vM - 1, immediateRender: false }, enter + .5);
+  tl.fromTo("#searchinterface-cam", { rotationY: -6 }, { rotationY: -3.5, duration: dM, ease: "sine.inOut", yoyo: true, repeat: vM - 1, immediateRender: false }, enter + .5);
+
+  tl.fromTo("#searchinterface-trk", { y: yT, x: 40 }, { y: yT, x: -30, duration: tb - enter, ease: "sine.inOut" }, enter);
+  tl.fromTo("#searchinterface-ph2", { opacity: 0 }, { opacity: 1, duration: .15, ease: "none" }, enter + .1);
+  tl.to("#searchinterface-ph2", { opacity: 0, duration: .01, ease: "steps(1)", immediateRender: false }, ta);
+  tl.fromTo("#searchinterface-sug", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: .3, ease: "power2.out" }, ta + .1);
+  tl.fromTo("#searchinterface-ttk", { opacity: 0 }, { opacity: 1, duration: .01, ease: "steps(1)" }, enter + .12);
+  tl.to("#searchinterface-ttk", { opacity: 0, duration: .01, ease: "steps(1)", immediateRender: false }, ta);
+  var dL = (tb - ta) / Math.max(1, nT), q, tq;
+  for (q = 0; q < nT; q++) {
+    tq = ta + q * dL;
+    tl.fromTo("#searchinterface-tt_" + q, { opacity: 0 }, { opacity: 1, duration: .01, ease: "steps(1)" }, tq);
+    tl.fromTo("#searchinterface-ttk" + q, { opacity: 0 }, { opacity: 1, duration: .01, ease: "steps(1)" }, tq);
+    if (q < nT - 1) tl.to("#searchinterface-ttk" + q, { opacity: 0, duration: .01, ease: "steps(1)", immediateRender: false }, tq + dL);
+  }
+
+  var wT = width(term, pxT, "font-weight:500"), remainingValue = wT - textWidth * .9;
+  if (remainingValue > 0) { var fr = Math.max(0, Math.min(.95, textWidth * .9 / wT)); tl.fromTo("#searchinterface-tt", { x: 0 }, { x: function () { return -Math.max(0, tt.scrollWidth - textWidth * .9) - pxT * .3; }, duration: (tb - ta) * (1 - fr), ease: "none" }, ta + (tb - ta) * fr); }
+  tl.to("#searchinterface-ttk" + (nT - 1), { opacity: 0, duration: .01, ease: "steps(1)", immediateRender: false }, tT);
+
+  tl.fromTo("#searchinterface-rp", { opacity: 0 }, { opacity: 1, duration: .05, ease: "none" }, tT - .04);
+  tl.fromTo("#searchinterface-rc", { attr: { r: 30 } }, { attr: { r: 125 }, duration: .35, ease: "power2.out" }, tT - .04);
+  tl.to("#searchinterface-rp", { opacity: 0, duration: .2, ease: "power1.in", immediateRender: false }, tT + .14);
+  tl.fromTo("#searchinterface-go", { y: 0 }, { y: 6, duration: .06, ease: "power1.out", yoyo: true, repeat: 1 }, tT - .02);
+
+  tl.to("#searchinterface-sug", { opacity: 0, duration: .12, ease: "none", immediateRender: false }, tS - .04);
+  tl.to("#searchinterface-trk", { y: yR, x: 0, duration: .55, ease: "power3.inOut", immediateRender: false }, tS - .04);
+  tl.fromTo("#searchinterface-tabs", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: .25, ease: "power2.out" }, tS);
+  tl.fromTo("#searchinterface-tbl", { x: 160 }, { x: 0, duration: .3, ease: "power3.out" }, tS);
+  tl.fromTo("#searchinterface-res", { opacity: 0 }, { opacity: 1, duration: .01, ease: "none" }, tS);
+  tl.fromTo("#searchinterface-src", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: .28, ease: "power3.out" }, tS + .04);
+  tl.fromTo("#searchinterface-ti", { opacity: 0, y: 40, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: .34, ease: "power3.out" }, tTi);
+  tl.fromTo("#searchinterface-hl", { backgroundSize: "0% 62%" }, { backgroundSize: "100% 62%", duration: .45, ease: "power2.inOut" }, tTi + .22);
+  tl.fromTo("#searchinterface-ds", { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: .3, ease: "power3.out" }, tD);
+  tl.fromTo("#searchinterface-bt", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: .3, ease: "back.out(2)" }, tB);
+  tl.fromTo("#searchinterface-sk", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: .35, ease: "power2.out" }, tB + .05);
+
+  var vB = Math.floor((exit - tB - .4) / .6);
+  if (vB > 0) tl.to("#searchinterface-bt", { y: -8, duration: .3, ease: "sine.inOut", yoyo: true, repeat: vB * 2 - 1, immediateRender: false }, tB + .4);
+  tl.to("#searchinterface-cam", { y: -300, rotationX: -6, filter: "blur(28px)", duration: .3, ease: "power2.in", immediateRender: false }, exit);
+  tl.to("#searchinterface-w", { opacity: 0, duration: .3, ease: "power2.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["search-interface"] = tl;
+})();
+</script>
+</template>
+</body></html>

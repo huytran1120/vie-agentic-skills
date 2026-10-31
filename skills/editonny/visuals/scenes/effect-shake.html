@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Effect shake</title></head>
+<body>
+<!-- Effect shake. To emphasize a striking number, reversal, surprise, or impact with camera shake. -->
+
+<template id="effect-shake-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+#effectshake-v{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;backdrop-filter:url(#effectshake-f);-webkit-backdrop-filter:url(#effectshake-f)}
+</style>
+<div id="root" data-composition-id="effect-shake" data-width="1080" data-height="1920" data-duration="2.0">
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0"><filter id="effectshake-f" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feOffset id="effectshake-o1" in="SourceGraphic" dx="0" dy="0" result="a"/><feOffset id="effectshake-o2" in="SourceGraphic" dx="0" dy="0" result="b"/><feOffset id="effectshake-o3" in="SourceGraphic" dx="0" dy="0" result="c"/><feOffset id="effectshake-o4" in="SourceGraphic" dx="0" dy="0" result="d"/><feComposite in="a" in2="b" operator="arithmetic" k1="0" k2=".5" k3=".5" k4="0" result="ab"/><feComposite in="c" in2="d" operator="arithmetic" k1="0" k2=".5" k3=".5" k4="0" result="cd"/><feComposite in="ab" in2="cd" operator="arithmetic" k1="0" k2=".5" k3=".5" k4="0" result="m"/><feGaussianBlur id="effectshake-b" in="m" stdDeviation="0 0"/></filter></svg>
+<div id="effectshake-v"></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["effect-shake"] || { duration: 2.0 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 2.0, t0 = 0;
+
+  var P = {
+    strength: 0.7, // 0–1: shake magnitude; one peaks around 26 pixels.
+    jolts: 0, // Number of shakes; zero derives it from duration, approximately one per 0.95 seconds.
+    axis: "both", // Shake axis: "both", "horizontal", or "vertical".
+  };
+
+
+  var strength = Number(P.strength); if (strength !== strength) strength = .7; strength = Math.max(0, Math.min(1, strength));
+  var axis = String(P.axis || "both").toLowerCase();
+  var ex = axis.indexOf("vert") === 0 ? 0 : 1, ey = axis.indexOf("horiz") === 0 ? 0 : 1;
+  var peak = 26 * strength;
+
+  var TX = [1.00, -0.88, 0.64, -0.92, 0.48, 0.80, -0.70, 0.55, -0.96, 0.60, -0.45, -0.85, 0.74, -0.52, 0.90, 0.46, -0.78, 0.66, -0.50, 0.84, -0.62, 0.48, 0.72, -0.56];
+  var TY = [-0.72, 0.95, -0.82, 0.50, 0.76, -0.90, 0.58, -0.47, 0.88, -0.66, -0.52, 0.80, -0.94, 0.62, -0.74, 0.70, 0.54, -0.86, 0.60, -0.46, -0.74, 0.92, -0.58, 0.50];
+  var START = [0, 8, 14, 3, 11, 19];
+
+  var COPIES = [-.18, -.06, .06, .18];
+
+  var FQ = 1 / 30, q0 = Math.ceil((t0 + .05 + FQ / 4) * 30 - .001), enter = q0 * FQ - FQ / 4, end = t0 + D - .1;
+
+  var fitCount = Math.max(6, Math.floor((end - enter) / FQ));
+  var nt = Math.round(Number(P.jolts)); if (!(nt >= 1)) nt = Math.max(1, Math.round((end - enter) / .95));
+  nt = Math.max(1, Math.min(nt, Math.floor(fitCount / 6)));
+  var step = Math.floor(fitCount / nt), spanDuration = Math.min(step, 20);
+  var j, k, c, i, tq, damping, dx, dy, vx, vy, ax = 0, ay = 0;
+
+  var VY = ex ? TY : TX;
+
+  tl.fromTo("#effectshake-v", { opacity: 0 }, { opacity: 1, duration: FQ / 8, ease: "none" }, enter);
+  for (j = 0; j < nt; j++) {
+    for (k = 0; k <= spanDuration; k++) {
+      tq = enter + (j * step + k) * FQ;
+
+      damping = k < spanDuration ? Math.pow(1 - k / spanDuration, 1.8) * (j ? .75 : 1) : 0;
+      i = (START[j % 6] + k) % 24;
+      dx = Math.round(TX[i] * damping * peak * ex); dy = Math.round(VY[i] * damping * peak * ey);
+
+      vx = dx - ax; vy = dy - ay;
+      for (c = 0; c < 4; c++) tl.set("#effectshake-o" + (c + 1), { attr: { dx: Math.round(dx + vx * COPIES[c]), dy: Math.round(dy + vy * COPIES[c]) } }, tq);
+      tl.set("#effectshake-b", { attr: { stdDeviation: Math.min(5, Math.abs(vx) * .07).toFixed(1) + " " + Math.min(5, Math.abs(vy) * .07).toFixed(1) } }, tq);
+      ax = dx; ay = dy;
+    }
+  }
+
+  tl.to("#effectshake-v", { opacity: 0, duration: FQ / 8, ease: "none", immediateRender: false }, end);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["effect-shake"] = tl;
+})();
+</script>
+</template>
+</body></html>

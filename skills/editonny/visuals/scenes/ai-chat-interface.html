@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · AI chat interface</title></head>
+<body>
+<!-- AI chat interface. When showing a request to AI: the request types in, sends, waits, and receives a reply with a finished video. -->
+
+<template id="ai-chat-interface-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+#aichatinterface-w{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;overflow:hidden}
+#aichatinterface-bg{position:absolute;inset:0;opacity:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,#2b2a35 0%,#141319 60%,#07070a 100%)}
+#aichatinterface-cam{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0}
+#aichatinterface-ph{position:absolute;left:64px;top:180px;width:1240px;height:2100px;border-radius:150px;background:linear-gradient(160deg,#2b2b2e,#0b0b0c 40%,#1a1a1c);box-shadow:0 60px 120px rgba(0,0,0,.6),0 0 0 3px #3a3a3e inset}
+#aichatinterface-sc{position:absolute;left:26px;top:26px;right:26px;bottom:26px;border-radius:126px;overflow:hidden;background:#111114}
+#aichatinterface-trk{position:absolute;left:0;top:0;width:1188px;height:2048px}
+#aichatinterface-st{opacity:0;position:absolute;left:110px;width:880px;top:56px;height:56px;display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:44px}
+#aichatinterface-sg{display:flex;align-items:flex-end;gap:5px;height:30px}
+#aichatinterface-sg i{display:block;width:8px;border-radius:2px;background:currentColor}
+.aichatinterface-b1{height:9px}.aichatinterface-b2{height:15px}.aichatinterface-b3{height:21px}.aichatinterface-b4{height:28px}
+#aichatinterface-hd{opacity:0;position:absolute;left:44px;width:900px;top:150px;height:140px;display:flex;align-items:center;gap:26px}
+.aichatinterface-chev{width:26px;height:44px;fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+#aichatinterface-av{position:relative;flex:0 0 auto;width:110px;height:110px;border-radius:50%;background:radial-gradient(circle at 30% 25%,#a5b4fc,#6366f1 55%,#3730a3);box-shadow:0 6px 18px rgba(99,102,241,.45)}
+#aichatinterface-avl{position:absolute;left:0;top:0;width:110px;height:110px;line-height:110px;text-align:center;font-size:56px;font-weight:800;color:#fff}
+#aichatinterface-nn{font-size:52px;font-weight:700;letter-spacing:-.01em;white-space:nowrap}
+#aichatinterface-on{font-size:40px;font-weight:500;color:#34c759}
+#aichatinterface-cv{position:absolute;left:84px;width:760px;top:350px}
+#aichatinterface-mu{display:flex;justify-content:flex-end;opacity:0}
+#aichatinterface-mut{max-width:640px;padding:26px 38px;border-radius:52px 52px 14px 52px;background:#6366f1;color:#fff;font-weight:500;line-height:1.22}
+#aichatinterface-rw{position:relative;margin-top:40px;min-height:120px}
+#aichatinterface-dots{position:absolute;left:0;top:0;display:flex;gap:16px;padding:42px 40px;border-radius:52px 52px 52px 14px;opacity:0}
+#aichatinterface-dots i{display:block;width:26px;height:26px;border-radius:50%;background:#9a9aa3}
+#aichatinterface-mr{display:inline-block;max-width:720px;padding:26px 38px;border-radius:52px 52px 52px 14px;font-weight:500;line-height:1.22;opacity:0}
+.aichatinterface-wd{opacity:0}
+#aichatinterface-cd{position:relative;margin-top:30px;width:340px;opacity:0}
+#aichatinterface-cdi{position:relative;width:340px;height:604px;border-radius:40px;overflow:hidden;background:linear-gradient(170deg,#3b3f58 0%,#1d2030 45%,#0f1018 100%);box-shadow:0 30px 60px rgba(0,0,0,.45)}
+#aichatinterface-cdl{position:absolute;left:0;right:0;top:0;height:604px;background:radial-gradient(ellipse 70% 40% at 50% 20%,rgba(255,170,90,.35),rgba(0,0,0,0) 70%)}
+#aichatinterface-sh{position:absolute;left:0;top:0;width:340px;height:604px}
+#aichatinterface-sh1{position:absolute;left:112px;top:150px;width:116px;height:136px;border-radius:50%;background:rgba(0,0,0,.4)}
+#aichatinterface-sh2{position:absolute;left:46px;top:300px;width:248px;height:330px;border-radius:120px 120px 0 0;background:rgba(0,0,0,.4)}
+#aichatinterface-lg{position:absolute;left:60px;right:60px;top:452px;display:flex;justify-content:center;gap:12px}
+#aichatinterface-lg i{display:block;height:30px;width:100px;border-radius:8px;background:#ffd60a;box-shadow:0 3px 0 rgba(0,0,0,.6)}
+#aichatinterface-lg i+i{width:76px;background:#fff}
+#aichatinterface-pl{position:absolute;left:110px;top:242px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.22);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:3px solid rgba(255,255,255,.5)}
+#aichatinterface-pl svg{position:absolute;left:24px;top:24px;width:72px;height:72px;fill:#fff}
+#aichatinterface-cdt{position:absolute;right:24px;top:22px;padding:6px 16px;border-radius:20px;background:rgba(0,0,0,.55);color:#fff;font-size:34px;font-weight:600}
+#aichatinterface-pb{position:absolute;left:24px;right:24px;bottom:26px;height:10px;border-radius:5px;background:rgba(255,255,255,.3);overflow:hidden}
+#aichatinterface-pbf{position:absolute;left:0;top:0;bottom:0;width:0;background:#fff;border-radius:5px}
+#aichatinterface-cdn{opacity:0;margin-top:14px;font-size:34px;font-weight:600;color:#9a9aa3;white-space:nowrap}
+#aichatinterface-in{position:absolute;left:44px;width:880px;bottom:738px;min-height:150px;display:flex;align-items:center;gap:22px;padding:22px 22px 22px 26px;border-radius:60px;background:#1f1f24;border:2px solid rgba(255,255,255,.08)}
+#aichatinterface-more{flex:0 0 auto;width:84px;height:84px;border-radius:50%;background:rgba(255,255,255,.08);font-size:60px;font-weight:300;line-height:80px;text-align:center;color:#9a9aa3}
+#aichatinterface-tx{position:relative;flex:1 1 auto;min-height:70px;font-weight:500;line-height:1.2}
+#aichatinterface-ph2{position:absolute;left:0;top:50%;margin-top:-.62em;white-space:nowrap;color:#77777f;opacity:0}
+#aichatinterface-tt{position:relative}
+#aichatinterface-env{flex:0 0 auto;width:100px;height:100px;border-radius:50%;background:#6366f1}
+#aichatinterface-env svg{position:absolute;width:56px;height:56px;margin:22px;fill:none;stroke:#fff;stroke-width:4.5;stroke-linecap:round;stroke-linejoin:round}
+#aichatinterface-env{position:relative}
+#aichatinterface-rp{position:absolute;left:-100px;top:-100px;width:300px;height:300px;opacity:0;overflow:visible}
+#aichatinterface-rc{fill:rgba(255,255,255,.25);stroke:#fff;stroke-width:5}
+.aichatinterface-ch{position:relative;opacity:0}
+.aichatinterface-z{position:relative}
+.aichatinterface-k{position:absolute;right:-.07em;top:.06em;width:.075em;height:1em;border-radius:3px;background:#6366f1;opacity:0}
+#aichatinterface-kb{position:absolute;left:0;top:1330px;width:1188px;height:760px;opacity:0;background:rgba(40,40,46,.96)}
+.aichatinterface-kr{position:absolute;left:0;display:flex;gap:14px}
+.aichatinterface-ky{position:relative;width:98px;height:128px;border-radius:14px;background:#5d5d64;box-shadow:0 2px 0 rgba(0,0,0,.5);font-size:56px;line-height:128px;text-align:center;color:#fff}
+.aichatinterface-kh{position:absolute;inset:0;border-radius:14px;background:#8e8e96;opacity:0}
+#aichatinterface-gl{position:absolute;inset:0;background:linear-gradient(118deg,rgba(255,255,255,0) 30%,rgba(255,255,255,.07) 46%,rgba(255,255,255,0) 60%);mix-blend-mode:screen}
+#aichatinterface-dof{position:absolute;inset:0;opacity:0;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);-webkit-mask-image:radial-gradient(ellipse 70% 52% at 50% 50%,transparent 55%,#000 100%);mask-image:radial-gradient(ellipse 70% 52% at 50% 50%,transparent 55%,#000 100%)}
+#aichatinterface-vin{position:absolute;inset:0;opacity:0;box-shadow:inset 0 0 320px 90px rgba(0,0,0,.55)}
+#aichatinterface-vz{position:absolute;left:54px;width:820px;top:760px;text-align:center;opacity:0}
+#aichatinterface-vzo{width:120px;height:120px;margin:0 auto 34px;border-radius:50%;background:radial-gradient(circle at 30% 25%,#a5b4fc,#6366f1 55%,#3730a3);box-shadow:0 10px 40px rgba(99,102,241,.5)}
+#aichatinterface-vzt{font-size:66px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+
+
+#aichatinterface-hdr{position:absolute;left:0;top:0;width:1188px;height:300px;background:#141418;box-shadow:0 2px 0 rgba(255,255,255,.05)}
+</style>
+<div id="root" data-composition-id="ai-chat-interface" data-width="1080" data-height="1920" data-duration="5.0">
+<div id="aichatinterface-w"><div id="aichatinterface-bg"></div><div id="aichatinterface-cam"><div id="aichatinterface-ph"><div id="aichatinterface-sc"><div id="aichatinterface-trk"><div id="aichatinterface-vz"><div id="aichatinterface-vzo"></div><div id="aichatinterface-vzt">How can I help?</div></div><div id="aichatinterface-cv"><div id="aichatinterface-mu"><div id="aichatinterface-mut"></div></div><div id="aichatinterface-rw"><div id="aichatinterface-dots"><i id="aichatinterface-d0"></i><i id="aichatinterface-d1"></i><i id="aichatinterface-d2"></i></div><div id="aichatinterface-mr"></div></div><div id="aichatinterface-cd"><div id="aichatinterface-cdi"><div id="aichatinterface-cdl"></div><div id="aichatinterface-sh"><div id="aichatinterface-sh1"></div><div id="aichatinterface-sh2"></div></div><div id="aichatinterface-lg"><i></i><i></i></div><div id="aichatinterface-pl"><svg viewBox="0 0 40 40"><path d="M15 11 L30 20 L15 29 Z"/></svg></div><div id="aichatinterface-cdt">0:15</div><div id="aichatinterface-pb"><div id="aichatinterface-pbf"></div></div></div><div id="aichatinterface-cdn">edited_video.mp4</div></div></div><div id="aichatinterface-in"><div id="aichatinterface-more">+</div><div id="aichatinterface-tx"><span id="aichatinterface-ph2">Ask something</span><div id="aichatinterface-tt"></div></div><div id="aichatinterface-env"><svg viewBox="0 0 40 40"><path d="M20 30 L20 11 M12 18 L20 10 L28 18"/></svg><svg id="aichatinterface-rp" viewBox="0 0 300 300"><circle id="aichatinterface-rc" cx="150" cy="150" r="20"/></svg></div></div></div><div id="aichatinterface-hdr"><div id="aichatinterface-st"><span>10:24</span><span id="aichatinterface-sg"><i class="aichatinterface-b1"></i><i class="aichatinterface-b2"></i><i class="aichatinterface-b3"></i><i class="aichatinterface-b4"></i></span></div><div id="aichatinterface-hd"><svg viewBox="0 0 24 40" class="aichatinterface-chev"><path d="M18 4 L4 20 L18 36"/></svg><div id="aichatinterface-av"><span id="aichatinterface-avl"></span></div><div id="aichatinterface-nm"><div id="aichatinterface-nn"></div><div id="aichatinterface-on">online</div></div></div></div><div id="aichatinterface-kb"></div><div id="aichatinterface-gl"></div></div></div></div><div id="aichatinterface-dof"></div><div id="aichatinterface-vin"></div></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["ai-chat-interface"] || { duration: 5.0 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 5.0, t0 = 0;
+
+  var P = {
+    aiName: "Your AI", // AI name at the top of the conversation.
+    request: "Edit this video for me", // Request typed into the box and sent.
+    response: "Done! 7 cuts, captions, and zoom.", // AI reply before the video.
+    background: "dark", // "dark" or "light" selects the app color.
+  };
+
+
+  var darkness = String(P.background || "dark") !== "light";
+  var $ = function (id) { return document.getElementById(id); };
+  var name = String(P.aiName || "Your AI"), request = String(P.request || "Edit this video for me"), resp = String(P.response || "Done!");
+  var colorText = darkness ? "#f2f2f7" : "#111114", accentValue = "#6366f1";
+  $("aichatinterface-sc").style.background = darkness ? "linear-gradient(180deg,#141418,#0e0e11)" : "linear-gradient(180deg,#fbfbfd,#f1f1f5)";
+  $("aichatinterface-trk").style.color = colorText; $("aichatinterface-hdr").style.color = colorText; $("aichatinterface-hdr").style.background = darkness ? "#141418" : "#fbfbfd"; if (!darkness) $("aichatinterface-on").style.color = "#1a7f37";
+  $("aichatinterface-nn").textContent = name; $("aichatinterface-avl").textContent = Array.from(name.trim() || "I")[0].toUpperCase();
+  if (!darkness) {
+    $("aichatinterface-bg").style.background = "radial-gradient(ellipse 80% 60% at 50% 40%,#d9d6cf 0%,#9b978f 60%,#4a4844 100%)";
+    $("aichatinterface-in").style.background = "#ffffff"; $("aichatinterface-in").style.borderColor = "rgba(0,0,0,.1)"; $("aichatinterface-in").style.boxShadow = "0 10px 30px rgba(0,0,0,.08)";
+    $("aichatinterface-more").style.background = "rgba(0,0,0,.06)"; $("aichatinterface-kb").style.background = "rgba(210,212,219,.96)";
+    $("aichatinterface-cdi").style.background = "linear-gradient(170deg,#c7cff5 0%,#7d86c9 45%,#3c4378 100%)";
+    $("aichatinterface-rc").style.fill = "rgba(99,102,241,.18)"; $("aichatinterface-rc").style.stroke = accentValue;
+  }
+  $("aichatinterface-mr").style.background = darkness ? "#26262c" : "#e9e9ef"; $("aichatinterface-mr").style.color = colorText;
+  $("aichatinterface-dots").style.background = darkness ? "#26262c" : "#e9e9ef";
+
+  function assemble(el, txt) {
+    var cs = Array.from(String(txt).normalize("NFC")), z = document.createElement("span"), k = document.createElement("i"), i, s;
+    el.innerHTML = ""; z.className = "aichatinterface-z"; k.className = "aichatinterface-k"; k.id = el.id + "k"; z.appendChild(k); el.appendChild(z);
+    for (i = 0; i < cs.length; i++) {
+      s = document.createElement("span"); s.className = "aichatinterface-ch"; s.id = el.id + "_" + i; s.textContent = cs[i];
+      k = document.createElement("i"); k.className = "aichatinterface-k"; k.id = el.id + "k" + i; s.appendChild(k); el.appendChild(s);
+    }
+    return cs.length;
+  }
+
+  function measure(txts, widthValue, maxPx, minPx, lines, lh, style) {
+    var m = document.createElement("div"), px = maxPx, ok, j;
+    m.style.cssText = "position:absolute;left:-99999px;top:0;visibility:hidden;font-family:Inter,sans-serif;white-space:normal;" + style + ";width:" + Math.round(widthValue * .93) + "px;line-height:" + lh;
+    document.body.appendChild(m);
+    for (; px > minPx; px -= 2) {
+      m.style.fontSize = px + "px"; ok = true;
+      for (j = 0; j < txts.length; j++) { m.textContent = txts[j]; if (m.offsetHeight > px * lh * lines + 4 || m.scrollWidth > widthValue * .93 + 2) { ok = false; break; } }
+      if (ok) break;
+    }
+    document.body.removeChild(m); return px;
+  }
+  function whenFont(f) { if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { f(); tl.invalidate(); }); }
+  var tt = $("aichatinterface-tt"), nP = assemble(tt, request);
+  var mut = $("aichatinterface-mut"); mut.textContent = request;
+
+  var mr = $("aichatinterface-mr"), pals = resp.split(/\s+/).filter(function (s) { return s; });
+  mr.innerHTML = pals.map(function (w, q) { return '<span class="aichatinterface-wd" id="aichatinterface-wd' + q + '">' + w.replace(/&/g, "&amp;").replace(/</g, "&lt;") + '</span>'; }).join(" ");
+
+  var nn = $("aichatinterface-nn");
+  function adjust() {
+    nn.style.fontSize = measure([name], 560, 64, 40, 1, 1.2, "font-weight:700;letter-spacing:-.01em;white-space:nowrap") + "px";
+    var pxP = measure([request], 600, 60, 44, 3, 1.2, "font-weight:500");
+    tt.style.fontSize = pxP + "px"; $("aichatinterface-ph2").style.fontSize = Math.min(pxP, 46) + "px";
+    mut.style.fontSize = measure([request], 564, 60, 54, 3, 1.22, "font-weight:500") + "px";
+    mr.style.fontSize = measure([resp], 644, 60, 54, 4, 1.22, "font-weight:500") + "px";
+  }
+  adjust(); whenFont(adjust);
+  if (darkness) $("aichatinterface-cdn").style.color = "#8e8e96";
+
+  var kb = $("aichatinterface-kb"), rows = ["qwertyuiop", "asdfghjkl", "zxcvbnm"], has = {};
+  rows.forEach(function (f, r) {
+    var fl = document.createElement("div"); fl.className = "aichatinterface-kr"; fl.style.top = (22 + r * 146) + "px"; fl.style.left = (34 + r * 56 + (r === 2 ? 56 : 0)) + "px";
+    Array.from(f).forEach(function (l) {
+      var k = document.createElement("div"); k.className = "aichatinterface-ky"; k.textContent = l;
+      if (!darkness) { k.style.background = "#fff"; k.style.color = "#111"; k.style.boxShadow = "0 2px 0 rgba(0,0,0,.25)"; }
+      var hl = document.createElement("div"); hl.className = "aichatinterface-kh"; hl.id = "aichatinterface-kh" + l; if (!darkness) hl.style.background = "#a9adb6"; k.appendChild(hl);
+      fl.appendChild(k); has[l] = 0;
+    });
+    kb.appendChild(fl);
+  });
+  var esp = document.createElement("div"); esp.className = "aichatinterface-kr"; esp.style.top = (22 + 3 * 146) + "px"; esp.style.left = "264px";
+  esp.innerHTML = '<div class="aichatinterface-ky" style="width:560px' + (darkness ? '' : ';background:#fff') + '"><div class="aichatinterface-kh" id="aichatinterface-khesp"' + (darkness ? '' : ' style="background:#a9adb6"') + '></div></div>'; kb.appendChild(esp); has.esp = 0;
+  var keys = Array.from(request.normalize("NFC")).map(function (ch) { var b = ch.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase(); return b === " " ? "esp" : (b in has ? b : ""); });
+
+  var inp = $("aichatinterface-in"), env = $("aichatinterface-env");
+
+  var cv = $("aichatinterface-cv");
+  function yCard() { return Math.max(-700, Math.min(0, 1480 - (206 + cv.offsetTop + $("aichatinterface-cd").offsetTop + $("aichatinterface-cd").offsetHeight))); }
+
+
+  var enter = t0 + .05, exit = t0 + D - .32, u = exit - enter;
+  var ta = enter + .3, tb = ta + Math.max(.5, Math.min(1.2, .22 * u, nP * .06));
+  var tT = tb + .14, tS = tT + .12, tR = tS + Math.max(.42, Math.min(1, .17 * u)), tV = tR + Math.max(.3, Math.min(.8, .13 * u));
+  var yT = -430;
+  tl.fromTo("#aichatinterface-w", { opacity: 0 }, { opacity: 1, duration: .01, ease: "none" }, enter);
+  tl.fromTo("#aichatinterface-bg", { opacity: 0 }, { opacity: 1, duration: .2, ease: "power1.out" }, enter);
+  tl.fromTo("#aichatinterface-cam", { opacity: 0 }, { opacity: 1, duration: .14, ease: "power1.out" }, enter);
+  tl.fromTo("#aichatinterface-cam", { y: 320, rotationX: 26, rotationY: 10, transformPerspective: 1700, filter: "blur(26px)" },
+    { y: 0, rotationX: 5, rotationY: 3, transformPerspective: 1700, filter: "blur(0px)", duration: .5, ease: "power3.out", immediateRender: false }, enter);
+  tl.fromTo("#aichatinterface-dof", { opacity: 0 }, { opacity: 1, duration: .3, ease: "none" }, enter + .1);
+  tl.fromTo("#aichatinterface-vin", { opacity: 0 }, { opacity: 1, duration: .3, ease: "none" }, enter);
+  var vM = Math.max(1, Math.round((exit - enter - .5) / 1.3)), dM = (exit - enter - .5) / vM;
+  tl.fromTo("#aichatinterface-cam", { rotation: .5 }, { rotation: -.5, duration: dM, ease: "sine.inOut", yoyo: true, repeat: vM - 1, immediateRender: false }, enter + .5);
+  tl.fromTo("#aichatinterface-cam", { rotationY: 3 }, { rotationY: 1, duration: dM, ease: "sine.inOut", yoyo: true, repeat: vM - 1, immediateRender: false }, enter + .5);
+
+  tl.fromTo("#aichatinterface-trk", { y: yT, x: 30 }, { y: yT, x: -30, duration: tb - enter, ease: "sine.inOut" }, enter);
+  tl.fromTo("#aichatinterface-kb", { opacity: 0, y: 260 }, { opacity: 1, y: 0, duration: .3, ease: "power3.out" }, enter + .08);
+  tl.fromTo("#aichatinterface-ph2", { opacity: 0 }, { opacity: 1, duration: .15, ease: "none" }, enter + .1);
+  tl.fromTo("#aichatinterface-vz", { opacity: 0 }, { opacity: 1, duration: .2, ease: "none" }, enter + .1);
+  tl.to("#aichatinterface-ph2", { opacity: 0, duration: .01, ease: "steps(1)", immediateRender: false }, ta);
+  tl.fromTo("#aichatinterface-ttk", { opacity: 0 }, { opacity: 1, duration: .01, ease: "steps(1)" }, enter + .12);
+  tl.to("#aichatinterface-ttk", { opacity: 0, duration: .01, ease: "steps(1)", immediateRender: false }, ta);
+  var dL = (tb - ta) / Math.max(1, nP), q, tq, usedItem = {};
+  for (q = 0; q < nP; q++) {
+    tq = ta + q * dL;
+    tl.fromTo("#aichatinterface-tt_" + q, { opacity: 0 }, { opacity: 1, duration: .01, ease: "steps(1)" }, tq);
+    tl.fromTo("#aichatinterface-ttk" + q, { opacity: 0 }, { opacity: 1, duration: .01, ease: "steps(1)" }, tq);
+    if (q < nP - 1) tl.to("#aichatinterface-ttk" + q, { opacity: 0, duration: .01, ease: "steps(1)", immediateRender: false }, tq + dL);
+    if (keys[q]) { tl.fromTo("#aichatinterface-kh" + keys[q], { opacity: 0 }, { opacity: 1, duration: .01, ease: "steps(1)", immediateRender: !usedItem[keys[q]] }, tq); tl.to("#aichatinterface-kh" + keys[q], { opacity: 0, duration: .01, ease: "steps(1)", immediateRender: false }, tq + Math.min(.08, dL * .7)); usedItem[keys[q]] = 1; }
+  }
+
+  tl.fromTo("#aichatinterface-rp", { opacity: 0 }, { opacity: 1, duration: .05, ease: "none" }, tT - .04);
+  tl.fromTo("#aichatinterface-rc", { attr: { r: 30 } }, { attr: { r: 120 }, duration: .35, ease: "power2.out" }, tT - .04);
+  tl.to("#aichatinterface-rp", { opacity: 0, duration: .2, ease: "power1.in", immediateRender: false }, tT + .14);
+  tl.fromTo("#aichatinterface-env", { y: 0 }, { y: 6, duration: .06, ease: "power1.out", yoyo: true, repeat: 1 }, tT - .02);
+
+  tl.to("#aichatinterface-tt", { opacity: 0, duration: .12, ease: "none" }, tS);
+  tl.to("#aichatinterface-vz", { opacity: 0, y: -60, duration: .25, ease: "power2.in", immediateRender: false }, tS - .04);
+  tl.to("#aichatinterface-ttk" + (nP - 1), { opacity: 0, duration: .01, ease: "steps(1)", immediateRender: false }, tS);
+  tl.fromTo("#aichatinterface-mu", { opacity: 0, y: 90, x: 20, filter: "blur(6px)" }, { opacity: 1, y: 0, x: 0, filter: "blur(0px)", duration: .36, ease: "power3.out" }, tS + .3);
+  tl.to("#aichatinterface-kb", { y: 760, duration: .38, ease: "power2.inOut", immediateRender: false }, tS + .04);
+
+  tl.fromTo("#aichatinterface-in", { y: 0 }, { y: 1100, duration: .4, ease: "power2.inOut", immediateRender: false }, tS + .04);
+  tl.to("#aichatinterface-trk", { y: 0, x: 0, duration: .5, ease: "power2.inOut", immediateRender: false }, tS);
+
+  tl.fromTo(["#aichatinterface-st", "#aichatinterface-hd"], { opacity: 0 }, { opacity: 1, duration: .3, ease: "power1.out" }, tS + .1);
+
+  var tP = tS + .26, pul = Math.max(1, Math.floor((tR - tP - .1) / .36));
+  tl.fromTo("#aichatinterface-dots", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: .2, ease: "power2.out" }, tP);
+  [0, 1, 2].forEach(function (i) { tl.fromTo("#aichatinterface-d" + i, { y: 0 }, { y: -14, duration: .18, ease: "sine.inOut", yoyo: true, repeat: pul * 2 - 1 }, tP + .08 + i * .08); });
+  tl.to("#aichatinterface-dots", { opacity: 0, duration: .1, ease: "none", immediateRender: false }, tR - .05);
+
+  tl.fromTo("#aichatinterface-mr", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .25, ease: "power3.out" }, tR);
+  var dW = Math.min(.09, Math.max(.03, (tV - tR - .1) / Math.max(1, pals.length)));
+  pals.forEach(function (w, i) { tl.fromTo("#aichatinterface-wd" + i, { opacity: 0 }, { opacity: 1, duration: .08, ease: "none" }, tR + .04 + i * dW); });
+
+  tl.fromTo("#aichatinterface-cd", { opacity: 0, y: 120, filter: "blur(10px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: .4, ease: "power3.out" }, tV);
+  tl.to("#aichatinterface-trk", { y: yCard, duration: .55, ease: "power2.inOut", immediateRender: false }, tV - .05);
+
+  var appTop = 206 + 300 + 6;
+  function rise(el, extra) { return function () { return 206 + cv.offsetTop + (extra ? extra.offsetTop : 0) + el.offsetTop + yCard() < appTop ? 0 : 1; }; }
+  tl.to("#aichatinterface-mu", { opacity: rise($("aichatinterface-mu")), duration: .22, ease: "none", immediateRender: false }, tV - .05);
+  tl.to("#aichatinterface-mr", { opacity: rise($("aichatinterface-mr"), $("aichatinterface-rw")), duration: .22, ease: "none", immediateRender: false }, tV - .05);
+
+  tl.fromTo("#aichatinterface-cdn", { opacity: 0 }, { opacity: 1, duration: .2, ease: "none" }, tV + .5);
+  tl.fromTo("#aichatinterface-pl", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: .3, ease: "back.out(2)" }, tV + .2);
+  tl.fromTo("#aichatinterface-pbf", { width: 0 }, { width: 292, duration: Math.max(.3, exit - tV - .1), ease: "none" }, tV + .1);
+  tl.to("#aichatinterface-cam", { y: -300, rotationX: -8, filter: "blur(28px)", duration: .3, ease: "power2.in", immediateRender: false }, exit);
+  tl.to("#aichatinterface-w", { opacity: 0, duration: .3, ease: "power2.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["ai-chat-interface"] = tl;
+})();
+</script>
+</template>
+</body></html>

@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · House construction</title></head>
+<body>
+<!-- House construction. When explaining a build or staged process: a 3D house assembles while step labels light up. Playback runs once at 1.2×, completing in 2.4 seconds; allow at least 3.5 seconds for the badge to follow completion. -->
+
+<template id="house-construction-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+.houseconstruction-a{position:absolute;left:0;top:0;width:0;height:0;opacity:0}
+.houseconstruction-row{position:absolute;left:-400px;width:800px;display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+.houseconstruction-e{position:relative;display:flex;align-items:center;gap:13px;height:76px;padding:0 28px 0 12px;border-radius:38px;background:rgba(14,14,16,.86);box-shadow:inset 0 0 0 2px rgba(255,255,255,.14),0 12px 28px rgba(0,0,0,.42);font-family:"Inter";font-weight:700;font-size:42px;letter-spacing:-.01em;color:rgba(255,255,255,.55);white-space:nowrap;opacity:0}
+.houseconstruction-ring{position:absolute;inset:0;border-radius:38px;border:3px solid;opacity:0}
+.houseconstruction-n{position:relative;flex:none;width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:900;font-size:27px;color:#fff}
+.houseconstruction-nf{position:absolute;inset:0;border-radius:50%;opacity:0}
+.houseconstruction-nn{position:relative;color:inherit}
+.houseconstruction-sh{position:absolute;border-radius:50%;background:radial-gradient(ellipse at center,rgba(0,0,0,.5),rgba(0,0,0,.2) 45%,rgba(0,0,0,0) 70%);opacity:0}
+.houseconstruction-ow{position:absolute;filter:drop-shadow(0 18px 26px rgba(0,0,0,.4))}
+.houseconstruction-v{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:contain;opacity:0}
+.houseconstruction-srow{position:absolute;left:-400px;width:800px;display:flex;justify-content:center}
+.houseconstruction-s{position:relative;display:flex;align-items:center;gap:18px;height:98px;padding:0 40px 0 18px;border-radius:49px;background:#fff;box-shadow:0 0 0 2px rgba(0,0,0,.06),0 16px 38px rgba(0,0,0,.45);font-family:"Inter";font-weight:900;font-size:48px;letter-spacing:-.02em;color:#141416;white-space:nowrap;opacity:0}
+.houseconstruction-sc{flex:none;width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+</style>
+<div id="root" data-composition-id="house-construction" data-width="1080" data-height="1920" data-duration="4.5">
+<div id="houseconstruction-a" class="houseconstruction-a">
+  <div id="houseconstruction-sh" class="houseconstruction-sh"></div>
+  <div id="houseconstruction-ow" class="houseconstruction-ow"><video id="houseconstruction-v" class="houseconstruction-v" src="assets/visuals/video/36-house-construction.webm" data-start="0" data-duration="6" data-media-start="0.35" data-playback-rate="1.2" data-track-index="2" muted playsinline></video></div>
+  <div id="houseconstruction-row" class="houseconstruction-row"></div>
+  <div id="houseconstruction-srow" class="houseconstruction-srow"><div id="houseconstruction-s" class="houseconstruction-s"><span id="houseconstruction-sc" class="houseconstruction-sc"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><path id="houseconstruction-ck" d="M8 18.5 L15 25.5 L28 11" stroke="#fff" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="32" stroke-dashoffset="32"/></svg></span><span id="houseconstruction-st"></span></div></div>
+</div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["house-construction"] || { duration: 4.5 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 4.5, t0 = 0;
+
+  var P = {
+    x: 540, // House center on the 1080×1920 canvas, in pixels.
+    y: 470, // Vertical reference; labels begin 238 pixels above and the house sits below them.
+    steps: "Slab|Walls|Second floor|Roof|Garage", // Two to six top labels separated by |, lit in construction order.
+    badge: "Ready in 90 days", // Badge text shown after house construction finishes.
+    color: "#ff6a1f", // Accent color for active step labels and the badge.
+  };
+
+
+  var pe = function (s) { return document.getElementById("houseconstruction-" + s); };
+  var HOUSE = 560, RATE = 1.2, START = .35;
+  var STG = [.1, .85, 1.3, 2.05, 2.75], READY_TIME = 3.15;
+  var inFilm = function (s) { return Math.max(0, s - START) / RATE; };
+  var anchor = pe("a"); anchor.style.left = P.x + "px"; anchor.style.top = P.y + "px";
+  var color = P.color || "#ff6a1f";
+  var box = pe("ow"), vid = pe("v");
+  box.style.cssText += ";left:" + (-HOUSE / 2) + "px;width:" + HOUSE + "px;height:" + HOUSE + "px";
+  var sh = pe("sh"); sh.style.cssText += ";left:-250px;width:500px;height:90px";
+
+  var names = String(P.steps || "").split("|").map(function (s) { return s.trim(); }).filter(function (s) { return s; }).slice(0, 6);
+  var row = pe("row"), tags = [];
+  names.forEach(function (nm, k) {
+    var e = document.createElement("div"); e.className = "houseconstruction-e";
+    e.innerHTML = '<i class="houseconstruction-ring"></i><i class="houseconstruction-n"><i class="houseconstruction-nf"></i><b class="houseconstruction-nn"></b></i><span></span>';
+    e.querySelector(".houseconstruction-ring").style.borderColor = color; e.querySelector(".houseconstruction-nf").style.background = color;
+    e.querySelector(".houseconstruction-nn").textContent = String(k + 1); e.querySelector("span").textContent = nm;
+    row.appendChild(e); tags.push(e);
+  });
+  pe("sc").style.background = color; pe("st").textContent = String(P.badge || "");
+
+  var widthValue = function (txt, css) {
+    var m = document.createElement("span"); m.style.cssText = "position:absolute;left:-99999px;top:0;visibility:hidden;white-space:nowrap;font-family:Inter,sans-serif;" + css;
+    m.textContent = txt; document.body.appendChild(m); var w = m.getBoundingClientRect().width; document.body.removeChild(m); return w;
+  };
+
+  var EXTRA = 12 + 52 + 13 + 28, LINE_VALUE = 76, SPAN = 12, TOP_VALUE = -238;
+  var fit = function () {
+
+    var px0 = 42, ws, lines;
+    for (; px0 >= 34; px0 -= 2) {
+      ws = tags.map(function (e) { var s = e.querySelector("span"), w = widthValue(s.textContent, "font-weight:700;font-size:" + px0 + "px;letter-spacing:-.01em"), px = w + EXTRA > 800 ? px0 * (800 - EXTRA) / w : px0; s.style.fontSize = px + "px"; return Math.min(800, w * px / px0 + EXTRA); });
+      lines = 1; var lineWidth = 0;
+      ws.forEach(function (w) { if (lineWidth && lineWidth + SPAN + w > 800) { lines++; lineWidth = w; } else lineWidth += (lineWidth ? SPAN : 0) + w; });
+      if (lines <= 2) break;
+    }
+    row.style.top = TOP_VALUE + "px"; row.style.rowGap = SPAN + "px";
+    var background = TOP_VALUE + lines * LINE_VALUE + (lines - 1) * SPAN, center = background + Math.round(HOUSE * .37) + 6;
+    box.style.top = (center - HOUSE / 2) + "px"; sh.style.top = (center + HOUSE * .06) + "px"; pe("srow").style.top = (center + 40) + "px";
+    var st = pe("st"), wsl = widthValue(st.textContent, "font-weight:900;font-size:48px;letter-spacing:-.02em"), ls = 800 - 140;
+    st.style.fontSize = (wsl > ls ? Math.max(26, 48 * ls / wsl) : 48) + "px";
+  };
+  fit(); if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { fit(); tl.invalidate(); });
+
+  var enter = t0 + .05, exit = t0 + D - .3, badge = Math.min(t0 + inFilm(READY_TIME) + .08, exit - .75);
+  var n = tags.length, ult = inFilm(STG[STG.length - 1]) + .05, k1 = Math.min(1, (badge - .25 - t0) / ult);
+  var when = function (k) {
+    var pos = n > 1 ? k * (STG.length - 1) / (n - 1) : STG.length - 1, i = Math.floor(pos), f = pos - i;
+    var s = i >= STG.length - 1 ? STG[STG.length - 1] : STG[i] + (STG[i + 1] - STG[i]) * f;
+    return Math.max(enter + .2 + k * .12, t0 + (inFilm(s) + .05) * k1);
+  };
+  tl.fromTo(anchor, { opacity: 0 }, { opacity: 1, duration: .05, ease: "none" }, enter);
+  tl.fromTo(vid, { opacity: 0, y: 70, filter: "blur(14px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: .5, ease: "power3.out" }, enter);
+  tl.fromTo(sh, { opacity: 0 }, { opacity: 1, duration: .5, ease: "power2.out" }, enter + .1);
+  tags.forEach(function (e, k) {
+    tl.fromTo(e, { opacity: 0, y: -22 }, { opacity: 1, y: 0, duration: .32, ease: "back.out(1.8)" }, enter + .06 + k * .05);
+    var t = when(k);
+    tl.to(e, { color: "#ffffff", duration: .18, ease: "none", immediateRender: false }, t);
+    tl.fromTo(e.querySelector(".houseconstruction-ring"), { opacity: 0 }, { opacity: 1, duration: .18, ease: "none" }, t);
+    tl.fromTo(e.querySelector(".houseconstruction-nf"), { opacity: 0 }, { opacity: 1, duration: .18, ease: "none" }, t);
+    tl.to(e.querySelector(".houseconstruction-nn"), { color: "#141416", duration: .18, ease: "none", immediateRender: false }, t);
+    tl.to(e, { y: -12, duration: .12, ease: "power2.out", yoyo: true, repeat: 1, immediateRender: false }, t);
+  });
+
+  tl.fromTo(pe("s"), { opacity: 0, y: 24, clipPath: "inset(0% 50% 0% 50% round 42px)" }, { opacity: 1, y: 0, clipPath: "inset(0% 0% 0% 0% round 42px)", duration: .42, ease: "power3.out" }, badge);
+  tl.fromTo(pe("ck"), { attr: { "stroke-dashoffset": 32 } }, { attr: { "stroke-dashoffset": 0 }, duration: .3, ease: "power2.out" }, badge + .2);
+
+  var live = badge + .1, padding = exit - live, turns = Math.max(1, Math.round(padding / 1.2)), halfValue = padding / (turns * 2);
+  if (halfValue > .15) tl.to(vid, { y: -10, duration: halfValue, ease: "sine.inOut", yoyo: true, repeat: turns * 2 - 1, immediateRender: false }, live);
+  tl.to(anchor, { opacity: 0, y: -30, duration: .26, ease: "power2.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["house-construction"] = tl;
+})();
+</script>
+</template>
+</body></html>

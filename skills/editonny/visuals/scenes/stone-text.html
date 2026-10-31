@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Stone text</title></head>
+<body>
+<!-- Stone text. To give a phrase physical weight: stone letters hang briefly, then fall and break the floor. -->
+
+<template id="stone-text-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+#stonetext-tr{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;backdrop-filter:url(#stonetext-f);-webkit-backdrop-filter:url(#stonetext-f)}
+#stonetext-s{position:absolute;left:0;top:0;width:1080px;height:1920px;overflow:visible;opacity:0}
+#stonetext-t text{font-family:"Inter";font-weight:900;letter-spacing:-.01em;fill:#8d877e;color:#efe9df}
+.stonetext-o{opacity:0}
+</style>
+<div id="root" data-composition-id="stone-text" data-width="1080" data-height="1920" data-duration="3.0">
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0"><filter id="stonetext-f" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feOffset id="stonetext-o1" in="SourceGraphic" dx="0" dy="0" result="a"/><feOffset id="stonetext-o2" in="SourceGraphic" dx="0" dy="0" result="b"/><feOffset id="stonetext-o3" in="SourceGraphic" dx="0" dy="0" result="c"/><feOffset id="stonetext-o4" in="SourceGraphic" dx="0" dy="0" result="d"/><feComposite in="a" in2="b" operator="arithmetic" k1="0" k2=".5" k3=".5" k4="0" result="ab"/><feComposite in="c" in2="d" operator="arithmetic" k1="0" k2=".5" k3=".5" k4="0" result="cd"/><feComposite in="ab" in2="cd" operator="arithmetic" k1="0" k2=".5" k3=".5" k4="0" result="m"/><feGaussianBlur id="stonetext-b" in="m" stdDeviation="0 0"/></filter></svg>
+<div id="stonetext-tr"></div>
+<svg id="stonetext-s" xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+<defs>
+<filter id="stonetext-pd" x="-10%" y="-25%" width="120%" height="170%" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency=".05" numOctaves="3" seed="7" result="n1"/>
+<feDisplacementMap in="SourceAlpha" in2="n1" scale="10" xChannelSelector="R" yChannelSelector="G" result="a"/>
+<feTurbulence type="fractalNoise" baseFrequency=".11 .13" numOctaves="4" seed="3" result="n2"/>
+<feColorMatrix in="n2" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1.3 0 0 0 -.15" result="n2a"/>
+<feTurbulence type="turbulence" baseFrequency=".012 .02" numOctaves="2" seed="11" result="n3"/>
+<feColorMatrix in="n3" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -14 0 0 0 1.25" result="fis"/>
+<feGaussianBlur in="a" stdDeviation="6" result="ab"/>
+<feComposite in="n2a" in2="ab" operator="arithmetic" k1="0" k2=".32" k3="1" k4="0" result="h0"/>
+<feComposite in="h0" in2="fis" operator="arithmetic" k1="0" k2="1" k3="-.35" k4="0" result="h"/>
+<feDiffuseLighting id="stonetext-light" in="h" surfaceScale="8" diffuseConstant="1.15" lighting-color="#c9c1b4" result="dif"><feDistantLight azimuth="235" elevation="40"/></feDiffuseLighting>
+<feSpecularLighting in="h" surfaceScale="8" specularConstant=".55" specularExponent="20" lighting-color="#ffffff" result="spe"><feDistantLight azimuth="235" elevation="48"/></feSpecularLighting>
+<feComposite in="dif" in2="spe" operator="arithmetic" k1="0" k2="1" k3=".55" k4="0" result="lit"/>
+<feComposite in="lit" in2="a" operator="in" result="face"/>
+<feOffset in="a" dx="1" dy="4" result="e1"/><feOffset in="a" dx="2" dy="8" result="e2"/><feOffset in="a" dx="3" dy="12" result="e3"/><feOffset in="a" dx="4" dy="16" result="e4"/><feOffset in="a" dx="5" dy="20" result="e5"/><feOffset in="a" dx="6" dy="24" result="e6"/>
+<feMerge result="ext"><feMergeNode in="e1"/><feMergeNode in="e2"/><feMergeNode in="e3"/><feMergeNode in="e4"/><feMergeNode in="e5"/><feMergeNode in="e6"/></feMerge>
+<feComposite in="dif" in2="ext" operator="in" result="ex1"/>
+<feColorMatrix in="ex1" type="matrix" values=".4 0 0 0 0  0 .38 0 0 0  0 0 .36 0 0  0 0 0 1 0" result="exd"/>
+<feGaussianBlur in="ext" stdDeviation="12" result="sb"/>
+<feOffset in="sb" dx="8" dy="26" result="sbo"/>
+<feColorMatrix in="sbo" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .7 0" result="sh"/>
+<feMerge><feMergeNode in="sh"/><feMergeNode in="exd"/><feMergeNode in="face"/></feMerge>
+</filter>
+<filter id="stonetext-mb" x="-5%" y="-30%" width="110%" height="160%"><feGaussianBlur id="stonetext-mbb" stdDeviation="0 0"/></filter>
+<filter id="stonetext-fp" x="-60%" y="-60%" width="220%" height="220%"><feTurbulence type="fractalNoise" baseFrequency=".016" numOctaves="3" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="46" xChannelSelector="R" yChannelSelector="G"/></filter>
+<filter id="stonetext-fs" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="2" result="b"/><feDiffuseLighting id="stonetext-light2" in="b" surfaceScale="5" lighting-color="#c9c1b4" result="l"><feDistantLight azimuth="235" elevation="38"/></feDiffuseLighting><feComposite in="l" in2="SourceGraphic" operator="in" result="c"/><feOffset in="SourceAlpha" dx="3" dy="5" result="so"/><feColorMatrix in="so" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .6 0" result="sh"/><feMerge><feMergeNode in="sh"/><feMergeNode in="c"/></feMerge></filter>
+<radialGradient id="stonetext-gd"><stop offset="0" stop-color="#000" stop-opacity=".75"/><stop offset=".6" stop-color="#000" stop-opacity=".35"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+<radialGradient id="stonetext-gp"><stop id="stonetext-gpa" offset="0" stop-color="#c9c1b4" stop-opacity=".85"/><stop id="stonetext-gpb" offset=".5" stop-color="#c9c1b4" stop-opacity=".5"/><stop id="stonetext-gpc" offset="1" stop-color="#c9c1b4" stop-opacity="0"/></radialGradient>
+<radialGradient id="stonetext-gp2"><stop offset="0" stop-color="#7d756a" stop-opacity=".75"/><stop offset=".55" stop-color="#7d756a" stop-opacity=".4"/><stop offset="1" stop-color="#7d756a" stop-opacity="0"/></radialGradient>
+<mask id="stonetext-mk" maskUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1920"><circle id="stonetext-mkc" cx="540" cy="1930" r="0" fill="#fff"/></mask>
+</defs>
+<g id="stonetext-cam">
+<ellipse id="stonetext-dent" class="stonetext-o" cx="540" cy="1940" rx="420" ry="190" fill="url(#stonetext-gd)"/>
+<g id="stonetext-rc" mask="url(#stonetext-mk)"></g>
+<g id="stonetext-po" filter="url(#stonetext-fp)"></g>
+<g id="stonetext-pe" filter="url(#stonetext-fs)"></g>
+</g>
+<g id="stonetext-q"><g filter="url(#stonetext-mb)"><g id="stonetext-t" filter="url(#stonetext-pd)"></g></g><g id="stonetext-pq" filter="url(#stonetext-fs)"></g></g>
+<rect id="stonetext-fl" class="stonetext-o" x="0" y="0" width="1080" height="1920" fill="#fff8ee"/>
+</svg>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["stone-text"] || { duration: 3.0 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 3.0, t0 = 0;
+
+  var P = {
+    text: "GIVE IT WEIGHT", // Phrase that becomes stone; automatically wraps to at most three lines.
+    x: 540, // Phrase center on the 1080×1920 canvas, in pixels.
+    y: 600, // Phrase center while suspended in the air, in pixels.
+    stoneColor: "#c9c1b4", // Stone color, such as light granite gray, sand, or graphite.
+  };
+
+
+  var NS = "http://www.w3.org/2000/svg";
+  var colorP = String(P.stoneColor || "#c9c1b4");
+  var px0 = Number(P.x); if (px0 !== px0) px0 = 540; var py0 = Number(P.y); if (py0 !== py0) py0 = 600;
+  document.getElementById("stonetext-light").setAttribute("lighting-color", colorP);
+  document.getElementById("stonetext-light2").setAttribute("lighting-color", colorP);
+  ["stonetext-gpa", "stonetext-gpb", "stonetext-gpc"].forEach(function (id) { document.getElementById(id).setAttribute("stop-color", colorP); });
+  var gT = document.getElementById("stonetext-t"), gQ = document.getElementById("stonetext-q"), gPQ = document.getElementById("stonetext-pq");
+  var gRC = document.getElementById("stonetext-rc"), gPO = document.getElementById("stonetext-po"), gPE = document.getElementById("stonetext-pe");
+  var words = String(P.text == null ? "" : P.text).trim().toUpperCase().split(/\s+/).filter(Boolean);
+  if (!words.length) words = ["WEIGHT"];
+
+  var seed = 0, rnd = function () { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
+  var between = function (a, b) { return a + (b - a) * rnd(); };
+
+  var med = document.createElement("span");
+  med.style.cssText = "position:absolute;left:-9999px;top:0;visibility:hidden;white-space:nowrap;font-family:Inter;font-weight:900;font-size:100px;letter-spacing:-.01em";
+  document.body.appendChild(med);
+  var widthValue = function (s) { med.textContent = s; return med.getBoundingClientRect().width / 100; };
+  var STAR_COUNT = .8, LMAX = 940, FMAX = 290, HMAX = 820;
+  var B = { fs: 200, top: py0 - 100, bot: py0 + 100, w: 600, x: px0 };
+  var cuts = function (n, k) {
+    if (k === 1) return [[]]; var r = [], i, j;
+    if (k === 2) { for (i = 1; i < n; i++) r.push([i]); return r; }
+    for (i = 1; i < n - 1; i++) for (j = i + 1; j < n; j++) r.push([i, j]); return r;
+  };
+  var arrange = function () {
+    var n = words.length, best = null, k, c, ls, ws, fs, note, i;
+    for (k = 1; k <= Math.min(3, n); k++) cuts(n, k).forEach(function (cs) {
+      var lim = [0].concat(cs, [n]); ls = []; for (i = 0; i < lim.length - 1; i++) ls.push(words.slice(lim[i], lim[i + 1]).join(" "));
+      ws = ls.map(function (s) { return widthValue(s) * STAR_COUNT; });
+      fs = Math.min(FMAX, LMAX / Math.max.apply(null, ws), HMAX / (k * .95)); note = fs - k * 10;
+      if (!best || note > best.note) best = { note: note, ls: ls, ws: ws, fs: fs };
+    });
+    var lh = best.fs * .96, cap = best.fs * .727, tot = cap + (best.ls.length - 1) * lh, b1 = py0 - tot / 2 + cap;
+    var wmax = Math.max.apply(null, best.ws) * best.fs;
+    var cx = Math.max(wmax / 2 + 50, Math.min(1080 - wmax / 2 - 50, px0));
+    while (gT.firstChild) gT.removeChild(gT.firstChild);
+    best.ls.forEach(function (s, i) {
+      var t = document.createElementNS(NS, "text");
+      t.setAttribute("x", cx); t.setAttribute("y", (b1 + i * lh).toFixed(1)); t.setAttribute("text-anchor", "middle");
+      t.setAttribute("font-size", best.fs.toFixed(1)); t.setAttribute("textLength", (best.ws[i] * best.fs).toFixed(1));
+      t.setAttribute("lengthAdjust", "spacingAndGlyphs"); t.setAttribute("data-layout-allow-overlap", ""); t.setAttribute("data-layout-allow-overflow", ""); t.textContent = s; gT.appendChild(t);
+    });
+    B = { fs: best.fs, top: b1 - cap, bot: b1 + (best.ls.length - 1) * lh, w: wmax, x: cx };
+
+    Array.prototype.forEach.call(gPQ.childNodes, function (el, i) { el.setAttribute("transform", "translate(" + (cx + (i / 5 - .45) * wmax * .9).toFixed(1) + " " + (B.bot + 18).toFixed(1) + ")"); });
+
+    Array.prototype.forEach.call(gPO.childNodes, function (el, i) { el.setAttribute("cx", (cx + el.__u * (wmax / 2 + 120)).toFixed(1)); });
+    Array.prototype.forEach.call(gPE.childNodes, function (el) { el.setAttribute("transform", "translate(" + (cx + el.__u * wmax * .5).toFixed(1) + " 1935)"); });
+    drawCracks(cx, wmax); document.getElementById("stonetext-mkc").setAttribute("cx", cx.toFixed(1));
+    document.getElementById("stonetext-dent").setAttribute("cx", cx.toFixed(1)); document.getElementById("stonetext-dent").setAttribute("rx", (wmax * .55 + 80).toFixed(1));
+  };
+
+  var cracks = [];
+  var drawCracks = function (cx, w) {
+    seed = 777; var nr = 0, rebuild = cracks.length > 0;
+    var born = [cx - w * .32, cx + w * .05, cx + w * .36], ang = [[-168, -128, -96], [-142, -72, -30], [-58, -16, -110]];
+    var line = function (x, y, a, comp, initialWidth, level, delayValue) {
+      var pts = [[x, y]], seg = 0, children = [];
+      while (seg < comp) {
+        var p = between(18, 46); a += between(-20, 20); x += Math.cos(a * Math.PI / 180) * p; y += Math.sin(a * Math.PI / 180) * p; seg += p;
+        if (y > 1950) y = 1950; pts.push([x, y]);
+        if (level < 1 && rnd() < .16) children.push([x, y, a + (rnd() < .5 ? -1 : 1) * between(30, 60), comp * between(.25, .45), initialWidth * .5, level + 1, 0]);
+      }
+
+      var n = pts.length, leftValue = [], dir = [], i2;
+      for (i2 = 0; i2 < n; i2++) {
+        var p0 = pts[Math.max(0, i2 - 1)], p1 = pts[Math.min(n - 1, i2 + 1)], ddx = p1[0] - p0[0], ddy = p1[1] - p0[1], L = Math.hypot(ddx, ddy) || 1;
+        var w = initialWidth * Math.pow(1 - i2 / (n - 1), .7) * (i2 % 2 ? .7 : 1) / 2 + .4;
+        leftValue.push((pts[i2][0] - ddy / L * w).toFixed(1) + "," + (pts[i2][1] + ddx / L * w).toFixed(1));
+        dir.unshift((pts[i2][0] + ddy / L * w).toFixed(1) + "," + (pts[i2][1] - ddx / L * w).toFixed(1));
+      }
+      var shape = leftValue.concat(dir).join(" ");
+      if (rebuild) { var gv = cracks[nr++]; if (gv) Array.prototype.forEach.call(gv.childNodes, function (pa) { pa.setAttribute("points", shape); }); children.forEach(function (f) { line.apply(null, f); }); return; }
+      var g = document.createElementNS(NS, "g");
+      [["rgba(255,250,240,.6)", "translate(-2.4 -2.4)"], ["rgba(0,0,0,.45)", "translate(2 3)"], ["#0b0907", ""]].forEach(function (st) {
+        var pa = document.createElementNS(NS, "polygon"); pa.setAttribute("points", shape); pa.setAttribute("fill", st[0]);
+        if (st[1]) pa.setAttribute("transform", st[1]); g.appendChild(pa);
+      });
+      gRC.appendChild(g); cracks.push(g);
+      children.forEach(function (f) { line.apply(null, f); });
+    };
+    born.forEach(function (x, i) { ang[i].forEach(function (a, j) { line(x + between(-30, 30), 1930, a, between(240, 480) * (j === 1 ? 1.15 : 1), between(22, 30), 0, j * .03); }); });
+  };
+
+  seed = 4242;
+  var CLOUD = 14, STONE_COUNT = 24, PQ = 6, i, el;
+  for (i = 0; i < CLOUD; i++) {
+    el = document.createElementNS(NS, "circle"); el.__u = (i / (CLOUD - 1)) * 2 - 1 + between(-.05, .05);
+    el.setAttribute("cy", "1960"); el.setAttribute("r", "40"); el.setAttribute("class", "stonetext-o");
+    el.setAttribute("fill", i % 3 ? "url(#stonetext-gp)" : "url(#stonetext-gp2)"); el.__rise = between(220, 480); el.__r = between(190, 320); el.__dx = el.__u * between(60, 160); gPO.appendChild(el);
+  }
+  var stone = function (sizeValue) {
+    var p = document.createElementNS(NS, "polygon"), pts = [], n = 6 + Math.floor(rnd() * 3), k;
+    for (k = 0; k < n; k++) { var a = k / n * Math.PI * 2, r = sizeValue * between(.6, 1); pts.push((Math.cos(a) * r).toFixed(1) + "," + (Math.sin(a) * r * .85).toFixed(1)); }
+    p.setAttribute("points", pts.join(" ")); var tone = Math.round(between(110, 190)); p.setAttribute("fill", "rgb(" + tone + "," + (tone - 6) + "," + (tone - 14) + ")");
+    var g = document.createElementNS(NS, "g"); g.setAttribute("class", "stonetext-o"); g.appendChild(p);
+    var shell = document.createElementNS(NS, "g"); shell.appendChild(g); shell.__in = g; return shell;
+  };
+  for (i = 0; i < STONE_COUNT; i++) { el = stone(between(9, 24)); el.__u = between(-1, 1); el.__vx = el.__u * between(250, 650); el.__vy = between(900, 1700); el.__rot = between(-540, 540); gPE.appendChild(el); }
+  for (i = 0; i < PQ; i++) { el = stone(between(6, 12)); el.__d = between(.12, .5); gPQ.appendChild(el); }
+  arrange();
+  if (document.fonts && document.fonts.status !== "loaded") document.fonts.ready.then(function () { arrange(); tl.invalidate(); });
+
+
+  var FQ = 1 / 30, enter = t0 + .05, exit = t0 + D - .28;
+
+  var qI = Math.round((t0 + Math.min(1.45, Math.max(.85, D * .48))) * 30), impact = qI * FQ - FQ / 4;
+  var fall = .24, release = impact - fall;
+
+  tl.fromTo("#stonetext-s", { opacity: 0 }, { opacity: 1, duration: .04, ease: "none" }, enter);
+  tl.fromTo(gQ, { opacity: 0, y: -150 }, { opacity: 1, y: 0, duration: .2, ease: "power3.in" }, enter);
+  tl.to(gQ, { y: -12, duration: .08, ease: "power2.out", immediateRender: false }, enter + .2);
+  tl.to(gQ, { y: 0, duration: .09, ease: "power2.in", immediateRender: false }, enter + .28);
+
+  var live = enter + .38, padding = release - .12 - live;
+  if (padding > .16) {
+    var go = Math.max(1, Math.round(padding / .2)), step = padding / go;
+    for (i = 0; i < go; i++) tl.to(gQ, { rotation: (i % 2 ? -1 : 1) * (1.1 + i * .5), y: 4 + i * 4, transformOrigin: "50% 50%", duration: step, ease: "sine.inOut", immediateRender: false }, live + i * step);
+  }
+  Array.prototype.forEach.call(gPQ.childNodes, function (cs, k) {
+    var p = cs.__in, q = live + cs.__d * Math.max(.15, padding);
+    tl.fromTo(p, { opacity: 0, y: 0 }, { opacity: 1, y: 0, duration: .03, ease: "none" }, q);
+    tl.to(p, { y: 340, rotation: 200 * (k % 2 ? 1 : -1), duration: .45, ease: "power1.in", immediateRender: false }, q + .03);
+    tl.to(p, { opacity: 0, duration: .12, immediateRender: false }, q + .36);
+  });
+
+  tl.to(gQ, { y: function () { return 1935 - B.bot; }, rotation: -3, transformOrigin: "50% 50%", duration: fall, ease: "power3.in", immediateRender: false }, release);
+  tl.to("#stonetext-mbb", { attr: { stdDeviation: "0 26" }, duration: fall, ease: "power3.in", immediateRender: false }, release);
+  tl.to(gQ, { y: function () { return 1935 - B.top + 120; }, duration: .1, ease: "none", immediateRender: false }, impact);
+  tl.set(gQ, { opacity: 0 }, impact + .1);
+
+  tl.fromTo("#stonetext-fl", { opacity: 0 }, { opacity: .42, duration: FQ / 4, ease: "none" }, impact);
+  tl.to("#stonetext-fl", { opacity: 0, duration: .2, ease: "power2.out", immediateRender: false }, impact + FQ);
+  tl.fromTo("#stonetext-dent", { opacity: 0 }, { opacity: 1, duration: .1, ease: "power2.out" }, impact);
+
+  tl.fromTo("#stonetext-mkc", { attr: { r: 0 } }, { attr: { r: 1100 }, duration: .3, ease: "power2.out" }, impact + .02);
+
+  Array.prototype.forEach.call(gPO.childNodes, function (c, k) {
+    var q = impact + (k % 4) * .02;
+    tl.fromTo(c, { opacity: 0, attr: { r: 40 }, y: 0, x: 0 }, { opacity: .95, attr: { r: c.__r * .6 }, y: -c.__rise * .6, x: c.__dx * .6, duration: .22, ease: "power2.out" }, q);
+    tl.to(c, { attr: { r: c.__r }, y: -c.__rise, x: c.__dx, opacity: 0, duration: 1.25, ease: "power1.out", immediateRender: false }, q + .22);
+  });
+  var G = 3600;
+  Array.prototype.forEach.call(gPE.childNodes, function (cs, k) {
+    var p = cs.__in; p.__vx = cs.__vx; p.__vy = cs.__vy; p.__rot = cs.__rot; var rise = p.__vy / G, high = p.__vy * p.__vy / (2 * G), q = impact + (k % 5) * .012, descend = Math.sqrt(2 * (high + 40) / G);
+    tl.fromTo(p, { opacity: 0, x: 0, y: 0, rotation: 0 }, { opacity: 1, duration: .02, ease: "none" }, q);
+    tl.to(p, { x: p.__vx * (rise + descend), rotation: p.__rot, duration: rise + descend, ease: "none", immediateRender: false }, q);
+    tl.to(p, { y: -high, duration: rise, ease: "power1.out", immediateRender: false }, q);
+    tl.to(p, { y: 40, duration: descend, ease: "power1.in", immediateRender: false }, q + rise);
+  });
+
+  var TX = [1.00, -0.88, 0.64, -0.92, 0.48, 0.80, -0.70, 0.55, -0.96, 0.60, -0.45, -0.85, 0.74, -0.52, 0.90, 0.46, -0.78, 0.66];
+  var TY = [0.95, -0.82, 0.50, 0.76, -0.90, 0.58, -0.47, 0.88, -0.66, -0.52, 0.80, -0.94, 0.62, -0.74, 0.70, 0.54, -0.86, 0.60];
+  var COPIES = [-.18, -.06, .06, .18], DQ = 16, PEAK_TIME = 34, ax = 0, ay = 0, k, c;
+  tl.fromTo("#stonetext-tr", { opacity: 0 }, { opacity: 1, duration: FQ / 8, ease: "none" }, impact);
+  for (k = 0; k <= DQ; k++) {
+    var tq = impact + k * FQ, am = k < DQ ? Math.pow(1 - k / DQ, 1.7) : 0, dx = Math.round(TX[k] * am * PEAK_TIME * .7), dy = Math.round(TY[k] * am * PEAK_TIME), vx = dx - ax, vy = dy - ay;
+    for (c = 0; c < 4; c++) tl.set("#stonetext-o" + (c + 1), { attr: { dx: Math.round(dx + vx * COPIES[c]), dy: Math.round(dy + vy * COPIES[c]) } }, tq);
+    tl.set("#stonetext-b", { attr: { stdDeviation: Math.min(3, Math.abs(vx) * .05).toFixed(1) + " " + Math.min(3, Math.abs(vy) * .05).toFixed(1) } }, tq);
+    tl.set("#stonetext-cam", { x: dx, y: dy }, tq);
+    ax = dx; ay = dy;
+  }
+  tl.to("#stonetext-tr", { opacity: 0, duration: FQ / 8, ease: "none", immediateRender: false }, impact + (DQ + 1) * FQ);
+
+  tl.to("#stonetext-s", { opacity: 0, duration: .26, ease: "power2.in", immediateRender: false }, Math.max(exit, impact + .5));
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["stone-text"] = tl;
+})();
+</script>
+</template>
+</body></html>

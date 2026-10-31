@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>Terminal</title></head>
+<body>
+
+<template id="terminal-template">
+<style>
+@font-face{font-family:Montserrat;src:url("assets/fonts/Montserrat.ttf") format("truetype");font-weight:100 900;font-display:block}
+#root{position:absolute;inset:0;overflow:hidden;font-family:Montserrat}
+#terminal-background{position:absolute;inset:0;opacity:0}
+#terminal-layout{position:absolute;opacity:0}
+#terminal-label{position:absolute;left:0;right:0;top:0;display:flex;align-items:center;justify-content:center;font-weight:800;letter-spacing:.14em;white-space:nowrap;opacity:0}
+#terminal-label-pill{display:flex;align-items:center;justify-content:center}
+#terminal-label-point{display:block;border-radius:50%}
+#terminal-card{position:absolute;opacity:0}
+#terminal-border,#terminal-body{position:absolute}
+#terminal-content{position:absolute;inset:0}
+#terminal-icon{position:absolute;display:flex;align-items:center;justify-content:center;border-radius:50%;font-weight:900;white-space:nowrap}
+#terminal-text{position:absolute;display:flex;flex-wrap:wrap;align-content:flex-start;font-weight:800}
+.terminal-word{display:inline-block;white-space:nowrap}
+.terminal-letter{opacity:0}
+#terminal-cursor{position:absolute;left:0;top:0;opacity:0}
+#terminal-send{position:absolute;border-radius:50%}
+#terminal-send svg{position:absolute;left:27%;top:27%;width:46%;height:46%;fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+#terminal-send-color{position:absolute;inset:0;border-radius:50%;opacity:0}
+.terminal-ring{position:absolute;box-sizing:border-box;border-radius:50%;opacity:0}
+#terminal-badge{position:absolute;overflow:hidden;opacity:0}
+#terminal-badge-color{position:absolute;inset:0;opacity:0}
+#terminal-badge-ck{position:absolute;border-radius:50%;opacity:0}
+#terminal-badge-ck svg{position:absolute;left:22%;top:22%;width:56%;height:56%;fill:none;stroke:currentColor;stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+#terminal-badge-txt{position:absolute;white-space:nowrap;font-weight:900;opacity:0}
+</style>
+<div id="root" data-composition-id="terminal" data-width="1080" data-height="1920" data-duration="7">
+  <div id="terminal-background"></div>
+  <div id="terminal-layout">
+    <div id="terminal-label"><div id="terminal-label-pill"><i id="terminal-label-point"></i><span id="terminal-label-txt">REQUEST</span></div></div>
+    <div id="terminal-card">
+      <div id="terminal-border"></div>
+      <div id="terminal-body"></div>
+      <div id="terminal-content">
+        <div id="terminal-icon">AI</div>
+        <div id="terminal-text"></div>
+        <div id="terminal-cursor"></div>
+        <div id="terminal-send"><svg viewBox="0 0 44 44"><path d="M22 35V11M11 22L22 11L33 22"/></svg><div id="terminal-send-color"><svg viewBox="0 0 44 44"><path d="M22 35V11M11 22L22 11L33 22"/></svg></div></div>
+      </div>
+    </div>
+    <div id="terminal-badge"><div id="terminal-badge-color"></div><div id="terminal-badge-ck"><svg viewBox="0 0 44 44"><path d="M11 23L19 31L33 14"/></svg></div><span id="terminal-badge-txt">ready in minutes</span></div>
+  </div>
+</div>
+<script>
+(function () {
+  const ID = "terminal";
+  const PARAM = {
+    text: "edit this video for me",
+    start: { word: "edit", standard: 0.9 },
+    end: null,
+    submit: { word: "ready", standard: 3.8 },
+    badge: "ready in minutes",
+    topLabel: "requested",
+    icon: "AI",
+    enter: 0,
+    pause: 0.6,
+    captions: true,
+    background: "auto",
+    area: null,
+    entry: 0.2,
+    exit: 0.25,
+  };
+  const C = Object.assign({ words: [], duration: 7, width: 1080, height: 1920, safeArea: [140, 230, 940, 1530], face: null, frame: null,
+    colors: { paper: "#fffdfd", line: "#e6ddf8", base: "#c7b7ef", accent: "#665080", ink: "#352c40", green: "#2e9e5b", red: "#e5484d" } },
+    (window.__scenes || {})[ID] || {});
+  const DUR = C.duration, U = Math.min(C.width, C.height) / 1080;
+  const root = document.getElementById("terminal-background").parentElement;
+  if (root.offsetWidth && (Math.abs(root.offsetWidth - C.width) > 2 || Math.abs(root.offsetHeight - C.height) > 2))
+    console.error(`[${ID}] scene root is ${root.offsetWidth} x ${root.offsetHeight}, video is ${C.width} x ${C.height}: update root data-width and data-height`);
+  const SAFE_AREA = C.safeArea, FACE = C.face, ABOVE_FACE = PARAM.area === "aboveFace" && !C.frame;
+  if (PARAM.area === "aboveFace") {
+    if (!ABOVE_FACE) PARAM.area = null;
+    else {
+      const ya = SAFE_AREA[1] + 20, yb = FACE ? FACE.top + 40 : Math.round(SAFE_AREA[1] + (SAFE_AREA[3] - SAFE_AREA[1]) * 0.25);
+      if (yb - ya < 200) console.warn(`[${ID}] only ${Math.max(0, Math.round(yb - ya))} px above the face; the card needs about 200. Prefer fullscreen with background or a framed layout. The card uses the available upper safe area (minimum 160 px)`);
+      PARAM.area = [SAFE_AREA[0], ya, SAFE_AREA[2], Math.max(yb, ya + 160)];
+      if (PARAM.background === "auto") PARAM.background = null;
+    }
+  }
+  const warnFace = (x0, y0, x1, y1) => { if (!background && !ABOVE_FACE && FACE && x0 < FACE.x1 + 20 && x1 > FACE.x0 - 20 && y0 < FACE.y1 + 20 && y1 > Math.min(FACE.y0, FACE.top ?? FACE.y0) - 20)
+    console.warn(`[${ID}] card overlaps the face: use area: "aboveFace" or move the area`); };
+  const without = (s) => String(s).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]/g, "");
+  const word = (txt, after, standard) => { const a = without(txt), p = a && (C.words || []).find((w) => w.t >= after - 1e-3 && without(w.text).startsWith(a)); return p ? p.t : standard; };
+  const moment = (m, standard) => (typeof m === "number" ? m : typeof m === "string" ? word(m, 0, standard)
+    : m && typeof m === "object" ? word(m.word || "", m.after == null ? 0 : moment(m.after, 0), m.standard == null ? standard : m.standard) : standard);
+  let lastEnd = C.frame ? Math.max(0, C.frame.closedAt || 0) : 0, nextAvailable = lastEnd + PARAM.entry;
+  function schedule(desired, dur, adjacent) {
+    const t = Math.max(desired, adjacent ? lastEnd : nextAvailable);
+    if (t - desired > 0.4) console.warn(`[${ID}] action starts ${(t - desired).toFixed(2)} s after its word: space anchors farther apart or reduce pause`);
+    lastEnd = t + dur; nextAvailable = lastEnd + PARAM.pause; return t;
+  }
+  const color = (n) => C.colors[n] || n;
+  const rgb = (h) => { h = String(h).replace("#", ""); if (h.length === 3) h = h.replace(/./g, "$&$&"); return [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16)); };
+  const mix = (a, b, k) => "#" + rgb(a).map((v, i) => Math.round(v + (rgb(b)[i] - v) * k).toString(16).padStart(2, "0")).join("");
+  const weight = (ch) => { const b = ch.normalize("NFD")[0]; return b === " " ? 0.28 : "MW".includes(b) ? 1 : "mw".includes(b) ? 0.92 : "iljI.,:;'!|".includes(b) ? 0.32 : /[A-Z]/.test(b) ? 0.76 : /[0-9]/.test(b) ? 0.68 : 0.62; };
+  const width = (t, px) => [...String(t)].reduce((s, ch) => s + weight(ch), 0) * px * 1.1;
+  const lines = (t, px, w) => String(t).split(/\s+/).filter(Boolean).reduce((ls, p) => { const u = ls[ls.length - 1]; if (u !== undefined && width(u + " " + p, px) <= w) ls[ls.length - 1] = u + " " + p; else ls.push(p); return ls; }, []);
+  const fits = (t, w, h, larger, smaller, max) => { for (let px = Math.round(larger); px > smaller; px--) { const ls = lines(t, px, w); if (ls.length <= max && ls.every((l) => width(l, px) <= w) && ls.length * px * 1.16 <= h) return px; } return Math.round(smaller); };
+  const A = PARAM.area ? PARAM.area.slice() : C.frame && C.frame.freeArea ? C.frame.freeArea.slice()
+    : [C.safeArea[0], C.safeArea[1], C.safeArea[2], PARAM.captions ? Math.round(C.safeArea[1] + (C.safeArea[3] - C.safeArea[1]) * 0.7) : C.safeArea[3]];
+  const AW = A[2] - A[0], AH = A[3] - A[1];
+  const background = PARAM.background === "auto" ? (C.frame ? null : "paper") : PARAM.background;
+  function paintBackground(el) {
+    if (background === "paper" && C.backgroundCss) el.style.cssText += ";" + C.backgroundCss;
+    else if (background === "paper") { const g = Math.round(60 * U); Object.assign(el.style, { backgroundColor: C.colors.paper, backgroundSize: `${g}px ${g}px`, backgroundImage: `linear-gradient(${C.colors.line} 2px,transparent 2px),linear-gradient(90deg,${C.colors.line} 2px,transparent 2px)` }); }
+    else if (background) el.style.backgroundColor = background;
+  }
+  const createElement = (tag, id, cls, parent, style, text) => { const e = document.createElement(tag); if (id) e.id = id; if (cls) e.className = cls; if (style) Object.assign(e.style, style); if (text != null) e.textContent = text; parent.appendChild(e); return e; };
+  const px = (v) => `${v}px`;
+  const light = (h) => { const [r, g, b] = rgb(h); return 0.299 * r + 0.587 * g + 0.114 * b > 150; };
+  const dark = light(C.colors.ink) ? C.colors.paper : C.colors.ink;
+  const over = (background) => (light(background) ? dark : "#ffffff");
+  const $ = (id) => document.getElementById(id);
+  paintBackground($("terminal-background"));
+  const T = String(PARAM.text || "").normalize("NFC").split(/\s+/).filter(Boolean);
+  if (!T.length) { console.error(`[${ID}] text is empty: enter the request`); T.push("?"); }
+  const lower = AH / AW < 0.45, barWidth = (u) => Math.min(AW - 40 * u, lower ? Math.max(880 * u, 4.6 * AH) : 880 * u);
+  const heightOf = (k) => { const u = U * k, P = 28 * u, bt = 84 * u, tw = barWidth(u) - P - (PARAM.icon != null ? bt + 22 * u : 0) - P - bt - 22 * u;
+    const fs = fits(PARAM.text, tw, AH, 58 * u, 28 * u, 4), lh = Math.round(fs * 1.25);
+    return (PARAM.topLabel ? 61 * u : 0) + 2 * (P + Math.max(0, (bt - lh) / 2)) + lines(PARAM.text, fs, tw).length * lh + 12 * u + (PARAM.badge ? 118 * u : 0); };
+  let k = Math.min(1.35, AW / (800 * U));
+  while (k > 0.3 && heightOf(k) > AH) k -= 0.02;
+  const u = U * k;
+  const W = barWidth(u), P = 28 * u, bt = 84 * u, bw = Math.max(3, 4 * u), S = 12 * u, R = 46 * u;
+  const hasIcon = PARAM.icon != null, xt = P + (hasIcon ? bt + 22 * u : 0), tw = W - xt - P - bt - 22 * u;
+  const fs = fits(PARAM.text, tw, AH, 58 * u, 28 * u, 4), lh = Math.round(fs * 1.25);
+  const pv = P + Math.max(0, (bt - lh) / 2), yc = pv + lh / 2;
+  const tx = $("terminal-text"), letters = [], wordStarts = [];
+  Object.assign(tx.style, { left: px(xt), top: px(pv), width: px(tw), fontSize: px(fs), lineHeight: px(lh), color: C.colors.ink });
+  T.forEach((w, k) => {
+    const pe = createElement("span", `terminal-word-${k}`, "terminal-word", tx, { marginRight: px(0.27 * fs) });
+    wordStarts.push(letters.length);
+    [...w].forEach((ch) => letters.push(createElement("span", `terminal-letter-${letters.length}`, "terminal-letter", pe, null, ch)));
+  });
+  const ic = $("terminal-icon");
+  if (!hasIcon) ic.style.display = "none";
+  else { ic.textContent = PARAM.icon; Object.assign(ic.style, { left: px(P), top: px(yc - bt / 2), width: px(bt), height: px(bt), fontSize: px(bt * 0.42), background: C.colors.base, color: over(C.colors.base) }); }
+  const bx = W - P - bt, by = yc - bt / 2;
+  Object.assign($("terminal-send").style, { left: px(bx), top: px(by), width: px(bt), height: px(bt), background: mix(C.colors.line, C.colors.paper, 0.35), color: mix(C.colors.ink, C.colors.paper, 0.62) });
+  Object.assign($("terminal-send-color").style, { background: C.colors.accent, color: over(C.colors.accent) });
+  const rings = [0, 1, 2].map((i) => { const r = bt / 2 + (8 + 11 * i) * u;
+    return createElement("div", `terminal-ring-${i}`, "terminal-ring", $("terminal-content"), { left: px(bx + bt / 2 - r), top: px(by + bt / 2 - r), width: px(2 * r), height: px(2 * r), border: `${bw}px solid ${C.colors.accent}` }); });
+  const cw = Math.max(3, 4 * u), chh = fs * 1.05, cur = $("terminal-cursor");
+  Object.assign(cur.style, { left: px(-cw / 2), width: px(cw), height: px(chh), borderRadius: px(cw / 2), background: C.colors.accent });
+  const fsR = 26 * u, hR = PARAM.topLabel ? fsR * 1.5 : 0, gR = PARAM.topLabel ? 22 * u : 0, hSel = PARAM.badge ? 84 * u : 0, gSel = PARAM.badge ? 34 * u : 0;
+  const rot = $("terminal-label"), sel = $("terminal-badge");
+  if (!PARAM.topLabel) rot.style.display = "none";
+  else { $("terminal-label-txt").textContent = String(PARAM.topLabel).toUpperCase(); Object.assign(rot.style, { height: px(hR), fontSize: px(fsR), color: C.colors.accent });
+    Object.assign($("terminal-label-point").style, { width: px(fsR * 0.5), height: px(fsR * 0.5), marginRight: px(fsR * 0.6), background: C.colors.base });
+    if (!background && !C.frame) Object.assign($("terminal-label-pill").style, { height: px(hR), padding: `0 ${22 * u}px`, boxSizing: "border-box", borderRadius: px(hR / 2), background: C.colors.paper, border: `${bw}px solid ${C.colors.base}` }); }
+  const selectedColor = mix(color("green"), C.colors.ink, 0.18), fsS = 40 * u, ckS = 52 * u;
+  if (!PARAM.badge) sel.style.display = "none";
+  else { $("terminal-badge-txt").textContent = PARAM.badge; Object.assign($("terminal-badge-txt").style, { fontSize: px(fsS), lineHeight: px(hSel), color: over(selectedColor) });
+    $("terminal-badge-color").style.background = selectedColor; Object.assign($("terminal-badge-ck").style, { left: px(15 * u), top: px((hSel - ckS) / 2), width: px(ckS), height: px(ckS), background: over(selectedColor), color: selectedColor }); }
+  const P0 = C.words || [], L0 = T.map((w) => [...w].length), nL = letters.length;
+  const submitTime = PARAM.submit == null ? null : moment(PARAM.submit, 3.8);
+  const index = (m, start) => { const a = without(typeof m === "string" ? m : (m && m.word) || ""), afterTime = m && typeof m === "object" && m.after != null ? moment(m.after, 0) : 0;
+    return a ? P0.findIndex((w, i) => i >= start && w.t >= afterTime - 1e-3 && without(w.text).startsWith(a)) : -1; };
+  let spoken = [];
+  const i0 = PARAM.start == null ? -1 : index(PARAM.start, 0);
+  if (i0 >= 0) {
+    let i1 = PARAM.end == null ? -1 : index(PARAM.end, i0);
+    if (i1 < 0) { i1 = i0; while (i1 + 1 < P0.length && i1 - i0 + 1 < T.length && (submitTime == null || P0[i1 + 1].t < submitTime - 0.2)) i1++; }
+    spoken = P0.slice(i0, i1 + 1).map((w) => ({ t: w.t, end: Math.max(w.end == null ? w.t + 0.3 : w.end, w.t + 0.12) }));
+  }
+  const iv = [];
+  if (spoken.length) {
+    const m = spoken.length, target = T.map((_, k) => (T.length === 1 ? 0 : Math.round(k * (m - 1) / (T.length - 1))));
+    target.forEach((j, k) => { const s = spoken[j], g = target.filter((v) => v === j).length, r = target.slice(0, k).filter((v) => v === j).length;
+      iv.push([s.t + (s.end - s.t) * r / g, s.t + (s.end - s.t) * (r + 1) / g]); });
+  } else {
+    const a0 = moment(PARAM.start, 0.9), a1 = moment(PARAM.end, submitTime == null ? a0 + Math.max(0.8, nL * 0.07) : Math.max(a0 + 0.8, submitTime - 1.0));
+    const tot = L0.reduce((s, v) => s + v + 0.7, 0); let acc = 0;
+    L0.forEach((v) => { iv.push([a0 + (a1 - a0) * acc / tot, a0 + (a1 - a0) * (acc + v) / tot]); acc += v + 0.7; });
+  }
+  const letterTime = [];
+  T.forEach((_, k) => { for (let c = 0; c < L0[k]; c++) letterTime.push(iv[k][0] + (iv[k][1] - iv[k][0]) * c / L0[k]); });
+  const build = () => {
+    const r0 = tx.getBoundingClientRect(), scale = tx.offsetWidth && r0.width ? r0.width / tx.offsetWidth : 1;
+    const letterBounds = letters.map((el) => { const r = el.getBoundingClientRect();
+      return { x0: (r.left - r0.left) / scale, x1: (r.right - r0.left) / scale, ln: Math.max(0, Math.floor(((r.top + r.bottom) / 2 - r0.top) / scale / lh)) }; });
+    const N = Math.max(...letterBounds.map((m) => m.ln)) + 1, H = 2 * pv + N * lh, hiddenHeight = (n) => H - (2 * pv + n * lh);
+    const cy0 = hR + gR, Hb = cy0 + H + S + gSel + hSel, Xb = A[0] + (AW - W) / 2, Yb = A[1] + (AH - Hb) / 2;
+    Object.assign($("terminal-layout").style, { left: px(Xb), top: px(Yb), width: px(W), height: px(Hb) });
+    Object.assign($("terminal-card").style, { left: 0, top: px(cy0), width: px(W), height: px(H + S) });
+    Object.assign($("terminal-border").style, { left: 0, top: 0, width: px(W), height: px(H + S), borderRadius: px(R), background: C.colors.base });
+    Object.assign($("terminal-body").style, { left: px(bw), top: px(bw), width: px(W - 2 * bw), height: px(H - 2 * bw), borderRadius: px(R - bw), background: C.colors.paper });
+    if (PARAM.badge) { const ws = 15 * u + ckS + 16 * u + $("terminal-badge-txt").offsetWidth + 30 * u;
+      Object.assign(sel.style, { left: px((W - ws) / 2), top: px(cy0 + H + S + gSel), width: px(ws), height: px(hSel), borderRadius: px(hSel / 2) });
+      Object.assign($("terminal-badge-txt").style, { left: px(15 * u + ckS + 16 * u), top: 0 }); }
+    warnFace(Xb, Yb, Xb + W, Yb + Hb);
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#terminal-background", { opacity: 0 }, { opacity: 1, duration: Math.max(0.01, PARAM.entry), ease: "power1.out" }, 0);
+    tl.fromTo("#terminal-layout", { opacity: 0 }, { opacity: 1, duration: 0.01 }, 0);
+    const tE = schedule(moment(PARAM.enter, 0), 0.45);
+    tl.fromTo("#terminal-card", { opacity: 0, y: 60 * u }, { opacity: 1, y: 0, duration: 0.45, ease: "back.out(1.5)" }, tE);
+    if (PARAM.topLabel) tl.fromTo(rot, { opacity: 0, y: 14 * u }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, tE + 0.15);
+    const q = letterTime[0], d = schedule(q, letterTime[nL - 1] - q + 0.08) - q, ts = letterTime.map((t) => t + d), tU = ts[nL - 1];
+    const cursorPosition = (i, after) => ({ x: xt + (after ? letterBounds[i].x1 + 3 * u : letterBounds[i].x0 - 3 * u), y: pv + letterBounds[i].ln * lh + (lh - chh) / 2 });
+    const blink = (start, end) => { for (let t = start; t < end - 0.1; t += 0.9) { tl.set(cur, { opacity: 1 }, t); tl.set(cur, { opacity: 0 }, Math.min(end - 0.05, t + 0.45)); } };
+    tl.set(cur, cursorPosition(0, false), 0);
+    blink(tE + 0.3, ts[0] - 0.05);
+    letters.forEach((el, i) => {
+      tl.fromTo(el, { opacity: 0 }, { opacity: 1, duration: 0.06, ease: "none" }, ts[i]);
+      tl.set(cur, { ...cursorPosition(i, true), opacity: 1 }, ts[i]);
+      const k = wordStarts.indexOf(i + 1);
+      if (k > 0) tl.set(cur, cursorPosition(i + 1, false), Math.min(ts[i + 1] - 0.005, Math.max(ts[i] + 0.02, ts[i + 1] - 0.07)));
+    });
+    tl.fromTo("#terminal-send-color", { opacity: 0 }, { opacity: 1, duration: 0.15, ease: "power1.out" }, ts[0]);
+    const clipInset = (n, r) => `inset(0px 0px ${hiddenHeight(n)}px 0px round ${r}px)`;
+    let freeGrowth = 0;
+    for (let n = 1; n < N; n++) {
+      const tg = Math.max(tE + 0.2, ts[letterBounds.findIndex((m) => m.ln >= n)] - 0.26, freeGrowth);
+      [["#terminal-border", R], ["#terminal-body", R - bw]].forEach(([id, r]) => tl.fromTo(id, { clipPath: clipInset(n, r) }, { clipPath: clipInset(n + 1, r), duration: 0.24, ease: "power2.out", immediateRender: n === 1 }, tg));
+      freeGrowth = tg + 0.24;
+    }
+    const tq = submitTime == null ? tU + 0.9 : submitTime, tp = schedule(Math.max(tq - 0.6, tU + 0.25), 0.55, true);
+    blink(tU + 0.15, tp);
+    tl.set(cur, { opacity: 0 }, tp + 0.05);
+    tl.fromTo("#terminal-send", { y: 0 }, { y: 4 * u, duration: 0.09, ease: "power1.out", yoyo: true, repeat: 1 }, tp);
+    rings.forEach((a, i) => {
+      tl.fromTo(a, { opacity: 0 }, { opacity: 0.9, duration: 0.1, ease: "power1.out" }, tp + 0.1 * i);
+      tl.fromTo(a, { opacity: 0.9 }, { opacity: 0, duration: 0.22, ease: "power1.in", immediateRender: false }, tp + 0.1 * i + 0.1);
+    });
+    if (PARAM.badge) {
+      const t = schedule(tq - 0.1, 0.7, true);
+      tl.fromTo(sel, { opacity: 0, y: 26 * u }, { opacity: 1, y: 0, duration: 0.4, ease: "back.out(1.7)" }, t);
+      tl.fromTo("#terminal-badge-color", { opacity: 1, clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.3, ease: "power2.inOut" }, t + 0.05);
+      tl.fromTo("#terminal-badge-ck", { opacity: 0 }, { opacity: 1, duration: 0.15, ease: "power1.out" }, t + 0.2);
+      tl.fromTo("#terminal-badge-ck svg", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.22, ease: "power2.out" }, t + 0.28);
+      tl.fromTo("#terminal-badge-txt", { opacity: 0, x: -12 * u }, { opacity: 1, x: 0, duration: 0.25, ease: "power2.out" }, t + 0.22);
+    }
+    if (DUR - PARAM.exit - lastEnd < 0.6) console.warn(`[${ID}] last action leaves ${(DUR - PARAM.exit - lastEnd).toFixed(2)} s before the scene ends: hold the result for at least 0.6 s by extending end`);
+    if (PARAM.exit > 0) tl.fromTo(["#terminal-background", "#terminal-layout"], { opacity: 1 }, { opacity: 0, duration: PARAM.exit, ease: "power1.in", immediateRender: false }, Math.max(0, DUR - PARAM.exit));
+    window.__timelines["terminal"] = tl;
+  };
+  (document.fonts && document.fonts.load ? Promise.all([document.fonts.load(`800 ${Math.round(fs)}px Montserrat`), document.fonts.load(`900 ${Math.round(fsS)}px Montserrat`)]) : Promise.resolve()).then(build, build);
+})();
+</script>
+</template>
+</body></html>

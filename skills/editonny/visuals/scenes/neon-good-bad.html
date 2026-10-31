@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Neon good bad</title></head>
+<body>
+<!-- Neon good bad. To challenge apparently good advice: a green card is struck by a light streak, breaks apart, turns red, and reveals a verdict. -->
+
+<template id="neon-good-bad-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+@font-face{font-family:"SoraV";src:url("assets/visuals/fonts/Sora.ttf");font-weight:100 800;font-display:block}
+#neongoodbad-w{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;overflow:hidden;background:#000;font-family:"Inter",sans-serif;color:#fff}
+#neongoodbad-lz{position:absolute;left:-200px;top:-200px;width:1480px;height:2320px}
+#neongoodbad-lf{position:absolute;inset:0}
+.neongoodbad-l{position:absolute;inset:0;opacity:0;mix-blend-mode:screen}
+#neongoodbad-lcg{background:radial-gradient(ellipse 900px 840px at 1150px 200px,rgba(46,255,62,.82),rgba(0,0,0,0) 70%),radial-gradient(ellipse 820px 700px at 286px 2120px,rgba(46,255,62,.5),rgba(0,0,0,0) 70%)}
+#neongoodbad-lca{background:radial-gradient(ellipse 900px 840px at 1150px 200px,rgba(255,122,26,.82),rgba(0,0,0,0) 70%),radial-gradient(ellipse 820px 700px at 286px 2120px,rgba(255,122,26,.5),rgba(0,0,0,0) 70%)}
+#neongoodbad-lcr{background:radial-gradient(ellipse 900px 840px at 1150px 200px,rgba(255,24,40,.82),rgba(0,0,0,0) 70%),radial-gradient(ellipse 820px 700px at 286px 2120px,rgba(255,24,40,.5),rgba(0,0,0,0) 70%)}
+#neongoodbad-lfg{background:linear-gradient(180deg,rgba(40,240,54,.95) 0%,rgba(22,150,34,.6) 30%,rgba(0,0,0,0) 68%)}
+#neongoodbad-lfa{background:linear-gradient(180deg,rgba(255,122,26,.92) 0%,rgba(160,70,10,.6) 30%,rgba(0,0,0,0) 68%)}
+#neongoodbad-lfr{background:linear-gradient(180deg,rgba(225,10,26,.95) 0%,rgba(140,6,16,.6) 30%,rgba(0,0,0,0) 68%)}
+#neongoodbad-vin{position:absolute;inset:0;box-shadow:inset 0 0 200px 30px rgba(0,0,0,.35)}
+#neongoodbad-ct{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0}
+#neongoodbad-vd{position:absolute;left:140px;top:560px;width:800px;height:0;opacity:0;display:flex;align-items:center;justify-content:center;text-align:center;font-family:"SoraV","Inter",sans-serif;font-weight:800;line-height:1;letter-spacing:.01em;text-transform:uppercase;color:#ff3448;text-shadow:0 0 40px rgba(255,40,60,.8),0 0 12px rgba(255,90,100,.6)}
+#neongoodbad-cd{position:absolute;left:220px;top:790px;width:640px;height:380px;opacity:0}
+#neongoodbad-c3{position:absolute;inset:0;transform-style:preserve-3d}
+.neongoodbad-me{position:absolute;inset:0;filter:drop-shadow(0 16px 0 #1c8a22) drop-shadow(0 30px 40px rgba(0,0,0,.55))}
+.neongoodbad-mr{opacity:0;filter:drop-shadow(0 16px 0 #7d0b1a) drop-shadow(0 30px 40px rgba(0,0,0,.55))}
+.neongoodbad-fc{position:absolute;inset:0;overflow:hidden;border-radius:46px;background:linear-gradient(160deg,#9bff94 0%,#4be04a 52%,#2cbf30 100%);box-shadow:inset 0 3px 0 rgba(255,255,255,.75),inset 0 -10px 26px rgba(0,70,10,.3)}
+.neongoodbad-mr .neongoodbad-fc{background:linear-gradient(160deg,#ff9099 0%,#f2364a 52%,#c4142a 100%);box-shadow:inset 0 3px 0 rgba(255,255,255,.6),inset 0 -10px 26px rgba(90,0,10,.35)}
+.neongoodbad-fcc{clip-path:polygon(0 0,100% 0,100% 52%,88% 46%,80% 56%,70% 47%,60% 55%,48% 46%,38% 54%,26% 47%,14% 55%,0 48%)}
+.neongoodbad-fcb{clip-path:polygon(0 48%,14% 55%,26% 47%,38% 54%,48% 46%,60% 55%,70% 47%,80% 56%,88% 46%,100% 52%,100% 100%,0 100%)}
+.neongoodbad-ai{position:absolute;left:0;right:0;top:0;height:46%;display:flex;align-items:center;justify-content:center;padding-top:14px}
+.neongoodbad-ta{position:absolute;left:40px;right:40px;top:56%;bottom:18px;display:flex;align-items:center;justify-content:center}
+.neongoodbad-so{top:0;bottom:16px}
+.neongoodbad-ic{flex:0 0 auto;width:120px;height:84px;fill:none;stroke:#fff;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 3px 0 rgba(0,0,0,.14))}
+.neongoodbad-tt{max-width:560px;font-family:"SoraV","Inter",sans-serif;font-weight:800;letter-spacing:.02em;line-height:1.08;text-align:center;text-transform:uppercase;color:#fff;text-shadow:0 3px 0 rgba(0,0,0,.16)}
+.neongoodbad-sh{position:absolute;left:-260px;top:-40px;width:180px;height:460px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.5),rgba(255,255,255,0));opacity:0}
+#neongoodbad-bw{position:absolute;left:0;top:980px;width:1080px;height:0;transform:rotate(-10deg)}
+#neongoodbad-bl{position:absolute;left:0;top:-45px;width:420px;height:90px;opacity:0}
+#neongoodbad-bl i{position:absolute;right:0;top:5px;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#ffd7da 40%,#ff2a3c 100%);box-shadow:0 0 50px rgba(255,40,60,.95),0 0 16px #fff}
+#neongoodbad-bl u{position:absolute;left:0;right:60px;top:28px;height:34px;border-radius:17px;background:linear-gradient(90deg,rgba(255,40,60,0),rgba(255,110,120,.95));filter:blur(5px)}
+#neongoodbad-fl{position:absolute;inset:0;background:#fff;opacity:0}
+</style>
+<div id="root" data-composition-id="neon-good-bad" data-width="1080" data-height="1920" data-duration="4.0">
+<div id="neongoodbad-w"><div id="neongoodbad-lz"><div class="neongoodbad-l" id="neongoodbad-lcg"></div><div class="neongoodbad-l" id="neongoodbad-lca"></div><div class="neongoodbad-l" id="neongoodbad-lcr"></div></div><div id="neongoodbad-lf"><div class="neongoodbad-l" id="neongoodbad-lfg"></div><div class="neongoodbad-l" id="neongoodbad-lfa"></div><div class="neongoodbad-l" id="neongoodbad-lfr"></div></div><div id="neongoodbad-vin"></div><div id="neongoodbad-ct"><div id="neongoodbad-vd"></div><div id="neongoodbad-cd"><div id="neongoodbad-c3"><div class="neongoodbad-me" id="neongoodbad-m0"><div class="neongoodbad-fc"></div></div><div class="neongoodbad-me neongoodbad-mr" id="neongoodbad-mc"><div class="neongoodbad-fc neongoodbad-fcc"></div></div><div class="neongoodbad-me neongoodbad-mr" id="neongoodbad-mb"><div class="neongoodbad-fc neongoodbad-fcb"></div></div></div></div><div id="neongoodbad-bw"><div id="neongoodbad-bl"><u></u><i></i></div></div></div><div id="neongoodbad-fl"></div></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["neon-good-bad"] || { duration: 4.0 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 4.0, t0 = 0;
+
+  var P = {
+    phrase: "RECORD AND POST", // Green-card phrase representing the advice being challenged.
+    verdict: "BAD", // Large red verdict shown when the card breaks.
+    icon: "camera", // "camera", "play", "check", or "none" selects the icon above the phrase.
+  };
+
+
+  var $ = function (id) { return document.getElementById(id); };
+  var LZ = { g: [0, 0], a: [0, 0], r: [0, 0] };
+  function light(t, k, mode, d) { ["g", "a", "r"].forEach(function (c) { [0, 1].forEach(function (m) { var target = c === k ? (m === 0 ? 1 : (mode === "f" ? 1 : 0)) : 0; if (target === LZ[c][m]) return; tl.fromTo("#neongoodbad-l" + (m ? "f" : "c") + c, { opacity: LZ[c][m] }, { opacity: target, duration: d || .5, ease: "power2.inOut", immediateRender: false }, t); LZ[c][m] = target; }); }); }
+  function flash(t, f) { tl.fromTo("#neongoodbad-fl", { opacity: 0 }, { opacity: f || .3, duration: .04, ease: "none", immediateRender: false }, t); tl.to("#neongoodbad-fl", { opacity: 0, duration: .32, ease: "power2.out", immediateRender: false }, t + .05); }
+  var phrase = String(P.phrase || "RECORD AND POST").replace(/\s+/g, " ").trim() || "RECORD AND POST";
+  var verdict = String(P.verdict || "BAD").replace(/\s+/g, " ").trim() || "BAD";
+  var ico = String(P.icon || "camera").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+  var ICO = {
+    camera: '<svg class="neongoodbad-ic" viewBox="0 0 120 84"><rect x="6" y="8" width="72" height="68" rx="16"/><path d="M78 32 L112 14 V70 L78 52"/></svg>',
+    play: '<svg class="neongoodbad-ic" viewBox="0 0 120 84"><rect x="8" y="6" width="104" height="72" rx="20"/><path d="M50 26 L76 42 L50 58 Z" fill="#fff"/></svg>',
+    check: '<svg class="neongoodbad-ic" viewBox="0 0 120 84"><path d="M30 44 L52 64 L92 18"/></svg>'
+  };
+  var drawing = ICO[ico.indexOf("cam") === 0 ? "camera" : ico.indexOf("play") === 0 || ico.indexOf("vid") === 0 ? "play" : ico.indexOf("che") === 0 || ico.indexOf("cert") === 0 ? "check" : "none"] || "";
+
+  document.querySelectorAll("#neongoodbad-c3 .neongoodbad-fc").forEach(function (f, k) {
+    f.innerHTML = (drawing ? '<div class="neongoodbad-ai">' + drawing + '</div><div class="neongoodbad-ta">' : '<div class="neongoodbad-ta neongoodbad-so">') + '<div class="neongoodbad-tt"></div></div>' + (k === 0 ? '<i class="neongoodbad-sh" id="neongoodbad-sh"></i>' : "");
+    f.querySelector(".neongoodbad-tt").textContent = phrase;
+  });
+  $("neongoodbad-vd").textContent = verdict;
+
+  function measure(txt, widthValue, mx, mn, lines, lh, style) {
+    var m = document.createElement("div"), px = mx, ok = false;
+    m.style.cssText = "position:absolute;left:-99999px;top:0;visibility:hidden;white-space:normal;text-transform:uppercase;" + style + ";width:" + widthValue + "px;line-height:" + lh;
+    m.textContent = txt; document.body.appendChild(m);
+    for (; px >= mn; px -= 2) { m.style.fontSize = px + "px"; if (m.offsetHeight <= px * lh * lines + 4 && m.scrollWidth <= widthValue + 1) { ok = true; break; } }
+    document.body.removeChild(m); return ok ? px : 0;
+  }
+  var SORA = "font-family:SoraV,Inter,sans-serif;font-weight:800;letter-spacing:.02em";
+  function adjust() {
+    var px = measure(phrase, 540, 70, 48, 1, 1.08, SORA) || measure(phrase, 540, 60, 40, 2, 1.08, SORA) || measure(phrase, 540, drawing ? 44 : 52, 34, 3, 1.08, SORA) || measure(phrase, 540, 38, 34, 4, 1.08, SORA) || 34;
+    document.querySelectorAll("#neongoodbad-c3 .neongoodbad-tt").forEach(function (e) { e.style.fontSize = px + "px"; });
+    var pv = measure(verdict, 790, 180, 96, 1, 1, "font-family:SoraV,Inter,sans-serif;font-weight:800;letter-spacing:.01em") || measure(verdict, 790, 110, 64, 2, 1, "font-family:SoraV,Inter,sans-serif;font-weight:800;letter-spacing:.01em") || 64;
+    $("neongoodbad-vd").style.fontSize = pv + "px";
+  }
+  adjust();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { adjust(); tl.invalidate(); });
+
+
+  var enter = t0 + .05, exit = t0 + D - .32, u = exit - enter;
+  var tB = enter + Math.max(.7, Math.min(1.9, .4 * u));
+  tl.fromTo("#neongoodbad-w", { opacity: 0 }, { opacity: 1, duration: .16, ease: "power1.out" }, enter);
+  tl.fromTo("#neongoodbad-ct", { opacity: 0 }, { opacity: 1, duration: .01, ease: "none" }, enter);
+  light(enter, "g", "c", .5);
+  tl.fromTo("#neongoodbad-lz", { x: 180, y: -180 }, { x: 0, y: 0, duration: .8, ease: "power3.out" }, enter);
+  var vM = Math.max(1, Math.round((exit - enter - .8) / 1.5)), dM = (exit - enter - .8) / vM;
+  tl.fromTo("#neongoodbad-lz", { x: 0, y: 0 }, { x: -46, y: 34, duration: dM, ease: "sine.inOut", yoyo: true, repeat: vM - 1, immediateRender: false }, enter + .8);
+
+  tl.fromTo("#neongoodbad-cd", { opacity: 0, y: 240, filter: "blur(18px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: .55, ease: "back.out(1.4)" }, enter + .04);
+  tl.fromTo("#neongoodbad-c3", { rotationX: 30, rotationY: -36, rotationZ: -14, transformPerspective: 1500 }, { rotationX: 22, rotationY: 8, rotationZ: -10, transformPerspective: 1500, duration: tB - enter, ease: "sine.inOut" }, enter + .04);
+  tl.fromTo("#neongoodbad-sh", { opacity: 1, x: 0 }, { opacity: 1, x: 1080, duration: .6, ease: "power2.inOut" }, enter + .4);
+  var vF = Math.max(1, Math.round((tB - enter - .6) / .9)), dF = Math.max(.2, (tB - enter - .6) / vF);
+  if (tB - enter > .9) tl.fromTo("#neongoodbad-cd", { y: 0 }, { y: -16, duration: dF / 2, ease: "sine.inOut", yoyo: true, repeat: vF * 2 - 1, immediateRender: false }, enter + .6);
+
+  tl.fromTo("#neongoodbad-bl", { opacity: 1, x: -460 }, { opacity: 1, x: 1160, duration: .3, ease: "power1.in" }, tB - .2);
+  tl.to("#neongoodbad-bl", { opacity: 0, duration: .01, ease: "none", immediateRender: false }, tB + .11);
+  tl.to("#neongoodbad-m0", { opacity: 0, duration: .01, ease: "none", immediateRender: false }, tB - .02);
+  tl.fromTo(["#neongoodbad-mc", "#neongoodbad-mb"], { opacity: 0 }, { opacity: 1, duration: .01, ease: "none" }, tB - .02);
+  tl.fromTo("#neongoodbad-mc", { x: 0, y: 0, rotation: 0 }, { x: -34, y: -100, rotation: -12, duration: .5, ease: "power3.out" }, tB);
+  tl.fromTo("#neongoodbad-mb", { x: 0, y: 0, rotation: 0 }, { x: 38, y: 88, rotation: 9, duration: .5, ease: "power3.out" }, tB);
+  var rest = Math.max(.1, exit - tB - .5);
+  tl.to("#neongoodbad-mc", { x: -44, y: -124, rotation: -15, duration: rest, ease: "none", immediateRender: false }, tB + .5);
+  tl.to("#neongoodbad-mb", { x: 48, y: 108, rotation: 11, duration: rest, ease: "none", immediateRender: false }, tB + .5);
+  flash(tB, .36); light(tB, "r", "f", .2); light(tB + Math.min(.6, Math.max(.3, (exit - tB) * .3)), "r", "c", .45);
+  tl.fromTo("#neongoodbad-vd", { opacity: 0, y: -46, filter: "blur(22px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: .22, ease: "power4.out" }, tB);
+  tl.fromTo("#neongoodbad-ct", { x: 0 }, { x: 14, duration: .04, ease: "none", yoyo: true, repeat: 5, immediateRender: false }, tB + .04);
+  tl.to("#neongoodbad-vd", { y: -12, duration: Math.max(.1, exit - tB - .3), ease: "sine.inOut", immediateRender: false }, tB + .3);
+
+  tl.to("#neongoodbad-ct", { opacity: 0, y: -50, filter: "blur(16px)", duration: .28, ease: "power2.in", immediateRender: false }, exit);
+  tl.to("#neongoodbad-w", { opacity: 0, duration: .3, ease: "power2.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["neon-good-bad"] = tl;
+})();
+</script>
+</template>
+</body></html>

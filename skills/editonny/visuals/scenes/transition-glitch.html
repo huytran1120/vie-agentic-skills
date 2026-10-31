@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Transition glitch</title></head>
+<body>
+<!-- Transition glitch. For technology, errors, or sudden reversals: separated color channels, displaced strips, line tearing, and static peak at the cut. -->
+
+<template id="transition-glitch-template">
+<style>
+#root{position:absolute;inset:0;overflow:hidden}
+.transitionglitch-L{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0}
+#transitionglitch-t{backdrop-filter:url(#transitionglitch-frgb);-webkit-backdrop-filter:url(#transitionglitch-frgb)}
+#transitionglitch-b1{height:200px;backdrop-filter:url(#transitionglitch-fb1);-webkit-backdrop-filter:url(#transitionglitch-fb1)}
+#transitionglitch-b2{height:280px;backdrop-filter:url(#transitionglitch-fb2);-webkit-backdrop-filter:url(#transitionglitch-fb2)}
+#transitionglitch-b3{height:230px;backdrop-filter:url(#transitionglitch-fb3);-webkit-backdrop-filter:url(#transitionglitch-fb3)}
+#transitionglitch-b4{height:340px;backdrop-filter:url(#transitionglitch-fb4);-webkit-backdrop-filter:url(#transitionglitch-fb4)}
+#transitionglitch-b5{height:300px;backdrop-filter:url(#transitionglitch-fb5);-webkit-backdrop-filter:url(#transitionglitch-fb5)}
+#transitionglitch-b6{height:190px;backdrop-filter:url(#transitionglitch-fb6);-webkit-backdrop-filter:url(#transitionglitch-fb6)}
+#transitionglitch-b7{height:320px;backdrop-filter:url(#transitionglitch-fb7);-webkit-backdrop-filter:url(#transitionglitch-fb7)}
+#transitionglitch-b8{height:250px;backdrop-filter:url(#transitionglitch-fb8);-webkit-backdrop-filter:url(#transitionglitch-fb8)}
+#transitionglitch-s1{height:90px;backdrop-filter:url(#transitionglitch-fs1);-webkit-backdrop-filter:url(#transitionglitch-fs1)}
+#transitionglitch-s2{height:26px;backdrop-filter:url(#transitionglitch-fs2);-webkit-backdrop-filter:url(#transitionglitch-fs2)}
+#transitionglitch-s3{height:110px;backdrop-filter:url(#transitionglitch-fs3);-webkit-backdrop-filter:url(#transitionglitch-fs3)}
+#transitionglitch-s4{height:14px;backdrop-filter:url(#transitionglitch-fs4);-webkit-backdrop-filter:url(#transitionglitch-fs4)}
+#transitionglitch-s5{height:60px;backdrop-filter:url(#transitionglitch-fs5);-webkit-backdrop-filter:url(#transitionglitch-fs5)}
+#transitionglitch-s6{height:76px;backdrop-filter:url(#transitionglitch-fs6);-webkit-backdrop-filter:url(#transitionglitch-fs6)}
+#transitionglitch-s7{height:20px;backdrop-filter:url(#transitionglitch-fs7);-webkit-backdrop-filter:url(#transitionglitch-fs7)}
+#transitionglitch-s8{height:44px;backdrop-filter:url(#transitionglitch-fs8);-webkit-backdrop-filter:url(#transitionglitch-fs8)}
+#transitionglitch-s9{height:34px;backdrop-filter:url(#transitionglitch-fs9);-webkit-backdrop-filter:url(#transitionglitch-fs9)}
+#transitionglitch-s10{height:52px;backdrop-filter:url(#transitionglitch-fs10);-webkit-backdrop-filter:url(#transitionglitch-fs10)}
+#transitionglitch-s11{height:18px;backdrop-filter:url(#transitionglitch-fs11);-webkit-backdrop-filter:url(#transitionglitch-fs11)}
+#transitionglitch-s12{height:40px;backdrop-filter:url(#transitionglitch-fs12);-webkit-backdrop-filter:url(#transitionglitch-fs12)}
+#transitionglitch-d1{backdrop-filter:url(#transitionglitch-fd1);-webkit-backdrop-filter:url(#transitionglitch-fd1)}
+#transitionglitch-d2{backdrop-filter:url(#transitionglitch-fd2);-webkit-backdrop-filter:url(#transitionglitch-fd2)}
+#transitionglitch-g{backdrop-filter:url(#transitionglitch-fg);-webkit-backdrop-filter:url(#transitionglitch-fg)}
+#transitionglitch-m{width:432px;height:144px;backdrop-filter:url(#transitionglitch-fm);-webkit-backdrop-filter:url(#transitionglitch-fm)}
+#transitionglitch-n{height:44px;backdrop-filter:url(#transitionglitch-fn);-webkit-backdrop-filter:url(#transitionglitch-fn)}
+
+</style>
+<div id="root" data-composition-id="transition-glitch" data-width="1080" data-height="1920" data-duration="0.4">
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0">
+<filter id="transitionglitch-frgb" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feColorMatrix id="transitionglitch-sat" in="SourceGraphic" type="saturate" values="1" result="s"/><feColorMatrix in="s" type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="r"/><feOffset id="transitionglitch-cr" in="r" dx="0" dy="0" result="r2"/><feMerge result="r3"><feMergeNode in="r"/><feMergeNode in="r2"/></feMerge><feColorMatrix in="s" type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0" result="g"/><feColorMatrix in="s" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" result="b"/><feOffset id="transitionglitch-cb" in="b" dx="0" dy="0" result="b2"/><feMerge result="b3"><feMergeNode in="b"/><feMergeNode in="b2"/></feMerge><feBlend in="r3" in2="g" mode="screen" result="rg"/><feBlend in="rg" in2="b3" mode="screen"/></filter>
+<filter id="transitionglitch-fb1" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feOffset id="transitionglitch-b1a" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="200" result="a"/><feOffset id="transitionglitch-b1b" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="200" result="b"/><feMerge><feMergeNode in="a"/><feMergeNode in="b"/></feMerge></filter>
+<filter id="transitionglitch-fb2" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feOffset id="transitionglitch-b2a" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="280" result="a"/><feOffset id="transitionglitch-b2b" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="280" result="b"/><feMerge><feMergeNode in="a"/><feMergeNode in="b"/></feMerge></filter>
+<filter id="transitionglitch-fb3" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feOffset id="transitionglitch-b3a" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="230" result="a"/><feOffset id="transitionglitch-b3b" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="230" result="b"/><feMerge><feMergeNode in="a"/><feMergeNode in="b"/></feMerge></filter>
+<filter id="transitionglitch-fb4" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feOffset id="transitionglitch-b4a" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="340" result="a"/><feOffset id="transitionglitch-b4b" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="340" result="b"/><feMerge><feMergeNode in="a"/><feMergeNode in="b"/></feMerge></filter>
+<filter id="transitionglitch-fb5" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feOffset id="transitionglitch-b5a" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="300" result="a"/><feOffset id="transitionglitch-b5b" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="300" result="b"/><feMerge><feMergeNode in="a"/><feMergeNode in="b"/></feMerge></filter>
+<filter id="transitionglitch-fb6" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feOffset id="transitionglitch-b6a" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="190" result="a"/><feOffset id="transitionglitch-b6b" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="190" result="b"/><feMerge><feMergeNode in="a"/><feMergeNode in="b"/></feMerge></filter>
+<filter id="transitionglitch-fb7" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feOffset id="transitionglitch-b7a" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="320" result="a"/><feOffset id="transitionglitch-b7b" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="320" result="b"/><feMerge><feMergeNode in="a"/><feMergeNode in="b"/></feMerge></filter>
+<filter id="transitionglitch-fb8" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feOffset id="transitionglitch-b8a" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="250" result="a"/><feOffset id="transitionglitch-b8b" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="250" result="b"/><feMerge><feMergeNode in="a"/><feMergeNode in="b"/></feMerge></filter>
+<filter id="transitionglitch-fs1" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feOffset id="transitionglitch-s1a" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="90" result="a"/><feOffset id="transitionglitch-s1b" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="90" result="b"/><feMerge><feMergeNode in="a"/><feMergeNode in="b"/></feMerge></filter>
+<filter id="transitionglitch-fs2" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feOffset id="transitionglitch-s2a" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="26" result="a"/><feOffset id="transitionglitch-s2b" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="26" result="b"/><feMerge><feMergeNode in="a"/><feMergeNode in="b"/></feMerge></filter>
+<filter id="transitionglitch-fs3" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feOffset id="transitionglitch-s3a" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="110" result="a"/><feOffset id="transitionglitch-s3b" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="110" result="b"/><feMerge><feMergeNode in="a"/><feMergeNode in="b"/></feMerge></filter>
+<filter id="transitionglitch-fs4" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feOffset id="transitionglitch-s4a" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="14" result="a"/><feOffset id="transitionglitch-s4b" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="14" result="b"/><feMerge><feMergeNode in="a"/><feMergeNode in="b"/></feMerge></filter>
+<filter id="transitionglitch-fs5" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feOffset id="transitionglitch-s5a" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="60" result="a"/><feOffset id="transitionglitch-s5b" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="60" result="b"/><feMerge><feMergeNode in="a"/><feMergeNode in="b"/></feMerge></filter>
+<filter id="transitionglitch-fs6" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feOffset id="transitionglitch-s6a" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="76" result="a"/><feOffset id="transitionglitch-s6b" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="76" result="b"/><feMerge><feMergeNode in="a"/><feMergeNode in="b"/></feMerge></filter>
+<filter id="transitionglitch-fs7" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feOffset id="transitionglitch-s7a" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="20" result="a"/><feOffset id="transitionglitch-s7b" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="20" result="b"/><feMerge><feMergeNode in="a"/><feMergeNode in="b"/></feMerge></filter>
+<filter id="transitionglitch-fs8" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feOffset id="transitionglitch-s8a" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="44" result="a"/><feOffset id="transitionglitch-s8b" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="44" result="b"/><feMerge><feMergeNode in="a"/><feMergeNode in="b"/></feMerge></filter>
+<filter id="transitionglitch-fs9" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feOffset id="transitionglitch-s9a" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="34" result="a"/><feOffset id="transitionglitch-s9b" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="34" result="b"/><feMerge><feMergeNode in="a"/><feMergeNode in="b"/></feMerge></filter>
+<filter id="transitionglitch-fs10" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feOffset id="transitionglitch-s10a" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="52" result="a"/><feOffset id="transitionglitch-s10b" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="52" result="b"/><feMerge><feMergeNode in="a"/><feMergeNode in="b"/></feMerge></filter>
+<filter id="transitionglitch-fs11" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feOffset id="transitionglitch-s11a" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="18" result="a"/><feOffset id="transitionglitch-s11b" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="18" result="b"/><feMerge><feMergeNode in="a"/><feMergeNode in="b"/></feMerge></filter>
+<filter id="transitionglitch-fs12" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feOffset id="transitionglitch-s12a" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="40" result="a"/><feOffset id="transitionglitch-s12b" in="SourceGraphic" dx="0" dy="0" x="0" y="0" width="1080" height="40" result="b"/><feMerge><feMergeNode in="a"/><feMergeNode in="b"/></feMerge></filter>
+<filter id="transitionglitch-fd1" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feOffset id="transitionglitch-d1o" in="SourceGraphic" dx="0" dy="0"/></filter>
+<filter id="transitionglitch-fd2" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feOffset id="transitionglitch-d2o" in="SourceGraphic" dx="0" dy="0"/></filter>
+<filter id="transitionglitch-fg" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feTurbulence id="transitionglitch-gt" type="fractalNoise" baseFrequency="0 0.012" numOctaves="2" seed="1" result="n"/><feColorMatrix in="n" type="matrix" values="1 0 0 0 0  0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 0 1" result="n1"/><feComponentTransfer in="n1" result="m"><feFuncR type="discrete" tableValues="0.5 0.5 0.5 0.5 0.5 0.9 0.15 0.5 0.7 0.5 0.5 0.28 0.5 0.82 0.08 0.5 0.5 0.5 0.5 0.5"/></feComponentTransfer><feDisplacementMap id="transitionglitch-gd" in="SourceGraphic" in2="m" scale="0" xChannelSelector="R" yChannelSelector="G" result="d1"/><feTurbulence id="transitionglitch-gt2" type="fractalNoise" baseFrequency="0 0.45" numOctaves="1" seed="1" result="q"/><feColorMatrix in="q" type="matrix" values="1 0 0 0 0  0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 0 1" result="q0"/><feComponentTransfer in="q0" result="q1"><feFuncR type="table" tableValues="0 0 0.25 0.5 0.5 0.5 0.75 1 1"/></feComponentTransfer><feDisplacementMap id="transitionglitch-gd2" in="d1" in2="q1" scale="0" xChannelSelector="R" yChannelSelector="G" result="d2"/><feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="d2"/></feMerge></filter>
+<filter id="transitionglitch-fm" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feFlood x="17" y="11" width="2" height="2" flood-color="#000" result="p"/><feComposite in="p" in2="p" operator="over" x="0" y="0" width="36" height="24" result="cel"/><feTile in="cel" result="grade"/><feComposite in="SourceGraphic" in2="grade" operator="in" result="pts"/><feMorphology in="pts" operator="dilate" radius="18 12"/></filter>
+<filter id="transitionglitch-fn" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feTurbulence id="transitionglitch-nt" type="fractalNoise" baseFrequency="0.04 0.9" numOctaves="2" seed="1" result="n"/><feColorMatrix in="n" type="matrix" values="6 0 0 0 -3  6 0 0 0 -3  6 0 0 0 -3  0 0 0 0 1" result="z"/><feBlend in="z" in2="SourceGraphic" mode="difference"/></filter>
+</svg>
+<div class="transitionglitch-L" id="transitionglitch-t"></div>
+<div class="transitionglitch-L" id="transitionglitch-b1"></div><div class="transitionglitch-L" id="transitionglitch-b2"></div><div class="transitionglitch-L" id="transitionglitch-b3"></div><div class="transitionglitch-L" id="transitionglitch-b4"></div><div class="transitionglitch-L" id="transitionglitch-b5"></div><div class="transitionglitch-L" id="transitionglitch-b6"></div><div class="transitionglitch-L" id="transitionglitch-b7"></div><div class="transitionglitch-L" id="transitionglitch-b8"></div>
+<div class="transitionglitch-L" id="transitionglitch-s1"></div><div class="transitionglitch-L" id="transitionglitch-s2"></div><div class="transitionglitch-L" id="transitionglitch-s3"></div><div class="transitionglitch-L" id="transitionglitch-s4"></div><div class="transitionglitch-L" id="transitionglitch-s5"></div><div class="transitionglitch-L" id="transitionglitch-s6"></div><div class="transitionglitch-L" id="transitionglitch-s7"></div><div class="transitionglitch-L" id="transitionglitch-s8"></div><div class="transitionglitch-L" id="transitionglitch-s9"></div><div class="transitionglitch-L" id="transitionglitch-s10"></div><div class="transitionglitch-L" id="transitionglitch-s11"></div><div class="transitionglitch-L" id="transitionglitch-s12"></div>
+<div class="transitionglitch-L" id="transitionglitch-d1"></div><div class="transitionglitch-L" id="transitionglitch-d2"></div><div class="transitionglitch-L" id="transitionglitch-g"></div><div class="transitionglitch-L" id="transitionglitch-m"></div><div class="transitionglitch-L" id="transitionglitch-n"></div>
+
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["transition-glitch"] || { duration: 0.4 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = 0.4, t0 = 0;
+
+  function rise(sel, a, b, c, peak, e1, e2) {
+    tl.fromTo(sel, { opacity: 0 }, { opacity: peak, duration: b - a, ease: e1 || "sine.inOut" }, t0 + a);
+    tl.to(sel, { opacity: 0, duration: c - b, ease: e2 || "sine.inOut", immediateRender: false }, t0 + b);
+  }
+
+
+  var NQ = 12, QC = 6, FQ = 1 / 30, FG = 1 / 120;
+  var CR = [12, -20, 30, -42, 56, 68, -70, 64, -30, 18, -10, 5];
+  var CB = [-10, 18, -28, 38, -52, -62, 66, -58, 26, -16, 9, -5];
+  var RY = [0, 0, 3, -4, 6, -8, 10, -8, 4, -3, 0, 0];
+  var BY = [0, 0, -2, 3, -5, 6, -8, 6, -3, 2, 0, 0];
+  var ST = [1, 1, 1, 1, .85, .6, .58, .6, .82, 1, 1, 1];
+
+  var BL = [
+    [],
+    [],
+    [[6, 780, -44]],
+    [[6, 560, 70], [3, 1010, -90], [1, 1420, 50]],
+    [[4, 110, -120], [6, 450, 150], [2, 640, -90], [7, 920, 180], [3, 1540, -140]],
+    [[3, -60, 240], [7, 170, -310], [1, 490, 190], [5, 690, -280], [8, 990, 350], [2, 1240, -170], [6, 1520, 400], [4, 1710, -230]],
+    [[5, -100, -330], [2, 200, 220], [8, 480, -260], [4, 730, 380], [1, 1070, -190], [7, 1270, 300], [3, 1590, -420], [6, 1820, 270]],
+    [[6, -30, 300], [4, 160, -240], [2, 500, 360], [7, 780, -200], [3, 1100, 280], [8, 1330, -340], [1, 1580, 180], [5, 1780, -260]],
+    [],
+    [],
+    [],
+    []
+  ];
+
+  var TI = [
+    [[5, 700, 90], [2, 880, -150], [8, 1210, 120], [4, 1050, 200]],
+    [[1, 610, -130], [7, 780, 240], [10, 930, 160], [9, 1120, -210], [6, 1300, 110], [11, 420, -180]],
+    [[3, 520, 170], [2, 700, -260], [8, 820, 220], [4, 905, -320], [5, 1090, -150], [12, 1260, 280], [7, 1400, -200], [10, 260, 130]],
+    [[1, 380, -220], [9, 540, 300], [6, 640, -170], [11, 800, 360], [3, 860, 240], [2, 1040, -330], [8, 1130, 190], [5, 1330, -270], [4, 1480, 310], [12, 1620, -160]],
+    [[10, 150, 180], [7, 290, -260], [1, 400, 150], [6, 630, 240], [2, 790, -200], [3, 900, -230], [11, 1080, 300], [5, 1170, 170], [9, 1340, -280], [8, 1470, 210]],
+    [[3, 120, -380], [9, 310, 420], [5, 430, -260], [2, 575, 340], [1, 660, 300], [11, 830, -400], [8, 930, -220], [6, 1060, 360], [4, 1215, -300], [10, 1290, 250], [7, 1450, -410], [12, 1600, 330]],
+    [[6, 70, 290], [4, 250, -350], [10, 340, 400], [1, 500, -240], [7, 665, 380], [3, 760, -420], [2, 950, 260], [12, 1050, -310], [9, 1190, 370], [5, 1330, -280], [11, 1480, 410], [8, 1640, -330]],
+    [[8, 60, -300], [1, 330, 370], [11, 480, -410], [5, 560, 250], [9, 720, -360], [3, 840, 330], [7, 1020, 420], [6, 1110, -270], [2, 1280, 390], [12, 1400, -230], [4, 1530, 300], [10, 1700, -350]],
+    [[5, 470, 210], [2, 690, -280], [9, 1010, 160], [8, 1290, -190], [11, 1520, 240]],
+    [[6, 760, -120], [4, 1130, 180], [12, 1390, 90]],
+    [[2, 880, 70], [10, 1240, -60]],
+    [[7, 1010, -40], [9, 640, 30]]
+  ];
+
+  var RG = [0, 0, 0, 0,
+    [80, 4, 26, 9, [1180, 420], [0, 0]],
+    [160, 17, 60, 2, [0, 380], [760, 480]],
+    [190, 29, 80, 14, [0, 640], [900, 560]],
+    [150, 8, 60, 21, [0, 300], [520, 440]],
+    0, 0, 0, 0];
+  var PV = [[], [], [], [],
+    [[1, 420, 1040, 660, 260, 150, -220]],
+    [[1, 0, 760, 600, 320, -240, 260], [2, 500, 1380, 580, 260, 200, -240]],
+    [[1, 300, 420, 780, 300, 280, -360], [2, 0, 1180, 560, 300, -300, 420]],
+    [[1, 0, 240, 640, 280, -200, -300], [2, 460, 1500, 620, 260, 240, 320]],
+    [], [], [], []];
+  var MO = [0, 0, 0, 0, [560, 1310], [90, 1500], [600, 330], [130, 1130], 0, 0, 0, 0];
+  var CH = [0, 0, 0, 0, [1450, 3], [250, 8], [1090, 12], [610, 5], 0, 0, 0, 0];
+  var qi, k, tq, a, on, li;
+
+  var find = function (list, n) { for (li = 0; li < list.length; li++) if (list[li][0] === n) return list[li]; return null; };
+
+  var shift = function (id, d, t) {
+    tl.set(id + "a", { attr: d > 0 ? { dx: d, x: d, width: 1080 - d } : { dx: d, x: 0, width: 1080 + d } }, t);
+    tl.set(id + "b", { attr: d > 0 ? { dx: d - 1080, x: 0, width: d } : d < 0 ? { dx: d + 1080, x: 1080 + d, width: -d } : { dx: 0, x: 0, width: 1080 } }, t);
+  };
+  for (qi = 0; qi <= NQ; qi++) {
+
+    tq = Math.max(t0, t0 + D / 2 + (qi - QC) * FQ - FG);
+    on = qi < NQ;
+    tl.set("#transitionglitch-t", { opacity: on ? 1 : 0 }, tq);
+    tl.set("#transitionglitch-cr", { attr: { dx: on ? CR[qi] : 0, dy: on ? RY[qi] : 0 } }, tq);
+    tl.set("#transitionglitch-cb", { attr: { dx: on ? CB[qi] : 0, dy: on ? BY[qi] : 0 } }, tq);
+    tl.set("#transitionglitch-sat", { attr: { values: on ? ST[qi] : 1 } }, tq);
+    for (k = 1; k <= 8; k++) {
+      a = on ? find(BL[qi], k) : null;
+      tl.set("#transitionglitch-b" + k, { opacity: a ? 1 : 0, y: a ? a[1] : 0 }, tq);
+      shift("#transitionglitch-b" + k, a ? a[2] : 0, tq);
+    }
+    for (k = 1; k <= 12; k++) {
+      a = on ? find(TI[qi], k) : null;
+      tl.set("#transitionglitch-s" + k, { opacity: a ? 1 : 0, y: a ? a[1] : 0 }, tq);
+      shift("#transitionglitch-s" + k, a ? a[2] : 0, tq);
+    }
+    for (k = 1; k <= 2; k++) {
+      a = on ? find(PV[qi], k) : null;
+      tl.set("#transitionglitch-d" + k, { opacity: a ? 1 : 0, clipPath: a ? "path('M" + a[1] + " " + a[2] + "h" + a[3] + "v" + a[4] + "H" + a[1] + "z')" : "path('M0 0h1v1H0z')" }, tq);
+      tl.set("#transitionglitch-d" + k + "o", { attr: { dx: a ? a[5] : 0, dy: a ? a[6] : 0 } }, tq);
+    }
+    a = on ? MO[qi] : 0;
+    tl.set("#transitionglitch-m", { opacity: a ? 1 : 0, x: a ? a[0] : 0, y: a ? a[1] : 0 }, tq);
+    a = on ? RG[qi] : 0;
+    tl.set("#transitionglitch-g", { opacity: a ? 1 : 0, clipPath: a ? "path('M0 " + a[4][0] + "h1080v" + a[4][1] + "H0zM0 " + a[5][0] + "h1080v" + a[5][1] + "H0z')" : "path('M0 0h1v1H0zM0 0h1v1H0z')" }, tq);
+    tl.set("#transitionglitch-gd", { attr: { scale: a ? a[0] : 0 } }, tq);
+    tl.set("#transitionglitch-gt", { attr: { seed: a ? a[1] : 1 } }, tq);
+    tl.set("#transitionglitch-gd2", { attr: { scale: a ? a[2] : 0 } }, tq);
+    tl.set("#transitionglitch-gt2", { attr: { seed: a ? a[3] : 1 } }, tq);
+    a = on ? CH[qi] : 0;
+    tl.set("#transitionglitch-n", { opacity: a ? 1 : 0, y: a ? a[0] : 0 }, tq);
+    tl.set("#transitionglitch-nt", { attr: { seed: a ? a[1] : 1 } }, tq);
+  }
+
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["transition-glitch"] = tl;
+})();
+</script>
+</template>
+</body></html>

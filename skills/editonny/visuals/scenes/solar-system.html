@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Solar system</title></head>
+<body>
+<!-- Solar system. When introducing the universe, a central idea, or orbital relationships: four planets orbit a 3D Sun, passing behind and in front of it. -->
+
+<template id="solar-system-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+.solarsystem-a{position:absolute;left:0;top:0;width:0;height:0;opacity:0}
+.solarsystem-w{position:absolute;left:-480px;top:-330px;width:960px;height:660px;perspective:1600px;perspective-origin:480px 330px}
+.solarsystem-orr{position:absolute;left:480px;top:330px;width:0;height:0;transform-style:preserve-3d;opacity:0}
+.solarsystem-rg{position:absolute;border-radius:50%;border:2.5px solid rgba(255,255,255,.55);box-shadow:0 0 0 1.5px rgba(0,0,0,.28),inset 0 0 0 1.5px rgba(0,0,0,.28)}
+.solarsystem-arm{position:absolute;left:0;top:0;width:0;height:0;transform-style:preserve-3d}
+.solarsystem-pp{position:absolute;transform-style:preserve-3d}
+.solarsystem-pl{position:absolute;inset:0;border-radius:50%;box-shadow:0 0 0 2px rgba(255,255,255,.35),0 6px 14px rgba(0,0,0,.45)}
+.solarsystem-ring{position:absolute;left:-40%;top:32%;width:180%;height:36%;border-radius:50%;border:6px solid rgba(236,214,178,.9);transform:rotate(-16deg)}
+.solarsystem-gl{position:absolute;left:-340px;top:-340px;width:680px;height:680px;border-radius:50%;opacity:0}
+.solarsystem-ow{position:absolute;left:-290px;top:-290px;width:580px;height:580px;filter:drop-shadow(0 0 22px rgba(255,120,30,.55))}
+.solarsystem-v{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:contain;opacity:0}
+.solarsystem-row{position:absolute;left:-400px;top:-283px;width:800px;display:flex;justify-content:center}
+.solarsystem-tt{position:relative;display:flex;align-items:center;gap:16px;height:84px;padding:0 36px 0 28px;border-radius:42px;background:rgba(14,14,16,.9);box-shadow:inset 0 0 0 2px rgba(255,255,255,.16),0 14px 34px rgba(0,0,0,.45);font-family:"Inter";font-weight:800;font-size:46px;letter-spacing:-.01em;color:#fff;white-space:nowrap;opacity:0}
+.solarsystem-dot{flex:none;width:22px;height:22px;border-radius:50%}
+</style>
+<div id="root" data-composition-id="solar-system" data-width="1080" data-height="1920" data-duration="5.0">
+<div id="solarsystem-a" class="solarsystem-a">
+  <div id="solarsystem-back" class="solarsystem-w"><div class="solarsystem-orr"><div class="solarsystem-rg" style="left:-250px;top:-250px;width:500px;height:500px"></div><div class="solarsystem-arm solarsystem-a0"><div class="solarsystem-pp solarsystem-l0" style="left:235px;top:-15px;width:30px;height:30px"><div class="solarsystem-pl" style="background:radial-gradient(circle at 35% 30%,#ffffff,#bdbdc2 45%,#55555b)"></div></div></div><div class="solarsystem-rg" style="left:-305px;top:-305px;width:610px;height:610px"></div><div class="solarsystem-arm solarsystem-a1"><div class="solarsystem-pp solarsystem-l1" style="left:283px;top:-22px;width:44px;height:44px"><div class="solarsystem-pl" style="background:radial-gradient(circle at 35% 30%,#d6efff,#2f7de0 45%,#0c2c6e)"></div></div></div><div class="solarsystem-rg" style="left:-358px;top:-358px;width:716px;height:716px"></div><div class="solarsystem-arm solarsystem-a2"><div class="solarsystem-pp solarsystem-l2" style="left:324px;top:-34px;width:68px;height:68px"><div class="solarsystem-pl" style="background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.4),rgba(0,0,0,0) 50%,rgba(0,0,0,.5)),repeating-linear-gradient(8deg,#e2c08f 0 7px,#b07c4e 7px 13px,#ecd6b2 13px 19px)"><i class="solarsystem-ring"></i></div></div></div><div class="solarsystem-rg" style="left:-400px;top:-400px;width:800px;height:800px"></div><div class="solarsystem-arm solarsystem-a3"><div class="solarsystem-pp solarsystem-l3" style="left:374px;top:-26px;width:52px;height:52px"><div class="solarsystem-pl" style="background:radial-gradient(circle at 35% 30%,#cfdcff,#4a6cf0 45%,#16236e)"></div></div></div></div></div>
+  <div id="solarsystem-gl" class="solarsystem-gl"></div>
+  <div id="solarsystem-ow" class="solarsystem-ow"><video id="solarsystem-v" class="solarsystem-v" src="assets/visuals/video/38-sun.webm" data-start="0" data-duration="6" data-track-index="2" muted playsinline></video></div>
+  <div id="solarsystem-front" class="solarsystem-w"><div class="solarsystem-orr"><div class="solarsystem-rg" style="left:-250px;top:-250px;width:500px;height:500px"></div><div class="solarsystem-arm solarsystem-a0"><div class="solarsystem-pp solarsystem-l0" style="left:235px;top:-15px;width:30px;height:30px"><div class="solarsystem-pl" style="background:radial-gradient(circle at 35% 30%,#ffffff,#bdbdc2 45%,#55555b)"></div></div></div><div class="solarsystem-rg" style="left:-305px;top:-305px;width:610px;height:610px"></div><div class="solarsystem-arm solarsystem-a1"><div class="solarsystem-pp solarsystem-l1" style="left:283px;top:-22px;width:44px;height:44px"><div class="solarsystem-pl" style="background:radial-gradient(circle at 35% 30%,#d6efff,#2f7de0 45%,#0c2c6e)"></div></div></div><div class="solarsystem-rg" style="left:-358px;top:-358px;width:716px;height:716px"></div><div class="solarsystem-arm solarsystem-a2"><div class="solarsystem-pp solarsystem-l2" style="left:324px;top:-34px;width:68px;height:68px"><div class="solarsystem-pl" style="background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.4),rgba(0,0,0,0) 50%,rgba(0,0,0,.5)),repeating-linear-gradient(8deg,#e2c08f 0 7px,#b07c4e 7px 13px,#ecd6b2 13px 19px)"><i class="solarsystem-ring"></i></div></div></div><div class="solarsystem-rg" style="left:-400px;top:-400px;width:800px;height:800px"></div><div class="solarsystem-arm solarsystem-a3"><div class="solarsystem-pp solarsystem-l3" style="left:374px;top:-26px;width:52px;height:52px"><div class="solarsystem-pl" style="background:radial-gradient(circle at 35% 30%,#cfdcff,#4a6cf0 45%,#16236e)"></div></div></div></div></div>
+  <div id="solarsystem-row" class="solarsystem-row"><div id="solarsystem-tt" class="solarsystem-tt"><i id="solarsystem-dot" class="solarsystem-dot"></i><span id="solarsystem-tx"></span></div></div>
+</div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["solar-system"] || { duration: 5.0 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 5.0, t0 = 0;
+
+  var P = {
+    x: 540, // Sun center on the 1080×1920 canvas, in pixels.
+    y: 520, // Sun center, in pixels; the title is 283 pixels above it.
+    title: "The universe in 3D", // Top-pill text.
+    color: "#ff6a1f", // Accent color for the title dot and glow around the Sun.
+  };
+
+
+  var pe = function (s) { return document.getElementById("solarsystem-" + s); };
+  var anchor = pe("a"); anchor.style.left = P.x + "px"; anchor.style.top = P.y + "px";
+  var color = P.color || "#ff6a1f";
+  pe("back").style.clipPath = "inset(0px 0px 330px 0px)"; pe("front").style.clipPath = "inset(330px 0px 0px 0px)";
+  pe("dot").style.background = color; pe("tx").textContent = String(P.title || "");
+  pe("gl").style.background = "radial-gradient(circle at center," + color + "66," + color + "22 38%,rgba(0,0,0,0) 66%)";
+  var widthValue = function (txt, css) {
+    var m = document.createElement("span"); m.style.cssText = "position:absolute;left:-99999px;top:0;visibility:hidden;white-space:nowrap;font-family:Inter,sans-serif;" + css;
+    m.textContent = txt; document.body.appendChild(m); var w = m.getBoundingClientRect().width; document.body.removeChild(m); return w;
+  };
+  var fit = function () { var tx = pe("tx"), w = widthValue(tx.textContent, "font-weight:800;font-size:46px;letter-spacing:-.01em"), free = 800 - 64 - 38; tx.style.fontSize = (w > free ? Math.max(24, 46 * free / w) : 46) + "px"; };
+  fit(); if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { fit(); tl.invalidate(); });
+
+  var enter = t0 + .05, exit = t0 + D - .3, TILT = 62, spin = exit + .3 - enter;
+  var ANG = [20, 150, 260, 330], SPEED_VALUE = [62, 44, 30, 21];
+  var orrs = anchor.querySelectorAll(".solarsystem-orr"), pps = anchor.querySelectorAll(".solarsystem-pl");
+  gsap.set(orrs, { rotationX: TILT }); gsap.set(pps, { rotationX: -TILT });
+  tl.fromTo(anchor, { opacity: 0 }, { opacity: 1, duration: .05, ease: "none" }, enter);
+  tl.fromTo(pe("v"), { opacity: 0, y: 50, rotation: -40, filter: "blur(14px)" }, { opacity: 1, y: 0, rotation: 0, filter: "blur(0px)", duration: .6, ease: "power3.out" }, enter);
+  tl.fromTo(pe("gl"), { opacity: 0 }, { opacity: 1, duration: .5, ease: "power2.out" }, enter + .1);
+  tl.fromTo(orrs, { opacity: 0, rotationX: 89 }, { opacity: 1, rotationX: TILT, duration: .85, ease: "power3.out" }, enter + .08);
+  tl.fromTo(pps, { rotationX: -89 }, { rotationX: -TILT, duration: .85, ease: "power3.out" }, enter + .08);
+  tl.fromTo(pe("tt"), { opacity: 0, y: -26 }, { opacity: 1, y: 0, duration: .4, ease: "back.out(1.8)" }, enter + .12);
+  ANG.forEach(function (a, j) {
+    var rotation = SPEED_VALUE[j] * spin;
+    tl.fromTo(anchor.querySelectorAll(".solarsystem-a" + j), { rotation: a }, { rotation: a + rotation, duration: spin, ease: "none" }, enter);
+    tl.fromTo(anchor.querySelectorAll(".solarsystem-l" + j), { rotation: -a }, { rotation: -(a + rotation), duration: spin, ease: "none" }, enter);
+  });
+
+  var live = enter + .7, padding = exit - live, turns = Math.max(1, Math.round(padding / 1.3)), halfValue = padding / (turns * 2);
+  if (halfValue > .15) tl.to(pe("v"), { y: -8, duration: halfValue, ease: "sine.inOut", yoyo: true, repeat: turns * 2 - 1, immediateRender: false }, live);
+  tl.to(anchor, { opacity: 0, y: -30, duration: .26, ease: "power2.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["solar-system"] = tl;
+})();
+</script>
+</template>
+</body></html>

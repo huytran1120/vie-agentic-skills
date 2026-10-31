@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Waveform cuts</title></head>
+<body>
+<!-- Waveform cuts. When explaining removed pauses: red waveform gaps disappear one by one, the waveform joins, and the duration decreases. -->
+
+<template id="waveform-cuts-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+#waveformcuts-a{position:absolute;left:0;top:0;width:0;height:0;opacity:0}
+#waveformcuts-c{position:absolute;left:0;top:0;width:680px;height:378px;border-radius:32px;background:rgba(22,22,27,.95);opacity:0;box-shadow:0 0 0 2px rgba(255,255,255,.14),0 4px 10px rgba(0,0,0,.25),0 24px 54px rgba(0,0,0,.5)}
+#waveformcuts-h{position:absolute;left:30px;top:30px;font-family:"Inter";font-size:32px;font-weight:800;letter-spacing:.08em;line-height:1;color:#c7c7cc;white-space:nowrap;opacity:0}
+#waveformcuts-k{position:absolute;right:30px;top:27px;font-family:"Inter";font-size:36px;font-weight:800;line-height:1;color:#ff453a;white-space:nowrap;font-variant-numeric:tabular-nums;opacity:0}
+#waveformcuts-w{position:absolute;left:24px;top:86px;width:632px;height:140px;overflow:hidden;border-radius:14px;background:rgba(255,255,255,.06)}
+.waveformcuts-g{position:absolute;top:0;height:140px}
+.waveformcuts-x{position:absolute;top:0;height:140px;border-radius:8px;border:2px solid #ff3b30;background-color:rgba(255,59,48,.24);background-image:repeating-linear-gradient(135deg,rgba(255,59,48,.5) 0 4px,rgba(255,59,48,0) 4px 11px);box-shadow:0 0 14px rgba(255,59,48,.55);opacity:0}
+.waveformcuts-f{position:absolute;top:0;width:4px;height:140px;margin-left:-2px;border-radius:2px;background:#fff;box-shadow:0 0 14px 4px rgba(255,255,255,.75);opacity:0}
+#waveformcuts-r{position:absolute;left:24px;top:244px;width:632px;height:112px}
+#waveformcuts-b{position:absolute;left:0;top:0;font-family:"Inter";font-size:64px;font-weight:800;letter-spacing:-.03em;line-height:1;color:#8e8e93;white-space:nowrap;font-variant-numeric:tabular-nums;opacity:0}
+#waveformcuts-bs{position:absolute;left:0;top:0;overflow:visible}
+#waveformcuts-s{position:absolute;left:0;top:0;overflow:visible;opacity:0}
+#waveformcuts-d{position:absolute;left:0;top:0;font-family:"Inter";font-size:100px;font-weight:900;letter-spacing:-.04em;line-height:1;color:#fff;white-space:nowrap;font-variant-numeric:tabular-nums;opacity:0}
+</style>
+<div id="root" data-composition-id="waveform-cuts" data-width="1080" data-height="1920" data-duration="4.5">
+<div id="waveformcuts-a"><div id="waveformcuts-c"><div id="waveformcuts-h">TRIMMING PAUSES</div><div id="waveformcuts-k"></div><div id="waveformcuts-w"></div><div id="waveformcuts-r"><div id="waveformcuts-b"><span id="waveformcuts-bt"></span><svg id="waveformcuts-bs" width="10" height="10"><path id="waveformcuts-bl" d="M0 0" fill="none" stroke="#ff453a" stroke-width="7" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg></div><svg id="waveformcuts-s" width="64" height="44" viewBox="0 0 64 44"><path id="waveformcuts-sl" d="M4 22H56M40 6L58 22L40 38" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg><div id="waveformcuts-d"></div></div></div></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["waveform-cuts"] || { duration: 4.5 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 4.5, t0 = 0;
+
+  var P = {
+    x: 540, // Card center on the 1080×1920 canvas, in pixels.
+    y: 240, // Card top above the head, in pixels; card height is 378 pixels.
+    pauses: 5, // Number of removed pauses, from one to twelve.
+    beforeTime: "0:25", // Duration before cuts in m:ss; the counter descends to the after value.
+    afterTime: "0:16", // Duration after cuts in m:ss.
+    color: "#30d158", // Final-time accent color.
+  };
+
+
+  var PW = 680, LW = 632, AH = 140, ns = "http://www.w3.org/2000/svg";
+  var nP = Math.max(1, Math.min(12, Math.round(+P.pauses || 5))), color = P.color || "#30d158";
+  var previousText = String(P.beforeTime == null ? "" : P.beforeTime).trim() || "0:25", followingText = String(P.afterTime == null ? "" : P.afterTime).trim() || "0:16";
+  var anchor = document.getElementById("waveformcuts-a"), card = document.getElementById("waveformcuts-c"), header = document.getElementById("waveformcuts-h"), cont = document.getElementById("waveformcuts-k");
+  var track = document.getElementById("waveformcuts-w"), beforeElement = document.getElementById("waveformcuts-b"), beforeText = document.getElementById("waveformcuts-bt"), strike = document.getElementById("waveformcuts-bl");
+  var arrow = document.getElementById("waveformcuts-s"), arrowWidth = document.getElementById("waveformcuts-sl"), afterElement = document.getElementById("waveformcuts-d"), strokeSvg = document.getElementById("waveformcuts-bs");
+  anchor.style.left = (P.x - PW / 2) + "px"; anchor.style.top = P.y + "px";
+
+  var seg = function (s) { var m = String(s).match(/^(?:(\d+):)?(\d+):(\d{2})$/); return m ? (+(m[1] || 0)) * 3600 + (+m[2]) * 60 + (+m[3]) : null; };
+  var mmss = function (v) { v = Math.max(0, Math.round(v)); var h = Math.floor(v / 3600), m = Math.floor(v / 60) % 60, s = v % 60;
+    return h ? h + ":" + (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s : m + ":" + (s < 10 ? "0" : "") + s; };
+  var sA = seg(previousText), sD = seg(followingText), countNumber = sA != null && sD != null && sA > sD;
+  beforeText.textContent = previousText;
+
+  var fr = countNumber ? 1 - sD / sA : .36; fr = Math.min(.55, Math.max(.15, fr));
+  var pp = [], pk = [], spp = 0, spk = 0, i;
+  for (i = 0; i < nP; i++) { pp.push(.8 + .4 * Math.sin(i * 1.7 + .3)); spp += pp[i]; }
+  for (i = 0; i <= nP; i++) { pk.push(1 + .45 * Math.sin(i * 2.3 + .7)); spk += pk[i]; }
+  var extraWidth = pp.map(function (q) { return q * LW * fr / spp; }), characterWidth = pk.map(function (q) { return q * LW * (1 - fr) / spk; });
+  var el = function (name, at) { var e = document.createElementNS(ns, name); for (var q in at) e.setAttribute(q, at[q]); return e; };
+  var wave = function (g) { return Math.abs(.62 * Math.sin(g * .47 + .3) + .38 * Math.sin(g * .13 + 1.1)) * (.55 + .45 * Math.abs(Math.sin(g * .071))); };
+  var items = [], leftValue = 0, settled = 0, mergeItems = [], indent = [];
+  for (i = 0; i <= nP; i++) {
+    var bl = document.createElement("div"); bl.className = "waveformcuts-g"; bl.style.left = leftValue + "px"; bl.style.width = characterWidth[i] + "px";
+    var sv = el("svg", { width: Math.ceil(characterWidth[i]), height: AH }); sv.style.position = "absolute"; sv.style.left = "0"; sv.style.top = "0";
+    for (var bx = Math.ceil(leftValue / 9) * 9 + 3; bx < leftValue + characterWidth[i] - 6; bx += 9) { var h = 8 + 104 * wave(bx / 9); sv.appendChild(el("rect", { x: bx - leftValue, y: AH / 2 - h / 2, width: 5, height: h, rx: 2.5, fill: "#f2f2f7" })); }
+    bl.appendChild(sv); track.appendChild(bl); items.push(bl); leftValue += characterWidth[i]; settled += characterWidth[i];
+    if (i < nP) {
+      var px = document.createElement("div"); px.className = "waveformcuts-x"; px.style.left = leftValue + "px"; px.style.width = extraWidth[i] + "px";
+      var sx = el("svg", { width: Math.ceil(extraWidth[i]), height: AH }); sx.style.position = "absolute"; sx.style.left = "0"; sx.style.top = "0";
+      sx.appendChild(el("rect", { x: 6, y: AH / 2 - 2.5, width: Math.max(1, extraWidth[i] - 16), height: 5, rx: 2.5, fill: "rgba(255,170,160,.95)" }));
+      px.appendChild(sx); track.appendChild(px); items.push(px); mergeItems.push(settled); indent.push(leftValue - settled); leftValue += extraWidth[i];
+    }
+  }
+  var flashes = mergeItems.map(function (q) { var f = document.createElement("div"); f.className = "waveformcuts-f"; f.style.left = q + "px"; track.appendChild(f); return f; });
+
+  var measure = function (txt, style) {
+    if (!document.body) return txt.length * 40;
+    var s = document.createElement("span"); s.style.cssText = "position:absolute;left:-9999px;top:0;visibility:hidden;white-space:nowrap;font-family:Inter;font-variant-numeric:tabular-nums;" + style;
+    s.textContent = txt; document.body.appendChild(s); var w = s.getBoundingClientRect().width; document.body.removeChild(s); return w;
+  };
+  var offset = 0, LB = 64, LD = 100, GAP = 26, SW = 64;
+  var adjust = function () {
+    var wb = measure(previousText, "font-size:64px;font-weight:800;letter-spacing:-.03em");
+    var wd = Math.max(measure(followingText, "font-size:100px;font-weight:900;letter-spacing:-.04em"), countNumber ? 0 : measure(previousText, "font-size:100px;font-weight:900;letter-spacing:-.04em"));
+    var tot = wb + GAP + SW + GAP + wd, f = Math.min(1, (LW - 16) / tot), l0 = (LW - tot * f) / 2, fd = LD * f;
+    beforeElement.style.fontSize = (LB * f) + "px"; afterElement.style.fontSize = fd + "px";
+    beforeElement.style.left = l0 + "px"; beforeElement.style.top = ((LD - LB) * f * .74) + "px";
+    arrow.style.left = (l0 + (wb + GAP) * f) + "px"; arrow.style.top = (fd * .52 - 22 * f) + "px";
+    arrow.setAttribute("width", SW * f); arrow.setAttribute("height", 44 * f);
+    var dl = l0 + (wb + GAP + SW + GAP) * f; afterElement.style.left = dl + "px"; afterElement.style.top = "0px";
+    offset = (LW - wd * f) / 2 - dl;
+    var bw = wb * f, by = LB * f * .5;
+    strokeSvg.setAttribute("width", bw + 12); strokeSvg.setAttribute("height", LB * f);
+    strike.setAttribute("d", "M-6 " + (by + 3) + "L" + (bw + 6) + " " + (by - 3)); strike.setAttribute("stroke-width", Math.max(4, 7 * f));
+    header.style.fontSize = "32px";
+  };
+  adjust(); if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { adjust(); tl.invalidate(); });
+
+  var k = Math.min(1, Math.max(.45, (D - .4) / 4.1)), enter = t0 + .05, exit = t0 + D - .28, badge = exit - (.95 * k + .1);
+  var c0 = enter + .7 * k + .1, c1 = badge - .2, step = (c1 - c0) / nP, dc = Math.max(.08, Math.min(.26, step * .7));
+  tl.fromTo(anchor, { opacity: 0 }, { opacity: 1, duration: .05, ease: "none" }, enter);
+  tl.fromTo(card, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: .42, ease: "back.out(1.5)" }, enter);
+  tl.fromTo(header, { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: .3, ease: "power3.out" }, enter + .1);
+  tl.fromTo(cont, { opacity: 0, x: 16 }, { opacity: 1, x: 0, duration: .3, ease: "power3.out" }, enter + .14);
+  tl.fromTo(track, { clipPath: "inset(0px " + LW + "px 0px 0px)" }, { clipPath: "inset(0px 0px 0px 0px)", duration: .42 * k, ease: "power2.out" }, enter + .12);
+  tl.fromTo(afterElement, { opacity: 0, x: function () { return offset; }, y: 18 }, { opacity: 1, x: function () { return offset; }, y: 0, duration: .32, ease: "power3.out" }, enter + .2);
+  var marks = items.filter(function (e, j) { return j % 2 === 1; });
+  marks.forEach(function (m, c) { tl.fromTo(m, { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: .2, ease: "back.out(2)" }, enter + .32 * k + .05 * c); });
+
+  var objectTime = { v: countNumber ? sA : 0 }, typingTime = function () { afterElement.textContent = countNumber ? mmss(objectTime.v) : (objectTime.v > .5 ? followingText : previousText); };
+  typingTime();
+  var remaining = countNumber ? sA : 0, perPause = countNumber ? (sA - sD) / spp : 0, when = [];
+  marks.forEach(function (m, c) {
+    var q = c0 + step * c + step * .25, right = items.slice(2 * c + 2), w = extraWidth[c];
+    when.push(q);
+    tl.fromTo(m, { backgroundColor: "rgba(255,59,48,.24)" }, { backgroundColor: "rgba(255,59,48,.6)", duration: .1, ease: "none", immediateRender: false }, q - .1);
+    tl.fromTo(m, { clipPath: "inset(0px 0px 0px 0px)" }, { clipPath: "inset(0px " + Math.ceil(w + 4) + "px 0px 0px)", duration: dc, ease: "power3.inOut", immediateRender: false }, q);
+    tl.fromTo(right, { x: -indent[c] }, { x: -(indent[c] + w), duration: dc, ease: "power3.inOut", immediateRender: false }, q);
+    tl.fromTo(flashes[c], { opacity: 0 }, { opacity: 1, duration: .05, ease: "none" }, q + dc * .7);
+    tl.fromTo(flashes[c], { opacity: 1 }, { opacity: 0, duration: .26, ease: "power2.out", immediateRender: false }, q + dc * .7 + .05);
+    if (countNumber) { var start = remaining, end = c === nP - 1 ? sD : remaining - pp[c] * perPause; remaining = end;
+      tl.fromTo(objectTime, { v: start }, { v: end, duration: dc, ease: "power2.out", onUpdate: typingTime, immediateRender: false }, q); }
+  });
+
+  var shown = -1, typingCount = function (n) { if (n === shown) return; shown = n; cont.textContent = n + " de " + nP; };
+  typingCount(0);
+  var rel = { v: 0 }, contentEnd = when.map(function (q) { return q + dc * .2; });
+  tl.fromTo(rel, { v: 0 }, { v: 1, duration: c1 - c0 + .3, ease: "none", onUpdate: function () { var tt = c0 + rel.v * (c1 - c0 + .3), n = 0; for (var c = 0; c < contentEnd.length; c++) if (contentEnd[c] <= tt) n++; typingCount(n); } }, c0);
+
+  if (!countNumber) tl.fromTo(objectTime, { v: 0 }, { v: 1, duration: .05, ease: "none", onUpdate: typingTime, immediateRender: false }, badge - .1);
+  tl.fromTo(afterElement, { color: "#ffffff" }, { color: color, duration: .2, ease: "none", immediateRender: false }, badge - .05);
+  tl.fromTo(afterElement, { x: function () { return offset; } }, { x: 0, duration: .4, ease: "power3.out", immediateRender: false }, badge);
+  tl.fromTo(beforeElement, { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: .3, ease: "power3.out" }, badge + .08);
+  tl.fromTo(arrow, { opacity: 0 }, { opacity: 1, duration: .1, ease: "none" }, badge + .16);
+  tl.fromTo(arrowWidth, { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: .26, ease: "power2.out" }, badge + .16);
+  tl.fromTo(strike, { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: .22, ease: "power1.inOut" }, badge + .3);
+  tl.fromTo(afterElement, { y: 0 }, { y: -10, duration: .1, ease: "power2.out", yoyo: true, repeat: 1, immediateRender: false }, badge + .32);
+
+  var live = badge + .55, padding = exit - live, turns = Math.max(1, Math.round(padding / 1.1)), halfValue = padding / (turns * 2);
+  if (halfValue > .12) tl.fromTo(card, { y: 0 }, { y: -7, duration: halfValue, ease: "sine.inOut", yoyo: true, repeat: turns * 2 - 1, immediateRender: false }, live);
+  tl.fromTo(anchor, { opacity: 1, y: 0 }, { opacity: 0, y: -26, duration: .26, ease: "power2.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["waveform-cuts"] = tl;
+})();
+</script>
+</template>
+</body></html>

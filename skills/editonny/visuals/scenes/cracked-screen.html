@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Cracked screen</title></head>
+<body>
+<!-- Cracked screen. For a screen-hit joke: glass cracks at the selected point, the image shakes, and the cracks remain. -->
+
+<template id="cracked-screen-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+#crackedscreen-tr{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;backdrop-filter:url(#crackedscreen-f);-webkit-backdrop-filter:url(#crackedscreen-f)}
+.crackedscreen-ca{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0}
+#crackedscreen-c1{backdrop-filter:url(#crackedscreen-d1) brightness(1.18);-webkit-backdrop-filter:url(#crackedscreen-d1) brightness(1.18)}
+#crackedscreen-c2{backdrop-filter:url(#crackedscreen-d2) brightness(.86);-webkit-backdrop-filter:url(#crackedscreen-d2) brightness(.86)}
+#crackedscreen-s{position:absolute;left:0;top:0;width:1080px;height:1920px;overflow:visible;opacity:0}
+.crackedscreen-o{opacity:0}
+</style>
+<div id="root" data-composition-id="cracked-screen" data-width="1080" data-height="1920" data-duration="3.0">
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0"><filter id="crackedscreen-f" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feOffset id="crackedscreen-o1" in="SourceGraphic" dx="0" dy="0" result="a"/><feOffset id="crackedscreen-o2" in="SourceGraphic" dx="0" dy="0" result="b"/><feOffset id="crackedscreen-o3" in="SourceGraphic" dx="0" dy="0" result="c"/><feOffset id="crackedscreen-o4" in="SourceGraphic" dx="0" dy="0" result="d"/><feComposite in="a" in2="b" operator="arithmetic" k1="0" k2=".5" k3=".5" k4="0" result="ab"/><feComposite in="c" in2="d" operator="arithmetic" k1="0" k2=".5" k3=".5" k4="0" result="cd"/><feComposite in="ab" in2="cd" operator="arithmetic" k1="0" k2=".5" k3=".5" k4="0" result="m"/><feGaussianBlur id="crackedscreen-b" in="m" stdDeviation="0 0"/></filter><filter id="crackedscreen-d1" x="0" y="0" width="100%" height="100%"><feOffset in="SourceGraphic" dx="5" dy="4"/></filter><filter id="crackedscreen-d2" x="0" y="0" width="100%" height="100%"><feOffset in="SourceGraphic" dx="-4" dy="6"/></filter></svg>
+<div id="crackedscreen-tr"></div>
+<div id="crackedscreen-c1" class="crackedscreen-ca"></div><div id="crackedscreen-c2" class="crackedscreen-ca"></div>
+<svg id="crackedscreen-s" xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+<defs>
+<filter id="crackedscreen-gl" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur in="SourceGraphic" stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<filter id="crackedscreen-fo" x="-50%" y="-50%" width="200%" height="200%"><feTurbulence type="fractalNoise" baseFrequency=".35" numOctaves="2" seed="5" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 2.2 -.75" result="g"/><feComposite in="g" in2="SourceGraphic" operator="in" result="gg"/><feGaussianBlur in="SourceGraphic" stdDeviation="2" result="sb"/><feMerge><feMergeNode in="sb"/><feMergeNode in="gg"/></feMerge></filter>
+<radialGradient id="crackedscreen-gf"><stop offset="0" stop-color="#fff" stop-opacity="1"/><stop offset=".25" stop-color="#fff" stop-opacity=".6"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+<linearGradient id="crackedscreen-gs" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".32"/><stop offset=".6" stop-color="#fff" stop-opacity=".04"/><stop offset="1" stop-color="#fff" stop-opacity=".16"/></linearGradient>
+<mask id="crackedscreen-mk" maskUnits="userSpaceOnUse" x="-2000" y="-2000" width="4000" height="4000"><circle id="crackedscreen-mkc" cx="0" cy="0" r="0" fill="#fff"/></mask>
+</defs>
+<g id="crackedscreen-pt">
+<g mask="url(#crackedscreen-mk)"><g id="crackedscreen-fa"></g><g id="crackedscreen-sm"></g><g id="crackedscreen-rl" filter="url(#crackedscreen-gl)"></g></g>
+<g id="crackedscreen-es" filter="url(#crackedscreen-fo)" class="crackedscreen-o"></g>
+<g id="crackedscreen-br"></g>
+<circle id="crackedscreen-fl" class="crackedscreen-o" cx="0" cy="0" r="200" fill="url(#crackedscreen-gf)"/>
+</g>
+</svg>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["cracked-screen"] || { duration: 3.0 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 3.0, t0 = 0;
+
+  var P = {
+    x: 540, // Impact and crack center on the 1080×1920 canvas, in pixels.
+    y: 760, // Impact point, in pixels.
+    size: 560, // Crack reach from the impact point, in pixels.
+    intensity: 0.8, // 0–1: crack count and shake strength.
+  };
+
+
+  var NS = "http://www.w3.org/2000/svg";
+  var cx = Number(P.x); if (cx !== cx) cx = 540; var cy = Number(P.y); if (cy !== cy) cy = 760;
+  var R = Math.max(150, Number(P.size) || 560), INT = Number(P.intensity); if (INT !== INT) INT = .8; INT = Math.max(0, Math.min(1, INT));
+  document.getElementById("crackedscreen-pt").setAttribute("transform", "translate(" + cx + " " + cy + ")");
+  var seed = 9091, rnd = function () { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
+  var between = function (a, b) { return a + (b - a) * rnd(); };
+  var gRL = document.getElementById("crackedscreen-rl"), gSM = document.getElementById("crackedscreen-sm"), gFA = document.getElementById("crackedscreen-fa"), gES = document.getElementById("crackedscreen-es"), gBR = document.getElementById("crackedscreen-br");
+
+  var gap = function (pts, l0) {
+    var n = pts.length, leftValue = [], dir = [], i;
+    for (i = 0; i < n; i++) {
+      var p0 = pts[Math.max(0, i - 1)], p1 = pts[Math.min(n - 1, i + 1)], dx = p1[0] - p0[0], dy = p1[1] - p0[1], L = Math.hypot(dx, dy) || 1;
+      var w = l0 * Math.pow(1 - i / (n - 1), .6) / 2 + .35;
+      leftValue.push((pts[i][0] - dy / L * w).toFixed(1) + "," + (pts[i][1] + dx / L * w).toFixed(1));
+      dir.unshift((pts[i][0] + dy / L * w).toFixed(1) + "," + (pts[i][1] - dx / L * w).toFixed(1));
+    }
+    return leftValue.concat(dir).join(" ");
+  };
+  var put = function (g, shape, color, tr) { var p = document.createElementNS(NS, "polygon"); p.setAttribute("points", shape); p.setAttribute("fill", color); if (tr) p.setAttribute("transform", tr); g.appendChild(p); return p; };
+  var strikeOut = function (pts, l0, op) { var f = gap(pts, l0); put(gSM, gap(pts, l0 + 2.6), "rgba(0,0,0,.5)", "translate(1.6 2.2)"); put(gRL, f, "rgba(255,255,255," + (op || between(.7, .95)).toFixed(2) + ")"); };
+
+  var NR = Math.round(9 + 9 * INT), rays = [], k, j;
+  var a0 = between(0, 360);
+  for (k = 0; k < NR; k++) {
+    var ang = a0 + k * 360 / NR + between(-9, 9), comp = R * between(.55, 1.1) * (k % 3 === 0 ? 1.15 : 1), pts = [[Math.cos(ang * Math.PI / 180) * R * .03, Math.sin(ang * Math.PI / 180) * R * .03]], d = R * .03, a = ang;
+    while (d < comp) { var pa = between(.1, .22) * R; a = ang + between(-4.5, 4.5); d = Math.min(comp, d + pa); pts.push([Math.cos(a * Math.PI / 180) * d, Math.sin(a * Math.PI / 180) * d]); }
+    rays.push({ ang: ang, pts: pts, comp: comp });
+    strikeOut(pts, between(3, 5));
+
+    if (comp > R * .8 && rnd() < .35) {
+      var pp = pts[Math.floor(pts.length * between(.4, .7))], ab = a + (rnd() < .5 ? -1 : 1) * between(25, 45), q = [[pp[0], pp[1]]], dd = 0, cmp = R * between(.12, .25);
+      while (dd < cmp) { var pb = between(.06, .1) * R; ab += between(-5, 5); dd += pb; q.push([q[q.length - 1][0] + Math.cos(ab * Math.PI / 180) * pb, q[q.length - 1][1] + Math.sin(ab * Math.PI / 180) * pb]); }
+      strikeOut(q, 2.2, .6);
+    }
+  }
+
+  var atDistance = function (rr, r) { var i; for (i = 1; i < rr.pts.length; i++) if (Math.hypot(rr.pts[i][0], rr.pts[i][1]) >= r) return rr.pts[i]; return null; };
+  [.13, .3, .52].forEach(function (fr, level) {
+    for (k = 0; k < NR; k++) {
+      if (rnd() > (level === 0 ? .95 : level === 1 ? .85 : .6)) continue;
+      var r1 = rays[k], r2 = rays[(k + 1) % NR], pa1 = atDistance(r1, R * fr * between(.9, 1.1)), pa2 = atDistance(r2, R * fr * between(.9, 1.1));
+      if (!pa1 || !pa2) continue;
+      var mx = (pa1[0] + pa2[0]) / 2, my = (pa1[1] + pa2[1]) / 2, ml = Math.hypot(mx, my) || 1, en = between(.82, .93);
+      strikeOut([pa1, [mx * en, my * en], pa2], level === 0 ? 3 : 2, between(.55, .85));
+
+      if (level < 2 && rnd() < .55) { var p0 = atDistance(r1, R * (level === 0 ? .03 : .13)) || [0, 0], p3 = atDistance(r2, R * (level === 0 ? .03 : .13)) || [0, 0]; put(gFA, [p0, pa1, [mx * en, my * en], pa2, p3].map(function (p) { return p[0].toFixed(1) + "," + p[1].toFixed(1); }).join(" "), rnd() < .5 ? "url(#crackedscreen-gs)" : "rgba(255,255,255,.12)"); }
+    }
+  });
+
+  var est = [], ne = 14;
+  for (k = 0; k < ne; k++) { var ae = k / ne * Math.PI * 2, re = R * (k % 2 ? between(.035, .05) : between(.07, .1)); est.push((Math.cos(ae) * re).toFixed(1) + "," + (Math.sin(ae) * re).toFixed(1)); }
+  put(gES, est.join(" "), "rgba(255,255,255,.62)");
+
+  var slice = function (i0) {
+    var r1 = rays[i0 % NR], r2 = rays[(i0 + 1) % NR], ra = R * .05, rb = R * .3, s = function (r, ang) { return (cx + Math.cos(ang * Math.PI / 180) * r).toFixed(1) + " " + (cy + Math.sin(ang * Math.PI / 180) * r).toFixed(1); };
+    return "M" + s(ra, r1.ang) + " L" + s(rb, r1.ang) + " L" + s(rb, r2.ang) + " L" + s(ra, r2.ang) + " Z";
+  };
+  document.getElementById("crackedscreen-c1").style.clipPath = "path('" + slice(1) + " " + slice(Math.round(NR / 2)) + "')";
+  document.getElementById("crackedscreen-c2").style.clipPath = "path('" + slice(3) + " " + slice(Math.round(NR / 2) + 3) + "')";
+
+  var sparkles = [];
+  for (k = 0; k < 3; k++) {
+    var rb2 = rays[(k * 5 + 2) % NR], pb2 = atDistance(rb2, R * (.3 + k * .12)) || rb2.pts[rb2.pts.length - 1], g = document.createElementNS(NS, "g");
+    g.setAttribute("transform", "translate(" + pb2[0].toFixed(1) + " " + pb2[1].toFixed(1) + ")");
+    var gi = document.createElementNS(NS, "g"); gi.setAttribute("class", "crackedscreen-o");
+    gi.innerHTML = '<circle r="14" fill="url(#crackedscreen-gf)"/><path d="M0 -26 L2.2 -2.2 L26 0 L2.2 2.2 L0 26 L-2.2 2.2 L-26 0 L-2.2 -2.2 Z" fill="#fff"/>';
+    g.appendChild(gi); gBR.appendChild(g); sparkles.push(gi);
+  }
+
+  var FQ = 1 / 30, exit = t0 + D - .28, qI = Math.round((t0 + .12) * 30), impact = qI * FQ - FQ / 4;
+  tl.fromTo("#crackedscreen-s", { opacity: 0 }, { opacity: 1, duration: FQ / 8, ease: "none" }, impact);
+  tl.fromTo(".crackedscreen-ca", { opacity: 0 }, { opacity: 1, duration: FQ / 8, ease: "none" }, impact);
+
+  tl.fromTo("#crackedscreen-mkc", { attr: { r: 0 } }, { attr: { r: R * .72 }, duration: FQ * 1.5, ease: "power2.out" }, impact);
+  tl.to("#crackedscreen-mkc", { attr: { r: R * 1.35 }, duration: .55, ease: "power3.out", immediateRender: false }, impact + FQ * 1.5);
+  tl.fromTo("#crackedscreen-es", { opacity: 0 }, { opacity: 1, duration: FQ / 4, ease: "none" }, impact);
+  tl.fromTo("#crackedscreen-fl", { opacity: 0, attr: { r: R * .2 } }, { opacity: 1, attr: { r: R * .45 }, duration: FQ / 2, ease: "none" }, impact);
+  tl.to("#crackedscreen-fl", { opacity: 0, attr: { r: R * .6 }, duration: .22, ease: "power2.out", immediateRender: false }, impact + FQ / 2);
+
+  var live = impact + .45, padding = exit - .1 - live;
+  if (padding > .3) {
+    var nb = Math.max(1, Math.min(6, Math.floor(padding / .4))), step = padding / nb;
+    for (k = 0; k < nb; k++) {
+      var b = sparkles[k % 3], tb = live + k * step;
+      tl.fromTo(b, { opacity: 0, rotation: -30 }, { opacity: 1, rotation: 15, duration: step * .4, ease: "power2.out", immediateRender: k < 3 }, tb);
+      tl.to(b, { opacity: 0, rotation: 45, duration: step * .5, ease: "power2.in", immediateRender: false }, tb + step * .4);
+    }
+  }
+
+  var TX = [1.00, -0.88, 0.64, -0.92, 0.48, 0.80, -0.70, 0.55, -0.96, 0.60, -0.45, -0.85, 0.74];
+  var TY = [-0.72, 0.95, -0.82, 0.50, 0.76, -0.90, 0.58, -0.47, 0.88, -0.66, -0.52, 0.80, -0.94];
+  var COPIES = [-.18, -.06, .06, .18], DQ = 11, PEAK_TIME = 10 + 18 * INT, ax = 0, ay = 0, c;
+  tl.fromTo("#crackedscreen-tr", { opacity: 0 }, { opacity: 1, duration: FQ / 8, ease: "none" }, impact);
+  for (k = 0; k <= DQ; k++) {
+    var tq = impact + k * FQ, am = k < DQ ? Math.pow(1 - k / DQ, 1.8) : 0, dx = Math.round(TX[k] * am * PEAK_TIME), dy = Math.round(TY[k] * am * PEAK_TIME), vx = dx - ax, vy = dy - ay;
+    for (c = 0; c < 4; c++) tl.set("#crackedscreen-o" + (c + 1), { attr: { dx: Math.round(dx + vx * COPIES[c]), dy: Math.round(dy + vy * COPIES[c]) } }, tq);
+    tl.set("#crackedscreen-b", { attr: { stdDeviation: Math.min(3, Math.abs(vx) * .06).toFixed(1) + " " + Math.min(3, Math.abs(vy) * .06).toFixed(1) } }, tq);
+    ax = dx; ay = dy;
+  }
+  tl.to("#crackedscreen-tr", { opacity: 0, duration: FQ / 8, ease: "none", immediateRender: false }, impact + (DQ + 1) * FQ);
+
+  tl.to(["#crackedscreen-s", ".crackedscreen-ca"], { opacity: 0, duration: .26, ease: "power2.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["cracked-screen"] = tl;
+})();
+</script>
+</template>
+</body></html>

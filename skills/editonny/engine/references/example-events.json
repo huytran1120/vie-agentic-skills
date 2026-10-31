@@ -1,0 +1,29 @@
+[
+  {
+    "t": 0.1,
+    "type": "large-whoosh",
+    "note": "Opening panel enters"
+  },
+  {
+    "t": 1.2,
+    "type": "pop",
+    "note": "Title lands"
+  },
+  {
+    "t": 3.4,
+    "type": "impact",
+    "level": "accent",
+    "note": "Large number lands"
+  },
+  {
+    "t": 5,
+    "type": "whoosh",
+    "note": "Card slides in"
+  },
+  {
+    "t": 7.6,
+    "type": "notification",
+    "force": true,
+    "note": "Confirmation appears"
+  }
+]

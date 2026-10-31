@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Stage spotlight</title></head>
+<body>
+<!-- Stage spotlight. For a request for attention or light: the room darkens and a stage spotlight shines on the subject while side beams sweep. -->
+
+<template id="stage-spotlight-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+.stagespotlight-ca{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0}
+#stagespotlight-e1{backdrop-filter:brightness(.3) saturate(.75);-webkit-backdrop-filter:brightness(.3) saturate(.75)}
+#stagespotlight-e2{backdrop-filter:brightness(.26) saturate(.7);-webkit-backdrop-filter:brightness(.26) saturate(.7);-webkit-mask-size:1080px 1920px;mask-size:1080px 1920px;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+#stagespotlight-e3{backdrop-filter:brightness(1.12) contrast(1.06);-webkit-backdrop-filter:brightness(1.12) contrast(1.06)}
+#stagespotlight-s{position:absolute;left:0;top:0;width:1080px;height:1920px;overflow:visible;opacity:0;mix-blend-mode:screen}
+#stagespotlight-fl{background:#fff}
+.stagespotlight-o{opacity:0}
+</style>
+<div id="root" data-composition-id="stage-spotlight" data-width="1080" data-height="1920" data-duration="3.5">
+<div id="stagespotlight-e1" class="stagespotlight-ca"></div><div id="stagespotlight-e2" class="stagespotlight-ca"></div><div id="stagespotlight-e3" class="stagespotlight-ca"></div>
+<svg id="stagespotlight-s" xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+<defs>
+<filter id="stagespotlight-bl" x="-30%" y="-5%" width="160%" height="110%"><feGaussianBlur stdDeviation="22"/></filter>
+<filter id="stagespotlight-bl2" x="-30%" y="-5%" width="160%" height="110%"><feGaussianBlur stdDeviation="9"/></filter>
+<filter id="stagespotlight-nv" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".006 .014" numOctaves="3" seed="21" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 2.4 -.9"/></filter>
+<filter id="stagespotlight-gp" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.2"/></filter>
+<linearGradient id="stagespotlight-gc" x1="0" y1="0" x2="0" y2="1"><stop id="stagespotlight-gc1" offset="0" stop-color="#ffe3b3" stop-opacity=".85"/><stop id="stagespotlight-gc2" offset=".42" stop-color="#ffe3b3" stop-opacity=".26"/><stop id="stagespotlight-gc3" offset="1" stop-color="#ffe3b3" stop-opacity=".07"/></linearGradient>
+<linearGradient id="stagespotlight-gl" x1="0" y1="0" x2="0" y2="1"><stop id="stagespotlight-gl1" offset="0" stop-color="#9db0ff" stop-opacity=".55"/><stop id="stagespotlight-gl2" offset="1" stop-color="#9db0ff" stop-opacity="0"/></linearGradient>
+<radialGradient id="stagespotlight-gf"><stop offset="0" stop-color="#fff" stop-opacity="1"/><stop offset=".18" stop-color="#fff" stop-opacity=".95"/><stop id="stagespotlight-gf1" offset=".4" stop-color="#ffe3b3" stop-opacity=".45"/><stop id="stagespotlight-gf2" offset="1" stop-color="#ffe3b3" stop-opacity="0"/></radialGradient>
+<linearGradient id="stagespotlight-gs" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".9"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<clipPath id="stagespotlight-cc"><polygon id="stagespotlight-ccp" points="0,0 0,0 0,0"/></clipPath>
+</defs>
+<g id="stagespotlight-lt"><polygon id="stagespotlight-la" class="stagespotlight-o" points="0,0 0,0 0,0" fill="url(#stagespotlight-gl)" filter="url(#stagespotlight-bl2)"/><polygon id="stagespotlight-lb" class="stagespotlight-o" points="0,0 0,0 0,0" fill="url(#stagespotlight-gl)" filter="url(#stagespotlight-bl2)"/></g>
+<g id="stagespotlight-cn" class="stagespotlight-o">
+<polygon id="stagespotlight-c1" points="0,0 0,0 0,0" fill="url(#stagespotlight-gc)" filter="url(#stagespotlight-bl)"/>
+<polygon id="stagespotlight-c2" points="0,0 0,0 0,0" fill="url(#stagespotlight-gc)" opacity=".55" filter="url(#stagespotlight-bl2)"/>
+<g clip-path="url(#stagespotlight-cc)"><rect id="stagespotlight-nr" x="0" y="0" width="1080" height="1920" filter="url(#stagespotlight-nv)" opacity=".13"/><g id="stagespotlight-po" filter="url(#stagespotlight-gp)"></g></g>
+</g>
+<g id="stagespotlight-fa" class="stagespotlight-o"><ellipse id="stagespotlight-fs" cx="0" cy="0" rx="300" ry="5" fill="url(#stagespotlight-gs)"/><circle id="stagespotlight-fc" cx="0" cy="0" r="170" fill="url(#stagespotlight-gf)"/><g id="stagespotlight-fg"></g></g>
+</svg>
+<div id="stagespotlight-fl" class="stagespotlight-ca"></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["stage-spotlight"] || { duration: 3.5 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 3.5, t0 = 0;
+
+  var P = {
+    x: 540, // Spotlight center over the subject on the 1080×1920 canvas, in pixels.
+    y: 820, // Face or chest height where the spotlight has the requested width, in pixels.
+    width: 560, // Spotlight width at y, in pixels.
+    lightColor: "#ffe3b3", // Spotlight color, warm white by default.
+    beamColor: "#9db0ff", // Color of the two sweeping side beams.
+  };
+
+
+  var NS = "http://www.w3.org/2000/svg";
+  var fx = Number(P.x); if (fx !== fx) fx = 540; var fy = Number(P.y); if (fy !== fy) fy = 820;
+  var LG = Math.max(160, Number(P.width) || 560), colorL = String(P.lightColor || "#ffe3b3"), colorF = String(P.beamColor || "#9db0ff");
+  ["stagespotlight-gc1", "stagespotlight-gc2", "stagespotlight-gc3", "stagespotlight-gf1", "stagespotlight-gf2"].forEach(function (id) { document.getElementById(id).setAttribute("stop-color", colorL); });
+  ["stagespotlight-gl1", "stagespotlight-gl2"].forEach(function (id) { document.getElementById(id).setAttribute("stop-color", colorF); });
+  var seed = 5150, rnd = function () { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
+  var between = function (a, b) { return a + (b - a) * rnd(); };
+
+  var SY = -40, HS = 46, cone = function (k, end) {
+    var hw = function (yy) { return HS * k + (LG / 2 * k - HS * k) * (yy - SY) / Math.max(200, fy - SY); };
+    return [[fx - HS * k, SY], [fx + HS * k, SY], [fx + hw(end), end], [fx - hw(end), end]];
+  };
+  var txt = function (pts) { return pts.map(function (p) { return p[0].toFixed(1) + "," + p[1].toFixed(1); }).join(" "); };
+  var C1 = cone(1, 1990), C2 = cone(.5, 1990);
+  document.getElementById("stagespotlight-c1").setAttribute("points", txt(C1));
+  document.getElementById("stagespotlight-c2").setAttribute("points", txt(C2));
+  document.getElementById("stagespotlight-ccp").setAttribute("points", txt(cone(1.1, 1990)));
+
+  var mk = '<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920"><filter id="b" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="34"/></filter><path filter="url(#b)" fill-rule="evenodd" fill="#000" d="M-300 -300H1380V2220H-300Z M' + C1.map(function (p) { return p[0].toFixed(0) + " " + p[1].toFixed(0); }).join(" L") + 'Z"/></svg>';
+  var mkl = '<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920"><filter id="b" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="40"/></filter><path filter="url(#b)" fill="#000" d="M' + cone(.85, 1990).map(function (p) { return p[0].toFixed(0) + " " + p[1].toFixed(0); }).join(" L") + 'Z"/></svg>';
+  var e2 = document.getElementById("stagespotlight-e2"), e3 = document.getElementById("stagespotlight-e3");
+  e2.style.webkitMaskImage = e2.style.maskImage = 'url("data:image/svg+xml,' + encodeURIComponent(mk) + '")';
+  e3.style.webkitMaskImage = e3.style.maskImage = 'url("data:image/svg+xml,' + encodeURIComponent(mkl) + '")';
+  e3.style.webkitMaskSize = e3.style.maskSize = "1080px 1920px";
+
+  ["stagespotlight-fs", "stagespotlight-fc"].forEach(function (id) { var el = document.getElementById(id); el.setAttribute("cx", fx); el.setAttribute("cy", 18); });
+  var gFG = document.getElementById("stagespotlight-fg"), k, el;
+  [[.32, 26, .22], [.55, 12, .3], [.8, 44, .12]].forEach(function (g) {
+    el = document.createElementNS(NS, "circle"); el.setAttribute("cx", (fx + (540 - fx) * g[0]).toFixed(1)); el.setAttribute("cy", (18 + 520 * g[0]).toFixed(1));
+    el.setAttribute("r", g[1]); el.setAttribute("fill", colorL); el.setAttribute("opacity", g[2]); gFG.appendChild(el);
+  });
+
+  var gPO = document.getElementById("stagespotlight-po"), dust = [];
+  for (k = 0; k < 46; k++) {
+    var yy = between(60, 1800), hw = HS + (LG / 2 - HS) * (yy - SY) / Math.max(200, fy - SY);
+    el = document.createElementNS(NS, "circle"); el.setAttribute("cx", (fx + between(-1, 1) * hw).toFixed(1)); el.setAttribute("cy", yy.toFixed(1));
+    el.setAttribute("r", between(1.4, 3.8).toFixed(1)); el.setAttribute("fill", "#fff"); el.setAttribute("opacity", between(.35, .95).toFixed(2));
+    el.__dx = between(-40, 40); el.__dy = between(30, 110); gPO.appendChild(el); dust.push(el);
+  }
+
+  var side = function (id, ox, oy) { var L = 2300, w = 120; document.getElementById(id).setAttribute("points", txt([[ox - 14, oy], [ox + 14, oy], [ox + w, oy + L], [ox - w, oy + L]])); };
+  side("stagespotlight-la", -30, 140); side("stagespotlight-lb", 1110, 140);
+
+  var FQ = 1 / 30, enter = t0 + .05, exit = t0 + D - .3, qA = Math.round((t0 + .4) * 30), illuminate = qA * FQ - FQ / 4;
+
+  tl.fromTo("#stagespotlight-e1", { opacity: 0 }, { opacity: 1, duration: Math.max(.12, illuminate - enter - .04), ease: "power2.in" }, enter);
+
+  tl.set("#stagespotlight-e1", { opacity: 0 }, illuminate);
+  tl.set(["#stagespotlight-e2", "#stagespotlight-e3", "#stagespotlight-s"], { opacity: 1 }, illuminate);
+  tl.fromTo("#stagespotlight-cn", { opacity: 0 }, { opacity: 1, duration: FQ / 4, ease: "none" }, illuminate);
+  tl.to("#stagespotlight-cn", { opacity: .45, duration: FQ / 4, ease: "none", immediateRender: false }, illuminate + FQ * 1.5);
+  tl.to("#stagespotlight-cn", { opacity: 1, duration: FQ / 4, ease: "none", immediateRender: false }, illuminate + FQ * 2.5);
+  tl.fromTo("#stagespotlight-fa", { opacity: 0 }, { opacity: 1, duration: FQ / 4, ease: "none" }, illuminate);
+  tl.fromTo("#stagespotlight-fc", { attr: { r: 420 } }, { attr: { r: 170 }, duration: .35, ease: "power2.out" }, illuminate);
+  tl.fromTo("#stagespotlight-fs", { attr: { rx: 760, ry: 12 } }, { attr: { rx: 300, ry: 5 }, duration: .35, ease: "power2.out" }, illuminate);
+  tl.fromTo("#stagespotlight-fl", { opacity: 0 }, { opacity: .45, duration: FQ / 4, ease: "none" }, illuminate);
+  tl.to("#stagespotlight-fl", { opacity: 0, duration: .16, ease: "power2.out", immediateRender: false }, illuminate + FQ);
+
+  dust.forEach(function (p) { tl.fromTo(p, { x: 0, y: 0 }, { x: p.__dx, y: p.__dy, duration: Math.max(.3, exit - illuminate), ease: "none" }, illuminate); });
+  tl.fromTo("#stagespotlight-nr", { x: -30 }, { x: 30, duration: Math.max(.3, exit - illuminate), ease: "none" }, illuminate);
+
+  var vl = illuminate + .22, padding = exit - .1 - vl;
+  if (padding > .3) {
+    var nv = Math.max(1, Math.round(padding / .85)), halfValue = padding / nv;
+    tl.fromTo(["#stagespotlight-la", "#stagespotlight-lb"], { opacity: 0 }, { opacity: 1, duration: .2, ease: "power1.out" }, vl);
+    tl.fromTo("#stagespotlight-la", { rotation: -38 }, { rotation: -38, duration: .01, svgOrigin: "-30 140" }, vl);
+    tl.fromTo("#stagespotlight-lb", { rotation: 38 }, { rotation: 38, duration: .01, svgOrigin: "1110 140" }, vl);
+    for (k = 0; k < nv; k++) {
+      tl.to("#stagespotlight-la", { rotation: k % 2 ? -38 : -4, svgOrigin: "-30 140", duration: halfValue, ease: "sine.inOut", immediateRender: false }, vl + k * halfValue);
+      tl.to("#stagespotlight-lb", { rotation: k % 2 ? 38 : 4, svgOrigin: "1110 140", duration: halfValue, ease: "sine.inOut", immediateRender: false }, vl + k * halfValue);
+    }
+  }
+
+  tl.to(["#stagespotlight-s", "#stagespotlight-e3"], { opacity: 0, duration: .14, ease: "power2.in", immediateRender: false }, exit);
+  tl.to("#stagespotlight-e2", { opacity: 0, duration: .28, ease: "power1.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["stage-spotlight"] = tl;
+})();
+</script>
+</template>
+</body></html>

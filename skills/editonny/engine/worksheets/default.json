@@ -1,0 +1,15 @@
+{
+  "notes": "Optional approved visual settings. The canonical project configuration remains project.json.",
+  "format": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30
+  },
+  "style": "paper",
+  "captions": {
+    "enabled": true,
+    "maxWords": 3
+  },
+  "endHold": 1.2,
+  "loudnessLufs": -14
+}

@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>Gauge</title></head>
+<body>
+
+<template id="gauge-template">
+<style>
+@font-face{font-family:Montserrat;src:url("assets/fonts/Montserrat.ttf") format("truetype");font-weight:100 900;font-display:block}
+#root{position:absolute;inset:0;overflow:hidden;font-family:Montserrat}
+#gauge-background{position:absolute;inset:0;opacity:0}
+#gauge-card{position:absolute;box-sizing:border-box;opacity:0}
+#gauge-label{position:absolute;display:block;font-weight:900;letter-spacing:.08em;text-align:center;white-space:nowrap}
+.gauge-arc{position:absolute;opacity:0;z-index:1}
+#gauge-needle{position:absolute;opacity:0;z-index:2;clip-path:polygon(42% 0,58% 0,100% 100%,0 100%)}
+#gauge-hub{position:absolute;opacity:0;z-index:3;border-radius:50%}
+#gauge-hub-center{position:absolute;border-radius:50%}
+.gauge-reading{position:absolute;display:block;font-weight:900;letter-spacing:.02em;text-align:center;white-space:nowrap;opacity:0}
+#gauge-badge{position:absolute;opacity:0}
+#gauge-badge-txt{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-weight:900;letter-spacing:.06em;white-space:nowrap}
+</style>
+<div id="root" data-composition-id="gauge" data-width="1080" data-height="1920" data-duration="7">
+  <div id="gauge-background"></div>
+  <div id="gauge-card">
+    <span id="gauge-label">COST</span>
+    <div id="gauge-needle"></div>
+    <div id="gauge-hub"><div id="gauge-hub-center"></div></div>
+    <div id="gauge-badge"></div>
+  </div>
+</div>
+<script>
+(function () {
+  const ID = "gauge";
+  const PARAM = {
+    label: "COST",
+    zones: [{ end: 0.34, color: "green" }, { end: 0.67, color: "accent" }, { end: 1, color: "red" }],
+    start: 0.84,
+    reading: null,
+    badge: null,
+    actions: [
+      { value: 0.12, reading: "MINIMUM", at: { word: "minimum", standard: 2.2 } },
+    ],
+    enter: 0,
+    pause: 0.6,
+    captions: true,
+    background: "auto",
+    area: null,
+    entry: 0.2,
+    exit: 0.25,
+  };
+  const C = Object.assign({ words: [], duration: 7, width: 1080, height: 1920, safeArea: [140, 230, 940, 1530], face: null, frame: null,
+    colors: { paper: "#fffdfd", line: "#e6ddf8", base: "#c7b7ef", accent: "#665080", ink: "#352c40", green: "#2e9e5b", red: "#e5484d" } },
+    (window.__scenes || {})[ID] || {});
+  const DUR = C.duration, U = Math.min(C.width, C.height) / 1080;
+  const root = document.getElementById("gauge-background").parentElement;
+  if (root.offsetWidth && (Math.abs(root.offsetWidth - C.width) > 2 || Math.abs(root.offsetHeight - C.height) > 2))
+    console.error(`[${ID}] scene root is ${root.offsetWidth} x ${root.offsetHeight}, video is ${C.width} x ${C.height}: update root data-width and data-height`);
+  const SAFE_AREA = C.safeArea, FACE = C.face, ABOVE_FACE = PARAM.area === "aboveFace" && !C.frame;
+  if (PARAM.area === "aboveFace") {
+    if (!ABOVE_FACE) PARAM.area = null;
+    else {
+      const ya = SAFE_AREA[1] + 20, yb = FACE ? FACE.top + 40 : Math.round(SAFE_AREA[1] + (SAFE_AREA[3] - SAFE_AREA[1]) * 0.25);
+      if (yb - ya < 200) console.warn(`[${ID}] only ${Math.max(0, Math.round(yb - ya))} px above the face; the card needs about 200. Prefer fullscreen with background or a framed layout. The card uses the available upper safe area (minimum 160 px)`);
+      PARAM.area = [SAFE_AREA[0], ya, SAFE_AREA[2], Math.max(yb, ya + 160)];
+      if (PARAM.background === "auto") PARAM.background = null;
+    }
+  }
+  const warnFace = (x0, y0, x1, y1) => { if (!background && !ABOVE_FACE && FACE && x0 < FACE.x1 + 20 && x1 > FACE.x0 - 20 && y0 < FACE.y1 + 20 && y1 > Math.min(FACE.y0, FACE.top ?? FACE.y0) - 20)
+    console.warn(`[${ID}] card overlaps the face: use area: "aboveFace" or move the area`); };
+  const without = (s) => String(s).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]/g, "");
+  const word = (txt, after, standard) => { const a = without(txt), p = a && (C.words || []).find((w) => w.t >= after - 1e-3 && without(w.text).startsWith(a)); return p ? p.t : standard; };
+  const moment = (m, standard) => (typeof m === "number" ? m : typeof m === "string" ? word(m, 0, standard)
+    : m && typeof m === "object" ? word(m.word || "", m.after == null ? 0 : moment(m.after, 0), m.standard == null ? standard : m.standard) : standard);
+  let lastEnd = C.frame ? Math.max(0, C.frame.closedAt || 0) : 0, nextAvailable = lastEnd + PARAM.entry;
+  function schedule(desired, dur, adjacent) {
+    const t = Math.max(desired, adjacent ? lastEnd : nextAvailable);
+    if (t - desired > 0.4) console.warn(`[${ID}] action starts ${(t - desired).toFixed(2)} s after its word: space anchors farther apart or reduce pause`);
+    lastEnd = t + dur; nextAvailable = lastEnd + PARAM.pause; return t;
+  }
+  const color = (n) => C.colors[n] || n;
+  const rgb = (h) => { h = String(h).replace("#", ""); if (h.length === 3) h = h.replace(/./g, "$&$&"); return [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16)); };
+  const mix = (a, b, k) => "#" + rgb(a).map((v, i) => Math.round(v + (rgb(b)[i] - v) * k).toString(16).padStart(2, "0")).join("");
+  const weight = (ch) => { const b = ch.normalize("NFD")[0]; return b === " " ? 0.28 : "MW".includes(b) ? 1 : "mw".includes(b) ? 0.92 : "iljI.,:;'!|".includes(b) ? 0.32 : /[A-Z]/.test(b) ? 0.76 : /[0-9]/.test(b) ? 0.68 : 0.62; };
+  const width = (t, px) => [...String(t)].reduce((s, ch) => s + weight(ch), 0) * px * 1.1;
+  const lines = (t, px, w) => String(t).split(/\s+/).filter(Boolean).reduce((ls, p) => { const u = ls[ls.length - 1]; if (u !== undefined && width(u + " " + p, px) <= w) ls[ls.length - 1] = u + " " + p; else ls.push(p); return ls; }, []);
+  const fits = (t, w, h, larger, smaller, max) => { for (let px = Math.round(larger); px > smaller; px--) { const ls = lines(t, px, w); if (ls.length <= max && ls.every((l) => width(l, px) <= w) && ls.length * px * 1.16 <= h) return px; } return Math.round(smaller); };
+  const A = PARAM.area ? PARAM.area.slice() : C.frame && C.frame.freeArea ? C.frame.freeArea.slice()
+    : [C.safeArea[0], C.safeArea[1], C.safeArea[2], PARAM.captions ? Math.round(C.safeArea[1] + (C.safeArea[3] - C.safeArea[1]) * 0.7) : C.safeArea[3]];
+  const AW = A[2] - A[0], AH = A[3] - A[1];
+  const background = PARAM.background === "auto" ? (C.frame ? null : "paper") : PARAM.background;
+  function paintBackground(el) {
+    if (background === "paper" && C.backgroundCss) el.style.cssText += ";" + C.backgroundCss;
+    else if (background === "paper") { const g = Math.round(60 * U); Object.assign(el.style, { backgroundColor: C.colors.paper, backgroundSize: `${g}px ${g}px`, backgroundImage: `linear-gradient(${C.colors.line} 2px,transparent 2px),linear-gradient(90deg,${C.colors.line} 2px,transparent 2px)` }); }
+    else if (background) el.style.backgroundColor = background;
+  }
+  const createElement = (tag, id, cls, parent, style, text) => { const e = document.createElement(tag); if (id) e.id = id; if (cls) e.className = cls; if (style) Object.assign(e.style, style); if (text != null) e.textContent = text; parent.appendChild(e); return e; };
+  const px = (v) => `${v}px`;
+  const light = (h) => { const [r, g, b] = rgb(h); return 0.299 * r + 0.587 * g + 0.114 * b > 150; };
+  const dark = light(C.colors.ink) ? C.colors.paper : C.colors.ink;
+  const over = (background) => (light(background) ? dark : "#ffffff");
+  const $ = (id) => document.getElementById(id);
+  paintBackground($("gauge-background"));
+  const S = PARAM.badge, NZ = PARAM.zones.length, f = (v) => v.toFixed(1), clamp = (v) => Math.min(1, Math.max(0, Number(v) || 0));
+  const P0 = 44, HL = 72, LABEL_GAP = 18, W0 = 58, HUB0 = 32, GAP = 26, HR = 112, HS = 64, BADGE_GAP = 22, CS = S ? BADGE_GAP + HS : 0;
+  const EP = { R0: 300, P0, baseWidth: 600 + 2 * P0, baseHeight: P0 + HL + LABEL_GAP + 300 + HUB0 + 6 + GAP + HR + CS + P0 };
+  const ED = { R0: 210, P0: 36, baseWidth: 72 + 420 + 44 + 440, baseHeight: 72 + Math.max(210 + HUB0 + 6, HL + 12 + HR + CS) };
+  const scale = (m) => Math.min(1.12, AW / ((m.baseWidth + 8) * U), AH / ((m.baseHeight + 22) * U));
+  const landscape = scale(ED) > 1.3 * scale(EP), M = landscape ? ED : EP;
+  const u = U * scale(M);
+  const bd = Math.max(3, 4 * u), P = M.P0 * u, R = M.R0 * u, w = W0 * u, hub = HUB0 * u, r = R - w / 2;
+  const W = M.baseWidth * u + 2 * bd, H = M.baseHeight * u + 2 * bd, iw = W - 2 * bd, X = A[0] + (AW - W) / 2, Y = A[1] + (AH - H) / 2;
+  const colH = (HL + 12 + HR + CS) * u, cx0 = landscape ? P + 2 * R + 44 * u : 0, cw = landscape ? 440 * u : iw, padding = landscape ? 24 * u : 2 * P;
+  const cy0 = landscape ? (M.baseHeight * u - colH) / 2 : P;
+  const gx = landscape ? P + R : iw / 2, gy = landscape ? (M.baseHeight * u - (M.R0 + HUB0 + 6) * u) / 2 + R : P + (HL + LABEL_GAP) * u + R;
+  const ry = landscape ? cy0 + (HL + 12) * u : gy + (HUB0 + 6 + GAP) * u;
+  warnFace(X, Y, X + W, Y + H);
+  const card = $("gauge-card");
+  Object.assign(card.style, { left: px(X), top: px(Y), width: px(W), height: px(H), borderRadius: px(34 * u), background: C.colors.paper,
+    border: `${bd}px solid ${C.colors.base}`, boxShadow: `0 ${14 * u}px 0 -2px ${C.colors.base}` });
+  $("gauge-label").textContent = PARAM.label;
+  Object.assign($("gauge-label").style, { left: px(cx0), top: px(cy0), width: px(cw), height: px(HL * u), lineHeight: px(HL * u), color: C.colors.ink,
+    fontSize: px(fits(PARAM.label, cw - padding, HL * u, 58 * u, 26 * u, 1)) });
+  const rad = Math.PI / 180, tip = (w / 2 / r) / rad, gap = 1.6, pad = 6 * u, bw = 2 * R + 2 * pad, bh = R + w / 2 + 2 * pad;
+  const point = (g, rr) => [pad + R + rr * Math.sin(g * rad), pad + R - rr * Math.cos(g * rad)];
+  const box = (el) => Object.assign(el.style, { left: px(gx - R - pad), top: px(gy - R - pad), width: px(bw), height: px(bh) });
+  const arcs = PARAM.zones.map((z, k) => {
+    const start = k ? PARAM.zones[k - 1].end : 0, g0 = -90 + 180 * start + (k ? gap : 0) + tip;
+    const g1 = Math.max(g0 + 0.2, -90 + 180 * z.end - (k < NZ - 1 ? gap : 0) - tip), p0 = point(g0, r), p1 = point(g1, r);
+    const el = createElement("div", `gauge-arc-${k}`, "gauge-arc", card);
+    box(el);
+    el.innerHTML = `<svg width="${f(bw)}" height="${f(bh)}" fill="none"><path d="M ${f(p0[0])} ${f(p0[1])} A ${f(r)} ${f(r)} 0 0 1 ${f(p1[0])} ${f(p1[1])}" stroke="${color(z.color)}" stroke-width="${f(w)}" stroke-linecap="round"/></svg>`;
+    const x0 = Math.max(0, Math.min(...[r - w / 2, r + w / 2].map((rr) => point(g0 - tip, rr)[0]))) / bw;
+    return { el, initial: `inset(0% ${f(100 - 100 * x0)}% 0% 0%)` };
+  });
+  const ruler = createElement("div", "gauge-arc-ruler", "gauge-arc", card);
+  box(ruler);
+  let marks = "";
+  for (let g = -90; g <= 90.01; g += 18) {
+    const a = point(g, r - w / 2 - 14 * u), b = point(g, r - w / 2 - 30 * u);
+    marks += `<line x1="${f(a[0])}" y1="${f(a[1])}" x2="${f(b[0])}" y2="${f(b[1])}"/>`;
+  }
+  ruler.innerHTML = `<svg width="${f(bw)}" height="${f(bh)}" fill="none" stroke="${mix(C.colors.ink, C.colors.paper, 0.6)}" stroke-width="${f(Math.max(3, 4 * u))}" stroke-linecap="round">${marks}</svg>`;
+  arcs.push({ el: ruler, initial: "inset(0% 100% 0% 0%)" });
+  const nw = 30 * u, ln = R - w + 10 * u;
+  Object.assign($("gauge-needle").style, { left: px(gx - nw / 2), top: px(gy - ln), width: px(nw), height: px(ln), background: C.colors.ink });
+  Object.assign($("gauge-hub").style, { left: px(gx - hub), top: px(gy - hub), width: px(2 * hub), height: px(2 * hub), background: C.colors.ink });
+  Object.assign($("gauge-hub-center").style, { left: px(hub * 0.62), top: px(hub * 0.62), width: px(hub * 0.76), height: px(hub * 0.76), background: C.colors.paper });
+  const zoneAt = (v) => PARAM.zones.find((z) => v <= z.end + 1e-6) || PARAM.zones[NZ - 1];
+  const all = (PARAM.reading ? [{ text: PARAM.reading, value: clamp(PARAM.start) }] : [])
+    .concat(PARAM.actions.filter((a) => a.reading).map((a) => ({ text: a.reading, value: clamp(a.value), color: a.color })));
+  const labelFontSize = all.length ? Math.min(...all.map((l) => fits(l.text, cw - padding, HR * u, 96 * u, 34 * u, 1))) : 0;
+  const readings = all.map((l, k) => createElement("span", `gauge-reading-${k}`, "gauge-reading", card, { left: px(cx0), top: px(ry), width: px(cw), height: px(HR * u),
+    lineHeight: px(HR * u), fontSize: px(labelFontSize), color: color(l.color || zoneAt(l.value).color) }, l.text));
+  const $badgeElement = $("gauge-badge");
+  if (!S) $badgeElement.style.display = "none";
+  else {
+    const fs = 34 * u, ws = Math.min(width(S.text, fs) + 64 * u, cw), c = mix(color(S.color || "green"), C.colors.ink, 0.18);
+    Object.assign($badgeElement.style, { left: px(cx0 + (cw - ws) / 2), top: px(ry + (HR + BADGE_GAP) * u), width: px(ws), height: px(HS * u), borderRadius: px(HS * u / 2), background: c });
+    createElement("span", "gauge-badge-txt", null, $badgeElement, { fontSize: px(fs), color: over(c) }, S.text);
+  }
+  const tl = gsap.timeline({ paused: true });
+  const rot = (v) => -90 + 180 * clamp(v);
+  let ang = rot(PARAM.start);
+  tl.fromTo("#gauge-background", { opacity: 0 }, { opacity: 1, duration: Math.max(0.01, PARAM.entry), ease: "power1.out" }, 0);
+  tl.set("#gauge-needle", { transformOrigin: "50% 100%", rotation: ang }, 0);
+  const tE = schedule(moment(PARAM.enter, 0), 0.9);
+  tl.fromTo(card, { opacity: 0, y: 60 * u }, { opacity: 1, y: 0, duration: 0.45, ease: "back.out(1.5)" }, tE);
+  arcs.forEach((a, k) => tl.fromTo(a.el, { opacity: 1, clipPath: a.initial }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.28, ease: "power1.out" }, tE + 0.22 + 0.11 * k));
+  tl.fromTo("#gauge-hub", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, tE + 0.45);
+  tl.fromTo("#gauge-needle", { opacity: 0, rotation: ang - 30 }, { opacity: 1, rotation: ang, duration: 0.4, ease: "power2.out", immediateRender: false }, tE + 0.5);
+  let readingCount = 0;
+  if (PARAM.reading) tl.fromTo(readings[readingCount++], { opacity: 0, y: 16 * u }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, tE + 0.6);
+  PARAM.actions.forEach((a, n) => {
+    const desired = moment(a.at != null ? a.at : a.word, 1 + n * 1.5) - 0.3, target = rot(a.value), dir = target >= ang ? 1 : -1;
+    const t = schedule(desired, 0.95), anticipationAngle = ang - dir * 6;
+    if (Math.abs(target - ang) >= 1) {
+      tl.fromTo("#gauge-needle", { rotation: ang }, { rotation: anticipationAngle, duration: 0.14, ease: "power2.out", immediateRender: false }, t);
+      tl.fromTo("#gauge-needle", { rotation: anticipationAngle }, { rotation: target, duration: 0.75, ease: "elastic.out(1, 0.55)", immediateRender: false }, t + 0.16);
+      ang = target;
+    }
+    if (a.reading) {
+      const k = readingCount++;
+      if (k > 0) tl.to(readings[k - 1], { opacity: 0, y: -12 * u, duration: 0.14, ease: "power1.in", immediateRender: false }, t + 0.36);
+      tl.fromTo(readings[k], { opacity: 0, y: 18 * u }, { opacity: 1, y: 0, duration: 0.32, ease: "back.out(1.7)" }, t + 0.54);
+    }
+  });
+  if (S) tl.fromTo($badgeElement, { opacity: 0, y: 16 * u }, { opacity: 1, y: 0, duration: 0.35, ease: "back.out(1.7)" }, schedule(moment(S.at, DUR - 1.6) - 0.1, 0.5, true));
+  if (DUR - PARAM.exit - lastEnd < 0.6) console.warn(`[${ID}] last action leaves ${(DUR - PARAM.exit - lastEnd).toFixed(2)} s before the scene ends: hold the result for at least 0.6 s by extending end`);
+  if (PARAM.exit > 0) tl.fromTo(["#gauge-background", card], { opacity: 1 }, { opacity: 0, duration: PARAM.exit, ease: "power1.in", immediateRender: false }, Math.max(0, DUR - PARAM.exit));
+  window.__timelines["gauge"] = tl;
+})();
+</script>
+</template>
+</body></html>

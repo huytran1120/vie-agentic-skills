@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Transition blinds</title></head>
+<body>
+<!-- Transition blinds. For a change of setting or day: seven strips close and open in sequence. -->
+
+<template id="transition-blinds-template">
+<style>
+#root{position:absolute;inset:0;overflow:hidden}
+.transitionblinds-s{position:absolute;left:0;width:1080px;height:276px;background:#08080a;opacity:0}
+</style>
+<div id="root" data-composition-id="transition-blinds" data-width="1080" data-height="1920" data-duration="0.6">
+<div class="transitionblinds-s" id="transitionblinds-s0" style="top:0px"></div><div class="transitionblinds-s" id="transitionblinds-s1" style="top:274px"></div><div class="transitionblinds-s" id="transitionblinds-s2" style="top:548px"></div><div class="transitionblinds-s" id="transitionblinds-s3" style="top:822px"></div><div class="transitionblinds-s" id="transitionblinds-s4" style="top:1096px"></div><div class="transitionblinds-s" id="transitionblinds-s5" style="top:1370px"></div><div class="transitionblinds-s" id="transitionblinds-s6" style="top:1644px"></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["transition-blinds"] || { duration: 0.6 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = 0.6, t0 = 0;
+
+  function rise(sel, a, b, c, peak, e1, e2) {
+    tl.fromTo(sel, { opacity: 0 }, { opacity: peak, duration: b - a, ease: e1 || "sine.inOut" }, t0 + a);
+    tl.to(sel, { opacity: 0, duration: c - b, ease: e2 || "sine.inOut", immediateRender: false }, t0 + b);
+  }
+
+  var i;
+  for (i = 0; i < 7; i++) {
+    tl.fromTo("#transitionblinds-s" + i, { opacity: 1, clipPath: "inset(50% 0% 50% 0%)" }, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", duration: D * .3, ease: "power2.in" }, t0 + i * D * .025);
+    tl.to("#transitionblinds-s" + i, { clipPath: "inset(50% 0% 50% 0%)", duration: D * .3, ease: "power2.out", immediateRender: false }, t0 + D * .52 + i * D * .025);
+    tl.to("#transitionblinds-s" + i, { opacity: 0, duration: .01, immediateRender: false }, t0 + D * .99);
+  }
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["transition-blinds"] = tl;
+})();
+</script>
+</template>
+</body></html>

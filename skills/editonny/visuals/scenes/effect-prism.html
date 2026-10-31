@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Effect prism</title></head>
+<body>
+<!-- Effect prism. For dreams, dizziness, amazement, or confusion: prism-like image copies spread apart. -->
+
+<template id="effect-prism-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+#effectprism-v{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;pointer-events:none;backdrop-filter:url(#effectprism-fp);-webkit-backdrop-filter:url(#effectprism-fp)}
+</style>
+<div id="root" data-composition-id="effect-prism" data-width="1080" data-height="1920" data-duration="2.8">
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0"><filter id="effectprism-fp" filterUnits="userSpaceOnUse" x="-140" y="-40" width="1360" height="2000" color-interpolation-filters="sRGB"><feGaussianBlur id="effectprism-bl" in="SourceGraphic" stdDeviation="2.5" result="sb"/><feColorMatrix in="sb" type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="cr"/><feColorMatrix in="sb" type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0" result="cg"/><feColorMatrix in="sb" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" result="cb"/><feOffset id="effectprism-o3r" in="cr" dx="0" dy="0" result="o3r"/><feOffset id="effectprism-o3g" in="cg" dx="0" dy="0" result="o3g"/><feOffset id="effectprism-o3b" in="cb" dx="0" dy="0" result="o3b"/><feBlend in="o3r" in2="o3g" mode="screen" result="x3"/><feBlend in="x3" in2="o3b" mode="screen" result="y3"/><feColorMatrix id="effectprism-m3" in="y3" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0" result="g3"/><feOffset id="effectprism-o2r" in="cr" dx="0" dy="0" result="o2r"/><feOffset id="effectprism-o2g" in="cg" dx="0" dy="0" result="o2g"/><feOffset id="effectprism-o2b" in="cb" dx="0" dy="0" result="o2b"/><feBlend in="o2r" in2="o2g" mode="screen" result="x2"/><feBlend in="x2" in2="o2b" mode="screen" result="y2"/><feColorMatrix id="effectprism-m2" in="y2" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0" result="g2"/><feOffset id="effectprism-o1r" in="cr" dx="0" dy="0" result="o1r"/><feOffset id="effectprism-o1g" in="cg" dx="0" dy="0" result="o1g"/><feOffset id="effectprism-o1b" in="cb" dx="0" dy="0" result="o1b"/><feBlend in="o1r" in2="o1g" mode="screen" result="x1"/><feBlend in="x1" in2="o1b" mode="screen" result="y1"/><feColorMatrix id="effectprism-m1" in="y1" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0" result="g1"/><feComposite id="effectprism-k3" in="SourceGraphic" in2="g3" operator="arithmetic" k1="0" k2="1" k3="0" k4="0" result="a3"/><feComposite id="effectprism-k2" in="a3" in2="g2" operator="arithmetic" k1="0" k2="1" k3="0" k4="0" result="a2"/><feComposite id="effectprism-k1" in="a2" in2="g1" operator="arithmetic" k1="0" k2="1" k3="0" k4="0"/></filter></svg>
+<div id="effectprism-v"></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["effect-prism"] || { duration: 2.8 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 2.8, t0 = 0;
+
+  var P = {
+    strength: 0.75, // 0–1: visibility of ghost copies over the image.
+    spacing: 46, // Distance between the image and each copy, from 10 to 200 pixels.
+    copies: 2, // 2 creates one copy on each side; 3 adds a more distant, fainter copy.
+  };
+
+
+  var strength = Number(P.strength); if (!(strength >= 0)) strength = .75; strength = Math.min(1, strength);
+  var af = Number(P.spacing); if (!(af > 0)) af = 46; af = Math.max(10, Math.min(200, af));
+  var nc = Math.round(Number(P.copies)) === 3 ? 3 : 2;
+  var get = function (s) { return document.getElementById("effectprism-" + s); };
+
+  var SIDE = [1, -1, 2], RISE_TIME = [-.1, .08, -.18], PRESSURE_VALUE = [.44, .35, .25], PHASE_VALUE = [0, 22, 41];
+  var TONE = [[1.12, .93, .8], [.8, .96, 1.14], [1.04, .84, 1.1]];
+  var kf = Math.pow(strength, .85), disp = Math.max(3, af * .15), bobbing = Math.max(8, af * .16), gi, al, t;
+
+  var mx = Math.ceil(af * 3.3 + 40), my = Math.ceil(af * .36 + 46), ff = get("fp");
+  ff.setAttribute("x", -mx); ff.setAttribute("y", -my); ff.setAttribute("width", 1080 + 2 * mx); ff.setAttribute("height", 1920 + 2 * my);
+  get("bl").setAttribute("stdDeviation", (.8 + af * .022).toFixed(2));
+  for (gi = 0; gi < 3; gi++) {
+    al = gi === 2 && nc === 2 ? 0 : PRESSURE_VALUE[gi] * kf; t = TONE[gi];
+
+    get("k" + (gi + 1)).setAttribute("k2", (1 - .6 * al).toFixed(3)); get("k" + (gi + 1)).setAttribute("k3", al.toFixed(3));
+    get("m" + (gi + 1)).setAttribute("values", t[0] + " 0 0 0 0  0 " + t[1] + " 0 0 0  0 0 " + t[2] + " 0 0  0 0 0 1 0");
+  }
+  var enter = t0 + .05, rise = .35, descend = .3, exit = t0 + D - descend - .04, end = exit + descend;
+  tl.fromTo("#effectprism-v", { opacity: 0 }, { opacity: strength > 0 ? 1 : 0, duration: .25, ease: "sine.out" }, enter);
+  tl.to("#effectprism-v", { opacity: 0, duration: descend, ease: "sine.in", immediateRender: false }, exit);
+
+  var BL = [17, 27, 36, 45, 52, 58, 63, 66, 68, 70, 70, 70, 69, 67, 65, 63, 61, 58, 56, 54, 52, 49, 47, 45, 42, 39, 36, 32, 28, 23, 17, 10, 3, -5, -13, -22, -32, -41, -50, -60, -68, -76, -83, -89, -94, -97, -98, -98, -96, -92, -87, -80, -72, -63, -52, -41, -29, -17, -6, 6];
+  var nq = Math.max(1, Math.floor((end - enter) * 30)), qi, tq, env, ab, w, wy, dx, dy, sn, dd;
+  for (qi = 0; qi <= nq; qi++) {
+    tq = qi < nq ? enter + qi / 30 : end;
+    env = Math.max(0, Math.min(1, (tq - enter + 1 / 30) / rise, (end - tq) / descend));
+    ab = qi < nq ? .2 + .8 * env * env * (3 - 2 * env) : 0;
+    for (gi = 0; gi < 3; gi++) {
+      w = BL[(qi + PHASE_VALUE[gi]) % BL.length] / 100; wy = BL[(qi + PHASE_VALUE[gi] + 15) % BL.length] / 100;
+      sn = SIDE[gi] > 0 ? 1 : -1;
+
+      dx = SIDE[gi] * af * ab * (1 + .3 * w); dy = (RISE_TIME[gi] * af + bobbing * wy) * ab; dd = sn * disp * (gi === 2 ? 1.5 : 1) * ab * (1 + .3 * wy);
+      tl.set("#effectprism-o" + (gi + 1) + "r", { attr: { dx: +(dx + dd).toFixed(1), dy: +dy.toFixed(1) } }, tq);
+      tl.set("#effectprism-o" + (gi + 1) + "g", { attr: { dx: +dx.toFixed(1), dy: +dy.toFixed(1) } }, tq);
+      tl.set("#effectprism-o" + (gi + 1) + "b", { attr: { dx: +(dx - dd).toFixed(1), dy: +dy.toFixed(1) } }, tq);
+    }
+  }
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["effect-prism"] = tl;
+})();
+</script>
+</template>
+</body></html>

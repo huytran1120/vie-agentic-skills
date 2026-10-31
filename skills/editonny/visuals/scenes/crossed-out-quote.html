@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Crossed out quote</title></head>
+<body>
+<!-- Crossed out quote. When comparing an old recurring cost with a new price. -->
+
+<template id="crossed-out-quote-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+#crossedoutquote-a{position:absolute;left:0;top:0;width:0;height:0;opacity:0}
+#crossedoutquote-k{position:absolute;left:0;top:0;width:700px;height:366px;opacity:0;filter:drop-shadow(0 0 1.5px rgba(0,0,0,.22)) drop-shadow(0 4px 8px rgba(0,0,0,.2)) drop-shadow(0 20px 30px rgba(0,0,0,.38))}
+#crossedoutquote-f{position:absolute;left:0;top:0;width:700px;height:366px;border-radius:34px;background:#f7f7f9}
+#crossedoutquote-r{position:absolute;left:34px;top:28px;font-family:"Inter";font-size:38px;font-weight:800;letter-spacing:-.01em;line-height:1;color:#6b6b73;white-space:nowrap}
+#crossedoutquote-v{position:absolute;left:32px;top:78px;font-family:"Inter";font-size:84px;font-weight:900;letter-spacing:-.035em;line-height:1;color:#1c1c1e;white-space:nowrap}
+#crossedoutquote-v i,#crossedoutquote-n i,#crossedoutquote-v em,#crossedoutquote-n em{font-style:normal;font-size:.5em;letter-spacing:-.01em}
+#crossedoutquote-v i,#crossedoutquote-n i{margin-right:.12em}
+#crossedoutquote-v em,#crossedoutquote-n em{margin-left:.08em}
+#crossedoutquote-s{position:absolute;left:0;top:0;overflow:visible}
+#crossedoutquote-s path{fill:none;stroke-linecap:round;stroke-linejoin:round}
+#crossedoutquote-p{position:absolute;left:24px;top:196px;height:146px;border-radius:30px;display:flex;align-items:center;padding:0 34px 0 24px;gap:18px;opacity:0;white-space:nowrap}
+#crossedoutquote-c{flex:none;overflow:visible}
+#crossedoutquote-n{font-family:"Inter";font-size:132px;font-weight:900;letter-spacing:-.045em;line-height:1}
+</style>
+<div id="root" data-composition-id="crossed-out-quote" data-width="1080" data-height="1920" data-duration="4.0">
+<div id="crossedoutquote-a"><div id="crossedoutquote-k"><div id="crossedoutquote-f"></div><div id="crossedoutquote-r"></div><div id="crossedoutquote-v"><span id="crossedoutquote-vs"><i id="crossedoutquote-vp"></i><b id="crossedoutquote-vn" style="font-weight:900"></b><em id="crossedoutquote-vu"></em></span></div><svg id="crossedoutquote-s" xmlns="http://www.w3.org/2000/svg" width="10" height="10"><path id="crossedoutquote-x1" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" stroke="#ff3b30" stroke-width="10"/></svg><div id="crossedoutquote-p"><svg id="crossedoutquote-c" xmlns="http://www.w3.org/2000/svg" width="84" height="84" viewBox="0 0 62 62"><circle id="crossedoutquote-co" cx="31" cy="31" r="28"/><path id="crossedoutquote-ck" d="M18 32 L27 41 L45 22" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg><span id="crossedoutquote-ns" style="display:flex;align-items:baseline"><span id="crossedoutquote-n"><i id="crossedoutquote-np"></i><b id="crossedoutquote-nn" style="font-weight:900"></b><em id="crossedoutquote-nu"></em></span></span></div></div></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["crossed-out-quote"] || { duration: 4.0 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 4.0, t0 = 0;
+
+  var P = {
+    x: 540, // Card center on the 1080×1920 canvas, in pixels.
+    y: 418, // Open-card center above the head, in pixels.
+    label: "Hire an editor", // Description of the old expensive option.
+    oldValue: "R$ 1,500/month", // Old value, crossed out in red.
+    newValue: "R$ 0.48", // New value; numeric content counts up from zero.
+    newColor: "#30d158", // New-value accent color.
+  };
+
+
+  var LC = 700, HEIGHT_VALUE = 366, CLOSED_VALUE = 190;
+  var g = function (s) { return document.getElementById("crossedoutquote-" + s); };
+  var anchor = g("a"), body = g("k"), background = g("f"), badge = g("p");
+  anchor.style.left = P.x + "px"; anchor.style.top = P.y + "px";
+  body.style.left = (-LC / 2) + "px"; body.style.top = (-HEIGHT_VALUE / 2) + "px";
+  var parts = function (s) {
+    s = String(s == null ? "" : s).trim(); var m = s.match(/\d[\d,]*(?:\.\d+)?/);
+    if (!m) return { pre: "", num: null, dec: 0, suf: "", txt: s };
+    var raw = m[0].replace(/\.$/, ""), dec = (raw.split(".")[1] || "").length;
+    return { pre: s.slice(0, m.index).trim(), num: parseFloat(raw.replace(/,/g, "")), dec: dec, suf: s.slice(m.index + raw.length).trim(), txt: raw };
+  };
+  var formatValue = function (v, dec) { var f = Math.abs(v).toFixed(dec).split("."); f[0] = f[0].replace(/\B(?=(\d{3})+(?!\d))/g, ","); return (v < 0 ? "-" : "") + f.join("."); };
+  var write = function (q, pt) {
+    g(q + "p").textContent = pt.pre; g(q + "u").textContent = pt.suf; g(q + "n").textContent = pt.num == null ? pt.txt : formatValue(pt.num, pt.dec);
+    if (!pt.pre) g(q + "p").style.display = "none"; if (!pt.suf) g(q + "u").style.display = "none";
+  };
+  var old = parts(P.oldValue), newItem = parts(P.newValue);
+  g("r").textContent = String(P.label == null ? "" : P.label); write("v", old); write("n", newItem);
+  var newEnd = g("nn").textContent;
+
+  var light = function (color) { if (color == null || !window.CSS || !CSS.supports("color", String(color))) return -1;
+    anchor.style.color = String(color); var cm = getComputedStyle(anchor).color.match(/[\d.]+/g); anchor.style.color = ""; if (!cm || cm.length < 3) return -1;
+    var channel = function (cv) { cv = cv / 255; return cv <= .03928 ? cv / 12.92 : Math.pow((cv + .055) / 1.055, 2.4); };
+    return .2126 * channel(+cm[0]) + .7152 * channel(+cm[1]) + .0722 * channel(+cm[2]); };
+  var badgeColor = light(P.newColor) < 0 ? "#30d158" : P.newColor, lz = Math.max(0, light(badgeColor));
+  var textColor = (lz + .05) / .0616 > 1.05 / (lz + .05) ? "#0b1a10" : "#ffffff";
+  badge.style.background = badgeColor; badge.style.color = textColor; badge.style.boxShadow = "0 10px 24px rgba(0,0,0,.18)";
+  g("co").setAttribute("fill", textColor); g("ck").setAttribute("stroke", badgeColor);
+
+  var adjust = function () {
+    var rot = g("r"), vel = g("v"), nn = g("nn"), before = nn.textContent, free;
+    rot.style.fontSize = "38px"; free = LC - 68; if (rot.scrollWidth > free) rot.style.fontSize = (38 * free / rot.scrollWidth) + "px";
+    vel.style.fontSize = "84px"; vel.style.top = "78px"; free = LC - 64;
+    var wv = g("vs").offsetWidth; if (wv > free) { var fv = 84 * free / wv; vel.style.fontSize = fv + "px"; vel.style.top = (78 + (84 - fv) * .55) + "px"; wv = free; }
+    nn.textContent = newEnd; var num = g("n"); num.style.fontSize = "132px";
+    free = LC - 48 - 24 - 34 - 84 - 18; var wn = num.offsetWidth; if (wn > free) num.style.fontSize = (132 * free / wn) + "px";
+    nn.textContent = before;
+    var x0 = 32 - 12, x1 = 32 + wv + 14, ym = parseFloat(vel.style.top) + parseFloat(vel.style.fontSize) * .54;
+    var a = x0 + (x1 - x0) * .35, b = x0 + (x1 - x0) * .7;
+    g("x1").setAttribute("d", "M" + x0 + " " + (ym + 6) + " C" + a + " " + (ym - 2) + " " + a + " " + (ym + 4) + " " + ((x0 + x1) / 2) + " " + (ym - 1) + " S" + b + " " + (ym - 7) + " " + x1 + " " + (ym - 6));
+  };
+  adjust(); if (document.fonts && document.fonts.status !== "loaded") document.fonts.ready.then(adjust);
+  var closeAt = function (h) { return "inset(0px 0px " + (HEIGHT_VALUE - h) + "px 0px round 32px)"; };
+  background.style.clipPath = closeAt(CLOSED_VALUE);
+
+  var k = Math.min(1, Math.max(.45, (D - .4) / 3.6)), enter = t0 + .05, exit = t0 + D - .3, strike = enter + .6 * k, openAt = strike + .5 + .25 * k;
+  tl.fromTo(anchor, { opacity: 0 }, { opacity: 1, duration: .05, ease: "none" }, enter);
+  tl.fromTo(body, { opacity: 0, y: 30 + (HEIGHT_VALUE - CLOSED_VALUE) / 2 }, { opacity: 1, y: (HEIGHT_VALUE - CLOSED_VALUE) / 2, duration: .4, ease: "back.out(1.6)" }, enter);
+  tl.fromTo("#crossedoutquote-x1", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: .26, ease: "power1.inOut" }, strike);
+  tl.fromTo("#crossedoutquote-v", { color: "#1c1c1e" }, { color: "#636369", duration: .4, ease: "none" }, strike + .1);
+
+  tl.fromTo(background, { clipPath: closeAt(CLOSED_VALUE) }, { clipPath: closeAt(HEIGHT_VALUE), duration: .38, ease: "power3.out" }, openAt);
+  tl.to(body, { y: 0, duration: .38, ease: "power3.out", immediateRender: false }, openAt);
+  tl.fromTo(badge, { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: .4, ease: "back.out(1.8)" }, openAt + .1);
+  tl.fromTo("#crossedoutquote-ck", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: .3, ease: "power2.out" }, openAt + .3);
+  if (newItem.num != null) { var o = { v: 0 }, nn = g("nn"); nn.textContent = formatValue(0, newItem.dec);
+    tl.fromTo(o, { v: 0 }, { v: newItem.num, duration: .6 * k + .15, ease: "power2.out", onUpdate: function () { nn.textContent = formatValue(o.v, newItem.dec); } }, openAt + .12); }
+
+  var live = openAt + .6, padding = exit - live, turns = Math.max(1, Math.round(padding / 1.1)), halfValue = padding / (turns * 2);
+  if (halfValue > .12) tl.to(anchor, { y: -8, duration: halfValue, ease: "sine.inOut", yoyo: true, repeat: turns * 2 - 1, immediateRender: false }, live);
+  tl.to(anchor, { opacity: 0, y: -24, duration: .26, ease: "power2.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["crossed-out-quote"] = tl;
+})();
+</script>
+</template>
+</body></html>

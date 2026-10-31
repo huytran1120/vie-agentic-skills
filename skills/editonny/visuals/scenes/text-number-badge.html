@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Text number badge</title></head>
+<body>
+<!-- Text number badge. For numbered lists: a top pill holds the current number and item name. Use one copy per item, with adjacent copies meeting at their boundaries. Editor captions remain visible below; do not hide them. -->
+
+<template id="text-number-badge-template">
+<style>
+@font-face{font-family:"Montserrat";src:url("assets/fonts/Montserrat.ttf") format("truetype");font-weight:100 900;font-display:block}
+@font-face{font-family:"Caveat";src:url("assets/fonts/Caveat.ttf") format("truetype");font-weight:400 700;font-display:block}
+@font-face{font-family:"JetBrainsMono";src:url("assets/fonts/JetBrainsMono.ttf") format("truetype");font-weight:100 800;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Montserrat",sans-serif}
+.textnumberbadge-k{position:absolute;inset:0;pointer-events:none}
+.textnumberbadge-o{position:absolute;left:0;top:0;filter:drop-shadow(0 10px 18px rgba(0,0,0,.28)) drop-shadow(0 2px 4px rgba(0,0,0,.22))}
+.textnumberbadge-g{position:relative;width:100%;height:100%;perspective:1000px}
+.textnumberbadge-s{position:absolute;left:0;top:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;overflow:hidden;opacity:0;perspective:320px}
+.textnumberbadge-h{position:absolute;left:0;top:0;width:44%;height:100%;pointer-events:none}
+.textnumberbadge-t{position:relative;display:flex;flex-direction:column;align-items:center;opacity:0;font-family:"Montserrat",sans-serif;font-weight:800;line-height:1.12;letter-spacing:-.01em;white-space:nowrap}
+.textnumberbadge-l{display:flex;justify-content:center;align-items:baseline}
+.textnumberbadge-w{display:block}
+.textnumberbadge-n{display:block;font-weight:900}
+</style>
+<div id="root" data-composition-id="text-number-badge" data-width="1080" data-height="1920" data-duration="4.0">
+<div id="textnumberbadge-c" class="textnumberbadge-k">
+  <div id="textnumberbadge-o" class="textnumberbadge-o"><div id="textnumberbadge-g" class="textnumberbadge-g"><div id="textnumberbadge-s" class="textnumberbadge-s"><div id="textnumberbadge-h" class="textnumberbadge-h" aria-hidden="true"></div><div id="textnumberbadge-t" class="textnumberbadge-t"></div></div></div></div>
+</div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["text-number-badge"] || { duration: 4.0 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 4.0, t0 = 0;
+
+  var P = {
+    number: "1", // Badge number; empty shows only the name, without #.
+    text: "Outfit change", // Short effect, step, or item name, ideally one to four words.
+    color: "#ff6a1f", // Number color, including its # prefix.
+    background: "#ffffff", // Pill color; text automatically uses black or white for readability.
+    y: 292, // Badge center height on the 1080×1920 canvas, in pixels; above the head by default.
+    size: 46, // Maximum font size, in pixels; shrinks automatically to fit the badge.
+  };
+
+
+
+  var W = Array.isArray(C.words) ? C.words : [
+    { text: "You", t: 0.10, end: 0.34 }, { text: "do not", t: 0.36, end: 0.58 }, { text: "need", t: 0.60, end: 0.98 },
+    { text: "an", t: 1.00, end: 1.10 }, { text: "editor", t: 1.12, end: 1.56 }, { text: "to", t: 1.92, end: 2.06 },
+    { text: "post", t: 2.08, end: 2.44 }, { text: "every", t: 2.46, end: 2.68 }, { text: "day.", t: 2.70, end: 3.05 }
+  ];
+
+  W = (function (a) { var o = [], u = 0.04, k, t; for (k = 0; k < a.length; k++) { t = Math.max(0.05, Number(a[k].t) || 0, u + 0.01); o.push({ text: a[k].text, t: t, end: Math.max(t + 0.02, Number(a[k].end) || 0) }); u = t; } return o; })(W);
+
+  var SCALE_FACTOR = (function () {
+    var e = (typeof HIDDEN_RANGES !== "undefined" && HIDDEN_RANGES) || [], b0 = (typeof C.start === "number") ? C.start : 0, o = [], k;
+    for (k = 0; k < e.length; k++) if (Number(e[k][1]) > Number(e[k][0])) o.push([Number(e[k][0]) - b0, Number(e[k][1]) - b0]);
+    return o;
+  })();
+  function hidden(t) { for (var k = 0; k < SCALE_FACTOR.length; k++) if (t >= SCALE_FACTOR[k][0] && t < SCALE_FACTOR[k][1]) return true; return false; }
+  function nextScale(t) { var r = Infinity, k; for (k = 0; k < SCALE_FACTOR.length; k++) if (SCALE_FACTOR[k][0] > t && SCALE_FACTOR[k][0] < r) r = SCALE_FACTOR[k][0]; return r; }
+  W = W.filter(function (w) { return !hidden(w.t); });
+
+  function show(s) { return String(s).replace(/^\s+|\s+$/g, "").replace(/[.,;:…]+$/g, ""); }
+
+  function screens(maxP, maxL) {
+    var groups = [], cur = [], letters = 0, i, w, txt, out = [];
+    for (i = 0; i < W.length; i++) {
+      w = W[i]; txt = show(w.text); if (!txt || !(w.t < D - 0.2)) continue;
+      if (cur.length && (cur.length >= maxP || letters + txt.length + 1 > maxL || w.t - cur[cur.length - 1].end > 0.7 || nextScale(cur[cur.length - 1].t) <= w.t)) { groups.push(cur); cur = []; letters = 0; }
+      cur.push({ text: txt, t: Math.max(0.05, w.t), end: Math.min(D - 0.05, Math.max(w.t + 0.08, w.end)) }); letters += txt.length + 1;
+      if (/[.!?…]$/.test(String(w.text).replace(/\s+$/, "")) || (cur.length >= 2 && /[,;:]$/.test(String(w.text).replace(/\s+$/, "")))) { groups.push(cur); cur = []; letters = 0; }
+    }
+    if (cur.length) groups.push(cur);
+    for (i = 0; i < groups.length; i++) {
+      var start = Math.max(0.05, groups[i][0].t - 0.05), speechEnd = groups[i][groups[i].length - 1].end;
+      var end = Math.min(D - 0.05, speechEnd + 0.5); if (i + 1 < groups.length) end = Math.min(end, Math.max(0.05, groups[i + 1][0].t - 0.05));
+      end = Math.min(end, Math.max(start + 0.15, nextScale(groups[i][groups[i].length - 1].t)));
+      if (end > start + 0.12) out.push({ words: groups[i], start: start, end: end });
+    }
+    return out;
+  }
+
+
+  function num(v, d) { if (v === "" || v === null || v === undefined) return d; v = Number(v); return isFinite(v) ? v : d; }
+  var box = document.getElementById("textnumberbadge-c"), elO = document.getElementById("textnumberbadge-o"), elS = document.getElementById("textnumberbadge-s");
+  var elT = document.getElementById("textnumberbadge-t"), elH = document.getElementById("textnumberbadge-h");
+
+  function rgbFrom(c) {
+    var s = document.createElement("span"), m; s.style.color = String(c || "");
+    if (!s.style.color) return null;
+    box.appendChild(s); m = /^rgba?\((\d+)[^\d]+(\d+)[^\d]+(\d+)/.exec(getComputedStyle(s).color); box.removeChild(s);
+    return m ? [Number(m[1]), Number(m[2]), Number(m[3])] : null;
+  }
+  function light(v) { var q, c, n = 0, WEIGHTS = [.2126, .7152, .0722]; for (q = 0; q < 3; q++) { c = v[q] / 255; n += WEIGHTS[q] * (c <= .03928 ? c / 12.92 : Math.pow((c + .055) / 1.055, 2.4)); } return n; }
+  function ratio(a, b) { var la = light(a), lb = light(b); return (Math.max(la, lb) + .05) / (Math.min(la, lb) + .05); }
+  function rgb(v) { return "rgb(" + Math.round(v[0]) + "," + Math.round(v[1]) + "," + Math.round(v[2]) + ")"; }
+  var rF = rgbFrom(P.background) || [255, 255, 255], rN = rgbFrom(P.color) || [255, 106, 31];
+  var isLight = light(rF) > .18, rL = isLight ? [20, 20, 22] : [255, 255, 255];
+
+  var target = isLight ? [0, 0, 0] : [255, 255, 255], mix = rN.slice(), k;
+  for (k = 0; k < 20 && ratio(mix, rF) < 3.2; k++) mix = [0, 1, 2].map(function (q) { return rN[q] + (target[q] - rN[q]) * (k + 1) * .05; });
+  var colorF = rgb(rF), colorL = rgb(rL), numberTint = rgb(mix), ton = rN.join(",");
+
+  elH.style.background = "linear-gradient(105deg, rgba(" + ton + ",0) 0%, rgba(" + ton + "," + (isLight ? .26 : .34) + ") 44%, rgba(255,255,255," + (isLight ? .35 : .16) + ") 50%, rgba(" + ton + "," + (isLight ? .26 : .34) + ") 56%, rgba(" + ton + ",0) 100%)";
+
+  var nro = String(P.number === undefined || P.number === null ? "1" : P.number).replace(/^\s+|\s+$/g, "").replace(/^#+\s*/, "");
+  var name = String(P.text === undefined || P.text === null ? "Outfit change" : P.text).replace(/\s+/g, " ").replace(/^\s+|\s+$/g, "");
+  if (!name && !nro) name = "Effect";
+  var tok = [];
+  if (nro) tok.push({ s: "#" + nro, n: true });
+  if (name) name.split(" ").forEach(function (s) { tok.push({ s: s, n: false }); });
+  var ceiling = Math.max(24, Math.min(110, num(P.size, 46))), yy = Math.max(250, Math.min(1500, num(P.y, 292)));
+
+
+  var SPACING_VALUE = .26, GAP_COUNT = .3, PADX = .62, PADY = .34, HEIGHT_VALUE = 1.12, LIM = 800, MAXL = 3;
+  var med = document.createElement("div");
+  med.setAttribute("aria-hidden", "true"); med.setAttribute("data-layout-ignore", "");
+  med.style.cssText = "position:absolute;left:-6000px;top:0;visibility:hidden;white-space:nowrap;font-family:Montserrat,sans-serif;font-size:100px;line-height:1;letter-spacing:-.01em";
+  document.body.appendChild(med);
+  var memo = {};
+  function widthValue(s, weightValue) { var c = weightValue + "_" + s; if (!(c in memo)) { med.style.fontWeight = weightValue; med.textContent = s; memo[c] = med.getBoundingClientRect().width / 100; } return memo[c]; }
+  function lineWidthValue(ln) { var n = 0, q; for (q = 0; q < ln.length; q++) n += widthValue(ln[q].s, ln[q].n ? 900 : 800) + (q ? (ln[q - 1].n ? GAP_COUNT : SPACING_VALUE) : 0); return n; }
+
+  function divide(ws, q) {
+    var n = ws.length, m = [], c = [], a, b, d, v, out = [], end;
+    for (a = 1; a <= q; a++) {
+      m[a] = []; c[a] = [];
+      for (b = a; b <= n; b++) {
+        if (a === 1) { m[a][b] = lineWidthValue(ws.slice(0, b)); c[a][b] = 0; continue; }
+        m[a][b] = 1e9;
+        for (d = a - 1; d < b; d++) { v = Math.max(m[a - 1][d], lineWidthValue(ws.slice(d, b))); if (v < m[a][b]) { m[a][b] = v; c[a][b] = d; } }
+      }
+    }
+    for (a = q, end = n; a >= 1; a--) { out.unshift(ws.slice(c[a][end], end)); end = c[a][end]; }
+    return out;
+  }
+  var lines = [], sizeValue = ceiling, pw = 300, ph = 80, rr = 40, fy = 44, fx = 22;
+  function arrange() {
+    memo = {};
+    var floor = Math.min(ceiling, Math.max(30, ceiling * .62)), q, ls, mx, tq, best = null, i, j, ln, w;
+
+    for (q = 1; q <= Math.min(MAXL, tok.length); q++) {
+      ls = divide(tok, q); mx = 0;
+      for (i = 0; i < ls.length; i++) mx = Math.max(mx, lineWidthValue(ls[i]));
+      tq = Math.min(ceiling, Math.floor(LIM / (mx + 2 * PADX)));
+      if (!best || tq > best.sizeValue + 1) best = { sizeValue: tq, lines: ls, mx: mx };
+      if (tq >= floor) break;
+    }
+    lines = best.lines; sizeValue = Math.max(20, best.sizeValue);
+    pw = Math.round((best.mx + 2 * PADX) * sizeValue); ph = Math.round((lines.length * HEIGHT_VALUE + 2 * PADY) * sizeValue);
+    rr = Math.round(lines.length === 1 ? ph / 2 : sizeValue * (HEIGHT_VALUE / 2 + PADY));
+    fy = Math.max(0, (ph - 10) / 2 / ph * 100); fx = 22;
+    var top = Math.round(Math.max(238, Math.min(1522 - ph, yy - ph / 2)));
+    elO.style.left = Math.round(540 - pw / 2) + "px"; elO.style.top = top + "px"; elO.style.width = pw + "px"; elO.style.height = ph + "px";
+    elS.style.background = colorF; elS.style.borderRadius = rr + "px";
+
+    elS.style.boxShadow = isLight ? "inset 0 0 0 1.5px rgba(0,0,0,.07)" : "inset 0 0 0 2px rgba(255,255,255,.18)";
+    while (elT.firstChild) elT.removeChild(elT.firstChild);
+    elT.style.fontSize = sizeValue + "px"; elT.style.color = colorL;
+    for (i = 0; i < lines.length; i++) {
+      ln = document.createElement("div"); ln.className = "textnumberbadge-l";
+      for (j = 0; j < lines[i].length; j++) {
+        w = document.createElement("span"); w.className = lines[i][j].n ? "textnumberbadge-n" : "textnumberbadge-w"; w.textContent = lines[i][j].s;
+        if (lines[i][j].n) w.style.color = numberTint;
+        if (j) w.style.marginLeft = Math.round(sizeValue * (lines[i][j - 1].n ? GAP_COUNT : SPACING_VALUE)) + "px";
+        ln.appendChild(w);
+      }
+      elT.appendChild(ln);
+    }
+  }
+  arrange();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { arrange(); tl.invalidate(); });
+  function strike() { return "inset(" + fy.toFixed(2) + "% " + fx + "% " + fy.toFixed(2) + "% " + fx + "% round " + rr + "px)"; }
+  function open() { return "inset(0% 0% 0% 0% round " + rr + "px)"; }
+
+
+  var E = t0 + .05, B = t0 + D;
+
+  tl.fromTo(elS, { opacity: 0 }, { opacity: 1, duration: .06, ease: "none" }, E);
+  tl.fromTo(elS, { clipPath: strike }, { clipPath: open, duration: .36, ease: "expo.out", immediateRender: false }, E);
+  tl.fromTo(elS, { z: -170 }, { z: 0, duration: .46, ease: "back.out(2.2)", immediateRender: false }, E);
+
+  tl.fromTo(elT, { opacity: 0 }, { opacity: 1, duration: .12, ease: "none" }, E + .12);
+  tl.fromTo(elT, { yPercent: 75, rotationX: -80, filter: "blur(7px)" }, { yPercent: 0, rotationX: 0, filter: "blur(0px)", duration: .32, ease: "power3.out", immediateRender: false }, E + .12);
+
+  var OUTBOUND = .75, st = E + .55, nS = 0;
+  while (st + OUTBOUND <= B - .45 && nS < 6) {
+    tl.fromTo(elH, { xPercent: -110 }, { xPercent: 240, duration: OUTBOUND, ease: "power2.inOut", immediateRender: nS === 0 }, st);
+    nS++; st += 2.8;
+  }
+
+  tl.to(elT, { yPercent: -75, rotationX: 80, filter: "blur(7px)", duration: .18, ease: "power2.in", immediateRender: false }, B - .36);
+  tl.to(elT, { opacity: 0, duration: .1, ease: "none", immediateRender: false }, B - .26);
+
+  tl.fromTo(elS, { clipPath: open }, { clipPath: strike, duration: .16, ease: "power3.in", immediateRender: false }, B - .2);
+  tl.to(elS, { z: -120, duration: .16, ease: "power2.in", immediateRender: false }, B - .2);
+  tl.to(elS, { opacity: 0, duration: .05, ease: "none", immediateRender: false }, B - .09);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["text-number-badge"] = tl;
+})();
+</script>
+</template>
+</body></html>

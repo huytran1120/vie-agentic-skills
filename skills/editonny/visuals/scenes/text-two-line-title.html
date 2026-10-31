@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Text two line title</title></head>
+<body>
+<!-- Text two line title. For a classic short-video hook: a small white lead-in sits above a large accent-colored second line. -->
+
+<template id="text-two-line-title-template">
+<style>
+@font-face{font-family:"Montserrat";src:url("assets/fonts/Montserrat.ttf") format("truetype");font-weight:100 900;font-display:block}
+@font-face{font-family:"Caveat";src:url("assets/fonts/Caveat.ttf") format("truetype");font-weight:400 700;font-display:block}
+@font-face{font-family:"JetBrainsMono";src:url("assets/fonts/JetBrainsMono.ttf") format("truetype");font-weight:100 800;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Montserrat",sans-serif}
+.texttwolinetitle-b{position:absolute;left:140px;top:0;width:800px;display:flex;flex-direction:column;align-items:center;
+  font-family:"Montserrat",sans-serif;line-height:1;white-space:nowrap;text-shadow:0 6px 14px rgba(0,0,0,.55)}
+.texttwolinetitle-s{display:flex;justify-content:center;align-items:baseline;opacity:0;font-weight:700;color:#fff;paint-order:stroke fill}
+.texttwolinetitle-g{display:flex;justify-content:center;align-items:baseline;font-weight:900;text-transform:uppercase;letter-spacing:-.01em;paint-order:stroke fill}
+.texttwolinetitle-p{display:block}
+.texttwolinetitle-w{display:block;opacity:0}
+</style>
+<div id="root" data-composition-id="text-two-line-title" data-width="1080" data-height="1920" data-duration="3.4">
+<div id="texttwolinetitle-c"></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["text-two-line-title"] || { duration: 3.4 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 3.4, t0 = 0;
+
+  var P = {
+    line1: "the secret of people who", // Small upper line, white and preserving the supplied case.
+    line2: "POST EVERY DAY", // Large lower line, uppercase and accent-colored; long text wraps automatically.
+    y: 430, // Block center height on the 1080×1920 canvas, in pixels.
+    size: 104, // Maximum large-font size, in pixels; shrinks automatically to fit.
+    accent: "#ffe600", // Large-line color; dark text receives a white outline.
+  };
+
+
+
+  var W = Array.isArray(C.words) ? C.words : [
+    { text: "You", t: 0.10, end: 0.34 }, { text: "do not", t: 0.36, end: 0.58 }, { text: "need", t: 0.60, end: 0.98 },
+    { text: "an", t: 1.00, end: 1.10 }, { text: "editor", t: 1.12, end: 1.56 }, { text: "to", t: 1.92, end: 2.06 },
+    { text: "post", t: 2.08, end: 2.44 }, { text: "every", t: 2.46, end: 2.68 }, { text: "day.", t: 2.70, end: 3.05 }
+  ];
+
+  W = (function (a) { var o = [], u = 0.04, k, t; for (k = 0; k < a.length; k++) { t = Math.max(0.05, Number(a[k].t) || 0, u + 0.01); o.push({ text: a[k].text, t: t, end: Math.max(t + 0.02, Number(a[k].end) || 0) }); u = t; } return o; })(W);
+
+  var SCALE_FACTOR = (function () {
+    var e = (typeof HIDDEN_RANGES !== "undefined" && HIDDEN_RANGES) || [], b0 = (typeof C.start === "number") ? C.start : 0, o = [], k;
+    for (k = 0; k < e.length; k++) if (Number(e[k][1]) > Number(e[k][0])) o.push([Number(e[k][0]) - b0, Number(e[k][1]) - b0]);
+    return o;
+  })();
+  function hidden(t) { for (var k = 0; k < SCALE_FACTOR.length; k++) if (t >= SCALE_FACTOR[k][0] && t < SCALE_FACTOR[k][1]) return true; return false; }
+  function nextScale(t) { var r = Infinity, k; for (k = 0; k < SCALE_FACTOR.length; k++) if (SCALE_FACTOR[k][0] > t && SCALE_FACTOR[k][0] < r) r = SCALE_FACTOR[k][0]; return r; }
+  W = W.filter(function (w) { return !hidden(w.t); });
+
+  function show(s) { return String(s).replace(/^\s+|\s+$/g, "").replace(/[.,;:…]+$/g, ""); }
+
+  function screens(maxP, maxL) {
+    var groups = [], cur = [], letters = 0, i, w, txt, out = [];
+    for (i = 0; i < W.length; i++) {
+      w = W[i]; txt = show(w.text); if (!txt || !(w.t < D - 0.2)) continue;
+      if (cur.length && (cur.length >= maxP || letters + txt.length + 1 > maxL || w.t - cur[cur.length - 1].end > 0.7 || nextScale(cur[cur.length - 1].t) <= w.t)) { groups.push(cur); cur = []; letters = 0; }
+      cur.push({ text: txt, t: Math.max(0.05, w.t), end: Math.min(D - 0.05, Math.max(w.t + 0.08, w.end)) }); letters += txt.length + 1;
+      if (/[.!?…]$/.test(String(w.text).replace(/\s+$/, "")) || (cur.length >= 2 && /[,;:]$/.test(String(w.text).replace(/\s+$/, "")))) { groups.push(cur); cur = []; letters = 0; }
+    }
+    if (cur.length) groups.push(cur);
+    for (i = 0; i < groups.length; i++) {
+      var start = Math.max(0.05, groups[i][0].t - 0.05), speechEnd = groups[i][groups[i].length - 1].end;
+      var end = Math.min(D - 0.05, speechEnd + 0.5); if (i + 1 < groups.length) end = Math.min(end, Math.max(0.05, groups[i + 1][0].t - 0.05));
+      end = Math.min(end, Math.max(start + 0.15, nextScale(groups[i][groups[i].length - 1].t)));
+      if (end > start + 0.12) out.push({ words: groups[i], start: start, end: end });
+    }
+    return out;
+  }
+
+
+  var ceiling = Math.max(48, Math.min(170, Number(P.size) || 104)), yy = Math.max(260, Math.min(1500, Number(P.y) || 430));
+  var box = document.getElementById("texttwolinetitle-c");
+
+  function rgbFrom(c) {
+    var s = document.createElement("span"), m; s.style.color = String(c || "");
+    if (!s.style.color) return null;
+    box.appendChild(s); m = /^rgba?\((\d+)[^\d]+(\d+)[^\d]+(\d+)/.exec(getComputedStyle(s).color); box.removeChild(s);
+    return m ? [Number(m[1]), Number(m[2]), Number(m[3])] : [];
+  }
+  function light(v) { var k, c, n = 0, WEIGHTS = [.2126, .7152, .0722]; for (k = 0; k < 3; k++) { c = v[k] / 255; n += WEIGHTS[k] * (c <= .03928 ? c / 12.92 : Math.pow((c + .055) / 1.055, 2.4)); } return n; }
+  var dest = String(P.accent || "#ffe600"), rd = rgbFrom(dest);
+  if (!rd) { dest = "#ffe600"; rd = [255, 230, 0]; }
+
+  var cont = rd.length && light(rd) < .3 ? "#fff" : "#000";
+
+  var L9 = { A: .81, B: .77, C: .74, D: .83, E: .67, F: .64, G: .77, H: .8, I: .35, J: .57, K: .77, L: .62, M: .95, N: .8, O: .85, P: .74, Q: .85, R: .75, S: .66, T: .65, U: .78, V: .79, W: 1.21, X: .76, Y: .71, Z: .69,
+    "0": .69, "1": .42, "2": .61, "3": .61, "4": .71, "5": .62, "6": .66, "7": .65, "8": .68, "9": .66, "!": .31, "?": .61, ".": .3, ",": .3, ":": .3, ";": .3, "-": .39, "+": .62, "%": .92, "$": .66, "&": .78, "/": .44, "'": .25, "\"": .49, "(": .38, ")": .38 };
+  var L7 = { a: .62, b: .69, c: .6, d: .7, e: .64, f: .39, g: .7, h: .7, i: .31, j: .31, k: .66, l: .31, m: 1.05, n: .7, o: .66, p: .69, q: .69, r: .44, s: .54, t: .44, u: .69, v: .6, w: .94, x: .6, y: .6, z: .55,
+    A: .77, B: .77, C: .73, D: .83, E: .68, F: .64, G: .78, H: .81, I: .33, J: .55, K: .74, L: .61, M: .96, N: .81, O: .85, P: .74, Q: .85, R: .74, S: .64, T: .62, U: .79, V: .75, W: 1.17, X: .72, Y: .68, Z: .68,
+    "0": .68, "1": .4, "2": .59, "3": .6, "4": .69, "5": .6, "6": .64, "7": .62, "8": .66, "9": .64, "!": .29, "?": .59, ".": .27, ",": .27, ":": .27, ";": .27, "-": .39, "+": .6, "%": .88, "$": .64, "&": .73, "/": .4, "'": .23, "\"": .44, "(": .36, ")": .36 };
+  var SPACING_VALUE = .28, LIM = 768;
+  function stripAccents(s) { return s.normalize("NFD").replace(/[̀-ͯ]/g, ""); }
+  function widthNine(s) { var b = stripAccents(s), n = 0, k; for (k = 0; k < b.length; k++) n += (L9[b.charAt(k)] || .82) - .01; return n; }
+  function widthSeven(s) { var b = stripAccents(s), n = 0, k; for (k = 0; k < b.length; k++) n += L7[b.charAt(k)] || .8; return n; }
+  function lineWidthValue(r, lf) { var x = 0, k; for (k = 0; k < r.length; k++) x += lf(r[k]) + (k ? SPACING_VALUE : 0); return x; }
+
+  function divide(ws, q, lf) {
+    var n = ws.length, m = [], c = [], a, b, d, v, out = [], end;
+    for (a = 1; a <= q; a++) {
+      m[a] = []; c[a] = [];
+      for (b = a; b <= n; b++) {
+        if (a === 1) { m[a][b] = lineWidthValue(ws.slice(0, b), lf); c[a][b] = 0; continue; }
+        m[a][b] = 1e9;
+        for (d = a - 1; d < b; d++) { v = Math.max(m[a - 1][d], lineWidthValue(ws.slice(d, b), lf)); if (v < m[a][b]) { m[a][b] = v; c[a][b] = d; } }
+      }
+    }
+    for (a = q, end = n; a >= 1; a--) { out.unshift(ws.slice(c[a][end], end)); end = c[a][end]; }
+    return out;
+  }
+
+  function split(ws, lf, ceilingPx, floor, maxLines) {
+    var q, rs, m, k, previousValue = 1e9, r = null;
+    for (q = 1; q <= Math.min(maxLines, ws.length); q++) {
+      rs = divide(ws, q, lf); m = 0; for (k = 0; k < rs.length; k++) m = Math.max(m, lineWidthValue(rs[k], lf));
+      if (r && m > previousValue * .98) break;
+      r = { lines: rs, sizeValue: Math.min(ceilingPx, Math.floor(LIM / m)) }; previousValue = m;
+      if (r.sizeValue >= Math.min(ceilingPx, floor)) break;
+    }
+    return r;
+  }
+
+  var p1 = String(P.line1 === undefined || P.line1 === null ? "the secret of people who" : P.line1).replace(/[|\r\n]+/g, " ").replace(/^\s+|\s+$/g, "");
+  var p2 = String(P.line2 || "POST EVERY DAY").toUpperCase().replace(/[|\r\n]+/g, " ").replace(/^\s+|\s+$/g, "") || "TITLE";
+
+  var G = split(p2.split(/\s+/), widthNine, ceiling, Math.max(56, ceiling * .6), 3);
+  if (G.sizeValue < Math.min(ceiling, 56)) G = split(p2.split(/\s+/), widthNine, ceiling, 56, 4);
+  var sizeValue = G.sizeValue;
+
+  var ceilingP = Math.min(Math.max(48, Math.min(80, Math.round(ceiling * .58))), Math.max(Math.round(sizeValue * .8), Math.min(40, sizeValue)));
+  var S = p1 ? split(p1.split(/\s+/), widthSeven, ceilingP, 44, 3) : { lines: [], sizeValue: 0 }, tp = S.sizeValue;
+  var c1 = Math.max(7, Math.round(tp * .17)), c2 = Math.max(8, Math.round(sizeValue * .125));
+  var e1 = Math.round(tp * .16), e2 = Math.round(sizeValue * .17), span = S.lines.length ? Math.round(sizeValue * .12) + 10 : 0;
+  var H = S.lines.length * tp + Math.max(0, S.lines.length - 1) * e1 + span + G.lines.length * sizeValue + (G.lines.length - 1) * e2;
+  var top = Math.round(Math.max(256, Math.min(1496 - H, yy - H / 2)));
+  var bounce = Math.max(18, Math.min(Math.round(sizeValue * .55), 1530 - Math.ceil(c2 / 2) - (top + H)));
+  var layout = document.createElement("div"), i, j, line, pal, nw = 0;
+  layout.className = "texttwolinetitle-b"; layout.id = "texttwolinetitle-b"; layout.style.top = top + "px";
+  for (i = 0; i < S.lines.length; i++) {
+    line = document.createElement("div"); line.className = "texttwolinetitle-s"; line.id = "texttwolinetitle-s" + i; line.style.fontSize = tp + "px"; line.style.webkitTextStroke = c1 + "px #000"; if (i) line.style.marginTop = e1 + "px";
+    for (j = 0; j < S.lines[i].length; j++) {
+      pal = document.createElement("span"); pal.className = "texttwolinetitle-p"; pal.textContent = S.lines[i][j];
+      if (j) pal.style.marginLeft = Math.round(tp * SPACING_VALUE) + "px";
+      line.appendChild(pal);
+    }
+    layout.appendChild(line);
+  }
+  for (i = 0; i < G.lines.length; i++) {
+    line = document.createElement("div"); line.className = "texttwolinetitle-g"; line.style.fontSize = sizeValue + "px"; line.style.color = dest; line.style.webkitTextStroke = c2 + "px " + cont; line.style.marginTop = (i ? e2 : span) + "px";
+    for (j = 0; j < G.lines[i].length; j++) {
+      pal = document.createElement("span"); pal.className = "texttwolinetitle-w"; pal.id = "texttwolinetitle-w" + nw; nw++; pal.textContent = G.lines[i][j];
+      if (j) pal.style.marginLeft = Math.round(sizeValue * SPACING_VALUE) + "px";
+      line.appendChild(pal);
+    }
+    layout.appendChild(line);
+  }
+  box.appendChild(layout);
+
+  var a = t0 + .05, CLOSE_TIME = .18, step = Math.min(.08, .6 / Math.max(1, nw - 1)), q;
+  for (i = 0; i < S.lines.length; i++) tl.fromTo("#texttwolinetitle-s" + i, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: .12, ease: "power2.out" }, a + i * .06);
+  for (i = 0; i < nw; i++) {
+    q = a + .25 + i * step;
+    tl.fromTo("#texttwolinetitle-w" + i, { opacity: 0 }, { opacity: 1, duration: .01 }, q);
+    tl.fromTo("#texttwolinetitle-w" + i, { y: bounce }, { y: 0, duration: .26, ease: "back.out(2.4)", immediateRender: false }, q);
+  }
+  tl.to("#texttwolinetitle-b", { opacity: 0, y: -14, duration: CLOSE_TIME, ease: "power2.in" }, t0 + D - .05 - CLOSE_TIME);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["text-two-line-title"] = tl;
+})();
+</script>
+</template>
+</body></html>

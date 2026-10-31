@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Smoke</title></head>
+<body>
+<!-- Smoke. For a disappearing act, mishap, or concealed change: gray smoke rises, covers the screen, and dissipates. -->
+
+<template id="smoke-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+.smoke-ve{position:absolute;left:0;top:0;width:1080px;height:1920px;background:linear-gradient(to top,rgba(150,150,152,.75),rgba(150,150,152,.35) 60%,rgba(150,150,152,.15));opacity:0}
+.smoke-w{position:absolute;width:1530px;height:1998px;opacity:0;-webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,0),#000 22%,#000);mask-image:linear-gradient(to bottom,rgba(0,0,0,0),#000 22%,#000)}
+.smoke-v{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:fill}
+</style>
+<div id="root" data-composition-id="smoke" data-width="1080" data-height="1920" data-duration="3.5">
+<div id="smoke-ve" class="smoke-ve"></div>
+<div id="smoke-w" class="smoke-w" data-layout-allow-overflow><video id="smoke-v" class="smoke-v" src="assets/visuals/video/43-smoke.webm" data-start="0" data-duration="6" data-track-index="2" data-playback-rate="1.15" muted playsinline></video></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["smoke"] || { duration: 3.5 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 3.5, t0 = 0;
+
+  var P = {
+    x: 540, // Horizontal smoke center, in pixels.
+    y: 1920, // Smoke origin at its base, in pixels; 1920 is the lower edge.
+    strength: 0.85, // 0–1: smoke coverage; one almost hides the underlying video.
+  };
+
+
+  var pe = function (s) { return document.getElementById("smoke-" + s); };
+  var fz = Number(P.strength); if (fz !== fz) fz = .85; fz = Math.max(0, Math.min(1, fz));
+  var cx = Number(P.x); if (cx !== cx) cx = 540; var py = Number(P.y) || 1920;
+  var wm = pe("w"); wm.style.left = (cx - 765) + "px"; wm.style.top = (py - 1998 + 40) + "px";
+  var ent = t0 + .05, videoEnd = t0 + Math.min(D, 4.3), exit = videoEnd - .3, full = t0 + Math.min(1.5, D * .45);
+  tl.fromTo(wm, { opacity: 0, y: 160 }, { opacity: .6 + .4 * fz, y: 0, duration: .5, ease: "power2.out" }, ent);
+  tl.fromTo(pe("ve"), { opacity: 0 }, { opacity: .25 + .6 * fz, duration: Math.max(.3, full - ent), ease: "power1.inOut" }, ent + .1);
+
+  var dis = Math.max(full + .1, exit - Math.min(1.1, D * .3));
+  tl.to(pe("ve"), { opacity: 0, duration: Math.max(.25, exit + .25 - dis), ease: "power1.in", immediateRender: false }, dis);
+  tl.to(wm, { opacity: 0, y: -140, duration: Math.max(.3, videoEnd - dis - .02), ease: "power1.in", immediateRender: false }, dis);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["smoke"] = tl;
+})();
+</script>
+</template>
+</body></html>

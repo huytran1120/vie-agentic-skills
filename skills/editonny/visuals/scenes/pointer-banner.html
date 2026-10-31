@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Pointer banner</title></head>
+<body>
+<!-- Pointer banner. To conceal an area such as a face, name, number, or screenshot detail. -->
+
+<template id="pointer-banner-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+#pointerbanner-a{position:absolute;left:0;top:0;width:10px;height:10px;opacity:0;box-shadow:0 6px 10px 3px rgba(0,0,0,.45)}
+#pointerbanner-b{position:absolute;left:-3px;top:-3px;right:-3px;bottom:-3px;border:3px solid #fff;opacity:0}
+</style>
+<div id="root" data-composition-id="pointer-banner" data-width="1080" data-height="1920" data-duration="2.6">
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0"><filter id="pointerbanner-f" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feFlood id="pointerbanner-fp" x="13" y="13" width="2" height="2" flood-color="#000" result="p"/><feComposite id="pointerbanner-fc" in="p" in2="p" operator="over" x="0" y="0" width="28" height="28" result="cel"/><feTile in="cel" result="grade"/><feComposite in="SourceGraphic" in2="grade" operator="in" result="pts"/><feMorphology id="pointerbanner-fd" in="pts" operator="dilate" radius="14 14"/></filter></svg>
+<div id="pointerbanner-a"><div id="pointerbanner-b"></div></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["pointer-banner"] || { duration: 2.6 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 2.6, t0 = 0;
+
+  var P = {
+    x: 490, // Concealment-bar center on the 1080×1920 canvas, in pixels.
+    y: 850, // Concealment-bar center, in pixels.
+    width: 420, // Concealment-bar width, in pixels.
+    height: 200, // Concealment-bar height, in pixels.
+    type: "mosaic", // "mosaic" pixelates underlying video, "blur" blurs it, and "black" covers it.
+    cell: 28, // Mosaic cell size from 8 to 80 pixels; in blur mode this controls blur strength.
+  };
+
+
+  var widthValue = P.width, alt = P.height, type = String(P.type || "mosaic"), cel = Math.max(8, Math.min(80, Math.round(P.cell || 28)));
+  var mask = document.getElementById("pointerbanner-a");
+  if (type === "black") {
+    mask.style.backdropFilter = "none"; mask.style.webkitBackdropFilter = "none"; mask.style.background = "#000";
+  } else if (type === "blur") {
+    mask.style.backdropFilter = "blur(" + Math.round(cel * .7) + "px)"; mask.style.webkitBackdropFilter = "blur(" + Math.round(cel * .7) + "px)";
+  } else {
+
+    var nx = Math.max(1, Math.round(widthValue / cel)), ny = Math.max(1, Math.round(alt / cel));
+    var cw = Math.max(4, Math.round(widthValue / nx)), ch = Math.max(4, Math.round(alt / ny));
+    widthValue = cw * nx; alt = ch * ny;
+    var point = document.getElementById("pointerbanner-fp"), cell = document.getElementById("pointerbanner-fc");
+    point.setAttribute("x", Math.floor(cw / 2) - 1); point.setAttribute("y", Math.floor(ch / 2) - 1);
+    cell.setAttribute("width", cw); cell.setAttribute("height", ch);
+    document.getElementById("pointerbanner-fd").setAttribute("radius", Math.ceil(cw / 2) + " " + Math.ceil(ch / 2));
+    mask.style.backdropFilter = "url(#pointerbanner-f)"; mask.style.webkitBackdropFilter = "url(#pointerbanner-f)";
+  }
+
+  mask.style.left = Math.round(P.x - widthValue / 2) + "px"; mask.style.top = Math.round(P.y - alt / 2) + "px";
+  mask.style.width = widthValue + "px"; mask.style.height = alt + "px";
+  var corner = Math.max(8, Math.min(36, Math.round(Math.min(widthValue, alt) * .1)));
+  mask.style.borderRadius = corner + "px"; document.getElementById("pointerbanner-b").style.borderRadius = (corner + 3) + "px";
+
+  var enter = t0 + .05, exit = t0 + D - .3, live = enter + .5;
+  var padding = exit - live, turns = Math.max(1, Math.round(padding / .9)), halfValue = padding / (turns * 2);
+  tl.fromTo("#pointerbanner-a", { opacity: 0 }, { opacity: 1, duration: .01, ease: "none" }, enter);
+  tl.fromTo("#pointerbanner-b", { opacity: 0 }, { opacity: 1, duration: .01, ease: "none" }, enter);
+  tl.fromTo("#pointerbanner-a", { y: 26 }, { y: 0, duration: .25, ease: "back.out(3)", immediateRender: false }, enter);
+  if (halfValue > .08) tl.to("#pointerbanner-b", { opacity: .35, duration: halfValue, ease: "sine.inOut", yoyo: true, repeat: turns * 2 - 1, immediateRender: false }, live);
+  tl.to("#pointerbanner-a", { opacity: 0, duration: .25, ease: "power2.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["pointer-banner"] = tl;
+})();
+</script>
+</template>
+</body></html>

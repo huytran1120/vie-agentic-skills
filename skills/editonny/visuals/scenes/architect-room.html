@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Architect room</title></head>
+<body>
+<!-- Architect room. When explaining a small-room design: window light reflects from a mirror, then a floor-to-ceiling curtain demonstrates height. -->
+
+<template id="architect-room-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+@font-face{font-family:"Playfair";src:url("assets/visuals/fonts/Playfair-Italic.ttf");font-style:italic;font-weight:400 900;font-display:block}
+@font-face{font-family:"Sora";src:url("assets/visuals/fonts/Sora.ttf");font-weight:100 800;font-display:block}
+.architectroom-w{position:absolute;left:0;top:0;width:860px;height:430px;transform-origin:50% 0}
+.architectroom-a{position:absolute;left:0;top:0;width:860px;height:430px;opacity:0}
+.architectroom-pn{position:absolute;left:0;top:0;width:860px;height:430px;border-radius:46px;overflow:hidden;isolation:isolate;opacity:0;background:linear-gradient(180deg,#f1eee3 0%,#e8e4d4 100%);box-shadow:inset 0 0 0 2px rgba(93,107,58,.25),inset 0 0 110px rgba(110,112,80,.2),0 8px 18px rgba(0,0,0,.22),0 34px 80px rgba(0,0,0,.42)}
+.architectroom-gr{position:absolute;inset:0;background-image:linear-gradient(rgba(119,122,98,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(119,122,98,.08) 1px,transparent 1px);background-size:40px 40px}
+.architectroom-sv{position:absolute;left:150px;top:96px;width:560px;height:266px;overflow:visible}
+.architectroom-rm{opacity:0}
+.architectroom-mo{opacity:0}
+.architectroom-lz{position:absolute;left:0;top:0;width:860px;height:430px;background:radial-gradient(ellipse 50% 50% at 50% 58%,rgba(255,226,150,.5) 0%,rgba(255,226,150,0) 70%);opacity:0;pointer-events:none}
+.architectroom-tt{position:absolute;left:48px;top:16px;width:764px;text-align:center;white-space:nowrap;font-family:"Playfair",serif;font-style:italic;font-weight:500;line-height:1.1;color:#2f3a2c;opacity:0}
+.architectroom-d{position:absolute;left:48px;top:368px;width:764px;display:flex;align-items:center;justify-content:center;gap:16px;opacity:0;white-space:nowrap}
+.architectroom-d b{flex:none;width:56px;height:56px;border-radius:50%;background:#5d6b3a;color:#fbf8ee;display:grid;place-items:center;font-family:"Sora",sans-serif;font-weight:800;font-size:32px}
+.architectroom-d span{font-family:"Sora",sans-serif;font-weight:700;font-size:42px;line-height:1.12;text-align:center;letter-spacing:-.03em;color:#2f3a2c;background:rgba(251,248,238,.94);padding:6px 22px;border-radius:30px;box-shadow:0 6px 16px rgba(60,60,30,.18)}
+</style>
+<div id="root" data-composition-id="architect-room" data-width="1080" data-height="1920" data-duration="5.5">
+<div id="architectroom-w" class="architectroom-w"><div id="architectroom-a" class="architectroom-a"><div id="architectroom-pn" class="architectroom-pn">
+  <i class="architectroom-gr"></i>
+  <svg class="architectroom-sv" viewBox="70 128 720 342">
+    <defs>
+      <linearGradient id="architectroom-fl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9a374"/><stop offset="1" stop-color="#ddb886"/></linearGradient>
+      <linearGradient id="architectroom-bm" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffe7a0" stop-opacity=".9"/><stop offset="1" stop-color="#ffd76a" stop-opacity=".55"/></linearGradient>
+      <clipPath id="architectroom-mc"><polygon points="713.0,202.0 663.0,207.9 663.0,385.6 713.0,406.7"/></clipPath>
+      <radialGradient id="architectroom-sp"><stop offset="0" stop-color="#fff2c2" stop-opacity=".95"/><stop offset="1" stop-color="#fff2c2" stop-opacity="0"/></radialGradient>
+    </defs>
+    <g id="architectroom-rm" class="architectroom-rm">
+      <polygon points="70,128 790,128 590,180 270,180" fill="#e2decd"/>
+      <polygon points="270,180 590,180 590,372 270,372" fill="#f3f0e5"/>
+      <polygon points="70,128 270,180 270,372 70,470" fill="#e9e5d6"/>
+      <polygon points="790,128 590,180 590,372 790,470" fill="#e5e1d0"/>
+      <polygon points="70,470 270,372 590,372 790,470" fill="url(#architectroom-fl)"/>
+      <g stroke="#b48d5d" stroke-width="2" stroke-opacity=".55"><path d="M150.0 470L305.6 372"/><path d="M230.0 470L341.1 372"/><path d="M310.0 470L376.7 372"/><path d="M390.0 470L412.2 372"/><path d="M470.0 470L447.8 372"/><path d="M550.0 470L483.3 372"/><path d="M630.0 470L518.9 372"/><path d="M710.0 470L554.4 372"/></g>
+      <path d="M70 128L270 180L590 180L790 128M270 180V372H590V180M70 470L270 372M790 470L590 372" fill="none" stroke="#b9b39c" stroke-width="2.5"/>
+      <polygon id="architectroom-wn" points="138.0,215.5 214.0,221.6 214.0,315.2 138.0,331.9" fill="#cfe2e6" stroke="#fbfaf3" stroke-width="7" stroke-linejoin="round"/>
+      <path d="M176.0 218.6L176.0 323.6M138.0 273.7L214.0 268.4" stroke="#fbfaf3" stroke-width="5"/>
+      <polygon points="718.0,192.8 658.0,201.2 658.0,390.7 718.0,417.4" fill="#a88a4c"/>
+      <polygon id="architectroom-mi" points="713.0,202.0 663.0,207.9 663.0,385.6 713.0,406.7" fill="#c9d8d6"/>
+      <g clip-path="url(#architectroom-mc)"><g transform="rotate(18 688.0 287.3)"><rect id="architectroom-sh" x="558.0" y="172.8" width="34" height="320" fill="#ffffff" fill-opacity=".85"/></g></g>
+      <ellipse id="architectroom-spt" cx="398" cy="430" rx="120" ry="30" fill="url(#architectroom-sp)" opacity="0"/>
+      <g id="architectroom-mo" class="architectroom-mo">
+        <path d="M320 300h220v14h-220z" fill="#7d8f73"/><path d="M314 312h232v40h-232z" fill="#93a487"/><path d="M308 304h20v52h-20zM532 304h20v52h-20z" fill="#5f6f56"/>
+        <path d="M330 350v14M530 350v14" stroke="#7a6a4a" stroke-width="5"/>
+        <ellipse cx="430" cy="446" rx="70" ry="10" fill="#8a7a55" opacity=".35"/><path d="M396 410v30M464 410v30M430 414v32" stroke="#4f5d46" stroke-width="8" stroke-linecap="round"/><path d="M338 398v9a92 22 0 0 0 184 0v-9Z" fill="#a67c4b"/><ellipse cx="430" cy="398" rx="92" ry="22" fill="#d6ad76"/><ellipse cx="418" cy="394" rx="52" ry="9" fill="#e6c693" opacity=".7"/>
+      </g>
+    </g>
+    <path id="architectroom-b1" d="M176.0 271.1L688.0 287.3" stroke="url(#architectroom-bm)" stroke-width="30" stroke-linecap="round" fill="none" pathLength="1" stroke-dasharray="1 1.2" stroke-dashoffset="1" opacity=".9"/>
+    <path id="architectroom-b2" d="M688.0 287.3L398 430" stroke="url(#architectroom-bm)" stroke-width="26" stroke-linecap="round" fill="none" pathLength="1" stroke-dasharray="1 1.2" stroke-dashoffset="1" opacity=".85"/>
+    <g id="architectroom-ct"><path id="architectroom-c1" fill="#efe6cf" stroke="#cbbd99" stroke-width="2"/><path id="architectroom-c2" fill="#efe6cf" stroke="#cbbd99" stroke-width="2"/><path id="architectroom-cf" fill="none" stroke="#c6b58c" stroke-width="2"/><path id="architectroom-rd" stroke-width="7" stroke-linecap="round" fill="none"/></g>
+    <path id="architectroom-ar" fill="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1 1.2" stroke-dashoffset="1"/>
+  </svg>
+  <i id="architectroom-lz" class="architectroom-lz"></i>
+  <div id="architectroom-tt" class="architectroom-tt"></div>
+  <div id="architectroom-d1" class="architectroom-d"><b>1</b><span></span></div>
+  <div id="architectroom-d2" class="architectroom-d"><b>2</b><span></span></div>
+</div></div></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["architect-room"] || { duration: 5.5 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 5.5, t0 = 0;
+
+  var P = {
+    x: 540, // Panel center on the 1080×1920 canvas, in pixels; panel size is 860×430.
+    y: 230, // Panel top, in pixels; default 230 places the bottom at y=660, above the eyes.
+    size: 1, // Panel scale from 0.5 to 1.1, anchored at the top; automatically shrinks to clear high eyebrows.
+    title: "Small room?", // Panel title.
+    tip1: "A mirror reflects light", // First tip, shown when light hits the mirror.
+    tip2: "Ceiling-height curtains", // Second tip, shown when the curtain reaches the ceiling.
+  };
+
+
+  var pe = function (s) { return document.getElementById("architectroom-" + s); };
+
+  var sizeValue = Math.min(1.1, Math.max(.5, Number(String(P.size == null ? 1 : P.size).replace(",", ".")) || 1));
+
+  if (C.face && C.face.y1 > C.face.y0) { var fitText = (C.face.y0 + .2 * (C.face.y1 - C.face.y0) - Number(P.y)) / 430; if (fitText < sizeValue) sizeValue = Math.max(.5, fitText); }
+  pe("w").style.transform = "translate(" + (Number(P.x) - 430) + "px," + Number(P.y) + "px) scale(" + sizeValue + ")";
+  var anchor = pe("a");
+  var OL = "#5d6b3a", GOLD_COLOR = "#a17b3c", TW = 764;
+  pe("tt").textContent = String(P.title || ""); pe("d1").querySelector("span").textContent = String(P.tip1 || ""); pe("d2").querySelector("span").textContent = String(P.tip2 || "");
+  pe("rd").setAttribute("stroke", GOLD_COLOR); pe("ar").setAttribute("stroke", OL);
+
+  var Lw = function (u, v) { var x = 70 + 200 * u, t = 128 + 52 * u, b = 470 - 98 * u; return [x, t + (b - t) * v]; };
+  var pt = function (p) { return p[0].toFixed(1) + " " + p[1].toFixed(1); };
+  var color = { vt: .17, vb: .66 };
+  var panel = function (u0, u1, vt, vb) { return "M" + pt(Lw(u0, vt)) + "L" + pt(Lw(u1, vt)) + "L" + pt(Lw(u1, vb)) + "L" + pt(Lw(u0, vb)) + "Z"; };
+  var curtain = function () {
+    var vt = color.vt, vb = color.vb;
+    pe("c1").setAttribute("d", panel(.18, .33, vt, vb)); pe("c2").setAttribute("d", panel(.73, .83, vt, vb));
+    var f = ""; [.22, .26, .30, .76, .80].forEach(function (u) { f += "M" + pt(Lw(u, vt + .01)) + "L" + pt(Lw(u, vb - .005)); });
+    pe("cf").setAttribute("d", f); pe("rd").setAttribute("d", "M" + pt(Lw(.14, vt)) + "L" + pt(Lw(.87, vt)));
+  };
+  curtain();
+
+  var a0 = Lw(.08, .03), a1 = Lw(.08, .98);
+  pe("ar").setAttribute("d", "M" + pt(a0) + "L" + pt(a1) + "M" + (a0[0] - 12) + " " + (a0[1] + 16) + "L" + pt(a0) + "L" + (a0[0] + 12) + " " + (a0[1] + 14) + "M" + (a1[0] - 12) + " " + (a1[1] - 14) + "L" + pt(a1) + "L" + (a1[0] + 12) + " " + (a1[1] - 16));
+
+  var widthValue = function (el) {
+    var c = el.cloneNode(true); c.removeAttribute("id"); c.style.cssText += ";position:absolute;left:-99999px;top:0;width:auto;visibility:hidden;white-space:nowrap";
+    document.body.appendChild(c); var w = c.getBoundingClientRect().width; document.body.removeChild(c); return w;
+  };
+  var fit = function () {
+    var tt = pe("tt"); tt.style.whiteSpace = "nowrap"; tt.style.top = "16px"; tt.style.fontSize = "72px"; var w = widthValue(tt);
+    if (w <= TW) tt.style.fontSize = "72px"; else if (72 * TW / w >= 54) tt.style.fontSize = (72 * TW / w) + "px";
+    else { tt.style.whiteSpace = "normal"; tt.style.top = "6px"; tt.style.fontSize = Math.max(38, Math.min(42, 72 * TW * 1.85 / w)) + "px"; }
+    ["d1", "d2"].forEach(function (id) {
+      var d = pe(id), s = d.querySelector("span"), free = TW - 56 - 16;
+      s.style.cssText = "font-family:Sora,sans-serif;font-weight:700;letter-spacing:-.03em;padding:6px 22px;font-size:42px;white-space:nowrap";
+      var ws = widthValue(s);
+      if (ws <= free) { d.style.top = "368px"; return; }
+      if (42 * (free - 44) / (ws - 44) >= 38) { s.style.fontSize = (42 * (free - 44) / (ws - 44)) + "px"; d.style.top = "368px"; return; }
+
+      s.style.fontSize = "38px"; s.style.whiteSpace = "normal"; s.style.maxWidth = free + "px";
+      var c = d.cloneNode(true); c.removeAttribute("id"); c.style.cssText += ";position:absolute;left:-99999px;top:0;visibility:hidden;opacity:1"; document.body.appendChild(c);
+      var hh = c.getBoundingClientRect().height; document.body.removeChild(c); d.style.top = (426 - hh) + "px";
+    });
+  };
+  fit(); if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { fit(); tl.invalidate(); });
+
+  var enter = t0 + .05, exit = t0 + D - .3, light = enter + Math.max(.7, (D - .35) * .2), rise = enter + Math.max(1.55, (D - .35) * .56);
+  var k = Math.min(1, Math.max(.6, (D - .4) / 4.6));
+  tl.fromTo(anchor, { opacity: 0 }, { opacity: 1, duration: .05, ease: "none" }, enter);
+  tl.fromTo(pe("pn"), { opacity: 0, y: -44 }, { opacity: 1, y: 0, duration: .46, ease: "power3.out" }, enter);
+  tl.fromTo(pe("tt"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .36, ease: "back.out(1.6)" }, enter + .12);
+  tl.fromTo(pe("rm"), { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: .5, ease: "power3.out" }, enter + .06);
+  tl.fromTo(pe("mo"), { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: .4, ease: "bounce.out" }, enter + .3);
+  tl.fromTo(pe("ct"), { opacity: 0 }, { opacity: 1, duration: .3, ease: "power2.out" }, enter + .3);
+
+  tl.fromTo(pe("wn"), { fill: "#cfe2e6" }, { fill: "#fff3c4", duration: .3, ease: "power2.out" }, light);
+  tl.fromTo(pe("d1"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .34, ease: "back.out(1.7)" }, light + .05);
+  tl.fromTo(pe("b1"), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: .36 * k, ease: "power2.inOut" }, light + .12);
+  tl.fromTo(pe("mi"), { fill: "#c9d8d6" }, { fill: "#fff6d6", duration: .2, ease: "power2.out" }, light + .12 + .36 * k);
+  tl.fromTo(pe("sh"), { x: 0 }, { x: 260, duration: .5, ease: "power2.inOut" }, light + .1 + .36 * k);
+  tl.fromTo(pe("b2"), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: .32 * k, ease: "power2.inOut" }, light + .2 + .36 * k);
+  tl.fromTo(pe("spt"), { opacity: 0 }, { opacity: 1, duration: .35, ease: "power2.out" }, light + .3 + .68 * k);
+  tl.fromTo(pe("lz"), { opacity: 0 }, { opacity: 1, duration: .45, ease: "power2.out" }, light + .3 + .68 * k);
+
+  tl.to(pe("d1"), { opacity: 0, y: -20, duration: .2, ease: "power2.in", immediateRender: false }, rise - .05);
+  tl.to([pe("b1"), pe("b2")], { opacity: .3, duration: .3, immediateRender: false }, rise);
+  tl.fromTo(pe("d2"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .34, ease: "back.out(1.7)" }, rise + .12);
+  tl.fromTo(color, { vt: .17, vb: .66 }, { vt: .025, vb: .66, duration: .38 * k + .06, ease: "power3.out", immediateRender: false, onUpdate: curtain }, rise);
+  tl.fromTo(color, { vt: .025, vb: .66 }, { vt: .025, vb: .985, duration: .42 * k + .06, ease: "power2.inOut", immediateRender: false, onUpdate: curtain }, rise + .38 * k + .1);
+  tl.fromTo(pe("ar"), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: .4, ease: "power2.out" }, rise + .8 * k + .16);
+  tl.to(anchor, { opacity: 0, y: -30, duration: .26, ease: "power2.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["architect-room"] = tl;
+})();
+</script>
+</template>
+</body></html>

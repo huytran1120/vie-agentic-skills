@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en-US"><head><meta charset="UTF-8"/><title>AI recipes · video overlay</title></head>
+<body>
+<!-- Copy into compositions/scenes and use a unique matching template/composition/timeline ID.
+Set asset paths and exact media durations; register the scene in project.json. See the recipe README. -->
+<template id="video-overlay-template">
+<style>
+#root{position:absolute;inset:0;overflow:hidden}
+#overlay-v{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;opacity:0}
+</style>
+<div id="root" data-composition-id="video-overlay" data-width="1080" data-height="1920" data-duration="6">
+  <video id="overlay-v" src="assets/ai/replace-me.mp4" data-start="0" data-duration="6" data-track-index="2" data-media-start="0" muted playsinline></video>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["video-overlay"] || { duration: 6 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 6;
+  /* Scene parameters. */
+  var P = {
+    entrance: 0,
+    exit: 0,
+    opacity: 1
+  };
+  /* Scene parameters. */
+  var v = document.getElementById("overlay-v");
+  var op = Math.max(0, Math.min(1, Number(P.opacity) || 1));
+  tl.fromTo(v, { opacity: 0 }, { opacity: op, duration: P.entrance > 0 ? P.entrance : 0.001, ease: "power1.out" }, 0);
+  if (P.exit > 0) tl.to(v, { opacity: 0, duration: P.exit, ease: "power1.in", immediateRender: false }, Math.max(0, D - P.exit));
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["video-overlay"] = tl;
+})();
+</script>
+</template>
+</body></html>

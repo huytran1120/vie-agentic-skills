@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>Conversation</title></head>
+<body>
+
+<template id="conversation-template">
+<style>
+@font-face{font-family:Montserrat;src:url("assets/fonts/Montserrat.ttf") format("truetype");font-weight:100 900;font-display:block}
+#root{position:absolute;inset:0;overflow:hidden;font-family:Montserrat}
+#conversation-background{position:absolute;inset:0;opacity:0}
+#conversation-phone{position:absolute;box-sizing:border-box;opacity:0}
+#conversation-screen{position:absolute;overflow:hidden}
+#conversation-top{position:absolute;left:0;right:0;top:0}
+#conversation-avatar{position:absolute;display:flex;align-items:center;justify-content:center;border-radius:50%;font-weight:900;color:#fff}
+#conversation-contact{position:absolute;display:block;font-weight:800;white-space:nowrap}
+#conversation-status{position:absolute;overflow:hidden}
+.conversation-status-color{position:absolute;inset:0;opacity:0}
+.conversation-status-txt{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;white-space:nowrap;opacity:0}
+.conversation-bubble{position:absolute;box-sizing:border-box;opacity:0}
+.conversation-msg{display:block;font-weight:600;line-height:1.22}
+.conversation-typing{position:absolute;box-sizing:border-box;opacity:0}
+.conversation-point{position:absolute;border-radius:50%}
+#conversation-notch{position:absolute}
+</style>
+<div id="root" data-composition-id="conversation" data-width="1080" data-height="1920" data-duration="7">
+  <div id="conversation-background"></div>
+  <div id="conversation-phone">
+    <div id="conversation-screen">
+      <div id="conversation-top"><div id="conversation-avatar">C</div><span id="conversation-contact">Customer</span><div id="conversation-status"></div></div>
+    </div>
+    <div id="conversation-notch"></div>
+  </div>
+</div>
+<script>
+(function () {
+  const ID = "conversation";
+  const PARAM = {
+    contact: "Customer",
+    status: { text: "WAITING", color: "base" },
+    messages: [
+      { start: "other", text: "Hi! Is the three-piece kit available?" },
+    ],
+    actions: [
+      { type: "message", start: "you", text: "Yes! I reserved one for you.", typing: true, at: { word: "replied", standard: 1.0 } },
+      { type: "message", start: "other", text: "Great, I sent the payment.", at: { word: "paid", standard: 3.0 } },
+      { type: "status", text: "ORDER CONFIRMED", color: "green", at: { word: "confirmed", standard: 4.3 } },
+    ],
+    enter: 0,
+    pause: 0.6,
+    captions: true,
+    background: "auto",
+    area: null,
+    entry: 0.2,
+    exit: 0.25,
+  };
+  const C = Object.assign({ words: [], duration: 7, width: 1080, height: 1920, safeArea: [140, 230, 940, 1530], face: null, frame: null,
+    colors: { paper: "#fffdfd", line: "#e6ddf8", base: "#c7b7ef", accent: "#665080", ink: "#352c40", green: "#2e9e5b", red: "#e5484d" } },
+    (window.__scenes || {})[ID] || {});
+  const DUR = C.duration, U = Math.min(C.width, C.height) / 1080;
+  const root = document.getElementById("conversation-background").parentElement;
+  if (root.offsetWidth && (Math.abs(root.offsetWidth - C.width) > 2 || Math.abs(root.offsetHeight - C.height) > 2))
+    console.error(`[${ID}] scene root is ${root.offsetWidth} x ${root.offsetHeight}, video is ${C.width} x ${C.height}: update root data-width and data-height`);
+  const without = (s) => String(s).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]/g, "");
+  const word = (txt, after, standard) => { const a = without(txt), p = a && (C.words || []).find((w) => w.t >= after - 1e-3 && without(w.text).startsWith(a)); return p ? p.t : standard; };
+  const moment = (m, standard) => (typeof m === "number" ? m : typeof m === "string" ? word(m, 0, standard)
+    : m && typeof m === "object" ? word(m.word || "", m.after == null ? 0 : moment(m.after, 0), m.standard == null ? standard : m.standard) : standard);
+  let lastEnd = C.frame ? Math.max(0, C.frame.closedAt || 0) : 0, nextAvailable = lastEnd + PARAM.entry;
+  function schedule(desired, dur, adjacent) {
+    const t = Math.max(desired, adjacent ? lastEnd : nextAvailable);
+    if (t - desired > 0.4) console.warn(`[${ID}] action starts ${(t - desired).toFixed(2)} s after its word: space anchors farther apart or reduce pause`);
+    lastEnd = t + dur; nextAvailable = lastEnd + PARAM.pause; return t;
+  }
+  const color = (n) => C.colors[n] || n;
+  const rgb = (h) => { h = String(h).replace("#", ""); if (h.length === 3) h = h.replace(/./g, "$&$&"); return [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16)); };
+  const mix = (a, b, k) => "#" + rgb(a).map((v, i) => Math.round(v + (rgb(b)[i] - v) * k).toString(16).padStart(2, "0")).join("");
+  const weight = (ch) => { const b = ch.normalize("NFD")[0]; return b === " " ? 0.28 : "MW".includes(b) ? 1 : "mw".includes(b) ? 0.92 : "iljI.,:;'!|".includes(b) ? 0.32 : /[A-Z]/.test(b) ? 0.76 : /[0-9]/.test(b) ? 0.68 : 0.62; };
+  const width = (t, px) => [...String(t)].reduce((s, ch) => s + weight(ch), 0) * px * 1.1;
+  const lines = (t, px, w) => String(t).split(/\s+/).filter(Boolean).reduce((ls, p) => { const u = ls[ls.length - 1]; if (u !== undefined && width(u + " " + p, px) <= w) ls[ls.length - 1] = u + " " + p; else ls.push(p); return ls; }, []);
+  const fits = (t, w, h, larger, smaller, max) => { for (let px = Math.round(larger); px > smaller; px--) { const ls = lines(t, px, w); if (ls.length <= max && ls.every((l) => width(l, px) <= w) && ls.length * px * 1.16 <= h) return px; } return Math.round(smaller); };
+  const A = PARAM.area ? PARAM.area.slice() : C.frame && C.frame.freeArea ? C.frame.freeArea.slice()
+    : [C.safeArea[0], C.safeArea[1], C.safeArea[2], PARAM.captions ? Math.round(C.safeArea[1] + (C.safeArea[3] - C.safeArea[1]) * 0.7) : C.safeArea[3]];
+  const AW = A[2] - A[0], AH = A[3] - A[1];
+  const background = PARAM.background === "auto" ? (C.frame ? null : "paper") : PARAM.background;
+  function paintBackground(el) {
+    if (background === "paper" && C.backgroundCss) el.style.cssText += ";" + C.backgroundCss;
+    else if (background === "paper") { const g = Math.round(60 * U); Object.assign(el.style, { backgroundColor: C.colors.paper, backgroundSize: `${g}px ${g}px`, backgroundImage: `linear-gradient(${C.colors.line} 2px,transparent 2px),linear-gradient(90deg,${C.colors.line} 2px,transparent 2px)` }); }
+    else if (background) el.style.backgroundColor = background;
+  }
+  const createElement = (tag, id, cls, parent, style, text) => { const e = document.createElement(tag); if (id) e.id = id; if (cls) e.className = cls; if (style) Object.assign(e.style, style); if (text != null) e.textContent = text; parent.appendChild(e); return e; };
+  const px = (v) => `${v}px`;
+  const light = (h) => { const [r, g, b] = rgb(h); return 0.299 * r + 0.587 * g + 0.114 * b > 150; };
+  const dark = light(C.colors.ink) ? C.colors.paper : C.colors.ink;
+  const over = (background) => (light(background) ? dark : "#ffffff");
+  const $ = (id) => document.getElementById(id);
+  paintBackground($("conversation-background"));
+  const body = light(C.colors.ink) ? C.colors.line : C.colors.ink;
+  const ch = Math.min(AH, AW / 0.54), cw = ch * 0.54;
+  const X = A[0] + (AW - cw) / 2, Y = A[1] + (AH - ch) / 2, b = cw * 0.035, sw = cw - 2 * b, sh = ch - 2 * b;
+  Object.assign($("conversation-phone").style, { left: px(X), top: px(Y), width: px(cw), height: px(ch), borderRadius: px(cw * 0.13), background: body,
+    boxShadow: `0 ${16 * U}px 0 -4px ${C.colors.base}` });
+  Object.assign($("conversation-screen").style, { left: px(b), top: px(b), width: px(sw), height: px(sh), borderRadius: px(cw * 0.1), background: mix(C.colors.line, C.colors.paper, 0.35) });
+  Object.assign($("conversation-notch").style, { left: px((cw - cw * 0.3) / 2), top: px(b + cw * 0.025), width: px(cw * 0.3), height: px(cw * 0.055), borderRadius: px(cw * 0.03), background: body });
+  const th = sw * 0.34, av = sw * 0.16, pad = sw * 0.05;
+  Object.assign($("conversation-top").style, { height: px(th), background: C.colors.paper, borderBottom: `${Math.max(2, 3 * U)}px solid ${C.colors.line}` });
+  Object.assign($("conversation-avatar").style, { left: px(pad), top: px(th * 0.32), width: px(av), height: px(av), background: C.colors.accent, color: over(C.colors.accent), fontSize: px(av * 0.46) });
+  $("conversation-avatar").textContent = (PARAM.contact || "?").trim().charAt(0).toUpperCase();
+  const cx = pad + av + pad * 0.6, cwTxt = sw - cx - pad;
+  Object.assign($("conversation-contact").style, { left: px(cx), top: px(th * 0.28), width: px(cwTxt), color: C.colors.ink, fontSize: px(fits(PARAM.contact, cwTxt, av * 0.6, sw * 0.075, sw * 0.04, 1)) });
+  $("conversation-contact").textContent = PARAM.contact;
+  const states = [PARAM.status].concat(PARAM.actions.filter((a) => a.type === "status"));
+  const statusFontSize = sw * 0.05, stW = Math.min(cwTxt, Math.max(...states.map((e) => width(e.text, statusFontSize))) + sw * 0.08), stH = statusFontSize * 1.9;
+  const $st = $("conversation-status");
+  Object.assign($st.style, { left: px(cx), top: px(th * 0.3 + av * 0.62), width: px(stW), height: px(stH), borderRadius: px(stH / 2) });
+  const statusColor = [], stTxt = [];
+  states.forEach((e, k) => {
+    const statusBackground = mix(color(e.color || "accent"), C.colors.ink, 0.2);
+    statusColor.push(createElement("div", `conversation-status-color-${k}`, "conversation-status-color", $st, { background: statusBackground }));
+    stTxt.push(createElement("span", `conversation-status-txt-${k}`, "conversation-status-txt", $st, { fontSize: px(statusFontSize), color: over(statusBackground) }, e.text));
+  });
+  const all = PARAM.messages.map((m) => ({ ...m, initial: true })).concat(PARAM.actions.filter((a) => a.type === "message"));
+  const chatY = th + pad, chatH = sh - chatY - pad, bw = sw * 0.8;
+  let fs = sw * 0.08, positions = [];
+  for (let tryValue = 0; tryValue < 30; tryValue++) {
+    positions = []; let y = chatY;
+    const pb = fs * 0.55, ph = fs * 0.75;
+    all.forEach((m) => {
+      const ls = lines(m.text, fs, bw - 2 * ph), w = Math.min(bw, Math.max(...ls.map((l) => width(l, fs))) + 2 * ph), h = ls.length * fs * 1.22 + 2 * pb;
+      positions.push({ x: m.start === "you" ? sw - pad - w : pad, y, w, h, ph, pb });
+      y += h + fs * 0.55;
+    });
+    if (y - fs * 0.55 <= chatY + chatH) break;
+    fs *= 0.93;
+  }
+  const bubbles = [], typing = [];
+  all.forEach((m, k) => {
+    const r = positions[k], isSelf = m.start === "you";
+    const bubble = createElement("div", `conversation-bubble-${k}`, "conversation-bubble", $("conversation-screen"), { left: px(r.x), top: px(r.y), width: px(r.w), height: px(r.h), padding: `${r.pb}px ${r.ph}px`,
+      borderRadius: px(fs * 0.8), background: isSelf ? C.colors.accent : C.colors.paper, border: isSelf ? "none" : `${Math.max(2, 3 * U)}px solid ${C.colors.line}` });
+    createElement("span", `conversation-msg-${k}`, "conversation-msg", bubble, { fontSize: px(fs), color: isSelf ? over(C.colors.accent) : C.colors.ink }, m.text);
+    bubbles.push(bubble);
+    if (m.typing) {
+      const dw = fs * 3.4, dh = fs * 1.9;
+      const typingElement = createElement("div", `conversation-typing-${k}`, "conversation-typing", $("conversation-screen"), { left: px(isSelf ? sw - pad - dw : pad), top: px(r.y), width: px(dw), height: px(dh),
+        borderRadius: px(fs * 0.8), background: isSelf ? mix(C.colors.accent, C.colors.paper, 0.25) : C.colors.paper });
+      typing[k] = { el: typingElement, points: [0, 1, 2].map((j) => createElement("div", `conversation-point-${k}-${j}`, "conversation-point", typingElement, { left: px(dw * (0.26 + 0.24 * j) - fs * 0.16), top: px(dh / 2 - fs * 0.16),
+        width: px(fs * 0.32), height: px(fs * 0.32), background: isSelf ? C.colors.paper : C.colors.base })) };
+    }
+  });
+  const tl = gsap.timeline({ paused: true });
+  tl.fromTo("#conversation-background", { opacity: 0 }, { opacity: 1, duration: Math.max(0.01, PARAM.entry), ease: "power1.out" }, 0);
+  const tE = schedule(moment(PARAM.enter, 0), 0.45);
+  tl.fromTo("#conversation-phone", { opacity: 0, y: 70 * U }, { opacity: 1, y: 0, duration: 0.45, ease: "back.out(1.4)" }, tE);
+  tl.fromTo([statusColor[0], stTxt[0]].concat(bubbles.filter((_, k) => all[k].initial)), { opacity: 0 }, { opacity: 1, duration: 0.01 }, tE);
+  let messageCount = PARAM.messages.length, nSt = 0;
+  PARAM.actions.forEach((a, n) => {
+    const desired = moment(a.at, 1 + n * 1.5) - 0.1;
+    if (a.type === "message") {
+      const k = messageCount++, d = typing[k], dur = d ? 1.45 : 0.35, t = schedule(desired, dur);
+      let tb = t;
+      if (d) {
+        tl.fromTo(d.el, { opacity: 0, y: 12 * U }, { opacity: 1, y: 0, duration: 0.2, ease: "back.out(2)" }, t);
+        d.points.forEach((p, j) => tl.fromTo(p, { y: 0 }, { y: -fs * 0.22, duration: 0.18, ease: "sine.inOut", yoyo: true, repeat: 3 }, t + 0.2 + j * 0.1));
+        tl.to(d.el, { opacity: 0, duration: 0.12, ease: "power1.in", immediateRender: false }, t + 1.0);
+        tb = t + 1.1;
+      }
+      tl.fromTo(bubbles[k], { opacity: 0, y: 22 * U }, { opacity: 1, y: 0, duration: 0.35, ease: "back.out(1.7)" }, tb);
+    } else if (a.type === "status") {
+      const k = ++nSt, t = schedule(desired, 0.55);
+      tl.to(stTxt[k - 1], { opacity: 0, duration: 0.15, ease: "power1.in", immediateRender: false }, t);
+      tl.fromTo(statusColor[k], { opacity: 1, clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.3, ease: "power2.inOut" }, t + 0.1);
+      tl.fromTo(stTxt[k], { opacity: 0, y: statusFontSize * 0.4 }, { opacity: 1, y: 0, duration: 0.2, ease: "power2.out" }, t + 0.35);
+      tl.fromTo($st, { y: 0 }, { y: -6 * U, duration: 0.12, ease: "power1.out", yoyo: true, repeat: 1 }, t + 0.35);
+    }
+  });
+  if (DUR - PARAM.exit - lastEnd < 0.6) console.warn(`[${ID}] last action leaves ${(DUR - PARAM.exit - lastEnd).toFixed(2)} s before the scene ends: hold the result for at least 0.6 s by extending end`);
+  if (PARAM.exit > 0) tl.fromTo(["#conversation-background", "#conversation-phone"], { opacity: 1 }, { opacity: 0, duration: PARAM.exit, ease: "power1.in", immediateRender: false }, Math.max(0, DUR - PARAM.exit));
+  window.__timelines["conversation"] = tl;
+})();
+</script>
+</template>
+</body></html>

@@ -1,0 +1,115 @@
+{
+  "origin": "Generated locally with code; no third-party source material.",
+  "size": "1080x1920",
+  "items": [
+    {
+      "id": "light-grid",
+      "name": "Light grid",
+      "durationSeconds": 8,
+      "file": "light-grid.mp4",
+      "cover": "light-grid.jpg",
+      "loop": true,
+      "howToUse": "Place behind a cutout person, text, or an object."
+    },
+    {
+      "id": "dark-grid",
+      "name": "Dark grid",
+      "durationSeconds": 8,
+      "file": "dark-grid.mp4",
+      "cover": "dark-grid.jpg",
+      "loop": true,
+      "howToUse": "Place behind a cutout person, text, or an object."
+    },
+    {
+      "id": "orange-neon-grid",
+      "name": "Orange neon grid",
+      "durationSeconds": 8,
+      "file": "orange-neon-grid.mp4",
+      "cover": "orange-neon-grid.jpg",
+      "loop": true,
+      "howToUse": "Place behind a cutout person, text, or an object."
+    },
+    {
+      "id": "graph-paper",
+      "name": "Graph paper",
+      "durationSeconds": 8,
+      "file": "graph-paper.mp4",
+      "cover": "graph-paper.jpg",
+      "loop": true,
+      "howToUse": "Place behind a cutout person, text, or an object."
+    },
+    {
+      "id": "wave-dots",
+      "name": "Wave dots",
+      "durationSeconds": 8,
+      "file": "wave-dots.mp4",
+      "cover": "wave-dots.jpg",
+      "loop": true,
+      "howToUse": "Place behind a cutout person, text, or an object."
+    },
+    {
+      "id": "orange-fluid",
+      "name": "Orange fluid",
+      "durationSeconds": 10,
+      "file": "orange-fluid.mp4",
+      "cover": "orange-fluid.jpg",
+      "loop": true,
+      "howToUse": "Place behind a cutout person, text, or an object."
+    },
+    {
+      "id": "purple-fluid",
+      "name": "Purple fluid",
+      "durationSeconds": 10,
+      "file": "purple-fluid.mp4",
+      "cover": "purple-fluid.jpg",
+      "loop": true,
+      "howToUse": "Place behind a cutout person, text, or an object."
+    },
+    {
+      "id": "neon-green-fluid",
+      "name": "Neon green fluid",
+      "durationSeconds": 10,
+      "file": "neon-green-fluid.mp4",
+      "cover": "neon-green-fluid.jpg",
+      "loop": true,
+      "howToUse": "Place behind a cutout person, text, or an object."
+    },
+    {
+      "id": "soft-light",
+      "name": "Soft light",
+      "durationSeconds": 10,
+      "file": "soft-light.mp4",
+      "cover": "soft-light.jpg",
+      "loop": true,
+      "howToUse": "Place behind a cutout person, text, or an object."
+    },
+    {
+      "id": "rising-particles",
+      "name": "Rising particles",
+      "durationSeconds": 8,
+      "file": "rising-particles.mp4",
+      "cover": "rising-particles.jpg",
+      "loop": true,
+      "howToUse": "Place behind a cutout person, text, or an object."
+    },
+    {
+      "id": "spinning-rays",
+      "name": "Spinning rays",
+      "durationSeconds": 8,
+      "file": "spinning-rays.mp4",
+      "cover": "spinning-rays.jpg",
+      "loop": true,
+      "howToUse": "Place behind a cutout person, text, or an object."
+    },
+    {
+      "id": "dark-rays",
+      "name": "Dark rays",
+      "durationSeconds": 8,
+      "file": "dark-rays.mp4",
+      "cover": "dark-rays.jpg",
+      "loop": true,
+      "howToUse": "Place behind a cutout person, text, or an object."
+    }
+  ],
+  "fps": 30
+}

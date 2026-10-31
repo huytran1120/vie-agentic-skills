@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Text red word</title></head>
+<body>
+<!-- Text red word. For a warning, promise, or strong claim: dim words turn red as spoken and remain lit until the next caption group. -->
+
+<template id="text-red-word-template">
+<style>
+@font-face{font-family:"Montserrat";src:url("assets/fonts/Montserrat.ttf") format("truetype");font-weight:100 900;font-display:block}
+@font-face{font-family:"Caveat";src:url("assets/fonts/Caveat.ttf") format("truetype");font-weight:400 700;font-display:block}
+@font-face{font-family:"JetBrainsMono";src:url("assets/fonts/JetBrainsMono.ttf") format("truetype");font-weight:100 800;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Montserrat",sans-serif}
+.textredword-l{position:absolute;left:140px;top:0;width:800px;display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;opacity:0;
+  font-family:"Montserrat",sans-serif;font-weight:900;line-height:1.08;text-transform:uppercase;letter-spacing:-.01em;white-space:nowrap;
+  color:#fff;filter:drop-shadow(0 .045em 0 #000) drop-shadow(0 .09em .1em rgba(0,0,0,.5))}
+.textredword-w{display:block;position:relative}
+.textredword-r{display:block;position:absolute;left:0;top:0;opacity:0;font-style:normal}
+.textredword-t{display:block;position:relative;
+  text-shadow:.075em 0 0 #000,.072em .019em 0 #000,.065em .037em 0 #000,.053em .053em 0 #000,.038em .065em 0 #000,.019em .072em 0 #000,0 .075em 0 #000,-.019em .072em 0 #000,-.037em .065em 0 #000,-.053em .053em 0 #000,-.065em .037em 0 #000,-.072em .019em 0 #000,-.075em 0 0 #000,-.072em -.019em 0 #000,-.065em -.037em 0 #000,-.053em -.053em 0 #000,-.038em -.065em 0 #000,-.019em -.072em 0 #000,0 -.075em 0 #000,.019em -.072em 0 #000,.038em -.065em 0 #000,.053em -.053em 0 #000,.065em -.038em 0 #000,.072em -.019em 0 #000}
+.textredword-r::before{content:attr(data-t);display:block;color:#fff;
+  text-shadow:.13em 0 0 #fff,.126em .034em 0 #fff,.113em .065em 0 #fff,.092em .092em 0 #fff,.065em .113em 0 #fff,.034em .126em 0 #fff,0 .13em 0 #fff,-.034em .126em 0 #fff,-.065em .113em 0 #fff,-.092em .092em 0 #fff,-.113em .065em 0 #fff,-.126em .034em 0 #fff,-.13em 0 0 #fff,-.126em -.034em 0 #fff,-.113em -.065em 0 #fff,-.092em -.092em 0 #fff,-.065em -.113em 0 #fff,-.034em -.126em 0 #fff,0 -.13em 0 #fff,.034em -.126em 0 #fff,.065em -.113em 0 #fff,.092em -.092em 0 #fff,.113em -.065em 0 #fff,.126em -.034em 0 #fff}
+</style>
+<div id="root" data-composition-id="text-red-word" data-width="1080" data-height="1920" data-duration="3.4">
+<div id="textredword-c"></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["text-red-word"] || { duration: 3.4 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 3.4, t0 = 0;
+
+  var P = {
+    y: 1280, // Caption center height on the 1080×1920 canvas, in pixels.
+    size: 88, // Font size, in pixels.
+    maxWords: 3, // Words per caption group.
+    accent: "#ff2d2d", // Word color after it has been spoken.
+    disabled: 0.55, // 0–1: opacity of words not yet spoken.
+  };
+
+
+  var HIDDEN_RANGES = [];
+
+
+  var W = Array.isArray(C.words) ? C.words : [
+    { text: "You", t: 0.10, end: 0.34 }, { text: "do not", t: 0.36, end: 0.58 }, { text: "need", t: 0.60, end: 0.98 },
+    { text: "an", t: 1.00, end: 1.10 }, { text: "editor", t: 1.12, end: 1.56 }, { text: "to", t: 1.92, end: 2.06 },
+    { text: "post", t: 2.08, end: 2.44 }, { text: "every", t: 2.46, end: 2.68 }, { text: "day.", t: 2.70, end: 3.05 }
+  ];
+
+  W = (function (a) { var o = [], u = 0.04, k, t; for (k = 0; k < a.length; k++) { t = Math.max(0.05, Number(a[k].t) || 0, u + 0.01); o.push({ text: a[k].text, t: t, end: Math.max(t + 0.02, Number(a[k].end) || 0) }); u = t; } return o; })(W);
+
+  var SCALE_FACTOR = (function () {
+    var e = (typeof HIDDEN_RANGES !== "undefined" && HIDDEN_RANGES) || [], b0 = (typeof C.start === "number") ? C.start : 0, o = [], k;
+    for (k = 0; k < e.length; k++) if (Number(e[k][1]) > Number(e[k][0])) o.push([Number(e[k][0]) - b0, Number(e[k][1]) - b0]);
+    return o;
+  })();
+  function hidden(t) { for (var k = 0; k < SCALE_FACTOR.length; k++) if (t >= SCALE_FACTOR[k][0] && t < SCALE_FACTOR[k][1]) return true; return false; }
+  function nextScale(t) { var r = Infinity, k; for (k = 0; k < SCALE_FACTOR.length; k++) if (SCALE_FACTOR[k][0] > t && SCALE_FACTOR[k][0] < r) r = SCALE_FACTOR[k][0]; return r; }
+  W = W.filter(function (w) { return !hidden(w.t); });
+
+  function show(s) { return String(s).replace(/^\s+|\s+$/g, "").replace(/[.,;:…]+$/g, ""); }
+
+  function screens(maxP, maxL) {
+    var groups = [], cur = [], letters = 0, i, w, txt, out = [];
+    for (i = 0; i < W.length; i++) {
+      w = W[i]; txt = show(w.text); if (!txt || !(w.t < D - 0.2)) continue;
+      if (cur.length && (cur.length >= maxP || letters + txt.length + 1 > maxL || w.t - cur[cur.length - 1].end > 0.7 || nextScale(cur[cur.length - 1].t) <= w.t)) { groups.push(cur); cur = []; letters = 0; }
+      cur.push({ text: txt, t: Math.max(0.05, w.t), end: Math.min(D - 0.05, Math.max(w.t + 0.08, w.end)) }); letters += txt.length + 1;
+      if (/[.!?…]$/.test(String(w.text).replace(/\s+$/, "")) || (cur.length >= 2 && /[,;:]$/.test(String(w.text).replace(/\s+$/, "")))) { groups.push(cur); cur = []; letters = 0; }
+    }
+    if (cur.length) groups.push(cur);
+    for (i = 0; i < groups.length; i++) {
+      var start = Math.max(0.05, groups[i][0].t - 0.05), speechEnd = groups[i][groups[i].length - 1].end;
+      var end = Math.min(D - 0.05, speechEnd + 0.5); if (i + 1 < groups.length) end = Math.min(end, Math.max(0.05, groups[i + 1][0].t - 0.05));
+      end = Math.min(end, Math.max(start + 0.15, nextScale(groups[i][groups[i].length - 1].t)));
+      if (end > start + 0.12) out.push({ words: groups[i], start: start, end: end });
+    }
+    return out;
+  }
+
+
+  var sizeValue = Math.max(44, Math.min(130, Number(P.size) || 88)), yy = Math.max(230 + sizeValue * 0.8, Math.min(1530 - sizeValue * 0.96, Number(P.y) || 1280));
+  var maxP = Math.max(1, Math.min(6, Math.round(Number(P.maxWords) || 3))), dest = P.accent || "#ff2d2d", ap = Number(P.disabled);
+  if (!(ap >= 0 && ap <= 1)) ap = 0.55;
+
+  var STRIP = 770, SPAN = 0.38, BORDER_WIDTH = 0, FLOOR_VALUE = 0.72, maxL = Math.max(4, Math.floor(STRIP / (sizeValue * 0.67)));
+
+  var LG = { A: 84, B: 78, C: 74, D: 83, E: 68, F: 65, G: 77, H: 81, I: 35, J: 58, K: 77, L: 62, M: 96, N: 81, O: 85, P: 74, Q: 85, R: 75, S: 66, T: 67, U: 79, V: 79, W: 121, X: 77, Y: 71, Z: 69 };
+  function widthValue(s) {
+    var n = 0, k, c, u; s = String(s).toUpperCase().normalize("NFD");
+    for (k = 0; k < s.length; k++) {
+      u = s.charCodeAt(k); if (u >= 768 && u <= 879) continue;
+      c = s.charAt(k); n += LG[c] || (/[0-9$?]/.test(c) ? 72 : /[!.,:;'|]/.test(c) ? 34 : /[-\/()\[\]{}*_"]/.test(c) ? 54 : 104);
+    }
+    return n / 100;
+  }
+
+  function fit(ps) { var n = BORDER_WIDTH, k; for (k = 0; k < ps.length; k++) n += widthValue(ps[k].text) + (k ? SPAN : 0); return Math.floor(STRIP / n); }
+
+  var CUT = .0045;
+
+  function complete(L) {
+    var has = {}, s, p, k, w, txt, t, o, target;
+    for (s = 0; s < L.length; s++) for (p = 0; p < L[s].words.length; p++) has[L[s].words[p].text + "|" + L[s].words[p].t] = 1;
+    for (k = W.length - 1; k >= 0; k--) {
+      w = W[k]; txt = show(w.text); if (!txt || !(w.t < D - 0.2) || !L.length) continue; t = Math.max(0.05, w.t);
+      if (has[txt + "|" + t]) continue;
+      o = { text: txt, t: t, end: Math.min(D - 0.05, Math.max(w.t + 0.08, w.end)) }; target = null;
+      for (s = 0; s < L.length; s++) if (L[s].words[0].t > t) { target = L[s]; break; }
+      if (target) target.start = Math.max(0.05, t - 0.05); else { target = L[L.length - 1]; target.end = Math.max(target.end, Math.min(D - 0.05, o.end + 0.5)); }
+      for (p = 0; p < target.words.length && target.words[p].t <= t; p++);
+      target.words.splice(p, 0, o);
+    }
+    return L;
+  }
+
+  function split(L) {
+    var out = [], s, T, j, k, cur, parts, start, end;
+    for (s = 0; s < L.length; s++) {
+      T = L[s]; if (T.words.length < 2 || fit(T.words) >= sizeValue * FLOOR_VALUE) { out.push(T); continue; }
+      parts = []; cur = [];
+      for (j = 0; j < T.words.length; j++) { if (cur.length && fit(cur.concat([T.words[j]])) < sizeValue) { parts.push(cur); cur = []; } cur.push(T.words[j]); }
+      parts.push(cur);
+      for (k = 0; k < parts.length && parts.length > 1; k++) {
+        start = k ? parts[k][0].t - 0.05 : T.start; end = k + 1 < parts.length ? parts[k + 1][0].t - 0.05 : T.end;
+        if (end - start < 0.08) { if (k + 1 < parts.length) parts.splice(k, 2, parts[k].concat(parts[k + 1])); else parts.splice(k - 1, 2, parts[k - 1].concat(parts[k])); k = -1; }
+      }
+      for (k = 0; k < parts.length; k++) out.push({ words: parts[k], start: k ? Math.max(0.05, parts[k][0].t - 0.05) : T.start, end: k + 1 < parts.length ? Math.max(0.05, parts[k + 1][0].t - 0.05) : T.end });
+    }
+    return out;
+  }
+
+  function ensure(L) {
+    var s, u, q;
+    for (s = 0; s + 1 < L.length; s++) {
+      u = L[s].words[L[s].words.length - 1]; q = Math.min(L[s + 1].words[0].t, u.t + 0.07);
+      if (L[s].end < q) { L[s].end = q; if (L[s + 1].start < q) L[s + 1].start = q; }
+    }
+    return L;
+  }
+  var box = document.getElementById("textredword-c"), list = ensure(split(complete(screens(maxP, maxL)))), i, j, screen, line, pal, hoop, txt, fs, target, when;
+  for (i = 0; i < list.length; i++) {
+    screen = list[i];
+    fs = Math.min(sizeValue, fit(screen.words));
+    line = document.createElement("div"); line.className = "textredword-l"; line.id = "textredword-l" + i;
+    line.style.top = Math.round(yy - fs * 0.55) + "px"; line.style.fontSize = fs + "px";
+    for (j = 0; j < screen.words.length; j++) {
+      pal = document.createElement("span"); pal.className = "textredword-w"; pal.id = "textredword-w" + i + "_" + j;
+      hoop = document.createElement("i"); hoop.className = "textredword-r"; hoop.id = "textredword-r" + i + "_" + j; hoop.setAttribute("data-t", screen.words[j].text);
+      txt = document.createElement("span"); txt.className = "textredword-t"; txt.textContent = screen.words[j].text;
+      pal.appendChild(hoop); pal.appendChild(txt);
+      pal.style.opacity = ap;
+      if (j) pal.style.marginLeft = Math.round(fs * SPAN) + "px";
+      line.appendChild(pal);
+    }
+    box.appendChild(line);
+    tl.fromTo("#textredword-l" + i, { opacity: 0 }, { opacity: 1, duration: .001, ease: "none" }, t0 + screen.start + CUT);
+    for (j = 0; j < screen.words.length; j++) {
+      target = "#textredword-w" + i + "_" + j; when = t0 + (j ? screen.words[j].t : screen.start + CUT);
+      tl.fromTo(target, { opacity: ap }, { opacity: 1, duration: .04, ease: "none", immediateRender: false }, when);
+      tl.fromTo(target, { color: "#ffffff" }, { color: dest, duration: .1, ease: "power1.in", immediateRender: false }, when);
+      tl.fromTo("#textredword-r" + i + "_" + j, { opacity: 0 }, { opacity: 1, duration: .06, ease: "none", immediateRender: false }, when);
+    }
+    tl.to("#textredword-l" + i, { opacity: 0, duration: .001, immediateRender: false }, t0 + screen.end + CUT - .001);
+  }
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["text-red-word"] = tl;
+})();
+</script>
+</template>
+</body></html>

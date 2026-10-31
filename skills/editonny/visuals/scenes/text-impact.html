@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Text impact</title></head>
+<body>
+<!-- Text impact. For an emphatic number, price, or promise: text jumps up, sharpens, and leaves a large translucent echo. The entrance lasts 0.5 seconds, then holds until the cut. -->
+
+<template id="text-impact-template">
+<style>
+@font-face{font-family:"Montserrat";src:url("assets/fonts/Montserrat.ttf") format("truetype");font-weight:100 900;font-display:block}
+@font-face{font-family:"Caveat";src:url("assets/fonts/Caveat.ttf") format("truetype");font-weight:400 700;font-display:block}
+@font-face{font-family:"JetBrainsMono";src:url("assets/fonts/JetBrainsMono.ttf") format("truetype");font-weight:100 800;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Montserrat",sans-serif}
+.textimpact-k{position:absolute;inset:0;pointer-events:none}
+.textimpact-s{position:absolute;left:0;top:0;width:0;height:0;overflow:hidden}
+.textimpact-b{position:absolute;left:140px;top:0;width:800px;opacity:0}
+.textimpact-t,.textimpact-v,.textimpact-d,.textimpact-e{display:flex;flex-direction:column;align-items:center;font-family:"Montserrat",sans-serif;font-weight:900;line-height:1;letter-spacing:-.01em;white-space:nowrap}
+.textimpact-t{opacity:0;paint-order:stroke fill}
+.textimpact-v{position:absolute;left:0;top:0;width:800px;opacity:0;filter:url(#textimpact-fv)}
+.textimpact-d{position:absolute;left:140px;top:0;width:800px;opacity:0;filter:url(#textimpact-fh)}
+.textimpact-ep{position:absolute;left:0;top:0;width:1080px;display:flex;align-items:center;justify-content:center;perspective:1200px}
+.textimpact-e{flex:none;opacity:0;filter:url(#textimpact-fe)}
+.textimpact-l{display:flex;justify-content:center;align-items:baseline}
+.textimpact-w{display:block}
+
+
+.textimpact-zm{position:absolute;left:0;top:0;width:1080px;height:1920px;-webkit-mask-image:linear-gradient(90deg,transparent 150px,#000 260px,#000 820px,transparent 930px),linear-gradient(180deg,transparent 240px,#000 340px,#000 1420px,transparent 1520px);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 150px,#000 260px,#000 820px,transparent 930px),linear-gradient(180deg,transparent 240px,#000 340px,#000 1420px,transparent 1520px);mask-composite:intersect}
+</style>
+<div id="root" data-composition-id="text-impact" data-width="1080" data-height="1920" data-duration="2.4">
+<div id="textimpact-c" class="textimpact-k">
+  <svg class="textimpact-s" width="0" height="0" aria-hidden="true"><defs>
+    <filter id="textimpact-fv" x="-5%" y="-90%" width="110%" height="280%" color-interpolation-filters="sRGB"><feGaussianBlur id="textimpact-fvb" in="SourceGraphic" stdDeviation="0 20" result="b"/><feOffset id="textimpact-fvo" in="SourceGraphic" dy="30" result="o0"/><feGaussianBlur in="o0" stdDeviation="0 4" result="o1"/><feComponentTransfer in="o1" result="o"><feFuncA type="linear" slope=".5"/></feComponentTransfer><feComponentTransfer in="SourceGraphic" result="n"><feFuncA type="linear" slope=".42"/></feComponentTransfer><feMerge><feMergeNode in="b"/><feMergeNode in="o"/><feMergeNode in="b"/><feMergeNode in="n"/></feMerge></filter>
+    <filter id="textimpact-fh" x="-45%" y="-20%" width="190%" height="140%" color-interpolation-filters="sRGB"><feGaussianBlur id="textimpact-fhb" stdDeviation="16 0"/></filter>
+    <filter id="textimpact-fe" x="-25%" y="-40%" width="150%" height="180%" color-interpolation-filters="sRGB"><feGaussianBlur id="textimpact-feb" stdDeviation="0 0"/></filter>
+  </defs></svg>
+  <div class="textimpact-zm" id="textimpact-zm">
+  <div class="textimpact-ep" id="textimpact-ep"><div class="textimpact-e" id="textimpact-e" data-layout-ignore data-layout-allow-overflow aria-hidden="true"></div></div>
+  <div class="textimpact-d" id="textimpact-d0" data-layout-ignore data-layout-allow-overflow aria-hidden="true"></div>
+  <div class="textimpact-d" id="textimpact-d1" data-layout-ignore data-layout-allow-overflow aria-hidden="true"></div>
+  <div class="textimpact-d" id="textimpact-d2" data-layout-ignore data-layout-allow-overflow aria-hidden="true"></div>
+  <div class="textimpact-d" id="textimpact-d3" data-layout-ignore data-layout-allow-overflow aria-hidden="true"></div>
+  </div>
+  <div class="textimpact-b" id="textimpact-b"><div class="textimpact-t" id="textimpact-t"></div><div class="textimpact-v" id="textimpact-v" data-layout-ignore aria-hidden="true"></div></div>
+</div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["text-impact"] || { duration: 2.4 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 2.4, t0 = 0;
+
+  var P = {
+    text: "HALF|THE PRICE", // Text; | forces a line break, otherwise wrapping is automatic.
+    y: 1150, // Text center height on the 1080×1920 canvas, in pixels.
+    size: 124, // Maximum font size, in pixels; shrinks automatically to fit.
+    color: "#ffffff", // Text color.
+    glow: "#22ff66", // Text halo and echo color.
+  };
+
+
+
+  var W = Array.isArray(C.words) ? C.words : [
+    { text: "You", t: 0.10, end: 0.34 }, { text: "do not", t: 0.36, end: 0.58 }, { text: "need", t: 0.60, end: 0.98 },
+    { text: "an", t: 1.00, end: 1.10 }, { text: "editor", t: 1.12, end: 1.56 }, { text: "to", t: 1.92, end: 2.06 },
+    { text: "post", t: 2.08, end: 2.44 }, { text: "every", t: 2.46, end: 2.68 }, { text: "day.", t: 2.70, end: 3.05 }
+  ];
+
+  W = (function (a) { var o = [], u = 0.04, k, t; for (k = 0; k < a.length; k++) { t = Math.max(0.05, Number(a[k].t) || 0, u + 0.01); o.push({ text: a[k].text, t: t, end: Math.max(t + 0.02, Number(a[k].end) || 0) }); u = t; } return o; })(W);
+
+  var SCALE_FACTOR = (function () {
+    var e = (typeof HIDDEN_RANGES !== "undefined" && HIDDEN_RANGES) || [], b0 = (typeof C.start === "number") ? C.start : 0, o = [], k;
+    for (k = 0; k < e.length; k++) if (Number(e[k][1]) > Number(e[k][0])) o.push([Number(e[k][0]) - b0, Number(e[k][1]) - b0]);
+    return o;
+  })();
+  function hidden(t) { for (var k = 0; k < SCALE_FACTOR.length; k++) if (t >= SCALE_FACTOR[k][0] && t < SCALE_FACTOR[k][1]) return true; return false; }
+  function nextScale(t) { var r = Infinity, k; for (k = 0; k < SCALE_FACTOR.length; k++) if (SCALE_FACTOR[k][0] > t && SCALE_FACTOR[k][0] < r) r = SCALE_FACTOR[k][0]; return r; }
+  W = W.filter(function (w) { return !hidden(w.t); });
+
+  function show(s) { return String(s).replace(/^\s+|\s+$/g, "").replace(/[.,;:…]+$/g, ""); }
+
+  function screens(maxP, maxL) {
+    var groups = [], cur = [], letters = 0, i, w, txt, out = [];
+    for (i = 0; i < W.length; i++) {
+      w = W[i]; txt = show(w.text); if (!txt || !(w.t < D - 0.2)) continue;
+      if (cur.length && (cur.length >= maxP || letters + txt.length + 1 > maxL || w.t - cur[cur.length - 1].end > 0.7 || nextScale(cur[cur.length - 1].t) <= w.t)) { groups.push(cur); cur = []; letters = 0; }
+      cur.push({ text: txt, t: Math.max(0.05, w.t), end: Math.min(D - 0.05, Math.max(w.t + 0.08, w.end)) }); letters += txt.length + 1;
+      if (/[.!?…]$/.test(String(w.text).replace(/\s+$/, "")) || (cur.length >= 2 && /[,;:]$/.test(String(w.text).replace(/\s+$/, "")))) { groups.push(cur); cur = []; letters = 0; }
+    }
+    if (cur.length) groups.push(cur);
+    for (i = 0; i < groups.length; i++) {
+      var start = Math.max(0.05, groups[i][0].t - 0.05), speechEnd = groups[i][groups[i].length - 1].end;
+      var end = Math.min(D - 0.05, speechEnd + 0.5); if (i + 1 < groups.length) end = Math.min(end, Math.max(0.05, groups[i + 1][0].t - 0.05));
+      end = Math.min(end, Math.max(start + 0.15, nextScale(groups[i][groups[i].length - 1].t)));
+      if (end > start + 0.12) out.push({ words: groups[i], start: start, end: end });
+    }
+    return out;
+  }
+
+
+  function num(v, d) { if (v === "" || v === null || v === undefined) return d; v = Number(v); return isFinite(v) ? v : d; }
+  function correctColor(v, d) { return (typeof v === "string" && window.CSS && CSS.supports("color", v)) ? v : d; }
+  var ceiling = Math.max(40, Math.min(170, num(P.size, 124))), yy = Math.max(260, Math.min(1500, num(P.y, 1150)));
+  var colorL = correctColor(P.color, "#ffffff"), backgroundTint = correctColor(P.sparkle, "#22ff66");
+  var raw = String(P.text === undefined || P.text === null ? "HALF|THE PRICE" : P.text).toUpperCase().replace(/\r?\n/g, "|");
+  var bar = raw.indexOf("|") >= 0, orig = [];
+  raw.split("|").forEach(function (s) { s = s.replace(/^\s+|\s+$/g, ""); if (s) orig.push(s.split(/\s+/)); });
+  if (!orig.length) orig.push(["TITLE"]);
+
+
+  var SPACING_VALUE = .28, SPAN = .1, LIM = 770, MAXL = 4, HMAX = 900, ECHO_OFFSET = 2.3, DROP_TIME = 115;
+  var med = document.createElement("div");
+  med.setAttribute("aria-hidden", "true"); med.setAttribute("data-layout-ignore", "");
+  med.style.cssText = "position:absolute;left:-6000px;top:0;visibility:hidden;white-space:nowrap;font-family:Montserrat,sans-serif;font-weight:900;font-size:100px;line-height:1;letter-spacing:-.01em";
+  document.body.appendChild(med);
+  var memo = {};
+  function widthValue(s) { var c = "_" + s; if (!(c in memo)) { med.textContent = s; memo[c] = med.getBoundingClientRect().width / 100; } return memo[c]; }
+  function lineWidthValue(ws) { var n = 0, q; for (q = 0; q < ws.length; q++) n += widthValue(ws[q]) + (q ? SPACING_VALUE : 0); return n; }
+
+  function divide(ws, q) {
+    var n = ws.length, m = [], c = [], a, b, d, v, out = [], end;
+    for (a = 1; a <= q; a++) {
+      m[a] = []; c[a] = [];
+      for (b = a; b <= n; b++) {
+        if (a === 1) { m[a][b] = lineWidthValue(ws.slice(0, b)); c[a][b] = 0; continue; }
+        m[a][b] = 1e9;
+        for (d = a - 1; d < b; d++) { v = Math.max(m[a - 1][d], lineWidthValue(ws.slice(d, b))); if (v < m[a][b]) { m[a][b] = v; c[a][b] = d; } }
+      }
+    }
+    for (a = q, end = n; a >= 1; a--) { out.unshift(ws.slice(c[a][end], end)); end = c[a][end]; }
+    return out;
+  }
+  var box = document.getElementById("textimpact-c"), elB = document.getElementById("textimpact-b"), elT = document.getElementById("textimpact-t"), elV = document.getElementById("textimpact-v");
+  var elE = document.getElementById("textimpact-e"), elEP = document.getElementById("textimpact-ep"), elD = [0, 1, 2, 3].map(function (k) { return document.getElementById("textimpact-d" + k); });
+  var lines = [], sizeValue = ceiling, top = 0, H = 0, largestWidth = 400;
+
+  function write(dest, fs) {
+    var i, j, ln, w;
+    while (dest.firstChild) dest.removeChild(dest.firstChild);
+    dest.style.fontSize = fs + "px";
+    for (i = 0; i < lines.length; i++) {
+      ln = document.createElement("div"); ln.className = "textimpact-l"; if (i) ln.style.marginTop = Math.round(fs * SPAN) + "px";
+      for (j = 0; j < lines[i].length; j++) {
+        w = document.createElement("span"); w.className = "textimpact-w"; w.textContent = lines[i][j];
+        if (j) w.style.marginLeft = Math.round(fs * SPACING_VALUE) + "px";
+        ln.appendChild(w);
+      }
+      dest.appendChild(ln);
+    }
+  }
+  function arrange() {
+    memo = {};
+    var parts = [], owner = [], largerValue = 0, im = 0, k, i, previousValue, which, n;
+    var floor = bar ? Math.min(ceiling, 56) : Math.min(ceiling, Math.max(56, ceiling * .62));
+    for (i = 0; i < orig.length; i++) parts.push(1);
+    function split() {
+      var a, b, ws, lw;
+      lines = []; owner = []; largerValue = 0; im = 0;
+      for (a = 0; a < orig.length; a++) { ws = divide(orig[a], parts[a]); for (b = 0; b < ws.length; b++) { lines.push(ws[b]); owner.push(a); } }
+      for (a = 0; a < lines.length; a++) { lw = lineWidthValue(lines[a]); if (lw > largerValue) { largerValue = lw; im = a; } }
+      sizeValue = Math.max(24, Math.min(ceiling, Math.floor(LIM / largerValue)));
+    }
+
+    split();
+    for (k = 0; k < 12; k++) {
+      if (sizeValue >= floor || lines.length >= MAXL || parts[owner[im]] >= orig[owner[im]].length) break;
+      which = owner[im]; previousValue = largerValue; parts[which]++; split();
+      if (largerValue > previousValue * .98) { parts[which]--; split(); break; }
+    }
+    n = lines.length; H = n * sizeValue + (n - 1) * Math.round(sizeValue * SPAN);
+    if (H > HMAX) { sizeValue = Math.max(24, Math.floor(sizeValue * HMAX / H)); H = n * sizeValue + (n - 1) * Math.round(sizeValue * SPAN); }
+    largestWidth = largerValue * sizeValue;
+    top = Math.round(Math.max(244, Math.min(1516 - H, yy - H / 2)));
+
+
+    var sparkle = "0 0 " + Math.round(sizeValue * .06) + "px " + backgroundTint + ", 0 0 " + Math.round(sizeValue * .18) + "px " + backgroundTint + ", 0 0 " + Math.round(sizeValue * .42) + "px " + backgroundTint + ", 0 " + Math.round(sizeValue * .04) + "px " + Math.round(sizeValue * .1) + "px rgba(0,0,0,.5)";
+    elB.style.top = top + "px"; elB.style.height = H + "px";
+    write(elT, sizeValue); elT.style.color = colorL; elT.style.webkitTextStroke = Math.max(5, Math.round(sizeValue * .075)) + "px rgba(0,0,0,.88)"; elT.style.textShadow = sparkle;
+    write(elV, sizeValue); elV.style.color = colorL; elV.style.textShadow = sparkle;
+    document.getElementById("textimpact-fvb").setAttribute("stdDeviation", "0 " + Math.round(sizeValue * .17));
+    document.getElementById("textimpact-fvo").setAttribute("dy", Math.round(sizeValue * .26));
+    for (i = 0; i < 4; i++) { write(elD[i], sizeValue); elD[i].style.top = top + "px"; elD[i].style.color = colorL; elD[i].style.textShadow = "0 0 " + Math.round(sizeValue * .2) + "px " + backgroundTint; }
+    document.getElementById("textimpact-fhb").setAttribute("stdDeviation", Math.round(sizeValue * .2) + " 0");
+
+
+    var mix = "color-mix(in srgb, " + colorL + " 55%, " + backgroundTint + ")";
+    write(elE, Math.round(sizeValue * ECHO_OFFSET)); elE.style.color = (window.CSS && CSS.supports("color", mix)) ? mix : colorL; elE.style.textShadow = "0 0 " + Math.round(sizeValue * .12) + "px " + backgroundTint + ", 0 0 " + Math.round(sizeValue * .4) + "px " + backgroundTint;
+    var middle = Math.round(top + H / 2), halfValue = Math.min(middle, 1920 - middle);
+    elEP.style.top = (middle - halfValue) + "px"; elEP.style.height = (2 * halfValue) + "px";
+  }
+  arrange();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { arrange(); tl.invalidate(); });
+
+
+  var A = t0;
+
+  tl.fromTo("#textimpact-b", { y: DROP_TIME }, { y: 0, duration: .034, ease: "power2.out" }, A + .066);
+  tl.fromTo("#textimpact-b", { opacity: 0 }, { opacity: 1, duration: .01, immediateRender: false }, A + .055);
+  tl.fromTo("#textimpact-v", { opacity: 0 }, { opacity: 1, duration: .01 }, A + .055);
+  tl.to("#textimpact-v", { opacity: 0, duration: .01, immediateRender: false }, A + .09);
+  tl.fromTo("#textimpact-t", { opacity: 0 }, { opacity: 1, duration: .01 }, A + .09);
+
+  [0, 1, 2, 3].forEach(function (k) {
+    var sel = "#textimpact-d" + k, side = k % 2 ? 1 : -1, alc = k < 2 ? .22 : .45, strong = k < 2 ? 1 : .75;
+    tl.fromTo(sel, { opacity: 0 }, { opacity: strong, duration: .01 }, A + .15);
+    tl.fromTo(sel, { x: 0 }, { x: function () { return side * largestWidth * alc; }, duration: .09, ease: "power2.out", immediateRender: false }, A + .15);
+    tl.to(sel, { opacity: 0, duration: .08, ease: "power1.in", immediateRender: false }, A + .17);
+  });
+  var BZ = Math.round(ceiling * .3) + " " + Math.round(ceiling * .05);
+  tl.fromTo("#textimpact-e", { opacity: 0 }, { opacity: .9, duration: .01 }, A + .15);
+  tl.fromTo("#textimpact-e", { z: -900 }, { z: 0, duration: .085, ease: "power2.out", immediateRender: false }, A + .15);
+  tl.to("#textimpact-e", { opacity: .5, duration: .075, ease: "none", immediateRender: false }, A + .16);
+  tl.fromTo("#textimpact-feb", { attr: { stdDeviation: BZ } }, { attr: { stdDeviation: "0 0" }, duration: .085, ease: "power1.in" }, A + .15);
+
+  tl.to("#textimpact-e", { z: 110, duration: .335, ease: "none", immediateRender: false }, A + .235);
+  tl.to("#textimpact-e", { opacity: 0, duration: .335, ease: "none", immediateRender: false }, A + .235);
+
+  tl.to("#textimpact-b", { opacity: 0, duration: .01, immediateRender: false }, A + D - .06);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["text-impact"] = tl;
+})();
+</script>
+</template>
+</body></html>

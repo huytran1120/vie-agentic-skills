@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Attempt counter</title></head>
+<body>
+<!-- Attempt counter. When success follows repeated attempts: failed attempts receive red crosses and strikes; the successful attempt lights up green. -->
+
+<template id="attempt-counter-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+@font-face{font-family:"SoraV";src:url("assets/visuals/fonts/Sora.ttf");font-weight:100 800;font-display:block}
+#attemptcounter-w{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;overflow:hidden;background:#000;font-family:"Inter",sans-serif;color:#fff}
+#attemptcounter-lz{position:absolute;left:-200px;top:-200px;width:1480px;height:2320px}
+#attemptcounter-lf{position:absolute;inset:0}
+.attemptcounter-l{position:absolute;inset:0;opacity:0;mix-blend-mode:screen}
+#attemptcounter-lcg{background:radial-gradient(ellipse 900px 840px at 1150px 200px,rgba(46,255,62,.82),rgba(0,0,0,0) 70%),radial-gradient(ellipse 820px 700px at 286px 2120px,rgba(46,255,62,.5),rgba(0,0,0,0) 70%)}
+#attemptcounter-lca{background:radial-gradient(ellipse 900px 840px at 1150px 200px,rgba(255,122,26,.82),rgba(0,0,0,0) 70%),radial-gradient(ellipse 820px 700px at 286px 2120px,rgba(255,122,26,.5),rgba(0,0,0,0) 70%)}
+#attemptcounter-lcr{background:radial-gradient(ellipse 900px 840px at 1150px 200px,rgba(255,24,40,.82),rgba(0,0,0,0) 70%),radial-gradient(ellipse 820px 700px at 286px 2120px,rgba(255,24,40,.5),rgba(0,0,0,0) 70%)}
+#attemptcounter-lfg{background:linear-gradient(180deg,rgba(40,240,54,.95) 0%,rgba(22,150,34,.6) 30%,rgba(0,0,0,0) 68%)}
+#attemptcounter-lfa{background:linear-gradient(180deg,rgba(255,122,26,.92) 0%,rgba(160,70,10,.6) 30%,rgba(0,0,0,0) 68%)}
+#attemptcounter-lfr{background:linear-gradient(180deg,rgba(225,10,26,.95) 0%,rgba(140,6,16,.6) 30%,rgba(0,0,0,0) 68%)}
+#attemptcounter-gr{position:absolute;left:0;top:-80px;width:1080px;height:2080px;opacity:0;background-image:linear-gradient(rgba(255,255,255,.13) 1.5px,transparent 1.5px),linear-gradient(90deg,rgba(255,255,255,.13) 1.5px,transparent 1.5px);background-size:90px 90px;-webkit-mask-image:radial-gradient(ellipse 620px 640px at 540px 1000px,#000 0%,transparent 100%);mask-image:radial-gradient(ellipse 620px 640px at 540px 1000px,#000 0%,transparent 100%)}
+#attemptcounter-vin{position:absolute;inset:0;box-shadow:inset 0 0 200px 30px rgba(0,0,0,.35)}
+#attemptcounter-ct{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0}
+#attemptcounter-an{position:absolute;left:150px;top:920px;width:780px;transform:translateY(-50%)}
+#attemptcounter-ls{position:relative;width:780px;display:flex;flex-direction:column;gap:34px}
+.attemptcounter-it{position:relative;display:flex;align-items:center;gap:30px;min-height:168px;padding:24px 34px 24px 30px;border-radius:48px;opacity:0;background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,.07));border:2px solid rgba(255,255,255,.26);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.4),0 24px 60px rgba(0,0,0,.45);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.attemptcounter-gl{position:absolute;inset:-2px;border-radius:48px;opacity:0;box-shadow:0 0 70px rgba(60,255,80,.6),inset 0 0 0 2px rgba(125,255,138,.9)}
+.attemptcounter-bx{position:relative;flex:0 0 auto;width:104px;height:104px;border-radius:50%;border:4px solid rgba(255,255,255,.35)}
+.attemptcounter-bf{position:absolute;left:-4px;top:-4px;width:104px;height:104px;border-radius:50%;opacity:0}
+.attemptcounter-sg{position:absolute;left:-4px;top:-4px;width:104px;height:104px;fill:none;stroke:#fff;stroke-width:9;stroke-linecap:round;stroke-linejoin:round}
+.attemptcounter-tx{flex:1 1 auto;font-family:"SoraV","Inter",sans-serif;font-weight:700;line-height:1.1;letter-spacing:.005em;color:#fff}
+.attemptcounter-tn{position:relative;display:inline-block}
+.attemptcounter-wd{position:relative;display:inline-block}
+.attemptcounter-st{position:absolute;left:-6px;right:-6px;top:52%;height:7px;margin-top:-3px;border-radius:4px;background:#ff3448;box-shadow:0 0 14px rgba(255,40,60,.8);clip-path:inset(0% 100% 0% 0%)}
+.attemptcounter-sm{right:-.3em}
+#attemptcounter-fl{position:absolute;inset:0;background:#fff;opacity:0}
+</style>
+<div id="root" data-composition-id="attempt-counter" data-width="1080" data-height="1920" data-duration="4.5">
+<div id="attemptcounter-w"><div id="attemptcounter-lz"><div class="attemptcounter-l" id="attemptcounter-lcg"></div><div class="attemptcounter-l" id="attemptcounter-lca"></div><div class="attemptcounter-l" id="attemptcounter-lcr"></div></div><div id="attemptcounter-lf"><div class="attemptcounter-l" id="attemptcounter-lfg"></div><div class="attemptcounter-l" id="attemptcounter-lfa"></div><div class="attemptcounter-l" id="attemptcounter-lfr"></div></div><div id="attemptcounter-gr"></div><div id="attemptcounter-vin"></div><div id="attemptcounter-ct"><div id="attemptcounter-an"><div id="attemptcounter-ls"></div></div></div><div id="attemptcounter-fl"></div></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["attempt-counter"] || { duration: 4.5 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 4.5, t0 = 0;
+
+  var P = {
+    items: "Take 1|Take 2|Take 3", // Two to five attempts separated by |.
+    correct: 3, // Successful attempt number; other attempts get crosses. Zero means none succeeded.
+  };
+
+
+  var $ = function (id) { return document.getElementById(id); };
+  var LZ = { g: [0, 0], a: [0, 0], r: [0, 0] };
+  function light(t, k, mode, d) { ["g", "a", "r"].forEach(function (c) { [0, 1].forEach(function (m) { var target = c === k ? (m === 0 ? 1 : (mode === "f" ? 1 : 0)) : 0; if (target === LZ[c][m]) return; tl.fromTo("#attemptcounter-l" + (m ? "f" : "c") + c, { opacity: LZ[c][m] }, { opacity: target, duration: d || .5, ease: "power2.inOut", immediateRender: false }, t); LZ[c][m] = target; }); }); }
+  function flash(t, f) { tl.fromTo("#attemptcounter-fl", { opacity: 0 }, { opacity: f || .3, duration: .04, ease: "none", immediateRender: false }, t); tl.to("#attemptcounter-fl", { opacity: 0, duration: .32, ease: "power2.out", immediateRender: false }, t + .05); }
+  var items = String(P.items || "Take 1|Take 2|Take 3").split("|").map(function (s) { return s.replace(/\s+/g, " ").trim(); }).filter(function (s) { return s; }).slice(0, 5);
+  if (items.length < 1) items = ["Take 1"];
+  var n = items.length, ok = parseInt(P.correct === undefined || P.correct === null || P.correct === "" ? n : P.correct, 10);
+  if (!isFinite(ok) || ok < 0 || ok > n) ok = n;
+  var ls = $("attemptcounter-ls"), tns = [];
+  items.forEach(function (s, q) {
+    var good = q + 1 === ok, it = document.createElement("div");
+    it.className = "attemptcounter-it"; it.id = "attemptcounter-it" + q;
+    it.innerHTML = '<i class="attemptcounter-gl" id="attemptcounter-gl' + q + '"></i><div class="attemptcounter-bx" id="attemptcounter-bx' + q + '"><i class="attemptcounter-bf" id="attemptcounter-bf' + q + '" style="background:' + (good ? "radial-gradient(circle at 38% 30%,#d9ffdc,#3dff4e 55%,#1fbf2e)" : "radial-gradient(circle at 38% 30%,#ffc2c8,#ff3448 55%,#c4142a)") + ";box-shadow:0 0 30px " + (good ? "rgba(60,255,80,.9)" : "rgba(255,40,60,.8)") + '"></i>' +
+      (good ? '<svg class="attemptcounter-sg" viewBox="0 0 96 96"><path id="attemptcounter-pa' + q + '" d="M28 50 L42 64 L69 33" stroke-dasharray="64 200" stroke-dashoffset="64"/></svg>'
+           : '<svg class="attemptcounter-sg" viewBox="0 0 96 96"><path id="attemptcounter-pa' + q + '" d="M33 33 L63 63" stroke-dasharray="43 200" stroke-dashoffset="43"/><path id="attemptcounter-pb' + q + '" d="M63 33 L33 63" stroke-dasharray="43 200" stroke-dashoffset="43"/></svg>') +
+      '</div><div class="attemptcounter-tx" id="attemptcounter-tx' + q + '"><span class="attemptcounter-tn"></span></div>';
+    ls.appendChild(it);
+    var tn = it.querySelector(".attemptcounter-tn");
+
+    if (good) tn.textContent = s;
+    else s.split(" ").forEach(function (w, j, arr) {
+      var wd = document.createElement("span"), st = document.createElement("i");
+      wd.className = "attemptcounter-wd"; wd.textContent = w; st.className = "attemptcounter-st" + (j < arr.length - 1 ? " attemptcounter-sm" : ""); st.id = "attemptcounter-st" + q + "_" + j;
+      wd.appendChild(st); tn.appendChild(wd); if (j < arr.length - 1) tn.appendChild(document.createTextNode(" "));
+    });
+    tns.push(tn);
+  });
+
+  function measure(txts, widthValue, mx, mn, lines, lh, style) {
+    var m = document.createElement("div"), px, j, okm = false;
+    m.style.cssText = "position:absolute;left:-99999px;top:0;visibility:hidden;white-space:normal;" + style + ";width:" + widthValue + "px;line-height:" + lh;
+    document.body.appendChild(m);
+    for (px = mx; px >= mn; px -= 2) { m.style.fontSize = px + "px"; okm = true; for (j = 0; j < txts.length; j++) { m.textContent = txts[j]; if (m.offsetHeight > px * lh * lines + 4 || m.scrollWidth > widthValue + 1) { okm = false; break; } } if (okm) break; }
+    document.body.removeChild(m); return okm ? px : 0;
+  }
+  function adjust() {
+    var E = "font-family:SoraV,Inter,sans-serif;font-weight:700;letter-spacing:.005em", lim = n > 3 ? 60 : 72;
+    var px = measure(items, 570, lim, 46, 1, 1.1, E) || measure(items, 570, 50, 36, 2, 1.1, E) || 36;
+    document.querySelectorAll("#attemptcounter-ls .attemptcounter-tx").forEach(function (e) { e.style.fontSize = px + "px"; });
+  }
+  adjust();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { adjust(); tl.invalidate(); });
+
+
+  var enter = t0 + .05, exit = t0 + D - .32, u = exit - enter;
+  var t1 = enter + .25, tEnd = exit - Math.max(.6, .22 * u), slot = (tEnd - t1) / n, dV = Math.min(.35, slot * .45);
+  tl.fromTo("#attemptcounter-w", { opacity: 0 }, { opacity: 1, duration: .16, ease: "power1.out" }, enter);
+  tl.fromTo("#attemptcounter-ct", { opacity: 0 }, { opacity: 1, duration: .01, ease: "none" }, enter);
+  tl.fromTo("#attemptcounter-gr", { opacity: 0, y: 0 }, { opacity: .7, y: -90, duration: exit - enter + .3, ease: "none" }, enter);
+  light(enter, "a", "c", .5);
+  tl.fromTo("#attemptcounter-lz", { x: 180, y: -180 }, { x: 0, y: 0, duration: .8, ease: "power3.out" }, enter);
+  var vM = Math.max(1, Math.round((exit - enter - .8) / 1.5)), dM = (exit - enter - .8) / vM;
+  tl.fromTo("#attemptcounter-lz", { x: 0, y: 0 }, { x: -46, y: 34, duration: dM, ease: "sine.inOut", yoyo: true, repeat: vM - 1, immediateRender: false }, enter + .8);
+  tl.fromTo("#attemptcounter-ls", { y: 30 }, { y: -14, duration: exit - enter, ease: "sine.inOut" }, enter);
+  var alreadyRed = false;
+  items.forEach(function (s, q) {
+    var good = q + 1 === ok, tA = t1 + q * slot, tV = tA + dV, sel = "#attemptcounter-it" + q;
+    var dIn = Math.min(.3, Math.max(.16, dV)), tX = Math.max(tV + .02, tA + dIn);
+    tl.fromTo(sel, { opacity: 0, x: 90, filter: "blur(12px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: dIn, ease: "back.out(1.5)" }, tA);
+    tl.fromTo("#attemptcounter-bf" + q, { opacity: 0 }, { opacity: 1, duration: .1, ease: "none" }, tV);
+    if (good) {
+      tl.fromTo("#attemptcounter-pa" + q, { strokeDashoffset: 64 }, { strokeDashoffset: 0, duration: .24, ease: "power2.out" }, tV + .04);
+      tl.fromTo("#attemptcounter-gl" + q, { opacity: 0 }, { opacity: 1, duration: .2, ease: "power1.out" }, tV);
+      tl.to(sel, { borderColor: "rgba(125,255,138,.95)", duration: .2, ease: "none", immediateRender: false }, tV);
+      tl.fromTo(sel, { backgroundImage: "linear-gradient(180deg, rgba(255,255,255,0.2), rgba(255,255,255,0.07))" }, { backgroundImage: "linear-gradient(180deg, rgba(80,255,100,0.3), rgba(40,200,60,0.1))", duration: .2, ease: "none", immediateRender: false }, tV);
+      tl.to("#attemptcounter-tx" + q, { color: "#ffffff", textShadow: "0 0 24px rgba(60,255,80,.9)", duration: .2, ease: "none", immediateRender: false }, tV);
+      tl.fromTo(sel, { x: 0 }, { x: 10, duration: .08, ease: "sine.inOut", yoyo: true, repeat: 1, immediateRender: false }, tX);
+      flash(tV, .25); light(tV, "g", "f", .18); light(tV + Math.min(.55, Math.max(.3, (exit - tV) * .35)), "g", "c", .45);
+    } else {
+      tl.fromTo("#attemptcounter-pa" + q, { strokeDashoffset: 43 }, { strokeDashoffset: 0, duration: .12, ease: "power2.out" }, tV + .03);
+      tl.fromTo("#attemptcounter-pb" + q, { strokeDashoffset: 43 }, { strokeDashoffset: 0, duration: .12, ease: "power2.out" }, tV + .12);
+      tl.to(sel, { borderColor: "rgba(255,90,102,.85)", duration: .15, ease: "none", immediateRender: false }, tV);
+      var strikes = s.split(" ").map(function (w, j) { return "#attemptcounter-st" + q + "_" + j; }), dR = Math.min(.12, .3 / strikes.length);
+      tl.fromTo(strikes, { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: dR, ease: "none", stagger: dR }, tV + .1);
+      tl.to("#attemptcounter-tx" + q, { color: "#ff9aa2", opacity: .7, duration: .25, ease: "none", immediateRender: false }, tV + .12);
+      tl.fromTo(sel, { x: 0 }, { x: 12, duration: .04, ease: "none", yoyo: true, repeat: 3, immediateRender: false }, tX);
+      if (!alreadyRed) { light(tV, "r", "c", .3); alreadyRed = true; }
+    }
+  });
+
+  tl.to("#attemptcounter-ct", { opacity: 0, y: -50, filter: "blur(16px)", duration: .28, ease: "power2.in", immediateRender: false }, exit);
+  tl.to("#attemptcounter-w", { opacity: 0, duration: .3, ease: "power2.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["attempt-counter"] = tl;
+})();
+</script>
+</template>
+</body></html>

@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>Notes</title></head>
+<body>
+
+<template id="notes-template">
+<style>
+@font-face{font-family:Montserrat;src:url("assets/fonts/Montserrat.ttf") format("truetype");font-weight:100 900;font-display:block}
+#root{position:absolute;inset:0;overflow:hidden;font-family:Montserrat}
+#notes-background{position:absolute;inset:0;opacity:0}
+#notes-card{position:absolute;opacity:0}
+#notes-border,#notes-body,#notes-content{position:absolute}
+#notes-title{position:absolute;display:block;white-space:nowrap;font-weight:900}
+#notes-divider{position:absolute}
+.notes-ruler{position:absolute}
+.notes-item{position:absolute;opacity:0}
+.notes-track{position:absolute;opacity:0}
+.notes-dot{position:absolute;box-sizing:border-box;border-radius:50%}
+.notes-ok{position:absolute;border-radius:50%;opacity:0}
+.notes-ok svg{position:absolute;left:20%;top:20%;width:60%;height:60%;fill:none;stroke:currentColor;stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+.notes-text{position:absolute;display:block;font-weight:800;overflow-wrap:anywhere;opacity:0}
+</style>
+<div id="root" data-composition-id="notes" data-width="1080" data-height="1920" data-duration="7">
+  <div id="notes-background"></div>
+  <div id="notes-card">
+    <div id="notes-border"></div>
+    <div id="notes-body"></div>
+    <div id="notes-content"><span id="notes-title">Today</span><div id="notes-divider"></div></div>
+  </div>
+</div>
+<script>
+(function () {
+  const ID = "notes";
+  const PARAM = {
+    title: "Today",
+    items: [
+      { text: "review the text", word: { word: "review", standard: 1.2 }, check: { word: "ready", standard: 2.6 } },
+      { text: "adjust the colors", word: { word: "adjust", standard: 3.4 }, check: { word: "done", standard: 4.6 } },
+      { text: "publish the video", word: { word: "publish", standard: 5.2 }, accent: true },
+    ],
+    enter: 0,
+    pause: 0.4,
+    captions: true,
+    background: "auto",
+    area: null,
+    entry: 0.2,
+    exit: 0.25,
+  };
+  const C = Object.assign({ words: [], duration: 7, width: 1080, height: 1920, safeArea: [140, 230, 940, 1530], face: null, frame: null,
+    colors: { paper: "#fffdfd", line: "#e6ddf8", base: "#c7b7ef", accent: "#665080", ink: "#352c40", green: "#2e9e5b", red: "#e5484d" } },
+    (window.__scenes || {})[ID] || {});
+  const DUR = C.duration, U = Math.min(C.width, C.height) / 1080;
+  const root = document.getElementById("notes-background").parentElement;
+  if (root.offsetWidth && (Math.abs(root.offsetWidth - C.width) > 2 || Math.abs(root.offsetHeight - C.height) > 2))
+    console.error(`[${ID}] scene root is ${root.offsetWidth} x ${root.offsetHeight}, video is ${C.width} x ${C.height}: update root data-width and data-height`);
+  const SAFE_AREA = C.safeArea, FACE = C.face, ABOVE_FACE = PARAM.area === "aboveFace" && !C.frame;
+  if (PARAM.area === "aboveFace") {
+    if (!ABOVE_FACE) PARAM.area = null;
+    else {
+      const ya = SAFE_AREA[1] + 20, yb = FACE ? FACE.top + 40 : Math.round(SAFE_AREA[1] + (SAFE_AREA[3] - SAFE_AREA[1]) * 0.25);
+      if (yb - ya < 200) console.warn(`[${ID}] only ${Math.max(0, Math.round(yb - ya))} px above the face; the card needs about 200. Prefer fullscreen with background or a framed layout. The card uses the available upper safe area (minimum 160 px)`);
+      PARAM.area = [SAFE_AREA[0], ya, SAFE_AREA[2], Math.max(yb, ya + 160)];
+      if (PARAM.background === "auto") PARAM.background = null;
+    }
+  }
+  const warnFace = (x0, y0, x1, y1) => { if (!background && !ABOVE_FACE && FACE && x0 < FACE.x1 + 20 && x1 > FACE.x0 - 20 && y0 < FACE.y1 + 20 && y1 > Math.min(FACE.y0, FACE.top ?? FACE.y0) - 20)
+    console.warn(`[${ID}] card overlaps the face: use area: "aboveFace" or move the area`); };
+  const without = (s) => String(s).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]/g, "");
+  const word = (txt, after, standard) => { const a = without(txt), p = a && (C.words || []).find((w) => w.t >= after - 1e-3 && without(w.text).startsWith(a)); return p ? p.t : standard; };
+  const moment = (m, standard) => (typeof m === "number" ? m : typeof m === "string" ? word(m, 0, standard)
+    : m && typeof m === "object" ? word(m.word || "", m.after == null ? 0 : moment(m.after, 0), m.standard == null ? standard : m.standard) : standard);
+  let lastEnd = C.frame ? Math.max(0, C.frame.closedAt || 0) : 0, nextAvailable = lastEnd + PARAM.entry;
+  function schedule(desired, dur, adjacent) {
+    const t = Math.max(desired, adjacent ? lastEnd : nextAvailable);
+    if (t - desired > 0.4) console.warn(`[${ID}] action starts ${(t - desired).toFixed(2)} s after its word: space anchors farther apart or reduce pause`);
+    lastEnd = t + dur; nextAvailable = lastEnd + PARAM.pause; return t;
+  }
+  const color = (n) => C.colors[n] || n;
+  const rgb = (h) => { h = String(h).replace("#", ""); if (h.length === 3) h = h.replace(/./g, "$&$&"); return [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16)); };
+  const mix = (a, b, k) => "#" + rgb(a).map((v, i) => Math.round(v + (rgb(b)[i] - v) * k).toString(16).padStart(2, "0")).join("");
+  const weight = (ch) => { const b = ch.normalize("NFD")[0]; return b === " " ? 0.28 : "MW".includes(b) ? 1 : "mw".includes(b) ? 0.92 : "iljI.,:;'!|".includes(b) ? 0.32 : /[A-Z]/.test(b) ? 0.76 : /[0-9]/.test(b) ? 0.68 : 0.62; };
+  const width = (t, px) => [...String(t)].reduce((s, ch) => s + weight(ch), 0) * px * 1.1;
+  const lines = (t, px, w) => String(t).split(/\s+/).filter(Boolean).reduce((ls, p) => { const u = ls[ls.length - 1]; if (u !== undefined && width(u + " " + p, px) <= w) ls[ls.length - 1] = u + " " + p; else ls.push(p); return ls; }, []);
+  const fits = (t, w, h, larger, smaller, max) => { for (let px = Math.round(larger); px > smaller; px--) { const ls = lines(t, px, w); if (ls.length <= max && ls.every((l) => width(l, px) <= w) && ls.length * px * 1.16 <= h) return px; } return Math.round(smaller); };
+  const A = PARAM.area ? PARAM.area.slice() : C.frame && C.frame.freeArea ? C.frame.freeArea.slice()
+    : [C.safeArea[0], C.safeArea[1], C.safeArea[2], PARAM.captions ? Math.round(C.safeArea[1] + (C.safeArea[3] - C.safeArea[1]) * 0.7) : C.safeArea[3]];
+  const AW = A[2] - A[0], AH = A[3] - A[1];
+  const background = PARAM.background === "auto" ? (C.frame ? null : "paper") : PARAM.background;
+  function paintBackground(el) {
+    if (background === "paper" && C.backgroundCss) el.style.cssText += ";" + C.backgroundCss;
+    else if (background === "paper") { const g = Math.round(60 * U); Object.assign(el.style, { backgroundColor: C.colors.paper, backgroundSize: `${g}px ${g}px`, backgroundImage: `linear-gradient(${C.colors.line} 2px,transparent 2px),linear-gradient(90deg,${C.colors.line} 2px,transparent 2px)` }); }
+    else if (background) el.style.backgroundColor = background;
+  }
+  const createElement = (tag, id, cls, parent, style, text) => { const e = document.createElement(tag); if (id) e.id = id; if (cls) e.className = cls; if (style) Object.assign(e.style, style); if (text != null) e.textContent = text; parent.appendChild(e); return e; };
+  const px = (v) => `${v}px`;
+  const light = (h) => { const [r, g, b] = rgb(h); return 0.299 * r + 0.587 * g + 0.114 * b > 150; };
+  const dark = light(C.colors.ink) ? C.colors.paper : C.colors.ink;
+  const over = (background) => (light(background) ? dark : "#ffffff");
+  const $ = (id) => document.getElementById(id);
+  paintBackground($("notes-background"));
+  const TITLE = PARAM.title == null ? "" : String(PARAM.title).trim();
+  const IT = (Array.isArray(PARAM.items) ? PARAM.items : []).filter((it) => it && String(it.text || "").trim());
+  if (!IT.length) { console.error(`[${ID}] items is empty: enter the list items`); IT.push({ text: "?", word: 1 }); }
+  const cV = color("green"), cD = C.colors.accent, content = $("notes-content"), titleElement = $("notes-title"), div = $("notes-divider");
+  const lineElements = IT.map((it, i) => {
+    const accent = !!it.accent, letter = accent ? over(cD) : C.colors.ink;
+    const el = createElement("div", `notes-item-${i}`, "notes-item", content);
+    const track = accent ? createElement("div", `notes-track-${i}`, "notes-track", el, { background: cD }) : null;
+    const dot = createElement("div", `notes-dot-${i}`, "notes-dot", el);
+    const ok = createElement("div", `notes-ok-${i}`, "notes-ok", el, { background: cV, color: over(cV) });
+    ok.innerHTML = `<svg viewBox="0 0 44 44"><path d="M11 23L19 31L33 14"/></svg>`;
+    const txt = createElement("div", `notes-text-${i}`, "notes-text", el, { color: letter }, String(it.text).trim());
+    const ruler = i < IT.length - 1 ? createElement("div", `notes-ruler-${i}`, "notes-ruler", content, { background: C.colors.line }) : null;
+    return { it, accent, el, track, dot, ok, txt, ruler, ringColor: accent ? over(cD) : mix(C.colors.ink, C.colors.paper, 0.55) };
+  });
+  if (!TITLE) { titleElement.style.display = "none"; div.style.display = "none"; } else titleElement.textContent = TITLE;
+  const lower = AH / AW < 0.45;
+  const put = (k) => {
+    const u = U * k, bw = Math.max(3, 4 * u), W = Math.min(AW - 40 * u, lower ? Math.max(820 * u, 4.6 * AH) : Math.max(820 * u, 600 * U)), Wc = W - 2 * bw, P = 30 * u, fs = Math.round(46 * u), lh = Math.round(fs * 1.28);
+    const d = Math.round(fs * 0.88), xt = P + d + 22 * u, tw = Wc - xt - P, pv = (lower ? 12 : 18) * u, dv = Math.max(2, 3 * u);
+    let y = 8 * u;
+    if (TITLE) {
+      const fsT = fits(TITLE, Wc - 2 * P, AH, (lower ? 46 : 54) * u, 24 * u, 1), hT = Math.round(fsT * 1.25), ti = (lower ? 14 : 24) * u, gp = (lower ? 8 : 14) * u;
+      Object.assign(titleElement.style, { left: px(P), top: px(ti), fontSize: px(fsT), lineHeight: px(hT), color: C.colors.ink });
+      Object.assign(div.style, { left: px(P), top: px(ti + hT + gp), width: px(Wc - 2 * P), height: px(dv), background: C.colors.line });
+      y = ti + hT + gp + dv + 4 * u;
+    }
+    lineElements.forEach((r) => {
+      Object.assign(r.txt.style, { left: px(xt), top: px(pv), width: px(tw), fontSize: px(fs), lineHeight: px(lh) });
+      const h = 2 * pv + r.txt.offsetHeight, y0 = pv + (lh - d) / 2;
+      Object.assign(r.el.style, { left: 0, top: px(y), width: px(Wc), height: px(h) });
+      Object.assign(r.dot.style, { left: px(P), top: px(y0), width: px(d), height: px(d), border: `${Math.max(3, 4 * u)}px solid ${r.ringColor}` });
+      Object.assign(r.ok.style, { left: px(P), top: px(y0), width: px(d), height: px(d) });
+      if (r.track) Object.assign(r.track.style, { left: px(10 * u), top: px(5 * u), width: px(Wc - 20 * u), height: px(h - 10 * u), borderRadius: px(Math.min(26 * u, (h - 10 * u) / 2)) });
+      if (r.ruler) Object.assign(r.ruler.style, { left: px(P), top: px(y + h - dv / 2), width: px(Wc - 2 * P), height: px(dv) });
+      y += h;
+    });
+    return { u, bw, W, Wc, H: y + 8 * u + 2 * bw, S: 12 * u };
+  };
+  const build = () => {
+    let k = Math.min(1.35, AW / (800 * U)), g = put(k);
+    while (k > 0.3 && g.H + g.S > AH) { k -= 0.02; g = put(k); }
+    const { u, bw, W, H, S } = g, R = 40 * u, X = A[0] + (AW - W) / 2, Y = A[1] + (AH - H - S) / 2;
+    Object.assign($("notes-card").style, { left: px(X), top: px(Y), width: px(W), height: px(H + S) });
+    Object.assign($("notes-border").style, { left: 0, top: 0, width: px(W), height: px(H + S), borderRadius: px(R), background: C.colors.base });
+    Object.assign($("notes-body").style, { left: px(bw), top: px(bw), width: px(W - 2 * bw), height: px(H - 2 * bw), borderRadius: px(R - bw), background: C.colors.paper });
+    Object.assign(content.style, { left: px(bw), top: px(bw), width: px(W - 2 * bw), height: px(H - 2 * bw) });
+    warnFace(X, Y, X + W, Y + H + S);
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#notes-background", { opacity: 0 }, { opacity: 1, duration: Math.max(0.01, PARAM.entry), ease: "power1.out" }, 0);
+    const tE = schedule(moment(PARAM.enter, 0), 0.45);
+    tl.fromTo("#notes-card", { opacity: 0, y: 60 * u }, { opacity: 1, y: 0, duration: 0.45, ease: "back.out(1.5)" }, tE);
+    const actions = [];
+    IT.forEach((it, i) => {
+      const q = moment(it.word, 1 + i * 1.3) - 0.1;
+      actions.push({ i, q, check: false });
+      if (it.check) actions.push({ i, q: Math.max(moment(it.check, q + 1.1), q + 0.5), check: true });
+    });
+    actions.sort((a, b) => a.q - b.q || (a.check ? 1 : -1));
+    actions.forEach((a) => {
+      const r = lineElements[a.i], t = schedule(a.q, a.check ? 0.4 : 0.5), delay = r.accent ? 0.1 : 0;
+      if (!a.check) {
+        tl.fromTo(r.el, { opacity: 0 }, { opacity: 1, duration: 0.05, ease: "none" }, t);
+        if (r.track) tl.fromTo(r.track, { opacity: 1, clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.4, ease: "power2.out" }, t);
+        tl.fromTo(r.txt, { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.45, ease: "power2.out" }, t + delay);
+        tl.fromTo(r.txt, { opacity: 0 }, { opacity: 1, duration: 0.04, ease: "none", immediateRender: false }, t + delay);
+      } else {
+        tl.fromTo(r.ok, { opacity: 0 }, { opacity: 1, duration: 0.14, ease: "power1.out" }, t);
+        tl.fromTo(r.ok.firstChild, { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.22, ease: "power2.out" }, t + 0.1);
+        if (!r.accent) tl.to(r.txt, { opacity: 0.55, duration: 0.3, ease: "power1.out", immediateRender: false }, t + 0.1);
+      }
+    });
+    if (DUR - PARAM.exit - lastEnd < 0.6) console.warn(`[${ID}] last action leaves ${(DUR - PARAM.exit - lastEnd).toFixed(2)} s before the scene ends: hold the list for at least 0.6 s by extending end`);
+    if (PARAM.exit > 0) tl.fromTo(["#notes-background", "#notes-card"], { opacity: 1 }, { opacity: 0, duration: PARAM.exit, ease: "power1.in", immediateRender: false }, Math.max(0, DUR - PARAM.exit));
+    window.__timelines["notes"] = tl;
+  };
+  (document.fonts && document.fonts.load ? document.fonts.load(`800 ${Math.round(46 * U)}px Montserrat`).then(() => document.fonts.load(`900 ${Math.round(54 * U)}px Montserrat`)) : Promise.resolve()).then(build, build);
+})();
+</script>
+</template>
+</body></html>

@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Text translucent box</title></head>
+<body>
+<!-- Text translucent box. For tutorials or busy backgrounds: a subtle dark translucent pill contains the phrase, with a brighter current word. -->
+
+<template id="text-translucent-box-template">
+<style>
+@font-face{font-family:"Montserrat";src:url("assets/fonts/Montserrat.ttf") format("truetype");font-weight:100 900;font-display:block}
+@font-face{font-family:"Caveat";src:url("assets/fonts/Caveat.ttf") format("truetype");font-weight:400 700;font-display:block}
+@font-face{font-family:"JetBrainsMono";src:url("assets/fonts/JetBrainsMono.ttf") format("truetype");font-weight:100 800;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Montserrat",sans-serif}
+.texttranslucentbox-l{position:absolute;left:140px;top:0;width:800px;height:0;display:flex;justify-content:center;align-items:center}
+.texttranslucentbox-b{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;flex:none;max-width:780px;opacity:0;padding:.3em .6em;border-radius:.9em;
+  font-family:"Montserrat",sans-serif;font-weight:800;line-height:1.2;letter-spacing:-.01em;white-space:nowrap;
+  -webkit-backdrop-filter:blur(.24em);backdrop-filter:blur(.24em);box-shadow:0 .1em .32em rgba(0,0,0,.28),inset 0 0 0 1.5px rgba(255,255,255,.12)}
+.texttranslucentbox-w{display:block;opacity:.7}
+</style>
+<div id="root" data-composition-id="text-translucent-box" data-width="1080" data-height="1920" data-duration="3.4">
+<div id="texttranslucentbox-c"></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["text-translucent-box"] || { duration: 3.4 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 3.4, t0 = 0;
+
+  var P = {
+    y: 1280, // Caption center height on the 1080×1920 canvas, in pixels.
+    size: 58, // Font size, in pixels.
+    maxWords: 5, // Words per caption group.
+    color: "#ffffff", // Text color.
+    background: "#000000", // Pill color.
+    backgroundOpacity: 0.62, // 0–1: pill opacity over the footage.
+  };
+
+
+  var HIDDEN_RANGES = [];
+
+
+  var W = Array.isArray(C.words) ? C.words : [
+    { text: "You", t: 0.10, end: 0.34 }, { text: "do not", t: 0.36, end: 0.58 }, { text: "need", t: 0.60, end: 0.98 },
+    { text: "an", t: 1.00, end: 1.10 }, { text: "editor", t: 1.12, end: 1.56 }, { text: "to", t: 1.92, end: 2.06 },
+    { text: "post", t: 2.08, end: 2.44 }, { text: "every", t: 2.46, end: 2.68 }, { text: "day.", t: 2.70, end: 3.05 }
+  ];
+
+  W = (function (a) { var o = [], u = 0.04, k, t; for (k = 0; k < a.length; k++) { t = Math.max(0.05, Number(a[k].t) || 0, u + 0.01); o.push({ text: a[k].text, t: t, end: Math.max(t + 0.02, Number(a[k].end) || 0) }); u = t; } return o; })(W);
+
+  var SCALE_FACTOR = (function () {
+    var e = (typeof HIDDEN_RANGES !== "undefined" && HIDDEN_RANGES) || [], b0 = (typeof C.start === "number") ? C.start : 0, o = [], k;
+    for (k = 0; k < e.length; k++) if (Number(e[k][1]) > Number(e[k][0])) o.push([Number(e[k][0]) - b0, Number(e[k][1]) - b0]);
+    return o;
+  })();
+  function hidden(t) { for (var k = 0; k < SCALE_FACTOR.length; k++) if (t >= SCALE_FACTOR[k][0] && t < SCALE_FACTOR[k][1]) return true; return false; }
+  function nextScale(t) { var r = Infinity, k; for (k = 0; k < SCALE_FACTOR.length; k++) if (SCALE_FACTOR[k][0] > t && SCALE_FACTOR[k][0] < r) r = SCALE_FACTOR[k][0]; return r; }
+  W = W.filter(function (w) { return !hidden(w.t); });
+
+  function show(s) { return String(s).replace(/^\s+|\s+$/g, "").replace(/[.,;:…]+$/g, ""); }
+
+  function screens(maxP, maxL) {
+    var groups = [], cur = [], letters = 0, i, w, txt, out = [];
+    for (i = 0; i < W.length; i++) {
+      w = W[i]; txt = show(w.text); if (!txt || !(w.t < D - 0.2)) continue;
+      if (cur.length && (cur.length >= maxP || letters + txt.length + 1 > maxL || w.t - cur[cur.length - 1].end > 0.7 || nextScale(cur[cur.length - 1].t) <= w.t)) { groups.push(cur); cur = []; letters = 0; }
+      cur.push({ text: txt, t: Math.max(0.05, w.t), end: Math.min(D - 0.05, Math.max(w.t + 0.08, w.end)) }); letters += txt.length + 1;
+      if (/[.!?…]$/.test(String(w.text).replace(/\s+$/, "")) || (cur.length >= 2 && /[,;:]$/.test(String(w.text).replace(/\s+$/, "")))) { groups.push(cur); cur = []; letters = 0; }
+    }
+    if (cur.length) groups.push(cur);
+    for (i = 0; i < groups.length; i++) {
+      var start = Math.max(0.05, groups[i][0].t - 0.05), speechEnd = groups[i][groups[i].length - 1].end;
+      var end = Math.min(D - 0.05, speechEnd + 0.5); if (i + 1 < groups.length) end = Math.min(end, Math.max(0.05, groups[i + 1][0].t - 0.05));
+      end = Math.min(end, Math.max(start + 0.15, nextScale(groups[i][groups[i].length - 1].t)));
+      if (end > start + 0.12) out.push({ words: groups[i], start: start, end: end });
+    }
+    return out;
+  }
+
+
+  var sizeValue = Math.max(40, Math.min(96, Number(P.size) || 58)), yy = Math.max(230 + sizeValue * 1.12, Math.min(1530 - sizeValue * 1.45, Number(P.y) || 1280));
+  var maxP = Math.max(1, Math.min(8, Math.round(Number(P.maxWords) || 5))), color = P.color || "#ffffff", op = Number(P.backgroundOpacity);
+  if (!(op >= 0 && op <= 1)) op = 0.62;
+
+  var STRIP = 772, BORDER_WIDTH = 1.2, SPAN = 0.27, FLOOR_VALUE = 0.72, RISE_TIME = 0.28, maxL = Math.max(5, Math.floor((STRIP - BORDER_WIDTH * sizeValue) / (sizeValue * 0.56)));
+
+  function ink(h, a) {
+    var m = /^#?([0-9a-f]{3}|[0-9a-f]{6})$/i.exec(String(h).replace(/\s/g, "")), s, n;
+    if (!m) return "color-mix(in srgb, " + h + " " + Math.round(a * 100) + "%, transparent)";
+    s = m[1]; if (s.length === 3) s = s.charAt(0) + s.charAt(0) + s.charAt(1) + s.charAt(1) + s.charAt(2) + s.charAt(2);
+    n = parseInt(s, 16); return "rgba(" + (n >> 16) + "," + ((n >> 8) & 255) + "," + (n & 255) + "," + a + ")";
+  }
+
+  var MIN_WIDTH = [63, 70, 60, 70, 65, 42, 71, 70, 32, 32, 68, 32, 105, 70, 67, 70, 70, 45, 55, 45, 70, 62, 96, 62, 62, 56];
+  var MAX_WIDTH = [82, 77, 73, 83, 68, 65, 77, 81, 34, 56, 76, 61, 96, 81, 85, 74, 85, 74, 65, 65, 79, 77, 119, 74, 70, 68];
+  function widthValue(s) {
+    var n = 0, k, c, u; s = String(s).normalize("NFD");
+    for (k = 0; k < s.length; k++) {
+      u = s.charCodeAt(k); if (u >= 768 && u <= 879) continue;
+      c = s.charAt(k); n += u >= 97 && u <= 122 ? MIN_WIDTH[u - 97] : u >= 65 && u <= 90 ? MAX_WIDTH[u - 65] : /[0-9$?]/.test(c) ? 71 : /[!.,:;'|]/.test(c) ? 32 : /[-\/()\[\]{}*_"]/.test(c) ? 52 : 104;
+    }
+    return n / 100;
+  }
+
+  function fit(ps) { var n = BORDER_WIDTH, k; for (k = 0; k < ps.length; k++) n += widthValue(ps[k].text) + (k ? SPAN : 0); return Math.floor(STRIP / n); }
+
+  var CUT = .0045;
+
+  function complete(L) {
+    var has = {}, s, p, k, w, txt, t, o, target;
+    for (s = 0; s < L.length; s++) for (p = 0; p < L[s].words.length; p++) has[L[s].words[p].text + "|" + L[s].words[p].t] = 1;
+    for (k = W.length - 1; k >= 0; k--) {
+      w = W[k]; txt = show(w.text); if (!txt || !(w.t < D - 0.2) || !L.length) continue; t = Math.max(0.05, w.t);
+      if (has[txt + "|" + t]) continue;
+      o = { text: txt, t: t, end: Math.min(D - 0.05, Math.max(w.t + 0.08, w.end)) }; target = null;
+      for (s = 0; s < L.length; s++) if (L[s].words[0].t > t) { target = L[s]; break; }
+      if (target) target.start = Math.max(0.05, t - 0.05); else { target = L[L.length - 1]; target.end = Math.max(target.end, Math.min(D - 0.05, o.end + 0.5)); }
+      for (p = 0; p < target.words.length && target.words[p].t <= t; p++);
+      target.words.splice(p, 0, o);
+    }
+    return L;
+  }
+
+  function split(L) {
+    var out = [], s, T, j, k, cur, parts, start, end;
+    for (s = 0; s < L.length; s++) {
+      T = L[s]; if (T.words.length < 2 || fit(T.words) >= sizeValue * FLOOR_VALUE) { out.push(T); continue; }
+      parts = []; cur = [];
+      for (j = 0; j < T.words.length; j++) { if (cur.length && fit(cur.concat([T.words[j]])) < sizeValue) { parts.push(cur); cur = []; } cur.push(T.words[j]); }
+      parts.push(cur);
+      for (k = 0; k < parts.length && parts.length > 1; k++) {
+        start = k ? parts[k][0].t - 0.05 : T.start; end = k + 1 < parts.length ? parts[k + 1][0].t - 0.05 : T.end;
+        if (end - start < 0.08) { if (k + 1 < parts.length) parts.splice(k, 2, parts[k].concat(parts[k + 1])); else parts.splice(k - 1, 2, parts[k - 1].concat(parts[k])); k = -1; }
+      }
+      for (k = 0; k < parts.length; k++) out.push({ words: parts[k], start: k ? Math.max(0.05, parts[k][0].t - 0.05) : T.start, end: k + 1 < parts.length ? Math.max(0.05, parts[k + 1][0].t - 0.05) : T.end });
+    }
+    return out;
+  }
+
+  function ensure(L) {
+    var s, u, q;
+    for (s = 0; s + 1 < L.length; s++) {
+      u = L[s].words[L[s].words.length - 1]; q = Math.min(L[s + 1].words[0].t, u.t + 0.07);
+      if (L[s].end < q) { L[s].end = q; if (L[s + 1].start < q) L[s + 1].start = q; }
+    }
+    return L;
+  }
+  var box = document.getElementById("texttranslucentbox-c"), background = ink(P.background || "#000000", op), list = ensure(split(complete(screens(maxP, maxL)))), i, j, screen, line, pil, pal, fs, target;
+  for (i = 0; i < list.length; i++) {
+    screen = list[i];
+    fs = Math.min(sizeValue, fit(screen.words));
+    line = document.createElement("div"); line.className = "texttranslucentbox-l"; line.style.top = Math.round(yy) + "px"; line.style.fontSize = fs + "px";
+    pil = document.createElement("div"); pil.className = "texttranslucentbox-b"; pil.id = "texttranslucentbox-b" + i; pil.style.background = background; pil.style.color = color;
+    for (j = 0; j < screen.words.length; j++) {
+      pal = document.createElement("span"); pal.className = "texttranslucentbox-w"; pal.id = "texttranslucentbox-w" + i + "_" + j; pal.textContent = screen.words[j].text;
+      if (!j) pal.style.opacity = 1;
+      if (j) pal.style.marginLeft = Math.round(fs * SPAN) + "px";
+      pil.appendChild(pal);
+    }
+    line.appendChild(pil); box.appendChild(line);
+
+    tl.fromTo("#texttranslucentbox-b" + i, { opacity: 0 }, { opacity: 1, duration: .001, ease: "none" }, t0 + screen.start + CUT);
+    tl.fromTo("#texttranslucentbox-b" + i, { y: Math.round(fs * RISE_TIME) }, { y: 0, duration: .2, ease: "power3.out", immediateRender: false }, t0 + screen.start + CUT);
+    for (j = 0; j < screen.words.length; j++) {
+      target = "#texttranslucentbox-w" + i + "_" + j;
+      if (j) tl.fromTo(target, { opacity: .7 }, { opacity: 1, duration: .05, ease: "none", immediateRender: false }, t0 + screen.words[j].t);
+      if (j + 1 < screen.words.length) tl.fromTo(target, { opacity: 1 }, { opacity: .7, duration: .12, ease: "none", immediateRender: false }, t0 + screen.words[j + 1].t);
+    }
+    tl.to("#texttranslucentbox-b" + i, { opacity: 0, duration: .001, immediateRender: false }, t0 + screen.end + CUT - .001);
+  }
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["text-translucent-box"] = tl;
+})();
+</script>
+</template>
+</body></html>

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Pointer side arrow</title></head>
+<body>
+<!-- Pointer side arrow. To point toward nearby text, a button, or an on-screen item. -->
+
+<template id="pointer-side-arrow-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+#pointersidearrow-w{position:absolute;left:0;top:0;width:10px;height:10px;opacity:0;filter:drop-shadow(0 0 2px rgba(0,0,0,.55)) drop-shadow(0 10px 12px rgba(0,0,0,.42))}
+#pointersidearrow-r{position:absolute;left:0;top:0;width:10px;height:10px;transform-origin:0 0}
+#pointersidearrow-a{position:absolute;left:0;top:0;width:10px;height:10px}
+#pointersidearrow-s{position:absolute;left:0;top:0;overflow:visible}
+#pointersidearrow-o{fill:#fff;stroke:#fff;stroke-linejoin:round}
+#pointersidearrow-f{stroke-linejoin:round}
+#pointersidearrow-m{fill:#fff;stroke:#fff;stroke-linejoin:round}
+</style>
+<div id="root" data-composition-id="pointer-side-arrow" data-width="1080" data-height="1920" data-duration="2.4">
+<div id="pointersidearrow-w"><div id="pointersidearrow-r"><div id="pointersidearrow-a"><svg id="pointersidearrow-s" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="pointersidearrow-gr" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".2"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".16"/></linearGradient><mask id="pointersidearrow-mk"><path id="pointersidearrow-m"/></mask></defs><path id="pointersidearrow-o"/><path id="pointersidearrow-f"/><rect id="pointersidearrow-h" mask="url(#pointersidearrow-mk)" fill="url(#pointersidearrow-gr)"/></svg></div></div></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["pointer-side-arrow"] || { duration: 2.4 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 2.4, t0 = 0;
+
+  var P = {
+    x: 540, // Arrow tip on the 1080×1920 canvas, in pixels.
+    y: 620, // Arrow tip, in pixels.
+    size: 280, // Arrow length, in pixels.
+    color: "#ff3b30", // Arrow color.
+    side: "left", // Side of the target occupied by the arrow: "left" points right, "right" points left.
+  };
+
+
+  var length = Math.max(80, Number(P.size) || 280), un = length / 280, fromRight = P.side === "right", targetX = Number(P.x) || 0;
+  var corner = 9 * un, border = Math.max(6, 8 * un);
+
+  var padding = corner + border, nozzle = -padding, base = nozzle - 108 * un, tail = -(length - padding), wing = 105 * un - padding, stem = 50 * un - padding;
+  var points = [[nozzle, 0], [base, -wing], [base, -stem], [tail, -stem], [tail, stem], [base, stem], [base, wing]];
+
+  var draw = function (comp, thickValue) { return "M" + points.map(function (q) { return (nozzle + (q[0] - nozzle) * comp).toFixed(1) + "," + (q[1] * thickValue).toFixed(1); }).join("L") + "Z"; };
+  var shape = draw(1, 1), dented = draw(.87, 1.08), stretched = draw(1.03, .97);
+  var get = function (s) { return document.getElementById("pointersidearrow-" + s); };
+  var shadow = Math.max(1, un);
+  get("w").style.left = targetX + "px"; get("w").style.top = Number(P.y) + "px";
+  get("w").style.filter = "drop-shadow(0 0 " + (2 * shadow).toFixed(1) + "px rgba(0,0,0,.55)) drop-shadow(0 " + (10 * shadow).toFixed(1) + "px " + (12 * shadow).toFixed(1) + "px rgba(0,0,0,.42))";
+
+  get("r").style.transform = fromRight ? "matrix(-1,0,0,1,0,0)" : "none";
+  get("o").setAttribute("d", shape); get("o").setAttribute("stroke-width", 2 * (corner + border));
+  get("f").setAttribute("d", shape); get("f").setAttribute("fill", P.color); get("f").setAttribute("stroke", P.color); get("f").setAttribute("stroke-width", 2 * corner);
+  get("m").setAttribute("d", shape); get("m").setAttribute("stroke-width", 2 * corner);
+
+  var light = get("gr"), sparkle = get("h");
+  light.setAttribute("x1", 0); light.setAttribute("y1", -105 * un); light.setAttribute("x2", 0); light.setAttribute("y2", 105 * un);
+  sparkle.setAttribute("x", -1.1 * length); sparkle.setAttribute("y", -125 * un); sparkle.setAttribute("width", 1.1 * length); sparkle.setAttribute("height", 250 * un);
+
+
+  var box = "#pointersidearrow-w", piece = "#pointersidearrow-a", parts = [get("o"), get("f"), get("m")];
+  var enter = t0 + .05, landing = enter + .2, release = landing + .04, steady = release + .15, exit = t0 + D - .28;
+  var outside = Math.min((fromRight ? 1080 - targetX : targetX) + 40 * un, 640);
+  var nudges = Math.max(1, Math.round((exit - steady) / .5)), middle = Math.max(.05, (exit - steady) / (nudges * 2));
+  var indent = Math.max(12, 18 * un);
+  tl.fromTo(box, { opacity: 0 }, { opacity: 1, duration: .05, ease: "none" }, enter);
+  tl.fromTo(piece, { x: -outside }, { x: 0, duration: .2, ease: "none", immediateRender: false }, enter);
+  tl.fromTo(parts, { attr: { d: shape } }, { attr: { d: dented }, duration: .04, ease: "power2.out", immediateRender: false }, landing);
+  tl.fromTo(parts, { attr: { d: dented } }, { attr: { d: stretched }, duration: .07, ease: "power2.out", immediateRender: false }, release);
+  tl.fromTo(parts, { attr: { d: stretched } }, { attr: { d: shape }, duration: .08, ease: "power2.inOut", immediateRender: false }, release + .07);
+  tl.fromTo(piece, { x: 0 }, { x: -1.4 * indent, duration: .07, ease: "power2.out", immediateRender: false }, release);
+  tl.fromTo(piece, { x: -1.4 * indent }, { x: 0, duration: .08, ease: "power2.in", immediateRender: false }, release + .07);
+  tl.fromTo(piece, { x: 0 }, { x: -indent, duration: middle, ease: "power2.out", yoyo: true, repeat: nudges * 2 - 1, immediateRender: false }, steady);
+  tl.fromTo(piece, { x: 0 }, { x: -.45 * length, duration: .24, ease: "power2.in", immediateRender: false }, exit);
+  tl.fromTo(box, { opacity: 1 }, { opacity: 0, duration: .24, ease: "power2.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["pointer-side-arrow"] = tl;
+})();
+</script>
+</template>
+</body></html>

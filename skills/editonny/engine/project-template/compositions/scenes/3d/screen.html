@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>Screen</title></head>
+<body>
+
+<template id="screen-template">
+<style>
+@font-face{font-family:Montserrat;src:url("assets/fonts/Montserrat.ttf") format("truetype");font-weight:100 900;font-display:block}
+#root{position:absolute;inset:0;overflow:hidden;font-family:Montserrat}
+#screen-stage{position:absolute;inset:0;opacity:0}
+#screen-screen{position:absolute;left:0;top:0;width:100%;height:100%;display:block}
+#screen-labels{position:absolute;inset:0}
+#screen-media{position:absolute;left:0;top:0;width:320px;height:568px;object-fit:cover;opacity:0}
+</style>
+<div id="root" data-composition-id="screen" data-width="1080" data-height="1920" data-duration="5">
+  <video id="screen-media" src="assets/cut.mp4" muted playsinline data-start="0" data-duration="5" data-media-start="0" data-track-index="0"></video>
+  <div id="screen-stage"><canvas id="screen-screen" width="1080" height="1920"></canvas><div id="screen-labels"></div></div>
+</div>
+<script>
+(function () {
+  const ID = "screen";
+  const PARAM = {
+    device: "notebook",
+    fit: "contain",
+    focus: 0.35,
+    bodyColor: null,
+    turn: { word: "computer", standard: 2.4 },
+    turnDuration: 1.2,
+    cameraStart: { azim: 0, elev: null },
+    cameraEnd: { azim: 38, elev: 26 },
+    label: null,
+    background: "paper",
+    area: null,
+    cutout: true,
+    shadows: true,
+    entry: 0.2,
+    exit: 0.2,
+  };
+  const C = Object.assign({ words: [], duration: 5, width: 1080, height: 1920, safeArea: [140, 230, 940, 1530], face: null,
+    colors: { paper: "#fffdfd", line: "#e6ddf8", base: "#c7b7ef", accent: "#665080", ink: "#352c40", green: "#2e9e5b", red: "#e5484d" } },
+    (window.__scenes || {})[ID] || {});
+  const DUR = C.duration;
+
+  async function build(K, P) {
+    const THREE = K.THREE;
+    const body = PARAM.bodyColor || C.colors.base;
+    const sides = "#" + new THREE.Color(body).multiplyScalar(0.78).getHexString();
+    P.lights({ key: [4, 8, 7], target: [0, 0.8, 0], area: 5 });
+    P.floor({ size: 22 });
+    const el = document.getElementById("screen-media");
+    if (el.tagName === "IMG" && !(el.complete && el.naturalWidth)) await new Promise((ok) => { el.onload = ok; el.onerror = ok; });
+    const notebook = PARAM.device !== "phone";
+    const screenSize = notebook ? [2.72, 1.7] : [0.92, 1.96];
+    const px = notebook ? [1280, 800] : [540, 1150];
+    const media = P.mediaTexture(el, { width: px[0], height: px[1], focus: PARAM.focus, fit: PARAM.fit });
+    const screenMaterial = new THREE.MeshBasicMaterial({ map: media.texture, toneMapped: false });
+    const device = new THREE.Group();
+    let screenCenter, screenNormal, screenMesh;
+    if (notebook) {
+      const base = P.plate({ width: 3.0, height: 0.11, depth: 2.0, radius: 0.14, bevel: 0.03, color: body, sides });
+      device.add(base);
+      const keyboard = P.plate({ width: 2.6, height: 0.012, depth: 0.95, radius: 0.05, bevel: 0.004, color: C.colors.ink });
+      keyboard.position.set(0, 0.105, -0.38);
+      device.add(keyboard);
+      const keys = new THREE.InstancedMesh(new THREE.BoxGeometry(0.16, 0.02, 0.16), P.material("#f4f1fb", { roughness: 0.7, clearcoat: 0 }), 13 * 5);
+      const m = new THREE.Matrix4();
+      let n = 0;
+      for (let r = 0; r < 5; r++) for (let c = 0; c < 13; c++) { m.makeTranslation(-1.14 + c * 0.19, 0.122, -0.76 + r * 0.19); keys.setMatrixAt(n++, m); }
+      keys.castShadow = true;
+      device.add(keys);
+      const pad = P.plate({ width: 0.95, height: 0.006, depth: 0.55, radius: 0.06, bevel: 0.002, color: sides });
+      pad.position.set(0, 0.108, 0.55);
+      device.add(pad);
+      const hinge = new THREE.Group();
+      hinge.position.set(0, 0.11, -1.0);
+      hinge.rotation.x = -THREE.MathUtils.degToRad(108);
+      const lid = P.plate({ width: 3.0, height: 0.07, depth: 2.0, radius: 0.14, bevel: 0.025, color: body, sides });
+      lid.position.set(0, 0, 1.0);
+      hinge.add(lid);
+      const frame = P.plate({ width: 2.9, height: 0.004, depth: 1.9, radius: 0.1, bevel: 0.001, color: C.colors.ink });
+      frame.position.set(0, -0.003, 1.0);
+      hinge.add(frame);
+      const screen = new THREE.Mesh(new THREE.PlaneGeometry(screenSize[0], screenSize[1]), screenMaterial);
+      screen.rotation.x = Math.PI / 2;
+      screen.position.set(0, -0.006, 1.02);
+      hinge.add(screen);
+      device.add(hinge);
+      screenMesh = screen;
+      device.updateMatrixWorld(true);
+      screenCenter = screen.getWorldPosition(new THREE.Vector3());
+      screenNormal = new THREE.Vector3(0, 0, 1).applyQuaternion(screen.getWorldQuaternion(new THREE.Quaternion()));
+    } else {
+      const phoneBody = P.plate({ width: 1.02, height: 0.1, depth: 2.1, radius: 0.16, bevel: 0.03, color: body, sides });
+      const front = P.plate({ width: 0.98, height: 0.004, depth: 2.06, radius: 0.14, bevel: 0.001, color: C.colors.ink });
+      front.position.y = 0.1;
+      const screen = new THREE.Mesh(new THREE.PlaneGeometry(screenSize[0], screenSize[1]), screenMaterial);
+      screen.rotation.x = -Math.PI / 2;
+      screen.position.y = 0.106;
+      const landscape = new THREE.Group();
+      landscape.add(phoneBody, front, screen);
+      landscape.rotation.x = Math.PI / 2;
+      landscape.position.set(0, 1.05, 0);
+      device.add(landscape);
+      screenMesh = screen;
+      device.updateMatrixWorld(true);
+      screenCenter = screen.getWorldPosition(new THREE.Vector3());
+      screenNormal = new THREE.Vector3(0, 0, 1).applyQuaternion(screen.getWorldQuaternion(new THREE.Quaternion()));
+    }
+    P.scene.add(device);
+    P.solid(device, PARAM.device);
+    const size = new THREE.Box3().setFromObject(device).getSize(new THREE.Vector3());
+    P.contactShadow({ width: size.x, depth: notebook ? 2.1 : 0.3, intensity: 0.5 }).place(0, notebook ? 0 : 0.05, 0);
+    const screenElevation = THREE.MathUtils.radToDeg(Math.asin(K.clamp(screenNormal.y, -1, 1)));
+    const initial = { target: screenCenter.toArray(), azim: PARAM.cameraStart.azim, elev: PARAM.cameraStart.elev == null ? screenElevation : PARAM.cameraStart.elev };
+    initial.dist = P.fittingDistance(new THREE.Box3().setFromObject(screenMesh), initial, 1.1);
+    const overallBox = new THREE.Box3().setFromObject(device);
+    const end = { target: overallBox.getCenter(new THREE.Vector3()).toArray(), azim: PARAM.cameraEnd.azim, elev: PARAM.cameraEnd.elev };
+    end.dist = P.fittingDistance(overallBox, end, 1.08);
+    const turnTime = K.moment(C, PARAM.turn, 2.4);
+    const rot = PARAM.label ? P.labels([{ text: PARAM.label.text, side: "above" }]) : null;
+    const labelTime = PARAM.label ? K.moment(C, PARAM.label, turnTime) : 0;
+    return (t) => {
+      P.orbit(K.mixPose(initial, end, K.interval(t, turnTime, PARAM.turnDuration)));
+      if (rot) rot.update([{ point: [0, size.y + 0.05, notebook ? -1.0 : 0], opacity: K.interval(t, labelTime, 0.25) }]);
+    };
+  }
+  const stage = document.getElementById("screen-stage");
+  const tl = gsap.timeline({ paused: true });
+  const clock = { t: 0 };
+  let draw = null;
+  tl.fromTo(clock, { t: 0 }, { t: DUR, duration: DUR, ease: "none", onUpdate: () => draw && draw(clock.t) }, 0);
+  if (PARAM.entry > 0) tl.fromTo(stage, { opacity: 0 }, { opacity: 1, duration: PARAM.entry, ease: "power1.out" }, 0);
+  else tl.set(stage, { opacity: 1 }, 0);
+  if (PARAM.exit > 0) tl.fromTo(stage, { opacity: 1 }, { opacity: 0, duration: PARAM.exit, ease: "power1.in", immediateRender: false }, Math.max(0, DUR - PARAM.exit));
+  window.__timelines["screen"] = tl;
+  window.addEventListener("hf-seek", () => { if (draw) draw(clock.t); });
+  const src = typeof __hfCompositionSrc === "string" ? __hfCompositionSrc : "";
+  const PROJECT_ROOT = src.includes("/compositions/") ? src.slice(0, src.lastIndexOf("/compositions/") + 1) : document.baseURI;
+  const background = PARAM.background === "paper" ? C.colors.paper : PARAM.background;
+  (window.__hf = window.__hf || {}).buildReady = window.__hf.buildReady || {};
+  window.__hf.buildReady[ID] = import(new URL("compositions/scenes/3d/three-scene.js", PROJECT_ROOT).href)
+    .then((K) => K.initialize({ id: ID, C, root: PROJECT_ROOT, canvas: document.getElementById("screen-screen"), layer: document.getElementById("screen-labels"),
+      background, area: PARAM.area, cutout: PARAM.area && PARAM.cutout ? PARAM.area : null, fov: 30, shadows: PARAM.shadows, build: (P) => build(K, P) }))
+    .then((d) => { draw = d; draw(clock.t); })
+    .catch((e) => console.error(`[scene 3D ${ID}] could not load the 3D engine: ${e && e.message ? e.message : e}`));
+})();
+</script>
+</template>
+</body></html>

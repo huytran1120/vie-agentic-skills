@@ -1,6 +1,6 @@
 # Vie Agentic Skill (VAS) - Catalog
 
-Tổng hợp **3,184** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
+Tổng hợp **3,185** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
 
 | Danh mục | Số lượng | Lệnh cài đặt nhanh |
 | :--- | :---: | :--- |
@@ -78,7 +78,7 @@ Tổng hợp **3,184** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **lifestyle** | 1 skills | `./vas install --category lifestyle --target codex` |
 | **marketing** | 115 skills | `./vas install --category marketing --target codex` |
 | **mcp** | 8 skills | `./vas install --category mcp --target codex` |
-| **media** | 65 skills | `./vas install --category media --target codex` |
+| **media** | 66 skills | `./vas install --category media --target codex` |
 | **media-processing** | 1 skills | `./vas install --category media-processing --target codex` |
 | **memory** | 7 skills | `./vas install --category memory --target codex` |
 | **meta** | 38 skills | `./vas install --category meta --target codex` |
@@ -2692,7 +2692,7 @@ Tổng hợp **3,184** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `protect-mcp-governance` | `critical` | Agent governance skill for MCP tool calls — Cedar policy authoring, shadow-to... |
 | `serply-search-mcp` | `safe` | Search Google, Bing, Google News and Google Scholar, and read public pages, w... |
 
-### MEDIA (65 skills)
+### MEDIA (66 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
@@ -2712,6 +2712,7 @@ Tổng hợp **3,184** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `captions` | `safe` | Clean, readable burned-in style subtitles from the verbatim transcript - stut... |
 | `ecommerce-listing-image-set` | `critical` | Install and use the official Ecommerce Product Images package, pinned by dige... |
 | `edit-video` | `safe` | The one-command first-pass edit. Takes footage from raw video/, transcribes i... |
+| `editonny` | `safe` | Use when installing, preparing, diagnosing, or updating editonny, or editing ... |
 | `ffmpeg-skill` | `safe` | Edit video and audio with local FFmpeg from natural-language requests: cut, t... |
 | `figma-roundtrip` | `safe` | Keeps a video motion-graphics kit and its editable Figma boards in sync - the... |
 | `film-crew` | `safe` | Turn a one-line AI video idea into a shot list and per-shot, model-ready prom... |

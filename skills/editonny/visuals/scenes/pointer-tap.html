@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Pointer tap</title></head>
+<body>
+<!-- Pointer tap. When asking viewers to tap or click a specific point. -->
+
+<template id="pointer-tap-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+#pointertap-a{position:absolute;left:0;top:0;width:10px;height:10px;opacity:0}
+#pointertap-b{position:absolute;left:0;top:0;width:10px;height:10px}
+#pointertap-z,#pointertap-w,#pointertap-m{position:absolute;left:0;top:0;overflow:visible}
+#pointertap-w{filter:drop-shadow(0 0 1.2px rgba(0,0,0,.55)) drop-shadow(0 0 5px rgba(0,0,0,.28))}
+#pointertap-c,#pointertap-e{fill:none}
+#pointertap-e{stroke:#000;stroke-opacity:.22}
+#pointertap-u{fill:#000;fill-opacity:.1}
+#pointertap-n{opacity:0}
+#pointertap-i{stroke:#000}
+.pointertap-o{fill:none;opacity:0}
+</style>
+<div id="root" data-composition-id="pointer-tap" data-width="1080" data-height="1920" data-duration="2.6">
+<div id="pointertap-a"><div id="pointertap-b"><svg id="pointertap-z" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="pointertap-gh" cx=".5" cy=".5" r=".5"><stop offset=".705" stop-color="#000" stop-opacity="0"/><stop offset=".71" stop-color="#000" stop-opacity=".42"/><stop offset=".75" stop-color="#000" stop-opacity=".4"/><stop offset=".82" stop-color="#000" stop-opacity=".2"/><stop offset=".91" stop-color="#000" stop-opacity=".06"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient></defs><circle id="pointertap-h" cx="0" cy="0" r="10" fill="url(#pointertap-gh)"/></svg><svg id="pointertap-w" xmlns="http://www.w3.org/2000/svg"><circle id="pointertap-o1" class="pointertap-o" cx="0" cy="0" r="10" stroke-width="1"/><circle id="pointertap-o2" class="pointertap-o" cx="0" cy="0" r="10" stroke-width="1"/></svg><svg id="pointertap-m" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="pointertap-g" cx=".5" cy=".5" r=".5"><stop class="pointertap-gs" offset="0" stop-color="#fff" stop-opacity=".3"/><stop class="pointertap-gs" offset=".7" stop-color="#fff" stop-opacity=".4"/><stop class="pointertap-gs" offset="1" stop-color="#fff" stop-opacity=".56"/></radialGradient></defs><circle id="pointertap-u" cx="0" cy="0" r="10"/><circle id="pointertap-v" cx="0" cy="0" r="10" fill="url(#pointertap-g)"/><circle id="pointertap-n" cx="0" cy="0" r="10"/><circle id="pointertap-i" class="pointertap-o" cx="0" cy="0" r="10" stroke-width="1"/><circle id="pointertap-e" cx="0" cy="0" r="10"/><circle id="pointertap-c" cx="0" cy="0" r="10"/></svg></div></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["pointer-tap"] || { duration: 2.6 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 2.6, t0 = 0;
+
+  var P = {
+    x: 540, // Tap center where the finger touches, on the 1080×1920 canvas, in pixels.
+    y: 420, // Tap center, in pixels.
+    size: 130, // Fingertip diameter, in pixels.
+    taps: 2, // Number of taps, distributed across the duration.
+    color: "#ffffff", // Circle and ripple color.
+  };
+
+
+  var box = document.getElementById("pointertap-a"), body = document.getElementById("pointertap-b"), hoop = document.getElementById("pointertap-c"), wire = document.getElementById("pointertap-e"), shadow = document.getElementById("pointertap-h"),
+      background = document.getElementById("pointertap-n"), ring = document.getElementById("pointertap-i"), waveOne = document.getElementById("pointertap-o1"), waveTwo = document.getElementById("pointertap-o2");
+  var sizeValue = Math.max(40, +P.size || 130), radius = sizeValue / 2, border = Math.max(4, sizeValue * .075), fingerRadius = radius - border / 2, backgroundFactor = .86;
+  var count = Math.max(1, Math.round(+P.taps || 1));
+  box.style.left = P.x + "px"; box.style.top = P.y + "px";
+  var stops = document.querySelectorAll(".pointertap-gs"); for (var gi = 0; gi < stops.length; gi++) stops[gi].setAttribute("stop-color", P.color);
+  hoop.setAttribute("stroke", P.color); hoop.setAttribute("stroke-width", border); wire.setAttribute("stroke-width", border + 3);
+  shadow.setAttribute("cy", border * .35); background.setAttribute("fill", P.color);
+  waveOne.setAttribute("stroke", P.color); waveTwo.setAttribute("stroke", P.color);
+
+  var onRing = function (k) { return fingerRadius * k; }, outsideValue = function (k) { return (fingerRadius * k + border / 2) * 1.34; }, insideValue = function (k) { return Math.max(.1, fingerRadius * k - border / 2 + .75); };
+  var parts = [[hoop, onRing], [wire, onRing], [shadow, outsideValue], [document.getElementById("pointertap-u"), insideValue], [document.getElementById("pointertap-v"), insideValue], [background, insideValue]];
+  var rays = function (ka, kb, spanDuration, curve, when, first) { for (var pi = 0; pi < parts.length; pi++)
+    tl.fromTo(parts[pi][0], { attr: { r: parts[pi][1](ka) } }, { attr: { r: parts[pi][1](kb) }, duration: spanDuration, ease: curve, immediateRender: !!first }, when); };
+
+  var enter = t0 + .05, exit = t0 + D - .3, pop = .3, k0 = .45, spring = "back.out(2.4)";
+  tl.fromTo(box, { opacity: 0 }, { opacity: 1, duration: .14, ease: "power1.out" }, enter);
+  tl.fromTo(body, { y: sizeValue * .2 }, { y: 0, duration: pop, ease: spring }, enter);
+  rays(k0, 1, pop, spring, enter, true);
+
+  var first = t0 + .45, timeWindow = Math.max(.2, exit - .05 - first), completed = Math.max(1, Math.min(count, Math.floor(timeWindow / .19))), step = timeWindow / completed;
+  var release = Math.max(.08, Math.min(.24, step - .11)), lifetime = Math.min(.55, step * .96);
+  for (var ti = 0; ti < completed; ti++) {
+    var touch = first + ti * step;
+
+    rays(1, backgroundFactor, .07, "power2.out", touch - .07);
+    rays(backgroundFactor, 1, release, "back.out(3)", touch + .03);
+    tl.fromTo(background, { opacity: 0 }, { opacity: .85, duration: .07, ease: "power2.out", immediateRender: false }, touch - .07);
+    tl.fromTo(background, { opacity: .85 }, { opacity: 0, duration: release, ease: "power1.in", immediateRender: false }, touch + .03);
+    tl.fromTo(ring, { opacity: .2, attr: { r: radius * .45, "stroke-width": border * .42 } }, { opacity: 0, attr: { r: insideValue(1) - border * .3, "stroke-width": border * .25 }, duration: Math.min(.3, step * .9), ease: "power2.out", immediateRender: false }, touch - .02);
+
+    tl.fromTo(waveOne, { attr: { r: radius * 1.04, "stroke-width": border * 1.1 } }, { attr: { r: radius * 2.05, "stroke-width": border * .45 }, duration: lifetime, ease: "power2.out", immediateRender: false }, touch);
+    tl.fromTo(waveOne, { opacity: 1 }, { opacity: 0, duration: lifetime, ease: "power1.in", immediateRender: false }, touch);
+    tl.fromTo(waveTwo, { attr: { r: radius * 1.12, "stroke-width": border * .55 } }, { attr: { r: radius * 1.55, "stroke-width": border * .22 }, duration: lifetime * .8, ease: "power2.out", immediateRender: false }, touch + .1);
+    tl.fromTo(waveTwo, { opacity: .55 }, { opacity: 0, duration: lifetime * .8, ease: "power1.in", immediateRender: false }, touch + .1);
+  }
+
+  var liveFrom = enter + pop + .04, remainingValue = exit - liveFrom, turns = Math.max(1, Math.round(remainingValue / 1.1)), halfValue = remainingValue / (turns * 2);
+  if (remainingValue > .9) tl.fromTo(body, { y: 0 }, { y: -sizeValue * .05, duration: halfValue, ease: "sine.inOut", yoyo: true, repeat: turns * 2 - 1, immediateRender: false }, liveFrom);
+
+  rays(1, .62, .24, "power2.in", exit);
+  tl.fromTo(box, { opacity: 1 }, { opacity: 0, duration: .22, ease: "power2.in", immediateRender: false }, exit + .02);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["pointer-tap"] = tl;
+})();
+</script>
+</template>
+</body></html>

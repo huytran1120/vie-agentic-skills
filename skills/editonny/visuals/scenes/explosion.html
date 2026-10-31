@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Explosion</title></head>
+<body>
+<!-- Explosion. For an explosion joke: realistic fire, dark smoke, and sparks erupt at x/y, with a white flash and a short shake. -->
+
+<template id="explosion-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+.explosion-tr{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;backdrop-filter:url(#explosion-f);-webkit-backdrop-filter:url(#explosion-f)}
+.explosion-gl{position:absolute;border-radius:50%;mix-blend-mode:screen;opacity:0}
+.explosion-v{position:absolute;object-fit:fill;opacity:0;-webkit-mask-image:linear-gradient(to bottom,#000 62%,rgba(0,0,0,0) 72%);mask-image:linear-gradient(to bottom,#000 62%,rgba(0,0,0,0) 72%);-webkit-mask-size:100% 160%;mask-size:100% 160%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.explosion-fl{position:absolute;left:0;top:0;width:1080px;height:1920px;background:#fff;opacity:0}
+</style>
+<div id="root" data-composition-id="explosion" data-width="1080" data-height="1920" data-duration="3.2">
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0"><filter id="explosion-f" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feOffset id="explosion-o1" in="SourceGraphic" dx="0" dy="0" result="a"/><feOffset id="explosion-o2" in="SourceGraphic" dx="0" dy="0" result="b"/><feComposite in="a" in2="b" operator="arithmetic" k1="0" k2=".5" k3=".5" k4="0" result="m"/><feGaussianBlur id="explosion-b" in="m" stdDeviation="0 0"/></filter></svg>
+<div id="explosion-tr" class="explosion-tr"></div>
+<div id="explosion-gl" class="explosion-gl" data-layout-allow-overflow></div>
+<video id="explosion-v" class="explosion-v" data-layout-allow-overflow src="assets/visuals/video/41-explosion.webm" data-start="0" data-duration="6" data-track-index="2" muted playsinline></video>
+<div id="explosion-fl" class="explosion-fl"></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["explosion"] || { duration: 3.2 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 3.2, t0 = 0;
+
+  var P = {
+    x: 540, // Explosion center on the 1080×1920 canvas, in pixels.
+    y: 780, // Explosion origin, in pixels; the fireball rises about 40% of its size above it.
+    size: 1000, // Explosion width, in pixels; the fireball occupies about 45% of it.
+    strength: 0.8, // 0–1: flash and shake strength.
+  };
+
+
+  var pe = function (s) { return document.getElementById("explosion-" + s); };
+  var fz = Number(P.strength); if (fz !== fz) fz = .8; fz = Math.max(0, Math.min(1, fz));
+  var TW = Math.max(300, Number(P.size) || 1000), TH = TW * 960 / 720;
+  var vx = pe("v"); vx.style.left = (P.x - .62 * TW) + "px"; vx.style.top = (P.y - .80 * TH) + "px"; vx.style.width = TW + "px"; vx.style.height = TH + "px";
+  var gw = TW * 1.25, gx = pe("gl");
+  gx.style.cssText += ";left:" + (P.x - gw / 2) + "px;top:" + (P.y - .3 * TW - gw / 2) + "px;width:" + gw + "px;height:" + gw + "px;background:radial-gradient(circle at center,rgba(255,190,90,.75),rgba(255,120,30,.35) 35%,rgba(255,80,0,0) 68%)";
+
+  vx.style.webkitMaskPosition = vx.style.maskPosition = "0px 0px";
+  var bang = t0 + .15, videoEnd = t0 + Math.min(D, 4.2), exit = videoEnd - .32;
+  tl.fromTo(vx, { opacity: 0 }, { opacity: 1, duration: .04, ease: "none" }, t0 + .05);
+  var mk = { y: 0 }, mset = function () { vx.style.webkitMaskPosition = vx.style.maskPosition = "0px " + mk.y.toFixed(1) + "px"; };
+  tl.fromTo(mk, { y: 0 }, { y: -.35 * TH, duration: .8, ease: "power1.inOut", onUpdate: mset }, bang + .25);
+
+  tl.fromTo(pe("fl"), { opacity: 0 }, { opacity: .25 + .65 * fz, duration: .03, ease: "none" }, bang);
+  tl.to(pe("fl"), { opacity: 0, duration: .32, ease: "power2.out", immediateRender: false }, bang + .05);
+
+  tl.fromTo(gx, { opacity: 0 }, { opacity: .55 + .45 * fz, duration: .08, ease: "power2.out" }, bang);
+  tl.to(gx, { opacity: .25, duration: Math.max(.3, exit - bang - .4), ease: "power1.out", immediateRender: false }, bang + .1);
+  tl.to(gx, { opacity: 0, duration: .26, ease: "power2.in", immediateRender: false }, exit);
+  tl.to(vx, { opacity: 0, duration: .3, ease: "power2.in", immediateRender: false }, exit);
+
+  var TX = [1, -.86, .7, -.94, .5, .82, -.66, .58, -.9, .62, -.46, -.8, .72, -.5, .86, .44];
+  var TY = [-.74, .96, -.8, .52, .78, -.9, .6, -.48, .86, -.64, -.54, .8, -.9, .6, -.72, .7];
+  var FQ = 1 / 30, q0 = Math.ceil((bang + FQ / 4) * 30 - .001), ent = q0 * FQ - FQ / 4, nq = 14, pk = 34 * fz, axx = 0, ayy = 0;
+  tl.fromTo(pe("tr"), { opacity: 0 }, { opacity: 1, duration: FQ / 8, ease: "none" }, ent);
+  for (var kq = 0; kq <= nq; kq++) {
+    var am = kq < nq ? Math.pow(1 - kq / nq, 1.7) : 0, ddx = Math.round(TX[kq % 16] * am * pk), ddy = Math.round(TY[kq % 16] * am * pk);
+    var tq = ent + kq * FQ;
+    tl.set(pe("o1"), { attr: { dx: Math.round(ddx - (ddx - axx) * .2), dy: Math.round(ddy - (ddy - ayy) * .2) } }, tq);
+    tl.set(pe("o2"), { attr: { dx: Math.round(ddx + (ddx - axx) * .2), dy: Math.round(ddy + (ddy - ayy) * .2) } }, tq);
+    tl.set(pe("b"), { attr: { stdDeviation: Math.min(5, Math.abs(ddx - axx) * .07).toFixed(1) + " " + Math.min(5, Math.abs(ddy - ayy) * .07).toFixed(1) } }, tq);
+    axx = ddx; ayy = ddy;
+  }
+  tl.to(pe("tr"), { opacity: 0, duration: FQ / 8, ease: "none", immediateRender: false }, ent + (nq + 1) * FQ);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["explosion"] = tl;
+})();
+</script>
+</template>
+</body></html>

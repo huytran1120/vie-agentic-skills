@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Transition fade</title></head>
+<body>
+<!-- Transition fade. For a dramatic pause or passage of time: the image briefly fades to black. -->
+
+<template id="transition-fade-template">
+<style>
+#root{position:absolute;inset:0;overflow:hidden}
+#transitionfade-k{position:absolute;inset:0;background:#000;opacity:0}
+</style>
+<div id="root" data-composition-id="transition-fade" data-width="1080" data-height="1920" data-duration="0.5">
+<div id="transitionfade-k"></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["transition-fade"] || { duration: 0.5 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = 0.5, t0 = 0;
+
+  function rise(sel, a, b, c, peak, e1, e2) {
+    tl.fromTo(sel, { opacity: 0 }, { opacity: peak, duration: b - a, ease: e1 || "sine.inOut" }, t0 + a);
+    tl.to(sel, { opacity: 0, duration: c - b, ease: e2 || "sine.inOut", immediateRender: false }, t0 + b);
+  }
+
+  rise("#transitionfade-k", 0, D * .5, D, 1);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["transition-fade"] = tl;
+})();
+</script>
+</template>
+</body></html>

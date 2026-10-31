@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Effect chromatic blur</title></head>
+<body>
+<!-- Effect chromatic blur. For an old-lens, dreamlike, or dizzy look: red and blue fringes appear around edges. -->
+
+<template id="effect-chromatic-blur-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+#effectchromaticblur-v{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;backdrop-filter:url(#effectchromaticblur-f);-webkit-backdrop-filter:url(#effectchromaticblur-f)}
+</style>
+<div id="root" data-composition-id="effect-chromatic-blur" data-width="1080" data-height="1920" data-duration="2.6">
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0"><filter id="effectchromaticblur-f" filterUnits="userSpaceOnUse" x="-500" y="-900" width="2080" height="3720" color-interpolation-filters="sRGB"><feFlood flood-color="#f00" result="mk"/><feFlood flood-color="#000" x="30" y="50" width="1020" height="1820" result="mq"/><feMerge result="m0"><feMergeNode in="mk"/><feMergeNode in="mq"/></feMerge><feGaussianBlur in="m0" stdDeviation="180 320" result="mi"/><feColorMatrix id="effectchromaticblur-mm" in="mi" type="matrix" values="0.5 0 0 0 0.5  0 0 0 0 0.5  0 0 0 0 0  0 0 0 0 1" result="mp"/><feOffset id="effectchromaticblur-ra" in="SourceGraphic" dx="0" dy="0" result="ra"/><feOffset id="effectchromaticblur-rb" in="SourceGraphic" dx="0" dy="0" result="rb"/><feComposite id="effectchromaticblur-rk" in="ra" in2="rb" operator="arithmetic" k1="0" k2="1" k3="0" k4="0" result="rm"/><feDisplacementMap id="effectchromaticblur-rd" in="rm" in2="mp" scale="0" xChannelSelector="R" yChannelSelector="G" result="rx"/><feGaussianBlur id="effectchromaticblur-rc" in="rx" stdDeviation="0" result="rs"/><feColorMatrix in="rs" type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0 1" result="r"/><feOffset id="effectchromaticblur-ba" in="SourceGraphic" dx="0" dy="0" result="ba"/><feOffset id="effectchromaticblur-bb" in="SourceGraphic" dx="0" dy="0" result="bb"/><feComposite id="effectchromaticblur-bk" in="ba" in2="bb" operator="arithmetic" k1="0" k2="1" k3="0" k4="0" result="bm"/><feDisplacementMap id="effectchromaticblur-bd" in="bm" in2="mp" scale="0" xChannelSelector="R" yChannelSelector="G" result="bx"/><feGaussianBlur id="effectchromaticblur-bc" in="bx" stdDeviation="0" result="bs"/><feColorMatrix in="bs" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 0 1" result="b"/><feGaussianBlur id="effectchromaticblur-g" in="SourceGraphic" stdDeviation="0" result="sg"/><feColorMatrix in="sg" type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 0 1" result="g"/><feBlend in="r" in2="g" mode="screen" result="rg"/><feBlend in="rg" in2="b" mode="screen"/></filter></svg>
+<div id="effectchromaticblur-v"></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["effect-chromatic-blur"] || { duration: 2.6 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 2.6, t0 = 0;
+
+  var P = {
+    strength: 0.6, // 0–1: red/blue separation; one averages about 14 pixels, from 9 in the center to 21 in corners.
+    angle: 0, // Separation angle in degrees; zero is horizontal, 90 is vertical.
+    blur: 0.2, // 0–1: color-fringe blur.
+  };
+
+
+  var strength = Number(P.strength); if (!(strength >= 0)) strength = .6; strength = Math.min(1, strength);
+  var ang = Number(P.angle); if (!isFinite(ang)) ang = 0; ang = (ang % 360) * Math.PI / 180;
+  var blur = Number(P.blur); if (!(blur >= 0)) blur = .2; blur = Math.min(1, blur);
+
+  blur = blur * Math.min(1, strength * 4);
+  var ca = Math.cos(ang), sa = Math.sin(ang);
+
+  var BASE = 14 * strength * .65, EXTRA = 14 * strength * .85, BCOR = 8 * blur, BVER = 2 * blur;
+
+  document.getElementById("effectchromaticblur-mm").setAttribute("values", (ca * .5 * 1.232).toFixed(4) + " 0 0 0 0.5  " + (sa * .5 * 1.232).toFixed(4) + " 0 0 0 0.5  0 0 0 0 0  0 0 0 0 1");
+
+  var RESPONSE = [1, 1.03, 1.07, 1.11, 1.15, 1.18, 1.2, 1.21, 1.2, 1.18, 1.14, 1.1, 1.05, 1, .96, .92,
+              .89, .87, .86, .86, .88, .9, .93, .97, 1.01, 1.05, 1.08, 1.1, 1.1, 1.08, 1.05, 1.02];
+
+  var FQ = 1 / 30, FG = 1 / 120, end = D - .04, qi, sq, eq, uq, rq, iq, n0, fr, ax, ay, bx, by, ex;
+  var soft = function (v) { v = Math.max(0, Math.min(1, v)); return v * v * (3 - 2 * v); };
+
+  var separate = function (sp, se, bc, bv, tq) {
+    n0 = Math.floor(sp); fr = Math.round((sp - n0) * 1000) / 1000;
+    ax = Math.round(n0 * ca); ay = Math.round(n0 * sa); bx = Math.round((n0 + 1) * ca); by = Math.round((n0 + 1) * sa);
+    tl.set("#effectchromaticblur-ra", { attr: { dx: ax, dy: ay } }, tq); tl.set("#effectchromaticblur-rb", { attr: { dx: bx, dy: by } }, tq);
+    tl.set("#effectchromaticblur-ba", { attr: { dx: -ax, dy: -ay } }, tq); tl.set("#effectchromaticblur-bb", { attr: { dx: -bx, dy: -by } }, tq);
+    tl.set("#effectchromaticblur-rk", { attr: { k2: 1 - fr, k3: fr } }, tq); tl.set("#effectchromaticblur-bk", { attr: { k2: 1 - fr, k3: fr } }, tq);
+
+    ex = Math.round(se * 200) / 100;
+    tl.set("#effectchromaticblur-rd", { attr: { scale: -ex } }, tq); tl.set("#effectchromaticblur-bd", { attr: { scale: ex } }, tq);
+    tl.set("#effectchromaticblur-rc", { attr: { stdDeviation: bc } }, tq); tl.set("#effectchromaticblur-bc", { attr: { stdDeviation: bc } }, tq);
+    tl.set("#effectchromaticblur-g", { attr: { stdDeviation: bv } }, tq);
+  };
+  tl.fromTo("#effectchromaticblur-v", { opacity: 0 }, { opacity: 1, duration: .01, ease: "none" }, t0 + .05);
+
+  for (qi = 0; .05 + qi * FQ < end; qi++) {
+    sq = .05 + qi * FQ;
+    eq = Math.min(soft((sq - .05) / .32), soft((end - sq) / .3));
+    uq = sq / .1; iq = Math.floor(uq) % 32; uq = uq - Math.floor(uq);
+    rq = RESPONSE[iq] + (RESPONSE[(iq + 1) % 32] - RESPONSE[iq]) * uq;
+    separate(BASE * eq * rq, EXTRA * eq * rq, Math.round(BCOR * eq * 100) / 100, Math.round(BVER * eq * 100) / 100, t0 + sq + FG);
+  }
+
+  separate(0, 0, 0, 0, t0 + end);
+  tl.to("#effectchromaticblur-v", { opacity: 0, duration: .01, ease: "none", immediateRender: false }, t0 + end);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["effect-chromatic-blur"] = tl;
+})();
+</script>
+</template>
+</body></html>

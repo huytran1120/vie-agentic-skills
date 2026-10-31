@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Year hook</title></head>
+<body>
+<!-- Year hook. For an opening year or number hook: large digits flip over a dark chart panel and a pill badge emphasizes the message. -->
+
+<template id="year-hook-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+@font-face{font-family:"SoraV";src:url("assets/visuals/fonts/Sora.ttf");font-weight:100 800;font-display:block}
+#yearhook-o{position:absolute;left:0;top:0;width:0;height:0}
+#yearhook-a{position:absolute;left:0;top:0;width:0;height:0;opacity:0}
+#yearhook-c{position:absolute;left:-430px;top:0;width:860px;border-radius:40px;overflow:hidden;opacity:0;background:linear-gradient(160deg,rgba(46,29,22,.86) 0%,rgba(24,15,11,.9) 60%,rgba(16,10,8,.92) 100%);backdrop-filter:blur(18px) saturate(1.2);-webkit-backdrop-filter:blur(18px) saturate(1.2);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.22),inset 0 0 0 1px rgba(255,255,255,.12),0 10px 24px rgba(0,0,0,.35),0 36px 80px rgba(0,0,0,.5)}
+#yearhook-hz{position:absolute;left:0;top:0;width:860px;height:100%;opacity:0}
+#yearhook-g{position:absolute;left:0;top:0;width:860px;overflow:visible}
+.yearhook-gl{stroke:rgba(255,243,234,.09);stroke-width:2}
+.yearhook-br{opacity:0}
+#yearhook-ln{fill:none;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;opacity:0}
+#yearhook-pt{opacity:0}
+#yearhook-p{position:absolute;left:30px;top:30px;height:64px;padding:0 28px 0 24px;border-radius:32px;display:flex;align-items:center;gap:16px;white-space:nowrap;background:rgba(255,243,234,.08);box-shadow:inset 0 0 0 1.5px rgba(255,243,234,.16);opacity:0}
+#yearhook-pd{position:relative;flex:0 0 auto;width:16px;height:16px;border-radius:50%}
+#yearhook-pr{position:absolute;left:-5px;top:-5px;width:26px;height:26px;border-radius:50%;border:2px solid currentColor;opacity:0}
+#yearhook-pl{font-family:"SoraV",sans-serif;font-weight:600;font-size:36px;line-height:1;letter-spacing:-.005em;color:#fff3ea}
+#yearhook-nw{position:absolute;left:0;width:860px;text-align:center;white-space:nowrap;font-size:0}
+#yearhook-n{display:inline-block;white-space:nowrap;font-family:"SoraV",sans-serif;font-weight:800;color:#fff3ea;line-height:1.12;letter-spacing:.01em}
+.yearhook-ce{display:inline-block;position:relative;overflow:hidden;height:1.12em;vertical-align:top;padding:0 .05em 0 0;margin-right:-.05em}
+.yearhook-st{display:block;opacity:0}
+.yearhook-st b{display:block;height:1.36em;line-height:1.12em;font-weight:800}
+#yearhook-sh{position:absolute;top:0;width:150px;height:100%;opacity:0;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.34),rgba(255,255,255,0));mix-blend-mode:soft-light}
+#yearhook-u{position:absolute;height:12px;border-radius:6px;opacity:0}
+#yearhook-s{position:absolute;height:72px;padding:0 30px;border-radius:36px;display:flex;align-items:center;white-space:nowrap;opacity:0;box-shadow:0 10px 26px rgba(0,0,0,.35)}
+#yearhook-s .yearhook-sl{display:inline-block;overflow:hidden;height:50px;line-height:50px;font-family:"SoraV",sans-serif;font-weight:800;font-size:40px;letter-spacing:.06em;color:#fff}
+#yearhook-s .yearhook-sl i{display:block;font-style:normal;opacity:0}
+</style>
+<div id="root" data-composition-id="year-hook" data-width="1080" data-height="1920" data-duration="4.0">
+<div id="yearhook-o"><div id="yearhook-a"><div id="yearhook-c"><div id="yearhook-hz"></div><svg id="yearhook-g" width="860" height="10"></svg><div id="yearhook-p"><i id="yearhook-pd"><i id="yearhook-pr"></i></i><span id="yearhook-pl"></span></div><div id="yearhook-nw"><div id="yearhook-n"></div><div id="yearhook-sh"></div></div><i id="yearhook-u"></i><div id="yearhook-s"></div></div></div></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["year-hook"] || { duration: 4.0 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 4.0, t0 = 0;
+
+  var P = {
+    x: 540, // Panel center on the 1080×1920 canvas, in pixels.
+    y: 230, // Panel top above the head, in pixels.
+    size: 1, // Panel scale from 0.7 to 1.1, anchored at the top.
+    number: "2027", // Large year or number; digits spin until they settle.
+    label: "save this video", // Small upper label inside the dotted pill.
+    badge: "LIKE THIS", // Word inside the pill underlining the number; empty keeps only the underline.
+    color: "#ff593d", // Accent color for number depth, dot, chart, and pill.
+  };
+
+
+  var ns = "http://www.w3.org/2000/svg", $ = function (id) { return document.getElementById(id); };
+  var color = String(P.color || "#ff593d"), num = String(P.number == null ? "" : P.number).trim() || "2027";
+  var label = String(P.label == null ? "" : P.label).trim(), badgeText = String(P.badge == null ? "" : P.badge).trim().toUpperCase();
+  var mixColor = function (a, b, k) {
+    var h = function (c) { c = c.replace("#", ""); if (c.length === 3) c = c.split("").map(function (x) { return x + x; }).join(""); return [0, 2, 4].map(function (i) { return parseInt(c.substr(i, 2), 16) || 0; }); };
+    var x = h(a), y = h(b); return "rgb(" + x.map(function (v, i) { return Math.round(v + (y[i] - v) * k); }).join(",") + ")";
+  };
+  var anchor = $("yearhook-a"), panel = $("yearhook-c"), nw = $("yearhook-nw"), nEl = $("yearhook-n"), sh = $("yearhook-sh"), sub = $("yearhook-u"), badge = $("yearhook-s"), pill = $("yearhook-p");
+
+  var outside = $("yearhook-o"), sizeValue = Math.min(1.5, Math.max(.5, parseFloat(P.size) || 1));
+  outside.style.left = P.x + "px"; outside.style.top = P.y + "px"; outside.style.transformOrigin = "50% 0"; outside.style.transform = "scale(" + sizeValue + ")";
+  $("yearhook-pd").style.background = color; $("yearhook-pd").style.color = color; $("yearhook-pd").style.boxShadow = "0 0 12px " + color;
+  $("yearhook-pl").textContent = label; if (!label) pill.style.display = "none";
+  $("yearhook-hz").style.background = "radial-gradient(60% 55% at 50% 62%," + mixColor(color, "#000000", .1).replace("rgb", "rgba").replace(")", ",.26)") + ",rgba(0,0,0,0) 72%)";
+  sub.style.background = color; badge.style.background = color;
+
+  var ext = []; for (var q = 1; q <= 8; q++) ext.push((q * .022).toFixed(3) + "em " + (q * .022).toFixed(3) + "em 0 " + mixColor(color, "#000000", .12 + (q - 1) * .06));
+  ext.push(".2em .26em .22em rgba(0,0,0,.5)"); nEl.style.textShadow = ext.join(",");
+
+  var strips = [], chars = Array.from(num);
+  chars.forEach(function (c, i) {
+    var ce = document.createElement("span"), st = document.createElement("span"), seq = [], L = 1;
+    ce.className = "yearhook-ce"; st.className = "yearhook-st";
+    if (/[0-9]/.test(c)) { var d = +c; L = Math.min(14, 6 + 2 * i); for (var k = L - 1; k >= 0; k--) seq.push(String(((d - k) % 10 + 10) % 10)); }
+    else seq.push(c === " " ? " " : c);
+    seq.forEach(function (s) { var b = document.createElement("b"); b.textContent = s; st.appendChild(b); });
+    ce.appendChild(st); nEl.appendChild(ce); strips.push({ el: st, L: L, dig: L > 1 });
+  });
+  var letters = [];
+  if (badgeText) Array.from(badgeText).forEach(function (c) { var sl = document.createElement("span"), it = document.createElement("i"); sl.className = "yearhook-sl"; it.textContent = c === " " ? " " : c; sl.appendChild(it); badge.appendChild(sl); letters.push(it); });
+  else badge.style.display = "none";
+
+  var g = $("yearhook-g"), mk = function (t, a) { var e = document.createElementNS(ns, t); for (var k in a) e.setAttribute(k, a[k]); g.appendChild(e); return e; };
+  var grid = [], barElements = [], hb = [.32, .5, .42, .7, .58, .92];
+  for (var j = 0; j < 4; j++) grid.push(mk("path", { "class": "yearhook-gl", pathLength: "1", "stroke-dasharray": "1", "stroke-dashoffset": "1" }));
+  for (var j = 0; j < 6; j++) barElements.push(mk("rect", { "class": "yearhook-br", width: "64", rx: "10", fill: "rgba(255,243,234,.09)" }));
+  var line = mk("path", { id: "yearhook-ln", pathLength: "1", "stroke-dasharray": "1", "stroke-dashoffset": "1", stroke: color });
+  var point = mk("circle", { id: "yearhook-pt", r: "9", fill: color });
+
+  var measure = function (txt, style, px) {
+    var m = document.createElement("span");
+    m.style.cssText = "position:absolute;left:-99999px;top:0;visibility:hidden;white-space:nowrap;" + style + ";font-size:" + px + "px";
+    m.textContent = txt; document.body.appendChild(m); var w = m.offsetWidth; document.body.removeChild(m); return w;
+  };
+  var M = { wN: 400, fs: 230, H: 470, pw: 0, lt: 0 };
+  var adjust = function () {
+    var BIG = 186, SN = "font-family:SoraV,sans-serif;font-weight:800;letter-spacing:.01em", fs = BIG, w = measure(num, SN, BIG) * 1.03 + .05 * BIG;
+    if (w > 760) fs = Math.max(80, Math.floor(BIG * 760 / w));
+    nEl.style.fontSize = fs + "px"; var wN = Math.min(780, w * fs / BIG);
+    var pl = $("yearhook-pl"); pl.style.fontSize = "36px"; if (label) { var wr = measure(label, "font-family:SoraV,sans-serif;font-weight:600;letter-spacing:-.005em", 36); if (wr > 740) pl.style.fontSize = Math.max(24, Math.floor(36 * 740 / wr)) + "px"; }
+    var topN = label ? 104 : 40, base = topN + fs * 1.07, H;
+    nw.style.top = topN + "px"; nw.style.height = (fs * 1.12) + "px";
+    sh.style.left = (430 - wN / 2 - 150) + "px";
+    sub.style.top = base + "px"; sub.style.left = (430 - wN / 2) + "px"; sub.style.width = wN + "px";
+    var pw = 0;
+    if (badgeText) {
+      var ls = Math.min(40, Math.max(26, Math.floor(40 * 640 / Math.max(1, measure(badgeText, "font-family:SoraV,sans-serif;font-weight:800;letter-spacing:.06em", 40)))));
+      badge.querySelectorAll(".yearhook-sl").forEach(function (e) { e.style.fontSize = ls + "px"; });
+      pw = measure(badgeText, "font-family:SoraV,sans-serif;font-weight:800;letter-spacing:.06em", ls) + 60;
+      var sl = Math.max(30, Math.min(830 - pw, (pw < wN ? 430 + wN / 2 - pw : 430 - pw / 2)));
+      badge.style.left = sl + "px"; badge.style.top = (base + 22) + "px"; H = base + 22 + 72 + 26;
+    } else H = base + 12 + 40;
+    panel.style.height = H + "px"; g.setAttribute("height", H); g.setAttribute("viewBox", "0 0 860 " + H);
+    for (var j = 0; j < 4; j++) { var y = Math.round(topN + 20 + (H - topN - 50) * j / 3); grid[j].setAttribute("d", "M30 " + y + " H830"); }
+    var floor = H - 30, high = H - topN - 40;
+    barElements.forEach(function (b, j) { b.setAttribute("x", 70 + j * 130); b.setAttribute("y", floor); b.setAttribute("height", 0); b.__h = high * hb[j] * .62; b.__c = floor; });
+    var pts = [[40, floor - high * .1], [170, floor - high * .28], [290, floor - high * .2], [420, floor - high * .48], [560, floor - high * .4], [700, floor - high * .72], [820, floor - high * .95]];
+    line.setAttribute("d", "M" + pts.map(function (p) { return p[0] + " " + Math.round(p[1]); }).join(" L"));
+    point.setAttribute("cx", 820); point.setAttribute("cy", Math.round(pts[6][1]));
+    M.wN = wN; M.fs = fs; M.H = H; M.pw = pw;
+  };
+  adjust();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { adjust(); tl.invalidate(); });
+
+
+  var enter = t0 + .05, exit = t0 + D - .28, k = Math.min(1, Math.max(.55, (D - .4) / 3.6));
+  tl.fromTo(anchor, { opacity: 0 }, { opacity: 1, duration: .05, ease: "none" }, enter);
+  tl.fromTo(panel, { opacity: 0, y: 40, filter: "blur(12px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: .45, ease: "expo.out" }, enter);
+  tl.fromTo("#yearhook-hz", { opacity: 0 }, { opacity: 1, duration: .6, ease: "power1.out" }, enter + .1);
+  if (label) tl.fromTo(pill, { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: .3, ease: "power3.out" }, enter + .12);
+  grid.forEach(function (e, j) { tl.fromTo(e, { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: .45, ease: "power2.out" }, enter + .16 + j * .05); });
+  var tR = enter + .26, rollEnd = tR;
+  strips.forEach(function (t, i) {
+    var a = tR + i * .06 * k, du = (t.dig ? .55 + .12 * Math.min(i, 5) : .35) * k;
+    tl.fromTo(t.el, { opacity: 0 }, { opacity: 1, duration: .04, ease: "none" }, a);
+    if (t.dig) tl.fromTo(t.el, { yPercent: 0, filter: "blur(3px)" }, { yPercent: -100 * (t.L - 1) / t.L, filter: "blur(0px)", duration: du, ease: "power3.out", immediateRender: false }, a);
+    else tl.fromTo(t.el, { yPercent: 100 }, { yPercent: 0, duration: du, ease: "power3.out", immediateRender: false }, a);
+    rollEnd = Math.max(rollEnd, a + du);
+  });
+  tl.fromTo(line, { opacity: .5, strokeDashoffset: 1 }, { opacity: .5, strokeDashoffset: 0, duration: rollEnd - tR + .1, ease: "power1.inOut" }, tR);
+  tl.fromTo(point, { opacity: 0, attr: { r: 2 } }, { opacity: .9, attr: { r: 9 }, duration: .25, ease: "back.out(3)" }, rollEnd);
+  barElements.forEach(function (b, j) { tl.fromTo(b, { opacity: 1, attr: { y: function () { return b.__c; }, height: 0 } }, { opacity: 1, attr: { y: function () { return b.__c - b.__h; }, height: function () { return b.__h; } }, duration: .45, ease: "power3.out" }, tR + .1 + j * .07); });
+
+  tl.fromTo(sh, { opacity: 0 }, { opacity: 1, duration: .04, ease: "none" }, rollEnd - .05);
+  tl.fromTo(sh, { x: 0 }, { immediateRender: false, x: function () { return M.wN + 300; }, duration: .55, ease: "power2.inOut" }, rollEnd - .05);
+  tl.to(sh, { opacity: 0, duration: .05, ease: "none", immediateRender: false }, rollEnd + .5);
+  tl.fromTo(sub, { opacity: 0 }, { opacity: 1, duration: .03, ease: "none" }, rollEnd + .02);
+  tl.fromTo(sub, { clipPath: function () { return "inset(0px " + Math.round(M.wN) + "px 0px 0.02px round 6px)"; } }, { clipPath: "inset(0px 0.01px 0px 0.02px round 6px)", duration: .3, ease: "power3.out", immediateRender: false }, rollEnd + .02);
+  var tS = rollEnd + .2;
+  if (badgeText) {
+    tl.fromTo(badge, { opacity: 0 }, { opacity: 1, duration: .03, ease: "none" }, tS);
+    tl.fromTo(badge, { clipPath: function () { return "inset(0px 0.01px 0px " + Math.round(M.pw) + "px round 36px)"; } }, { clipPath: "inset(0px 0.01px 0px 0.02px round 36px)", duration: .32, ease: "power3.out", immediateRender: false }, tS);
+    letters.forEach(function (e, i) { tl.fromTo(e, { opacity: 1, yPercent: 110 }, { opacity: 1, yPercent: 0, duration: .26, ease: "back.out(1.8)" }, tS + .1 + i * .035); });
+  }
+
+  var live = enter + .5, padding = exit - live, turns = Math.max(1, Math.round(padding / 1.2)), halfValue = padding / (turns * 2);
+  if (halfValue > .12) {
+    tl.to(anchor, { y: -7, duration: halfValue, ease: "sine.inOut", yoyo: true, repeat: turns * 2 - 1, immediateRender: false }, live);
+    if (label) tl.fromTo("#yearhook-pd", { boxShadow: "0 0 0 0px " + color }, { boxShadow: "0 0 0 12px rgba(0,0,0,0)", duration: halfValue * 2, ease: "power1.out", repeat: turns - 1 }, live);
+  }
+  tl.to(anchor, { opacity: 0, y: -28, duration: .26, ease: "power2.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["year-hook"] = tl;
+})();
+</script>
+</template>
+</body></html>

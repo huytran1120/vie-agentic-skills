@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Neon quote</title></head>
+<body>
+<!-- Neon quote. For a strong headline: text blocks alternate weights and the starred keyword glows in the corner-light color. -->
+
+<template id="neon-quote-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+@font-face{font-family:"SoraV";src:url("assets/visuals/fonts/Sora.ttf");font-weight:100 800;font-display:block}
+#neonquote-w{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;overflow:hidden;background:#000;font-family:"Inter",sans-serif;color:#fff}
+#neonquote-lz{position:absolute;left:-200px;top:-200px;width:1480px;height:2320px}
+#neonquote-lf{position:absolute;inset:0}
+.neonquote-l{position:absolute;inset:0;opacity:0;mix-blend-mode:screen}
+#neonquote-lcg{background:radial-gradient(ellipse 900px 840px at 1150px 200px,rgba(46,255,62,.82),rgba(0,0,0,0) 70%),radial-gradient(ellipse 820px 700px at 286px 2120px,rgba(46,255,62,.5),rgba(0,0,0,0) 70%)}
+#neonquote-lca{background:radial-gradient(ellipse 900px 840px at 1150px 200px,rgba(255,122,26,.82),rgba(0,0,0,0) 70%),radial-gradient(ellipse 820px 700px at 286px 2120px,rgba(255,122,26,.5),rgba(0,0,0,0) 70%)}
+#neonquote-lcr{background:radial-gradient(ellipse 900px 840px at 1150px 200px,rgba(255,24,40,.82),rgba(0,0,0,0) 70%),radial-gradient(ellipse 820px 700px at 286px 2120px,rgba(255,24,40,.5),rgba(0,0,0,0) 70%)}
+#neonquote-lfg{background:linear-gradient(180deg,rgba(40,240,54,.95) 0%,rgba(22,150,34,.6) 30%,rgba(0,0,0,0) 68%)}
+#neonquote-lfa{background:linear-gradient(180deg,rgba(255,122,26,.92) 0%,rgba(160,70,10,.6) 30%,rgba(0,0,0,0) 68%)}
+#neonquote-lfr{background:linear-gradient(180deg,rgba(225,10,26,.95) 0%,rgba(140,6,16,.6) 30%,rgba(0,0,0,0) 68%)}
+#neonquote-gr{position:absolute;left:0;top:-80px;width:1080px;height:2080px;opacity:0;background-image:linear-gradient(rgba(255,255,255,.16) 1.5px,transparent 1.5px),linear-gradient(90deg,rgba(255,255,255,.16) 1.5px,transparent 1.5px);background-size:90px 90px;background-position:0 0,0 0;-webkit-mask-image:radial-gradient(ellipse 600px 560px at 540px 800px,#000 0%,transparent 100%);mask-image:radial-gradient(ellipse 600px 560px at 540px 800px,#000 0%,transparent 100%)}
+#neonquote-vin{position:absolute;inset:0;box-shadow:inset 0 0 200px 30px rgba(0,0,0,.35)}
+#neonquote-ct{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0}
+#neonquote-ta{position:absolute;left:140px;top:770px;width:800px;transform:translateY(-50%)}
+#neonquote-tx{position:relative;width:800px;display:flex;flex-direction:column;align-items:center;gap:6px}
+.neonquote-bk{position:relative;width:800px;text-align:center;text-transform:uppercase;line-height:1.1;white-space:nowrap}
+.neonquote-s0{font-weight:300;letter-spacing:.24em;padding-left:.24em;color:rgba(255,255,255,.8)}
+.neonquote-s1{font-family:"SoraV","Inter",sans-serif;font-weight:800;letter-spacing:.01em;text-shadow:0 0 22px rgba(255,255,255,.28)}
+.neonquote-s2{font-weight:200;letter-spacing:.03em;text-shadow:0 0 26px rgba(255,255,255,.3)}
+.neonquote-wd{display:inline-block;opacity:0}
+.neonquote-dq{display:inline-block;font-family:"SoraV","Inter",sans-serif;font-weight:800;letter-spacing:.02em;-webkit-background-clip:text;background-clip:text;color:transparent;background-size:320% 100%;background-repeat:no-repeat}
+#neonquote-fl{position:absolute;inset:0;background:#fff;opacity:0}
+</style>
+<div id="root" data-composition-id="neon-quote" data-width="1080" data-height="1920" data-duration="3.5">
+<div id="neonquote-w"><div id="neonquote-lz"><div class="neonquote-l" id="neonquote-lcg"></div><div class="neonquote-l" id="neonquote-lca"></div><div class="neonquote-l" id="neonquote-lcr"></div></div><div id="neonquote-lf"><div class="neonquote-l" id="neonquote-lfg"></div><div class="neonquote-l" id="neonquote-lfa"></div><div class="neonquote-l" id="neonquote-lfr"></div></div><div id="neonquote-gr"></div><div id="neonquote-vin"></div><div id="neonquote-ct"><div id="neonquote-ta"><div id="neonquote-tx"></div></div></div><div id="neonquote-fl"></div></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["neon-quote"] || { duration: 3.5 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 3.5, t0 = 0;
+
+  var P = {
+    text: "But that is not everyone's *reality*", // Phrase; *asterisks* highlight a keyword in the light color; | optionally separates blocks.
+    lightColor: "red", // "green", "amber", or "red" selects the light and keyword color.
+  };
+
+
+  var $ = function (id) { return document.getElementById(id); };
+  var K = (function (s) { s = String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, ""); if (s.indexOf("verm") === 0 || s === "red") return "r"; if (s.indexOf("amb") === 0 || s.indexOf("lar") === 0 || s.indexOf("ama") === 0) return "a"; if (s.indexOf("verd") === 0 || s === "green") return "g"; return "r"; })(P.lightColor);
+  var COLOR = { g: "#45ff55", a: "#ffa238", r: "#ff3448" }[K], RGB = { g: "60,255,80", a: "255,140,40", r: "255,40,60" }[K];
+
+  var LZ = { g: [0, 0], a: [0, 0], r: [0, 0] };
+  function light(t, k, mode, d) { ["g", "a", "r"].forEach(function (c) { [0, 1].forEach(function (m) { var target = c === k ? (m === 0 ? 1 : (mode === "f" ? 1 : 0)) : 0; if (target === LZ[c][m]) return; tl.fromTo("#neonquote-l" + (m ? "f" : "c") + c, { opacity: LZ[c][m] }, { opacity: target, duration: d || .5, ease: "power2.inOut", immediateRender: false }, t); LZ[c][m] = target; }); }); }
+  function flash(t, f) { tl.fromTo("#neonquote-fl", { opacity: 0 }, { opacity: f || .3, duration: .04, ease: "none", immediateRender: false }, t); tl.to("#neonquote-fl", { opacity: 0, duration: .32, ease: "power2.out", immediateRender: false }, t + .05); }
+
+
+  var raw = String(P.text || "But that is not everyone's *reality*").replace(/\s+/g, " ").trim();
+  var pals = [], cur = [], dq = false, hasQuestion = false, i, ch, ult;
+  for (i = 0; i < raw.length; i++) {
+    ch = raw.charAt(i);
+    if (ch === "*") { dq = !dq; continue; }
+    if (ch === " " || ch === "|") { if (cur.length) pals.push(cur); cur = []; if (ch === "|") { pals.push("|"); hasQuestion = true; } continue; }
+    ult = cur[cur.length - 1];
+    if (ult && ult.dq === dq) ult.t += ch; else cur.push({ t: ch, dq: dq });
+  }
+  if (cur.length) pals.push(cur);
+  function sizeValue(p) { return p.reduce(function (s, x) { return s + x.t.length; }, 0); }
+  var blocks = [];
+  if (hasQuestion) {
+    var b = [];
+    pals.forEach(function (p) { if (p === "|") { if (b.length) blocks.push(b); b = []; } else b.push(p); });
+    if (b.length) blocks.push(b);
+  } else {
+    var ws = pals.filter(function (p) { return p !== "|"; }), L = ws.reduce(function (s, p) { return s + sizeValue(p) + 1; }, -1);
+    var nb = Math.min(ws.length, L <= 14 ? 1 : L <= 28 ? 2 : L <= 56 ? 3 : L <= 84 ? 4 : 5), beginTime = 0, nT = nb;
+    var est0 = nT === 1 ? [1] : nT === 2 ? [1, 2] : nT === 3 ? [0, 1, 2] : nT === 4 ? [0, 1, 2, 1] : [0, 1, 2, 1, 2];
+    if (nb >= 3) {
+      var acc = 0; beginTime = 0;
+      while (beginTime < ws.length - (nb - 1) && (beginTime === 0 || acc + sizeValue(ws[beginTime]) <= L * .2)) { acc += sizeValue(ws[beginTime]) + 1; beginTime++; }
+      blocks.push(ws.slice(0, beginTime)); nb--; est0 = est0.slice(1);
+    }
+
+    var FL = [.75, 1, 1.1];
+    var r = ws.slice(beginTime), n = r.length;
+    var cs = [0]; r.forEach(function (p, j) { cs.push(cs[j] + sizeValue(p) + 1); });
+    var target = (cs[n] - 1) / est0.reduce(function (s, e) { return s + 1 / FL[e]; }, 0);
+    var best = [], prev = [], a, j, k2;
+    for (k2 = 0; k2 <= nb; k2++) { best.push([]); prev.push([]); for (j = 0; j <= n; j++) { best[k2].push(1e9); prev[k2].push(0); } }
+    best[0][0] = 0;
+    for (k2 = 1; k2 <= nb; k2++) for (j = 1; j <= n; j++) for (a = k2 - 1; a < j; a++) {
+      var c = best[k2 - 1][a] + Math.pow((cs[j] - cs[a] - 1) * FL[est0[k2 - 1]] - target, 2);
+      if (c < best[k2][j]) { best[k2][j] = c; prev[k2][j] = a; }
+    }
+    var cuts = [], jj = n; for (k2 = nb; k2 >= 1; k2--) { cuts.unshift([prev[k2][jj], jj]); jj = prev[k2][jj]; }
+    cuts.forEach(function (q) { blocks.push(r.slice(q[0], q[1])); });
+  }
+  blocks = blocks.filter(function (bb) { return bb.length; }).slice(0, 5);
+  if (!blocks.length) blocks = [[[{ t: "Title", dq: false }]]];
+  var nB = blocks.length;
+  var styles = nB === 1 ? [1] : nB === 2 ? [1, 2] : nB === 3 ? [0, 1, 2] : nB === 4 ? [0, 1, 2, 1] : [0, 1, 2, 1, 2];
+  var SIZE = [[76, 52], [116, 64], [150, 76]];
+  var STYLE_VALUE = [["Inter,sans-serif", "300", ".24em", ".24em"], ["SoraV,Inter,sans-serif", "800", ".01em", "0"], ["Inter,sans-serif", "200", ".03em", "0"]];
+  var tx = $("neonquote-tx"), els = [], spans = [], qd = [];
+  blocks.forEach(function (bb, k) {
+    var d = document.createElement("div"); d.className = "neonquote-bk neonquote-s" + styles[k]; d.id = "neonquote-b" + k;
+
+    d.style.fontFamily = STYLE_VALUE[styles[k]][0]; d.style.fontWeight = STYLE_VALUE[styles[k]][1]; d.style.letterSpacing = STYLE_VALUE[styles[k]][2]; d.style.paddingLeft = STYLE_VALUE[styles[k]][3];
+    bb.forEach(function (p, q) {
+      var s = document.createElement("span"); s.className = "neonquote-wd"; s.id = "neonquote-w" + k + "_" + q;
+      var hasD = false;
+      p.forEach(function (x) {
+        if (x.dq) { var e = document.createElement("span"); e.className = "neonquote-dq"; e.textContent = x.t; e.style.fontFamily = "SoraV,Inter,sans-serif"; e.style.fontWeight = "800"; e.style.letterSpacing = ".02em"; e.style.display = "inline-block"; e.style.backgroundImage = "linear-gradient(100deg," + COLOR + " 0%," + COLOR + " 40%,#ffffff 50%," + COLOR + " 60%," + COLOR + " 100%)"; e.style.backgroundPosition = "100% 0%"; e.style.filter = "drop-shadow(0 0 16px rgba(" + RGB + ",.75))"; e.id = "neonquote-q" + qd.length; qd.push(e.id); s.appendChild(e); hasD = true; }
+        else s.appendChild(document.createTextNode(x.t));
+      });
+      d.appendChild(s); if (q < bb.length - 1) d.appendChild(document.createTextNode(" "));
+      spans.push({ id: s.id, k: k, dq: hasD });
+    });
+    tx.appendChild(d); els.push(d);
+  });
+
+  function measure(el, mx, mn) {
+    var c = el.cloneNode(true), px, lh = 1.1, ok = false;
+    c.removeAttribute("id"); c.querySelectorAll("[id]").forEach(function (e) { e.removeAttribute("id"); });
+    c.style.position = "absolute"; c.style.left = "-99999px"; c.style.top = "0"; c.style.visibility = "hidden"; c.style.width = "790px";
+    c.style.whiteSpace = "nowrap"; c.style.textTransform = "uppercase"; c.style.lineHeight = String(lh); c.style.textAlign = "center"; c.style.boxSizing = "border-box";
+    document.body.appendChild(c);
+    for (px = mx; px >= Math.round(mn * .8); px -= 2) { c.style.fontSize = px + "px"; if (c.scrollWidth <= 790) { ok = true; break; } }
+    if (!ok) { c.style.whiteSpace = "normal"; for (px = mn; px >= Math.round(mn * .66); px -= 2) { c.style.fontSize = px + "px"; if (c.offsetHeight <= px * lh * 2 + 4 && c.scrollWidth <= 790) break; } }
+    document.body.removeChild(c); return { px: Math.max(px, Math.round(mn * (ok ? .8 : .66))), two: !ok };
+  }
+  function adjust() { els.forEach(function (e, k) { var m = measure(e, SIZE[styles[k]][0], SIZE[styles[k]][1]); e.style.fontSize = m.px + "px"; e.style.whiteSpace = m.two ? "normal" : "nowrap"; }); }
+  adjust();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { adjust(); tl.invalidate(); });
+
+
+  var enter = t0 + .05, exit = t0 + D - .32, u = exit - enter;
+  var gapB = Math.max(.2, Math.min(.5, .14 * u)), tB0 = enter + .14;
+  tl.fromTo("#neonquote-w", { opacity: 0 }, { opacity: 1, duration: .16, ease: "power1.out" }, enter);
+  tl.fromTo("#neonquote-ct", { opacity: 0 }, { opacity: 1, duration: .01, ease: "none" }, enter);
+  tl.fromTo("#neonquote-gr", { opacity: 0, y: 0 }, { opacity: .8, y: -90, duration: exit - enter + .3, ease: "none" }, enter);
+  light(enter, K, "c", .55);
+  tl.fromTo("#neonquote-lz", { x: 180, y: -180 }, { x: 0, y: 0, duration: .8, ease: "power3.out" }, enter);
+  var vM = Math.max(1, Math.round((exit - enter - .8) / 1.5)), dM = (exit - enter - .8) / vM;
+  tl.fromTo("#neonquote-lz", { x: 0, y: 0 }, { x: -46, y: 34, duration: dM, ease: "sine.inOut", yoyo: true, repeat: vM - 1, immediateRender: false }, enter + .8);
+
+  var tD = null;
+  els.forEach(function (e, k) {
+    var own = spans.filter(function (s) { return s.k === k; }), step = Math.min(.08, .36 / Math.max(1, own.length)), tk = tB0 + k * gapB;
+    own.forEach(function (s, q) {
+      var tq = tk + q * step;
+      if (s.dq) {
+        tl.fromTo("#" + s.id, { opacity: 0, y: 30, filter: "blur(18px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: .34, ease: "back.out(1.7)" }, tq);
+        if (tD === null) tD = tq;
+      } else tl.fromTo("#" + s.id, { opacity: 0, y: 14, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: .24, ease: "power2.out" }, tq);
+    });
+  });
+  if (tD !== null) {
+    var full = Math.min(.5, Math.max(.25, (exit - tD) * .25));
+    light(tD, K, "f", .16); flash(tD, .22); light(tD + full, K, "c", .45);
+    tl.fromTo("#neonquote-tx", { x: 0 }, { x: 8, duration: .04, ease: "none", yoyo: true, repeat: 3, immediateRender: false }, tD + .02);
+    var tS = tD + .42, dS = Math.min(.7, Math.max(.3, exit - tS - .1));
+    qd.forEach(function (id) { tl.fromTo("#" + id, { backgroundPosition: "100% 0%" }, { backgroundPosition: "0% 0%", duration: dS, ease: "power1.inOut" }, tS); });
+  }
+
+  var tF = tB0 + .3, vF = Math.max(1, Math.round((exit - tF) / 1.4)), dF = (exit - tF) / vF;
+  tl.fromTo("#neonquote-tx", { y: 0 }, { y: -12, duration: dF, ease: "sine.inOut", yoyo: true, repeat: vF - 1, immediateRender: false }, tF);
+
+  tl.to("#neonquote-ct", { opacity: 0, y: -50, filter: "blur(16px)", duration: .28, ease: "power2.in", immediateRender: false }, exit);
+  tl.to("#neonquote-w", { opacity: 0, duration: .3, ease: "power2.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["neon-quote"] = tl;
+})();
+</script>
+</template>
+</body></html>

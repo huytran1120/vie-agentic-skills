@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Receipt</title></head>
+<body>
+<!-- Receipt. When explaining cost and elapsed time: the cost card counts up, slides aside, and gives way to a time card. -->
+
+<template id="receipt-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+#receipt-a{position:absolute;left:0;top:0;width:0;height:0;opacity:0}
+.receipt-c{position:absolute;left:0;top:0;width:600px;height:262px;border-radius:34px;background:#f7f7f9;opacity:0;overflow:hidden;box-shadow:0 0 0 2px rgba(0,0,0,.07),0 4px 10px rgba(0,0,0,.18),0 24px 54px rgba(0,0,0,.42)}
+.receipt-r{position:absolute;left:36px;top:26px;font-family:"Inter";font-size:44px;font-weight:800;letter-spacing:.1em;line-height:1;color:#6b6b73;white-space:nowrap}
+.receipt-n{position:absolute;left:32px;top:88px;font-family:"Inter";font-size:150px;font-weight:900;letter-spacing:-.045em;line-height:1;color:#1c1c1e;white-space:nowrap}
+.receipt-n i,.receipt-n em{font-style:normal;font-size:.46em;letter-spacing:-.01em}
+.receipt-n i{margin-right:.14em}
+.receipt-n em{margin-left:.14em}
+</style>
+<div id="root" data-composition-id="receipt" data-width="1080" data-height="1920" data-duration="4.0">
+<div id="receipt-a"><div id="receipt-v" class="receipt-c"><div id="receipt-vr" class="receipt-r"></div><div class="receipt-n"><span id="receipt-vs"><i id="receipt-vp"></i><b id="receipt-vn" style="font-weight:900"></b><em id="receipt-vu"></em></span></div></div><div id="receipt-t" class="receipt-c"><div id="receipt-tr" class="receipt-r"></div><div class="receipt-n"><span id="receipt-ts"><i id="receipt-tp"></i><b id="receipt-tn" style="font-weight:900"></b><em id="receipt-tu"></em></span></div></div></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["receipt"] || { duration: 4.0 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 4.0, t0 = 0;
+
+  var P = {
+    x: 540, // Card center on the 1080×1920 canvas, in pixels.
+    y: 370, // Card center above the head, in pixels.
+    valueLabel: "COST", // Value-card label.
+    value: "R$ 0.48", // Value; numeric content counts up from zero.
+    timeLabel: "TIME", // Time-card label.
+    time: "27 min", // Time value; numeric content counts up from zero.
+    color: "#ff6a1f", // Value accent color.
+  };
+
+
+  var LG = 600, AL = 262, LETTER_VALUE = 150, TOP_COUNT = 88;
+  var anchor = document.getElementById("receipt-a");
+  anchor.style.left = P.x + "px"; anchor.style.top = P.y + "px";
+
+  var parts = function (s) {
+    s = String(s == null ? "" : s).trim(); var m = s.match(/\d[\d,]*(?:\.\d+)?/);
+    if (!m) return { pre: "", num: null, dec: 0, suf: "", txt: s };
+    var raw = m[0].replace(/\.$/, ""), dec = (raw.split(".")[1] || "").length;
+    return { pre: s.slice(0, m.index).trim(), num: parseFloat(raw.replace(/,/g, "")), dec: dec, suf: s.slice(m.index + raw.length).trim(), txt: raw };
+  };
+  var formatValue = function (v, dec) { var f = Math.abs(v).toFixed(dec).split("."); f[0] = f[0].replace(/\B(?=(\d{3})+(?!\d))/g, ","); return (v < 0 ? "-" : "") + f.join("."); };
+  var assemble = function (q, label, text, color) {
+    var pt = parts(text), el = function (s) { return document.getElementById("receipt-" + q + s); };
+    el("r").textContent = String(label == null ? "" : label).toUpperCase();
+    el("p").textContent = pt.pre; el("u").textContent = pt.suf; el("n").textContent = pt.num == null ? pt.txt : formatValue(pt.num, pt.dec);
+    if (!pt.pre) el("p").style.display = "none"; if (!pt.suf) el("u").style.display = "none";
+    if (color) el("s").style.color = color;
+    return { pt: pt, el: el, end: el("n").textContent };
+  };
+  var cv = assemble("v", P.valueLabel, P.value, P.color), ct = assemble("t", P.timeLabel, P.time, null);
+
+  var fit = function () {
+    [cv, ct].forEach(function (c) {
+      var rot = c.el("r"), num = c.el("s").parentNode, n = c.el("n"), before = n.textContent;
+      rot.style.fontSize = "44px"; var wr = rot.scrollWidth, freeRadius = LG - 72; if (wr > freeRadius) rot.style.fontSize = Math.max(24, 44 * freeRadius / wr) + "px";
+      n.textContent = c.end; num.style.fontSize = LETTER_VALUE + "px"; var wn = c.el("s").offsetWidth, freeCount = LG - 64;
+      if (wn > freeCount) { var fs = LETTER_VALUE * freeCount / wn; num.style.fontSize = fs + "px"; num.style.top = (TOP_COUNT + (LETTER_VALUE - fs) * .62) + "px"; } else num.style.top = TOP_COUNT + "px";
+      n.textContent = before;
+    });
+  };
+  fit(); if (document.fonts && document.fonts.status !== "loaded") document.fonts.ready.then(fit);
+  var videoCard = document.getElementById("receipt-v"), cardTime = document.getElementById("receipt-t");
+  videoCard.style.top = cardTime.style.top = (-AL / 2) + "px"; videoCard.style.left = cardTime.style.left = (-LG / 2) + "px";
+
+  var k = Math.min(1, Math.max(.45, (D - .4) / 3.6)), enter = t0 + .05, exit = t0 + D - .3, switchTime = enter + 1.25 * k;
+  var countNumber = function (c, when, dur) {
+    if (c.pt.num == null) return; var o = { v: 0 }, n = c.el("n"), dec = c.pt.dec, target = c.pt.num;
+    n.textContent = formatValue(0, dec);
+    tl.fromTo(o, { v: 0 }, { v: target, duration: dur, ease: "power2.out", onUpdate: function () { n.textContent = formatValue(o.v, dec); } }, when);
+  };
+  tl.fromTo(anchor, { opacity: 0 }, { opacity: 1, duration: .05, ease: "none" }, enter);
+  tl.fromTo(videoCard, { opacity: 0, y: 44 }, { opacity: 1, y: 0, duration: .42, ease: "back.out(1.7)" }, enter);
+  countNumber(cv, enter + .12, .85 * k);
+
+  tl.to(videoCard, { x: -150, opacity: 0, duration: .32, ease: "power2.in", immediateRender: false }, switchTime);
+  tl.fromTo(cardTime, { opacity: 0, x: 150 }, { opacity: 1, x: 0, duration: .44, ease: "power3.out" }, switchTime + .26);
+  countNumber(ct, switchTime + .3, .75 * k);
+
+  var live = switchTime + .7, padding = exit - live, turns = Math.max(1, Math.round(padding / 1.1)), halfValue = padding / (turns * 2);
+  if (halfValue > .12) tl.to(anchor, { y: -8, duration: halfValue, ease: "sine.inOut", yoyo: true, repeat: turns * 2 - 1, immediateRender: false }, live);
+  tl.to(anchor, { opacity: 0, y: -28, duration: .26, ease: "power2.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["receipt"] = tl;
+})();
+</script>
+</template>
+</body></html>

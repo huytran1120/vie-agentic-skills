@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Text rising glow</title></head>
+<body>
+<!-- Text rising glow. For flowing captions: the current word rises from behind a line with a yellow glow, then turns white. -->
+
+<template id="text-rising-glow-template">
+<style>
+@font-face{font-family:"Montserrat";src:url("assets/fonts/Montserrat.ttf") format("truetype");font-weight:100 900;font-display:block}
+@font-face{font-family:"Caveat";src:url("assets/fonts/Caveat.ttf") format("truetype");font-weight:400 700;font-display:block}
+@font-face{font-family:"JetBrainsMono";src:url("assets/fonts/JetBrainsMono.ttf") format("truetype");font-weight:100 800;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Montserrat",sans-serif}
+.textrisingglow-l{position:absolute;left:140px;top:0;width:800px;display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;opacity:0;
+  font-family:"Montserrat",sans-serif;font-weight:800;line-height:1.16;letter-spacing:-.005em;white-space:nowrap}
+.textrisingglow-m{display:block}
+.textrisingglow-w{display:block;opacity:0;-webkit-text-stroke:10px #0a0700;paint-order:stroke fill}
+</style>
+<div id="root" data-composition-id="text-rising-glow" data-width="1080" data-height="1920" data-duration="3.4">
+<div id="textrisingglow-c"></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["text-rising-glow"] || { duration: 3.4 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 3.4, t0 = 0;
+
+  var P = {
+    y: 1280, // Caption center height on the 1080×1920 canvas, in pixels.
+    size: 88, // Font size, in pixels.
+    maxWords: 3, // Words per caption group.
+    accent: "#ffe600", // Lit-word and halo color.
+    glow: 0.7, // Halo strength from zero, none, to one, bright.
+  };
+
+
+  var HIDDEN_RANGES = [];
+
+
+  var W = Array.isArray(C.words) ? C.words : [
+    { text: "You", t: 0.10, end: 0.34 }, { text: "do not", t: 0.36, end: 0.58 }, { text: "need", t: 0.60, end: 0.98 },
+    { text: "an", t: 1.00, end: 1.10 }, { text: "editor", t: 1.12, end: 1.56 }, { text: "to", t: 1.92, end: 2.06 },
+    { text: "post", t: 2.08, end: 2.44 }, { text: "every", t: 2.46, end: 2.68 }, { text: "day.", t: 2.70, end: 3.05 }
+  ];
+
+  W = (function (a) { var o = [], u = 0.04, k, t; for (k = 0; k < a.length; k++) { t = Math.max(0.05, Number(a[k].t) || 0, u + 0.01); o.push({ text: a[k].text, t: t, end: Math.max(t + 0.02, Number(a[k].end) || 0) }); u = t; } return o; })(W);
+
+  var SCALE_FACTOR = (function () {
+    var e = (typeof HIDDEN_RANGES !== "undefined" && HIDDEN_RANGES) || [], b0 = (typeof C.start === "number") ? C.start : 0, o = [], k;
+    for (k = 0; k < e.length; k++) if (Number(e[k][1]) > Number(e[k][0])) o.push([Number(e[k][0]) - b0, Number(e[k][1]) - b0]);
+    return o;
+  })();
+  function hidden(t) { for (var k = 0; k < SCALE_FACTOR.length; k++) if (t >= SCALE_FACTOR[k][0] && t < SCALE_FACTOR[k][1]) return true; return false; }
+  function nextScale(t) { var r = Infinity, k; for (k = 0; k < SCALE_FACTOR.length; k++) if (SCALE_FACTOR[k][0] > t && SCALE_FACTOR[k][0] < r) r = SCALE_FACTOR[k][0]; return r; }
+  W = W.filter(function (w) { return !hidden(w.t); });
+
+  function show(s) { return String(s).replace(/^\s+|\s+$/g, "").replace(/[.,;:…]+$/g, ""); }
+
+  function screens(maxP, maxL) {
+    var groups = [], cur = [], letters = 0, i, w, txt, out = [];
+    for (i = 0; i < W.length; i++) {
+      w = W[i]; txt = show(w.text); if (!txt || !(w.t < D - 0.2)) continue;
+      if (cur.length && (cur.length >= maxP || letters + txt.length + 1 > maxL || w.t - cur[cur.length - 1].end > 0.7 || nextScale(cur[cur.length - 1].t) <= w.t)) { groups.push(cur); cur = []; letters = 0; }
+      cur.push({ text: txt, t: Math.max(0.05, w.t), end: Math.min(D - 0.05, Math.max(w.t + 0.08, w.end)) }); letters += txt.length + 1;
+      if (/[.!?…]$/.test(String(w.text).replace(/\s+$/, "")) || (cur.length >= 2 && /[,;:]$/.test(String(w.text).replace(/\s+$/, "")))) { groups.push(cur); cur = []; letters = 0; }
+    }
+    if (cur.length) groups.push(cur);
+    for (i = 0; i < groups.length; i++) {
+      var start = Math.max(0.05, groups[i][0].t - 0.05), speechEnd = groups[i][groups[i].length - 1].end;
+      var end = Math.min(D - 0.05, speechEnd + 0.5); if (i + 1 < groups.length) end = Math.min(end, Math.max(0.05, groups[i + 1][0].t - 0.05));
+      end = Math.min(end, Math.max(start + 0.15, nextScale(groups[i][groups[i].length - 1].t)));
+      if (end > start + 0.12) out.push({ words: groups[i], start: start, end: end });
+    }
+    return out;
+  }
+
+
+  var sizeValue = Math.max(56, Math.min(130, Number(P.size) || 88));
+  var yy = Math.max(230 + sizeValue * 0.75, Math.min(1530 - sizeValue * 0.75, Number(P.y) || 1280));
+  var maxP = Math.max(1, Math.min(6, Math.round(Number(P.maxWords) || 3))), maxL = Math.max(6, Math.floor(800 / (sizeValue * 0.58)));
+  var strength = Number(P.sparkle); if (!(strength >= 0)) strength = 0.7; strength = Math.min(1, strength);
+
+  var hex = String(P.accent || "#ffe600").replace("#", ""); if (hex.length === 3) hex = hex.charAt(0) + hex.charAt(0) + hex.charAt(1) + hex.charAt(1) + hex.charAt(2) + hex.charAt(2);
+  if (!(/^[0-9a-fA-F]{6}$/.test(hex))) hex = "ffe600";
+  var num = parseInt(hex, 16), rgb = ((num >> 16) & 255) + "," + ((num >> 8) & 255) + "," + (num & 255), dest = "rgb(" + rgb + ")";
+
+  var darkAccent = 0.299 * ((num >> 16) & 255) + 0.587 * ((num >> 8) & 255) + 0.114 * (num & 255) < 90, SCALE_FACTOR = "#0a0700", illuminatedCount = darkAccent ? "#ffffff" : SCALE_FACTOR;
+
+  var MIN_WIDTH = [63, 70, 60, 70, 64, 41, 71, 70, 31, 32, 68, 31, 105, 70, 67, 70, 70, 44, 55, 45, 69, 62, 96, 62, 62, 56];
+  var MAX_WIDTH = [79, 77, 73, 83, 67, 64, 77, 81, 34, 56, 75, 61, 95, 81, 85, 74, 85, 74, 65, 64, 79, 77, 118, 74, 69, 68];
+  function widthValue(s) {
+    var b = String(s).normalize("NFD").replace(/[\u0300-\u036f]/g, ""), n = 0, q, c;
+    for (q = 0; q < b.length; q++) { c = b.charCodeAt(q); n += (c >= 97 && c <= 122) ? MIN_WIDTH[c - 97] : (c >= 65 && c <= 90) ? MAX_WIDTH[c - 65] : (c === 33 || c === 49) ? 38 : 66; }
+    return n / 100;
+  }
+
+  function fit(ps) { var n = (ps.length - 1) * 0.27 + 0.1, q; for (q = 0; q < ps.length; q++) n += widthValue(ps[q].text); return Math.min(sizeValue, Math.floor(776 / n)); }
+  var box = document.getElementById("textrisingglow-c"), list = screens(maxP, maxL), i, j, k, n, a, b, u, s, tk, cut, m, squeeze, ps, tt, line, maskValue, pal, id, when, lifetime, rise, r1, r2, fromTime, untilTime;
+
+  var pont = {}, has = {};
+  for (k = 0; k < W.length; k++) { s = String(W[k].text).replace(/\s+$/, ""); if (/[.!?…,;:]$/.test(s)) pont[Math.max(0.05, W[k].t).toFixed(3)] = 1; }
+
+  for (i = 0; i < list.length; i++) for (j = 0; j < list[i].words.length; j++) has[list[i].words[j].t.toFixed(3)] = 1;
+  for (k = W.length - 1; k >= 0; k--) {
+    s = show(W[k].text); tk = Math.max(0.05, W[k].t);
+    if (!s || !(W[k].t < D - 0.2) || has[tk.toFixed(3)]) continue;
+    for (i = 0; i < list.length && list[i].words[0].t <= tk; i++) { }
+    if (i >= list.length) continue;
+    list[i].words.unshift({ text: s, t: tk, end: Math.min(D - 0.05, Math.max(W[k].t + 0.08, W[k].end)) });
+    list[i].start = Math.max(0.05, tk - 0.05); if (i) list[i - 1].end = Math.min(list[i - 1].end, list[i].start);
+  }
+
+  for (i = 0; i + 1 < list.length; i++) {
+    a = list[i]; b = list[i + 1]; if (b.start - a.end > 0.02) continue;
+    n = a.words.length; k = 0; cut = a.end;
+    while (k < n) { u = a.words[n - 1 - k]; if (pont[u.t.toFixed(3)] || cut - u.t >= 0.15) break; k++; cut = Math.max(0.05, u.t - 0.05); }
+    if (!k) continue;
+    b.words = a.words.splice(n - k, k).concat(b.words); b.start = cut; a.end = cut;
+
+    squeeze = fit(b.words) < sizeValue * 0.9;
+    for (m = k; m + 1 < b.words.length; m++) if ((squeeze || pont[b.words[m].t.toFixed(3)]) && b.words[m + 1].t - 0.05 - b.words[m].t >= 0.15) {
+      u = { words: b.words.splice(m + 1), start: 0, end: b.end }; u.start = Math.max(0.05, u.words[0].t - 0.05);
+      b.end = Math.min(b.end, b.words[m].end + 0.5, u.start); list.splice(i + 2, 0, u); break;
+    }
+    if (!a.words.length) { list.splice(i, 1); i--; }
+  }
+  for (i = 0; i < list.length; i++) {
+    ps = list[i].words; fromTime = t0 + list[i].start; untilTime = t0 + list[i].end;
+    tt = fit(ps); rise = Math.round(tt * 1.3);
+    r1 = Math.round(tt * (0.06 + 0.10 * strength)); r2 = Math.round(tt * (0.22 + 0.34 * strength));
+    line = document.createElement("div"); line.className = "textrisingglow-l"; line.id = "textrisingglow-l" + i;
+    line.style.top = Math.round(yy - tt * 0.6) + "px"; line.style.fontSize = tt + "px";
+    for (j = 0; j < ps.length; j++) {
+
+      maskValue = document.createElement("span"); maskValue.className = "textrisingglow-m"; maskValue.id = "textrisingglow-m" + i + "_" + j;
+      maskValue.style.clipPath = "inset(-120px -120px -" + Math.round(tt * 0.07) + "px -120px)";
+      if (j) maskValue.style.marginLeft = Math.round(tt * 0.27) + "px";
+      pal = document.createElement("span"); pal.className = "textrisingglow-w"; pal.id = "textrisingglow-w" + i + "_" + j; pal.textContent = ps[j].text;
+      pal.style.color = dest; pal.style.webkitTextStroke = Math.round(tt * 0.12) + "px " + illuminatedCount;
+      pal.style.setProperty("--textrisingglow-h", "1");
+
+      pal.style.textShadow = "0 0 " + r1 + "px rgba(" + rgb + ",calc(var(--textrisingglow-h)*" + Math.min(1, strength * 1.35).toFixed(2) + ")),0 0 " + r2 + "px rgba(" + rgb + ",calc(var(--textrisingglow-h)*" + Math.min(1, strength * 1.05).toFixed(2) + ")),0 " + Math.round(tt * 0.07) + "px " + Math.round(tt * 0.17) + "px rgba(0,0,0,.62)";
+      maskValue.appendChild(pal); line.appendChild(maskValue);
+    }
+    box.appendChild(line);
+
+    tl.fromTo("#textrisingglow-l" + i, { opacity: 0 }, { opacity: 1, duration: .01, ease: "none" }, fromTime);
+    for (j = 0; j < ps.length; j++) {
+
+      id = "#textrisingglow-w" + i + "_" + j; when = j ? t0 + ps[j].t : fromTime; lifetime = untilTime - when;
+
+      tl.fromTo(id, { y: rise }, { y: 0, duration: Math.max(.08, Math.min(.16, lifetime * .6)), ease: "power3.out" }, when);
+      tl.fromTo(id, { opacity: 0 }, { opacity: 1, duration: .01, ease: "none", immediateRender: false }, when);
+      tl.fromTo("#textrisingglow-m" + i + "_" + j, { clipPath: "inset(-120px -120px -" + Math.round(tt * 0.07) + "px -120px)" }, { clipPath: "inset(-120px -120px -120px -120px)", duration: .1, ease: "none", immediateRender: false }, when + Math.min(.12, lifetime * .5));
+
+      if (j + 1 < ps.length) {
+        if (darkAccent) tl.fromTo(id, { color: dest, webkitTextStrokeColor: illuminatedCount, "--textrisingglow-h": 1 }, { color: "#ffffff", webkitTextStrokeColor: SCALE_FACTOR, "--textrisingglow-h": 0, duration: .12, ease: "power1.out", immediateRender: false }, t0 + ps[j + 1].t);
+        else tl.fromTo(id, { color: dest, "--textrisingglow-h": 1 }, { color: "#ffffff", "--textrisingglow-h": 0, duration: .12, ease: "power1.out", immediateRender: false }, t0 + ps[j + 1].t);
+      }
+    }
+    tl.to("#textrisingglow-l" + i, { opacity: 0, duration: .01, ease: "none", immediateRender: false }, untilTime - .01);
+  }
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["text-rising-glow"] = tl;
+})();
+</script>
+</template>
+</body></html>

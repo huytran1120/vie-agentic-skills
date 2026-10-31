@@ -18641,6 +18641,31 @@
     "source_path": "skills/edit-video/SKILL.md"
   },
   {
+    "id": "editonny",
+    "canonical_id": "editonny",
+    "name": "editonny",
+    "path": "skills/editonny",
+    "description": "Use when installing, preparing, diagnosing, or updating editonny, or editing local videos, Reels, ads, sales videos, lessons, combining takes, adding captions or visual scenes, adapting a reference, or refining an existing edit.",
+    "category": "media",
+    "tags": [
+      "video-editing",
+      "editonny",
+      "reels",
+      "captions",
+      "motion-scenes",
+      "media",
+      "local-ai"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/soumatheusgomes/editonny/tree/49714f2fba6eafb76b903376e1fe9f50b685506a/skills/editonny",
+    "source_repo": "soumatheusgomes/editonny",
+    "author": "Matheus Gomes",
+    "license": "MIT",
+    "license_source": "https://github.com/soumatheusgomes/editonny/blob/49714f2fba6eafb76b903376e1fe9f50b685506a/LICENSE.md",
+    "source_revision": "49714f2fba6eafb76b903376e1fe9f50b685506a",
+    "source_path": "skills/editonny/SKILL.md"
+  },
+  {
     "id": "edr-bypass-re",
     "canonical_id": "edr-bypass-re",
     "name": "edr-bypass-re",

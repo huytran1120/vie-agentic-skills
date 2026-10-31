@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Entrance zoom one</title></head>
+<body>
+<!-- Entrance zoom one. When an image needs a forceful reveal: it enters at 2× scale, snaps down with radial blur, holds still, then rapidly grows at the end. Entry and exit each take about 0.2 seconds. Set image to a file in the image folder. For footage, replace the image element with a video retaining its ID and class, and add src, data-start="0", data-duration, data-track-index="2", muted, and playsinline. Keep portrait cards beside or below the face; the default 16:9 card sits above it. -->
+
+<template id="entrance-zoom-one-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+.entrancezoomone-a{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;pointer-events:none}
+.entrancezoomone-t{position:absolute;left:0;top:0;width:1080px;height:1920px}
+.entrancezoomone-pv{perspective:1200px}
+.entrancezoomone-f{position:absolute;left:0;top:0;width:0;height:0;filter:url(#entrancezoomone-rb)}
+.entrancezoomone-c{position:absolute;left:0;top:0;width:100%;height:100%;overflow:hidden;background:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.2),0 8px 20px rgba(0,0,0,.26),0 30px 70px rgba(0,0,0,.4)}
+.entrancezoomone-m{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;display:block}
+.entrancezoomone-svg{position:absolute;left:0;top:0;width:0;height:0;overflow:hidden}
+</style>
+<div id="root" data-composition-id="entrance-zoom-one" data-width="1080" data-height="1920" data-duration="3.0">
+<div id="entrancezoomone-a" class="entrancezoomone-a">
+
+  <div id="entrancezoomone-pv" class="entrancezoomone-t entrancezoomone-pv"><div id="entrancezoomone-z" class="entrancezoomone-t" data-layout-allow-overflow><div id="entrancezoomone-f" class="entrancezoomone-f"><div id="entrancezoomone-c" class="entrancezoomone-c"><img id="entrancezoomone-m" class="entrancezoomone-m" src="assets/visuals/img/city.jpg" alt=""></div></div></div></div>
+  <svg class="entrancezoomone-svg" xmlns="http://www.w3.org/2000/svg" width="0" height="0"><filter id="entrancezoomone-rb" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feImage id="entrancezoomone-mh" preserveAspectRatio="none" result="mh"/><feImage id="entrancezoomone-mv" preserveAspectRatio="none" result="mv"/><feComposite in="mh" in2="mv" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="mp"/><feDisplacementMap id="entrancezoomone-d1" in="SourceGraphic" in2="mp" scale="0" xChannelSelector="R" yChannelSelector="G" result="a1"/><feDisplacementMap id="entrancezoomone-d2" in="SourceGraphic" in2="mp" scale="0" xChannelSelector="R" yChannelSelector="G" result="a2"/><feDisplacementMap id="entrancezoomone-d3" in="SourceGraphic" in2="mp" scale="0" xChannelSelector="R" yChannelSelector="G" result="a3"/><feComposite in="SourceGraphic" in2="a1" operator="arithmetic" k1="0" k2=".5" k3=".5" k4="0" result="b1"/><feComposite in="b1" in2="a2" operator="arithmetic" k1="0" k2=".6667" k3=".3333" k4="0" result="b2"/><feComposite in="b2" in2="a3" operator="arithmetic" k1="0" k2=".75" k3=".25" k4="0" result="b3"/><feDisplacementMap id="entrancezoomone-d4" in="b3" in2="mp" scale="0" xChannelSelector="R" yChannelSelector="G" result="c1"/><feDisplacementMap id="entrancezoomone-d5" in="b3" in2="mp" scale="0" xChannelSelector="R" yChannelSelector="G" result="c2"/><feDisplacementMap id="entrancezoomone-d6" in="b3" in2="mp" scale="0" xChannelSelector="R" yChannelSelector="G" result="c3"/><feComposite in="b3" in2="c1" operator="arithmetic" k1="0" k2=".5" k3=".5" k4="0" result="e1"/><feComposite in="e1" in2="c2" operator="arithmetic" k1="0" k2=".6667" k3=".3333" k4="0" result="e2"/><feComposite in="e2" in2="c3" operator="arithmetic" k1="0" k2=".75" k3=".25" k4="0" result="e3"/><feGaussianBlur id="entrancezoomone-g" in="e3" stdDeviation="0"/></filter></svg>
+</div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["entrance-zoom-one"] || { duration: 3.0 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 3.0, t0 = 0;
+
+  var P = {
+    x: 540, // Card center on the 1080×1920 canvas, in pixels; zoom is centered here.
+    y: 446, // Card center, in pixels; default upper band spans y=232–660, above the eyes.
+    width: 760, // Card width, in pixels.
+    height: 428, // Card height, in pixels; default aspect ratio is 16:9 and the image fills it with cropping.
+    radius: 28, // Corner radius, in pixels; zero gives square corners.
+    image: "city.jpg", // Image filename in the package image folder.
+  };
+
+
+  var pe = function (s) { return document.getElementById("entrancezoomone-" + s); };
+  var FRAME = 1 / 30, POSE = FRAME / 2, PERSP = 1200;
+
+  var lg = Math.max(60, +P.width || 760), al = Math.max(60, +P.height || 428), cx = +P.x, cy = +P.y;
+  var radius = P.radius == null ? 28 : Math.max(0, +P.radius);
+  var box = pe("f"); box.style.left = (cx - lg / 2) + "px"; box.style.top = (cy - al / 2) + "px";
+  box.style.width = lg + "px"; box.style.height = al + "px"; pe("c").style.borderRadius = radius + "px";
+  var media = pe("m"); if (P.image && media.tagName === "IMG") media.setAttribute("src", /[\/:]/.test(P.image) ? P.image : "assets/visuals/img/" + P.image);
+  pe("pv").style.perspectiveOrigin = cx + "px " + cy + "px";
+
+  var bz = function (x1, y1, x2, y2) {
+    var B = function (a, b, t) { var m = 1 - t; return 3 * m * m * t * a + 3 * m * t * t * b + t * t * t; };
+    var dB = function (a, b, t) { var m = 1 - t; return 3 * m * m * a + 6 * m * t * (b - a) + 3 * t * t * (1 - b); };
+    var rootNode = function (u) { var lo = 0, hi = 1; for (var i = 0; i < 46; i++) { var md = (lo + hi) / 2; if (B(x1, x2, md) < u) lo = md; else hi = md; } return (lo + hi) / 2; };
+    return {
+      y: function (u) { return u <= 0 ? 0 : u >= 1 ? 1 : B(y1, y2, rootNode(u)); },
+      v: function (u) { var t = rootNode(Math.min(1, Math.max(0, u))); return Math.abs(dB(y1, y2, t)) / Math.max(1e-6, dB(x1, x2, t)); }
+    };
+  };
+  var cEnt = bz(.06, .81, .09, 1.02), cSai = bz(.99, -.03, .96, .34);
+
+  var mx = .25 * lg + 150, my = .25 * al + 170, LQ = Math.ceil(Math.max(lg + 2 * mx, al + 2 * my)) + 8;
+  var fl = pe("rb"); fl.setAttribute("x", (-100 * mx / lg).toFixed(2) + "%"); fl.setAttribute("width", (100 + 200 * mx / lg).toFixed(2) + "%");
+  fl.setAttribute("y", (-100 * my / al).toFixed(2) + "%"); fl.setAttribute("height", (100 + 200 * my / al).toFixed(2) + "%");
+  var map = function (h) {
+    return "data:image/svg+xml;charset=utf-8," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512"><defs><linearGradient id="g" x1="0" y1="0" x2="' + (h ? 1 : 0) + '" y2="' + (h ? 0 : 1) + '"><stop offset="0" stop-color="#000"/><stop offset="1" stop-color="' + (h ? "#f00" : "#0f0") + '"/></linearGradient></defs><rect width="512" height="512" fill="url(#g)"/></svg>');
+  };
+  ["mh", "mv"].forEach(function (k, i) {
+    var n = pe(k); n.setAttribute("x", (lg / 2 - LQ / 2).toFixed(1)); n.setAttribute("y", (al / 2 - LQ / 2).toFixed(1));
+    n.setAttribute("width", LQ); n.setAttribute("height", LQ); n.setAttribute("href", map(i === 0));
+  });
+
+  var follow = function (target, tA, tB, f, assemble, extra) {
+    var a = f(tA), b = f(tB), difference = b - a, ext = 0, ni, vi;
+    for (ni = 1; ni <= 60; ni++) { vi = f(tA + (tB - tA) * ni / 60) - a; if (Math.abs(vi) > Math.abs(ext)) ext = vi; }
+    if (Math.abs(difference) < .05 * Math.abs(ext)) difference = ext; if (Math.abs(difference) < 1e-6) difference = 1e-6;
+    var start = assemble(a), targetState = assemble(a + difference), k; targetState.duration = tB - tA; targetState.ease = function (p) { return (f(tA + p * (tB - tA)) - a) / difference; };
+    if (extra) for (k in extra) targetState[k] = extra[k];
+    tl.fromTo(target, start, targetState, tA);
+  };
+
+  var ent = t0 + .05, end = t0 + D, Se = Math.min(.885, Math.max(.4, D / 2)), Ss = Se;
+  var uE = function (t) { return Math.max(0, (t - ent - POSE) / Se); };
+  var uS = function (t) { return Math.min(1, Math.max(0, (t - (end - Ss) - FRAME) / Ss)); };
+  var escE = function (t) { return 2 - cEnt.y(uE(t)); }, escS = function (t) { return 1 + cSai.y(uS(t)); };
+  var zDe = function (s) { return PERSP * (1 - 1 / s); };
+
+  var qE = function (t) { var u = uE(t); return 1 + Math.max(0, cEnt.v(u) / Se / escE(t) * FRAME - .02); };
+  var qS = function (t) { var u = uS(t); return 1 / (1 + 1.6 * Math.max(0, cSai.v(u) / Ss / escS(t) * FRAME - .012)); };
+  var EXP = { d1: 1 / 16, d2: 2 / 16, d3: 3 / 16, d4: 4 / 16, d5: 8 / 16, d6: 12 / 16 };
+  var offset = function (q, e) { return LQ * (1 / Math.pow(q, e) - 1); };
+  var soft = function (q) { return Math.abs(q - 1) * Math.min(lg, al) * .045; };
+  var anchor = pe("a"), elZ = pe("z"), g = pe("g"), k;
+  tl.fromTo(anchor, { opacity: 0 }, { opacity: 1, duration: .01, ease: "none" }, ent);
+
+  follow(elZ, ent, ent + POSE + Se, function (t) { return zDe(escE(t)); }, function (v) { return { z: v }; });
+  var beforeAfterEnd = ent + POSE + .35 * Se;
+  for (k in EXP) (function (no, e) {
+    follow(no, ent, beforeAfterEnd, function (t) { return offset(qE(t), e); }, function (v) { return { attr: { scale: v.toFixed(2) } }; });
+  })(pe(k), EXP[k]);
+  follow(g, ent, beforeAfterEnd, function (t) { return soft(qE(t)); }, function (v) { return { attr: { stdDeviation: v.toFixed(2) } }; });
+
+  var sceneStart = end - Ss + FRAME, baseStart = Math.max(sceneStart, end - .4);
+  follow(elZ, sceneStart, end, function (t) { return zDe(escS(t)); }, function (v) { return { z: v }; }, { immediateRender: false });
+  for (k in EXP) (function (no, e) {
+    follow(no, baseStart, end, function (t) { return offset(qS(t), e); }, function (v) { return { attr: { scale: v.toFixed(2) } }; }, { immediateRender: false });
+  })(pe(k), EXP[k]);
+  follow(g, baseStart, end, function (t) { return soft(qS(t)); }, function (v) { return { attr: { stdDeviation: v.toFixed(2) } }; }, { immediateRender: false });
+  tl.to(anchor, { opacity: 0, duration: .01, ease: "none", immediateRender: false }, end - .01);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["entrance-zoom-one"] = tl;
+})();
+</script>
+</template>
+</body></html>

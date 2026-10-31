@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Pointer spotlight</title></head>
+<body>
+<!-- Pointer spotlight. To isolate a face, product, or screenshot detail by darkening the surroundings. -->
+
+<template id="pointer-spotlight-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+#pointerspotlight-a{position:absolute;left:0;top:0;width:100%;height:100%;opacity:0}
+</style>
+<div id="root" data-composition-id="pointer-spotlight" data-width="1080" data-height="1920" data-duration="2.8">
+<div id="pointerspotlight-a"></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["pointer-spotlight"] || { duration: 2.8 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 2.8, t0 = 0;
+
+  var P = {
+    x: 490, // Lit-area center on the 1080×1920 canvas, in pixels.
+    y: 850, // Lit-area center, in pixels.
+    radiusX: 300, // Half-width of the lit area, in pixels; the soft edge extends beyond this radius.
+    radiusY: 300, // Half-height of the lit area, in pixels.
+    darkness: 0.7, // Surrounding darkness from zero, unchanged, to one, black.
+  };
+
+
+  var rx = Math.max(20, Number(P.radiusX) || 300), ry = Math.max(20, Number(P.radiusY) || 300);
+  var esc = Number(P.darkness); if (!(esc >= 0)) esc = .7; esc = Math.min(1, esc);
+
+  var steps = 10, inside = .96, outside = 1.34, gi, gu, tracks = "rgba(0,0,0,0) 0%";
+  for (gi = 0; gi <= steps; gi++) {
+    gu = gi / steps;
+    tracks += ", rgba(0,0,0," + (esc * gu * gu * (3 - 2 * gu)).toFixed(3) + ") " + ((inside + (outside - inside) * gu) / outside * 100).toFixed(1) + "%";
+  }
+  document.getElementById("pointerspotlight-a").style.background = "radial-gradient(ellipse " + (rx * outside).toFixed(1) + "px " + (ry * outside).toFixed(1) + "px at " + P.x + "px " + P.y + "px, " + tracks + ")";
+
+  var background = 1 - Math.min(.12, .05 / Math.max(esc, .05));
+
+  var enter = t0 + .05, exit = t0 + D - .3, live = enter + .5;
+  var padding = exit - live, turns = Math.max(1, Math.round(padding / 1.1)), halfValue = padding / (turns * 2);
+  tl.fromTo("#pointerspotlight-a", { opacity: 0 }, { opacity: 1, duration: .3, ease: "power2.out" }, enter);
+  if (halfValue > .08) tl.to("#pointerspotlight-a", { opacity: background, duration: halfValue, ease: "sine.inOut", yoyo: true, repeat: turns * 2 - 1, immediateRender: false }, live);
+  tl.to("#pointerspotlight-a", { opacity: 0, duration: .25, ease: "power2.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["pointer-spotlight"] = tl;
+})();
+</script>
+</template>
+</body></html>

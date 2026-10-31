@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Comment call to action</title></head>
+<body>
+<!-- Comment call to action. At the closing call to action: a comment box appears, a keyword types in, and a finger taps Send. -->
+
+<template id="comment-call-to-action-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+@font-face{font-family:"SoraV";src:url("assets/visuals/fonts/Sora.ttf");font-weight:100 800;font-display:block}
+@font-face{font-family:"PlayfairI";src:url("assets/visuals/fonts/Playfair-Italic.ttf");font-weight:400 900;font-display:block}
+#commentcalltoaction-o{position:absolute;left:0;top:0;width:0;height:0}
+#commentcalltoaction-a{position:absolute;left:0;top:0;width:0;height:0;opacity:0}
+#commentcalltoaction-c{position:absolute;left:-430px;top:0;width:860px;border-radius:44px;opacity:0;background:radial-gradient(rgba(36,32,33,.06) 1.2px,transparent 1.8px) 0 0/14px 14px,linear-gradient(170deg,#fbf8f3,#f3eee6);box-shadow:0 0 0 2px rgba(36,32,33,.06),0 6px 14px rgba(0,0,0,.18),0 34px 70px rgba(0,0,0,.38)}
+#commentcalltoaction-h{position:absolute;left:40px;top:24px;width:780px;height:92px;line-height:92px;text-align:center;font-family:"PlayfairI",serif;font-weight:500;letter-spacing:-.01em;color:#242021;white-space:nowrap;opacity:0}
+#commentcalltoaction-i{position:absolute;left:30px;width:800px;height:132px;border-radius:66px;background:#fffdf9;opacity:0;box-shadow:inset 0 0 0 3px #c9bdb3,0 10px 0 #e6ddd4,0 18px 30px rgba(36,32,33,.12)}
+#commentcalltoaction-av{position:absolute;left:24px;top:24px;width:84px;height:84px;border-radius:50%;overflow:hidden;background:linear-gradient(160deg,#ddd3ca,#c3b6ab)}
+#commentcalltoaction-av svg{position:absolute;left:0;top:0;width:84px;height:84px}
+#commentcalltoaction-tx{position:absolute;left:130px;top:0;height:132px;display:flex;align-items:center;white-space:nowrap;font-family:"SoraV",sans-serif;font-weight:800;letter-spacing:-.045em;color:#242021}
+#commentcalltoaction-ph{position:absolute;left:130px;top:0;height:132px;line-height:132px;font-family:"SoraV",sans-serif;font-weight:400;font-size:40px;color:#a99d94;white-space:nowrap;opacity:0}
+.commentcalltoaction-ch{position:relative;opacity:0}
+.commentcalltoaction-z{position:relative}
+.commentcalltoaction-k{position:absolute;right:-.06em;top:.06em;width:6px;height:1em;border-radius:3px;opacity:0}
+#commentcalltoaction-bt{position:absolute;right:18px;top:18px;width:96px;height:96px;border-radius:50%;opacity:0}
+#commentcalltoaction-bt svg{position:absolute;left:0;top:0;width:96px;height:96px;overflow:visible}
+#commentcalltoaction-fx{position:absolute;left:0;top:0;width:860px;height:10px;overflow:visible}
+#commentcalltoaction-dd,#commentcalltoaction-rg,#commentcalltoaction-co{opacity:0}
+</style>
+<div id="root" data-composition-id="comment-call-to-action" data-width="1080" data-height="1920" data-duration="4.5">
+<div id="commentcalltoaction-o"><div id="commentcalltoaction-a"><div id="commentcalltoaction-c"><div id="commentcalltoaction-h"></div><div id="commentcalltoaction-i"><div id="commentcalltoaction-av"><svg viewBox="0 0 84 84"><circle cx="42" cy="33" r="15" fill="#fffaf4"/><path d="M14 84c2-17 13-26 28-26s26 9 28 26Z" fill="#fffaf4"/></svg></div><div id="commentcalltoaction-ph">Add a comment...</div><div id="commentcalltoaction-tx"></div><div id="commentcalltoaction-bt"><svg viewBox="0 0 96 96"><circle id="commentcalltoaction-bf" cx="48" cy="48" r="46" fill="#fffdf9" stroke-width="3"/><g id="commentcalltoaction-pl"><path id="commentcalltoaction-pp" d="M27 28 L72 48 L27 68 L34 48 Z M34 48 H72" fill="none" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/></g></svg></div></div><svg id="commentcalltoaction-fx"><circle id="commentcalltoaction-rg" fill="none" stroke-width="6" r="40"/><path id="commentcalltoaction-co" d="M0 12 C-14 -2 -30 8 -18 22 L0 38 L18 22 C30 8 14 -2 0 12 Z"/><circle id="commentcalltoaction-dd" r="34" fill="rgba(255,255,255,.88)" stroke="rgba(36,32,33,.55)" stroke-width="4"/></svg></div></div></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["comment-call-to-action"] || { duration: 4.5 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 4.5, t0 = 0;
+
+  var P = {
+    x: 540, // Panel center on the 1080×1920 canvas, in pixels.
+    y: 230, // Panel top above the head, in pixels.
+    size: 1, // Panel scale from 0.7 to 1.1, anchored at the top.
+    label: "Comment", // Playfair italic heading above the box; empty hides it.
+    word: "I WANT IT", // Word typed into the box; its final word uses the accent color.
+    accent: "#ff593d", // Accent color for the last word, Send button, and tap.
+  };
+
+
+  var $ = function (id) { return document.getElementById(id); }, ns = "http://www.w3.org/2000/svg";
+  var color = String(P.accent || "#ff593d"), label = String(P.label == null ? "" : P.label).trim();
+  var word = String(P.word == null ? "" : P.word).trim().normalize("NFC") || "I WANT IT";
+  var anchor = $("commentcalltoaction-a"), panel = $("commentcalltoaction-c"), tit = $("commentcalltoaction-h"), box = $("commentcalltoaction-i"), tx = $("commentcalltoaction-tx"), ph = $("commentcalltoaction-ph"), bt = $("commentcalltoaction-bt"), fx = $("commentcalltoaction-fx");
+
+  var outside = $("commentcalltoaction-o"), sizeValue = Math.min(1.5, Math.max(.5, parseFloat(P.size) || 1));
+  outside.style.left = P.x + "px"; outside.style.top = P.y + "px"; outside.style.transformOrigin = "50% 0"; outside.style.transform = "scale(" + sizeValue + ")";
+  tit.textContent = label; if (!label) tit.style.display = "none";
+  $("commentcalltoaction-bf").setAttribute("stroke", color); $("commentcalltoaction-pp").setAttribute("stroke", color);
+  $("commentcalltoaction-rg").setAttribute("stroke", color); $("commentcalltoaction-co").setAttribute("fill", color);
+
+  var cs = Array.from(word), ult = word.lastIndexOf(" "), z = document.createElement("span"), kz = document.createElement("i");
+  z.className = "commentcalltoaction-z"; z.textContent = "\u200b"; kz.className = "commentcalltoaction-k"; kz.id = "commentcalltoaction-k"; kz.style.background = color; z.appendChild(kz); tx.appendChild(z);
+  var letters = [], cursors = [];
+  cs.forEach(function (c, i) {
+    var s = document.createElement("span"), k = document.createElement("i");
+    s.className = "commentcalltoaction-ch"; s.textContent = c === " " ? " " : c; if (ult < 0 || i > ult) s.style.color = color;
+    k.className = "commentcalltoaction-k"; k.style.background = color; s.appendChild(k); tx.appendChild(s); letters.push(s); cursors.push(k);
+  });
+
+  var gco = document.createElementNS(ns, "g"), co = $("commentcalltoaction-co"); fx.insertBefore(gco, co); gco.appendChild(co);
+
+  var measure = function (txt, style, px) {
+    var m = document.createElement("span");
+    m.style.cssText = "position:absolute;left:-99999px;top:0;visibility:hidden;white-space:nowrap;" + style + ";font-size:" + px + "px";
+    m.textContent = txt; document.body.appendChild(m); var w = m.offsetWidth; document.body.removeChild(m); return w;
+  };
+  var fit = function (txt, style, maxPx, minPx, widthValue) { var w = measure(txt, style, maxPx); return Math.max(minPx, Math.floor(w > widthValue ? maxPx * widthValue / w : maxPx)); };
+  var B = { bx: 0, by: 0 };
+  var adjust = function () {
+    var topI = 34;
+    if (label) { tit.style.fontSize = fit(label, "font-family:PlayfairI,serif;font-weight:500;letter-spacing:-.01em", 72, 36, 770) + "px"; topI = 132; }
+    box.style.top = topI + "px"; var H = topI + 132 + 44; panel.style.height = H + "px"; fx.setAttribute("height", H);
+    tx.style.fontSize = fit(word, "font-family:SoraV,sans-serif;font-weight:800;letter-spacing:-.045em", 70, 28, 800 - 130 - 96 - 18 - 50) + "px";
+    ph.style.fontSize = fit(ph.textContent, "font-family:SoraV,sans-serif;font-weight:400", 40, 24, 800 - 130 - 96 - 40) + "px";
+    B.bx = 30 + 800 - 18 - 48; B.by = topI + 18 + 48;
+    ["commentcalltoaction-rg", "commentcalltoaction-dd"].forEach(function (id) { $(id).setAttribute("cx", B.bx); $(id).setAttribute("cy", B.by); });
+    gco.setAttribute("transform", "translate(" + (B.bx + 4) + " " + (B.by - 96) + ")");
+  };
+  adjust();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { adjust(); tl.invalidate(); });
+
+
+  var enter = t0 + .05, exit = t0 + D - .28, u = exit - enter, nC = cs.length;
+  var tC = enter + Math.min(.42, .1 * D), tA = tC + Math.min(.32, .07 * D), tB = tA + Math.max(.35, Math.min(1.3, .28 * u, nC * .075));
+  var tapTime = Math.min(exit - .75, tB + Math.max(.25, Math.min(.5, .1 * u)));
+  tl.fromTo(anchor, { opacity: 0 }, { opacity: 1, duration: .05, ease: "none" }, enter);
+  tl.fromTo(panel, { opacity: 0, y: 44 }, { opacity: 1, y: 0, duration: .42, ease: "back.out(1.4)" }, enter);
+  if (label) tl.fromTo(tit, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: .32, ease: "power3.out" }, enter + .1);
+  tl.fromTo(box, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: .36, ease: "back.out(1.6)" }, enter + .18);
+  tl.fromTo(bt, { opacity: 0, rotation: -40 }, { opacity: 1, rotation: 0, duration: .32, ease: "back.out(2)" }, enter + .3);
+  tl.fromTo(ph, { opacity: 0 }, { opacity: 1, duration: .2, ease: "none" }, enter + .25);
+
+  var kc = $("commentcalltoaction-k");
+  tl.fromTo(kc, { opacity: 0 }, { opacity: 1, duration: .01, ease: "none" }, tC);
+  var pis = Math.max(0, Math.floor((tA - tC) / .16) - 1); for (var j = 1; j <= pis; j++) tl.to(kc, { opacity: j % 2 ? 0 : 1, duration: .01, ease: "none", immediateRender: false }, tC + j * .16);
+  tl.to(kc, { opacity: 0, duration: .01, ease: "none", immediateRender: false }, tA);
+  tl.to(ph, { opacity: 0, duration: .08, ease: "none", immediateRender: false }, tA - .04);
+
+  var dL = (tB - tA) / Math.max(1, nC);
+  letters.forEach(function (s, i) {
+    var q = tA + i * dL;
+    tl.fromTo(s, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: Math.min(.1, dL), ease: "power2.out" }, q);
+    tl.fromTo(cursors[i], { opacity: 0 }, { opacity: 1, duration: .01, ease: "none" }, q);
+    if (i < nC - 1) tl.to(cursors[i], { opacity: 0, duration: .01, ease: "none", immediateRender: false }, q + dL);
+  });
+  tl.to(cursors[nC - 1], { opacity: 0, duration: .01, ease: "none", immediateRender: false }, tB + .12);
+  tl.to(cursors[nC - 1], { opacity: 1, duration: .01, ease: "none", immediateRender: false }, tB + .26);
+  tl.to(cursors[nC - 1], { opacity: 0, duration: .01, ease: "none", immediateRender: false }, tapTime - .02);
+
+  var dd = $("commentcalltoaction-dd"), rg = $("commentcalltoaction-rg");
+  tl.fromTo(dd, { opacity: 0, x: 150, y: 190 }, { opacity: 1, x: 0, y: 0, duration: Math.max(.2, tapTime - tB), ease: "power3.out" }, tB);
+  tl.to(dd, { attr: { r: 25 }, duration: .07, ease: "power2.in", yoyo: true, repeat: 1, immediateRender: false }, tapTime - .05);
+  tl.fromTo(rg, { opacity: .9, attr: { r: 40 } }, { opacity: 0, attr: { r: 128 }, duration: .5, ease: "power2.out", immediateRender: false }, tapTime);
+  tl.fromTo(rg, { opacity: 0 }, { opacity: .9, duration: .01, ease: "none" }, tapTime - .01);
+  tl.to(dd, { opacity: 0, x: 70, y: 110, duration: .3, ease: "power2.in", immediateRender: false }, tapTime + .18);
+  tl.fromTo(bt, { y: 0 }, { y: 5, duration: .07, ease: "power1.out", yoyo: true, repeat: 1, immediateRender: false }, tapTime - .03);
+  tl.fromTo("#commentcalltoaction-bf", { fill: "#fffdf9" }, { fill: color, duration: .1, ease: "none", immediateRender: false }, tapTime);
+  tl.fromTo("#commentcalltoaction-pp", { stroke: color }, { stroke: "#ffffff", duration: .1, ease: "none", immediateRender: false }, tapTime);
+
+  var pl = $("commentcalltoaction-pl"), tv = tapTime + .12;
+  tl.to(pl, { x: 70, y: -46, rotation: -18, opacity: 0, duration: .28, ease: "power2.in", immediateRender: false }, tv);
+  tl.fromTo(pl, { x: -40, y: 0, rotation: 0, opacity: 0 }, { x: 0, y: 0, rotation: 0, opacity: 1, duration: .26, ease: "power3.out", immediateRender: false }, tv + .3);
+  tl.to(box, { x: -6, duration: .06, ease: "power1.out", yoyo: true, repeat: 1, immediateRender: false }, tapTime);
+  tl.fromTo(co, { opacity: 0, y: 30, rotation: -14 }, { opacity: 1, y: 0, rotation: 0, duration: .32, ease: "back.out(2.4)" }, tv + .1);
+  tl.to(co, { y: -30, opacity: 0, duration: Math.max(.2, Math.min(.6, exit - tv - .45)), ease: "power1.in", immediateRender: false }, tv + .42);
+
+  var live = enter + .5, padding = exit - live, turns = Math.max(1, Math.round(padding / 1.3)), halfValue = padding / (turns * 2);
+  if (halfValue > .12) tl.to(anchor, { y: -7, duration: halfValue, ease: "sine.inOut", yoyo: true, repeat: turns * 2 - 1, immediateRender: false }, live);
+  tl.to(anchor, { opacity: 0, y: -28, duration: .26, ease: "power2.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["comment-call-to-action"] = tl;
+})();
+</script>
+</template>
+</body></html>

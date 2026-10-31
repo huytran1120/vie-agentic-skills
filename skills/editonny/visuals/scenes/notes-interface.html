@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Notes interface</title></head>
+<body>
+<!-- Notes interface. When listing requirements, steps, or tasks: a title types in and each item gains a check in sequence. -->
+
+<template id="notes-interface-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+#notesinterface-w{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;overflow:hidden}
+#notesinterface-bg{position:absolute;inset:0;opacity:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,#3a3530 0%,#1b1916 60%,#0c0b0a 100%)}
+#notesinterface-cam{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0}
+#notesinterface-ph{position:absolute;left:64px;top:150px;width:1240px;height:2100px;border-radius:150px;background:linear-gradient(160deg,#2b2b2e,#0b0b0c 40%,#1a1a1c);box-shadow:0 60px 120px rgba(0,0,0,.6),0 0 0 3px #3a3a3e inset}
+#notesinterface-sc{position:absolute;left:26px;top:26px;right:26px;bottom:26px;border-radius:126px;overflow:hidden;background:#fbfaf7}
+#notesinterface-trk{position:absolute;left:0;top:0;width:1188px;height:2048px}
+#notesinterface-st{position:absolute;left:110px;width:880px;top:56px;height:56px;display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:44px;color:#1c1c1e}
+#notesinterface-sg{display:flex;align-items:flex-end;gap:5px;height:30px}
+#notesinterface-sg i{display:block;width:8px;border-radius:2px;background:currentColor}
+.notesinterface-b1{height:9px}.notesinterface-b2{height:15px}.notesinterface-b3{height:21px}.notesinterface-b4{height:28px}
+#notesinterface-nav{position:absolute;left:110px;width:700px;top:160px;height:80px;display:flex;justify-content:space-between;align-items:center;font-size:54px;font-weight:500}
+#notesinterface-vo{display:flex;align-items:center;gap:14px}
+.notesinterface-chev{width:24px;height:40px;fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+#notesinterface-ok{font-weight:700}
+#notesinterface-dt{position:absolute;left:114px;top:280px;font-size:40px;font-weight:500;color:#8e8e93}
+#notesinterface-col{position:absolute;left:110px;width:700px;top:350px}
+#notesinterface-ti{position:relative;width:700px;font-weight:800;line-height:1.1;letter-spacing:-.02em;color:#1c1c1e}
+#notesinterface-li{position:relative;left:-4px;width:700px;margin-top:30px}
+.notesinterface-it{position:relative;display:flex;align-items:flex-start;gap:34px;margin-top:44px;opacity:0}
+.notesinterface-bx{position:relative;flex:0 0 auto;width:86px;height:86px;border-radius:50%;border:6px solid #c7c7cc}
+.notesinterface-fi{position:absolute;left:-6px;top:-6px;width:86px;height:86px;border-radius:50%;opacity:0}
+.notesinterface-ck{position:absolute;left:-6px;top:-6px;width:86px;height:86px;fill:none;stroke:#fff;stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+.notesinterface-tx{flex:1 1 auto;font-weight:600;line-height:1.16;color:#1c1c1e;letter-spacing:-.01em}
+.notesinterface-ch{position:relative;opacity:0}
+.notesinterface-z{position:relative}
+.notesinterface-k{position:absolute;right:-.07em;top:.06em;width:.075em;height:1em;border-radius:3px;opacity:0}
+#notesinterface-gl{position:absolute;inset:0;background:linear-gradient(118deg,rgba(255,255,255,0) 30%,rgba(255,255,255,.16) 46%,rgba(255,255,255,0) 60%);mix-blend-mode:screen}
+#notesinterface-dof{position:absolute;inset:0;opacity:0;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);-webkit-mask-image:radial-gradient(ellipse 70% 52% at 50% 46%,transparent 55%,#000 100%);mask-image:radial-gradient(ellipse 70% 52% at 50% 46%,transparent 55%,#000 100%)}
+#notesinterface-vin{position:absolute;inset:0;opacity:0;box-shadow:inset 0 0 320px 90px rgba(0,0,0,.55)}
+#notesinterface-kb{position:absolute;left:0;top:1290px;width:1188px;height:760px;opacity:0;background:rgba(206,209,216,.94);border-top:1px solid rgba(0,0,0,.08)}
+.notesinterface-kr{position:absolute;left:0;display:flex;gap:14px}
+.notesinterface-ky{position:relative;width:98px;height:128px;border-radius:14px;background:#fff;box-shadow:0 2px 0 rgba(0,0,0,.28);font-size:56px;font-weight:400;line-height:128px;text-align:center;color:#111}
+.notesinterface-kh{position:absolute;inset:0;border-radius:14px;background:#a9adb6;opacity:0}
+</style>
+<div id="root" data-composition-id="notes-interface" data-width="1080" data-height="1920" data-duration="4.8">
+<div id="notesinterface-w"><div id="notesinterface-bg"></div><div id="notesinterface-cam"><div id="notesinterface-ph"><div id="notesinterface-sc"><div id="notesinterface-trk"><div id="notesinterface-st"><span id="notesinterface-hr">10:24</span><span id="notesinterface-sg"><i class="notesinterface-b1"></i><i class="notesinterface-b2"></i><i class="notesinterface-b3"></i><i class="notesinterface-b4"></i></span></div><div id="notesinterface-nav"><span id="notesinterface-vo"><svg viewBox="0 0 24 40" class="notesinterface-chev"><path d="M18 4 L4 20 L18 36"/></svg>Notes</span><span id="notesinterface-ok">OK</span></div><div id="notesinterface-dt">Today, 10:24</div><div id="notesinterface-col"><div id="notesinterface-ti"></div><div id="notesinterface-li"></div></div></div><div id="notesinterface-kb"></div><div id="notesinterface-gl"></div></div></div></div><div id="notesinterface-dof"></div><div id="notesinterface-vin"></div></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["notes-interface"] || { duration: 4.8 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 4.8, t0 = 0;
+
+  var P = {
+    title: "You need", // Note title, typed letter by letter.
+    items: "Know your message|Record your idea|Describe the finished video", // Two to five checklist items separated by |.
+    background: "light", // "light" or "dark" selects the app color.
+    color: "#ff9f0a", // Check-mark and detail color.
+  };
+
+
+  var darkness = String(P.background || "light") === "dark", colorC = P.color || "#ff9f0a";
+  var items = String(P.items || "").split("|").map(function (s) { return s.trim(); }).filter(function (s) { return s; }).slice(0, 5);
+  if (items.length < 1) items = ["Item"];
+  var $ = function (id) { return document.getElementById(id); };
+  var screen = $("notesinterface-sc"), tit = $("notesinterface-ti"), list = $("notesinterface-li");
+  var colorText = darkness ? "#f2f2f7" : "#1c1c1e";
+  screen.style.background = darkness ? "linear-gradient(180deg,#1f1f22,#161618)" : "linear-gradient(180deg,#fdfcf9,#f6f4ee)";
+  $("notesinterface-st").style.color = colorText; tit.style.color = colorText;
+  function darken(c, f) { var h = String(c).replace("#", ""); if (h.length === 3) h = h.replace(/(.)/g, "$1$1"); if (!/^[0-9a-fA-F]{6}$/.test(h)) return c; var v = parseInt(h, 16); return "rgb(" + Math.round(((v >> 16) & 255) * f) + "," + Math.round(((v >> 8) & 255) * f) + "," + Math.round((v & 255) * f) + ")"; }
+  $("notesinterface-nav").style.color = darkness ? colorC : darken(colorC, .5); $("notesinterface-dt").style.color = darkness ? "#a1a1a6" : "#6c6c70";
+  if (darkness) $("notesinterface-bg").style.background = "radial-gradient(ellipse 80% 60% at 50% 40%,#2a3036 0%,#14171a 60%,#08090a 100%)";
+
+  function assemble(el, txt, cls) {
+    var cs = Array.from(String(txt).normalize("NFC")), z = document.createElement("span"), k = document.createElement("i"), i, s;
+    el.innerHTML = ""; z.className = "notesinterface-z"; k.className = "notesinterface-k"; k.id = el.id + "k"; z.appendChild(k); el.appendChild(z);
+    for (i = 0; i < cs.length; i++) {
+      s = document.createElement("span"); s.className = "notesinterface-ch"; s.id = el.id + "_" + i; s.textContent = cs[i];
+      k = document.createElement("i"); k.className = "notesinterface-k"; k.id = el.id + "k" + i; s.appendChild(k); el.appendChild(s);
+    }
+    el.querySelectorAll("i.notesinterface-k").forEach(function (c) { c.style.background = colorC; });
+    return cs.length;
+  }
+
+  function measure(txts, widthValue, maxPx, minPx, lines, lh, style) {
+    var m = document.createElement("div"), px = maxPx, ok, j;
+    m.style.cssText = "position:absolute;left:-99999px;top:0;visibility:hidden;font-family:Inter,sans-serif;white-space:normal;" + style + ";width:" + Math.round(widthValue * .93) + "px;line-height:" + lh;
+    document.body.appendChild(m);
+    for (; px > minPx; px -= 2) {
+      m.style.fontSize = px + "px"; ok = true;
+      for (j = 0; j < txts.length; j++) { m.textContent = txts[j]; if (m.offsetHeight > px * lh * lines + 4 || m.scrollWidth > widthValue * .93 + 2) { ok = false; break; } }
+      if (ok) break;
+    }
+    document.body.removeChild(m); return px;
+  }
+  function whenFont(f) { if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { f(); tl.invalidate(); }); }
+  var nT = assemble(tit, P.title || "You need");
+  var itemLines = [], tx, it, bx, fi, ck, nI = [];
+  items.forEach(function (s, q) {
+    it = document.createElement("div"); it.className = "notesinterface-it"; it.id = "notesinterface-it" + q;
+    bx = document.createElement("div"); bx.className = "notesinterface-bx"; bx.style.borderColor = darkness ? "#55555a" : "#c7c7cc";
+    fi = document.createElement("div"); fi.className = "notesinterface-fi"; fi.id = "notesinterface-fi" + q; fi.style.background = colorC; bx.appendChild(fi);
+    bx.insertAdjacentHTML("beforeend", '<svg class="notesinterface-ck" viewBox="0 0 68 68"><path id="notesinterface-cp' + q + '" d="M20 35 L30 45 L49 24" stroke-dasharray="44" stroke-dashoffset="44"/></svg>');
+    tx = document.createElement("div"); tx.className = "notesinterface-tx"; tx.id = "notesinterface-tx" + q; tx.style.color = colorText;
+    it.appendChild(bx); it.appendChild(tx); list.appendChild(it);
+    nI.push(assemble(tx, s)); itemLines.push(tx);
+  });
+
+  function adjust() {
+    tit.style.fontSize = measure([String(P.title || "You need")], 700, 128, 72, 2, 1.1, "font-weight:800;letter-spacing:-.02em") + "px";
+    var pxI = measure(items, 580, 56, 52, 2, 1.16, "font-weight:600;letter-spacing:-.01em");
+    itemLines.forEach(function (e) { e.style.fontSize = pxI + "px"; e.style.marginTop = Math.round((86 - pxI * 1.16) / 2) + "px"; });
+  }
+  adjust(); whenFont(adjust);
+
+  var kb = $("notesinterface-kb"), rows = ["qwertyuiop", "asdfghjkl", "zxcvbnm"], has = {};
+  if (darkness) kb.style.background = "rgba(44,44,48,.95)";
+  rows.forEach(function (f, r) {
+    var fl = document.createElement("div"); fl.className = "notesinterface-kr"; fl.style.top = (22 + r * 146) + "px"; fl.style.left = (34 + r * 56 + (r === 2 ? 56 : 0)) + "px";
+    Array.from(f).forEach(function (l) {
+      var k = document.createElement("div"); k.className = "notesinterface-ky"; k.textContent = l; k.id = "notesinterface-ky" + l;
+      if (darkness) { k.style.background = "#6b6b70"; k.style.color = "#fff"; k.style.boxShadow = "0 2px 0 rgba(0,0,0,.5)"; }
+      var hl = document.createElement("div"); hl.className = "notesinterface-kh"; hl.id = "notesinterface-kh" + l; if (darkness) hl.style.background = "#9a9aa0"; k.appendChild(hl);
+      fl.appendChild(k); has[l] = 0;
+    });
+    kb.appendChild(fl);
+  });
+  var esp = document.createElement("div"); esp.className = "notesinterface-kr"; esp.style.top = (22 + 3 * 146) + "px"; esp.style.left = "264px";
+  esp.innerHTML = '<div class="notesinterface-ky" id="notesinterface-kyesp" style="width:560px"><div class="notesinterface-kh" id="notesinterface-khesp"></div></div>'; kb.appendChild(esp);
+  if (darkness) { $("notesinterface-kyesp").style.background = "#6b6b70"; $("notesinterface-khesp").style.background = "#9a9aa0"; }
+  has[" "] = 0;
+  var textLetters = Array.from(String(P.title || "You need").normalize("NFC")).map(function (ch) { var b = ch.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase(); return b === " " ? "esp" : (b in has ? b : ""); });
+
+  list.querySelectorAll(".notesinterface-ch").forEach(function (c) { c.style.opacity = 1; });
+
+  var col = $("notesinterface-col");
+  function itemEnd(q) { var e = $("notesinterface-it" + q); return 176 + col.offsetTop + list.offsetTop + e.offsetTop + e.offsetHeight; }
+
+
+  var enter = t0 + .05, exit = t0 + D - .32, u = exit - enter;
+  var ta = enter + .32, tb = ta + Math.max(.45, Math.min(1.3, .26 * u, nT * .085));
+  var ti0 = tb + Math.max(.1, .04 * u), tiE = exit - Math.max(.3, .1 * u), slot = (tiE - ti0) / items.length;
+  tl.fromTo("#notesinterface-w", { opacity: 0 }, { opacity: 1, duration: .01, ease: "none" }, enter);
+  tl.fromTo("#notesinterface-bg", { opacity: 0 }, { opacity: 1, duration: .2, ease: "power1.out" }, enter);
+  tl.fromTo("#notesinterface-cam", { opacity: 0 }, { opacity: 1, duration: .14, ease: "power1.out" }, enter);
+  tl.fromTo("#notesinterface-cam", { y: 300, rotationX: 28, rotationY: -10, transformPerspective: 1700, filter: "blur(26px)" },
+    { y: 0, rotationX: 10, rotationY: -5, transformPerspective: 1700, filter: "blur(0px)", duration: .5, ease: "power3.out", immediateRender: false }, enter);
+
+  tl.fromTo("#notesinterface-dt", { opacity: 0 }, { opacity: 1, duration: .2, ease: "none" }, enter + .42);
+  tl.fromTo("#notesinterface-dof", { opacity: 0 }, { opacity: 1, duration: .3, ease: "none" }, enter + .1);
+  tl.fromTo("#notesinterface-vin", { opacity: 0 }, { opacity: 1, duration: .3, ease: "none" }, enter);
+
+  var vM = Math.max(1, Math.round((exit - enter - .5) / 1.3)), dM = (exit - enter - .5) / vM;
+  tl.fromTo("#notesinterface-cam", { rotation: -.5 }, { rotation: .5, duration: dM, ease: "sine.inOut", yoyo: true, repeat: vM - 1, immediateRender: false }, enter + .5);
+  tl.fromTo("#notesinterface-cam", { rotationY: -5 }, { rotationY: -2.5, duration: dM, ease: "sine.inOut", yoyo: true, repeat: vM - 1, immediateRender: false }, enter + .5);
+
+  var y0 = 300;
+  tl.fromTo("#notesinterface-trk", { y: y0, x: 26 }, { y: y0, x: -22, duration: tb - enter, ease: "sine.inOut" }, enter);
+
+  var dL = (tb - ta) / Math.max(1, nT), q, tq;
+  tl.fromTo("#notesinterface-tik", { opacity: 0 }, { opacity: 1, duration: .01, ease: "steps(1)" }, enter + .12);
+  tl.to("#notesinterface-tik", { opacity: 0, duration: .01, ease: "steps(1)", immediateRender: false }, ta);
+  for (q = 0; q < nT; q++) {
+    tq = ta + q * dL;
+    tl.fromTo("#notesinterface-ti_" + q, { opacity: 0 }, { opacity: 1, duration: .01, ease: "steps(1)" }, tq);
+    tl.fromTo("#notesinterface-tik" + q, { opacity: 0 }, { opacity: 1, duration: .01, ease: "steps(1)" }, tq);
+    if (textLetters[q]) { tl.fromTo("#notesinterface-kh" + textLetters[q], { opacity: 0 }, { opacity: 1, duration: .01, ease: "steps(1)", immediateRender: !has[textLetters[q] === "esp" ? " " : textLetters[q]] }, tq); tl.to("#notesinterface-kh" + textLetters[q], { opacity: 0, duration: .01, ease: "steps(1)", immediateRender: false }, tq + Math.min(.09, dL * .7)); has[textLetters[q] === "esp" ? " " : textLetters[q]] = 1; }
+    if (q < nT - 1) tl.to("#notesinterface-tik" + q, { opacity: 0, duration: .01, ease: "steps(1)", immediateRender: false }, tq + dL);
+  }
+  tl.fromTo("#notesinterface-kb", { opacity: 0, y: 260 }, { opacity: 1, y: 0, duration: .3, ease: "power3.out" }, enter + .1);
+  tl.to("#notesinterface-kb", { y: 760, duration: .4, ease: "power2.in", immediateRender: false }, tb + .12);
+
+  var cL = "#notesinterface-tik" + (nT - 1), vz = Math.floor((ti0 + .3 - tb) / .26);
+  for (q = 0; q < vz; q++) {
+    tl.to(cL, { opacity: 0, duration: .01, ease: "steps(1)", immediateRender: false }, tb + .1 + q * .26);
+    tl.to(cL, { opacity: 1, duration: .01, ease: "steps(1)", immediateRender: false }, tb + .23 + q * .26);
+  }
+  tl.to(cL, { opacity: 0, duration: .01, ease: "steps(1)", immediateRender: false }, ti0 + .3);
+
+  items.forEach(function (s, q) {
+    var tA = ti0 + q * slot, tC = tA + Math.max(.22, Math.min(.5, slot * .5));
+
+    tl.to("#notesinterface-trk", { y: function () { return Math.max(-900, Math.min(y0, 1320 - itemEnd(q))); }, duration: Math.min(.55, slot * .8), ease: "power2.inOut", immediateRender: false }, tA - .08);
+    tl.fromTo("#notesinterface-it" + q, { opacity: 0, y: 34, filter: "blur(6px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: .3, ease: "power3.out" }, tA);
+    tl.fromTo("#notesinterface-fi" + q, { opacity: 0 }, { opacity: 1, duration: .1, ease: "none" }, tC);
+    tl.fromTo("#notesinterface-cp" + q, { strokeDashoffset: 44 }, { strokeDashoffset: 0, duration: .22, ease: "power2.out" }, tC + .04);
+    tl.fromTo("#notesinterface-tx" + q, { opacity: 1 }, { opacity: .7, duration: .25, ease: "none", immediateRender: false }, tC + .12);
+  });
+
+  tl.to("#notesinterface-cam", { y: -300, rotationX: -8, filter: "blur(28px)", duration: .3, ease: "power2.in", immediateRender: false }, exit);
+  tl.to("#notesinterface-w", { opacity: 0, duration: .3, ease: "power2.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["notes-interface"] = tl;
+})();
+</script>
+</template>
+</body></html>

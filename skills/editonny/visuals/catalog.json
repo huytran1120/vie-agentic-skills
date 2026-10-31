@@ -1,0 +1,4556 @@
+{
+  "version": "2026-10-12",
+  "scenes": [
+    {
+      "id": "revenue-counter",
+      "file": "compositions/scenes/visuals/revenue-counter.html",
+      "name": "Revenue counter",
+      "category": "General",
+      "whenToUse": "When speech mentions revenue, profit, or a monetary result.",
+      "duration": 6,
+      "format": "9:16",
+      "layout": "fullscreen",
+      "hidesCaptions": true,
+      "texts": [
+        "Monthly revenue",
+        "R$",
+        "+218%",
+        "in 30 days, with one video a day",
+        "+37",
+        "sales today",
+        "ticket",
+        "R$ 97"
+      ]
+    },
+    {
+      "id": "three-steps",
+      "file": "compositions/scenes/visuals/three-steps.html",
+      "name": "Three steps",
+      "category": "General",
+      "whenToUse": "When speech summarizes a method in three steps.",
+      "duration": 6,
+      "format": "9:16",
+      "layout": "fullscreen",
+      "hidesCaptions": true,
+      "texts": [
+        "Just",
+        "3 steps",
+        "You record",
+        "as it happens, without trimming",
+        "AI edits",
+        "trims, captions, and animates",
+        "You publish",
+        "the finished video, the same day"
+      ]
+    },
+    {
+      "id": "before-after",
+      "file": "compositions/scenes/visuals/before-after.html",
+      "name": "Before after",
+      "category": "General",
+      "whenToUse": "When comparing a previous result with a new result using two numbers.",
+      "duration": 6,
+      "format": "9:16",
+      "layout": "fullscreen",
+      "hidesCaptions": true,
+      "texts": [
+        "BEFORE",
+        "hours",
+        "to edit a one-minute video",
+        "AFTER",
+        "minutes",
+        "and the video is ready to post",
+        "22x",
+        "faster"
+      ]
+    },
+    {
+      "id": "call-to-action",
+      "file": "compositions/scenes/visuals/call-to-action.html",
+      "name": "Call to action",
+      "category": "General",
+      "whenToUse": "At the end of a video, when asking viewers to tap a button.",
+      "duration": 6,
+      "format": "9:16",
+      "layout": "fullscreen",
+      "hidesCaptions": true,
+      "texts": [
+        "Tap",
+        "on",
+        "Learn",
+        "more",
+        "and see AI edit your video",
+        "Learn more ›"
+      ]
+    },
+    {
+      "id": "question-answer",
+      "file": "compositions/scenes/visuals/question-answer.html",
+      "name": "Question answer",
+      "category": "General",
+      "whenToUse": "When answering a frequently asked question.",
+      "duration": 6,
+      "format": "9:16",
+      "layout": "fullscreen",
+      "hidesCaptions": true,
+      "texts": [
+        "The question I hear most",
+        "How much",
+        "does it cost to",
+        "edit",
+        "a",
+        "video",
+        "per",
+        "day?",
+        "Answer",
+        "R$",
+        "0.00",
+        "per video, with AI editing"
+      ]
+    },
+    {
+      "id": "step-by-step",
+      "file": "compositions/scenes/visuals/step-by-step.html",
+      "name": "Step by step",
+      "category": "General",
+      "whenToUse": "When explaining four steps in sequence.",
+      "duration": 6,
+      "format": "9:16",
+      "layout": "fullscreen",
+      "hidesCaptions": true,
+      "texts": [
+        "Record",
+        "naturally, without a script",
+        "2 minutes",
+        "Send",
+        "the original file from your phone",
+        "1 tap",
+        "AI edits",
+        "cuts, captions, sound, and animation",
+        "8 minutes",
+        "Publish",
+        "the finished video, the same day",
+        "Today"
+      ]
+    },
+    {
+      "id": "numbered-list",
+      "file": "compositions/scenes/visuals/numbered-list.html",
+      "name": "Numbered list",
+      "category": "General",
+      "whenToUse": "When listing mistakes, tips, or reasons.",
+      "duration": 6,
+      "format": "9:16",
+      "layout": "fullscreen",
+      "hidesCaptions": true,
+      "texts": [
+        "5 mistakes",
+        "that hurt",
+        "your video",
+        "Slow opening",
+        "no hook in the first 3 seconds",
+        "No captions",
+        "many people watch without sound",
+        "Long silences",
+        "each long pause invites a swipe",
+        "Static image",
+        "nothing changes for over 3 seconds",
+        "No call to action",
+        "they like it and leave",
+        "the worst of all"
+      ]
+    },
+    {
+      "id": "comparison",
+      "file": "compositions/scenes/visuals/comparison.html",
+      "name": "Comparison",
+      "category": "General",
+      "whenToUse": "When comparing two options side by side.",
+      "duration": 6,
+      "format": "9:16",
+      "layout": "fullscreen",
+      "hidesCaptions": true,
+      "texts": [
+        "Which is worth",
+        "more?",
+        "Option A",
+        "Editor",
+        "Delivery",
+        "3 days",
+        "Per video",
+        "R$ 150",
+        "Per week",
+        "2 videos",
+        "Option B",
+        "With AI",
+        "Delivery",
+        "8 min",
+        "Per video",
+        "R$ 0.48",
+        "Per week",
+        "25 videos",
+        "VS",
+        "The numbers speak for themselves"
+      ]
+    },
+    {
+      "id": "phone-tutorial",
+      "file": "compositions/scenes/visuals/phone-tutorial.html",
+      "name": "Phone tutorial",
+      "category": "General",
+      "whenToUse": "When demonstrating a sequence of actions inside an app.",
+      "duration": 6,
+      "format": "9:16",
+      "layout": "fullscreen",
+      "hidesCaptions": true,
+      "texts": [
+        "Enable in",
+        "2 taps",
+        "Settings",
+        "Video",
+        "Account",
+        "Video",
+        "Notifications",
+        "Privacy",
+        "Help",
+        "Quality",
+        "Format",
+        "Captions",
+        "Music",
+        "Automatic captions",
+        "enabled for every new video",
+        "Open Video",
+        "Enable captions",
+        "Done, captions are on"
+      ]
+    },
+    {
+      "id": "phone-chat",
+      "file": "compositions/scenes/visuals/phone-chat.html",
+      "name": "Phone chat",
+      "category": "General",
+      "whenToUse": "When describing a customer conversation that led to a sale.",
+      "duration": 6,
+      "format": "9:16",
+      "layout": "fullscreen",
+      "hidesCaptions": true,
+      "texts": [
+        "New customer",
+        "online now",
+        "Hi! I saw your video. Any openings?",
+        "Yes! Sending you the link now",
+        "Great, I just paid",
+        "Received. Welcome!",
+        "Payment received",
+        "R$ 497.00 from New customer",
+        "now",
+        "From video to",
+        "conversation",
+        "from conversation to",
+        "sale"
+      ]
+    },
+    {
+      "id": "laptop-dashboard",
+      "file": "compositions/scenes/visuals/laptop-dashboard.html",
+      "name": "Laptop dashboard",
+      "category": "General",
+      "whenToUse": "When presenting monthly results.",
+      "duration": 6,
+      "format": "9:16",
+      "layout": "fullscreen",
+      "hidesCaptions": true,
+      "texts": [
+        "This month in",
+        "numbers",
+        "Visits",
+        "+62%",
+        "Sales",
+        "+41%",
+        "Conversion",
+        "0.0%",
+        "+1,3 p.p.",
+        "Weekly sales",
+        "+62%",
+        "versus last month",
+        "best week:",
+        "the last one"
+      ]
+    },
+    {
+      "id": "notifications",
+      "file": "compositions/scenes/visuals/notifications.html",
+      "name": "Notifications",
+      "category": "General",
+      "whenToUse": "When describing sales arriving one after another.",
+      "duration": 6,
+      "format": "9:16",
+      "layout": "fullscreen",
+      "hidesCaptions": true,
+      "texts": [
+        "Today's sales",
+        "R$",
+        "and it is only 10 a.m.",
+        "Payment approved",
+        "Instant transfer · now",
+        "+ R$ 97",
+        "Payment approved",
+        "Card · now",
+        "+ R$ 197",
+        "Payment approved",
+        "Instant transfer · now",
+        "+ R$ 97",
+        "Payment approved",
+        "Instant transfer · now",
+        "+ R$ 297",
+        "Payment approved",
+        "Card · now",
+        "+ R$ 97"
+      ]
+    },
+    {
+      "id": "mortgage-calculator",
+      "file": "compositions/scenes/visuals/mortgage-calculator.html",
+      "name": "Mortgage calculator",
+      "category": "Real estate",
+      "whenToUse": "When explaining an estimated mortgage payment.",
+      "duration": 6,
+      "format": "9:16",
+      "layout": "fullscreen",
+      "hidesCaptions": true,
+      "texts": [
+        "What is the",
+        "monthly payment?",
+        "Property value",
+        "R$",
+        "Down payment ·",
+        "R$",
+        "Delivery",
+        "years",
+        "Estimated payment",
+        "R$",
+        "/month",
+        "Illustrative estimate.",
+        "Subject to review"
+      ]
+    },
+    {
+      "id": "property-card",
+      "file": "compositions/scenes/visuals/property-card.html",
+      "name": "Property card",
+      "category": "Real estate",
+      "whenToUse": "When presenting a property with a price and dimensions.",
+      "duration": 6,
+      "format": "9:16",
+      "layout": "fullscreen",
+      "hidesCaptions": true,
+      "texts": [
+        "FOR SALE",
+        "R$",
+        "Downtown apartment",
+        "68 m²",
+        "usable area",
+        "bedrooms",
+        "parking space",
+        "Book a viewing"
+      ]
+    },
+    {
+      "id": "medical-warning-signs",
+      "file": "compositions/scenes/visuals/medical-warning-signs.html",
+      "name": "Medical warning signs",
+      "category": "Health",
+      "whenToUse": "When listing symptoms and possible contributing factors. Replace illustrative content with verified clinical information.",
+      "duration": 6,
+      "format": "9:16",
+      "layout": "fullscreen",
+      "hidesCaptions": true,
+      "texts": [
+        "3 signs you",
+        "should not ignore",
+        "Daily headaches",
+        "for over two weeks",
+        "Persistent fatigue",
+        "even after sleeping well",
+        "Dizziness on standing",
+        "several times a week",
+        "Possible contributors",
+        "Dehydration, poor sleep",
+        "Still happening?",
+        "Book an appointment"
+      ]
+    },
+    {
+      "id": "body-diagram",
+      "file": "compositions/scenes/visuals/body-diagram.html",
+      "name": "Body diagram",
+      "category": "Health",
+      "whenToUse": "When identifying body regions and possible causes of pain. Illustrative content does not replace medical advice.",
+      "duration": 6,
+      "format": "9:16",
+      "layout": "fullscreen",
+      "hidesCaptions": true,
+      "texts": [
+        "Where it hurts and",
+        "what it may mean",
+        "Head",
+        "tension or eye strain",
+        "Chest",
+        "posture or anxiety",
+        "Stomach",
+        "long fasting or coffee",
+        "Not a substitute for",
+        "medical advice"
+      ]
+    },
+    {
+      "id": "balanced-plate",
+      "file": "compositions/scenes/visuals/balanced-plate.html",
+      "name": "Balanced plate",
+      "category": "Nutrition",
+      "whenToUse": "When explaining how to divide a plate into food groups.",
+      "duration": 6,
+      "format": "9:16",
+      "layout": "fullscreen",
+      "hidesCaptions": true,
+      "texts": [
+        "Build your plate",
+        "like this",
+        "50%",
+        "vegetables",
+        "25%",
+        "protein",
+        "25%",
+        "carbohydrates",
+        "No weighing,",
+        "no calorie counting"
+      ]
+    },
+    {
+      "id": "food-swap",
+      "file": "compositions/scenes/visuals/food-swap.html",
+      "name": "Food swap",
+      "category": "Nutrition",
+      "whenToUse": "When suggesting a food substitution.",
+      "duration": 6,
+      "format": "9:16",
+      "layout": "fullscreen",
+      "hidesCaptions": true,
+      "texts": [
+        "Smart",
+        "swap",
+        "Instead of",
+        "Soda",
+        "a 350 ml can",
+        "149 kcal",
+        "Choose",
+        "Water with lemon",
+        "the same glass, with ice",
+        "6 kcal",
+        "kcal per day",
+        "without changing your plate"
+      ]
+    },
+    {
+      "id": "legal-deadline",
+      "file": "compositions/scenes/visuals/legal-deadline.html",
+      "name": "Legal deadline",
+      "category": "Legal",
+      "whenToUse": "When explaining a running legal deadline. Verify the applicable jurisdiction and facts.",
+      "duration": 6,
+      "format": "9:16",
+      "layout": "fullscreen",
+      "hidesCaptions": true,
+      "texts": [
+        "Your deadline is",
+        "approaching",
+        "October",
+        "2026",
+        "Remaining",
+        "30",
+        "days",
+        "after that, the right may expire"
+      ]
+    },
+    {
+      "id": "legal-code",
+      "file": "compositions/scenes/visuals/legal-code.html",
+      "name": "Legal code",
+      "category": "Legal",
+      "whenToUse": "When quoting a legal provision. Replace illustrative legal text with the applicable verified source.",
+      "duration": 6,
+      "format": "9:16",
+      "layout": "fullscreen",
+      "hidesCaptions": true,
+      "texts": [
+        "Bought it and",
+        "changed your mind?",
+        "Consumer Protection Code",
+        "Art. 49",
+        "The consumer may cancel the contract",
+        "within 7 days",
+        "when the purchase is made outside the store.",
+        "IT IS YOUR RIGHT",
+        "Applies to purchases",
+        "online and by phone"
+      ]
+    },
+    {
+      "id": "follower-counter",
+      "file": "compositions/scenes/visuals/follower-counter.html",
+      "name": "Follower counter",
+      "category": "Creators",
+      "whenToUse": "When celebrating or discussing a follower count.",
+      "duration": 6,
+      "format": "9:16",
+      "layout": "fullscreen",
+      "hidesCaptions": true,
+      "texts": [
+        "@yourprofile",
+        "9,874",
+        "followers",
+        "10K",
+        "+126",
+        "today alone"
+      ]
+    },
+    {
+      "id": "creator-comment",
+      "file": "compositions/scenes/visuals/creator-comment.html",
+      "name": "Creator comment",
+      "category": "Creators",
+      "whenToUse": "When replying to a viewer's comment.",
+      "duration": 6,
+      "format": "9:16",
+      "layout": "fullscreen",
+      "hidesCaptions": true,
+      "texts": [
+        "Pinned comment",
+        "@maria.fit",
+        "2 hours ago",
+        "I",
+        "followed",
+        "the steps",
+        "you",
+        "showed",
+        "and",
+        "reached",
+        "100",
+        "thousand",
+        "views",
+        "Your reply",
+        "Today's video walks you through every step"
+      ]
+    },
+    {
+      "id": "legal-article-panel",
+      "file": "compositions/scenes/visuals/legal-article-panel.html",
+      "name": "Legal article panel",
+      "category": "Legal panels",
+      "whenToUse": "When showing a legal article on a document. Verify the jurisdiction and cited rule.",
+      "duration": 6,
+      "format": "9:16",
+      "layout": "frame",
+      "hidesCaptions": true,
+      "texts": [
+        "CONSUMER CODE",
+        "7-day period",
+        "Art.",
+        "49",
+        "PURCHASE OUTSIDE THE STORE",
+        "CONSUMER RIGHTS",
+        "Cancellation period",
+        "• illustrative example"
+      ]
+    },
+    {
+      "id": "legal-deadline-panel",
+      "file": "compositions/scenes/visuals/legal-deadline-panel.html",
+      "name": "Legal deadline panel",
+      "category": "Legal panels",
+      "whenToUse": "When explaining a legal time limit on a timeline.",
+      "duration": 6,
+      "format": "9:16",
+      "layout": "frame",
+      "hidesCaptions": true,
+      "texts": [
+        "RECEIVED",
+        "LAST DAY",
+        "days",
+        "TO CANCEL THE PURCHASE",
+        "CONSUMER RIGHTS",
+        "Cancellation period",
+        "• illustrative example"
+      ]
+    },
+    {
+      "id": "refund-panel",
+      "file": "compositions/scenes/visuals/refund-panel.html",
+      "name": "Refund panel",
+      "category": "Legal panels",
+      "whenToUse": "When adding up the components of a customer refund.",
+      "duration": 6,
+      "format": "9:16",
+      "layout": "frame",
+      "hidesCaptions": true,
+      "texts": [
+        "Product",
+        "R$ 300",
+        "Shipping",
+        "R$ 25",
+        "FULL REFUND",
+        "R$",
+        "No reason required",
+        "CONSUMER RIGHTS",
+        "Cancellation period",
+        "• illustrative example"
+      ]
+    },
+    {
+      "id": "three-second-hook-panel",
+      "file": "compositions/scenes/visuals/three-second-hook-panel.html",
+      "name": "Three second hook panel",
+      "category": "Creator panels",
+      "whenToUse": "When explaining the importance of the first three seconds.",
+      "duration": 6,
+      "format": "9:16",
+      "layout": "frame",
+      "hidesCaptions": true,
+      "texts": [
+        "THE DECIDING MOMENT",
+        "Stayed or swiped away",
+        "ALGORITHM",
+        "How a video spreads",
+        "• illustrative figures"
+      ]
+    },
+    {
+      "id": "waveform-panel",
+      "file": "compositions/scenes/visuals/waveform-panel.html",
+      "name": "Waveform panel",
+      "category": "Creator panels",
+      "whenToUse": "When explaining successive audience tests for a video.",
+      "duration": 6,
+      "format": "9:16",
+      "layout": "frame",
+      "hidesCaptions": true,
+      "texts": [
+        "PEOPLE SEE IT FIRST",
+        "If they stay, it reaches more people",
+        "ALGORITHM",
+        "How a video spreads",
+        "• illustrative figures"
+      ]
+    },
+    {
+      "id": "engagement-panel",
+      "file": "compositions/scenes/visuals/engagement-panel.html",
+      "name": "Engagement panel",
+      "category": "Creator panels",
+      "whenToUse": "When listing viewer engagement signals.",
+      "duration": 6,
+      "format": "9:16",
+      "layout": "frame",
+      "hidesCaptions": true,
+      "texts": [
+        "Watched to the end",
+        "Shared",
+        "Saved",
+        "SIGNALS THAT COUNT",
+        "ALGORITHM",
+        "How a video spreads",
+        "• illustrative figures"
+      ]
+    },
+    {
+      "id": "heart-panel",
+      "file": "compositions/scenes/visuals/heart-panel.html",
+      "name": "Heart panel",
+      "category": "Health panels",
+      "whenToUse": "When introducing heart rate and cardiovascular health.",
+      "duration": 6,
+      "format": "9:16",
+      "layout": "frame",
+      "hidesCaptions": true,
+      "texts": [
+        "bpm",
+        "THE HEART AT REST",
+        "CARDIOLOGY",
+        "High blood pressure",
+        "• illustrative content"
+      ]
+    },
+    {
+      "id": "artery-panel",
+      "file": "compositions/scenes/visuals/artery-panel.html",
+      "name": "Artery panel",
+      "category": "Health panels",
+      "whenToUse": "When explaining pressure in a clear or narrowed artery.",
+      "duration": 6,
+      "format": "9:16",
+      "layout": "frame",
+      "hidesCaptions": true,
+      "texts": [
+        "12",
+        "per",
+        "PRESSURE IN THE ARTERY",
+        "Clear passage",
+        "Narrow passage",
+        "CARDIOLOGY",
+        "High blood pressure",
+        "• illustrative content"
+      ]
+    },
+    {
+      "id": "health-chart-panel",
+      "file": "compositions/scenes/visuals/health-chart-panel.html",
+      "name": "Health chart panel",
+      "category": "Health panels",
+      "whenToUse": "When illustrating a risk range or an undiagnosed condition. Verify clinical figures before use.",
+      "duration": 6,
+      "format": "9:16",
+      "layout": "frame",
+      "hidesCaptions": true,
+      "texts": [
+        "HIGH",
+        "NORMAL",
+        "1 in 4",
+        "HAS IT WITHOUT SYMPTOMS",
+        "Check it once a year",
+        "CARDIOLOGY",
+        "High blood pressure",
+        "• illustrative content"
+      ]
+    },
+    {
+      "id": "drink-carton-panel",
+      "file": "compositions/scenes/visuals/drink-carton-panel.html",
+      "name": "Drink carton panel",
+      "category": "Nutrition panels",
+      "whenToUse": "When revealing the sugar content of a packaged drink.",
+      "duration": 6,
+      "format": "9:16",
+      "layout": "frame",
+      "hidesCaptions": true,
+      "texts": [
+        "OF SUGAR IN 200 ML",
+        "NUTRITION",
+        "Packaged juice",
+        "• average values"
+      ]
+    },
+    {
+      "id": "sugar-cubes-panel",
+      "file": "compositions/scenes/visuals/sugar-cubes-panel.html",
+      "name": "Sugar cubes panel",
+      "category": "Nutrition panels",
+      "whenToUse": "When translating grams of sugar into cubes.",
+      "duration": 6,
+      "format": "9:16",
+      "layout": "frame",
+      "hidesCaptions": true,
+      "texts": [
+        "SUGAR CUBES",
+        "NUTRITION",
+        "Packaged juice",
+        "• average values"
+      ]
+    },
+    {
+      "id": "nutrition-limit-panel",
+      "file": "compositions/scenes/visuals/nutrition-limit-panel.html",
+      "name": "Nutrition limit panel",
+      "category": "Nutrition panels",
+      "whenToUse": "When comparing sugar with a daily limit and suggesting whole fruit. Verify the intended guidance.",
+      "duration": 6,
+      "format": "9:16",
+      "layout": "frame",
+      "hidesCaptions": true,
+      "texts": [
+        "DAILY LIMIT · 25 g",
+        "OF THE DAILY LIMIT",
+        "Choose whole fruit",
+        "NUTRITION",
+        "Packaged juice",
+        "• average values"
+      ]
+    },
+    {
+      "id": "building-panel",
+      "file": "compositions/scenes/visuals/building-panel.html",
+      "name": "Building panel",
+      "category": "Real estate panels",
+      "whenToUse": "When introducing a property development. The building rises floor by floor while its floor count animates; set floors to zero to hide the count.",
+      "duration": 6.3,
+      "format": "9:16",
+      "layout": "frame",
+      "hidesCaptions": true,
+      "texts": [],
+      "parameters": {
+        "name1": {
+          "default": "RESIDENTIAL",
+          "summary": "Small header line describing the property type."
+        },
+        "name2": {
+          "default": "Horizon",
+          "summary": "Property development name."
+        },
+        "warning": {
+          "default": "• illustrative property",
+          "summary": "Upper-corner notice; an empty string hides it."
+        },
+        "floors": {
+          "default": 18,
+          "summary": "Floor count displayed while the building rises; zero hides the number without stopping the building animation."
+        },
+        "label": {
+          "default": "FLOORS",
+          "summary": "Word below the number."
+        },
+        "location": {
+          "default": "Downtown",
+          "summary": "Neighborhood or city on the location pin; an empty string hides it."
+        }
+      }
+    },
+    {
+      "id": "location-map-panel",
+      "file": "compositions/scenes/visuals/location-map-panel.html",
+      "name": "Location map panel",
+      "category": "Real estate panels",
+      "whenToUse": "When explaining a location and walking distance. The count can land on a spoken word or an explicit panel time; up to two additional locations light up when named.",
+      "duration": 5.7,
+      "format": "9:16",
+      "layout": "frame",
+      "hidesCaptions": true,
+      "texts": [],
+      "parameters": {
+        "name1": {
+          "default": "RESIDENTIAL",
+          "summary": "Small header line describing the property type."
+        },
+        "name2": {
+          "default": "Horizon",
+          "summary": "Property development name."
+        },
+        "warning": {
+          "default": "• illustrative property",
+          "summary": "Upper-corner notice; an empty string hides it."
+        },
+        "number": {
+          "default": 4,
+          "summary": "Target count in minutes, blocks, meters, or another unit; zero hides it."
+        },
+        "unit": {
+          "default": "min",
+          "summary": "Small unit next to the number, such as min or blocks."
+        },
+        "label": {
+          "default": "WALK TO THE SUBWAY",
+          "summary": "Line below the number."
+        },
+        "point": {
+          "default": "SUBWAY",
+          "summary": "Map-point name."
+        },
+        "fontSize": {
+          "default": "M",
+          "summary": "One or two letters inside the map-point circle."
+        },
+        "others": {
+          "default": "",
+          "summary": "Up to two additional map points separated by |, such as \"SCHOOL|MARKET\"; each lights up when its name is spoken."
+        },
+        "countAt": {
+          "default": "",
+          "summary": "Spoken word where the count reaches its target, such as \"blocks\", or a panel time in seconds; empty uses the spoken unit."
+        }
+      }
+    },
+    {
+      "id": "floor-plan-panel",
+      "file": "compositions/scenes/visuals/floor-plan-panel.html",
+      "name": "Floor plan panel",
+      "category": "Real estate panels",
+      "whenToUse": "When showing a property interior: an outlined floor plan becomes a 3D view with area and four room labels.",
+      "duration": 7.3,
+      "format": "9:16",
+      "layout": "frame",
+      "hidesCaptions": true,
+      "texts": [],
+      "parameters": {
+        "name1": {
+          "default": "RESIDENTIAL",
+          "summary": "Small header line describing the property type."
+        },
+        "name2": {
+          "default": "Horizon",
+          "summary": "Property development name."
+        },
+        "warning": {
+          "default": "• illustrative property",
+          "summary": "Upper-corner notice; an empty string hides it."
+        },
+        "area": {
+          "default": 72,
+          "summary": "Area in m² counted by the large number; zero hides the number."
+        },
+        "label": {
+          "default": "INSIDE",
+          "summary": "Line below the number."
+        },
+        "rooms": {
+          "default": "SUITE 1|14 m²|SUITE 2|12 m²|LIVING ROOM|28 m²|BALCONY|9 m²",
+          "summary": "Four floor-plan labels as name|measurement pairs; an empty measurement keeps the name, and an empty name hides the label."
+        },
+        "summary": {
+          "default": "72 m² · 2 suites · balcony",
+          "summary": "Top line; the part before the first · is highlighted."
+        }
+      },
+      "minDuration": 0.45
+    },
+    {
+      "id": "property-price-panel",
+      "file": "compositions/scenes/visuals/property-price-panel.html",
+      "name": "Property price panel",
+      "category": "Real estate panels",
+      "whenToUse": "When introducing a property price above the floor plan. Zero hides the numeric price.",
+      "duration": 4.8,
+      "format": "9:16",
+      "layout": "frame",
+      "hidesCaptions": true,
+      "texts": [],
+      "parameters": {
+        "name1": {
+          "default": "RESIDENTIAL",
+          "summary": "Small header line describing the property type."
+        },
+        "name2": {
+          "default": "Horizon",
+          "summary": "Property development name."
+        },
+        "warning": {
+          "default": "• illustrative property",
+          "summary": "Upper-corner notice; an empty string hides it."
+        },
+        "value": {
+          "default": 690000,
+          "summary": "Price counted on the label in Brazilian reais; zero hides the number."
+        },
+        "label": {
+          "default": "STARTING AT",
+          "summary": "Upper label line."
+        },
+        "warningLabel": {
+          "default": "illustrative property",
+          "summary": "Lower label line; an empty string hides it."
+        },
+        "summary": {
+          "default": "72 m² · 2 suites · balcony",
+          "summary": "Top line; the part before the first · is highlighted."
+        }
+      }
+    },
+    {
+      "id": "transition-glow",
+      "file": "compositions/scenes/visuals/transition-glow.html",
+      "name": "Transition glow",
+      "category": "Transitions",
+      "whenToUse": "For a standard scene change: a warm light leak peaks at the cut.",
+      "duration": 0.4,
+      "format": "9:16",
+      "layout": "overlay",
+      "cutAt": 0.2,
+      "sound": "photo",
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "transition-flash",
+      "file": "compositions/scenes/visuals/transition-flash.html",
+      "name": "Transition flash",
+      "category": "Transitions",
+      "whenToUse": "For a sharp, emphatic cut: a short white flash peaks at the cut.",
+      "duration": 0.3,
+      "format": "9:16",
+      "layout": "overlay",
+      "cutAt": 0.15,
+      "sound": "photo",
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "transition-film-burn",
+      "file": "compositions/scenes/visuals/transition-film-burn.html",
+      "name": "Transition film burn",
+      "category": "Transitions",
+      "whenToUse": "For a change of topic or time: film-burn shapes sweep across the screen.",
+      "duration": 0.6,
+      "format": "9:16",
+      "layout": "overlay",
+      "cutAt": 0.3,
+      "sound": "whoosh",
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "transition-glitch",
+      "file": "compositions/scenes/visuals/transition-glitch.html",
+      "name": "Transition glitch",
+      "category": "Transitions",
+      "whenToUse": "For technology, errors, or sudden reversals: separated color channels, displaced strips, line tearing, and static peak at the cut.",
+      "duration": 0.4,
+      "format": "9:16",
+      "layout": "overlay",
+      "cutAt": 0.2,
+      "sound": "glitch",
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "transition-tv",
+      "file": "compositions/scenes/visuals/transition-tv.html",
+      "name": "Transition tv",
+      "category": "Transitions",
+      "whenToUse": "For a section ending or a joke: the image closes into a line and opens again.",
+      "duration": 0.6,
+      "format": "9:16",
+      "layout": "overlay",
+      "cutAt": 0.3,
+      "sound": "click",
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "transition-curtain",
+      "file": "compositions/scenes/visuals/transition-curtain.html",
+      "name": "Transition curtain",
+      "category": "Transitions",
+      "whenToUse": "For a new item or topic: a strip in the accent color sweeps across the screen.",
+      "duration": 0.6,
+      "format": "9:16",
+      "layout": "overlay",
+      "cutAt": 0.3,
+      "sound": "swish",
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "transition-zoom",
+      "file": "compositions/scenes/visuals/transition-zoom.html",
+      "name": "Transition zoom",
+      "category": "Transitions",
+      "whenToUse": "To move toward an important detail: speed rays and blur emphasize the cut.",
+      "duration": 0.5,
+      "format": "9:16",
+      "layout": "overlay",
+      "cutAt": 0.25,
+      "sound": "whoosh",
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "transition-blinds",
+      "file": "compositions/scenes/visuals/transition-blinds.html",
+      "name": "Transition blinds",
+      "category": "Transitions",
+      "whenToUse": "For a change of setting or day: seven strips close and open in sequence.",
+      "duration": 0.6,
+      "format": "9:16",
+      "layout": "overlay",
+      "cutAt": 0.3,
+      "sound": "swish",
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "transition-iris",
+      "file": "compositions/scenes/visuals/transition-iris.html",
+      "name": "Transition iris",
+      "category": "Transitions",
+      "whenToUse": "To close a story or focus on a detail: a circle closes at the center and reopens.",
+      "duration": 0.7,
+      "format": "9:16",
+      "layout": "overlay",
+      "cutAt": 0.35,
+      "sound": "whoosh",
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "transition-fade",
+      "file": "compositions/scenes/visuals/transition-fade.html",
+      "name": "Transition fade",
+      "category": "Transitions",
+      "whenToUse": "For a dramatic pause or passage of time: the image briefly fades to black.",
+      "duration": 0.5,
+      "format": "9:16",
+      "layout": "overlay",
+      "cutAt": 0.25,
+      "sound": "none",
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "pointer-down-arrow",
+      "file": "compositions/scenes/visuals/pointer-down-arrow.html",
+      "name": "Pointer down arrow",
+      "category": "Pointers",
+      "whenToUse": "To point at a button, number, product, or link.",
+      "duration": 2.4,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "mouth-pop",
+      "soundAt": 0.22,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Arrow tip on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 620,
+          "summary": "Arrow tip, in pixels."
+        },
+        "size": {
+          "default": 240,
+          "summary": "Arrow height, in pixels."
+        },
+        "color": {
+          "default": "#ff3b30",
+          "summary": "Arrow color."
+        },
+        "angle": {
+          "default": 0,
+          "summary": "Rotation around the tip in degrees; zero points down, 90 left, and -90 right."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "pointer-curved-arrow",
+      "file": "compositions/scenes/visuals/pointer-curved-arrow.html",
+      "name": "Pointer curved arrow",
+      "category": "Pointers",
+      "whenToUse": "To draw attention to a detail with a hand-drawn curved arrow.",
+      "duration": 2.6,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "pencil",
+      "soundAt": 0.1,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Arrow tip on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 620,
+          "summary": "Arrow tip, in pixels."
+        },
+        "size": {
+          "default": 320,
+          "summary": "Arrow width, in pixels."
+        },
+        "color": {
+          "default": "#ff3b30",
+          "summary": "Stroke color."
+        },
+        "side": {
+          "default": "left",
+          "summary": "Side from which the arrow arrives: \"left\" or \"right\"."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "pointer-side-arrow",
+      "file": "compositions/scenes/visuals/pointer-side-arrow.html",
+      "name": "Pointer side arrow",
+      "category": "Pointers",
+      "whenToUse": "To point toward nearby text, a button, or an on-screen item.",
+      "duration": 2.4,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "whoosh",
+      "soundAt": 0.08,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Arrow tip on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 620,
+          "summary": "Arrow tip, in pixels."
+        },
+        "size": {
+          "default": 280,
+          "summary": "Arrow length, in pixels."
+        },
+        "color": {
+          "default": "#ff3b30",
+          "summary": "Arrow color."
+        },
+        "side": {
+          "default": "left",
+          "summary": "Side of the target occupied by the arrow: \"left\" points right, \"right\" points left."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "pointer-red-cross",
+      "file": "compositions/scenes/visuals/pointer-red-cross.html",
+      "name": "Pointer red cross",
+      "category": "Pointers",
+      "whenToUse": "To reject an option or mark something as incorrect.",
+      "duration": 2.0,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "pencil",
+      "soundAt": 0.1,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Cross center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 620,
+          "summary": "Cross center, in pixels."
+        },
+        "size": {
+          "default": 240,
+          "summary": "Cross side length, in pixels."
+        },
+        "color": {
+          "default": "#ff3b30",
+          "summary": "Stroke color."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "pointer-green-check",
+      "file": "compositions/scenes/visuals/pointer-green-check.html",
+      "name": "Pointer green check",
+      "category": "Pointers",
+      "whenToUse": "To confirm, approve, or mark an item as completed.",
+      "duration": 2.0,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "ding",
+      "soundAt": 0.35,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Check-mark center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 620,
+          "summary": "Check-mark center, in pixels."
+        },
+        "size": {
+          "default": 260,
+          "summary": "Check-mark width, in pixels."
+        },
+        "color": {
+          "default": "#30d158",
+          "summary": "Stroke color."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "pointer-circle",
+      "file": "compositions/scenes/visuals/pointer-circle.html",
+      "name": "Pointer circle",
+      "category": "Pointers",
+      "whenToUse": "To circle a number, face, button, or other detail.",
+      "duration": 2.4,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "pencil",
+      "soundAt": 0.1,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Target center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 620,
+          "summary": "Target center, in pixels."
+        },
+        "width": {
+          "default": 420,
+          "summary": "Circle width, in pixels."
+        },
+        "height": {
+          "default": 260,
+          "summary": "Circle height, in pixels; the final stroke extends about 25 pixels beyond it."
+        },
+        "color": {
+          "default": "#ff3b30",
+          "summary": "Stroke color."
+        },
+        "thickness": {
+          "default": 14,
+          "summary": "Stroke thickness, in pixels."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "pointer-underline",
+      "file": "compositions/scenes/visuals/pointer-underline.html",
+      "name": "Pointer underline",
+      "category": "Pointers",
+      "whenToUse": "To underline an important word, number, or phrase.",
+      "duration": 2.2,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "pencil",
+      "soundAt": 0.1,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Underline center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 620,
+          "summary": "Height of the first underline stroke, in pixels; the second sits about three stroke widths lower."
+        },
+        "width": {
+          "default": 460,
+          "summary": "Underline width, in pixels."
+        },
+        "color": {
+          "default": "#ff3b30",
+          "summary": "Stroke color."
+        },
+        "thickness": {
+          "default": 14,
+          "summary": "Stroke thickness, in pixels."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "pointer-box",
+      "file": "compositions/scenes/visuals/pointer-box.html",
+      "name": "Pointer box",
+      "category": "Pointers",
+      "whenToUse": "To outline a region, screenshot detail, button, or object.",
+      "duration": 2.6,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "pen",
+      "soundAt": 0.1,
+      "parameters": {
+        "x": {
+          "default": 490,
+          "summary": "Box center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 850,
+          "summary": "Box center, in pixels."
+        },
+        "width": {
+          "default": 520,
+          "summary": "Box width, in pixels."
+        },
+        "height": {
+          "default": 300,
+          "summary": "Box height, in pixels."
+        },
+        "color": {
+          "default": "#ff3b30",
+          "summary": "Stroke color."
+        },
+        "thickness": {
+          "default": 12,
+          "summary": "Stroke thickness, in pixels."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "pointer-highlighter",
+      "file": "compositions/scenes/visuals/pointer-highlighter.html",
+      "name": "Pointer highlighter",
+      "category": "Pointers",
+      "whenToUse": "To highlight a written phrase, value, or screenshot line.",
+      "duration": 2.4,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "pen",
+      "soundAt": 0.1,
+      "parameters": {
+        "x": {
+          "default": 490,
+          "summary": "Strip center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 700,
+          "summary": "Strip center, in pixels."
+        },
+        "width": {
+          "default": 520,
+          "summary": "Strip length, in pixels."
+        },
+        "height": {
+          "default": 90,
+          "summary": "Strip height, in pixels."
+        },
+        "color": {
+          "default": "#ffe600",
+          "summary": "Ink color."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "pointer-spotlight",
+      "file": "compositions/scenes/visuals/pointer-spotlight.html",
+      "name": "Pointer spotlight",
+      "category": "Pointers",
+      "whenToUse": "To isolate a face, product, or screenshot detail by darkening the surroundings.",
+      "duration": 2.8,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "whoosh",
+      "soundAt": 0.15,
+      "parameters": {
+        "x": {
+          "default": 490,
+          "summary": "Lit-area center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 850,
+          "summary": "Lit-area center, in pixels."
+        },
+        "radiusX": {
+          "default": 300,
+          "summary": "Half-width of the lit area, in pixels; the soft edge extends beyond this radius."
+        },
+        "radiusY": {
+          "default": 300,
+          "summary": "Half-height of the lit area, in pixels."
+        },
+        "darkness": {
+          "default": 0.7,
+          "summary": "Surrounding darkness from zero, unchanged, to one, black."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "pointer-banner",
+      "file": "compositions/scenes/visuals/pointer-banner.html",
+      "name": "Pointer banner",
+      "category": "Pointers",
+      "whenToUse": "To conceal an area such as a face, name, number, or screenshot detail.",
+      "duration": 2.6,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "pop-ui",
+      "soundAt": 0.12,
+      "parameters": {
+        "x": {
+          "default": 490,
+          "summary": "Concealment-bar center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 850,
+          "summary": "Concealment-bar center, in pixels."
+        },
+        "width": {
+          "default": 420,
+          "summary": "Concealment-bar width, in pixels."
+        },
+        "height": {
+          "default": 200,
+          "summary": "Concealment-bar height, in pixels."
+        },
+        "type": {
+          "default": "mosaic",
+          "summary": "\"mosaic\" pixelates underlying video, \"blur\" blurs it, and \"black\" covers it."
+        },
+        "cell": {
+          "default": 28,
+          "summary": "Mosaic cell size from 8 to 80 pixels; in blur mode this controls blur strength."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "pointer-toggle",
+      "file": "compositions/scenes/visuals/pointer-toggle.html",
+      "name": "Pointer toggle",
+      "category": "Pointers",
+      "whenToUse": "When asking viewers to enable or disable a feature or mode.",
+      "duration": 2.6,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "click",
+      "soundAt": 1.0,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Button center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 420,
+          "summary": "Button center, in pixels."
+        },
+        "size": {
+          "default": 280,
+          "summary": "Button width, in pixels."
+        },
+        "color": {
+          "default": "#30d158",
+          "summary": "Enabled-state background color."
+        },
+        "beginsAt": {
+          "default": "off",
+          "summary": "Initial state, \"off\" or \"on\"; the toggle ends in the opposite state."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "pointer-tap",
+      "file": "compositions/scenes/visuals/pointer-tap.html",
+      "name": "Pointer tap",
+      "category": "Pointers",
+      "whenToUse": "When asking viewers to tap or click a specific point.",
+      "duration": 2.6,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "click",
+      "soundAt": 0.45,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Tap center where the finger touches, on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 420,
+          "summary": "Tap center, in pixels."
+        },
+        "size": {
+          "default": 130,
+          "summary": "Fingertip diameter, in pixels."
+        },
+        "taps": {
+          "default": 2,
+          "summary": "Number of taps, distributed across the duration."
+        },
+        "color": {
+          "default": "#ffffff",
+          "summary": "Circle and ripple color."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "pointer-number",
+      "file": "compositions/scenes/visuals/pointer-number.html",
+      "name": "Pointer number",
+      "category": "Pointers",
+      "whenToUse": "When numbering steps or items over the footage.",
+      "duration": 2.4,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "pop-ui",
+      "soundAt": 0.15,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Dot center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 420,
+          "summary": "Dot center, in pixels."
+        },
+        "size": {
+          "default": 150,
+          "summary": "Dot diameter, in pixels."
+        },
+        "number": {
+          "default": "1",
+          "summary": "One to three characters written inside."
+        },
+        "color": {
+          "default": "#ff3b30",
+          "summary": "Dot background color."
+        },
+        "textColor": {
+          "default": "#ffffff",
+          "summary": "Number color; insufficient contrast falls back to black or white."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "pointer-rays",
+      "file": "compositions/scenes/visuals/pointer-rays.html",
+      "name": "Pointer rays",
+      "category": "Pointers",
+      "whenToUse": "To surround an important object, face, or number with emphatic rays.",
+      "duration": 2.0,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "cork-pop",
+      "soundAt": 0.15,
+      "parameters": {
+        "x": {
+          "default": 505,
+          "summary": "Burst center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 1175,
+          "summary": "Burst center, in pixels."
+        },
+        "radius": {
+          "default": 150,
+          "summary": "Ring radius from which rays emerge, in pixels; minimum 60."
+        },
+        "color": {
+          "default": "#ffe600",
+          "summary": "Ray color."
+        },
+        "pulses": {
+          "default": 2,
+          "summary": "Ray bursts during the scene; each needs about 0.3 seconds and excess bursts are clipped."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "pointer-question",
+      "file": "compositions/scenes/visuals/pointer-question.html",
+      "name": "Pointer question",
+      "category": "Pointers",
+      "whenToUse": "When asking a question or showing uncertainty near the speaker's head.",
+      "duration": 2.4,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "question-huh",
+      "soundAt": 0.18,
+      "parameters": {
+        "x": {
+          "default": 800,
+          "summary": "Question-mark center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 560,
+          "summary": "Question-mark center, in pixels."
+        },
+        "size": {
+          "default": 260,
+          "summary": "Question-mark height, in pixels."
+        },
+        "color": {
+          "default": "#ffd60a",
+          "summary": "Fill color."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "pointer-exclamation",
+      "file": "compositions/scenes/visuals/pointer-exclamation.html",
+      "name": "Pointer exclamation",
+      "category": "Pointers",
+      "whenToUse": "When warning about an error, risk, or important precaution.",
+      "duration": 2.2,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "notification",
+      "soundAt": 0.14,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Triangle center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 400,
+          "summary": "Triangle center, in pixels."
+        },
+        "size": {
+          "default": 240,
+          "summary": "Triangle width, in pixels."
+        },
+        "color": {
+          "default": "#ffd60a",
+          "summary": "Triangle color."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "effect-vignette",
+      "file": "compositions/scenes/visuals/effect-vignette.html",
+      "name": "Effect vignette",
+      "category": "Video effects",
+      "whenToUse": "To create a darker cinematic mood or draw attention to the speaker's face.",
+      "duration": 2.6,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "none",
+      "soundAt": null,
+      "parameters": {
+        "strength": {
+          "default": 0.8,
+          "summary": "0–1: edge and corner darkness."
+        },
+        "size": {
+          "default": 0.4,
+          "summary": "0–1: size of the clear center; zero clears only the middle, one darkens only the corners."
+        },
+        "x": {
+          "default": 540,
+          "summary": "Clear-area center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 800,
+          "summary": "Clear-area center near the face, in pixels."
+        },
+        "color": {
+          "default": "#000000",
+          "summary": "Vignette color; black gives a cinematic look."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "effect-blur",
+      "file": "compositions/scenes/visuals/effect-blur.html",
+      "name": "Effect blur",
+      "category": "Video effects",
+      "whenToUse": "To blur the background while keeping the face sharp, like portrait mode.",
+      "duration": 2.8,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "none",
+      "soundAt": null,
+      "parameters": {
+        "strength": {
+          "default": 0.6,
+          "summary": "0–1: background blur; one gives about a 22-pixel radius."
+        },
+        "x": {
+          "default": 540,
+          "summary": "Sharp-area center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 760,
+          "summary": "Sharp-area center at the face, in pixels."
+        },
+        "radiusX": {
+          "default": 330,
+          "summary": "Half-width of the sharp area, in pixels; zero blurs the whole screen."
+        },
+        "radiusY": {
+          "default": 440,
+          "summary": "Half-height of the sharp area, in pixels."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "effect-glow",
+      "file": "compositions/scenes/visuals/effect-glow.html",
+      "name": "Effect glow",
+      "category": "Video effects",
+      "whenToUse": "For a dream, memory, luxury mood, or beautiful moment: bright areas gain a soft halo.",
+      "duration": 2.8,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "none",
+      "soundAt": null,
+      "parameters": {
+        "strength": {
+          "default": 0.65,
+          "summary": "0–1: highlight glow strength."
+        },
+        "radius": {
+          "default": 18,
+          "summary": "Halo radius from 4 to 60 pixels."
+        },
+        "warmth": {
+          "default": 0.3,
+          "summary": "0–1: shift the halo toward warm gold."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "effect-chromatic-blur",
+      "file": "compositions/scenes/visuals/effect-chromatic-blur.html",
+      "name": "Effect chromatic blur",
+      "category": "Video effects",
+      "whenToUse": "For an old-lens, dreamlike, or dizzy look: red and blue fringes appear around edges.",
+      "duration": 2.6,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "none",
+      "soundAt": null,
+      "parameters": {
+        "strength": {
+          "default": 0.6,
+          "summary": "0–1: red/blue separation; one averages about 14 pixels, from 9 in the center to 21 in corners."
+        },
+        "angle": {
+          "default": 0,
+          "summary": "Separation angle in degrees; zero is horizontal, 90 is vertical."
+        },
+        "blur": {
+          "default": 0.2,
+          "summary": "0–1: color-fringe blur."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "effect-shake",
+      "file": "compositions/scenes/visuals/effect-shake.html",
+      "name": "Effect shake",
+      "category": "Video effects",
+      "whenToUse": "To emphasize a striking number, reversal, surprise, or impact with camera shake.",
+      "duration": 2.0,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "impact",
+      "soundAt": 0.07,
+      "parameters": {
+        "strength": {
+          "default": 0.7,
+          "summary": "0–1: shake magnitude; one peaks around 26 pixels."
+        },
+        "jolts": {
+          "default": 0,
+          "summary": "Number of shakes; zero derives it from duration, approximately one per 0.95 seconds."
+        },
+        "axis": {
+          "default": "both",
+          "summary": "Shake axis: \"both\", \"horizontal\", or \"vertical\"."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "effect-money-rain",
+      "file": "compositions/scenes/visuals/effect-money-rain.html",
+      "name": "Effect money rain",
+      "category": "Video effects",
+      "whenToUse": "When discussing sales, profit, revenue, or incoming money.",
+      "duration": 3.0,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "cash-register",
+      "soundAt": 0.15,
+      "parameters": {
+        "strength": {
+          "default": 0.8,
+          "summary": "0–1: banknote count; one gives about 28 visible notes."
+        },
+        "size": {
+          "default": 300,
+          "summary": "Foreground banknote width, in pixels; middle and distant notes are smaller."
+        },
+        "color": {
+          "default": "#2e9e4f",
+          "summary": "Banknote color."
+        },
+        "speed": {
+          "default": 0.5,
+          "summary": "0–1: falling speed."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "effect-confetti",
+      "file": "compositions/scenes/visuals/effect-confetti.html",
+      "name": "Effect confetti",
+      "category": "Video effects",
+      "whenToUse": "To celebrate a milestone, sale, achievement, or birthday with confetti.",
+      "duration": 3.0,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "cork-pop",
+      "soundAt": 0.07,
+      "parameters": {
+        "strength": {
+          "default": 0.8,
+          "summary": "0–1: particles per burst; one gives about 90."
+        },
+        "x": {
+          "default": 540,
+          "summary": "Horizontal burst origin, in pixels."
+        },
+        "y": {
+          "default": 1500,
+          "summary": "Vertical burst origin, in pixels."
+        },
+        "opening": {
+          "default": 110,
+          "summary": "Burst fan width, from 20 to 170 degrees."
+        },
+        "colors": {
+          "default": "#ff3b30,#ffd60a,#30d158,#0a84ff,#ff6a1f,#ffffff",
+          "summary": "Comma-separated particle colors; accepts hex or named colors and ignores invalid colors."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "effect-cinema",
+      "file": "compositions/scenes/visuals/effect-cinema.html",
+      "name": "Effect cinema",
+      "category": "Video effects",
+      "whenToUse": "For storytelling, revelations, or epic moments with a film-trailer look.",
+      "duration": 2.8,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "whoosh",
+      "soundAt": 0.3,
+      "parameters": {
+        "strength": {
+          "default": 0.6,
+          "summary": "0–1: each bar's height; one covers 18% at the top and 18% at the bottom."
+        },
+        "color": {
+          "default": "#000000",
+          "summary": "Bar color; black by default."
+        },
+        "mood": {
+          "default": 0.3,
+          "summary": "0–1: added contrast between the bars; zero leaves the image unchanged."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "effect-noir",
+      "file": "compositions/scenes/visuals/effect-noir.html",
+      "name": "Effect noir",
+      "category": "Video effects",
+      "whenToUse": "For a serious scene, memory, drama, or secret with a monochrome look.",
+      "duration": 2.6,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "none",
+      "soundAt": null,
+      "parameters": {
+        "strength": {
+          "default": 0.8,
+          "summary": "0–1: desaturation; 0.5 is partial, 0.8 and above is monochrome with increasing contrast."
+        },
+        "contrast": {
+          "default": 0.5,
+          "summary": "0–1: black-and-white contrast; one gives a harsh noir look."
+        },
+        "grain": {
+          "default": 0.35,
+          "summary": "0–1: film-grain visibility."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "effect-tv-lines",
+      "file": "compositions/scenes/visuals/effect-tv-lines.html",
+      "name": "Effect tv lines",
+      "category": "Video effects",
+      "whenToUse": "For an old CRT, surveillance camera, archival recording, or memory.",
+      "duration": 2.8,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "none",
+      "soundAt": null,
+      "parameters": {
+        "strength": {
+          "default": 0.6,
+          "summary": "0–1: scan-line and CRT-edge darkness."
+        },
+        "thickness": {
+          "default": 4,
+          "summary": "Height of each line, from 2 to 14 pixels."
+        },
+        "scroll": {
+          "default": 0.5,
+          "summary": "0–1: visibility of the light strip scrolling over the screen."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "effect-static",
+      "file": "compositions/scenes/visuals/effect-static.html",
+      "name": "Effect static",
+      "category": "Video effects",
+      "whenToUse": "For a weak signal, interference, failing memory, or suspense.",
+      "duration": 2.4,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "none",
+      "soundAt": null,
+      "parameters": {
+        "strength": {
+          "default": 0.5,
+          "summary": "0–1: 0.5 resembles a weak signal with the subject visible; one nearly covers the screen."
+        },
+        "grain": {
+          "default": 0.4,
+          "summary": "Grain size from zero, fine, to one, coarse."
+        },
+        "color": {
+          "default": 0,
+          "summary": "0–1: zero gives monochrome static; one gives colored static."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "effect-vhs",
+      "file": "compositions/scenes/visuals/effect-vhs.html",
+      "name": "Effect vhs",
+      "category": "Video effects",
+      "whenToUse": "For a nostalgic recording, 1990s home video, or archival VHS look.",
+      "duration": 2.8,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "none",
+      "soundAt": null,
+      "parameters": {
+        "strength": {
+          "default": 0.7,
+          "summary": "0–1: tape look, including bleeding colors, softness, washed-out color, and noise."
+        },
+        "bleed": {
+          "default": 10,
+          "summary": "Color-channel offset at full strength, from 0 to 40 pixels."
+        },
+        "track": {
+          "default": 0.6,
+          "summary": "0–1: visibility of the bottom noise strip; zero hides it."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "effect-prism",
+      "file": "compositions/scenes/visuals/effect-prism.html",
+      "name": "Effect prism",
+      "category": "Video effects",
+      "whenToUse": "For dreams, dizziness, amazement, or confusion: prism-like image copies spread apart.",
+      "duration": 2.8,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "none",
+      "soundAt": null,
+      "parameters": {
+        "strength": {
+          "default": 0.75,
+          "summary": "0–1: visibility of ghost copies over the image."
+        },
+        "spacing": {
+          "default": 46,
+          "summary": "Distance between the image and each copy, from 10 to 200 pixels."
+        },
+        "copies": {
+          "default": 2,
+          "summary": "2 creates one copy on each side; 3 adds a more distant, fainter copy."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "stone-text",
+      "file": "compositions/scenes/visuals/stone-text.html",
+      "name": "Stone text",
+      "category": "Comedy",
+      "whenToUse": "To give a phrase physical weight: stone letters hang briefly, then fall and break the floor.",
+      "duration": 3.0,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "impact",
+      "soundAt": 1.45,
+      "parameters": {
+        "text": {
+          "default": "GIVE IT WEIGHT",
+          "summary": "Phrase that becomes stone; automatically wraps to at most three lines."
+        },
+        "x": {
+          "default": 540,
+          "summary": "Phrase center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 600,
+          "summary": "Phrase center while suspended in the air, in pixels."
+        },
+        "stoneColor": {
+          "default": "#c9c1b4",
+          "summary": "Stone color, such as light granite gray, sand, or graphite."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "cracked-screen",
+      "file": "compositions/scenes/visuals/cracked-screen.html",
+      "name": "Cracked screen",
+      "category": "Comedy",
+      "whenToUse": "For a screen-hit joke: glass cracks at the selected point, the image shakes, and the cracks remain.",
+      "duration": 3.0,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "impact",
+      "soundAt": 0.12,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Impact and crack center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 760,
+          "summary": "Impact point, in pixels."
+        },
+        "size": {
+          "default": 560,
+          "summary": "Crack reach from the impact point, in pixels."
+        },
+        "intensity": {
+          "default": 0.8,
+          "summary": "0–1: crack count and shake strength."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "stage-spotlight",
+      "file": "compositions/scenes/visuals/stage-spotlight.html",
+      "name": "Stage spotlight",
+      "category": "Comedy",
+      "whenToUse": "For a request for attention or light: the room darkens and a stage spotlight shines on the subject while side beams sweep.",
+      "duration": 3.5,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "photo",
+      "soundAt": 0.4,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Spotlight center over the subject on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 820,
+          "summary": "Face or chest height where the spotlight has the requested width, in pixels."
+        },
+        "width": {
+          "default": 560,
+          "summary": "Spotlight width at y, in pixels."
+        },
+        "lightColor": {
+          "default": "#ffe3b3",
+          "summary": "Spotlight color, warm white by default."
+        },
+        "beamColor": {
+          "default": "#9db0ff",
+          "summary": "Color of the two sweeping side beams."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "concert-strobe",
+      "file": "compositions/scenes/visuals/concert-strobe.html",
+      "name": "Concert strobe",
+      "category": "Comedy",
+      "whenToUse": "For a concert or nightclub joke: the room darkens, a white strobe pulses to the beat, colored beams cross, and fog rises.",
+      "duration": 3.5,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "riser",
+      "soundAt": 0.3,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Beam intersection at the show's center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 520,
+          "summary": "Height where the beams cross above the head, in pixels."
+        },
+        "bpm": {
+          "default": 128,
+          "summary": "Beats per minute; the strobe flashes once per beat."
+        },
+        "colors": {
+          "default": "#ff2d95,#2d7bff,#30d158,#ffd60a",
+          "summary": "Comma-separated beam colors."
+        },
+        "strength": {
+          "default": 0.8,
+          "summary": "0–1: strobe and fog strength."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "explosion",
+      "file": "compositions/scenes/visuals/explosion.html",
+      "name": "Explosion",
+      "category": "Comedy",
+      "whenToUse": "For an explosion joke: realistic fire, dark smoke, and sparks erupt at x/y, with a white flash and a short shake.",
+      "duration": 3.2,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "impact",
+      "soundAt": 0.17,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Explosion center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 780,
+          "summary": "Explosion origin, in pixels; the fireball rises about 40% of its size above it."
+        },
+        "size": {
+          "default": 1000,
+          "summary": "Explosion width, in pixels; the fireball occupies about 45% of it."
+        },
+        "strength": {
+          "default": 0.8,
+          "summary": "0–1: flash and shake strength."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "fire",
+      "file": "compositions/scenes/visuals/fire.html",
+      "name": "Fire",
+      "category": "Comedy",
+      "whenToUse": "For a heat or fire joke: realistic flames rise from the lower edge and a warm flicker covers the footage.",
+      "duration": 3.5,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "whoosh",
+      "soundAt": 0.1,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Horizontal warm-glow center, in pixels; the fire spans the full width."
+        },
+        "y": {
+          "default": 1920,
+          "summary": "Flame base, in pixels; 1920 places it at the lower edge."
+        },
+        "height": {
+          "default": 820,
+          "summary": "Flame height, from 400 to 1400 pixels."
+        },
+        "strength": {
+          "default": 0.8,
+          "summary": "0–1: flame and warm-glow strength."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "smoke",
+      "file": "compositions/scenes/visuals/smoke.html",
+      "name": "Smoke",
+      "category": "Comedy",
+      "whenToUse": "For a disappearing act, mishap, or concealed change: gray smoke rises, covers the screen, and dissipates.",
+      "duration": 3.5,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "whoosh",
+      "soundAt": 0.12,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Horizontal smoke center, in pixels."
+        },
+        "y": {
+          "default": 1920,
+          "summary": "Smoke origin at its base, in pixels; 1920 is the lower edge."
+        },
+        "strength": {
+          "default": 0.85,
+          "summary": "0–1: smoke coverage; one almost hides the underlying video."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "shattered-glass",
+      "file": "compositions/scenes/visuals/shattered-glass.html",
+      "name": "Shattered glass",
+      "category": "Comedy",
+      "whenToUse": "For a broken-screen joke: glass cracks at x/y and the shards fly and fall, with a short flash and shake.",
+      "duration": 3.0,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "impact",
+      "soundAt": 0.5,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Glass-break center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 820,
+          "summary": "Glass-break point, in pixels."
+        },
+        "size": {
+          "default": 1200,
+          "summary": "Glass width, in pixels; cracks cover most of it. A width of 1080–1600 covers the screen."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "neon-quote",
+      "file": "compositions/scenes/visuals/neon-quote.html",
+      "name": "Neon quote",
+      "category": "Neon",
+      "whenToUse": "For a strong headline: text blocks alternate weights and the starred keyword glows in the corner-light color.",
+      "duration": 3.5,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "whoosh",
+      "soundAt": 0.3,
+      "parameters": {
+        "text": {
+          "default": "But that is not everyone's *reality*",
+          "summary": "Phrase; *asterisks* highlight a keyword in the light color; | optionally separates blocks."
+        },
+        "lightColor": {
+          "default": "red",
+          "summary": "\"green\", \"amber\", or \"red\" selects the light and keyword color."
+        }
+      },
+      "hidesCaptions": true,
+      "texts": []
+    },
+    {
+      "id": "neon-good-bad",
+      "file": "compositions/scenes/visuals/neon-good-bad.html",
+      "name": "Neon good bad",
+      "category": "Neon",
+      "whenToUse": "To challenge apparently good advice: a green card is struck by a light streak, breaks apart, turns red, and reveals a verdict.",
+      "duration": 4.0,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "impact",
+      "soundAt": 1.5,
+      "parameters": {
+        "phrase": {
+          "default": "RECORD AND POST",
+          "summary": "Green-card phrase representing the advice being challenged."
+        },
+        "verdict": {
+          "default": "BAD",
+          "summary": "Large red verdict shown when the card breaks."
+        },
+        "icon": {
+          "default": "camera",
+          "summary": "\"camera\", \"play\", \"check\", or \"none\" selects the icon above the phrase."
+        }
+      },
+      "hidesCaptions": true,
+      "texts": []
+    },
+    {
+      "id": "glass-chart",
+      "file": "compositions/scenes/visuals/glass-chart.html",
+      "name": "Glass chart",
+      "category": "Neon",
+      "whenToUse": "When a metric rises or falls: a white curve draws progressively while its marker and counter move to the final value.",
+      "duration": 4.5,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "swish",
+      "soundAt": 0.45,
+      "parameters": {
+        "title": {
+          "default": "viewer attention",
+          "summary": "Chart label at the top of the card."
+        },
+        "start": {
+          "default": 100,
+          "summary": "Starting number."
+        },
+        "end": {
+          "default": 12,
+          "summary": "Ending number."
+        },
+        "direction": {
+          "default": "falling",
+          "summary": "\"falling\" or \"rising\" sets curve shape and final color: red for falling, green for rising."
+        },
+        "suffix": {
+          "default": "%",
+          "summary": "Suffix after the number, such as %, thousand, or x; empty omits it."
+        }
+      },
+      "hidesCaptions": true,
+      "texts": []
+    },
+    {
+      "id": "stuck-progress-bar",
+      "file": "compositions/scenes/visuals/stuck-progress-bar.html",
+      "name": "Stuck progress bar",
+      "category": "Neon",
+      "whenToUse": "To show something that never quite finishes: a progress bar stops near completion, locks, and reveals an emphatic phrase.",
+      "duration": 4.5,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "soft-error",
+      "soundAt": 2.47,
+      "parameters": {
+        "label": {
+          "default": "perfect recording",
+          "summary": "Text inside the bar."
+        },
+        "stopAt": {
+          "default": 99,
+          "summary": "Progress value where the bar stops, from 5 to 99.9."
+        },
+        "phrase": {
+          "default": "I NEVER POST",
+          "summary": "Emphatic phrase revealed in red below."
+        }
+      },
+      "hidesCaptions": true,
+      "texts": []
+    },
+    {
+      "id": "attempt-counter",
+      "file": "compositions/scenes/visuals/attempt-counter.html",
+      "name": "Attempt counter",
+      "category": "Neon",
+      "whenToUse": "When success follows repeated attempts: failed attempts receive red crosses and strikes; the successful attempt lights up green.",
+      "duration": 4.5,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "success",
+      "soundAt": 2.63,
+      "parameters": {
+        "items": {
+          "default": "Take 1|Take 2|Take 3",
+          "summary": "Two to five attempts separated by |."
+        },
+        "correct": {
+          "default": 3,
+          "summary": "Successful attempt number; other attempts get crosses. Zero means none succeeded."
+        }
+      },
+      "hidesCaptions": true,
+      "texts": []
+    },
+    {
+      "id": "glass-list",
+      "file": "compositions/scenes/visuals/glass-list.html",
+      "name": "Glass list",
+      "category": "Neon",
+      "whenToUse": "When listing completed work or benefits: dim items light up one by one with green checks on a glass card.",
+      "duration": 4.5,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "ding",
+      "soundAt": 0.82,
+      "parameters": {
+        "title": {
+          "default": "what remains",
+          "summary": "Label at the top of the card."
+        },
+        "items": {
+          "default": "best moments|natural speech rhythm|captions that matter",
+          "summary": "Two to five items separated by |."
+        }
+      },
+      "hidesCaptions": true,
+      "texts": []
+    },
+    {
+      "id": "object-card",
+      "file": "compositions/scenes/visuals/object-card.html",
+      "name": "Object card",
+      "category": "Scene objects",
+      "whenToUse": "When introducing an object with numeric facts: a rotating 3D object appears with a 2×2 fact card. Change the video src to a bundled object file; the renderer reads that HTML resource directly.",
+      "duration": 4.5,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "whoosh",
+      "soundAt": 0.15,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Object center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 505,
+          "summary": "Object center, in pixels; the title is 273 pixels above and the fact card extends 221 pixels below."
+        },
+        "title": {
+          "default": "The Sun in 3D",
+          "summary": "Text inside the top pill."
+        },
+        "card": {
+          "default": "Temperature|5,500 °C|Age|4.6 billion years|Diameter|1.39 million km|Core|15 million °C",
+          "summary": "Up to four label|value pairs separated by |, two per side; numbers are larger than units."
+        },
+        "color": {
+          "default": "#ff6a1f",
+          "summary": "Accent color for the title dot, fact-card line, and object glow."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "house-construction",
+      "file": "compositions/scenes/visuals/house-construction.html",
+      "name": "House construction",
+      "category": "Scene objects",
+      "whenToUse": "When explaining a build or staged process: a 3D house assembles while step labels light up. Playback runs once at 1.2×, completing in 2.4 seconds; allow at least 3.5 seconds for the badge to follow completion.",
+      "duration": 4.5,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "ding",
+      "soundAt": 2.45,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "House center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 470,
+          "summary": "Vertical reference; labels begin 238 pixels above and the house sits below them."
+        },
+        "steps": {
+          "default": "Slab|Walls|Second floor|Roof|Garage",
+          "summary": "Two to six top labels separated by |, lit in construction order."
+        },
+        "badge": {
+          "default": "Ready in 90 days",
+          "summary": "Badge text shown after house construction finishes."
+        },
+        "color": {
+          "default": "#ff6a1f",
+          "summary": "Accent color for active step labels and the badge."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "brazil-map",
+      "file": "compositions/scenes/visuals/brazil-map.html",
+      "name": "Brazil map",
+      "category": "Scene objects",
+      "whenToUse": "When discussing reach or locations in Brazil: an angled map lights states individually, by region, or in a chosen set, while a counter animates above.",
+      "duration": 5.0,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "bubble-pop",
+      "soundAt": 0.75,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Map center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 470,
+          "summary": "Vertical reference; the title and number begin 240 pixels above and the map sits below them."
+        },
+        "states": {
+          "default": "all",
+          "summary": "\"all\" lights regions in their own colors; otherwise use comma-separated state codes or regions, such as \"SP,RJ,MG\" or \"South,Southeast\", in the selected color."
+        },
+        "title": {
+          "default": "Students across Brazil",
+          "summary": "Top-pill text."
+        },
+        "number": {
+          "default": "12,480",
+          "summary": "Large 96-pixel top-pill value; a numeric value counts from zero as states light up. Text may include a currency or unit, such as \"R$ 48,900\" or \"27 states\"."
+        },
+        "color": {
+          "default": "#ff6a1f",
+          "summary": "Selected-state and number color."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "solar-system",
+      "file": "compositions/scenes/visuals/solar-system.html",
+      "name": "Solar system",
+      "category": "Scene objects",
+      "whenToUse": "When introducing the universe, a central idea, or orbital relationships: four planets orbit a 3D Sun, passing behind and in front of it.",
+      "duration": 5.0,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "sparkle",
+      "soundAt": 0.3,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Sun center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 520,
+          "summary": "Sun center, in pixels; the title is 283 pixels above it."
+        },
+        "title": {
+          "default": "The universe in 3D",
+          "summary": "Top-pill text."
+        },
+        "color": {
+          "default": "#ff6a1f",
+          "summary": "Accent color for the title dot and glow around the Sun."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "video-gallery",
+      "file": "compositions/scenes/visuals/video-gallery.html",
+      "name": "Video gallery",
+      "category": "Scene objects",
+      "whenToUse": "When showcasing video work: six portrait cards fan out in 3D and one moves forward. Replace placeholder gradients with muted video elements; set data-start, data-duration, and the correct src. Optional views count below.",
+      "duration": 4.5,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "swish",
+      "soundAt": 1.1,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Gallery center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 515,
+          "summary": "Cards center, in pixels; title is 283×size above and view count is 240×size below."
+        },
+        "size": {
+          "default": 1,
+          "summary": "Gallery scale from 0.5 to 1; for a high face, reduce to about 0.6 and move y to about 420 until it clears the eyes."
+        },
+        "title": {
+          "default": "My best-selling video ads",
+          "summary": "Top-pill text; an empty string hides the pill."
+        },
+        "views": {
+          "default": "",
+          "summary": "Actual view count of the front video, such as \"1.2 million\" or \"48 thousand\"; counts up from zero. Empty hides the pill. Do not invent figures."
+        },
+        "color": {
+          "default": "#ff6a1f",
+          "summary": "Accent color for the title dot, play triangle, and eye icon."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "notes-interface",
+      "file": "compositions/scenes/visuals/notes-interface.html",
+      "name": "Notes interface",
+      "category": "Interfaces",
+      "whenToUse": "When listing requirements, steps, or tasks: a title types in and each item gains a check in sequence.",
+      "duration": 4.8,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "typing",
+      "soundAt": 0.37,
+      "parameters": {
+        "title": {
+          "default": "You need",
+          "summary": "Note title, typed letter by letter."
+        },
+        "items": {
+          "default": "Know your message|Record your idea|Describe the finished video",
+          "summary": "Two to five checklist items separated by |."
+        },
+        "background": {
+          "default": "light",
+          "summary": "\"light\" or \"dark\" selects the app color."
+        },
+        "color": {
+          "default": "#ff9f0a",
+          "summary": "Check-mark and detail color."
+        }
+      },
+      "hidesCaptions": true,
+      "texts": []
+    },
+    {
+      "id": "ai-chat-interface",
+      "file": "compositions/scenes/visuals/ai-chat-interface.html",
+      "name": "AI chat interface",
+      "category": "Interfaces",
+      "whenToUse": "When showing a request to AI: the request types in, sends, waits, and receives a reply with a finished video.",
+      "duration": 5.0,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "message",
+      "soundAt": 1.5,
+      "parameters": {
+        "aiName": {
+          "default": "Your AI",
+          "summary": "AI name at the top of the conversation."
+        },
+        "request": {
+          "default": "Edit this video for me",
+          "summary": "Request typed into the box and sent."
+        },
+        "response": {
+          "default": "Done! 7 cuts, captions, and zoom.",
+          "summary": "AI reply before the video."
+        },
+        "background": {
+          "default": "dark",
+          "summary": "\"dark\" or \"light\" selects the app color."
+        }
+      },
+      "hidesCaptions": true,
+      "texts": []
+    },
+    {
+      "id": "search-interface",
+      "file": "compositions/scenes/visuals/search-interface.html",
+      "name": "Search interface",
+      "category": "Interfaces",
+      "whenToUse": "When inviting a search or introducing a product: the query types in and a leading result appears.",
+      "duration": 4.8,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "click",
+      "soundAt": 1.26,
+      "parameters": {
+        "term": {
+          "default": "edit video with AI",
+          "summary": "Query typed into the search box."
+        },
+        "resultTitle": {
+          "default": "Tap Learn more",
+          "summary": "Large title of the first result."
+        },
+        "description": {
+          "default": "and compare a recording before and after editing",
+          "summary": "Description line below the title."
+        },
+        "button": {
+          "default": "Learn more",
+          "summary": "Search-result button text."
+        },
+        "background": {
+          "default": "light",
+          "summary": "\"light\" or \"dark\" selects the page color."
+        }
+      },
+      "hidesCaptions": true,
+      "texts": []
+    },
+    {
+      "id": "camera-interface",
+      "file": "compositions/scenes/visuals/camera-interface.html",
+      "name": "Camera interface",
+      "category": "Interfaces",
+      "whenToUse": "When discussing filming or appearing on camera: the footage becomes a camera viewfinder and a phrase appears word by word.",
+      "duration": 4.5,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "click",
+      "soundAt": 0.25,
+      "parameters": {
+        "text": {
+          "default": "CONSISTENCY IS THE SECRET",
+          "summary": "Large viewfinder phrase revealed word by word, below the chin or above the head to avoid the face."
+        },
+        "startTime": {
+          "default": "00:00",
+          "summary": "Initial recording counter time in mm:ss."
+        },
+        "y": {
+          "default": "",
+          "summary": "Phrase center on the 1080×1920 canvas, in pixels; empty places it below the measured chin."
+        },
+        "size": {
+          "default": 110,
+          "summary": "Maximum font size from 60 to 140 pixels; shrinks automatically to fit three lines."
+        }
+      },
+      "hidesCaptions": true,
+      "texts": []
+    },
+    {
+      "id": "command-bar",
+      "file": "compositions/scenes/visuals/command-bar.html",
+      "name": "Command bar",
+      "category": "Interfaces",
+      "whenToUse": "When showing a computer or AI command: the command types in, Enter submits it, and stages receive checks one by one.",
+      "duration": 4.8,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "typing",
+      "soundAt": 0.37,
+      "parameters": {
+        "command": {
+          "default": "edit video with captions and zoom",
+          "summary": "Command typed into the bar."
+        },
+        "steps": {
+          "default": "Trimmed pauses|Added captions|Applied zoom",
+          "summary": "Two to five checked stages separated by |."
+        },
+        "background": {
+          "default": "dark",
+          "summary": "\"dark\" or \"light\" selects the bar and background color."
+        }
+      },
+      "hidesCaptions": true,
+      "texts": []
+    },
+    {
+      "id": "receipt",
+      "file": "compositions/scenes/visuals/receipt.html",
+      "name": "Receipt",
+      "category": "Proof cards",
+      "whenToUse": "When explaining cost and elapsed time: the cost card counts up, slides aside, and gives way to a time card.",
+      "duration": 4.0,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "cash-register",
+      "soundAt": 1.0,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Card center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 370,
+          "summary": "Card center above the head, in pixels."
+        },
+        "valueLabel": {
+          "default": "COST",
+          "summary": "Value-card label."
+        },
+        "value": {
+          "default": "R$ 0.48",
+          "summary": "Value; numeric content counts up from zero."
+        },
+        "timeLabel": {
+          "default": "TIME",
+          "summary": "Time-card label."
+        },
+        "time": {
+          "default": "27 min",
+          "summary": "Time value; numeric content counts up from zero."
+        },
+        "color": {
+          "default": "#ff6a1f",
+          "summary": "Value accent color."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "completed-checklist",
+      "file": "compositions/scenes/visuals/completed-checklist.html",
+      "name": "Completed checklist",
+      "category": "Proof cards",
+      "whenToUse": "When listing tasks that are no longer necessary: each item appears and is crossed out.",
+      "duration": 4.0,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "pencil",
+      "soundAt": 0.95,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Card center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 240,
+          "summary": "Card top above the head, in pixels."
+        },
+        "items": {
+          "default": "Trim silence|Remove pauses|Find effects|Adjust captions",
+          "summary": "Two to five vertically arranged items separated by |."
+        },
+        "strikeColor": {
+          "default": "#ff3b30",
+          "summary": "Pencil-strike color."
+        },
+        "title": {
+          "default": "",
+          "summary": "Title above the list; empty hides it."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "crossed-out-quote",
+      "file": "compositions/scenes/visuals/crossed-out-quote.html",
+      "name": "Crossed out quote",
+      "category": "Proof cards",
+      "whenToUse": "When comparing an old recurring cost with a new price.",
+      "duration": 4.0,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "pencil",
+      "soundAt": 0.7,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Card center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 418,
+          "summary": "Open-card center above the head, in pixels."
+        },
+        "label": {
+          "default": "Hire an editor",
+          "summary": "Description of the old expensive option."
+        },
+        "oldValue": {
+          "default": "R$ 1,500/month",
+          "summary": "Old value, crossed out in red."
+        },
+        "newValue": {
+          "default": "R$ 0.48",
+          "summary": "New value; numeric content counts up from zero."
+        },
+        "newColor": {
+          "default": "#30d158",
+          "summary": "New-value accent color."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "progress-meter",
+      "file": "compositions/scenes/visuals/progress-meter.html",
+      "name": "Progress meter",
+      "category": "Proof cards",
+      "whenToUse": "When describing a low or high cost, effort, or risk: a gauge indicates the level.",
+      "duration": 3.6,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "ding",
+      "soundAt": 1.35,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Card center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 416,
+          "summary": "Card center above the head, in pixels."
+        },
+        "label": {
+          "default": "MINIMAL COST",
+          "summary": "Text below the gauge."
+        },
+        "level": {
+          "default": 0.08,
+          "summary": "Needle stopping position from zero, green, to one, red."
+        },
+        "color": {
+          "default": "#30d158",
+          "summary": "Label color once the needle stops."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "time-counter",
+      "file": "compositions/scenes/visuals/time-counter.html",
+      "name": "Time counter",
+      "category": "Proof cards",
+      "whenToUse": "When stating how long a task takes: a counter reaches the chosen time and unit.",
+      "duration": 3.6,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "timer",
+      "soundAt": 1.25,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Card center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 392,
+          "summary": "Card center above the head, in pixels."
+        },
+        "label": {
+          "default": "IN",
+          "summary": "Small word preceding the unit."
+        },
+        "end": {
+          "default": 5,
+          "summary": "Stopwatch target value, counted from zero."
+        },
+        "unit": {
+          "default": "MINUTES",
+          "summary": "Large unit beside the number."
+        },
+        "color": {
+          "default": "#ff6a1f",
+          "summary": "Ring and unit color."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "editing-behind-scenes",
+      "file": "compositions/scenes/visuals/editing-behind-scenes.html",
+      "name": "Editing behind scenes",
+      "category": "Proof cards",
+      "whenToUse": "When showing editing in progress: an editor panel displays footage, waveform, captions, a moving playhead, and successive cuts.",
+      "duration": 4.5,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "click",
+      "soundAt": 1.2,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Panel center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 240,
+          "summary": "Panel top above the head, in pixels; panel height is 400 pixels."
+        },
+        "cuts": {
+          "default": 7,
+          "summary": "Number of cuts, from one to twenty; the counter ends at this value."
+        },
+        "label": {
+          "default": "LIVE EDITING",
+          "summary": "Uppercase panel label."
+        },
+        "color": {
+          "default": "#ff6a1f",
+          "summary": "Accent color for the playhead, elapsed waveform, and counter."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "waveform-cuts",
+      "file": "compositions/scenes/visuals/waveform-cuts.html",
+      "name": "Waveform cuts",
+      "category": "Proof cards",
+      "whenToUse": "When explaining removed pauses: red waveform gaps disappear one by one, the waveform joins, and the duration decreases.",
+      "duration": 4.5,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "ding",
+      "soundAt": 3.2,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Card center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 240,
+          "summary": "Card top above the head, in pixels; card height is 378 pixels."
+        },
+        "pauses": {
+          "default": 5,
+          "summary": "Number of removed pauses, from one to twelve."
+        },
+        "beforeTime": {
+          "default": "0:25",
+          "summary": "Duration before cuts in m:ss; the counter descends to the after value."
+        },
+        "afterTime": {
+          "default": "0:16",
+          "summary": "Duration after cuts in m:ss."
+        },
+        "color": {
+          "default": "#30d158",
+          "summary": "Final-time accent color."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "dentist-brushing",
+      "file": "compositions/scenes/visuals/dentist-brushing.html",
+      "name": "Dentist brushing",
+      "category": "Dental demonstrations",
+      "whenToUse": "When correcting brushing technique: hard brushing marks the tooth red, the wrong title is crossed out, and a soft brush gently cleans a protected tooth.",
+      "duration": 4.6,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "swish",
+      "soundAt": 1.95,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Panel center on the 1080×1920 canvas, in pixels; panel size is 860×430."
+        },
+        "y": {
+          "default": 230,
+          "summary": "Panel top, in pixels; default 230 places the bottom at y=660, above the eyes."
+        },
+        "size": {
+          "default": 1,
+          "summary": "Panel scale from 0.5 to 1.1, anchored at the top; automatically shrinks to clear high eyebrows."
+        },
+        "wrongTitle": {
+          "default": "Brushing *too hard*",
+          "summary": "Incorrect-technique title; *asterisks* mark large red text that is crossed out."
+        },
+        "correctTitle": {
+          "default": "A *soft* brush",
+          "summary": "Correct-technique title; *asterisks* mark large accent-colored text."
+        },
+        "color": {
+          "default": "#8ae3d1",
+          "summary": "Correct-technique accent color for the word, check, and protective tooth glow."
+        },
+        "switchAt": {
+          "default": "",
+          "summary": "Spoken word where the correct title appears, such as \"soft\", or a scene time in seconds; empty uses the midpoint."
+        }
+      },
+      "hidesCaptions": false,
+      "adaptation": true,
+      "texts": []
+    },
+    {
+      "id": "muscle-recovery",
+      "file": "compositions/scenes/visuals/muscle-recovery.html",
+      "name": "Muscle recovery",
+      "category": "Fitness demonstrations",
+      "whenToUse": "When explaining muscle recovery: training contracts the muscle; sleep, protein, and rest then send energy into it and it grows.",
+      "duration": 5.4,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "pop-ui",
+      "soundAt": 2.55,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Panel center on the 1080×1920 canvas, in pixels; panel size is 860×430."
+        },
+        "y": {
+          "default": 230,
+          "summary": "Panel top, in pixels; default 230 places the bottom at y=660, above the eyes."
+        },
+        "size": {
+          "default": 1,
+          "summary": "Panel scale from 0.5 to 1.1, anchored at the top; automatically shrinks to clear high eyebrows."
+        },
+        "title1": {
+          "default": "NOT DURING *TRAINING*",
+          "summary": "Training title, at most two lines; *asterisks* mark accent-colored text."
+        },
+        "title2": {
+          "default": "GROWS *AFTERWARD*",
+          "summary": "Recovery title; *asterisks* mark accent-colored text."
+        },
+        "recoveryItems": {
+          "default": "Sleep|Protein|Rest",
+          "summary": "One to four recovery items separated by |; icons are moon, plate, battery, and heart."
+        },
+        "color": {
+          "default": "#c7fa23",
+          "summary": "Accent color, lime by default."
+        }
+      },
+      "hidesCaptions": false,
+      "adaptation": true,
+      "texts": []
+    },
+    {
+      "id": "consumer-rights",
+      "file": "compositions/scenes/visuals/consumer-rights.html",
+      "name": "Consumer rights",
+      "category": "Legal demonstrations",
+      "whenToUse": "When explaining retained and lost rights: retained items gain checks while excluded items are crossed out and move away. Verify the applicable jurisdiction and facts.",
+      "duration": 5.0,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "success",
+      "soundAt": 0.85,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Panel center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 230,
+          "summary": "Panel top above the head, in pixels."
+        },
+        "size": {
+          "default": 1,
+          "summary": "Panel scale from 0.7 to 1.1, anchored at the top."
+        },
+        "title": {
+          "default": "Resigned?",
+          "summary": "Question at the top of the panel."
+        },
+        "stay": {
+          "default": "Prorated vacation|Annual bonus",
+          "summary": "One to three retained items separated by |; each receives a check."
+        },
+        "leave": {
+          "default": "40% severance penalty|Unemployment benefits",
+          "summary": "One to three excluded items separated by |; each is crossed out."
+        }
+      },
+      "hidesCaptions": false,
+      "adaptation": true,
+      "texts": []
+    },
+    {
+      "id": "nutrition-oranges",
+      "file": "compositions/scenes/visuals/nutrition-oranges.html",
+      "name": "Nutrition oranges",
+      "category": "Nutrition demonstrations",
+      "whenToUse": "When comparing whole fruit with juice: oranges are squeezed into one glass, sugar remains in the juice, and fiber moves out, with labels.",
+      "duration": 5.0,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "bubble-pop",
+      "soundAt": 1.75,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Panel center on the 1080×1920 canvas, in pixels; panel size is 860×430."
+        },
+        "y": {
+          "default": 230,
+          "summary": "Panel top, in pixels; default 230 places the bottom at y=660, above the eyes."
+        },
+        "size": {
+          "default": 1,
+          "summary": "Panel scale from 0.5 to 1.1, anchored at the top; automatically shrinks to clear high eyebrows."
+        },
+        "number": {
+          "default": 3,
+          "summary": "Number of oranges squeezed into the glass, from one to six; the count appears in the title."
+        },
+        "title": {
+          "default": "*1 glass* of juice",
+          "summary": "Title shown when oranges become juice; *asterisks* mark large orange text."
+        },
+        "juiceLabel": {
+          "default": "sugar stays",
+          "summary": "Label for what stays in the glass."
+        },
+        "fiberLabel": {
+          "default": "fiber leaves",
+          "summary": "Label for what is left out."
+        }
+      },
+      "hidesCaptions": false,
+      "adaptation": true,
+      "texts": []
+    },
+    {
+      "id": "architect-room",
+      "file": "compositions/scenes/visuals/architect-room.html",
+      "name": "Architect room",
+      "category": "Architecture demonstrations",
+      "whenToUse": "When explaining a small-room design: window light reflects from a mirror, then a floor-to-ceiling curtain demonstrates height.",
+      "duration": 5.5,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "sparkle",
+      "soundAt": 1.25,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Panel center on the 1080×1920 canvas, in pixels; panel size is 860×430."
+        },
+        "y": {
+          "default": 230,
+          "summary": "Panel top, in pixels; default 230 places the bottom at y=660, above the eyes."
+        },
+        "size": {
+          "default": 1,
+          "summary": "Panel scale from 0.5 to 1.1, anchored at the top; automatically shrinks to clear high eyebrows."
+        },
+        "title": {
+          "default": "Small room?",
+          "summary": "Panel title."
+        },
+        "tip1": {
+          "default": "A mirror reflects light",
+          "summary": "First tip, shown when light hits the mirror."
+        },
+        "tip2": {
+          "default": "Ceiling-height curtains",
+          "summary": "Second tip, shown when the curtain reaches the ceiling."
+        }
+      },
+      "hidesCaptions": false,
+      "adaptation": true,
+      "texts": []
+    },
+    {
+      "id": "year-hook",
+      "file": "compositions/scenes/visuals/year-hook.html",
+      "name": "Year hook",
+      "category": "General",
+      "whenToUse": "For an opening year or number hook: large digits flip over a dark chart panel and a pill badge emphasizes the message.",
+      "duration": 4.0,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "pop-ui",
+      "soundAt": 1.4,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Panel center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 230,
+          "summary": "Panel top above the head, in pixels."
+        },
+        "size": {
+          "default": 1,
+          "summary": "Panel scale from 0.7 to 1.1, anchored at the top."
+        },
+        "number": {
+          "default": "2027",
+          "summary": "Large year or number; digits spin until they settle."
+        },
+        "label": {
+          "default": "save this video",
+          "summary": "Small upper label inside the dotted pill."
+        },
+        "badge": {
+          "default": "LIKE THIS",
+          "summary": "Word inside the pill underlining the number; empty keeps only the underline."
+        },
+        "color": {
+          "default": "#ff593d",
+          "summary": "Accent color for number depth, dot, chart, and pill."
+        }
+      },
+      "hidesCaptions": false,
+      "adaptation": true,
+      "texts": []
+    },
+    {
+      "id": "profession-cards",
+      "file": "compositions/scenes/visuals/profession-cards.html",
+      "name": "Profession cards",
+      "category": "General",
+      "whenToUse": "When presenting several professions or niches: stacked cards fan out with an occupation icon on each.",
+      "duration": 4.5,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "swish",
+      "soundAt": 0.87,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Panel center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 230,
+          "summary": "Panel top above the head, in pixels."
+        },
+        "size": {
+          "default": 1,
+          "summary": "Panel scale from 0.7 to 1.1, anchored at the top."
+        },
+        "title": {
+          "default": "A look of its own.",
+          "summary": "Playfair italic title at the top; empty hides it."
+        },
+        "items": {
+          "default": "Dentist|Trainer|Lawyer|Nutritionist|Architect",
+          "summary": "Three to six professions separated by |; known names select icons and colors, unknown names use a briefcase."
+        },
+        "color": {
+          "default": "#ff593d",
+          "summary": "Accent color for the title line and unknown-profession card."
+        }
+      },
+      "hidesCaptions": false,
+      "adaptation": true,
+      "texts": []
+    },
+    {
+      "id": "comment-call-to-action",
+      "file": "compositions/scenes/visuals/comment-call-to-action.html",
+      "name": "Comment call to action",
+      "category": "General",
+      "whenToUse": "At the closing call to action: a comment box appears, a keyword types in, and a finger taps Send.",
+      "duration": 4.5,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "click",
+      "soundAt": 1.8,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Panel center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 230,
+          "summary": "Panel top above the head, in pixels."
+        },
+        "size": {
+          "default": 1,
+          "summary": "Panel scale from 0.7 to 1.1, anchored at the top."
+        },
+        "label": {
+          "default": "Comment",
+          "summary": "Playfair italic heading above the box; empty hides it."
+        },
+        "word": {
+          "default": "I WANT IT",
+          "summary": "Word typed into the box; its final word uses the accent color."
+        },
+        "accent": {
+          "default": "#ff593d",
+          "summary": "Accent color for the last word, Send button, and tap."
+        }
+      },
+      "hidesCaptions": false,
+      "adaptation": true,
+      "texts": []
+    },
+    {
+      "id": "text-karaoke",
+      "file": "compositions/scenes/visuals/text-karaoke.html",
+      "name": "Text karaoke",
+      "category": "Captions and titles",
+      "type": "captions",
+      "whenToUse": "For standard short-video captions: white words remain visible while the current spoken word turns yellow and bounces.",
+      "duration": 3.4,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "none",
+      "parameters": {
+        "y": {
+          "default": 1280,
+          "summary": "Caption center height on the 1080×1920 canvas, in pixels."
+        },
+        "size": {
+          "default": 84,
+          "summary": "Font size, in pixels."
+        },
+        "maxWords": {
+          "default": 3,
+          "summary": "Words per caption group."
+        },
+        "color": {
+          "default": "#ffffff",
+          "summary": "Text color."
+        },
+        "accent": {
+          "default": "#ffe600",
+          "summary": "Color of the word currently being spoken."
+        }
+      },
+      "hidesCaptions": true,
+      "texts": []
+    },
+    {
+      "id": "text-pop",
+      "file": "compositions/scenes/visuals/text-pop.html",
+      "name": "Text pop",
+      "category": "Captions and titles",
+      "type": "captions",
+      "whenToUse": "For a hook or emphatic reversal: one or two large words pop on their spoken timing; the last word is highlighted.",
+      "duration": 3.4,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "none",
+      "parameters": {
+        "y": {
+          "default": 1280,
+          "summary": "Caption center height on the 1080×1920 canvas, in pixels."
+        },
+        "size": {
+          "default": 118,
+          "summary": "Font size, in pixels."
+        },
+        "maxWords": {
+          "default": 2,
+          "summary": "Words per caption group; one or two gives greater emphasis."
+        },
+        "color": {
+          "default": "#ffffff",
+          "summary": "Text color; dark text receives a white outline."
+        },
+        "accent": {
+          "default": "#ffe600",
+          "summary": "Color of the last word in each phrase."
+        }
+      },
+      "hidesCaptions": true,
+      "texts": []
+    },
+    {
+      "id": "text-chromatic",
+      "file": "compositions/scenes/visuals/text-chromatic.html",
+      "name": "Text chromatic",
+      "category": "Captions and titles",
+      "type": "captions",
+      "whenToUse": "For energetic technology, AI, or editing captions with a chromatic glitch look.",
+      "duration": 3.4,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "none",
+      "parameters": {
+        "y": {
+          "default": 1280,
+          "summary": "Caption center height on the 1080×1920 canvas, in pixels."
+        },
+        "size": {
+          "default": 88,
+          "summary": "Font size, in pixels."
+        },
+        "maxWords": {
+          "default": 3,
+          "summary": "Words per caption group."
+        },
+        "color": {
+          "default": "#ffffff",
+          "summary": "Text color."
+        },
+        "spacing": {
+          "default": 4,
+          "summary": "Distance of cyan and magenta copies from the resting word, in pixels."
+        }
+      },
+      "hidesCaptions": true,
+      "texts": []
+    },
+    {
+      "id": "text-rising-glow",
+      "file": "compositions/scenes/visuals/text-rising-glow.html",
+      "name": "Text rising glow",
+      "category": "Captions and titles",
+      "type": "captions",
+      "whenToUse": "For flowing captions: the current word rises from behind a line with a yellow glow, then turns white.",
+      "duration": 3.4,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "none",
+      "parameters": {
+        "y": {
+          "default": 1280,
+          "summary": "Caption center height on the 1080×1920 canvas, in pixels."
+        },
+        "size": {
+          "default": 88,
+          "summary": "Font size, in pixels."
+        },
+        "maxWords": {
+          "default": 3,
+          "summary": "Words per caption group."
+        },
+        "accent": {
+          "default": "#ffe600",
+          "summary": "Lit-word and halo color."
+        },
+        "glow": {
+          "default": 0.7,
+          "summary": "Halo strength from zero, none, to one, bright."
+        }
+      },
+      "hidesCaptions": true,
+      "texts": []
+    },
+    {
+      "id": "text-red-word",
+      "file": "compositions/scenes/visuals/text-red-word.html",
+      "name": "Text red word",
+      "category": "Captions and titles",
+      "type": "captions",
+      "whenToUse": "For a warning, promise, or strong claim: dim words turn red as spoken and remain lit until the next caption group.",
+      "duration": 3.4,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "none",
+      "parameters": {
+        "y": {
+          "default": 1280,
+          "summary": "Caption center height on the 1080×1920 canvas, in pixels."
+        },
+        "size": {
+          "default": 88,
+          "summary": "Font size, in pixels."
+        },
+        "maxWords": {
+          "default": 3,
+          "summary": "Words per caption group."
+        },
+        "accent": {
+          "default": "#ff2d2d",
+          "summary": "Word color after it has been spoken."
+        },
+        "disabled": {
+          "default": 0.55,
+          "summary": "0–1: opacity of words not yet spoken."
+        }
+      },
+      "hidesCaptions": true,
+      "texts": []
+    },
+    {
+      "id": "text-italic",
+      "file": "compositions/scenes/visuals/text-italic.html",
+      "name": "Text italic",
+      "category": "Captions and titles",
+      "type": "captions",
+      "whenToUse": "For sports, action, challenges, or results: italic captions emphasize the longest word in each group.",
+      "duration": 3.4,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "none",
+      "parameters": {
+        "y": {
+          "default": 1280,
+          "summary": "Caption center height on the 1080×1920 canvas, in pixels."
+        },
+        "size": {
+          "default": 86,
+          "summary": "Font size, in pixels."
+        },
+        "maxWords": {
+          "default": 3,
+          "summary": "Words per caption group."
+        },
+        "color": {
+          "default": "#ffffff",
+          "summary": "Text color."
+        },
+        "accent": {
+          "default": "#ffe600",
+          "summary": "Color of the longest word in each caption group."
+        }
+      },
+      "hidesCaptions": true,
+      "texts": []
+    },
+    {
+      "id": "text-translucent-box",
+      "file": "compositions/scenes/visuals/text-translucent-box.html",
+      "name": "Text translucent box",
+      "category": "Captions and titles",
+      "type": "captions",
+      "whenToUse": "For tutorials or busy backgrounds: a subtle dark translucent pill contains the phrase, with a brighter current word.",
+      "duration": 3.4,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "none",
+      "parameters": {
+        "y": {
+          "default": 1280,
+          "summary": "Caption center height on the 1080×1920 canvas, in pixels."
+        },
+        "size": {
+          "default": 58,
+          "summary": "Font size, in pixels."
+        },
+        "maxWords": {
+          "default": 5,
+          "summary": "Words per caption group."
+        },
+        "color": {
+          "default": "#ffffff",
+          "summary": "Text color."
+        },
+        "background": {
+          "default": "#000000",
+          "summary": "Pill color."
+        },
+        "backgroundOpacity": {
+          "default": 0.62,
+          "summary": "0–1: pill opacity over the footage."
+        }
+      },
+      "hidesCaptions": true,
+      "texts": []
+    },
+    {
+      "id": "text-glowing-outline",
+      "file": "compositions/scenes/visuals/text-glowing-outline.html",
+      "name": "Text glowing outline",
+      "category": "Captions and titles",
+      "type": "captions",
+      "whenToUse": "For conversational tips, routines, or behind-the-scenes footage with a delicate glowing outline.",
+      "duration": 3.4,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "none",
+      "parameters": {
+        "y": {
+          "default": 1280,
+          "summary": "Caption center height on the 1080×1920 canvas, in pixels."
+        },
+        "size": {
+          "default": 76,
+          "summary": "Font size, in pixels."
+        },
+        "maxWords": {
+          "default": 4,
+          "summary": "Words per caption group."
+        },
+        "color": {
+          "default": "#ffffff",
+          "summary": "Text color; insufficient outline contrast falls back to white or near-black."
+        },
+        "accent": {
+          "default": "#7c4dff",
+          "summary": "Outline and outer-glow color."
+        }
+      },
+      "hidesCaptions": true,
+      "texts": []
+    },
+    {
+      "id": "text-typewriter",
+      "file": "compositions/scenes/visuals/text-typewriter.html",
+      "name": "Text typewriter",
+      "category": "Captions and titles",
+      "type": "captions",
+      "whenToUse": "For commands, code, or AI tutorials: letters type into a dark strip with a moving block cursor that blinks during pauses.",
+      "duration": 3.4,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "none",
+      "parameters": {
+        "y": {
+          "default": 1280,
+          "summary": "Strip center height on the 1080×1920 canvas, in pixels."
+        },
+        "size": {
+          "default": 54,
+          "summary": "Font size, in pixels."
+        },
+        "maxWords": {
+          "default": 4,
+          "summary": "Words per caption group."
+        },
+        "color": {
+          "default": "#ffffff",
+          "summary": "Text color; dark text switches the strip to a light color."
+        },
+        "accent": {
+          "default": "#30d158",
+          "summary": "Cursor color."
+        }
+      },
+      "hidesCaptions": true,
+      "texts": []
+    },
+    {
+      "id": "text-bold-title",
+      "file": "compositions/scenes/visuals/text-bold-title.html",
+      "name": "Text bold title",
+      "category": "Captions and titles",
+      "type": "title",
+      "whenToUse": "For an opening headline: short black text appears on colored strips, one strip per line near the top.",
+      "duration": 3.4,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "none",
+      "parameters": {
+        "text": {
+          "default": "STOP|EDITING BY HAND",
+          "summary": "Title; | forces a new strip and line, otherwise wrapping is automatic."
+        },
+        "y": {
+          "default": 420,
+          "summary": "Block center height on the 1080×1920 canvas, in pixels."
+        },
+        "size": {
+          "default": 92,
+          "summary": "Maximum font size, in pixels; shrinks automatically to fit the line."
+        },
+        "color": {
+          "default": "#ffe600",
+          "summary": "Strip color."
+        },
+        "textColor": {
+          "default": "#111111",
+          "summary": "Text color; insufficient strip contrast falls back to black or white."
+        }
+      },
+      "hidesCaptions": true,
+      "texts": []
+    },
+    {
+      "id": "text-two-line-title",
+      "file": "compositions/scenes/visuals/text-two-line-title.html",
+      "name": "Text two line title",
+      "category": "Captions and titles",
+      "type": "title",
+      "whenToUse": "For a classic short-video hook: a small white lead-in sits above a large accent-colored second line.",
+      "duration": 3.4,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "none",
+      "parameters": {
+        "line1": {
+          "default": "the secret of people who",
+          "summary": "Small upper line, white and preserving the supplied case."
+        },
+        "line2": {
+          "default": "POST EVERY DAY",
+          "summary": "Large lower line, uppercase and accent-colored; long text wraps automatically."
+        },
+        "y": {
+          "default": 430,
+          "summary": "Block center height on the 1080×1920 canvas, in pixels."
+        },
+        "size": {
+          "default": 104,
+          "summary": "Maximum large-font size, in pixels; shrinks automatically to fit."
+        },
+        "accent": {
+          "default": "#ffe600",
+          "summary": "Large-line color; dark text receives a white outline."
+        }
+      },
+      "hidesCaptions": true,
+      "texts": []
+    },
+    {
+      "id": "text-impact",
+      "file": "compositions/scenes/visuals/text-impact.html",
+      "name": "Text impact",
+      "category": "Captions and titles",
+      "type": "title",
+      "whenToUse": "For an emphatic number, price, or promise: text jumps up, sharpens, and leaves a large translucent echo. The entrance lasts 0.5 seconds, then holds until the cut.",
+      "duration": 2.4,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "none",
+      "parameters": {
+        "text": {
+          "default": "HALF|THE PRICE",
+          "summary": "Text; | forces a line break, otherwise wrapping is automatic."
+        },
+        "y": {
+          "default": 1150,
+          "summary": "Text center height on the 1080×1920 canvas, in pixels."
+        },
+        "size": {
+          "default": 124,
+          "summary": "Maximum font size, in pixels; shrinks automatically to fit."
+        },
+        "color": {
+          "default": "#ffffff",
+          "summary": "Text color."
+        },
+        "glow": {
+          "default": "#22ff66",
+          "summary": "Text halo and echo color."
+        }
+      },
+      "hidesCaptions": true,
+      "texts": []
+    },
+    {
+      "id": "text-spring",
+      "file": "compositions/scenes/visuals/text-spring.html",
+      "name": "Text spring",
+      "category": "Captions and titles",
+      "type": "title",
+      "whenToUse": "For an energetic short callout: text springs from zero, overshoots, and settles. It then holds until the cut.",
+      "duration": 2.4,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "none",
+      "parameters": {
+        "text": {
+          "default": "TODAY",
+          "summary": "Text; | forces a line break, otherwise wrapping is automatic."
+        },
+        "y": {
+          "default": 1150,
+          "summary": "Text center height on the 1080×1920 canvas, in pixels."
+        },
+        "size": {
+          "default": 130,
+          "summary": "Maximum font size, in pixels; shrinks automatically to fit."
+        },
+        "color": {
+          "default": "#ffffff",
+          "summary": "Text color with a thick black outer outline."
+        },
+        "entrance": {
+          "default": 0.5,
+          "summary": "Spring duration from 0.3 to 1.2 seconds; the curve scales with it, as in CapCut."
+        }
+      },
+      "hidesCaptions": true,
+      "texts": []
+    },
+    {
+      "id": "text-doodle",
+      "file": "compositions/scenes/visuals/text-doodle.html",
+      "name": "Text doodle",
+      "category": "Captions and titles",
+      "type": "title",
+      "whenToUse": "For a callout held for several seconds: letters appear individually and wobble like hand-drawn lettering through four stepped poses.",
+      "duration": 3.0,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "none",
+      "parameters": {
+        "text": {
+          "default": "TAP LEARN MORE",
+          "summary": "Text; | forces a line break, otherwise wrapping is automatic."
+        },
+        "y": {
+          "default": 1250,
+          "summary": "Text center height on the 1080×1920 canvas, in pixels."
+        },
+        "size": {
+          "default": 104,
+          "summary": "Maximum font size, in pixels; shrinks automatically to fit."
+        },
+        "color": {
+          "default": "#ffffff",
+          "summary": "Text color with a black outer outline."
+        },
+        "typing": {
+          "default": 1,
+          "summary": "1 reveals letters individually over 0.43 seconds, as in CapCut; 0 reveals the whole text."
+        }
+      },
+      "hidesCaptions": true,
+      "texts": []
+    },
+    {
+      "id": "text-twist",
+      "file": "compositions/scenes/visuals/text-twist.html",
+      "name": "Text twist",
+      "category": "Captions and titles",
+      "type": "title",
+      "whenToUse": "For a sustained call to action: letters shift and their outlines twist around a wavy baseline in four poses per cycle, faster and stronger than Doodle.",
+      "duration": 3.0,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "none",
+      "parameters": {
+        "text": {
+          "default": "LOOK AT|THIS",
+          "summary": "Text; | forces a line break, otherwise wrapping is automatic."
+        },
+        "y": {
+          "default": 1250,
+          "summary": "Text center height on the 1080×1920 canvas, in pixels."
+        },
+        "size": {
+          "default": 110,
+          "summary": "Maximum font size, in pixels; shrinks automatically to fit."
+        },
+        "color": {
+          "default": "#ffffff",
+          "summary": "Text color with a black outer outline."
+        },
+        "cycle": {
+          "default": 0.5,
+          "summary": "Loop duration from 0.2 to 2 seconds; poses change every quarter-cycle. At 0.5 seconds, each pose lasts 0.125 seconds."
+        },
+        "strength": {
+          "default": 1,
+          "summary": "Twist strength from 0.4 to 2; one matches the reference effect."
+        }
+      },
+      "hidesCaptions": true,
+      "texts": []
+    },
+    {
+      "id": "text-color-glitch",
+      "file": "compositions/scenes/visuals/text-color-glitch.html",
+      "name": "Text color glitch",
+      "category": "Captions and titles",
+      "type": "title",
+      "whenToUse": "For a technology headline or launch notice: text appears with a chromatic jolt, holds, then briefly splits red and cyan channels across displaced bands.",
+      "duration": 3.0,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "none",
+      "parameters": {
+        "text": {
+          "default": "TOMORROW|AT 8 PM",
+          "summary": "Text; | forces a line break, otherwise wrapping is automatic."
+        },
+        "y": {
+          "default": 1150,
+          "summary": "Box center height on the 1080×1920 canvas, in pixels."
+        },
+        "size": {
+          "default": 92,
+          "summary": "Maximum font size, in pixels; shrinks automatically to fit."
+        },
+        "color": {
+          "default": "#111111",
+          "summary": "Text color; insufficient box contrast falls back to black or white."
+        },
+        "box": {
+          "default": "#ffffff",
+          "summary": "Box color behind text; \"none\" removes the box and adds a text outline."
+        },
+        "cycle": {
+          "default": 0.5,
+          "summary": "Loop duration from 0.2 to 3 seconds, with five flashes per cycle; 0.5 is nervous and 2.5 is slow."
+        }
+      },
+      "hidesCaptions": true,
+      "texts": []
+    },
+    {
+      "id": "text-spotlight-off",
+      "file": "compositions/scenes/visuals/text-spotlight-off.html",
+      "name": "Text spotlight off",
+      "category": "Captions and titles",
+      "type": "title",
+      "whenToUse": "For an emphatic exit: text flashes on under a moving spotlight; the spotlight closes toward the center and disappears in 0.3 seconds.",
+      "duration": 2.4,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "none",
+      "parameters": {
+        "text": {
+          "default": "R$ 500,000",
+          "summary": "Text; | forces a line break, otherwise wrapping is automatic."
+        },
+        "y": {
+          "default": 1150,
+          "summary": "Text center height on the 1080×1920 canvas, in pixels."
+        },
+        "size": {
+          "default": 130,
+          "summary": "Maximum font size, in pixels; shrinks automatically to fit."
+        },
+        "color": {
+          "default": "#ff2a2a",
+          "summary": "Text color."
+        },
+        "light": {
+          "default": "#ffffff",
+          "summary": "Outline, moving spotlight, and bright closing-edge color."
+        },
+        "exit": {
+          "default": 0.3,
+          "summary": "Exit duration from 0.2 to 0.6 seconds; closure is concentrated near the end, as in CapCut."
+        }
+      },
+      "hidesCaptions": true,
+      "texts": []
+    },
+    {
+      "id": "text-exhale",
+      "file": "compositions/scenes/visuals/text-exhale.html",
+      "name": "Text exhale",
+      "category": "Captions and titles",
+      "type": "title",
+      "whenToUse": "For an expiring offer or deadline: text types in, holds, then ripples, flattens, blurs horizontally, and evaporates in a 0.5-second exit.",
+      "duration": 2.4,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "none",
+      "parameters": {
+        "text": {
+          "default": "95%|OFF",
+          "summary": "Text; | forces a line break, otherwise wrapping is automatic."
+        },
+        "y": {
+          "default": 1150,
+          "summary": "Text center height on the 1080×1920 canvas, in pixels."
+        },
+        "size": {
+          "default": 124,
+          "summary": "Maximum font size, in pixels; shrinks automatically to fit."
+        },
+        "color": {
+          "default": "#ffffff",
+          "summary": "Text color with a dark outer outline."
+        },
+        "exit": {
+          "default": 0.5,
+          "summary": "Exit duration from 0.3 to 1 second; evaporation is concentrated in the last third, as in CapCut."
+        },
+        "typing": {
+          "default": 1,
+          "summary": "1 types letters with a cursor at the beginning; 0 reveals the whole text."
+        }
+      },
+      "hidesCaptions": true,
+      "texts": []
+    },
+    {
+      "id": "text-number-badge",
+      "file": "compositions/scenes/visuals/text-number-badge.html",
+      "name": "Text number badge",
+      "category": "Captions and titles",
+      "type": "title",
+      "whenToUse": "For numbered lists: a top pill holds the current number and item name. Use one copy per item, with adjacent copies meeting at their boundaries. Editor captions remain visible below; do not hide them.",
+      "duration": 4.0,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "none",
+      "parameters": {
+        "number": {
+          "default": "1",
+          "summary": "Badge number; empty shows only the name, without #."
+        },
+        "text": {
+          "default": "Outfit change",
+          "summary": "Short effect, step, or item name, ideally one to four words."
+        },
+        "color": {
+          "default": "#ff6a1f",
+          "summary": "Number color, including its # prefix."
+        },
+        "background": {
+          "default": "#ffffff",
+          "summary": "Pill color; text automatically uses black or white for readability."
+        },
+        "y": {
+          "default": 292,
+          "summary": "Badge center height on the 1080×1920 canvas, in pixels; above the head by default."
+        },
+        "size": {
+          "default": 46,
+          "summary": "Maximum font size, in pixels; shrinks automatically to fit the badge."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "entrance-drop-left",
+      "file": "compositions/scenes/visuals/entrance-drop-left.html",
+      "name": "Entrance drop left",
+      "category": "Image entrances",
+      "whenToUse": "When introducing an image, screenshot, or clip with impact: the card drops from above, holds, then exits left in the last 0.3 seconds. Set image to a file in the image folder. For footage, replace the image element with a video retaining its ID and class, and add src, data-start=\"0\", data-duration, data-track-index=\"2\", muted, and playsinline. Keep portrait cards beside or below the face; the default 16:9 card sits above it.",
+      "duration": 3.0,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "whoosh",
+      "soundAt": 0.1,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Card center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 446,
+          "summary": "Card center, in pixels; default upper band spans y=232–660, above the eyes."
+        },
+        "width": {
+          "default": 760,
+          "summary": "Card width, in pixels."
+        },
+        "height": {
+          "default": 428,
+          "summary": "Card height, in pixels; default aspect ratio is 16:9 and the image fills it with cropping."
+        },
+        "radius": {
+          "default": 28,
+          "summary": "Corner radius, in pixels; zero gives square corners."
+        },
+        "image": {
+          "default": "city.jpg",
+          "summary": "Image filename in the package image folder."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "entrance-drop-right",
+      "file": "compositions/scenes/visuals/entrance-drop-right.html",
+      "name": "Entrance drop right",
+      "category": "Image entrances",
+      "whenToUse": "When introducing an image, screenshot, or clip with impact: the card drops from above, holds, then exits right in the last 0.3 seconds. Set image to a file in the image folder. For footage, replace the image element with a video retaining its ID and class, and add src, data-start=\"0\", data-duration, data-track-index=\"2\", muted, and playsinline. Keep portrait cards beside or below the face; the default 16:9 card sits above it.",
+      "duration": 3.0,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "whoosh",
+      "soundAt": 0.1,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Card center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 446,
+          "summary": "Card center, in pixels; default upper band spans y=232–660, above the eyes."
+        },
+        "width": {
+          "default": 760,
+          "summary": "Card width, in pixels."
+        },
+        "height": {
+          "default": 428,
+          "summary": "Card height, in pixels; default aspect ratio is 16:9 and the image fills it with cropping."
+        },
+        "radius": {
+          "default": 28,
+          "summary": "Corner radius, in pixels; zero gives square corners."
+        },
+        "image": {
+          "default": "city.jpg",
+          "summary": "Image filename in the package image folder."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "entrance-drop-bottom-left",
+      "file": "compositions/scenes/visuals/entrance-drop-bottom-left.html",
+      "name": "Entrance drop bottom left",
+      "category": "Image entrances",
+      "whenToUse": "When introducing an image or result: the card slides in from the right, holds, then drops downward in the last 0.3 seconds. Set image to a file in the image folder. For footage, replace the image element with a video retaining its ID and class, and add src, data-start=\"0\", data-duration, data-track-index=\"2\", muted, and playsinline. Keep portrait cards beside or below the face; the default 16:9 card sits above it.",
+      "duration": 3.0,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "whoosh",
+      "soundAt": 0.1,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Card center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 446,
+          "summary": "Card center, in pixels; default upper band spans y=232–660, above the eyes."
+        },
+        "width": {
+          "default": 760,
+          "summary": "Card width, in pixels."
+        },
+        "height": {
+          "default": 428,
+          "summary": "Card height, in pixels; default aspect ratio is 16:9 and the image fills it with cropping."
+        },
+        "radius": {
+          "default": 28,
+          "summary": "Corner radius, in pixels; zero gives square corners."
+        },
+        "image": {
+          "default": "city.jpg",
+          "summary": "Image filename in the package image folder."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "entrance-drop-bottom-right",
+      "file": "compositions/scenes/visuals/entrance-drop-bottom-right.html",
+      "name": "Entrance drop bottom right",
+      "category": "Image entrances",
+      "whenToUse": "When introducing an image or result: the card slides in from the left, holds, then drops downward in the last 0.3 seconds. Set image to a file in the image folder. For footage, replace the image element with a video retaining its ID and class, and add src, data-start=\"0\", data-duration, data-track-index=\"2\", muted, and playsinline. Keep portrait cards beside or below the face; the default 16:9 card sits above it.",
+      "duration": 3.0,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "whoosh",
+      "soundAt": 0.1,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Card center on the 1080×1920 canvas, in pixels."
+        },
+        "y": {
+          "default": 446,
+          "summary": "Card center, in pixels; default upper band spans y=232–660, above the eyes."
+        },
+        "width": {
+          "default": 760,
+          "summary": "Card width, in pixels."
+        },
+        "height": {
+          "default": 428,
+          "summary": "Card height, in pixels; default aspect ratio is 16:9 and the image fills it with cropping."
+        },
+        "radius": {
+          "default": 28,
+          "summary": "Corner radius, in pixels; zero gives square corners."
+        },
+        "image": {
+          "default": "city.jpg",
+          "summary": "Image filename in the package image folder."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "entrance-zoom-one",
+      "file": "compositions/scenes/visuals/entrance-zoom-one.html",
+      "name": "Entrance zoom one",
+      "category": "Image entrances",
+      "whenToUse": "When an image needs a forceful reveal: it enters at 2× scale, snaps down with radial blur, holds still, then rapidly grows at the end. Entry and exit each take about 0.2 seconds. Set image to a file in the image folder. For footage, replace the image element with a video retaining its ID and class, and add src, data-start=\"0\", data-duration, data-track-index=\"2\", muted, and playsinline. Keep portrait cards beside or below the face; the default 16:9 card sits above it.",
+      "duration": 3.0,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "whoosh",
+      "soundAt": 0.08,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Card center on the 1080×1920 canvas, in pixels; zoom is centered here."
+        },
+        "y": {
+          "default": 446,
+          "summary": "Card center, in pixels; default upper band spans y=232–660, above the eyes."
+        },
+        "width": {
+          "default": 760,
+          "summary": "Card width, in pixels."
+        },
+        "height": {
+          "default": 428,
+          "summary": "Card height, in pixels; default aspect ratio is 16:9 and the image fills it with cropping."
+        },
+        "radius": {
+          "default": 28,
+          "summary": "Corner radius, in pixels; zero gives square corners."
+        },
+        "image": {
+          "default": "city.jpg",
+          "summary": "Image filename in the package image folder."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "entrance-zoom-two",
+      "file": "compositions/scenes/visuals/entrance-zoom-two.html",
+      "name": "Entrance zoom two",
+      "category": "Image entrances",
+      "whenToUse": "When an image unfolds on screen: it starts at 0.5× inside a card surrounded by mirrored copies, snaps to full scale with radial blur, holds, then shrinks again. Entry takes about 0.2 seconds; exit about 0.15 seconds. Set image to a file in the image folder. For footage, replace the image element with a video retaining its ID and class, and add src, data-start=\"0\", data-duration, data-track-index=\"2\", muted, and playsinline. Keep portrait cards beside or below the face; the default 16:9 card sits above it.",
+      "duration": 3.0,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "whoosh",
+      "soundAt": 0.08,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Card center on the 1080×1920 canvas, in pixels; zoom is centered here."
+        },
+        "y": {
+          "default": 446,
+          "summary": "Card center, in pixels; default upper band spans y=232–660, above the eyes."
+        },
+        "width": {
+          "default": 760,
+          "summary": "Card width, in pixels."
+        },
+        "height": {
+          "default": 428,
+          "summary": "Card height, in pixels; default aspect ratio is 16:9 and the image fills it with cropping."
+        },
+        "radius": {
+          "default": 28,
+          "summary": "Corner radius, in pixels; zero gives square corners."
+        },
+        "image": {
+          "default": "city.jpg",
+          "summary": "Image filename in the package image folder."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "entrance-side-zoom",
+      "file": "compositions/scenes/visuals/entrance-side-zoom.html",
+      "name": "Entrance side zoom",
+      "category": "Image entrances",
+      "whenToUse": "When an image enters from the side and recedes: a mirrored edge accompanies a blurred half-screen slide, followed by gradual shrinking and a faster final shrink to about 0.8×. The side parameter selects direction. Set image to a file in the image folder. For footage, replace the image element with a video retaining its ID and class, and add src, data-start=\"0\", data-duration, data-track-index=\"2\", muted, and playsinline. Keep portrait cards beside or below the face; the default 16:9 card sits above it.",
+      "duration": 3.0,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "swish",
+      "soundAt": 0.06,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Card center on the 1080×1920 canvas, in pixels; shrinking is centered here."
+        },
+        "y": {
+          "default": 446,
+          "summary": "Card center, in pixels; default upper band spans y=232–660, above the eyes."
+        },
+        "width": {
+          "default": 760,
+          "summary": "Card width, in pixels."
+        },
+        "height": {
+          "default": 428,
+          "summary": "Card height, in pixels; default aspect ratio is 16:9 and the image fills it with cropping."
+        },
+        "radius": {
+          "default": 28,
+          "summary": "Corner radius, in pixels; zero gives square corners."
+        },
+        "image": {
+          "default": "city.jpg",
+          "summary": "Image filename in the package image folder."
+        },
+        "side": {
+          "default": "right",
+          "summary": "\"right\" slides in from the left; \"left\" slides in from the right."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "entrance-click-open",
+      "file": "compositions/scenes/visuals/entrance-click-open.html",
+      "name": "Entrance click open",
+      "category": "Image entrances",
+      "whenToUse": "When opening a dashboard, link, or result: an image rises at 44% scale, a cursor clicks it, and it expands with an elastic shake and brief blur. It holds until the cut. The 1.3-second entrance compresses below 2.4 seconds to occupy 55% of the scene; sound timing must compress with it. Set image to a file in the image folder. For footage, replace the image element with a video retaining its ID and class, and add src, data-start=\"0\", data-duration, data-track-index=\"2\", muted, and playsinline. Keep portrait cards beside or below the face; the default 16:9 card sits above it.",
+      "duration": 3.0,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "click",
+      "soundAt": 0.68,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Card center on the 1080×1920 canvas, in pixels; the cursor clicks here."
+        },
+        "y": {
+          "default": 446,
+          "summary": "Card center, in pixels; default upper band spans y=232–660, above the eyes."
+        },
+        "width": {
+          "default": 760,
+          "summary": "Card width, in pixels; the cursor scales with it."
+        },
+        "height": {
+          "default": 428,
+          "summary": "Card height, in pixels; default aspect ratio is 16:9 and the image fills it with cropping."
+        },
+        "radius": {
+          "default": 28,
+          "summary": "Final corner radius, in pixels; zero gives square corners, as in CapCut."
+        },
+        "image": {
+          "default": "city.jpg",
+          "summary": "Image filename in the package image folder."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    },
+    {
+      "id": "entrance-before-after-curtain",
+      "file": "compositions/scenes/visuals/entrance-before-after-curtain.html",
+      "name": "Entrance before after curtain",
+      "category": "Image entrances",
+      "whenToUse": "For before/after proof: original footage covers the screen with a recording label, then a bright handled curtain sweeps across, briefly reverses, and reveals the edited footage beneath. The sweep starts after 1 second (earlier below 2.5 seconds) and takes about 1.8 seconds. Match the original clip to the spoken content; remove its CSS filter to retain original color. Set image to a file in the image folder. For footage, replace the image element with a video retaining its ID and class, and add src, data-start=\"0\", data-duration, data-track-index=\"2\", muted, and playsinline. Keep portrait cards beside or below the face; the default 16:9 card sits above it.",
+      "duration": 3.6,
+      "format": "9:16",
+      "layout": "overlay",
+      "sound": "whoosh",
+      "soundAt": 1.6,
+      "parameters": {
+        "x": {
+          "default": 540,
+          "summary": "Handle center for upward sweeps, in pixels; labels use whichever side has room."
+        },
+        "y": {
+          "default": "auto",
+          "summary": "Handle and label height for horizontal sweeps, in pixels; auto places them just below editor captions, or above low captions."
+        },
+        "image": {
+          "default": "city.jpg",
+          "summary": "BEFORE image filename in the package image folder; replace img with video for original footage."
+        },
+        "beforeLabel": {
+          "default": "BEFORE",
+          "summary": "BEFORE-side label, such as original or recorded; empty hides it."
+        },
+        "afterLabel": {
+          "default": "AFTER",
+          "summary": "AFTER-side label, such as edited or AI-assisted; empty hides it."
+        },
+        "direction": {
+          "default": "left",
+          "summary": "Sweep direction: \"left\" reveals AFTER from the right, \"right\" from the left, and \"up\" from below."
+        },
+        "color": {
+          "default": "#ff6a1f",
+          "summary": "AFTER-label and sweep-line glow color."
+        }
+      },
+      "hidesCaptions": false,
+      "texts": []
+    }
+  ]
+}

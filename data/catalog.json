@@ -88683,6 +88683,31 @@
       "license": "CC-BY-NC-4.0",
       "license_source": "https://github.com/appariciojunior/video-editor-skills/blob/6709678d7d5b169149e13480428e12b0f09a47f0/LICENSE",
       "path": "skills/youtube-export/SKILL.md"
+    },
+    {
+      "id": "editonny",
+      "canonical_id": "editonny",
+      "name": "editonny",
+      "description": "Use when installing, preparing, diagnosing, or updating editonny, or editing local videos, Reels, ads, sales videos, lessons, combining takes, adding captions or visual scenes, adapting a reference, or refining an existing edit.",
+      "category": "media",
+      "risk": "safe",
+      "tags": [
+        "video-editing",
+        "editonny",
+        "reels",
+        "captions",
+        "motion-scenes",
+        "media",
+        "local-ai"
+      ],
+      "source": "https://github.com/soumatheusgomes/editonny/tree/49714f2fba6eafb76b903376e1fe9f50b685506a/skills/editonny",
+      "source_repo": "soumatheusgomes/editonny",
+      "source_revision": "49714f2fba6eafb76b903376e1fe9f50b685506a",
+      "source_path": "skills/editonny/SKILL.md",
+      "author": "Matheus Gomes",
+      "license": "MIT",
+      "license_source": "https://github.com/soumatheusgomes/editonny/blob/49714f2fba6eafb76b903376e1fe9f50b685506a/LICENSE.md",
+      "path": "skills/editonny/SKILL.md"
     }
   ]
 }

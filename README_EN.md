@@ -58,7 +58,7 @@ The catalog-first website supports keyword/author/source search, category filter
 
 **Vie Agentic Skill (VAS)** is an open-source project authored, curated, and maintained by **Huy Tran** ([@huytran1120](https://github.com/huytran1120)) with the mission to **aggregate, curate, and standardize the world's best agentic skills** for modern AI coding assistants.
 
-Rather than leaving skills fragmented across different tools, isolated plugins, or proprietary repositories, VAS consolidates **3,184+ production-grade playbooks (`SKILL.md`)** across **119 specialized categories** into a unified ecosystem adhering to the **Open Agent Skills specification ([agentskills.io](https://agentskills.io/))**. It brings together the finest engineering runbooks from premier open-source contributors and industry organizations worldwide—including Addy Osmani, Cloudflare, Matt Pocock, Blender Studio, Google Devs, and Open Agent Skills.
+Rather than leaving skills fragmented across different tools, isolated plugins, or proprietary repositories, VAS consolidates **3,185+ production-grade playbooks (`SKILL.md`)** across **119 specialized categories** into a unified ecosystem adhering to the **Open Agent Skills specification ([agentskills.io](https://agentskills.io/))**. It brings together the finest engineering runbooks from premier open-source contributors and industry organizations worldwide—including Addy Osmani, Cloudflare, Matt Pocock, Blender Studio, Google Devs, and Open Agent Skills.
 
 Instead of treating your AI coding assistant as an entry-level intern that generates shallow answers, VAS equips agents with Senior-grade playbooks: deep diagnostic checklists, security hardening rules, performance formulas, and deterministic execution scripts.
 
@@ -298,6 +298,22 @@ upstream source [appariciojunior/video-editor-skills](https://github.com/apparic
 
 Requires DaVinci Resolve Studio with *Preferences > System > General > External scripting using: Local*. Optional tools and services (ffmpeg, Speech-to-Text APIs, Epidemic Sound, Remotion, Figma) require explicit user consent and separate API credentials. See the [Video Editor VI/EN guide](docs/video-editor.md) for full instructions.
 
+#### editonny — Local Video Editing & Motion Scenes for Claude Code & Codex
+
+[Open editonny](https://huytran1120.github.io/vie-agentic-skills/?lang=en&sources=editonny),
+choose an agent and **Copy Agent Prompt** to install without cloning.
+Full offline video editing workflow: cut silence and mistakes, generate exact burned-in captions, balance speech loudness (-14 LUFS, headroom -1.5 dBTP), and render 145+ motion scenes aligned with speech using natural language.
+Preserves **MIT License**, author **Matheus Gomes ([@soumatheusgomes](https://github.com/soumatheusgomes))**,
+upstream source [soumatheusgomes/editonny](https://github.com/soumatheusgomes/editonny), and third-party notices.
+
+```bash
+./vas install editonny --target claude --mode copy --dest "/Projects/my-video/.claude/skills"
+./vas status --target claude --dest "/Projects/my-video/.claude/skills"
+./vas uninstall editonny --target claude --dest "/Projects/my-video/.claude/skills"
+```
+
+Requires Python 3.9+ (launcher) / >=3.10,<3.14 via uv (engine), ffmpeg/ffprobe, and Node.js 22.13+ or 24+ with npx on PATH. Transcription and rendering run offline with zero LLM API key costs. See the [editonny VI/EN guide](docs/editonny.md) for full instructions.
+
 ### 5. Agent-Specific Setup Guides
 
 - **Google Antigravity**: Discovered automatically through `.agents/skills/` or globally at `~/.gemini/antigravity/skills/`:
@@ -514,7 +530,7 @@ During `/ship` pre-flight or code auditing, 4 specialist personas can be fanned 
 
 | Dimension | Vie Agentic Skill (VAS) | Addy Osmani (`agent-skills`) | Superpowers (`obra`) | Matt Pocock Skills |
 | :--- | :--- | :--- | :--- | :--- |
-| **Catalog Scale** | **3,184+ Skills** (World's most extensive) | 25 Core Skills | ~14 Skills | ~30 Skills |
+| **Catalog Scale** | **3,185+ Skills** (World's most extensive) | 25 Core Skills | ~14 Skills | ~30 Skills |
 | **Tooling & Engine** | **Native Python 3 CLI (`./vas`) — Zero-NPX** | `npx skills` / Plugins | Git Worktrees / Shell scripts | Claude Code / `npx skills` |
 | **Dependencies & Offline**| **100% Offline, Zero external dependencies** | Requires Node & remote NPX | Requires clone & git setup | Requires Node & remote NPX |
 | **Agent Support** | **7+ AI Coding Assistants** (Antigravity, Codex, Claude, Cursor, Windsurf, Cline, Copilot) | Claude Code, Codex, Antigravity, Cursor, Copilot | Claude Code, Codex, Cursor | Claude Code primary |
@@ -527,7 +543,7 @@ During `/ship` pre-flight or code auditing, 4 specialist personas can be fanned 
 
 ### 11. Featured & Viral Skills Showcase (Top 20)
 
-VAS includes **3,184+ skills** across **119 specialized categories**. Browse the full directory in [CATALOG.md](CATALOG.md).
+VAS includes **3,185+ skills** across **119 specialized categories**. Browse the full directory in [CATALOG.md](CATALOG.md).
 
 | # | Skill ID | Stars | Capability Overview | Quick Install Command |
 | :-: | :--- | :---: | :--- | :--- |

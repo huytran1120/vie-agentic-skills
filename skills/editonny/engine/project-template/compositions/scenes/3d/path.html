@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>Path</title></head>
+<body>
+
+<template id="path-template">
+<style>
+@font-face{font-family:Montserrat;src:url("assets/fonts/Montserrat.ttf") format("truetype");font-weight:100 900;font-display:block}
+#root{position:absolute;inset:0;overflow:hidden;font-family:Montserrat}
+#path-stage{position:absolute;inset:0;opacity:0}
+#path-screen{position:absolute;left:0;top:0;width:100%;height:100%;display:block}
+#path-labels{position:absolute;inset:0}
+</style>
+<div id="root" data-composition-id="path" data-width="1080" data-height="1920" data-duration="5">
+  <div id="path-stage"><canvas id="path-screen" width="1080" height="1920"></canvas><div id="path-labels"></div></div>
+</div>
+<script>
+(function () {
+  const ID = "path";
+  const PARAM = {
+    points: [
+      { name: "Mistake", x: -1.6, z: 2.9, arrive: { word: "error", standard: 0.8 } },
+      { x: 1.5, z: 2.9 },
+      { name: "Pause", x: 1.6, z: 0.9, arrive: { word: "pause", standard: 1.6 } },
+      { x: -1.5, z: 0.9 },
+      { name: "Um…", x: -1.6, z: -0.9, arrive: { word: "um", standard: 2.5 } },
+      { x: 1.5, z: -0.9 },
+      { name: "Cut", x: 1.6, z: -2.9, arrive: { word: "cut", standard: 3.4 } },
+    ],
+    obstacles: [
+      { x: -0.8, z: 1.9, width: 3.2, depth: 0.45, height: 0.8 },
+      { x: 0.8, z: 0.0, width: 3.2, depth: 0.45, height: 0.8 },
+      { x: -0.8, z: -1.9, width: 3.2, depth: 0.45, height: 0.8 },
+    ],
+    base: true,
+    follow: { azim: 0, elev: 48, window: null },
+    followAmount: 0.3,
+    final: { azim: 12, elev: 60, duration: 0.5 },
+    background: "paper",
+    area: null,
+    cutout: true,
+    shadows: true,
+    entry: 0.2,
+    exit: 0.2,
+  };
+  const C = Object.assign({ words: [], duration: 5, width: 1080, height: 1920, safeArea: [140, 230, 940, 1530], face: null,
+    colors: { paper: "#fffdfd", line: "#e6ddf8", base: "#c7b7ef", accent: "#665080", ink: "#352c40", green: "#2e9e5b", red: "#e5484d" } },
+    (window.__scenes || {})[ID] || {});
+  const DUR = C.duration;
+  function timeCurve(ts, us) {
+    const n = ts.length, m = new Array(n).fill(0), d = [];
+    for (let i = 0; i < n - 1; i++) d.push((us[i + 1] - us[i]) / Math.max(1e-6, ts[i + 1] - ts[i]));
+    for (let i = 1; i < n - 1; i++) m[i] = d[i - 1] * d[i] <= 0 ? 0 : (2 * d[i - 1] * d[i]) / (d[i - 1] + d[i]);
+    return (t) => {
+      if (t <= ts[0]) return us[0];
+      if (t >= ts[n - 1]) return us[n - 1];
+      let i = 0;
+      while (i < n - 2 && t > ts[i + 1]) i++;
+      const h = ts[i + 1] - ts[i], s = (t - ts[i]) / h, s2 = s * s, s3 = s2 * s;
+      return (2 * s3 - 3 * s2 + 1) * us[i] + (s3 - 2 * s2 + s) * h * m[i] + (-2 * s3 + 3 * s2) * us[i + 1] + (s3 - s2) * h * m[i + 1];
+    };
+  }
+
+  async function build(K, P) {
+    const THREE = K.THREE;
+    P.lights({ key: [3, 10, 6], target: [0, 0, 0], area: 7 });
+    P.floor({ size: 26 });
+    const overallWidth = Math.max(...PARAM.points.map((p) => Math.abs(p.x)), ...PARAM.obstacles.map((o) => Math.abs(o.x) + o.width / 2)) * 2 + 0.9;
+    const overallDepth = Math.max(...PARAM.points.map((p) => Math.abs(p.z)), ...PARAM.obstacles.map((o) => Math.abs(o.z) + o.depth / 2)) * 2 + 0.9;
+    if (PARAM.base) {
+      const b = P.plate({ width: overallWidth, height: 0.1, depth: overallDepth, radius: 0.25, bevel: 0.03, color: C.colors.paper, sides: C.colors.base });
+      b.position.y = -0.1;
+      P.scene.add(b);
+      P.solid(b, "a base");
+      P.contactShadow({ width: overallWidth, depth: overallDepth, intensity: 0.35, y: -0.1 }).place(0, 0, 0);
+    }
+    PARAM.obstacles.forEach((o, i) => {
+      const b = P.plate({ width: o.width, height: o.height, depth: o.depth, radius: 0.12, bevel: 0.04,
+        color: o.color || C.colors.base, sides: o.sides || "#" + new THREE.Color(o.color || C.colors.base).multiplyScalar(0.8).getHexString() });
+      b.position.set(o.x, 0, o.z);
+      P.scene.add(b);
+      P.solid(b, o.name || `layout ${i + 1}`);
+      P.contactShadow({ width: o.width, depth: o.depth, intensity: 0.4 }).place(o.x, o.z, 0);
+    });
+    const pts = PARAM.points.map((p) => new THREE.Vector3(p.x, 0.03, p.z));
+    const curve = new THREE.CatmullRomCurve3(pts, false, "centripetal");
+    const N = 400;
+    const length = curve.getLengths(N), total = length[N];
+    const pointProgress = PARAM.points.map((_, i) => length[Math.round((i / (PARAM.points.length - 1)) * N)] / total);
+    for (let k = 0; k <= 300; k++) {
+      const q = curve.getPointAt(k / 300);
+      PARAM.obstacles.forEach((o, i) => {
+        if (Math.abs(q.x - o.x) < o.width / 2 + 0.06 && Math.abs(q.z - o.z) < o.depth / 2 + 0.06) {
+          console.error(`[scene 3D ${ID}] path crosses obstacle ${i + 1} near x ${q.x.toFixed(2)}, z ${q.z.toFixed(2)}: add an earlier turn point`);
+          k = 301;
+        }
+      });
+    }
+    const marked = PARAM.points.map((p, i) => (p.arrive != null ? { i, t: K.moment(C, p.arrive, 0) } : null)).filter(Boolean);
+    const times = PARAM.points.map((p, i) => {
+      const m = marked.find((x) => x.i === i);
+      if (m) return m.t;
+      const a = [...marked].reverse().find((x) => x.i < i) || marked[0], b = marked.find((x) => x.i > i) || marked[marked.length - 1];
+      return a.i === b.i ? a.t : K.mix(a.t, b.t, (pointProgress[i] - pointProgress[a.i]) / Math.max(1e-6, pointProgress[b.i] - pointProgress[a.i]));
+    });
+    for (let i = 1; i < times.length; i++) times[i] = Math.max(times[i], times[i - 1] + 0.05);
+    const progressAt = timeCurve(times, pointProgress);
+    const tubeRadius = 0.07, sides = 10;
+    const tube = new THREE.Mesh(new THREE.TubeGeometry(curve, 600, tubeRadius, sides, false),
+      new THREE.MeshStandardMaterial({ color: C.colors.accent, roughness: 0.4 }));
+    tube.castShadow = true;
+    P.scene.add(tube);
+    const perRing = sides * 6, totalIdx = tube.geometry.index.count;
+    const head = new THREE.Mesh(new THREE.SphereGeometry(0.16, 32, 16), P.material(C.colors.accent, { clearcoat: 0.6 }));
+    head.castShadow = true;
+    P.scene.add(head);
+    const stops = PARAM.points.map((p, i) => ({ p, i })).filter((x) => x.p.name);
+    const pins = stops.map(({ p }) => {
+      const g = new THREE.Group();
+      const stem = P.cylinder({ radius: 0.035, height: 0.7, color: C.colors.ink });
+      const dot = new THREE.Mesh(new THREE.SphereGeometry(0.15, 32, 16), P.material(C.colors.red, { clearcoat: 0.6 }));
+      dot.position.y = 0.72;
+      dot.castShadow = true;
+      g.add(stem, dot);
+      g.position.set(p.x, 0, p.z);
+      P.scene.add(g);
+      return g;
+    });
+    const rot = P.labels(stops.map(({ p }) => ({ text: p.name, side: "above" })));
+    const j = PARAM.follow.window || overallWidth;
+    const followDistance = P.fittingDistance(new THREE.Box3(new THREE.Vector3(-j / 2, 0, -j * 0.35), new THREE.Vector3(j / 2, 1, j * 0.35)),
+      { target: [0, 0.2, 0], azim: PARAM.follow.azim, elev: PARAM.follow.elev }, 1.0);
+    const overallBox = new THREE.Box3(new THREE.Vector3(-overallWidth / 2, -0.1, -overallDepth / 2), new THREE.Vector3(overallWidth / 2, 1.2, overallDepth / 2));
+    const final = PARAM.final ? { target: [0, 0, 0], azim: PARAM.final.azim, elev: PARAM.final.elev } : null;
+    if (final) final.dist = P.fittingDistance(overallBox, final, 1.05);
+    const finishTime = times[times.length - 1];
+    const focus = new THREE.Vector3();
+    return (t) => {
+      const u = K.clamp(progressAt(t));
+      curve.getPointAt(u, focus);
+      tube.geometry.setDrawRange(0, Math.floor((u * totalIdx) / perRing) * perRing);
+      head.position.set(focus.x, 0.16, focus.z);
+      stops.forEach(({ i }, k) => { const s = Math.max(0.001, K.interval(t, times[i] - 0.18, 0.28, K.easeOut)); pins[k].scale.set(s, s, s); });
+      const follow = { target: [focus.x * PARAM.followAmount, 0.2, focus.z], dist: followDistance, azim: PARAM.follow.azim, elev: PARAM.follow.elev };
+      if (final) P.orbit(K.mixPose(follow, final, K.interval(t, finishTime, PARAM.final.duration || 0.6)));
+      else P.orbit(follow);
+      rot.update(stops.map(({ i }) => ({ point: [PARAM.points[i].x, 0.95, PARAM.points[i].z], opacity: K.interval(t, times[i] - 0.05, 0.22) })));
+    };
+  }
+  const stage = document.getElementById("path-stage");
+  const tl = gsap.timeline({ paused: true });
+  const clock = { t: 0 };
+  let draw = null;
+  tl.fromTo(clock, { t: 0 }, { t: DUR, duration: DUR, ease: "none", onUpdate: () => draw && draw(clock.t) }, 0);
+  if (PARAM.entry > 0) tl.fromTo(stage, { opacity: 0 }, { opacity: 1, duration: PARAM.entry, ease: "power1.out" }, 0);
+  else tl.set(stage, { opacity: 1 }, 0);
+  if (PARAM.exit > 0) tl.fromTo(stage, { opacity: 1 }, { opacity: 0, duration: PARAM.exit, ease: "power1.in", immediateRender: false }, Math.max(0, DUR - PARAM.exit));
+  window.__timelines["path"] = tl;
+  window.addEventListener("hf-seek", () => { if (draw) draw(clock.t); });
+  const src = typeof __hfCompositionSrc === "string" ? __hfCompositionSrc : "";
+  const PROJECT_ROOT = src.includes("/compositions/") ? src.slice(0, src.lastIndexOf("/compositions/") + 1) : document.baseURI;
+  const background = PARAM.background === "paper" ? C.colors.paper : PARAM.background;
+  (window.__hf = window.__hf || {}).buildReady = window.__hf.buildReady || {};
+  window.__hf.buildReady[ID] = import(new URL("compositions/scenes/3d/three-scene.js", PROJECT_ROOT).href)
+    .then((K) => K.initialize({ id: ID, C, root: PROJECT_ROOT, canvas: document.getElementById("path-screen"), layer: document.getElementById("path-labels"),
+      background, area: PARAM.area, cutout: PARAM.area && PARAM.cutout ? PARAM.area : null, fov: 34, shadows: PARAM.shadows, build: (P) => build(K, P) }))
+    .then((d) => { draw = d; draw(clock.t); })
+    .catch((e) => console.error(`[scene 3D ${ID}] could not load the 3D engine: ${e && e.message ? e.message : e}`));
+})();
+</script>
+</template>
+</body></html>

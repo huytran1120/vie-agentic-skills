@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Pointer curved arrow</title></head>
+<body>
+<!-- Pointer curved arrow. To draw attention to a detail with a hand-drawn curved arrow. -->
+
+<template id="pointer-curved-arrow-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+#pointercurvedarrow-w{position:absolute;left:0;top:0;width:10px;height:10px;opacity:0;filter:drop-shadow(0 0 2px rgba(0,0,0,.55)) drop-shadow(0 10px 12px rgba(0,0,0,.42))}
+#pointercurvedarrow-r{position:absolute;left:0;top:0;width:10px;height:10px;transform-origin:0 0}
+#pointercurvedarrow-a{position:absolute;left:0;top:0;width:10px;height:10px}
+#pointercurvedarrow-s{position:absolute;left:0;top:0;overflow:visible}
+.pointercurvedarrow-t{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.pointercurvedarrow-b{stroke:#fff}
+.pointercurvedarrow-v{opacity:0}
+</style>
+<div id="root" data-composition-id="pointer-curved-arrow" data-width="1080" data-height="1920" data-duration="2.6">
+<div id="pointercurvedarrow-w"><div id="pointercurvedarrow-r"><div id="pointercurvedarrow-a"><svg id="pointercurvedarrow-s" xmlns="http://www.w3.org/2000/svg"><path id="pointercurvedarrow-cb" class="pointercurvedarrow-t pointercurvedarrow-b"/><path id="pointercurvedarrow-vb" class="pointercurvedarrow-t pointercurvedarrow-b pointercurvedarrow-v"/><path id="pointercurvedarrow-cf" class="pointercurvedarrow-t"/><path id="pointercurvedarrow-vf" class="pointercurvedarrow-t pointercurvedarrow-v"/></svg></div></div></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["pointer-curved-arrow"] || { duration: 2.6 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 2.6, t0 = 0;
+
+  var P = {
+    x: 540, // Arrow tip on the 1080×1920 canvas, in pixels.
+    y: 620, // Arrow tip, in pixels.
+    size: 320, // Arrow width, in pixels.
+    color: "#ff3b30", // Stroke color.
+    side: "left", // Side from which the arrow arrives: "left" or "right".
+  };
+
+
+  var width = Math.max(120, Number(P.size) || 320), un = width / 320;
+  var stroke = Math.max(14, 18 * un), border = Math.max(6, 8 * un);
+  var get = function (s) { return document.getElementById("pointercurvedarrow-" + s); };
+  var shadow = Math.max(1, un);
+  get("w").style.left = Number(P.x) + "px"; get("w").style.top = Number(P.y) + "px";
+  get("w").style.filter = "drop-shadow(0 0 " + (2 * shadow).toFixed(1) + "px rgba(0,0,0,.55)) drop-shadow(0 " + (10 * shadow).toFixed(1) + "px " + (12 * shadow).toFixed(1) + "px rgba(0,0,0,.42))";
+
+  get("r").style.transform = P.side === "right" ? "matrix(-1,0,0,1,0,0)" : "none";
+
+  var direction = Math.atan2(206, 37), retreat = stroke / 2 + border, end = [-retreat * Math.cos(direction), -retreat * Math.sin(direction)];
+  var nodes = [[-260 * un, -128 * un], [-192 * un, -264 * un], [-40 * un, -222 * un]];
+  var largerWing = Math.max(86 * un, 3.4 * stroke), smallerWing = largerWing * .88;
+  var wings = [[end[0] + largerWing * Math.cos(direction + Math.PI - .62), end[1] + largerWing * Math.sin(direction + Math.PI - .62)],
+              [end[0] + smallerWing * Math.cos(direction + Math.PI + .62), end[1] + smallerWing * Math.sin(direction + Math.PI + .62)]];
+
+  var shake = Math.min(1.6, Math.max(.8, un)), n1 = function (v) { return v.toFixed(1); };
+  var move = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [2, -3, -5, 4, 4, 5, 3, -2, -3, 2], [-3, 2, 5, -4, -4, -5, -3, 3, 2, 3]];
+  var curves = [], tips = [];
+  move.forEach(function (m) {
+    var q = m.map(function (v) { return v * shake; });
+    curves.push("M" + n1(nodes[0][0] + q[0]) + "," + n1(nodes[0][1] + q[1]) + " C" + n1(nodes[1][0] + q[2]) + "," + n1(nodes[1][1] + q[3]) + " " + n1(nodes[2][0] + q[4]) + "," + n1(nodes[2][1] + q[5]) + " " + n1(end[0]) + "," + n1(end[1]));
+    tips.push("M" + n1(end[0]) + "," + n1(end[1]) + " L" + n1(wings[0][0] + q[6]) + "," + n1(wings[0][1] + q[7]) + " M" + n1(end[0]) + "," + n1(end[1]) + " L" + n1(wings[1][0] + q[8]) + "," + n1(wings[1][1] + q[9]));
+  });
+  var lines = [get("cb"), get("cf")], vs = [get("vb"), get("vf")];
+  lines.concat(vs).forEach(function (el, i) {
+    el.setAttribute("d", i < 2 ? curves[0] : tips[0]);
+    el.setAttribute("stroke-width", i % 2 ? stroke : stroke + 2 * border);
+    if (i % 2) el.setAttribute("stroke", P.color);
+  });
+
+  var curveLength = 0, ptAntes = nodes[0];
+  for (var k = 1; k <= 40; k++) {
+    var u = k / 40, w = 1 - u;
+    var pt = [w * w * w * nodes[0][0] + 3 * w * w * u * nodes[1][0] + 3 * w * u * u * nodes[2][0] + u * u * u * end[0], w * w * w * nodes[0][1] + 3 * w * w * u * nodes[1][1] + 3 * w * u * u * nodes[2][1] + u * u * u * end[1]];
+    curveLength += Math.sqrt((pt[0] - ptAntes[0]) * (pt[0] - ptAntes[0]) + (pt[1] - ptAntes[1]) * (pt[1] - ptAntes[1])); ptAntes = pt;
+  }
+  var wingLength = largerWing + 6, dashColor = curveLength * 1.3, dashValue = wingLength * 1.3;
+  lines.forEach(function (el) { el.setAttribute("stroke-dasharray", dashColor + " " + dashColor); el.setAttribute("stroke-dashoffset", dashColor + 2); });
+  vs.forEach(function (el) { el.setAttribute("stroke-dasharray", dashValue + " " + dashValue); el.setAttribute("stroke-dashoffset", dashValue + 2); });
+
+
+  var box = "#pointercurvedarrow-w", piece = "#pointercurvedarrow-a", enter = t0 + .05, atTip = enter + .3, readyValue = atTip + .1, exit = t0 + D - .28;
+  var steps = Math.max(2, Math.floor((exit - readyValue - .04) / .1));
+  tl.fromTo(box, { opacity: 0 }, { opacity: 1, duration: .04, ease: "none" }, enter);
+  tl.fromTo(lines, { strokeDashoffset: dashColor + 2 }, { strokeDashoffset: dashColor - curveLength * 1.05, duration: .32, ease: "power1.inOut" }, enter);
+
+  tl.fromTo(vs, { opacity: 0 }, { opacity: 1, duration: .03, ease: "none" }, atTip - .03);
+  tl.fromTo(vs, { strokeDashoffset: dashValue + 2 }, { strokeDashoffset: dashValue - wingLength * 1.05, duration: .1, ease: "power2.out", immediateRender: false }, atTip);
+  for (var step = 1; step <= steps; step++) {
+    var which = step === steps ? 0 : step % 3;
+    tl.set(lines, { attr: { d: curves[which] }, immediateRender: false }, readyValue + .04 + (step - 1) * .1);
+    tl.set(vs, { attr: { d: tips[which] }, immediateRender: false }, readyValue + .04 + (step - 1) * .1);
+  }
+  tl.fromTo(piece, { y: 0 }, { y: -22 * un, duration: .24, ease: "power2.in", immediateRender: false }, exit);
+  tl.fromTo(box, { opacity: 1 }, { opacity: 0, duration: .24, ease: "power2.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["pointer-curved-arrow"] = tl;
+})();
+</script>
+</template>
+</body></html>

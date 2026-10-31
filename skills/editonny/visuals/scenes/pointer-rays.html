@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Pointer rays</title></head>
+<body>
+<!-- Pointer rays. To surround an important object, face, or number with emphatic rays. -->
+
+<template id="pointer-rays-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+#pointerrays-a{position:absolute;left:0;top:0;width:10px;height:10px;opacity:0;filter:drop-shadow(0 0 1.5px rgba(255,255,255,.7)) drop-shadow(0 6px 0 rgba(0,0,0,.35)) drop-shadow(0 12px 16px rgba(0,0,0,.45))}
+#pointerrays-s{position:absolute;left:0;top:0;overflow:visible}
+.pointerrays-m{fill:none;stroke:#fff;stroke-linecap:round}
+.pointerrays-k{fill:#1c1c1e;stroke:#1c1c1e;stroke-linejoin:round}
+</style>
+<div id="root" data-composition-id="pointer-rays" data-width="1080" data-height="1920" data-duration="2.0">
+<div id="pointerrays-a"><svg id="pointerrays-s" xmlns="http://www.w3.org/2000/svg">
+<mask id="pointerrays-mk" maskUnits="userSpaceOnUse"><line id="pointerrays-mk0" class="pointerrays-m"/><line id="pointerrays-mk1" class="pointerrays-m"/><line id="pointerrays-mk2" class="pointerrays-m"/><line id="pointerrays-mk3" class="pointerrays-m"/><line id="pointerrays-mk4" class="pointerrays-m"/><line id="pointerrays-mk5" class="pointerrays-m"/><line id="pointerrays-mk6" class="pointerrays-m"/><line id="pointerrays-mk7" class="pointerrays-m"/><line id="pointerrays-mk8" class="pointerrays-m"/><line id="pointerrays-mk9" class="pointerrays-m"/><line id="pointerrays-mk10" class="pointerrays-m"/><line id="pointerrays-mk11" class="pointerrays-m"/></mask>
+<mask id="pointerrays-mf" maskUnits="userSpaceOnUse"><line id="pointerrays-mf0" class="pointerrays-m"/><line id="pointerrays-mf1" class="pointerrays-m"/><line id="pointerrays-mf2" class="pointerrays-m"/><line id="pointerrays-mf3" class="pointerrays-m"/><line id="pointerrays-mf4" class="pointerrays-m"/><line id="pointerrays-mf5" class="pointerrays-m"/><line id="pointerrays-mf6" class="pointerrays-m"/><line id="pointerrays-mf7" class="pointerrays-m"/><line id="pointerrays-mf8" class="pointerrays-m"/><line id="pointerrays-mf9" class="pointerrays-m"/><line id="pointerrays-mf10" class="pointerrays-m"/><line id="pointerrays-mf11" class="pointerrays-m"/></mask>
+<g id="pointerrays-g">
+<g mask="url(#pointerrays-mk)"><path id="pointerrays-k0" class="pointerrays-k"/><path id="pointerrays-k1" class="pointerrays-k"/><path id="pointerrays-k2" class="pointerrays-k"/><path id="pointerrays-k3" class="pointerrays-k"/><path id="pointerrays-k4" class="pointerrays-k"/><path id="pointerrays-k5" class="pointerrays-k"/><path id="pointerrays-k6" class="pointerrays-k"/><path id="pointerrays-k7" class="pointerrays-k"/><path id="pointerrays-k8" class="pointerrays-k"/><path id="pointerrays-k9" class="pointerrays-k"/><path id="pointerrays-k10" class="pointerrays-k"/><path id="pointerrays-k11" class="pointerrays-k"/></g>
+<g mask="url(#pointerrays-mf)"><path id="pointerrays-f0"/><path id="pointerrays-f1"/><path id="pointerrays-f2"/><path id="pointerrays-f3"/><path id="pointerrays-f4"/><path id="pointerrays-f5"/><path id="pointerrays-f6"/><path id="pointerrays-f7"/><path id="pointerrays-f8"/><path id="pointerrays-f9"/><path id="pointerrays-f10"/><path id="pointerrays-f11"/></g>
+</g></svg></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["pointer-rays"] || { duration: 2.0 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 2.0, t0 = 0;
+
+  var P = {
+    x: 505, // Burst center on the 1080×1920 canvas, in pixels.
+    y: 1175, // Burst center, in pixels.
+    radius: 150, // Ring radius from which rays emerge, in pixels; minimum 60.
+    color: "#ffe600", // Ray color.
+    pulses: 2, // Ray bursts during the scene; each needs about 0.3 seconds and excess bursts are clipped.
+  };
+
+
+  var ringRadius = Math.max(60, P.radius || 150), rayCount = 12;
+  var thinRadius = Math.max(4.5, ringRadius * .04), thickRadius = Math.max(10, ringRadius * .09), border = Math.max(5, ringRadius * .045);
+  var longLength = ringRadius * .82, shortLength = ringRadius * .46;
+  var indent = ringRadius * .22, progressValue = ringRadius * .35, go = Math.max(10, ringRadius * .12);
+  var box = document.getElementById("pointerrays-a"), get = function (name) { return document.getElementById("pointerrays-" + name); };
+  box.style.left = P.x + "px"; box.style.top = P.y + "px";
+  var reach = ringRadius + longLength + progressValue + border + 30, n2 = function (v) { return v.toFixed(2); }, rays = [], i, k, m;
+  var masks = [get("mk"), get("mf")];
+  for (m = 0; m < 2; m++) {
+    masks[m].setAttribute("x", n2(-reach)); masks[m].setAttribute("y", n2(-reach));
+    masks[m].setAttribute("width", n2(reach * 2)); masks[m].setAttribute("height", n2(reach * 2));
+  }
+  for (i = 0; i < rayCount; i++) {
+    var ang = (-90 + i * 360 / rayCount) * Math.PI / 180, dx = Math.cos(ang), dy = Math.sin(ang), shortValue = i % 2;
+    var r1 = thinRadius * (shortValue ? .85 : 1), r2 = thickRadius * (shortValue ? .85 : 1);
+    var u1 = ringRadius + r1, u2 = ringRadius + (shortValue ? shortLength : longLength) - r2, comp = u2 - u1;
+
+    var co = (r1 - r2) / comp, se = Math.sqrt(1 - co * co);
+    var ax = co * dx - se * dy, ay = co * dy + se * dx, bx = co * dx + se * dy, by = co * dy - se * dx;
+    var drop = "M" + n2(dx * u1 + r1 * ax) + " " + n2(dy * u1 + r1 * ay) + " L" + n2(dx * u2 + r2 * ax) + " " + n2(dy * u2 + r2 * ay) +
+      " A" + n2(r2) + " " + n2(r2) + " 0 1 0 " + n2(dx * u2 + r2 * bx) + " " + n2(dy * u2 + r2 * by) +
+      " L" + n2(dx * u1 + r1 * bx) + " " + n2(dy * u1 + r1 * by) + " A" + n2(r1) + " " + n2(r1) + " 0 0 0 " + n2(dx * u1 + r1 * ax) + " " + n2(dy * u1 + r1 * ay) + " Z";
+    var outline = get("k" + i), full = get("f" + i), strokes = [get("mk" + i), get("mf" + i)];
+    outline.setAttribute("d", drop); outline.setAttribute("stroke-width", n2(border * 2));
+    full.setAttribute("d", drop); full.setAttribute("fill", P.color);
+
+    for (m = 0; m < 2; m++) {
+      strokes[m].setAttribute("x1", n2(dx * u1)); strokes[m].setAttribute("y1", n2(dy * u1));
+      strokes[m].setAttribute("x2", n2(dx * u2)); strokes[m].setAttribute("y2", n2(dy * u2));
+      strokes[m].setAttribute("stroke-width", n2(m ? r2 * 2 + 1 : (r2 + border) * 2 + 2));
+      strokes[m].setAttribute("stroke-dasharray", n2(comp) + " " + n2(comp * 3 + 600));
+      strokes[m].setAttribute("stroke-dashoffset", n2(comp * .95));
+    }
+    rays.push({ advance: [outline, full, strokes[0], strokes[1]], stroke: strokes, dx: dx, dy: dy, comp: comp });
+  }
+
+  var enter = t0 + .05, exit = t0 + D - .3, exitDuration = .25;
+  var pulseCount = Math.max(1, Math.min(Math.round(P.pulses || 1), Math.floor((exit - enter) / .28)));
+  var step = (exit - enter) / pulseCount, burstDuration = Math.min(.3, step * .5), retractDuration = Math.min(.16, step * .25);
+  tl.fromTo("#pointerrays-a", { opacity: 0 }, { opacity: 1, duration: .06, ease: "none" }, enter);
+  for (k = 0; k < pulseCount; k++) {
+    var beginTime = enter + k * step, lastValue = k === pulseCount - 1;
+    var liveDuration = step - burstDuration - (lastValue ? 0 : retractDuration), halves = liveDuration < .5 ? 2 : Math.max(4, 2 * Math.round(liveDuration / .5)), halfValue = liveDuration / halves;
+    if (k > 0) tl.to("#pointerrays-g", { rotation: k % 2 ? 15 : 0, svgOrigin: "0 0", duration: retractDuration + burstDuration * .6, ease: "power2.inOut", immediateRender: false }, beginTime - retractDuration);
+    for (i = 0; i < rayCount; i++) {
+      var r = rays[i], itemDuration = burstDuration * (i % 2 ? 1 : .8), live = beginTime + burstDuration;
+      var outside = { x: r.dx * go, y: r.dy * go, off: 0 }, inside = { x: -r.dx * go * .6, y: -r.dy * go * .6, off: r.comp * .3 };
+      var outbound = i % 2 ? inside : outside, returnMotion = i % 2 ? outside : inside;
+      if (k === 0) {
+        tl.fromTo(r.advance, { x: -r.dx * indent, y: -r.dy * indent }, { x: 0, y: 0, duration: itemDuration, ease: "back.out(2.4)" }, beginTime);
+        tl.fromTo(r.stroke, { strokeDashoffset: r.comp * .95 }, { strokeDashoffset: 0, duration: itemDuration * .8, ease: "power2.out", immediateRender: false }, beginTime);
+      } else {
+        tl.to(r.advance, { x: 0, y: 0, duration: itemDuration, ease: "back.out(2.4)", immediateRender: false }, beginTime);
+        tl.to(r.stroke, { strokeDashoffset: 0, duration: itemDuration * .8, ease: "power2.out", immediateRender: false }, beginTime);
+      }
+      if (liveDuration > .3) {
+        tl.to(r.advance, { x: outbound.x, y: outbound.y, duration: halfValue, ease: "sine.out", immediateRender: false }, live);
+        tl.to(r.stroke, { strokeDashoffset: outbound.off, duration: halfValue, ease: "sine.out", immediateRender: false }, live);
+        if (halves > 2) {
+          tl.to(r.advance, { x: returnMotion.x, y: returnMotion.y, duration: halfValue * 2, ease: "sine.inOut", yoyo: true, repeat: halves / 2 - 2, immediateRender: false }, live + halfValue);
+          tl.to(r.stroke, { strokeDashoffset: returnMotion.off, duration: halfValue * 2, ease: "sine.inOut", yoyo: true, repeat: halves / 2 - 2, immediateRender: false }, live + halfValue);
+        }
+        tl.to(r.advance, { x: 0, y: 0, duration: halfValue, ease: "sine.in", immediateRender: false }, live + liveDuration - halfValue);
+        tl.to(r.stroke, { strokeDashoffset: 0, duration: halfValue, ease: "sine.in", immediateRender: false }, live + liveDuration - halfValue);
+      }
+      if (!lastValue) {
+        tl.to(r.advance, { x: -r.dx * indent * .6, y: -r.dy * indent * .6, duration: retractDuration, ease: "power2.in", immediateRender: false }, beginTime + step - retractDuration);
+        tl.to(r.stroke, { strokeDashoffset: r.comp * .6, duration: retractDuration, ease: "power2.in", immediateRender: false }, beginTime + step - retractDuration);
+      }
+    }
+  }
+
+  for (i = 0; i < rayCount; i++) {
+    tl.to(rays[i].advance, { x: rays[i].dx * progressValue, y: rays[i].dy * progressValue, duration: exitDuration, ease: "power2.in", immediateRender: false }, exit);
+    tl.to(rays[i].stroke, { strokeDashoffset: -rays[i].comp * .45, duration: exitDuration, ease: "power2.in", immediateRender: false }, exit);
+  }
+  tl.to("#pointerrays-a", { opacity: 0, duration: exitDuration, ease: "power2.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["pointer-rays"] = tl;
+})();
+</script>
+</template>
+</body></html>

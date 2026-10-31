@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Floor plan panel</title></head>
+<body>
+<!-- Floor plan panel. When showing a property interior: an outlined floor plan becomes a 3D view with area and four room labels. -->
+
+<template id="floor-plan-panel-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root * {margin:0;padding:0;box-sizing:border-box}
+#root {position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif;color:#fff;--ac:#ffb37a;--strong:#ff6a1f}
+.abs { position: absolute; }
+#im3-panel { position: absolute; left: 0; top: 0; width: 1080px; height: 980px; overflow: hidden; }
+.interface-layer { position: absolute; inset: 0; opacity: 0; overflow: hidden; }
+#im3-header-r { position: absolute; left: 70px; top: 150px; font-size: 24px; font-weight: 600; letter-spacing: .34em; color: var(--ac); opacity: 0; }
+#im3-header-n { position: absolute; left: 68px; top: 184px; font-size: 62px; font-weight: 300; letter-spacing: -.02em; opacity: 0; }
+#im3-header-a { position: absolute; right: 60px; top: 156px; font-size: 22px; font-weight: 500; color: rgba(255,255,255,.7); opacity: 0; }
+.interface-num { position: absolute; left: 64px; top: 330px; font-weight: 200; font-size: 230px; letter-spacing: -.05em; line-height: 1; font-variant-numeric: tabular-nums; opacity: 0; white-space: nowrap; }
+.interface-num small { font-size: 76px; font-weight: 300; letter-spacing: -.02em; margin-left: 10px; }
+.interface-subtitle { position: absolute; left: 72px; top: 580px; font-size: 26px; font-weight: 700; letter-spacing: .3em; color: var(--ac); opacity: 0; white-space: nowrap; }
+.interface-subtitle::before { content: ""; position: absolute; left: 0; top: -22px; width: 150px; height: 2px; background: rgba(255,255,255,.5); }
+.interface-loc { position: absolute; left: 72px; top: 640px; display: inline-flex; align-items: center; gap: 12px; font-size: 32px; font-weight: 600; opacity: 0; }
+.interface-loc i { width: 20px; height: 20px; border-radius: 50% 50% 50% 0; background: #fff; transform: rotate(-45deg); }
+.q { position: absolute; border-radius: 12px; background: #15284a; }
+.interface-ring { position: absolute; left: 690px; top: 894px; width: 200px; height: 200px; border-radius: 50%; box-shadow: 0 0 0 5px var(--ac); opacity: 0; }
+#im3-c3 { background: #070b14; perspective: 1700px; }
+#im3-floorplan { position: absolute; left: 400px; top: 262px; width: 640px; height: 640px; transform-style: preserve-3d; opacity: 0; }
+#im3-floorplan img { position: absolute; left: 0; top: 0; width: 640px; height: 640px; }
+#im3-pl-sparkle { position: absolute; top: -20px; left: 0; width: 6px; height: 680px; background: #fff; box-shadow: 0 0 30px 8px rgba(160,200,255,.9); opacity: 0; }
+.interface-room { position: absolute; display: inline-flex; align-items: center; gap: 12px; padding: 10px 20px; border-radius: 999px; background: rgba(8,12,20,.86); box-shadow: inset 0 0 0 2px var(--ac); font-size: 24px; font-weight: 800; letter-spacing: .12em; white-space: nowrap; opacity: 0; margin: -26px 0 0 -110px; }
+.interface-room b { font-weight: 300; font-size: 32px; letter-spacing: 0; }
+#im3-m2 { position: absolute; left: 68px; top: 150px; font-size: 56px; font-weight: 300; opacity: 0; white-space: nowrap; }
+#im3-m2 b { font-weight: 600; color: var(--ac); }
+#im3-background {position:absolute;left:0;top:0;width:1080px;height:992px;background:#070b14;opacity:0}
+#im3-panel {background:none;border-radius:40px}
+#im3-header-r {top:136px;font-size:34px;letter-spacing:.3em}
+#im3-header-a {top:150px;font-size:32px}
+.interface-subtitle {font-size:38px;letter-spacing:.24em}
+.interface-loc {font-size:44px}
+.interface-room {font-size:32px;padding:12px 24px}
+.interface-room b {font-size:40px}
+.interface-zone {position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:0 0;transform:matrix(0.8,0,0,0.8,99.8,128)}
+</style>
+<div id="root" data-composition-id="floor-plan-panel" data-width="1080" data-height="1920" data-duration="7.3">
+<div id="im3-background"></div>
+<div class="interface-zone">
+<div id="im3-panel">
+<div class="interface-layer" id="im3-c3">
+      <div id="im3-floorplan">
+        <img id="im3-pl-stroke" src="assets/visuals/img/floor-plan-outline.png" alt="">
+        <img id="im3-pl-full" src="assets/visuals/img/floor-plan.png" alt="">
+        <div id="im3-pl-sparkle"></div>
+        <div class="interface-room" id="im3-cm1" style="left:23%;top:21%">SUITE 1 <b>14 m²</b></div>
+        <div class="interface-room" id="im3-cm2" style="left:77%;top:19%">SUITE 2 <b>12 m²</b></div>
+        <div class="interface-room" id="im3-cm3" style="left:50%;top:60%">LIVING ROOM <b>28 m²</b></div>
+        <div class="interface-room" id="im3-cm4" style="left:23%;top:87%">BALCONY <b>9 m²</b></div>
+      </div>
+      <div class="interface-num" id="im3-n3"><span id="im3-v3">0</span><small>m²</small></div>
+      <div class="interface-subtitle" id="im3-s3">INSIDE</div>
+      <div id="im3-m2"><b>72 m²</b> · 2 suites · balcony</div>
+
+    </div>
+<div id="im3-header-r">RESIDENTIAL</div><div id="im3-header-n">Horizon</div><div id="im3-header-a">• illustrative property</div>
+</div>
+</div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["floor-plan-panel"] || { words: [], duration: 7.3 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = 7.3, IR = { immediateRender: false }, a = 0, b = 0, k, n;
+  function ext(x, y) { var o = {}, i; for (i in x) o[i] = x[i]; for (i in y) o[i] = y[i]; return o; }
+  function thousands(v) { return String(Math.round(v)).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
+  function decimal(c) { return function (v) { return v.toFixed(c); }; }
+  function two(v) { v = Math.round(v); return (v < 10 ? "0" : "") + v; }
+  /* Scale tweens are converted to clipping or translation for the renderer contract. */
+  function rec(sel, axis, v) {
+    v = Math.max(0, Math.min(1, v)); var p = (100 - v * 100).toFixed(2) + "%";
+    if (axis === "x") return "inset(0% " + p + " 0% 0%)";
+    return /wire/.test(String(sel)) ? "inset(0% 0% " + p + " 0%)" : "inset(" + p + " 0% 0% 0%)";
+  }
+  function lim(sel, o, start) {
+    var r = {}, i;
+    for (i in o) {
+      if (i === "scale" || i === "transformOrigin" || i === "svgOrigin") continue;
+      if (i === "scaleX") { r.clipPath = rec(sel, "x", o[i]); continue; }
+      if (i === "scaleY") { r.clipPath = rec(sel, "y", o[i]); continue; }
+      r[i] = o[i];
+    }
+    if (start && ("scale" in o) && !("x" in r) && !("y" in r) && !("rotation" in r) && !("clipPath" in r)) r.y = 26;
+    return r;
+  }
+  var T = {
+    fromTo: function (s, x, y, t) { var X = lim(s, x, true), Y = lim(s, y, false); if (("y" in X) && !("y" in Y)) Y.y = 0; return tl.fromTo(s, X, Y, t); },
+    to: function (s, y, t) { return tl.to(s, lim(s, y, false), t); },
+    set: function (s, y, t) { return tl.set(s, lim(s, y, false), t); }
+  };
+  /* Format counters in a modifier so GSAP does not parse a grouped number as a decimal. */
+  function countNumber(sel, start, end, t, dur, fmt, ease) {
+    var f = fmt || thousands;
+    tl.fromTo(sel, { textContent: start }, { textContent: end, duration: dur, ease: ease || "power2.out", immediateRender: false,
+      modifiers: { textContent: function (v) { return f(parseFloat(v)); } } }, t);
+  }
+  function bounce(sel, t) { tl.to(sel, { y: "-=12", duration: .12, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, t); }
+  function exit(targets, t) { T.to(targets, ext({ opacity: 0, y: "-=70", duration: .24, ease: "power2.in", stagger: .02 }, IR), t + D - .32); }
+  function fadeOut(targets, t) { T.to(targets, ext({ opacity: 0, duration: .22, ease: "power2.in" }, IR), t + D - .3); }
+  function title(sel, t) { T.fromTo(sel, { opacity: 0, y: -70 }, { opacity: 1, y: 0, duration: .42, ease: "back.out(1.7)" }, t + .15); }
+  function object(sel, t, rot) { T.fromTo(sel, { opacity: 0, y: 160, rotation: rot || 30 }, { opacity: 1, y: 0, rotation: 0, duration: .55, ease: "back.out(1.8)" }, t); }
+  function footer(sel, t, center) { T.fromTo(sel, ext({ opacity: 0, y: 50 }, center ? { xPercent: -50 } : {}), { opacity: 1, y: 0, duration: .36, ease: "back.out(1.8)" }, t); }
+  function num(q, subtitle, t) {
+    T.fromTo(q, { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: .45, ease: "expo.out" }, t);
+    if (subtitle) T.fromTo(subtitle, { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: .35, ease: "power3.out" }, t + .2);
+  }
+  var enter = num;
+  function note(sel, t) { T.fromTo(sel, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: .36, ease: "back.out(2)" }, t); }
+  function reveal(sel, t, start) { T.fromTo(sel, ext({ opacity: 0, y: 80 }, start || {}), { opacity: 1, y: 0, rotation: 0, x: 0, duration: .6, ease: "back.out(1.6)" }, t); }
+
+
+  var P = {
+    name1: "RESIDENTIAL", // Small header line describing the property type.
+    name2: "Horizon", // Property development name.
+    warning: "• illustrative property", // Upper-corner notice; an empty string hides it.
+    area: 72, // Area in m² counted by the large number; zero hides the number.
+    label: "INSIDE", // Line below the number.
+    rooms: "SUITE 1|14 m²|SUITE 2|12 m²|LIVING ROOM|28 m²|BALCONY|9 m²", // Four floor-plan labels as name|measurement pairs; an empty measurement keeps the name, and an empty name hides the label.
+    summary: "72 m² · 2 suites · balcony", // Top line; the part before the first · is highlighted.
+  };
+
+
+  T.fromTo("#im3-background", { opacity: 0 }, { opacity: 1, duration: .2 }, 0);
+  T.to("#im3-background", ext({ opacity: 0, duration: .2 }, IR), D - .2);
+  T.fromTo("#im3-c3", { opacity: 0 }, { opacity: 1, duration: .2 }, 0);
+  T.to("#im3-c3", ext({ opacity: 0, duration: .2 }, IR), D - .2);
+  T.fromTo(["#im3-header-r", "#im3-header-n", "#im3-header-a"], { opacity: 0 }, { opacity: 1, duration: .2 }, 0);
+  var q_ = function (s) { return document.querySelector(s); };
+  function esc_(t) { return String(t == null ? "" : t).replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
+  function paintShape(sel, t) { var e = q_(sel); if (!e) return; e.textContent = String(t == null ? "" : t); if (!String(t == null ? "" : t).trim()) e.style.display = "none"; }
+  paintShape("#im3-header-r", P.name1); paintShape("#im3-header-n", P.name2); paintShape("#im3-header-a", P.warning);
+
+  function norm_(s) { return String(s).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]/g, ""); }
+  function inner(r) {
+    if (typeof SCENE_TIMING === "undefined" || !SCENE_TIMING) return r;
+    var F = SCENE_TIMING.frame ? Math.max(0, Math.min(SCENE_TIMING.duration * .3, Number((C.frame || {}).closedAt) || 0)) : 0;
+    return (r - F) * SCENE_TIMING.originalDuration / Math.max(.1, SCENE_TIMING.duration - F);
+  }
+  function speech(txt) {
+    var a = norm_(String(txt == null ? "" : txt).trim().split(/\s+/)[0] || ""), W = C.words || [], k;
+    if (a.length < 3) return null;
+    for (k = 0; k < W.length; k++) if (norm_(W[k].text).indexOf(a) === 0) return inner(Number(W[k].t));
+    return null;
+  }
+  function summary(sel) { var e = q_(sel), r = String(P.summary == null ? "" : P.summary), k = r.indexOf("·"); if (!e) return; if (!r.trim()) { e.style.display = "none"; return; }
+    e.innerHTML = k > 0 ? "<b>" + esc_(r.slice(0, k).trim()) + "</b> · " + esc_(r.slice(k + 1).trim()) : esc_(r); }
+  var MET3 = Math.max(0, Number(P.area) || 0); paintShape("#im3-s3", P.label); summary("#im3-m2");
+  if (!MET3) { q_("#im3-n3").style.display = "none"; q_("#im3-s3").style.display = "none"; }
+  (function () { var c = String(P.rooms == null ? "" : P.rooms).split("|"), k, e, n, m;
+    var roomSelectors = ["#im3-cm1", "#im3-cm2", "#im3-cm3", "#im3-cm4"];
+    for (k = 0; k < 4; k++) { e = q_(roomSelectors[k]); n = String(c[2 * k] || "").trim(); m = String(c[2 * k + 1] || "").trim();
+      if (!n) { e.style.display = "none"; continue; } e.innerHTML = esc_(n) + (m ? " <b>" + esc_(m) + "</b>" : ""); } })();
+  var Z = -11.9;
+  T.set("#im3-pl-stroke", { clipPath: "inset(0% 100% 0% 0%)" }, 0);
+  T.set("#im3-pl-full", { clipPath: "inset(0% 100% 0% 0%)" }, 0);
+  T.fromTo("#im3-floorplan", { opacity: 0, y: 40, rotationX: 0, rotationZ: 0 }, { opacity: 1, y: 0, duration: .4, ease: "power3.out" }, Z + 12.1);
+  T.to("#im3-pl-stroke", ext({ clipPath: "inset(0% 0% 0% 0%)", duration: 1.3, ease: "power2.inOut" }, IR), Z + 12.3);
+  T.fromTo("#im3-pl-sparkle", { opacity: 1, x: 0 }, ext({ x: 640, duration: 1.3, ease: "power2.inOut" }, IR), Z + 12.3);
+  T.to("#im3-pl-sparkle", ext({ opacity: 0, duration: .15 }, IR), Z + 13.6);
+  enter("#im3-n3", "#im3-s3", Z + 12.5);
+  countNumber("#im3-v3", 0, MET3, Z + 12.6, 3.0, null, "power1.inOut");
+  T.to("#im3-floorplan", ext({ rotationX: 50, rotationZ: -16, duration: 1.0, ease: "power3.inOut" }, IR), Z + 13.7);
+  T.set("#im3-pl-sparkle", { x: 0 }, Z + 14.5);
+  T.to("#im3-pl-sparkle", ext({ opacity: 1, duration: .1 }, IR), Z + 14.5);
+  T.to("#im3-pl-full", ext({ clipPath: "inset(0% 0% 0% 0%)", duration: 1.2, ease: "power2.inOut" }, IR), Z + 14.5);
+  T.to("#im3-pl-sparkle", ext({ x: 640, duration: 1.2, ease: "power2.inOut" }, IR), Z + 14.5);
+  T.to("#im3-pl-sparkle", ext({ opacity: 0, duration: .15 }, IR), Z + 15.7);
+  T.to(["#im3-n3", "#im3-s3"], ext({ opacity: 0, x: -24, duration: .3, ease: "power2.in" }, IR), Z + 15.9);
+  T.to(["#im3-header-r", "#im3-header-n", "#im3-header-a"], ext({ opacity: 0, duration: .3 }, IR), Z + 15.9);
+  T.fromTo("#im3-m2", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: .3 }, Z + 16.3);
+  T.to("#im3-floorplan", ext({ rotationX: 0, rotationZ: 0, x: -180, y: -10, duration: 1.0, ease: "power3.inOut" }, IR), Z + 15.9);
+  T.fromTo(".interface-room", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: .34, ease: "back.out(2.2)", stagger: .32 }, Z + 16.9);
+  T.to("#im3-m2", ext({ opacity: 0, duration: .2 }, IR), D - .2);
+
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["floor-plan-panel"] = tl;
+})();
+</script>
+</template>
+</body></html>

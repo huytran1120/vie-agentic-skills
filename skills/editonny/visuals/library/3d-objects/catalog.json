@@ -1,0 +1,2632 @@
+{
+  "source": "3dicons (realvjy), CC0 1.0",
+  "sizePx": 400,
+  "objects": [
+    {
+      "id": "3d",
+      "name": "3D lettering",
+      "category": "shapes",
+      "words": [
+        "3d",
+        "three dimensions"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/3d-{angle}-{style}.png"
+    },
+    {
+      "id": "3d-coin",
+      "name": "Coin",
+      "category": "money",
+      "words": [
+        "coin",
+        "cent",
+        "money",
+        "gain"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/3d-coin-{angle}-{style}.png"
+    },
+    {
+      "id": "at",
+      "name": "At sign",
+      "category": "communication",
+      "words": [
+        "handle",
+        "profile",
+        "user",
+        "email"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/at-{angle}-{style}.png"
+    },
+    {
+      "id": "axe",
+      "name": "Axe",
+      "category": "tools",
+      "words": [
+        "axe",
+        "trim",
+        "cuts"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/axe-{angle}-{style}.png"
+    },
+    {
+      "id": "back",
+      "name": "Back arrow",
+      "category": "arrows",
+      "words": [
+        "back",
+        "before",
+        "previous"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/back-{angle}-{style}.png"
+    },
+    {
+      "id": "backward",
+      "name": "Rewind",
+      "category": "player",
+      "words": [
+        "backward",
+        "rewind video",
+        "rewind"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/backward-{angle}-{style}.png"
+    },
+    {
+      "id": "bag",
+      "name": "Shopping bag",
+      "category": "sale",
+      "words": [
+        "shopping bag",
+        "purchase",
+        "buy",
+        "store"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/bag-{angle}-{style}.png"
+    },
+    {
+      "id": "battery",
+      "name": "Battery",
+      "category": "technology",
+      "words": [
+        "battery",
+        "energy",
+        "charge",
+        "tired"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/battery-{angle}-{style}.png"
+    },
+    {
+      "id": "bookmark",
+      "name": "Bookmark",
+      "category": "organization",
+      "words": [
+        "save",
+        "mark",
+        "saved"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/bookmark-{angle}-{style}.png"
+    },
+    {
+      "id": "bookmark-fav",
+      "name": "Favorite bookmark",
+      "category": "organization",
+      "words": [
+        "favorite",
+        "save",
+        "saved"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/bookmark-fav-{angle}-{style}.png"
+    },
+    {
+      "id": "boy",
+      "name": "Boy",
+      "category": "people",
+      "words": [
+        "man",
+        "student",
+        "customer",
+        "person",
+        "he"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/boy-{angle}-{style}.png"
+    },
+    {
+      "id": "brush",
+      "name": "Brush",
+      "category": "creation",
+      "words": [
+        "brush",
+        "design",
+        "art",
+        "create"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/brush-{angle}-{style}.png"
+    },
+    {
+      "id": "bucket",
+      "name": "Paint bucket",
+      "category": "creation",
+      "words": [
+        "ink",
+        "color",
+        "paint"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/bucket-{angle}-{style}.png"
+    },
+    {
+      "id": "bulb",
+      "name": "Light bulb",
+      "category": "idea",
+      "words": [
+        "idea",
+        "insight",
+        "tip",
+        "secret",
+        "strategy"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/bulb-{angle}-{style}.png"
+    },
+    {
+      "id": "calculator",
+      "name": "Calculator",
+      "category": "money",
+      "words": [
+        "account",
+        "calculate",
+        "cost",
+        "number",
+        "mathematics"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/calculator-{angle}-{style}.png"
+    },
+    {
+      "id": "calender",
+      "name": "Calendar",
+      "category": "time",
+      "words": [
+        "day",
+        "data",
+        "week",
+        "month",
+        "deadline",
+        "schedule"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/calender-{angle}-{style}.png"
+    },
+    {
+      "id": "camera",
+      "name": "Camera",
+      "category": "video",
+      "words": [
+        "photo",
+        "camera",
+        "image"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/camera-{angle}-{style}.png"
+    },
+    {
+      "id": "can",
+      "name": "Spray can",
+      "category": "creation",
+      "words": [
+        "spray",
+        "ink"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/can-{angle}-{style}.png"
+    },
+    {
+      "id": "card",
+      "name": "Credit card",
+      "category": "payment",
+      "words": [
+        "card",
+        "payment",
+        "installments",
+        "credit",
+        "checkout"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/card-{angle}-{style}.png"
+    },
+    {
+      "id": "chart",
+      "name": "Pie chart",
+      "category": "result",
+      "words": [
+        "chart",
+        "result",
+        "metric",
+        "percentage",
+        "slice"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/chart-{angle}-{style}.png"
+    },
+    {
+      "id": "chat",
+      "name": "Chat bubbles",
+      "category": "communication",
+      "words": [
+        "conversation",
+        "message",
+        "comment",
+        "whatsapp"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/chat-{angle}-{style}.png"
+    },
+    {
+      "id": "chat-bubble",
+      "name": "Speech bubble",
+      "category": "communication",
+      "words": [
+        "speech",
+        "message",
+        "comment",
+        "direct"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/chat-bubble-{angle}-{style}.png"
+    },
+    {
+      "id": "chat-text",
+      "name": "Text bubble",
+      "category": "communication",
+      "words": [
+        "message",
+        "text",
+        "response",
+        "comment"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/chat-text-{angle}-{style}.png"
+    },
+    {
+      "id": "chess",
+      "name": "Chess piece",
+      "category": "strategy",
+      "words": [
+        "strategy",
+        "move",
+        "plan",
+        "competitor"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/chess-{angle}-{style}.png"
+    },
+    {
+      "id": "circle",
+      "name": "Circle",
+      "category": "shapes",
+      "words": [
+        "circle",
+        "cycle"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/circle-{angle}-{style}.png"
+    },
+    {
+      "id": "clock",
+      "name": "Alarm clock",
+      "category": "time",
+      "words": [
+        "time",
+        "hour",
+        "minute",
+        "fast",
+        "late"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/clock-{angle}-{style}.png"
+    },
+    {
+      "id": "color-palette",
+      "name": "Color palette",
+      "category": "creation",
+      "words": [
+        "color",
+        "colors",
+        "design",
+        "identity"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/color-palette-{angle}-{style}.png"
+    },
+    {
+      "id": "computer",
+      "name": "Computer",
+      "category": "technology",
+      "words": [
+        "computer",
+        "screen",
+        "notebook",
+        "pc"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/computer-{angle}-{style}.png"
+    },
+    {
+      "id": "copy",
+      "name": "Copy",
+      "category": "organization",
+      "words": [
+        "copy",
+        "paste",
+        "copy",
+        "model"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/copy-{angle}-{style}.png"
+    },
+    {
+      "id": "cube",
+      "name": "Cube",
+      "category": "shapes",
+      "words": [
+        "cube",
+        "layout",
+        "product"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/cube-{angle}-{style}.png"
+    },
+    {
+      "id": "cup",
+      "name": "Cup",
+      "category": "everyday",
+      "words": [
+        "coffee",
+        "pause",
+        "morning"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/cup-{angle}-{style}.png"
+    },
+    {
+      "id": "dollar",
+      "name": "Dollar coin",
+      "category": "money",
+      "words": [
+        "dollar",
+        "money",
+        "profit",
+        "revenue",
+        "sale"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/dollar-{angle}-{style}.png"
+    },
+    {
+      "id": "euro",
+      "name": "Euro coin",
+      "category": "money",
+      "words": [
+        "euro",
+        "money"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/euro-{angle}-{style}.png"
+    },
+    {
+      "id": "explorer",
+      "name": "Compass",
+      "category": "strategy",
+      "words": [
+        "path",
+        "direction",
+        "explore",
+        "direction"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/explorer-{angle}-{style}.png"
+    },
+    {
+      "id": "eyedropper",
+      "name": "Eyedropper",
+      "category": "creation",
+      "words": [
+        "color",
+        "choose",
+        "detail"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/eyedropper-{angle}-{style}.png"
+    },
+    {
+      "id": "fav-folder",
+      "name": "Favorite folder",
+      "category": "organization",
+      "words": [
+        "folder",
+        "favorite",
+        "file"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/fav-folder-{angle}-{style}.png"
+    },
+    {
+      "id": "file",
+      "name": "File",
+      "category": "organization",
+      "words": [
+        "file",
+        "document",
+        "page"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/file-{angle}-{style}.png"
+    },
+    {
+      "id": "file-fav",
+      "name": "Favorite file",
+      "category": "organization",
+      "words": [
+        "file",
+        "favorite",
+        "template"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/file-fav-{angle}-{style}.png"
+    },
+    {
+      "id": "file-plus",
+      "name": "New file",
+      "category": "organization",
+      "words": [
+        "new",
+        "create",
+        "add"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/file-plus-{angle}-{style}.png"
+    },
+    {
+      "id": "file-text",
+      "name": "Text document",
+      "category": "organization",
+      "words": [
+        "text",
+        "script",
+        "copy",
+        "document",
+        "list"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/file-text-{angle}-{style}.png"
+    },
+    {
+      "id": "fire",
+      "name": "Fire",
+      "category": "accent",
+      "words": [
+        "fire",
+        "hot",
+        "viral",
+        "trending",
+        "exploded"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/fire-{angle}-{style}.png"
+    },
+    {
+      "id": "flag",
+      "name": "Flag",
+      "category": "achievement",
+      "words": [
+        "goal",
+        "arrival",
+        "objective",
+        "milestone"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/flag-{angle}-{style}.png"
+    },
+    {
+      "id": "flash",
+      "name": "Lightning bolt",
+      "category": "accent",
+      "words": [
+        "fast",
+        "energy",
+        "instant",
+        "immediately"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/flash-{angle}-{style}.png"
+    },
+    {
+      "id": "folder",
+      "name": "Folder",
+      "category": "organization",
+      "words": [
+        "folder",
+        "files",
+        "organize"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/folder-{angle}-{style}.png"
+    },
+    {
+      "id": "forward",
+      "name": "Forward",
+      "category": "player",
+      "words": [
+        "forward",
+        "speed up",
+        "skip"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/forward-{angle}-{style}.png"
+    },
+    {
+      "id": "gift",
+      "name": "Gift",
+      "category": "sale",
+      "words": [
+        "gift",
+        "bonus",
+        "giveaway",
+        "free",
+        "offer"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/gift-{angle}-{style}.png"
+    },
+    {
+      "id": "girl",
+      "name": "Girl",
+      "category": "people",
+      "words": [
+        "woman",
+        "student",
+        "customer",
+        "person",
+        "she"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/girl-{angle}-{style}.png"
+    },
+    {
+      "id": "glass",
+      "name": "Magnifying glass",
+      "category": "strategy",
+      "words": [
+        "search",
+        "search",
+        "analyze",
+        "find",
+        "detail"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/glass-{angle}-{style}.png"
+    },
+    {
+      "id": "gym",
+      "name": "Dumbbell",
+      "category": "everyday",
+      "words": [
+        "training",
+        "strength",
+        "effort",
+        "discipline"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/gym-{angle}-{style}.png"
+    },
+    {
+      "id": "headphone",
+      "name": "Headphones",
+      "category": "video",
+      "words": [
+        "audio",
+        "sound",
+        "music",
+        "listen",
+        "support"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/headphone-{angle}-{style}.png"
+    },
+    {
+      "id": "heart",
+      "name": "Heart",
+      "category": "engagement",
+      "words": [
+        "like",
+        "love",
+        "like",
+        "like",
+        "engagement"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/heart-{angle}-{style}.png"
+    },
+    {
+      "id": "key",
+      "name": "Key",
+      "category": "idea",
+      "words": [
+        "key",
+        "secret",
+        "access",
+        "solution"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/key-{angle}-{style}.png"
+    },
+    {
+      "id": "lab",
+      "name": "Laboratory flask",
+      "category": "idea",
+      "words": [
+        "test",
+        "experiment",
+        "formula",
+        "test"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/lab-{angle}-{style}.png"
+    },
+    {
+      "id": "link",
+      "name": "Link",
+      "category": "communication",
+      "words": [
+        "link",
+        "connect",
+        "bio",
+        "click"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/link-{angle}-{style}.png"
+    },
+    {
+      "id": "location",
+      "name": "Location",
+      "category": "place",
+      "words": [
+        "location",
+        "place",
+        "where",
+        "address"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/location-{angle}-{style}.png"
+    },
+    {
+      "id": "lock",
+      "name": "Lock",
+      "category": "security",
+      "words": [
+        "safeArea",
+        "locked",
+        "protected",
+        "warranty",
+        "password"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/lock-{angle}-{style}.png"
+    },
+    {
+      "id": "locker",
+      "name": "Safe",
+      "category": "security",
+      "words": [
+        "safe",
+        "store",
+        "safeArea",
+        "savings"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/locker-{angle}-{style}.png"
+    },
+    {
+      "id": "magic-trick",
+      "name": "Magician’s hat",
+      "category": "idea",
+      "words": [
+        "magic",
+        "trick",
+        "secret",
+        "surprise"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/magic-trick-{angle}-{style}.png"
+    },
+    {
+      "id": "mail",
+      "name": "Email",
+      "category": "communication",
+      "words": [
+        "email",
+        "message",
+        "inbox"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/mail-{angle}-{style}.png"
+    },
+    {
+      "id": "map-pin",
+      "name": "Map pin",
+      "category": "place",
+      "words": [
+        "map",
+        "location",
+        "destination",
+        "Brazil"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/map-pin-{angle}-{style}.png"
+    },
+    {
+      "id": "medal",
+      "name": "Medal",
+      "category": "achievement",
+      "words": [
+        "medal",
+        "first place",
+        "better",
+        "prize"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/medal-{angle}-{style}.png"
+    },
+    {
+      "id": "megaphone",
+      "name": "Megaphone",
+      "category": "advertisement",
+      "words": [
+        "advertisement",
+        "promote",
+        "campaign",
+        "traffic",
+        "warning"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/megaphone-{angle}-{style}.png"
+    },
+    {
+      "id": "mic",
+      "name": "Mic",
+      "category": "video",
+      "words": [
+        "microphone",
+        "record",
+        "voice",
+        "speak",
+        "podcast"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/mic-{angle}-{style}.png"
+    },
+    {
+      "id": "mobile",
+      "name": "Mobile phone",
+      "category": "technology",
+      "words": [
+        "phone",
+        "telephone",
+        "app",
+        "iphone"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/mobile-{angle}-{style}.png"
+    },
+    {
+      "id": "money",
+      "name": "Cash stack",
+      "category": "money",
+      "words": [
+        "money",
+        "cash",
+        "profit",
+        "revenue",
+        "Brazilian reais"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/money-{angle}-{style}.png"
+    },
+    {
+      "id": "money-bag",
+      "name": "Money bag",
+      "category": "money",
+      "words": [
+        "money",
+        "profit",
+        "income",
+        "earn",
+        "million"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/money-bag-{angle}-{style}.png"
+    },
+    {
+      "id": "moon",
+      "name": "Moon",
+      "category": "time",
+      "words": [
+        "night",
+        "early morning",
+        "sleep"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/moon-{angle}-{style}.png"
+    },
+    {
+      "id": "music",
+      "name": "Musical note",
+      "category": "video",
+      "words": [
+        "music",
+        "soundtrack",
+        "sound"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/music-{angle}-{style}.png"
+    },
+    {
+      "id": "new-folder",
+      "name": "New folder",
+      "category": "organization",
+      "words": [
+        "new folder",
+        "create",
+        "organize"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/new-folder-{angle}-{style}.png"
+    },
+    {
+      "id": "next",
+      "name": "Next",
+      "category": "player",
+      "words": [
+        "next",
+        "next",
+        "step"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/next-{angle}-{style}.png"
+    },
+    {
+      "id": "notebook",
+      "name": "Notebook",
+      "category": "organization",
+      "words": [
+        "note",
+        "notebook",
+        "study",
+        "lesson",
+        "plan"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/notebook-{angle}-{style}.png"
+    },
+    {
+      "id": "notify-heart",
+      "name": "Like notification",
+      "category": "engagement",
+      "words": [
+        "notification",
+        "like",
+        "like",
+        "follower",
+        "engagement"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/notify-heart-{angle}-{style}.png"
+    },
+    {
+      "id": "paint-brush",
+      "name": "Paint brush",
+      "category": "creation",
+      "words": [
+        "paint",
+        "art",
+        "create"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/paint-brush-{angle}-{style}.png"
+    },
+    {
+      "id": "paint-kit",
+      "name": "Paint kit",
+      "category": "creation",
+      "words": [
+        "art",
+        "create",
+        "design"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/paint-kit-{angle}-{style}.png"
+    },
+    {
+      "id": "pause",
+      "name": "Pause",
+      "category": "player",
+      "words": [
+        "pause",
+        "stop",
+        "waiting"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/pause-{angle}-{style}.png"
+    },
+    {
+      "id": "pencil",
+      "name": "Pencil",
+      "category": "creation",
+      "words": [
+        "write",
+        "edit",
+        "draft",
+        "script"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/pencil-{angle}-{style}.png"
+    },
+    {
+      "id": "phone-end",
+      "name": "End call",
+      "category": "telephone",
+      "words": [
+        "disable",
+        "finish",
+        "cancel"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/phone-end-{angle}-{style}.png"
+    },
+    {
+      "id": "phone-incoming",
+      "name": "Incoming call",
+      "category": "telephone",
+      "words": [
+        "call",
+        "callout",
+        "answer",
+        "customer called"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/phone-incoming-{angle}-{style}.png"
+    },
+    {
+      "id": "phone-missing",
+      "name": "Missed call",
+      "category": "telephone",
+      "words": [
+        "lost",
+        "unanswered",
+        "missed"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/phone-missing-{angle}-{style}.png"
+    },
+    {
+      "id": "phone-only",
+      "name": "Telephone",
+      "category": "telephone",
+      "words": [
+        "telephone",
+        "turn on",
+        "contact"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/phone-only-{angle}-{style}.png"
+    },
+    {
+      "id": "phone-outgoing",
+      "name": "Outgoing call",
+      "category": "telephone",
+      "words": [
+        "turn on",
+        "contact",
+        "prospect"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/phone-outgoing-{angle}-{style}.png"
+    },
+    {
+      "id": "phone-ringing",
+      "name": "Ringing phone",
+      "category": "telephone",
+      "words": [
+        "ringing",
+        "calling",
+        "urgent"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/phone-ringing-{angle}-{style}.png"
+    },
+    {
+      "id": "picture",
+      "name": "Picture",
+      "category": "video",
+      "words": [
+        "image",
+        "photo",
+        "print",
+        "cover"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/picture-{angle}-{style}.png"
+    },
+    {
+      "id": "pin",
+      "name": "Pin",
+      "category": "organization",
+      "words": [
+        "pin",
+        "important",
+        "remember"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/pin-{angle}-{style}.png"
+    },
+    {
+      "id": "play",
+      "name": "Play",
+      "category": "player",
+      "words": [
+        "play",
+        "video",
+        "watch",
+        "start"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/play-{angle}-{style}.png"
+    },
+    {
+      "id": "plus",
+      "name": "Plus",
+      "category": "shapes",
+      "words": [
+        "more",
+        "add",
+        "extra",
+        "bonus"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/plus-{angle}-{style}.png"
+    },
+    {
+      "id": "pound",
+      "name": "Pound coin",
+      "category": "money",
+      "words": [
+        "pound",
+        "money"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/pound-{angle}-{style}.png"
+    },
+    {
+      "id": "puzzle",
+      "name": "Puzzle piece",
+      "category": "idea",
+      "words": [
+        "piece",
+        "fit",
+        "solution",
+        "missing",
+        "method"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/puzzle-{angle}-{style}.png"
+    },
+    {
+      "id": "rocket",
+      "name": "Rocket",
+      "category": "achievement",
+      "words": [
+        "take off",
+        "scale",
+        "grow",
+        "launch",
+        "fast"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/rocket-{angle}-{style}.png"
+    },
+    {
+      "id": "roll-brush",
+      "name": "Roll brush",
+      "category": "creation",
+      "words": [
+        "paint",
+        "renovate"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/roll-brush-{angle}-{style}.png"
+    },
+    {
+      "id": "rupee",
+      "name": "Rupee coin",
+      "category": "money",
+      "words": [
+        "rupee",
+        "money"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/rupee-{angle}-{style}.png"
+    },
+    {
+      "id": "scissor",
+      "name": "Scissors",
+      "category": "creation",
+      "words": [
+        "trim",
+        "cut",
+        "edit",
+        "remove"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/scissor-{angle}-{style}.png"
+    },
+    {
+      "id": "setting",
+      "name": "Gear",
+      "category": "technology",
+      "words": [
+        "configure",
+        "adjustment",
+        "system",
+        "process",
+        "automatic"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/setting-{angle}-{style}.png"
+    },
+    {
+      "id": "sheild",
+      "name": "Shield",
+      "category": "security",
+      "words": [
+        "protection",
+        "safeArea",
+        "warranty",
+        "risk"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/sheild-{angle}-{style}.png"
+    },
+    {
+      "id": "sphere",
+      "name": "Sphere",
+      "category": "shapes",
+      "words": [
+        "sphere",
+        "ball"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/sphere-{angle}-{style}.png"
+    },
+    {
+      "id": "star",
+      "name": "Star",
+      "category": "accent",
+      "words": [
+        "star",
+        "accent",
+        "review",
+        "better",
+        "favorite"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/star-{angle}-{style}.png"
+    },
+    {
+      "id": "sun",
+      "name": "Sun",
+      "category": "time",
+      "words": [
+        "day",
+        "morning",
+        "sun"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/sun-{angle}-{style}.png"
+    },
+    {
+      "id": "takeaway-cup",
+      "name": "Takeaway coffee cup",
+      "category": "everyday",
+      "words": [
+        "coffee",
+        "routine",
+        "morning"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/takeaway-cup-{angle}-{style}.png"
+    },
+    {
+      "id": "target",
+      "name": "Target",
+      "category": "strategy",
+      "words": [
+        "target",
+        "goal",
+        "audience",
+        "objective",
+        "focus"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/target-{angle}-{style}.png"
+    },
+    {
+      "id": "tea-cup",
+      "name": "Tea cup",
+      "category": "everyday",
+      "words": [
+        "tea",
+        "calm",
+        "pause"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/tea-cup-{angle}-{style}.png"
+    },
+    {
+      "id": "text",
+      "name": "Text",
+      "category": "creation",
+      "words": [
+        "text",
+        "captions",
+        "title",
+        "copy"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/text-{angle}-{style}.png"
+    },
+    {
+      "id": "thumb-down",
+      "name": "Thumbs down",
+      "category": "engagement",
+      "words": [
+        "bad",
+        "dislike",
+        "wrong",
+        "rejected"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/thumb-down-{angle}-{style}.png"
+    },
+    {
+      "id": "thumb-up",
+      "name": "Thumbs up",
+      "category": "engagement",
+      "words": [
+        "good",
+        "liked",
+        "correct",
+        "approved",
+        "like"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/thumb-up-{angle}-{style}.png"
+    },
+    {
+      "id": "tick",
+      "name": "Check mark",
+      "category": "success",
+      "words": [
+        "correct",
+        "done",
+        "ready",
+        "approved",
+        "works"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/tick-{angle}-{style}.png"
+    },
+    {
+      "id": "toggle",
+      "name": "Toggle switch",
+      "category": "technology",
+      "words": [
+        "turn on",
+        "disable",
+        "enable",
+        "automatic"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/toggle-{angle}-{style}.png"
+    },
+    {
+      "id": "tool",
+      "name": "Tools",
+      "category": "tools",
+      "words": [
+        "tool",
+        "repair",
+        "adjust",
+        "configure"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/tool-{angle}-{style}.png"
+    },
+    {
+      "id": "trash-can",
+      "name": "Trash can",
+      "category": "organization",
+      "words": [
+        "trash",
+        "erase",
+        "delete",
+        "throw away",
+        "discard"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/trash-can-{angle}-{style}.png"
+    },
+    {
+      "id": "travel",
+      "name": "Suitcase",
+      "category": "place",
+      "words": [
+        "trip",
+        "travel",
+        "vacation",
+        "freedom"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/travel-{angle}-{style}.png"
+    },
+    {
+      "id": "trophy",
+      "name": "Trophy",
+      "category": "achievement",
+      "words": [
+        "trophy",
+        "win",
+        "champion",
+        "result",
+        "prize"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/trophy-{angle}-{style}.png"
+    },
+    {
+      "id": "umbrella",
+      "name": "Umbrella",
+      "category": "security",
+      "words": [
+        "protection",
+        "rain",
+        "warranty"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/umbrella-{angle}-{style}.png"
+    },
+    {
+      "id": "video-camera",
+      "name": "Video camera",
+      "category": "video",
+      "words": [
+        "video",
+        "record",
+        "film",
+        "camera",
+        "reels"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/video-camera-{angle}-{style}.png"
+    },
+    {
+      "id": "wallet",
+      "name": "Wallet",
+      "category": "money",
+      "words": [
+        "wallet",
+        "money",
+        "pocket",
+        "save money"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/wallet-{angle}-{style}.png"
+    },
+    {
+      "id": "wifi",
+      "name": "Wifi",
+      "category": "technology",
+      "words": [
+        "internet",
+        "online",
+        "connection"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/wifi-{angle}-{style}.png"
+    },
+    {
+      "id": "yuan",
+      "name": "Yuan coin",
+      "category": "money",
+      "words": [
+        "yuan",
+        "china",
+        "money"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/yuan-{angle}-{style}.png"
+    },
+    {
+      "id": "zoom",
+      "name": "Zoom magnifier",
+      "category": "strategy",
+      "words": [
+        "zoom",
+        "zoom in",
+        "detail",
+        "look closely"
+      ],
+      "angles": [
+        "dynamic",
+        "front",
+        "iso"
+      ],
+      "styles": [
+        "clay",
+        "color",
+        "gradient",
+        "premium"
+      ],
+      "file": "png/zoom-{angle}-{style}.png"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Transition iris</title></head>
+<body>
+<!-- Transition iris. To close a story or focus on a detail: a circle closes at the center and reopens. -->
+
+<template id="transition-iris-template">
+<style>
+#root{position:absolute;inset:0;overflow:hidden}
+#transitioniris-i{position:absolute;inset:0;--r:1300px;background:radial-gradient(circle at 50% 42%,rgba(0,0,0,0) var(--r),#050506 calc(var(--r) + 3px));opacity:0}
+</style>
+<div id="root" data-composition-id="transition-iris" data-width="1080" data-height="1920" data-duration="0.7">
+<div id="transitioniris-i"></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["transition-iris"] || { duration: 0.7 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = 0.7, t0 = 0;
+
+  function rise(sel, a, b, c, peak, e1, e2) {
+    tl.fromTo(sel, { opacity: 0 }, { opacity: peak, duration: b - a, ease: e1 || "sine.inOut" }, t0 + a);
+    tl.to(sel, { opacity: 0, duration: c - b, ease: e2 || "sine.inOut", immediateRender: false }, t0 + b);
+  }
+
+  tl.fromTo("#transitioniris-i", { opacity: 1, "--r": "1300px" }, { opacity: 1, "--r": "0px", duration: D * .46, ease: "power2.in" }, t0);
+  tl.to("#transitioniris-i", { "--r": "1300px", duration: D * .46, ease: "power2.out", immediateRender: false }, t0 + D * .52);
+  tl.to("#transitioniris-i", { opacity: 0, duration: .01, immediateRender: false }, t0 + D * .99);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["transition-iris"] = tl;
+})();
+</script>
+</template>
+</body></html>

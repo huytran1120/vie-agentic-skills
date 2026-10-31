@@ -1,0 +1,21 @@
+{
+ "scenes": 46,
+ "texts": 19,
+ "videoEffects": 13,
+ "transitions": 10,
+ "pointers": 17,
+ "spinningObjects": 44,
+ "readyObjects": 115,
+ "backgrounds": 12,
+ "overlays": 7,
+ "effects": 102,
+ "music": 23,
+ "externalAiMusic": 33,
+ "proof": 7,
+ "interfaces": 5,
+ "sceneObjects": 5,
+ "comedy": 8,
+ "entrances": 9,
+ "voiceEffects": 15,
+ "neon": 6
+}

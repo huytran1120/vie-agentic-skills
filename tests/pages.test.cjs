@@ -505,7 +505,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
   const youtube = catalog.filterSkills(skills, { sources: ['youtube'] });
   assert.equal(youtube.length, 11);
   assert.equal(catalog.filterSkills(skills, { query: 'youtube-agent-skill' }).length, 11);
-  assert.equal(skills.length, 3184);
+  assert.equal(skills.length, 3185);
   for (const skill of youtube) {
     assert.ok(skill.id.startsWith('youtube-agent-skill/'));
     assert.equal(skill.source_repo, 'Jakeschincariol/youtube-agent-skill');
@@ -520,7 +520,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
     assert.deepEqual(state.sources, ['youtube']);
     assert.equal(state.selected, youtube[0].id);
     assert.ok(i18n.translate('collections.youtube', language).startsWith('11 '));
-    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '3.184' : '3,184'));
+    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '3.185' : '3,185'));
   }
   assert.equal(catalog.filterSkills(skills, { sources: ['youtube'], category: 'security' }).length, 0);
   const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
@@ -1045,4 +1045,32 @@ test('Video Editor DaVinci Resolve skills retain exact source filtering, CC-BY-N
   assert.ok(html.includes('name="source" value="videoeditor"'));
   assert.ok(html.includes('data-source-count="videoeditor">12<'));
   assert.ok(html.includes('id="videoeditor-collection"'));
+});
+
+test('editonny retains exact source filtering, MIT license and agent prompts', () => {
+  const editonnySkills = catalog.filterSkills(skills, { sources: ['editonny'] });
+  assert.equal(editonnySkills.length, 1);
+  const skill = editonnySkills[0];
+  assert.equal(skill.id, 'editonny');
+  assert.equal(skill.source_repo, 'soumatheusgomes/editonny');
+  assert.equal(skill.author, 'Matheus Gomes');
+  assert.equal(skill.license, 'MIT');
+  assert.equal(skill.category, 'media');
+  assert.equal(skill.risk, 'safe');
+
+  for (const language of ['vi', 'en']) {
+    assert.ok(i18n.translate('collections.editonny', language).startsWith('1 '));
+    for (const [agent] of catalog.agents.filter(([key]) => key !== 'all')) {
+      const prompt = catalog.agentInstallPrompt(skill, agent, language);
+      assert.ok(prompt.includes(`/install-manifests/editonny.json`));
+      assert.ok(prompt.includes(catalog.targetFolders[agent]));
+      assert.ok(prompt.includes('SHA-256'));
+      assert.ok(prompt.includes('.vas-manifest.json'));
+    }
+  }
+
+  const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
+  assert.ok(html.includes('name="source" value="editonny"'));
+  assert.ok(html.includes('data-source-count="editonny">1<'));
+  assert.ok(html.includes('id="editonny-collection"'));
 });

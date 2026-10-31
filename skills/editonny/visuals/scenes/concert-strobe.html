@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Concert strobe</title></head>
+<body>
+<!-- Concert strobe. For a concert or nightclub joke: the room darkens, a white strobe pulses to the beat, colored beams cross, and fog rises. -->
+
+<template id="concert-strobe-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+.concertstrobe-ca{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0}
+#concertstrobe-e{backdrop-filter:brightness(.42) saturate(1.25) contrast(1.08);-webkit-backdrop-filter:brightness(.42) saturate(1.25) contrast(1.08)}
+#concertstrobe-s{position:absolute;left:0;top:0;width:1080px;height:1920px;overflow:visible;opacity:0;mix-blend-mode:screen}
+#concertstrobe-st{background:#fff}
+.concertstrobe-o{opacity:0}
+</style>
+<div id="root" data-composition-id="concert-strobe" data-width="1080" data-height="1920" data-duration="3.5">
+<div id="concertstrobe-e" class="concertstrobe-ca"></div>
+<svg id="concertstrobe-s" xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+<defs>
+<filter id="concertstrobe-bl" x="-40%" y="-5%" width="180%" height="110%"><feGaussianBlur stdDeviation="16"/></filter><filter id="concertstrobe-bl2" x="-40%" y="-5%" width="180%" height="110%"><feGaussianBlur stdDeviation="3"/></filter>
+<filter id="concertstrobe-nv" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".0028 .0065" numOctaves="3" seed="33" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 .92  0 0 0 0 .9  0 0 0 0 1  0 0 0 1.5 -.38" result="c"/><feGaussianBlur in="c" stdDeviation="14"/></filter>
+<linearGradient id="concertstrobe-mg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".6"/><stop offset="1" stop-color="#fff" stop-opacity="1"/></linearGradient>
+<mask id="concertstrobe-mn" maskUnits="userSpaceOnUse" x="0" y="1180" width="1080" height="740"><rect x="0" y="1180" width="1080" height="740" fill="url(#concertstrobe-mg)"/></mask>
+<radialGradient id="concertstrobe-gh"><stop offset="0" stop-color="#fff" stop-opacity=".95"/><stop offset=".3" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+</defs>
+<g id="concertstrobe-fx"></g>
+<g mask="url(#concertstrobe-mn)"><rect id="concertstrobe-nv1" class="concertstrobe-o" x="-200" y="1180" width="1480" height="740" filter="url(#concertstrobe-nv)"/></g>
+</svg>
+<div id="concertstrobe-st" class="concertstrobe-ca"></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["concert-strobe"] || { duration: 3.5 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 3.5, t0 = 0;
+
+  var P = {
+    x: 540, // Beam intersection at the show's center on the 1080×1920 canvas, in pixels.
+    y: 520, // Height where the beams cross above the head, in pixels.
+    bpm: 128, // Beats per minute; the strobe flashes once per beat.
+    colors: "#ff2d95,#2d7bff,#30d158,#ffd60a", // Comma-separated beam colors.
+    strength: 0.8, // 0–1: strobe and fog strength.
+  };
+
+
+  var NS = "http://www.w3.org/2000/svg";
+  var cx = Number(P.x); if (cx !== cx) cx = 540; var cy = Number(P.y); if (cy !== cy) cy = 520;
+  var bpm = Math.max(60, Math.min(200, Number(P.bpm) || 128)), F = Number(P.strength); if (F !== F) F = .8; F = Math.max(0, Math.min(1, F));
+  var colors = String(P.colors || "").split(",").map(function (s) { return s.trim(); }).filter(Boolean); if (!colors.length) colors = ["#ff2d95", "#2d7bff"];
+  var seed = 2024, rnd = function () { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
+  var between = function (a, b) { return a + (b - a) * rnd(); };
+
+  var gFX = document.getElementById("concertstrobe-fx"), defs = document.querySelector("#concertstrobe-s defs"), beams = [], k;
+  var fonts = [[-40, 1960], [300, 1990], [780, 1990], [1120, 1960], [-60, -40], [1140, -40]];
+  fonts.forEach(function (o, i) {
+    var gid = "concertstrobe-g" + i, lg = document.createElementNS(NS, "linearGradient");
+    lg.setAttribute("id", gid); lg.setAttribute("gradientUnits", "userSpaceOnUse");
+    lg.setAttribute("x1", o[0]); lg.setAttribute("y1", o[1]); lg.setAttribute("x2", (o[0] + (cx - o[0]) * 2.2).toFixed(0)); lg.setAttribute("y2", (o[1] + (cy - o[1]) * 2.2).toFixed(0));
+    lg.innerHTML = '<stop offset="0" stop-color="#fff" stop-opacity=".85"/><stop offset=".4" stop-color="#fff" stop-opacity=".34"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>';
+    defs.appendChild(lg);
+    var dx = cx - o[0], dy = cy - o[1], L = Math.hypot(dx, dy), ux = dx / L, uy = dy / L, comp = L * 2.3, w0 = 8, w1 = 170;
+    var pts = [[o[0] - uy * w0, o[1] + ux * w0], [o[0] + uy * w0, o[1] - ux * w0], [o[0] + ux * comp + uy * w1, o[1] + uy * comp - ux * w1], [o[0] + ux * comp - uy * w1, o[1] + uy * comp + ux * w1]];
+    var pg = document.createElementNS(NS, "polygon");
+    pg.setAttribute("points", pts.map(function (p) { return p[0].toFixed(1) + "," + p[1].toFixed(1); }).join(" "));
+    pg.setAttribute("fill", "url(#" + gid + ")"); pg.setAttribute("filter", "url(#concertstrobe-bl)"); pg.setAttribute("class", "concertstrobe-o");
+    gFX.appendChild(pg);
+
+    var nc = document.createElementNS(NS, "polygon"), w2 = 26;
+    nc.setAttribute("points", [[o[0] - uy * 3, o[1] + ux * 3], [o[0] + uy * 3, o[1] - ux * 3], [o[0] + ux * comp + uy * w2, o[1] + uy * comp - ux * w2], [o[0] + ux * comp - uy * w2, o[1] + uy * comp + ux * w2]].map(function (p) { return p[0].toFixed(1) + "," + p[1].toFixed(1); }).join(" "));
+    nc.setAttribute("fill", "url(#" + gid + ")"); nc.setAttribute("filter", "url(#concertstrobe-bl2)"); nc.setAttribute("opacity", ".8");
+    var gb = document.createElementNS(NS, "g"); gb.setAttribute("class", "concertstrobe-o"); gFX.removeChild(pg); pg.removeAttribute("class"); gb.appendChild(pg); gb.appendChild(nc); gFX.appendChild(gb); pg = gb;
+
+    var h = document.createElementNS(NS, "circle"); h.setAttribute("cx", o[0]); h.setAttribute("cy", o[1]); h.setAttribute("r", 90); h.setAttribute("fill", "url(#concertstrobe-gh)"); h.setAttribute("class", "concertstrobe-o"); gFX.appendChild(h);
+    beams.push({ el: pg, halo: h, stops: lg.childNodes, org: o[0] + " " + o[1], amp: between(9, 16) * (i % 2 ? 1 : -1) });
+  });
+  var paint = function (f, color) { Array.prototype.forEach.call(f.stops, function (s) { s.setAttribute("stop-color", color); }); };
+  beams.forEach(function (f, i) { paint(f, colors[i % colors.length]); });
+
+  var FQ = 1 / 30, enter = t0 + .05, exit = t0 + D - .28, b0 = Math.round((t0 + .3) * 30) * FQ - FQ / 4, bt = 60 / bpm;
+  var nb = Math.max(1, Math.min(32, Math.floor((exit - .12 - b0) / bt) + 1));
+
+  tl.fromTo("#concertstrobe-e", { opacity: 0 }, { opacity: 1, duration: Math.max(.1, b0 - enter), ease: "power2.in" }, enter);
+  tl.set("#concertstrobe-s", { opacity: 1 }, enter);
+  tl.fromTo("#concertstrobe-nv1", { opacity: 0, y: 160 }, { opacity: .3 + .45 * F, y: 0, duration: .6, ease: "power2.out" }, enter);
+  tl.fromTo("#concertstrobe-nv1", { x: 0 }, { x: -160, duration: Math.max(.3, exit - enter), ease: "none", immediateRender: false }, enter);
+
+  beams.forEach(function (f) {
+    tl.fromTo([f.el, f.halo], { opacity: 0 }, { opacity: 1, duration: FQ / 4, ease: "none" }, b0);
+    tl.fromTo(f.el, { rotation: -f.amp }, { rotation: -f.amp, svgOrigin: f.org, duration: .01 }, b0 - .02);
+  });
+  for (k = 0; k < nb; k++) {
+    var tb = b0 + k * bt, tq = Math.round((tb + FQ / 4) * 30) * FQ - FQ / 4;
+
+    tl.set("#concertstrobe-st", { opacity: (.55 + .35 * F) * (k % 4 === 0 ? 1 : .8) }, tq);
+    tl.set("#concertstrobe-st", { opacity: 0 }, tq + FQ);
+
+    beams.forEach(function (f, i) {
+      tl.set(f.stops, { attr: { "stop-color": colors[(i + k + 1) % colors.length] } }, tq);
+      tl.to(f.el, { rotation: (k % 2 ? -1 : 1) * f.amp, svgOrigin: f.org, duration: bt * .9, ease: "power2.inOut", immediateRender: false }, tq);
+    });
+  }
+
+  tl.to(["#concertstrobe-s", "#concertstrobe-e"], { opacity: 0, duration: .26, ease: "power2.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["concert-strobe"] = tl;
+})();
+</script>
+</template>
+</body></html>

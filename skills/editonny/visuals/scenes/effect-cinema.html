@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Effect cinema</title></head>
+<body>
+<!-- Effect cinema. For storytelling, revelations, or epic moments with a film-trailer look. -->
+
+<template id="effect-cinema-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+#effectcinema-g{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;backdrop-filter:url(#effectcinema-f);-webkit-backdrop-filter:url(#effectcinema-f)}
+.effectcinema-b{position:absolute;left:-10px;width:1100px;height:10px;opacity:0;background:#000}
+</style>
+<div id="root" data-composition-id="effect-cinema" data-width="1080" data-height="1920" data-duration="2.8">
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0"><filter id="effectcinema-f" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feColorMatrix id="effectcinema-s" in="SourceGraphic" type="saturate" values="1" result="s"/><feComponentTransfer in="s"><feFuncR id="effectcinema-cr" type="table" tableValues="0 1"/><feFuncG id="effectcinema-cg" type="table" tableValues="0 1"/><feFuncB id="effectcinema-cb" type="table" tableValues="0 1"/></feComponentTransfer></filter></svg>
+<div id="effectcinema-g"></div><div class="effectcinema-b" id="effectcinema-t"></div><div class="effectcinema-b" id="effectcinema-d"></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["effect-cinema"] || { duration: 2.8 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 2.8, t0 = 0;
+
+  var P = {
+    strength: 0.6, // 0–1: each bar's height; one covers 18% at the top and 18% at the bottom.
+    color: "#000000", // Bar color; black by default.
+    mood: 0.3, // 0–1: added contrast between the bars; zero leaves the image unchanged.
+  };
+
+
+  var lim = function (v, pad) { v = Number(v); if (v !== v) v = pad; return Math.max(0, Math.min(1, v)); };
+
+  var strength = lim(P.strength, .6), mood = Math.sqrt(lim(P.mood, .3)) * Math.min(1, strength / .3);
+  var alt = Math.round(strength * .18 * 1920), remainingValue = 60;
+  var up = document.getElementById("effectcinema-t"), bottom = document.getElementById("effectcinema-d");
+
+  up.style.top = (-remainingValue) + "px"; up.style.height = (alt + remainingValue) + "px";
+  bottom.style.top = (1920 - alt) + "px"; bottom.style.height = (alt + remainingValue) + "px";
+
+  up.style.background = "#000000"; bottom.style.background = "#000000";
+  if (P.color) { up.style.background = String(P.color); bottom.style.background = String(P.color); }
+
+  var kc = 3.1 * mood, middle = .41, np = 24, ci, cx, cs, cu, curve = [];
+  for (ci = 0; ci <= np; ci++) {
+    cx = ci / np; cs = cx;
+    if (kc >= .05) {
+      cs = (Math.tanh(kc * (cx - middle)) + Math.tanh(kc * middle)) / (Math.tanh(kc * (1 - middle)) + Math.tanh(kc * middle));
+      if (cx > middle) { cu = (cx - middle) / (1 - middle); cs += (cx - cs) * .5 * cu * cu * (3 - 2 * cu); }
+    }
+    curve.push((cs * (1 - .07 * mood)).toFixed(4));
+  }
+  document.getElementById("effectcinema-cr").setAttribute("tableValues", curve.join(" "));
+  document.getElementById("effectcinema-cg").setAttribute("tableValues", curve.join(" "));
+  document.getElementById("effectcinema-cb").setAttribute("tableValues", curve.join(" "));
+  document.getElementById("effectcinema-s").setAttribute("values", (1 - .12 * mood).toFixed(3));
+
+  var enter = t0 + .05, exit = t0 + D - .34;
+  tl.fromTo("#effectcinema-t", { opacity: 0 }, { opacity: 1, duration: .01, ease: "none" }, enter);
+  tl.fromTo("#effectcinema-d", { opacity: 0 }, { opacity: 1, duration: .01, ease: "none" }, enter);
+  tl.fromTo("#effectcinema-t", { y: -alt }, { y: 0, duration: .4, ease: "power3.out", immediateRender: false }, enter);
+  tl.fromTo("#effectcinema-d", { y: alt }, { y: 0, duration: .4, ease: "power3.out", immediateRender: false }, enter);
+  if (mood > 0) tl.fromTo("#effectcinema-g", { opacity: 0 }, { opacity: 1, duration: .35, ease: "sine.out" }, enter);
+  tl.to("#effectcinema-t", { y: -alt, duration: .3, ease: "power2.in", immediateRender: false }, exit);
+  tl.to("#effectcinema-d", { y: alt, duration: .3, ease: "power2.in", immediateRender: false }, exit);
+  if (mood > 0) tl.to("#effectcinema-g", { opacity: 0, duration: .3, ease: "sine.in", immediateRender: false }, exit);
+  tl.to("#effectcinema-t", { opacity: 0, duration: .01, ease: "none", immediateRender: false }, exit + .3);
+  tl.to("#effectcinema-d", { opacity: 0, duration: .01, ease: "none", immediateRender: false }, exit + .3);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["effect-cinema"] = tl;
+})();
+</script>
+</template>
+</body></html>

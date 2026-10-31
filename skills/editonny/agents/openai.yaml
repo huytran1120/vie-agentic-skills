@@ -1,0 +1,5 @@
+interface:
+  display_name: "editonny"
+  short_description: "Local video editing guided by conversation"
+  brand_color: "#D6F05C"
+  default_prompt: "Use $editonny to edit my videos. Remove unnecessary pauses, audible breaths, mistakes, false starts, and repetitions while preserving complete words, natural pacing, intentional pauses, meaning, and my originals. Add suitable captions and visual scenes, and verify a representative sample before completing the video."

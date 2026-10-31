@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Progress meter</title></head>
+<body>
+<!-- Progress meter. When describing a low or high cost, effort, or risk: a gauge indicates the level. -->
+
+<template id="progress-meter-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+#progressmeter-a{position:absolute;left:0;top:0;width:0;height:0;opacity:0}
+#progressmeter-c{position:absolute;left:0;top:0;width:600px;height:352px;border-radius:34px;background:rgba(24,25,32,.95);opacity:0;box-shadow:0 0 0 2px rgba(255,255,255,.16),0 4px 10px rgba(0,0,0,.25),0 24px 54px rgba(0,0,0,.5)}
+#progressmeter-s{position:absolute;left:0;top:0;overflow:visible}
+#progressmeter-l{position:absolute;left:0;top:282px;width:600px;text-align:center;font-family:"Inter";font-size:48px;font-weight:900;letter-spacing:.04em;line-height:1;color:#fff;white-space:nowrap}
+</style>
+<div id="root" data-composition-id="progress-meter" data-width="1080" data-height="1920" data-duration="3.6">
+<div id="progressmeter-a"><div id="progressmeter-c"><svg id="progressmeter-s" xmlns="http://www.w3.org/2000/svg" width="600" height="352"><defs><linearGradient id="progressmeter-g" gradientUnits="userSpaceOnUse" x1="108" y1="0" x2="492" y2="0"><stop offset="0" stop-color="#30d158"/><stop offset=".5" stop-color="#ffd60a"/><stop offset="1" stop-color="#ff3b30"/></linearGradient></defs><path d="M108 238 A192 192 0 0 1 492 238" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="36" stroke-linecap="round"/><path id="progressmeter-arc" d="M108 238 A192 192 0 0 1 492 238" fill="none" stroke="url(#progressmeter-g)" stroke-width="36" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/><g id="progressmeter-tk" stroke="rgba(255,255,255,.35)" stroke-width="6" stroke-linecap="round"></g><g id="progressmeter-ag"><path d="M300 238 L300 80" stroke="#0b0b0d" stroke-width="20" stroke-linecap="round" opacity=".5"/><path d="M300 238 L300 80" stroke="#fff" stroke-width="13" stroke-linecap="round"/></g><circle cx="300" cy="238" r="22" fill="#fff" stroke="#17181f" stroke-width="7"/></svg><div id="progressmeter-l"></div></div></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["progress-meter"] || { duration: 3.6 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 3.6, t0 = 0;
+
+  var P = {
+    x: 540, // Card center on the 1080×1920 canvas, in pixels.
+    y: 416, // Card center above the head, in pixels.
+    label: "MINIMAL COST", // Text below the gauge.
+    level: 0.08, // Needle stopping position from zero, green, to one, red.
+    color: "#30d158", // Label color once the needle stops.
+  };
+
+
+  var LC = 600, HEIGHT_VALUE = 352, CX = 300, CY = 238;
+  var anchor = document.getElementById("progressmeter-a"), card = document.getElementById("progressmeter-c"), rot = document.getElementById("progressmeter-l"), needle = document.getElementById("progressmeter-ag");
+  anchor.style.left = P.x + "px"; anchor.style.top = P.y + "px";
+  card.style.left = (-LC / 2) + "px"; card.style.top = (-HEIGHT_VALUE / 2) + "px";
+  rot.textContent = String(P.label == null ? "" : P.label).toUpperCase();
+
+  var marks = document.getElementById("progressmeter-tk"), ns = "http://www.w3.org/2000/svg";
+  for (var im = 0; im <= 6; im++) { var an = Math.PI * (1 - im / 6), li = document.createElementNS(ns, "line");
+    li.setAttribute("x1", CX + Math.cos(an) * 146); li.setAttribute("y1", CY - Math.sin(an) * 146);
+    li.setAttribute("x2", CX + Math.cos(an) * 160); li.setAttribute("y2", CY - Math.sin(an) * 160); marks.appendChild(li); }
+  var level = Math.max(0, Math.min(1, parseFloat(String(P.level).replace(",", ".")))); if (isNaN(level)) level = .08;
+  var angle = -90 + 180 * level, top = level < .6 ? 62 : -40;
+  var adjust = function () { rot.style.fontSize = "48px"; var w = rot.scrollWidth, free = LC - 56; if (w > free) rot.style.fontSize = (48 * free / w) + "px"; };
+  adjust(); if (document.fonts && document.fonts.status !== "loaded") document.fonts.ready.then(adjust);
+  var k = Math.min(1, Math.max(.45, (D - .4) / 3.2)), enter = t0 + .05, exit = t0 + D - .3, falling = enter + 1.15 * k;
+  tl.fromTo(anchor, { opacity: 0 }, { opacity: 1, duration: .05, ease: "none" }, enter);
+  tl.fromTo(card, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: .38, ease: "back.out(1.6)" }, enter);
+  tl.fromTo("#progressmeter-arc", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: .5, ease: "power2.out" }, enter + .1);
+  tl.fromTo(needle, { rotation: -90, svgOrigin: CX + " " + CY }, { rotation: top, svgOrigin: CX + " " + CY, duration: .75 * k, ease: "power2.inOut" }, enter + .25 * k);
+  tl.to(needle, { rotation: angle, duration: .5, ease: "back.out(2.2)", immediateRender: false }, falling);
+  tl.fromTo(rot, { color: "#ffffff" }, { color: P.color || "#30d158", duration: .25, ease: "power1.out", immediateRender: false }, falling + .12);
+  tl.fromTo(rot, { y: 0 }, { y: -6, duration: .14, ease: "power2.out", yoyo: true, repeat: 1, immediateRender: false }, falling + .12);
+
+  var live = falling + .55, padding = exit - live, turns = Math.max(1, Math.round(padding / .5)), halfValue = padding / (turns * 2);
+  if (halfValue > .08) tl.to(needle, { rotation: angle + 3, duration: halfValue, ease: "sine.inOut", yoyo: true, repeat: turns * 2 - 1, immediateRender: false }, live);
+  tl.to(anchor, { opacity: 0, y: -28, duration: .26, ease: "power2.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["progress-meter"] = tl;
+})();
+</script>
+</template>
+</body></html>

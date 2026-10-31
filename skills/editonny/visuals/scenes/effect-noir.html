@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Effect noir</title></head>
+<body>
+<!-- Effect noir. For a serious scene, memory, drama, or secret with a monochrome look. -->
+
+<template id="effect-noir-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+.effectnoir-L{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0}
+#effectnoir-pb{backdrop-filter:url(#effectnoir-f);-webkit-backdrop-filter:url(#effectnoir-f)}
+#effectnoir-gr{backdrop-filter:url(#effectnoir-g);-webkit-backdrop-filter:url(#effectnoir-g)}
+</style>
+<div id="root" data-composition-id="effect-noir" data-width="1080" data-height="1920" data-duration="2.6">
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0"><filter id="effectnoir-f" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feColorMatrix id="effectnoir-m" in="SourceGraphic" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0" result="pb"/><feComponentTransfer in="pb"><feFuncR id="effectnoir-cr" type="table" tableValues="0 1"/><feFuncG id="effectnoir-cg" type="table" tableValues="0 1"/><feFuncB id="effectnoir-cb" type="table" tableValues="0 1"/></feComponentTransfer></filter><filter id="effectnoir-g" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feTurbulence id="effectnoir-gt" type="fractalNoise" baseFrequency="0.7" numOctaves="2" seed="3" result="n"/><feGaussianBlur in="n" stdDeviation="0.9" result="b"/><feColorMatrix in="b" type="matrix" values="6.5 0 0 0 -2.75  6.5 0 0 0 -2.75  6.5 0 0 0 -2.75  0 0 0 0 1" result="c"/><feBlend in="c" in2="SourceGraphic" mode="soft-light"/></filter></svg>
+<div class="effectnoir-L" id="effectnoir-pb"></div><div class="effectnoir-L" id="effectnoir-vg"></div><div class="effectnoir-L" id="effectnoir-gr"></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["effect-noir"] || { duration: 2.6 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 2.6, t0 = 0;
+
+  var P = {
+    strength: 0.8, // 0–1: desaturation; 0.5 is partial, 0.8 and above is monochrome with increasing contrast.
+    contrast: 0.5, // 0–1: black-and-white contrast; one gives a harsh noir look.
+    grain: 0.35, // 0–1: film-grain visibility.
+  };
+
+
+  var lim = function (v, pad) { v = Number(v); if (v !== v) v = pad; return Math.max(0, Math.min(1, v)); };
+  var strength = lim(P.strength, .8), contrast = lim(P.contrast, .5), grain = lim(P.grain, .35);
+
+  var sc = Math.min(1, strength / .8), fc = 1 - sc, wr = .32, wg = .56, wb = .12;
+  document.getElementById("effectnoir-m").setAttribute("values", [fc + sc * wr, sc * wg, sc * wb, 0, 0, sc * wr, fc + sc * wg, sc * wb, 0, 0, sc * wr, sc * wg, fc + sc * wb, 0, 0, 0, 0, 0, 1, 0].join(" "));
+
+  var kc = strength * (.6 + 5.4 * contrast - 1.6 * contrast * contrast), middle = .42, np = 24, ci, cx, cs, cu, curve = [];
+  for (ci = 0; ci <= np; ci++) {
+    cx = ci / np; cs = cx;
+    if (kc >= .05) {
+      cs = (Math.tanh(kc * (cx - middle)) + Math.tanh(kc * middle)) / (Math.tanh(kc * (1 - middle)) + Math.tanh(kc * middle));
+      if (cx > middle) { cu = (cx - middle) / (1 - middle); cs += (cx - cs) * .55 * cu * cu * (3 - 2 * cu); }
+    }
+    curve.push(cs.toFixed(4));
+  }
+  document.getElementById("effectnoir-cr").setAttribute("tableValues", curve.join(" "));
+  document.getElementById("effectnoir-cg").setAttribute("tableValues", curve.join(" "));
+  document.getElementById("effectnoir-cb").setAttribute("tableValues", curve.join(" "));
+
+  var vmax = .45 * strength, gi, gu, tracks = "rgba(0,0,0,0) 45%";
+  for (gi = 1; gi <= 10; gi++) { gu = gi / 10; tracks += ", rgba(0,0,0," + (vmax * gu * gu * (3 - 2 * gu)).toFixed(3) + ") " + (45 + 55 * gu).toFixed(1) + "%"; }
+  document.getElementById("effectnoir-vg").style.background = "radial-gradient(ellipse 820px 1260px at 540px 940px, " + tracks + ")";
+
+  var og = grain * (1.04 - .32 * grain) * sc;
+
+  var WITHOUT = [3, 41, 17, 86, 29, 64, 8, 53, 95, 22, 71, 36, 12, 58, 80, 47, 5, 68, 31, 90, 19, 76, 44, 61];
+  var FQ = 1 / 30, enter = t0 + .05, exit = t0 + D - .3, end = exit + .28;
+  var q0 = Math.ceil((enter + FQ / 4) * 30 - .001), qn = Math.max(1, Math.floor((end - q0 * FQ) / FQ)), qi;
+
+  if (strength > 0) {
+    tl.fromTo("#effectnoir-pb", { opacity: 0 }, { opacity: 1, duration: .3, ease: "sine.out" }, enter);
+    tl.fromTo("#effectnoir-vg", { opacity: 0 }, { opacity: 1, duration: .3, ease: "sine.out" }, enter);
+    tl.to("#effectnoir-pb", { opacity: 0, duration: .28, ease: "sine.in", immediateRender: false }, exit);
+    tl.to("#effectnoir-vg", { opacity: 0, duration: .28, ease: "sine.in", immediateRender: false }, exit);
+  }
+  if (og > 0) {
+    tl.fromTo("#effectnoir-gr", { opacity: 0 }, { opacity: og, duration: .3, ease: "sine.out" }, enter);
+    for (qi = 0; qi < qn; qi++) tl.set("#effectnoir-gt", { attr: { seed: WITHOUT[qi % 24] } }, q0 * FQ - FQ / 4 + qi * FQ);
+    tl.set("#effectnoir-gt", { attr: { seed: 3 } }, end);
+    tl.to("#effectnoir-gr", { opacity: 0, duration: .28, ease: "sine.in", immediateRender: false }, exit);
+  }
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["effect-noir"] = tl;
+})();
+</script>
+</template>
+</body></html>

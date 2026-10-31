@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Stuck progress bar</title></head>
+<body>
+<!-- Stuck progress bar. To show something that never quite finishes: a progress bar stops near completion, locks, and reveals an emphatic phrase. -->
+
+<template id="stuck-progress-bar-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+@font-face{font-family:"SoraV";src:url("assets/visuals/fonts/Sora.ttf");font-weight:100 800;font-display:block}
+#stuckprogressbar-w{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;overflow:hidden;background:#000;font-family:"Inter",sans-serif;color:#fff}
+#stuckprogressbar-lz{position:absolute;left:-200px;top:-200px;width:1480px;height:2320px}
+#stuckprogressbar-lf{position:absolute;inset:0}
+.stuckprogressbar-l{position:absolute;inset:0;opacity:0;mix-blend-mode:screen}
+#stuckprogressbar-lcg{background:radial-gradient(ellipse 900px 840px at 1150px 200px,rgba(46,255,62,.82),rgba(0,0,0,0) 70%),radial-gradient(ellipse 820px 700px at 286px 2120px,rgba(46,255,62,.5),rgba(0,0,0,0) 70%)}
+#stuckprogressbar-lca{background:radial-gradient(ellipse 900px 840px at 1150px 200px,rgba(255,122,26,.82),rgba(0,0,0,0) 70%),radial-gradient(ellipse 820px 700px at 286px 2120px,rgba(255,122,26,.5),rgba(0,0,0,0) 70%)}
+#stuckprogressbar-lcr{background:radial-gradient(ellipse 900px 840px at 1150px 200px,rgba(255,24,40,.82),rgba(0,0,0,0) 70%),radial-gradient(ellipse 820px 700px at 286px 2120px,rgba(255,24,40,.5),rgba(0,0,0,0) 70%)}
+#stuckprogressbar-lfg{background:linear-gradient(180deg,rgba(40,240,54,.95) 0%,rgba(22,150,34,.6) 30%,rgba(0,0,0,0) 68%)}
+#stuckprogressbar-lfa{background:linear-gradient(180deg,rgba(255,122,26,.92) 0%,rgba(160,70,10,.6) 30%,rgba(0,0,0,0) 68%)}
+#stuckprogressbar-lfr{background:linear-gradient(180deg,rgba(225,10,26,.95) 0%,rgba(140,6,16,.6) 30%,rgba(0,0,0,0) 68%)}
+#stuckprogressbar-vin{position:absolute;inset:0;box-shadow:inset 0 0 200px 30px rgba(0,0,0,.35)}
+#stuckprogressbar-ct{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0}
+#stuckprogressbar-cd{position:absolute;left:140px;top:540px;width:800px;height:520px;opacity:0}
+.stuckprogressbar-vd{position:absolute;inset:0;border-radius:52px;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.19),rgba(255,255,255,.06) 70%,rgba(255,255,255,.03));border:1.5px solid rgba(255,255,255,.26);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.42),0 40px 90px rgba(0,0,0,.55);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px)}
+.stuckprogressbar-gd{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.12) 1.5px,transparent 1.5px),linear-gradient(90deg,rgba(255,255,255,.12) 1.5px,transparent 1.5px);background-size:72px 72px;background-position:-2px -2px;-webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.9) 30%,rgba(0,0,0,.25) 100%);mask-image:linear-gradient(180deg,rgba(0,0,0,.9) 30%,rgba(0,0,0,.25) 100%)}
+#stuckprogressbar-nm{position:absolute;left:56px;top:58px;width:560px;white-space:nowrap;font-family:"SoraV","Inter",sans-serif;font-weight:800;font-size:190px;line-height:1;letter-spacing:-.02em;color:#fff;text-shadow:0 0 30px rgba(255,255,255,.25)}
+#stuckprogressbar-ns{font-size:.5em;letter-spacing:0;margin-left:.05em}
+#stuckprogressbar-nb{position:absolute;left:62px;top:262px;width:150px;height:12px;border-radius:6px;background:#ff8a2e;box-shadow:0 0 18px rgba(255,138,46,.7)}
+#stuckprogressbar-cad{position:absolute;left:630px;top:70px;width:110px;height:130px;opacity:0;filter:drop-shadow(0 0 22px rgba(255,40,60,.85))}
+#stuckprogressbar-cad svg{display:block;width:110px;height:130px;overflow:visible}
+#stuckprogressbar-br{position:absolute;left:60px;top:326px;width:680px;height:130px;border-radius:65px;overflow:hidden;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.3);box-shadow:inset 0 2px 10px rgba(0,0,0,.35)}
+.stuckprogressbar-bt{position:absolute;left:38px;right:38px;top:0;bottom:0;display:flex;align-items:center;font-weight:800;line-height:1.08;letter-spacing:.005em;white-space:normal;color:transparent;-webkit-background-clip:text;background-clip:text;background-image:linear-gradient(90deg,#201006 0%,#201006 50%,rgba(255,255,255,.94) 50%,rgba(255,255,255,.94) 100%);background-size:2416px 100%;background-repeat:no-repeat;background-position:-1247.5px 0px}
+#stuckprogressbar-bf{position:absolute;left:-1.5px;top:-1.5px;width:680px;height:130px;border-radius:65px;overflow:hidden;background:linear-gradient(90deg,#ff8a2e,#ffc184 62%,#fff4e6);box-shadow:0 0 30px rgba(255,138,46,.5);opacity:0}
+#stuckprogressbar-bfr{position:absolute;inset:0;border-radius:65px;opacity:0;background:linear-gradient(90deg,#ff2a3c,#ff7d88 62%,#ffe3e6)}
+#stuckprogressbar-fr{position:absolute;left:140px;top:1190px;width:800px;height:0;opacity:0;display:flex;align-items:center;justify-content:center;text-align:center;font-family:"SoraV","Inter",sans-serif;font-weight:800;line-height:1.02;letter-spacing:.01em;text-transform:uppercase;color:#ff3448;text-shadow:0 0 40px rgba(255,40,60,.8),0 0 12px rgba(255,90,100,.6)}
+#stuckprogressbar-fl{position:absolute;inset:0;background:#fff;opacity:0}
+</style>
+<div id="root" data-composition-id="stuck-progress-bar" data-width="1080" data-height="1920" data-duration="4.5">
+<div id="stuckprogressbar-w"><div id="stuckprogressbar-lz"><div class="stuckprogressbar-l" id="stuckprogressbar-lcg"></div><div class="stuckprogressbar-l" id="stuckprogressbar-lca"></div><div class="stuckprogressbar-l" id="stuckprogressbar-lcr"></div></div><div id="stuckprogressbar-lf"><div class="stuckprogressbar-l" id="stuckprogressbar-lfg"></div><div class="stuckprogressbar-l" id="stuckprogressbar-lfa"></div><div class="stuckprogressbar-l" id="stuckprogressbar-lfr"></div></div><div id="stuckprogressbar-vin"></div><div id="stuckprogressbar-ct"><div id="stuckprogressbar-cd"><div class="stuckprogressbar-vd"><div class="stuckprogressbar-gd"></div><div id="stuckprogressbar-nm"><span id="stuckprogressbar-nv"></span><span id="stuckprogressbar-ns">%</span></div><div id="stuckprogressbar-nb"></div><div id="stuckprogressbar-cad"><svg viewBox="0 0 110 130"><path id="stuckprogressbar-arc" d="M28 62 V40 A27 27 0 0 1 82 40 V62" fill="none" stroke="#ff3448" stroke-width="12" stroke-linecap="round"/><rect x="12" y="58" width="86" height="66" rx="16" fill="#ff3448"/><circle cx="55" cy="86" r="9" fill="#3a0008"/><path d="M55 90 V104" stroke="#3a0008" stroke-width="8" stroke-linecap="round"/></svg></div><div id="stuckprogressbar-br"><div id="stuckprogressbar-bf"><div id="stuckprogressbar-bfr"></div></div><div class="stuckprogressbar-bt" id="stuckprogressbar-bt"></div></div></div></div><div id="stuckprogressbar-fr"></div></div><div id="stuckprogressbar-fl"></div></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["stuck-progress-bar"] || { duration: 4.5 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 4.5, t0 = 0;
+
+  var P = {
+    label: "perfect recording", // Text inside the bar.
+    stopAt: 99, // Progress value where the bar stops, from 5 to 99.9.
+    phrase: "I NEVER POST", // Emphatic phrase revealed in red below.
+  };
+
+
+  var $ = function (id) { return document.getElementById(id); };
+  var LZ = { g: [0, 0], a: [0, 0], r: [0, 0] };
+  function light(t, k, mode, d) { ["g", "a", "r"].forEach(function (c) { [0, 1].forEach(function (m) { var target = c === k ? (m === 0 ? 1 : (mode === "f" ? 1 : 0)) : 0; if (target === LZ[c][m]) return; tl.fromTo("#stuckprogressbar-l" + (m ? "f" : "c") + c, { opacity: LZ[c][m] }, { opacity: target, duration: d || .5, ease: "power2.inOut", immediateRender: false }, t); LZ[c][m] = target; }); }); }
+  function flash(t, f) { tl.fromTo("#stuckprogressbar-fl", { opacity: 0 }, { opacity: f || .3, duration: .04, ease: "none", immediateRender: false }, t); tl.to("#stuckprogressbar-fl", { opacity: 0, duration: .32, ease: "power2.out", immediateRender: false }, t + .05); }
+  var sv = String(P.stopAt === undefined || P.stopAt === null || P.stopAt === "" ? 99 : P.stopAt).replace(",", ".").replace("%", "").trim();
+  var V = parseFloat(sv); if (!isFinite(V)) V = 99; V = Math.max(5, Math.min(99.9, V));
+  var decimals = Math.min(1, (sv.split(".")[1] || "").length);
+
+  var ZW = "⁠";
+  function fmt(v) { return ZW + v.toFixed(decimals).replace(".", ","); }
+  var rot = String(P.label || "perfect recording").replace(/\s+/g, " ").trim();
+  var phrase = String(P.phrase || "I NEVER POST").replace(/\s+/g, " ").trim();
+  $("stuckprogressbar-bt").textContent = rot; $("stuckprogressbar-fr").textContent = phrase; $("stuckprogressbar-nv").textContent = fmt(0);
+
+  function measure(txt, widthValue, mx, mn, lines, lh, style) {
+    var m = document.createElement("div"), px, ok = false;
+    m.style.cssText = "position:absolute;left:-99999px;top:0;visibility:hidden;white-space:normal;" + style + ";width:" + widthValue + "px;line-height:" + lh;
+    m.textContent = txt; document.body.appendChild(m);
+    for (px = mx; px >= mn; px -= 2) { m.style.fontSize = px + "px"; if (m.offsetHeight <= px * lh * lines + 4 && m.scrollWidth <= widthValue + 1) { ok = true; break; } }
+    document.body.removeChild(m); return ok ? px : 0;
+  }
+  var SORA = "font-family:SoraV,Inter,sans-serif;font-weight:800;letter-spacing:.01em;text-transform:uppercase";
+  function adjust() {
+    var E = "font-family:Inter,sans-serif;font-weight:800;letter-spacing:.005em";
+    var pr = measure(rot, 600, 48, 36, 1, 1.08, E) || measure(rot, 600, 44, 34, 2, 1.08, E) || 34;
+    $("stuckprogressbar-bt").style.fontSize = pr + "px";
+    var pf = measure(phrase, 790, 132, 76, 1, 1.02, SORA) || measure(phrase, 790, 100, 60, 2, 1.02, SORA) || measure(phrase, 790, 64, 44, 3, 1.02, SORA) || 44;
+    $("stuckprogressbar-fr").style.fontSize = pf + "px";
+  }
+  adjust();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { adjust(); tl.invalidate(); });
+
+  function xF(v) { return -Math.round((100 - v) / 100 * 680 * 10) / 10; }
+  function bpF(v) { return (Math.round((6.8 * v - 1247.5) * 10) / 10) + "px 0px"; }
+
+
+  var enter = t0 + .05, exit = t0 + D - .32, u = exit - enter;
+  var tF0 = enter + .35, dF = Math.max(.7, Math.min(2, .4 * u)), tF1 = tF0 + dF;
+  var dS = Math.max(.2, Math.min(.45, .1 * u)), tS = tF1 + dS;
+  tl.fromTo("#stuckprogressbar-w", { opacity: 0 }, { opacity: 1, duration: .16, ease: "power1.out" }, enter);
+  tl.fromTo("#stuckprogressbar-ct", { opacity: 0 }, { opacity: 1, duration: .01, ease: "none" }, enter);
+  light(enter, "a", "c", .5);
+  tl.fromTo("#stuckprogressbar-lz", { x: 180, y: -180 }, { x: 0, y: 0, duration: .8, ease: "power3.out" }, enter);
+  var vM = Math.max(1, Math.round((exit - enter - .8) / 1.5)), dM = (exit - enter - .8) / vM;
+  tl.fromTo("#stuckprogressbar-lz", { x: 0, y: 0 }, { x: -46, y: 34, duration: dM, ease: "sine.inOut", yoyo: true, repeat: vM - 1, immediateRender: false }, enter + .8);
+
+  tl.fromTo("#stuckprogressbar-cd", { opacity: 0, y: 220, rotationX: 22, transformPerspective: 1700, filter: "blur(18px)" }, { opacity: 1, y: 0, rotationX: 5, transformPerspective: 1700, filter: "blur(0px)", duration: .55, ease: "power3.out" }, enter + .04);
+  tl.to("#stuckprogressbar-cd", { rotationX: 0, y: -16, duration: Math.max(.2, tS - enter - .59), ease: "sine.inOut", immediateRender: false }, enter + .59);
+
+  var e = gsap.parseEase("power3.out"), k;
+  tl.fromTo("#stuckprogressbar-bf", { opacity: 0 }, { opacity: 1, duration: .08, ease: "none" }, tF0);
+  tl.fromTo("#stuckprogressbar-bf", { x: xF(0) }, { x: xF(V), duration: dF, ease: "power3.out", immediateRender: false }, tF0);
+  tl.fromTo("#stuckprogressbar-bt", { backgroundPosition: bpF(0) }, { backgroundPosition: bpF(V), duration: dF, ease: "power3.out" }, tF0);
+  for (k = 1; k <= 30; k++) tl.set("#stuckprogressbar-nv", { textContent: fmt(V * e(k / 30)) }, tF0 + dF * k / 30);
+  tl.set("#stuckprogressbar-nv", { textContent: fmt(V) }, tF1 + .01);
+
+  var nE = 3, dE = dS / (nE * 2);
+  var vE = Math.min(99.5, V + 1.4);
+  tl.fromTo("#stuckprogressbar-bf", { x: xF(V) }, { x: xF(vE), duration: dE, ease: "power2.out", yoyo: true, repeat: nE * 2 - 1, immediateRender: false }, tF1);
+  tl.fromTo("#stuckprogressbar-bt", { backgroundPosition: bpF(V) }, { backgroundPosition: bpF(vE), duration: dE, ease: "power2.out", yoyo: true, repeat: nE * 2 - 1, immediateRender: false }, tF1);
+  tl.fromTo("#stuckprogressbar-br", { x: 0 }, { x: 6, duration: dE, ease: "power2.out", yoyo: true, repeat: nE * 2 - 1, immediateRender: false }, tF1);
+
+  tl.fromTo("#stuckprogressbar-cad", { opacity: 0, y: -40, filter: "blur(12px) drop-shadow(0 0 22px rgba(255,40,60,.85))" }, { opacity: 1, y: 0, filter: "blur(0px) drop-shadow(0 0 22px rgba(255,40,60,.85))", duration: .2, ease: "power3.out" }, tS - .12);
+  tl.fromTo("#stuckprogressbar-arc", { y: -16 }, { y: 0, duration: .1, ease: "power4.in" }, tS - .02);
+  tl.fromTo("#stuckprogressbar-bfr", { opacity: 0 }, { opacity: 1, duration: .12, ease: "none" }, tS);
+  tl.to("#stuckprogressbar-nm", { color: "#ff3448", textShadow: "0 0 36px rgba(255,40,60,.8)", duration: .12, ease: "none", immediateRender: false }, tS);
+  tl.to("#stuckprogressbar-nb", { backgroundColor: "#ff3448", boxShadow: "0 0 22px rgba(255,40,60,.85)", duration: .12, ease: "none", immediateRender: false }, tS);
+  flash(tS, .32); light(tS, "r", "f", .18); light(tS + Math.min(.6, Math.max(.3, (exit - tS) * .3)), "r", "c", .45);
+  tl.fromTo("#stuckprogressbar-fr", { opacity: 0, y: 46, filter: "blur(22px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: .22, ease: "power4.out" }, tS);
+  tl.fromTo("#stuckprogressbar-cd", { x: 0 }, { x: 14, duration: .04, ease: "none", yoyo: true, repeat: 5, immediateRender: false }, tS + .03);
+  tl.to("#stuckprogressbar-fr", { y: -10, duration: Math.max(.1, exit - tS - .3), ease: "sine.inOut", immediateRender: false }, tS + .3);
+
+  var nT = Math.max(0, Math.min(3, Math.floor((exit - tS - .75) / .65))), jt, tT, vT = Math.min(99.6, V + 1.1);
+  for (jt = 0; jt < nT; jt++) {
+    tT = tS + .55 + jt * .65;
+    tl.fromTo("#stuckprogressbar-bf", { x: xF(V) }, { x: xF(vT), duration: .09, ease: "power2.out", yoyo: true, repeat: 1, immediateRender: false }, tT);
+    tl.fromTo("#stuckprogressbar-bt", { backgroundPosition: bpF(V) }, { backgroundPosition: bpF(vT), duration: .09, ease: "power2.out", yoyo: true, repeat: 1, immediateRender: false }, tT);
+    tl.fromTo("#stuckprogressbar-cad", { rotation: 0 }, { rotation: 9, duration: .05, ease: "none", yoyo: true, repeat: 3, immediateRender: false }, tT + .06);
+  }
+
+  tl.to("#stuckprogressbar-ct", { opacity: 0, y: -50, filter: "blur(16px)", duration: .28, ease: "power2.in", immediateRender: false }, exit);
+  tl.to("#stuckprogressbar-w", { opacity: 0, duration: .3, ease: "power2.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["stuck-progress-bar"] = tl;
+})();
+</script>
+</template>
+</body></html>

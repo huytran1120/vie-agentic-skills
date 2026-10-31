@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Effect vhs</title></head>
+<body>
+<!-- Effect vhs. For a nostalgic recording, 1990s home video, or archival VHS look. -->
+
+<template id="effect-vhs-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+.effectvhs-L{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;pointer-events:none}
+#effectvhs-v{backdrop-filter:url(#effectvhs-fv);-webkit-backdrop-filter:url(#effectvhs-fv)}
+#effectvhs-n{background:#808080;filter:url(#effectvhs-fn)}
+#effectvhs-s{background-image:repeating-linear-gradient(to bottom,rgba(0,0,0,1) 0px,rgba(0,0,0,1) 1px,rgba(0,0,0,0) 2.5px,rgba(0,0,0,0) 3.5px,rgba(0,0,0,1) 5px)}
+#effectvhs-j{height:150px;backdrop-filter:url(#effectvhs-fj);-webkit-backdrop-filter:url(#effectvhs-fj)}
+#effectvhs-h{top:auto;bottom:0;height:80px;backdrop-filter:url(#effectvhs-fh) saturate(.6) brightness(1.06);-webkit-backdrop-filter:url(#effectvhs-fh) saturate(.6) brightness(1.06);-webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,0) 0px,#000 8px);mask-image:linear-gradient(to bottom,rgba(0,0,0,0) 0px,#000 8px)}
+.effectvhs-R{position:absolute;left:0;top:0;height:2px;opacity:0;pointer-events:none;mix-blend-mode:screen;background:linear-gradient(to right,rgba(255,255,255,0) 0%,rgba(255,255,255,.9) 10%,rgba(255,255,255,.5) 40%,rgba(255,255,255,0) 100%)}
+#effectvhs-r1{width:190px}
+#effectvhs-r2{width:110px}
+</style>
+<div id="root" data-composition-id="effect-vhs" data-width="1080" data-height="1920" data-duration="2.8">
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0">
+<filter id="effectvhs-fv" filterUnits="userSpaceOnUse" x="-100" y="-20" width="1280" height="1960" color-interpolation-filters="sRGB"><feTurbulence id="effectvhs-jt" type="fractalNoise" baseFrequency="0 0.23" numOctaves="1" seed="2" result="j"/><feColorMatrix in="j" type="matrix" values="1 0 0 0 0  0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 0 1" result="j1"/><feDisplacementMap id="effectvhs-jm" in="SourceGraphic" in2="j1" scale="0" xChannelSelector="R" yChannelSelector="G" result="s0"/><feGaussianBlur id="effectvhs-by" in="s0" stdDeviation="1 0.3" result="y"/><feColorMatrix in="y" type="matrix" values=".299 .587 .114 0 0  .299 .587 .114 0 0  .299 .587 .114 0 0  0 0 0 1 0" result="y2"/><feGaussianBlur id="effectvhs-bc" in="s0" stdDeviation="6 1" result="c"/><feColorMatrix in="c" type="matrix" values=".701 -.587 -.114 0 .5  -.299 .413 -.114 0 .5  -.299 -.587 .886 0 .5  0 0 0 1 0" result="c2"/><feOffset id="effectvhs-oc" in="c2" dx="0" dy="0" result="c4"/><feOffset id="effectvhs-od" in="c2" dx="0" dy="0" result="c5"/><feComposite in="c4" in2="c5" operator="arithmetic" k1="0" k2="0.62" k3="0.38" k4="0" result="c6"/><feComposite id="effectvhs-so" in="y2" in2="c6" operator="arithmetic" k1="0" k2="1" k3="1" k4="-0.5" result="s"/><feColorMatrix in="s" type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="r"/><feOffset id="effectvhs-or" in="r" dx="0" dy="0" result="r3"/><feColorMatrix in="s" type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0" result="g"/><feColorMatrix in="s" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" result="b"/><feOffset id="effectvhs-ob" in="b" dx="0" dy="0" result="b3"/><feBlend in="r3" in2="g" mode="screen" result="rg"/><feBlend in="rg" in2="b3" mode="screen" result="t"/><feColorMatrix id="effectvhs-tm" in="t" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/></filter>
+<filter id="effectvhs-fn" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feTurbulence id="effectvhs-nt" type="fractalNoise" baseFrequency="0.9 0.5" numOctaves="2" seed="3" result="n"/><feGaussianBlur in="n" stdDeviation="1.6 0" result="g"/><feColorMatrix in="g" type="matrix" values="9 0 0 0 -4.04  9 0 0 0 -4.04  9 0 0 0 -4.04  0 0 0 0 1"/></filter>
+<filter id="effectvhs-fj" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feFlood flood-color="rgb(128,128,128)" result="b0"/><feFlood flood-color="rgb(255,128,128)" x="0" y="32" width="1080" height="86" result="b1"/><feMerge result="m"><feMergeNode in="b0"/><feMergeNode in="b1"/></feMerge><feGaussianBlur in="m" stdDeviation="0.01 4" result="m2"/><feDisplacementMap id="effectvhs-jd" in="SourceGraphic" in2="m2" scale="0" xChannelSelector="R" yChannelSelector="G"/></filter>
+<filter id="effectvhs-fh" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feTurbulence id="effectvhs-ht" type="fractalNoise" baseFrequency="0 0.16" numOctaves="1" seed="4" result="n"/><feColorMatrix id="effectvhs-hm" in="n" type="matrix" values="1 0 0 0 0  0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 0 1" result="n1"/><feDisplacementMap in="SourceGraphic" in2="n1" scale="400" xChannelSelector="R" yChannelSelector="G" result="d2"/><feTurbulence id="effectvhs-hn" type="fractalNoise" baseFrequency="0.01 0.7" numOctaves="1" seed="9" result="q"/><feColorMatrix in="q" type="matrix" values="6.5 0 0 0 -4.2  6.5 0 0 0 -4.2  6.5 0 0 0 -4.2  0 0 0 0 1" result="q1"/><feBlend in="q1" in2="d2" mode="screen"/></filter>
+</svg>
+<div class="effectvhs-L" id="effectvhs-v"></div>
+<div class="effectvhs-L" id="effectvhs-j"></div>
+<div class="effectvhs-L" id="effectvhs-n"></div>
+<div class="effectvhs-L" id="effectvhs-s"></div>
+<div class="effectvhs-L" id="effectvhs-h"></div>
+<div class="effectvhs-R" id="effectvhs-r1"></div><div class="effectvhs-R" id="effectvhs-r2"></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["effect-vhs"] || { duration: 2.8 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 2.8, t0 = 0;
+
+  var P = {
+    strength: 0.7, // 0–1: tape look, including bleeding colors, softness, washed-out color, and noise.
+    bleed: 10, // Color-channel offset at full strength, from 0 to 40 pixels.
+    track: 0.6, // 0–1: visibility of the bottom noise strip; zero hides it.
+  };
+
+
+  var strength = Number(P.strength); if (!(strength >= 0)) strength = .7; strength = Math.min(1, strength);
+  var bleed = Number(P.bleed); if (!(bleed >= 0)) bleed = 10; bleed = Math.min(40, bleed);
+  var track = Number(P.track); if (!(track >= 0)) track = .6; track = Math.min(1, track);
+  var get = function (s) { return document.getElementById("effectvhs-" + s); };
+  var enable = strength > 0 ? 1 : 0, riseFactor = Math.min(1, strength / .3), d = bleed * strength;
+  get("by").setAttribute("stdDeviation", (.05 + 1.9 * strength).toFixed(2) + " " + (.05 + .35 * strength).toFixed(2));
+  var bcx = .05 + 3 * strength + .6 * d;
+  get("bc").setAttribute("stdDeviation", bcx.toFixed(2) + " " + (.05 + 1.4 * strength).toFixed(2));
+
+  var mx = Math.ceil(2.8 * d + 3 * bcx + 24), fv = get("fv");
+  fv.setAttribute("x", -mx); fv.setAttribute("y", -20); fv.setAttribute("width", 1080 + 2 * mx); fv.setAttribute("height", 1960);
+  get("jm").setAttribute("scale", (10 * strength).toFixed(1));
+  get("oc").setAttribute("dx", d.toFixed(1)); get("od").setAttribute("dx", (d * 2.3).toFixed(1));
+
+  get("or").setAttribute("dx", (2.4 * strength + .07 * d).toFixed(1)); get("ob").setAttribute("dx", (-1.5 * strength - .04 * d).toFixed(1));
+  var sat = 1 - .3 * strength;
+  get("so").setAttribute("k3", sat.toFixed(3)); get("so").setAttribute("k4", (-.5 * sat).toFixed(3));
+
+  var gr = (1 - .13 * strength).toFixed(3), gg = (1 - .16 * strength).toFixed(3), gb = (1 - .24 * strength).toFixed(3);
+  get("tm").setAttribute("values", gr + " 0 0 0 " + (.06 * strength).toFixed(3) + "  0 " + gg + " 0 0 " + (.055 * strength).toFixed(3) + "  0 0 " + gb + " 0 " + (.115 * strength).toFixed(3) + "  0 0 0 1 0");
+
+  var hh = Math.round(34 + 70 * track), oh = track > 0 ? riseFactor * Math.min(1, .4 + 1.1 * track) : 0;
+  get("h").style.height = hh + "px";
+
+  var ga = (30 + 70 * track) / 400;
+  var map = function (px) { return ga.toFixed(4) + " 0 0 0 " + (px / 400 + .5 - .5 * ga).toFixed(4) + "  0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 0 1"; };
+  var enter = t0 + .05, rise = .28, descend = .26, exit = t0 + D - descend - .04, end = exit + descend;
+  var target = { v: enable, n: .16 * strength, s: .2 * strength, h: oh }, ci;
+  for (ci in target) {
+    tl.fromTo("#effectvhs-" + ci, { opacity: 0 }, { opacity: target[ci], duration: rise, ease: "sine.out" }, enter);
+    tl.to("#effectvhs-" + ci, { opacity: 0, duration: descend, ease: "sine.in", immediateRender: false }, exit);
+  }
+
+  var SD = [3, 41, 17, 88, 29, 64, 7, 53, 92, 22, 71, 36, 5, 80, 47, 14, 99, 31, 60, 11, 76, 44, 26, 85, 9, 57, 38, 68, 19, 95, 2, 50, 73, 33, 62, 24, 90, 13, 45, 78];
+  var HO = [46, 62, 38, 80, 54, 44, 96, 58, 40, 70, 50, 110, 42, 64, 56, 36, 88, 48, 60, 74, 44, 52, 100, 40, 66];
+  var R1 = [0, 0, [640, 412], 0, 0, 0, 0, [130, 1268], 0, 0, 0, [480, 806], 0, 0, 0, 0, 0, [760, 1544], 0, 0, [220, 236], 0, 0, 0, 0, [560, 1102], 0, 0, 0];
+  var R2 = [0, [300, 958], 0, 0, 0, [820, 1396], 0, 0, 0, 0, [90, 574], 0, 0, 0, [610, 1712], 0, 0, 0, 0, [400, 318], 0, 0, 0, [880, 1010], 0, 0, 0, 0, 0, 0, [180, 1460]];
+  var nq = Math.max(1, Math.floor((end - enter) * 30)), qi, tq, env, r, orr = riseFactor * (.25 + .55 * strength);
+  for (qi = 0; qi < nq; qi++) {
+    tq = enter + qi / 30;
+    env = Math.max(0, Math.min(1, (tq - enter + 1 / 30) / rise, (end - tq) / descend));
+    tl.set("#effectvhs-nt", { attr: { seed: SD[qi % SD.length] } }, tq);
+    tl.set("#effectvhs-jt", { attr: { seed: SD[(qi + 5) % SD.length] } }, tq);
+    tl.set("#effectvhs-ht", { attr: { seed: SD[(qi + 11) % SD.length] } }, tq);
+    tl.set("#effectvhs-hn", { attr: { seed: SD[(qi + 23) % SD.length] } }, tq);
+    tl.set("#effectvhs-hm", { attr: { values: map(HO[qi % HO.length]) } }, tq);
+    r = R1[qi % R1.length]; tl.set("#effectvhs-r1", { opacity: r ? +(orr * env).toFixed(3) : 0, x: r ? r[0] : 0, y: r ? r[1] : 0 }, tq);
+    r = R2[qi % R2.length]; tl.set("#effectvhs-r2", { opacity: r ? +(orr * env).toFixed(3) : 0, x: r ? r[0] : 0, y: r ? r[1] : 0 }, tq);
+  }
+  tl.set("#effectvhs-nt", { attr: { seed: 3 } }, end); tl.set("#effectvhs-jt", { attr: { seed: 2 } }, end); tl.set("#effectvhs-ht", { attr: { seed: 4 } }, end); tl.set("#effectvhs-hn", { attr: { seed: 9 } }, end);
+  tl.set("#effectvhs-hm", { attr: { values: map(0) } }, end);
+  tl.set("#effectvhs-r1", { opacity: 0, x: 0, y: 0 }, end); tl.set("#effectvhs-r2", { opacity: 0, x: 0, y: 0 }, end);
+
+  var TR = [[.5, 1290, [22, 44, 18]], [1.37, 520, [-38, -18]], [2.13, 1080, [18, 40, 30, 12]], [2.97, 760, [-20, -46, -16]], [3.8, 1470, [34, 14]], [4.63, 400, [-40, -26, -10]], [5.4, 1180, [20, 38, 16]]];
+  var ti, tj, kt = riseFactor * (.4 + .6 * strength);
+  for (ti = 0; ti < TR.length; ti++) {
+    if (enter + TR[ti][0] + TR[ti][2].length / 30 > exit) break;
+    for (tj = 0; tj < TR[ti][2].length; tj++) {
+      tl.set("#effectvhs-j", { opacity: enable, y: TR[ti][1] }, enter + TR[ti][0] + tj / 30);
+
+      tl.set("#effectvhs-jd", { attr: { scale: Math.round(TR[ti][2][tj] * kt * 2) } }, enter + TR[ti][0] + tj / 30);
+    }
+    tl.set("#effectvhs-j", { opacity: 0, y: 0 }, enter + TR[ti][0] + TR[ti][2].length / 30);
+    tl.set("#effectvhs-jd", { attr: { scale: 0 } }, enter + TR[ti][0] + TR[ti][2].length / 30);
+  }
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["effect-vhs"] = tl;
+})();
+</script>
+</template>
+</body></html>

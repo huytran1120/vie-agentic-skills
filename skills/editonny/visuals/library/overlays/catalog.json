@@ -1,0 +1,70 @@
+{
+  "origin": "Generated locally with code; no third-party source material.",
+  "size": "1080x1920",
+  "items": [
+    {
+      "id": "fine-grain",
+      "name": "Fine grain",
+      "durationSeconds": 4,
+      "file": "fine-grain.mp4",
+      "cover": "fine-grain.jpg",
+      "loop": true,
+      "howToUse": "Place over footage using screen blending."
+    },
+    {
+      "id": "heavy-grain",
+      "name": "Heavy grain",
+      "durationSeconds": 4,
+      "file": "heavy-grain.mp4",
+      "cover": "heavy-grain.jpg",
+      "loop": true,
+      "howToUse": "Place over footage using screen blending."
+    },
+    {
+      "id": "orange-light",
+      "name": "Orange light",
+      "durationSeconds": 8,
+      "file": "orange-light.mp4",
+      "cover": "orange-light.jpg",
+      "loop": true,
+      "howToUse": "Place over footage using screen blending."
+    },
+    {
+      "id": "pink-blue-light",
+      "name": "Pink blue light",
+      "durationSeconds": 8,
+      "file": "pink-blue-light.mp4",
+      "cover": "pink-blue-light.jpg",
+      "loop": true,
+      "howToUse": "Place over footage using screen blending."
+    },
+    {
+      "id": "golden-light",
+      "name": "Golden light",
+      "durationSeconds": 8,
+      "file": "golden-light.mp4",
+      "cover": "golden-light.jpg",
+      "loop": true,
+      "howToUse": "Place over footage using screen blending."
+    },
+    {
+      "id": "floating-dust",
+      "name": "Floating dust",
+      "durationSeconds": 8,
+      "file": "floating-dust.mp4",
+      "cover": "floating-dust.jpg",
+      "loop": true,
+      "howToUse": "Place over footage using screen blending."
+    },
+    {
+      "id": "tv-lines",
+      "name": "Tv lines",
+      "durationSeconds": 4,
+      "file": "tv-lines.mp4",
+      "cover": "tv-lines.jpg",
+      "loop": true,
+      "howToUse": "Place over footage using screen blending."
+    }
+  ],
+  "fps": 30
+}

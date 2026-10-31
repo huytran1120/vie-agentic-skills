@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Text spring</title></head>
+<body>
+<!-- Text spring. For an energetic short callout: text springs from zero, overshoots, and settles. It then holds until the cut. -->
+
+<template id="text-spring-template">
+<style>
+@font-face{font-family:"Montserrat";src:url("assets/fonts/Montserrat.ttf") format("truetype");font-weight:100 900;font-display:block}
+@font-face{font-family:"Caveat";src:url("assets/fonts/Caveat.ttf") format("truetype");font-weight:400 700;font-display:block}
+@font-face{font-family:"JetBrainsMono";src:url("assets/fonts/JetBrainsMono.ttf") format("truetype");font-weight:100 800;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Montserrat",sans-serif}
+.textspring-k{position:absolute;inset:0;pointer-events:none;-webkit-mask-image:linear-gradient(90deg,transparent 140px,#000 170px,#000 910px,transparent 940px),linear-gradient(180deg,transparent 228px,#000 248px,#000 1512px,transparent 1532px);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 140px,#000 170px,#000 910px,transparent 940px),linear-gradient(180deg,transparent 228px,#000 248px,#000 1512px,transparent 1532px);mask-composite:intersect}
+
+.textspring-m{position:absolute;left:140px;top:0;width:800px;perspective:1200px;perspective-origin:50% 50%}
+.textspring-t{display:flex;flex-direction:column;align-items:center;width:800px;opacity:0;font-family:"Montserrat",sans-serif;font-weight:900;line-height:1;letter-spacing:-.01em;white-space:nowrap;paint-order:stroke fill}
+.textspring-l{display:flex;justify-content:center;align-items:baseline}
+.textspring-w{display:block}
+</style>
+<div id="root" data-composition-id="text-spring" data-width="1080" data-height="1920" data-duration="2.4">
+<div id="textspring-c" class="textspring-k"><div class="textspring-m" id="textspring-m"><div class="textspring-t" id="textspring-t" data-layout-allow-overflow></div></div></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["text-spring"] || { duration: 2.4 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 2.4, t0 = 0;
+
+  var P = {
+    text: "TODAY", // Text; | forces a line break, otherwise wrapping is automatic.
+    y: 1150, // Text center height on the 1080×1920 canvas, in pixels.
+    size: 130, // Maximum font size, in pixels; shrinks automatically to fit.
+    color: "#ffffff", // Text color with a thick black outer outline.
+    entrance: 0.5, // Spring duration from 0.3 to 1.2 seconds; the curve scales with it, as in CapCut.
+  };
+
+
+
+  var W = Array.isArray(C.words) ? C.words : [
+    { text: "You", t: 0.10, end: 0.34 }, { text: "do not", t: 0.36, end: 0.58 }, { text: "need", t: 0.60, end: 0.98 },
+    { text: "an", t: 1.00, end: 1.10 }, { text: "editor", t: 1.12, end: 1.56 }, { text: "to", t: 1.92, end: 2.06 },
+    { text: "post", t: 2.08, end: 2.44 }, { text: "every", t: 2.46, end: 2.68 }, { text: "day.", t: 2.70, end: 3.05 }
+  ];
+
+  W = (function (a) { var o = [], u = 0.04, k, t; for (k = 0; k < a.length; k++) { t = Math.max(0.05, Number(a[k].t) || 0, u + 0.01); o.push({ text: a[k].text, t: t, end: Math.max(t + 0.02, Number(a[k].end) || 0) }); u = t; } return o; })(W);
+
+  var SCALE_FACTOR = (function () {
+    var e = (typeof HIDDEN_RANGES !== "undefined" && HIDDEN_RANGES) || [], b0 = (typeof C.start === "number") ? C.start : 0, o = [], k;
+    for (k = 0; k < e.length; k++) if (Number(e[k][1]) > Number(e[k][0])) o.push([Number(e[k][0]) - b0, Number(e[k][1]) - b0]);
+    return o;
+  })();
+  function hidden(t) { for (var k = 0; k < SCALE_FACTOR.length; k++) if (t >= SCALE_FACTOR[k][0] && t < SCALE_FACTOR[k][1]) return true; return false; }
+  function nextScale(t) { var r = Infinity, k; for (k = 0; k < SCALE_FACTOR.length; k++) if (SCALE_FACTOR[k][0] > t && SCALE_FACTOR[k][0] < r) r = SCALE_FACTOR[k][0]; return r; }
+  W = W.filter(function (w) { return !hidden(w.t); });
+
+  function show(s) { return String(s).replace(/^\s+|\s+$/g, "").replace(/[.,;:…]+$/g, ""); }
+
+  function screens(maxP, maxL) {
+    var groups = [], cur = [], letters = 0, i, w, txt, out = [];
+    for (i = 0; i < W.length; i++) {
+      w = W[i]; txt = show(w.text); if (!txt || !(w.t < D - 0.2)) continue;
+      if (cur.length && (cur.length >= maxP || letters + txt.length + 1 > maxL || w.t - cur[cur.length - 1].end > 0.7 || nextScale(cur[cur.length - 1].t) <= w.t)) { groups.push(cur); cur = []; letters = 0; }
+      cur.push({ text: txt, t: Math.max(0.05, w.t), end: Math.min(D - 0.05, Math.max(w.t + 0.08, w.end)) }); letters += txt.length + 1;
+      if (/[.!?…]$/.test(String(w.text).replace(/\s+$/, "")) || (cur.length >= 2 && /[,;:]$/.test(String(w.text).replace(/\s+$/, "")))) { groups.push(cur); cur = []; letters = 0; }
+    }
+    if (cur.length) groups.push(cur);
+    for (i = 0; i < groups.length; i++) {
+      var start = Math.max(0.05, groups[i][0].t - 0.05), speechEnd = groups[i][groups[i].length - 1].end;
+      var end = Math.min(D - 0.05, speechEnd + 0.5); if (i + 1 < groups.length) end = Math.min(end, Math.max(0.05, groups[i + 1][0].t - 0.05));
+      end = Math.min(end, Math.max(start + 0.15, nextScale(groups[i][groups[i].length - 1].t)));
+      if (end > start + 0.12) out.push({ words: groups[i], start: start, end: end });
+    }
+    return out;
+  }
+
+
+  function num(v, d) { if (v === "" || v === null || v === undefined) return d; v = Number(v); return isFinite(v) ? v : d; }
+  function correctColor(v, d) { return (typeof v === "string" && window.CSS && CSS.supports("color", v)) ? v : d; }
+  var ceiling = Math.max(40, Math.min(170, num(P.size, 130))), yy = Math.max(260, Math.min(1500, num(P.y, 1150)));
+  var colorL = correctColor(P.color, "#ffffff"), ENT = Math.max(.3, Math.min(1.2, num(P.entrance, .5)));
+  var raw = String(P.text === undefined || P.text === null ? "TODAY" : P.text).toUpperCase().replace(/\r?\n/g, "|");
+  var bar = raw.indexOf("|") >= 0, orig = [];
+  raw.split("|").forEach(function (s) { s = s.replace(/^\s+|\s+$/g, ""); if (s) orig.push(s.split(/\s+/)); });
+  if (!orig.length) orig.push(["TITLE"]);
+
+
+
+  var SPACING_VALUE = .28, SPAN = .12, LIM = 720, MAXL = 4, HMAX = 900;
+  var med = document.createElement("div");
+  med.setAttribute("aria-hidden", "true"); med.setAttribute("data-layout-ignore", "");
+  med.style.cssText = "position:absolute;left:-6000px;top:0;visibility:hidden;white-space:nowrap;font-family:Montserrat,sans-serif;font-weight:900;font-size:100px;line-height:1;letter-spacing:-.01em";
+  document.body.appendChild(med);
+  var memo = {};
+  function widthValue(s) { var c = "_" + s; if (!(c in memo)) { med.textContent = s; memo[c] = med.getBoundingClientRect().width / 100; } return memo[c]; }
+  function lineWidthValue(ws) { var n = 0, q; for (q = 0; q < ws.length; q++) n += widthValue(ws[q]) + (q ? SPACING_VALUE : 0); return n; }
+
+  function divide(ws, q) {
+    var n = ws.length, m = [], c = [], a, b, d, v, out = [], end;
+    for (a = 1; a <= q; a++) {
+      m[a] = []; c[a] = [];
+      for (b = a; b <= n; b++) {
+        if (a === 1) { m[a][b] = lineWidthValue(ws.slice(0, b)); c[a][b] = 0; continue; }
+        m[a][b] = 1e9;
+        for (d = a - 1; d < b; d++) { v = Math.max(m[a - 1][d], lineWidthValue(ws.slice(d, b))); if (v < m[a][b]) { m[a][b] = v; c[a][b] = d; } }
+      }
+    }
+    for (a = q, end = n; a >= 1; a--) { out.unshift(ws.slice(c[a][end], end)); end = c[a][end]; }
+    return out;
+  }
+  var elM = document.getElementById("textspring-m"), elT = document.getElementById("textspring-t"), lines = [], sizeValue = ceiling;
+  function arrange() {
+    memo = {};
+    var parts = [], owner = [], largerValue = 0, im = 0, k, i, j, previousValue, which, n, H, top, ln, w;
+    var floor = bar ? Math.min(ceiling, 56) : Math.min(ceiling, Math.max(56, ceiling * .62));
+    for (i = 0; i < orig.length; i++) parts.push(1);
+    function split() {
+      var a, b, ws, lw;
+      lines = []; owner = []; largerValue = 0; im = 0;
+      for (a = 0; a < orig.length; a++) { ws = divide(orig[a], parts[a]); for (b = 0; b < ws.length; b++) { lines.push(ws[b]); owner.push(a); } }
+      for (a = 0; a < lines.length; a++) { lw = lineWidthValue(lines[a]); if (lw > largerValue) { largerValue = lw; im = a; } }
+      sizeValue = Math.max(24, Math.min(ceiling, Math.floor(LIM / largerValue)));
+    }
+
+    split();
+    for (k = 0; k < 12; k++) {
+      if (sizeValue >= floor || lines.length >= MAXL || parts[owner[im]] >= orig[owner[im]].length) break;
+      which = owner[im]; previousValue = largerValue; parts[which]++; split();
+      if (largerValue > previousValue * .98) { parts[which]--; split(); break; }
+    }
+    n = lines.length; H = n * sizeValue + (n - 1) * Math.round(sizeValue * SPAN);
+    if (H > HMAX) { sizeValue = Math.max(24, Math.floor(sizeValue * HMAX / H)); H = n * sizeValue + (n - 1) * Math.round(sizeValue * SPAN); }
+    top = Math.round(Math.max(250, Math.min(1510 - H, yy - H / 2)));
+
+    elM.style.top = top + "px"; elM.style.height = H + "px";
+    while (elT.firstChild) elT.removeChild(elT.firstChild);
+    elT.style.fontSize = sizeValue + "px"; elT.style.color = colorL;
+    elT.style.webkitTextStroke = Math.max(8, Math.round(sizeValue * .13)) + "px #000";
+    elT.style.textShadow = "0 " + Math.round(sizeValue * .06) + "px " + Math.round(sizeValue * .14) + "px rgba(0,0,0,.55)";
+    for (i = 0; i < n; i++) {
+      ln = document.createElement("div"); ln.className = "textspring-l"; if (i) ln.style.marginTop = Math.round(sizeValue * SPAN) + "px";
+      for (j = 0; j < lines[i].length; j++) {
+        w = document.createElement("span"); w.className = "textspring-w"; w.textContent = lines[i][j];
+        if (j) w.style.marginLeft = Math.round(sizeValue * SPACING_VALUE) + "px";
+        ln.appendChild(w);
+      }
+      elT.appendChild(ln);
+    }
+  }
+  arrange();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { arrange(); tl.invalidate(); });
+
+
+  var PERSON = 1200, SMIN = .04, ZA = PERSON * (1 - 1 / SMIN);
+  function spring(p) { return p <= 0 ? 0 : p >= 1 ? 1 : 1 + Math.exp(-7 * p) * Math.sin((p - .075) * 2 * Math.PI / .3); }
+
+  function curveZ(p) { if (p >= 1) return 1; var s = Math.max(SMIN, spring(p)); return 1 - PERSON * (1 - 1 / s) / ZA; }
+
+  var M0 = t0 + .033;
+  tl.fromTo("#textspring-t", { z: ZA }, { z: 0, duration: ENT, ease: curveZ }, M0);
+  tl.fromTo("#textspring-t", { opacity: 0 }, { opacity: 1, duration: .01, immediateRender: false }, t0 + .05);
+
+  tl.to("#textspring-t", { opacity: 0, duration: .01, immediateRender: false }, t0 + D - .06);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["text-spring"] = tl;
+})();
+</script>
+</template>
+</body></html>

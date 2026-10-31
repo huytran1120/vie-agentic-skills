@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Camera interface</title></head>
+<body>
+<!-- Camera interface. When discussing filming or appearing on camera: the footage becomes a camera viewfinder and a phrase appears word by word. -->
+
+<template id="camera-interface-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+#camerainterface-w{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;overflow:hidden}
+#camerainterface-fo{position:absolute;left:0;top:250px;width:1080px;height:1310px;opacity:0;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+#camerainterface-vf{position:absolute;left:0;top:250px;width:1080px;height:1310px;opacity:0;background:radial-gradient(ellipse 75% 60% at 50% 50%,rgba(0,0,0,.12) 40%,rgba(0,0,0,.5) 100%)}
+#camerainterface-gr{position:absolute;left:0;top:250px;width:1080px;height:1310px;opacity:0}
+.camerainterface-gv{position:absolute;top:0;bottom:0;width:2px;background:rgba(255,255,255,.38)}
+.camerainterface-gh{position:absolute;left:0;right:0;height:2px;background:rgba(255,255,255,.38)}
+#camerainterface-cn{position:absolute;left:44px;top:294px;width:992px;height:1222px;opacity:0}
+#camerainterface-cn i{position:absolute;width:70px;height:70px;border:0 solid #fff;filter:drop-shadow(0 2px 4px rgba(0,0,0,.5))}
+.camerainterface-c1{left:0;top:0;border-left-width:6px!important;border-top-width:6px!important;border-top-left-radius:18px}
+.camerainterface-c2{right:0;top:0;border-right-width:6px!important;border-top-width:6px!important;border-top-right-radius:18px}
+.camerainterface-c3{left:0;bottom:0;border-left-width:6px!important;border-bottom-width:6px!important;border-bottom-left-radius:18px}
+.camerainterface-c4{right:0;bottom:0;border-right-width:6px!important;border-bottom-width:6px!important;border-bottom-right-radius:18px}
+#camerainterface-fq{position:absolute;left:0;top:0;width:190px;height:190px;opacity:0;border:3px solid #ffd60a}
+#camerainterface-fq i{position:absolute;background:#ffd60a}
+#camerainterface-fq i:nth-child(1){left:50%;top:0;width:3px;height:16px;margin-left:-1px}
+#camerainterface-fq i:nth-child(2){left:50%;bottom:0;width:3px;height:16px;margin-left:-1px}
+#camerainterface-fq i:nth-child(3){top:50%;left:0;height:3px;width:16px;margin-top:-1px}
+#camerainterface-fq i:nth-child(4){top:50%;right:0;height:3px;width:16px;margin-top:-1px}
+#camerainterface-tw{position:absolute;left:140px;top:250px;width:800px;height:1310px;display:flex;align-items:center;justify-content:center}
+#camerainterface-tx{width:740px;text-align:center;color:#fff;font-weight:900;line-height:1.04;letter-spacing:-.02em;text-shadow:0 6px 24px rgba(0,0,0,.65),0 2px 3px rgba(0,0,0,.6)}
+.camerainterface-wd{display:inline-block;opacity:0}
+#camerainterface-rec{position:absolute;left:176px;top:300px;display:flex;align-items:center;gap:14px;font-size:40px;font-weight:800;color:#fff;letter-spacing:.04em;opacity:0;text-shadow:0 2px 6px rgba(0,0,0,.6)}
+#camerainterface-dot{display:block;width:30px;height:30px;border-radius:50%;background:#ff3b30;box-shadow:0 0 14px rgba(255,59,48,.8)}
+#camerainterface-zm{position:absolute;left:490px;top:1320px;width:100px;height:100px;border-radius:50%;background:rgba(0,0,0,.45);color:#ffd60a;font-size:36px;font-weight:700;line-height:100px;text-align:center;opacity:0}
+#camerainterface-top{position:absolute;left:0;top:0;width:1080px;height:250px;background:#000;opacity:0}
+.camerainterface-fl{position:absolute;left:70px;top:112px;width:40px;height:60px;fill:#fff}
+#camerainterface-pill{position:absolute;left:390px;top:270px;width:300px;height:84px;border-radius:18px;background:#ff3b30}
+.camerainterface-tm{position:absolute;left:0;top:0;width:300px;height:84px;line-height:84px;text-align:center;color:#fff;font-size:52px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:.02em;opacity:0}
+.camerainterface-cfg{position:absolute;left:950px;top:112px;width:60px;height:60px;fill:none;stroke:#fff;stroke-width:4}
+#camerainterface-bot{position:absolute;left:0;top:1560px;width:1080px;height:360px;background:#000;opacity:0}
+#camerainterface-md{position:absolute;left:0;right:0;top:-104px;display:flex;justify-content:center;gap:44px;text-shadow:0 2px 8px rgba(0,0,0,.75);font-size:34px;font-weight:600;letter-spacing:.06em;color:#fff}
+#camerainterface-mv{color:#ffd60a}
+#camerainterface-th{position:absolute;left:120px;top:176px;width:110px;height:110px;border-radius:16px;background:linear-gradient(140deg,#5a4a3a,#1d1a17);border:3px solid #444}
+#camerainterface-bt{position:absolute;left:452px;top:142px;width:176px;height:176px;border-radius:50%;border:9px solid #fff}
+#camerainterface-bti{position:absolute;left:10px;top:10px;width:138px;height:138px;clip-path:inset(34px round 14px);background:#ff3b30}
+.camerainterface-flip{position:absolute;left:860px;top:196px;width:76px;height:76px;padding:0;fill:none;stroke:#fff;stroke-width:4;stroke-linecap:round;border-radius:50%;background:#2a2a2c}
+</style>
+<div id="root" data-composition-id="camera-interface" data-width="1080" data-height="1920" data-duration="4.5">
+<div id="camerainterface-w"><div id="camerainterface-fo"></div><div id="camerainterface-vf"></div><div id="camerainterface-gr"><i class="camerainterface-gv" style="left:33.333%"></i><i class="camerainterface-gv" style="left:66.666%"></i><i class="camerainterface-gh" style="top:33.333%"></i><i class="camerainterface-gh" style="top:66.666%"></i></div><div id="camerainterface-cn"><i class="camerainterface-c1"></i><i class="camerainterface-c2"></i><i class="camerainterface-c3"></i><i class="camerainterface-c4"></i></div><div id="camerainterface-fq"><i></i><i></i><i></i><i></i></div><div id="camerainterface-tw"><div id="camerainterface-tx"></div></div><div id="camerainterface-rec"><i id="camerainterface-dot"></i>REC</div><div id="camerainterface-zm">1x</div><div id="camerainterface-top"><svg class="camerainterface-fl" viewBox="0 0 40 60"><path d="M24 4 L8 34 L20 34 L15 56 L33 24 L21 24 Z"/></svg><div id="camerainterface-pill"></div><svg class="camerainterface-cfg" viewBox="0 0 60 60"><circle cx="30" cy="30" r="24"/><circle cx="30" cy="30" r="8"/></svg></div><div id="camerainterface-bot"><div id="camerainterface-md"><span>SLOW MOTION</span><span id="camerainterface-mv">VIDEO</span><span>PHOTO</span><span>PORTRAIT</span></div><div id="camerainterface-th"></div><div id="camerainterface-bt"><div id="camerainterface-bti"></div></div><svg class="camerainterface-flip" viewBox="0 0 60 60"><path d="M14 26 A17 17 0 0 1 44 20 M44 20 L44 10 M44 20 L34 20 M46 34 A17 17 0 0 1 16 40 M16 40 L16 50 M16 40 L26 40"/></svg></div></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["camera-interface"] || { duration: 4.5 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 4.5, t0 = 0;
+
+  var P = {
+    text: "CONSISTENCY IS THE SECRET", // Large viewfinder phrase revealed word by word, below the chin or above the head to avoid the face.
+    startTime: "00:00", // Initial recording counter time in mm:ss.
+    y: "", // Phrase center on the 1080×1920 canvas, in pixels; empty places it below the measured chin.
+    size: 110, // Maximum font size from 60 to 140 pixels; shrinks automatically to fit three lines.
+  };
+
+
+  var $ = function (id) { return document.getElementById(id); };
+  var pals = String(P.text || "CONSISTENCY IS THE SECRET").split(/\s+/).filter(function (s) { return s; });
+  if (!pals.length) pals = ["RECORDING"];
+  var tx = $("camerainterface-tx");
+  tx.innerHTML = pals.map(function (w, q) { return '<span class="camerainterface-wd" id="camerainterface-wd' + q + '">' + w.replace(/&/g, "&amp;").replace(/</g, "&lt;") + '</span>'; }).join(" ");
+
+  function measure(txts, widthValue, maxPx, minPx, lines, lh, style) {
+    var m = document.createElement("div"), px = maxPx, ok, j;
+    m.style.cssText = "position:absolute;left:-99999px;top:0;visibility:hidden;font-family:Inter,sans-serif;white-space:normal;" + style + ";width:" + Math.round(widthValue * .93) + "px;line-height:" + lh;
+    document.body.appendChild(m);
+    for (; px > minPx; px -= 2) {
+      m.style.fontSize = px + "px"; ok = true;
+      for (j = 0; j < txts.length; j++) { m.textContent = txts[j]; if (m.offsetHeight > px * lh * lines + 4 || m.scrollWidth > widthValue * .93 + 2) { ok = false; break; } }
+      if (ok) break;
+    }
+    document.body.removeChild(m); return px;
+  }
+  function whenFont(f) { if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { f(); tl.invalidate(); }); }
+
+  var CEILING = Math.max(60, Math.min(140, Number(String(P.size == null ? 110 : P.size).replace(",", ".")) || 110)), LH = 1.04, tw = $("camerainterface-tw");
+  function high(px) {
+    var m = document.createElement("div");
+    m.style.cssText = "position:absolute;left:-99999px;top:0;visibility:hidden;font-family:Inter,sans-serif;white-space:normal;font-weight:900;letter-spacing:-.02em;text-align:center;width:" + Math.round(740 * .93) + "px;line-height:" + LH + ";font-size:" + px + "px";
+    m.textContent = pals.join(" "); document.body.appendChild(m); var h = m.offsetHeight; document.body.removeChild(m); return h;
+  }
+  function position(px) {
+    var h = high(px) + 8, R = C.face, LO = 340, HI = 1300, ys = String(P.y == null ? "" : P.y).trim(), yP = Number(ys.replace(",", ".")), cy;
+    if (ys !== "" && yP > 0) cy = yP;
+    else if (R && R.y1 > R.y0) {
+      var bottom = HI - (R.y1 + 40), up = (R.y0 - 30) - LO;
+      cy = (bottom >= h || bottom >= up) ? R.y1 + 40 + h / 2 : R.y0 - 30 - h / 2;
+    } else cy = 905;
+    cy = h > HI - LO ? (LO + HI) / 2 : Math.max(LO + h / 2, Math.min(HI - h / 2, cy));
+    tw.style.top = Math.round(cy - h / 2 - 4) + "px"; tw.style.height = Math.round(h + 8) + "px";
+  }
+  function adjust() { var px = measure([pals.join(" ")], 740, CEILING, 56, 3, LH, "font-weight:900;letter-spacing:-.02em;text-align:center"); tx.style.fontSize = px + "px"; position(px); }
+  adjust(); whenFont(adjust);
+
+  var ti = String(P.startTime || "00:00").split(":").map(function (s) { return parseInt(s, 10) || 0; });
+  var seg0 = ti.length > 1 ? ti[ti.length - 2] * 60 + ti[ti.length - 1] : ti[0];
+  var nS = Math.ceil(D) + 1, pill = $("camerainterface-pill"), s, q;
+  function mmss(v) { var m = Math.floor(v / 60) % 100, ss = v % 60; return (m < 10 ? "0" : "") + m + ":" + (ss < 10 ? "0" : "") + ss; }
+  for (q = 0; q < nS; q++) { s = document.createElement("div"); s.className = "camerainterface-tm"; s.id = "camerainterface-tm" + q; s.textContent = mmss(seg0 + q); pill.appendChild(s); }
+
+  var fq = $("camerainterface-fq"), Rf = C.face;
+  if (Rf && Rf.x1 > Rf.x0) { fq.style.left = Math.round((Rf.x0 + Rf.x1) / 2 - 95) + "px"; fq.style.top = Math.round(Math.max(330, Math.min(1270, (Rf.y0 + Rf.y1) / 2 - 95))) + "px"; }
+  else { fq.style.left = "300px"; fq.style.top = "1090px"; }
+
+
+  var enter = t0 + .05, exit = t0 + D - .32, u = exit - enter;
+  var recordingTime = enter + .2, tW0 = enter + .35, tW1 = enter + Math.max(.8, Math.min(.62 * u, .35 + pals.length * .45));
+  tl.fromTo("#camerainterface-w", { opacity: 0 }, { opacity: 1, duration: .01, ease: "none" }, enter);
+
+  tl.fromTo("#camerainterface-top", { opacity: 0, y: -160, filter: "blur(16px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: .38, ease: "power3.out" }, enter);
+  tl.fromTo("#camerainterface-bot", { opacity: 0, y: 200, filter: "blur(16px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: .38, ease: "power3.out" }, enter);
+
+  tl.fromTo(["#camerainterface-pill", "#camerainterface-md"], { opacity: 0 }, { opacity: 1, duration: .12, ease: "none" }, enter + .3);
+  tl.fromTo("#camerainterface-vf", { opacity: 0 }, { opacity: 1, duration: .3, ease: "none" }, enter);
+
+  tl.fromTo("#camerainterface-fo", { opacity: 0 }, { opacity: 1, duration: .08, ease: "none" }, enter);
+  tl.to("#camerainterface-fo", { opacity: 0, duration: .45, ease: "power2.inOut", immediateRender: false }, enter + .3);
+  tl.fromTo("#camerainterface-gr", { opacity: 0 }, { opacity: 1, duration: .25, ease: "none" }, enter + .1);
+  tl.fromTo("#camerainterface-cn", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: .35, ease: "power3.out" }, enter + .08);
+  tl.fromTo("#camerainterface-zm", { opacity: 0 }, { opacity: 1, duration: .25, ease: "none" }, enter + .2);
+  tl.fromTo("#camerainterface-fq", { opacity: 0, x: 60, y: -40 }, { opacity: 1, x: 0, y: 0, duration: .3, ease: "power3.out" }, enter + .22);
+  tl.to("#camerainterface-fq", { opacity: .25, duration: .06, ease: "none", yoyo: true, repeat: 3, immediateRender: false }, enter + .55);
+  tl.to("#camerainterface-fq", { opacity: 0, duration: .3, ease: "none", immediateRender: false }, enter + Math.min(1.4, .45 * u));
+
+  tl.fromTo("#camerainterface-bti", { clipPath: "inset(0px round 69px)" }, { clipPath: "inset(34px round 14px)", duration: .3, ease: "power3.inOut" }, recordingTime);
+
+  tl.fromTo("#camerainterface-rec", { opacity: 0 }, { opacity: 1, duration: .15, ease: "none" }, recordingTime);
+  var pis = Math.max(1, Math.floor((exit - recordingTime - .2) / .9));
+  tl.to("#camerainterface-dot", { opacity: .15, duration: .45, ease: "steps(1)", yoyo: true, repeat: pis * 2 - 1 }, recordingTime + .45);
+
+  for (q = 0; q < nS; q++) {
+    var tq = recordingTime + q, tf = recordingTime + q + 1;
+    if (tq >= exit + .3) break;
+    tl.fromTo("#camerainterface-tm" + q, { opacity: 0 }, { opacity: 1, duration: .01, ease: "steps(1)" }, q ? tq : enter + .05);
+    if (tf < exit + .3) tl.to("#camerainterface-tm" + q, { opacity: 0, duration: .01, ease: "steps(1)", immediateRender: false }, tf);
+  }
+
+  var dW = (tW1 - tW0) / pals.length;
+  pals.forEach(function (w, i) {
+    tl.fromTo("#camerainterface-wd" + i, { opacity: 0, y: 40, filter: "blur(14px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: .3, ease: "power3.out" }, tW0 + i * dW);
+  });
+
+  var vM = Math.max(1, Math.round((exit - tW0) / 1.2)), dM = (exit - tW0) / vM;
+  tl.fromTo("#camerainterface-tw", { x: -8, rotation: -.6 }, { x: 8, rotation: .6, duration: dM, ease: "sine.inOut", yoyo: true, repeat: vM - 1 }, tW0);
+  tl.fromTo("#camerainterface-tw", { y: 6 }, { y: -6, duration: dM * .7, ease: "sine.inOut", yoyo: true, repeat: Math.max(1, Math.round(vM / .7)) - 1, immediateRender: false }, tW0);
+
+  tl.to("#camerainterface-tx", { opacity: 0, filter: "blur(14px)", duration: .25, ease: "power2.in" }, exit);
+  ["#camerainterface-gr", "#camerainterface-cn", "#camerainterface-rec", "#camerainterface-zm", "#camerainterface-vf"].forEach(function (s) { tl.to(s, { opacity: 0, duration: .25, ease: "none", immediateRender: false }, exit); });
+  tl.to("#camerainterface-top", { opacity: 0, y: -160, filter: "blur(16px)", duration: .3, ease: "power2.in", immediateRender: false }, exit);
+  tl.to("#camerainterface-bot", { opacity: 0, y: 200, filter: "blur(16px)", duration: .3, ease: "power2.in", immediateRender: false }, exit);
+
+  tl.to(["#camerainterface-md", "#camerainterface-pill"], { opacity: 0, duration: .1, ease: "none", immediateRender: false }, exit);
+  tl.to("#camerainterface-w", { opacity: 0, duration: .01, ease: "none", immediateRender: false }, t0 + D - .02);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["camera-interface"] = tl;
+})();
+</script>
+</template>
+</body></html>

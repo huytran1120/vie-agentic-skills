@@ -1,0 +1,10 @@
+{
+  "display_condensed": {"file": "anton/Anton-Regular.ttf", "variation": null, "family": "Anton", "license": "anton/OFL.txt"},
+  "sans_black": {"file": "montserrat/Montserrat-Variable.ttf", "variation": 900, "family": "Montserrat", "license": "montserrat/OFL.txt"},
+  "sans_extrabold": {"file": "montserrat/Montserrat-Variable.ttf", "variation": 800, "family": "Montserrat", "license": "montserrat/OFL.txt"},
+  "sans_bold": {"file": "montserrat/Montserrat-Variable.ttf", "variation": 700, "family": "Montserrat", "license": "montserrat/OFL.txt"},
+  "text_bold": {"file": "figtree/Figtree-Variable.ttf", "variation": 700, "family": "Figtree", "license": "figtree/OFL.txt"},
+  "text_semibold": {"file": "figtree/Figtree-Variable.ttf", "variation": 600, "family": "Figtree", "license": "figtree/OFL.txt"},
+  "marker": {"file": "permanentmarker/PermanentMarker-Regular.ttf", "variation": null, "family": "Permanent Marker", "license": "permanentmarker/LICENSE.txt"},
+  "hand": {"file": "caveat/Caveat-Variable.ttf", "variation": 700, "family": "Caveat", "license": "caveat/OFL.txt"}
+}

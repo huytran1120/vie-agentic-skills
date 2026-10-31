@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Effect static</title></head>
+<body>
+<!-- Effect static. For a weak signal, interference, failing memory, or suspense. -->
+
+<template id="effect-static-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+.effectstatic-L{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;pointer-events:none}
+#effectstatic-n{background:#808080;filter:url(#effectstatic-fn)}
+#effectstatic-h{height:460px;background:#808080;filter:url(#effectstatic-fh);-webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,.18) 16%,rgba(0,0,0,.7) 36%,#000 50%,rgba(0,0,0,.7) 64%,rgba(0,0,0,.18) 84%,rgba(0,0,0,0) 100%);mask-image:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,.18) 16%,rgba(0,0,0,.7) 36%,#000 50%,rgba(0,0,0,.7) 64%,rgba(0,0,0,.18) 84%,rgba(0,0,0,0) 100%)}
+</style>
+<div id="root" data-composition-id="effect-static" data-width="1080" data-height="1920" data-duration="2.4">
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0"><filter id="effectstatic-fn" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feTurbulence id="effectstatic-tb" type="fractalNoise" baseFrequency="0.9 0.34" numOctaves="2" seed="3" result="n"/><feGaussianBlur id="effectstatic-gb" in="n" stdDeviation="1.9 0" result="g"/><feColorMatrix id="effectstatic-cm" in="g" type="matrix" values="1 0 0 0 0  1 0 0 0 0  1 0 0 0 0  0 0 0 0 1"/></filter><filter id="effectstatic-fh" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feTurbulence id="effectstatic-th" type="fractalNoise" baseFrequency="0.9 0.34" numOctaves="2" seed="9" result="n"/><feGaussianBlur id="effectstatic-gh" in="n" stdDeviation="1.9 0" result="g"/><feColorMatrix id="effectstatic-ch" in="g" type="matrix" values="1 0 0 0 0  1 0 0 0 0  1 0 0 0 0  0 0 0 0 1"/></filter><filter id="effectstatic-fj" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feTurbulence id="effectstatic-tj" type="fractalNoise" baseFrequency="0 0.3" numOctaves="1" seed="5" result="j"/><feColorMatrix in="j" type="matrix" values="1 0 0 0 0  0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 0 1" result="j1"/><feDisplacementMap id="effectstatic-dj" in="SourceGraphic" in2="j1" scale="0" xChannelSelector="R" yChannelSelector="G"/></filter></svg>
+<div class="effectstatic-L" id="effectstatic-b"></div>
+<div class="effectstatic-L" id="effectstatic-n"></div>
+<div class="effectstatic-L" id="effectstatic-h"></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["effect-static"] || { duration: 2.4 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 2.4, t0 = 0;
+
+  var P = {
+    strength: 0.5, // 0–1: 0.5 resembles a weak signal with the subject visible; one nearly covers the screen.
+    grain: 0.4, // Grain size from zero, fine, to one, coarse.
+    color: 0, // 0–1: zero gives monochrome static; one gives colored static.
+  };
+
+
+  var strength = Number(P.strength); if (!(strength >= 0)) strength = .5; strength = Math.min(1, strength);
+  var grain = Number(P.grain); if (!(grain >= 0)) grain = .4; grain = Math.min(1, grain);
+  var color = Number(P.color); if (!(color >= 0)) color = 0; color = Math.min(1, color);
+  var get = function (s) { return document.getElementById("effectstatic-" + s); };
+
+  var bx = .5 + 3.5 * grain, ay = 1.9 + 2.6 * grain;
+  var freq = function (kx, ky) { return (.9 * kx).toFixed(4) + " " + (ky / ay).toFixed(4); };
+  get("gb").setAttribute("stdDeviation", bx.toFixed(2) + " 0"); get("gh").setAttribute("stdDeviation", (bx * 1.15).toFixed(2) + " 0");
+
+  var raw = .057 / Math.sqrt(Math.max(bx, .39));
+  var matrix = function (deviation, middle) {
+    var k = deviation / raw, o = (middle - .5 * k).toFixed(3), a = (k * (1 - color)).toFixed(3), b = (k * color).toFixed(3);
+    return k.toFixed(3) + " 0 0 0 " + o + "  " + a + " " + b + " 0 0 " + o + "  " + a + " 0 " + b + " 0 " + o + "  0 0 0 0 1";
+  };
+  get("cm").setAttribute("values", matrix(.5, .37));
+  get("ch").setAttribute("values", matrix(.6, .5));
+  get("dj").setAttribute("scale", Math.round(56 * strength));
+  var fb = "url(#effectstatic-fj) saturate(" + (1 - .65 * strength).toFixed(3) + ") contrast(" + (1 - .15 * strength).toFixed(3) + ")";
+  get("b").style.backdropFilter = fb; get("b").style.webkitBackdropFilter = fb;
+  var on = .8 * Math.pow(strength, 1.25), oh = Math.min(1, strength / .4) * (.3 + .5 * strength);
+  var enter = t0 + .05, rise = .25, descend = .25, exit = t0 + D - descend - .04, end = exit + descend;
+  tl.fromTo("#effectstatic-b", { opacity: 0 }, { opacity: strength > 0 ? 1 : 0, duration: rise, ease: "sine.out" }, enter);
+  tl.fromTo("#effectstatic-h", { opacity: 0 }, { opacity: oh, duration: rise, ease: "sine.out" }, enter);
+  tl.to("#effectstatic-b", { opacity: 0, duration: descend, ease: "sine.in", immediateRender: false }, exit);
+  tl.to("#effectstatic-h", { opacity: 0, duration: descend, ease: "sine.in", immediateRender: false }, exit);
+
+  var vel = 520, alt = 460, returnMotion = 1920 + alt, pos = 700, tt = enter, dt;
+  while (tt < end - .001) {
+    dt = Math.min((returnMotion - pos) / vel, end - tt);
+    tl.fromTo("#effectstatic-h", { y: pos - alt }, { y: pos - alt + vel * dt, duration: dt, ease: "none", immediateRender: false }, tt);
+    tt += dt; pos = 0;
+  }
+
+  var SD = [3, 41, 17, 88, 29, 64, 7, 53, 92, 22, 71, 36, 5, 80, 47, 14, 99, 31, 60, 11, 76, 44, 26, 85, 9, 57, 38, 68, 19, 95, 2, 50, 73, 33, 62, 24, 90, 13, 45, 78];
+  var FQ = [[1, 1], [.93, 1.08], [1.04, .94], [.96, 1.12], [1.02, .9], [.9, 1.03], [.98, .96], [1.05, 1.1], [.94, .92], [1.01, 1.06], [.92, .98]];
+  var FL = [1, .86, .94, .78, 1, .9, .82, .97, .88, 1, .8, .93, .85, 1, .9, .76, .96, .87, 1, .83, .92, .79, .98, .89, 1, .84, .95, .81, .9, 1, .87, .77, .94];
+  var nq = Math.max(1, Math.floor((end - enter) * 30)), qi, tq, env, fq;
+  for (qi = 0; qi < nq; qi++) {
+    tq = enter + qi / 30;
+    env = Math.max(0, Math.min(1, (tq - enter + 1 / 30) / rise, (end - tq) / descend));
+    fq = FQ[qi % FQ.length];
+    tl.set("#effectstatic-tb", { attr: { seed: SD[qi % SD.length], baseFrequency: freq(fq[0], fq[1]) } }, tq);
+    tl.set("#effectstatic-th", { attr: { seed: SD[(qi + 13) % SD.length], baseFrequency: freq(fq[1], fq[0] * .8) } }, tq);
+    tl.set("#effectstatic-tj", { attr: { seed: SD[(qi + 7) % SD.length] } }, tq);
+    tl.set("#effectstatic-n", { opacity: +(on * env * FL[qi % FL.length]).toFixed(4) }, tq);
+  }
+  tl.set("#effectstatic-tb", { attr: { seed: 3, baseFrequency: freq(1, 1) } }, end);
+  tl.set("#effectstatic-th", { attr: { seed: 9, baseFrequency: freq(1, 1) } }, end);
+  tl.set("#effectstatic-tj", { attr: { seed: 5 } }, end);
+  tl.set("#effectstatic-n", { opacity: 0 }, end);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["effect-static"] = tl;
+})();
+</script>
+</template>
+</body></html>

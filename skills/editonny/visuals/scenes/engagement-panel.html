@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Engagement panel</title></head>
+<body>
+<!-- Engagement panel. When listing viewer engagement signals. -->
+
+<template id="engagement-panel-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root *{margin:0;padding:0;box-sizing:border-box}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif;color:var(--tx);--bg: #100a1c; --tx: #fff; --ac: #c9a2ff; --su: rgba(255,255,255,.78);}
+
+.question-layout { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden; opacity: 0; visibility: hidden; background: var(--bg); color: var(--tx); }
+.question-layer { position: absolute; left: 0; top: 0; width: 1080px; height: 980px; opacity: 0; overflow: hidden; }
+#pessoa { position: absolute; left: 36px; top: 912px; width: 1008px; height: 990px; border-radius: 58px; overflow: hidden; box-shadow: 0 -30px 70px rgba(0,0,0,.35), 0 0 0 2px rgba(255,255,255,.08); background: #111; z-index: 20; }
+#pessoa video { position: absolute; left: 0; top: -420px; width: 1008px; height: 1792px; object-fit: cover; opacity: 0; }
+.question-header-r { position: absolute; left: 70px; top: 150px; font-size: 24px; font-weight: 700; letter-spacing: .34em; color: var(--ac); opacity: 0; white-space: nowrap; }
+.question-header-n { position: absolute; left: 68px; top: 184px; font-size: 62px; font-weight: 300; letter-spacing: -.02em; opacity: 0; white-space: nowrap; }
+.question-header-a { position: absolute; right: 60px; top: 156px; font-size: 22px; font-weight: 500; opacity: 0; color: var(--su); }
+#m-n2 { font-size: 170px; top: 360px; }
+.question-num { position: absolute; left: 64px; top: 330px; font-weight: 200; font-size: 220px; letter-spacing: -.05em; line-height: 1; font-variant-numeric: tabular-nums; opacity: 0; white-space: nowrap; }
+.question-num small { font-size: 76px; font-weight: 300; letter-spacing: -.02em; margin-left: 10px; }
+.question-subtitle { position: absolute; left: 72px; top: 580px; font-size: 26px; font-weight: 700; letter-spacing: .28em; color: var(--ac); opacity: 0; white-space: nowrap; }
+.question-subtitle::before { content: ""; position: absolute; left: 0; top: -22px; width: 150px; height: 2px; background: var(--su); }
+.question-note { position: absolute; left: 72px; top: 640px; display: inline-flex; align-items: center; gap: 12px; padding: 14px 26px; border-radius: 999px; background: var(--ac); color: var(--bg); font-size: 30px; font-weight: 800; letter-spacing: -.01em; white-space: nowrap; opacity: 0; }
+.question-obj { position: absolute; opacity: 0; }
+
+
+#A { --bg: #0b0d12; --tx: #fff; --ac: #ffb37a; --su: rgba(255,255,255,.78); perspective: 1600px; }
+#a-sheet { position: absolute; left: 590px; top: 270px; width: 460px; height: 610px; border-radius: 10px; background: #fbfaf5; box-shadow: 0 40px 80px rgba(0,0,0,.6); opacity: 0; }
+.lf { position: absolute; left: 44px; height: 14px; border-radius: 7px; background: #c9c7bd; transform-origin: 0 50%; }
+#a-brand { position: absolute; left: 36px; top: 300px; width: 388px; height: 62px; border-radius: 8px; background: #ffd60a; transform-origin: 0 50%; }
+#a-brand b { position: absolute; left: 14px; top: 9px; font-size: 34px; font-weight: 800; color: #111; white-space: nowrap; }
+#a-title { position: absolute; left: 44px; top: 50px; font-size: 22px; font-weight: 800; letter-spacing: .14em; color: rgba(0,0,0,.5); }
+#a-line { position: absolute; left: 110px; top: 700px; width: 860px; height: 6px; border-radius: 3px; background: rgba(255,255,255,.2); }
+#a-full { position: absolute; left: 0; top: 0; width: 860px; height: 6px; border-radius: 3px; background: var(--ac); transform-origin: 0 50%; }
+.tic { position: absolute; top: -14px; width: 4px; height: 34px; margin-left: -2px; border-radius: 2px; background: rgba(255,255,255,.4); }
+.tic span { position: absolute; left: -30px; top: 46px; width: 64px; text-align: center; font-size: 26px; font-weight: 600; color: rgba(255,255,255,.6); }
+#a-ball { position: absolute; left: -20px; top: -17px; width: 40px; height: 40px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 8px rgba(255,179,122,.35), 0 0 30px var(--ac); }
+#a-start, #a-end { position: absolute; top: 606px; font-size: 24px; font-weight: 800; letter-spacing: .2em; opacity: 0; white-space: nowrap; }
+#a-start { left: 110px; } #a-end { right: 110px; color: var(--ac); }
+.question-dev { position: absolute; left: 520px; width: 470px; height: 110px; border-radius: 24px; background: rgba(255,255,255,.07); box-shadow: inset 0 0 0 2px rgba(255,255,255,.12); opacity: 0; }
+.question-dev span { position: absolute; left: 30px; top: 36px; font-size: 32px; font-weight: 600; color: rgba(255,255,255,.7); }
+.question-dev b { position: absolute; right: 30px; top: 28px; font-size: 44px; font-weight: 800; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+#a-total { background: var(--ac); box-shadow: none; } #a-total span, #a-total b { color: #1a0a02; } #a-total span { font-weight: 800; }
+
+
+#K { --bg: #100a1c; --tx: #fff; --ac: #c9a2ff; --su: rgba(255,255,255,.78); }
+#k-phone { position: absolute; left: 610px; top: 250px; width: 330px; height: 640px; border-radius: 52px; background: #0b0b0d; box-shadow: inset 0 0 0 4px #3c3c44, 0 40px 90px rgba(0,0,0,.6); opacity: 0; overflow: hidden; }
+#k-screen { position: absolute; left: 12px; top: 12px; width: 306px; height: 616px; border-radius: 42px; background: linear-gradient(160deg, #ff8a4a, #c2185b 60%, #3b1a6e); overflow: hidden; }
+#k-bar { position: absolute; left: 22px; bottom: 36px; width: 262px; height: 8px; border-radius: 4px; background: rgba(255,255,255,.3); }
+#k-prog { position: absolute; left: 0; top: 0; width: 262px; height: 8px; border-radius: 4px; background: #fff; transform-origin: 0 50%; }
+#k-cut { position: absolute; left: 100px; bottom: 22px; width: 4px; height: 36px; background: #ffd60a; border-radius: 2px; }
+#k-play { position: absolute; left: 103px; top: 230px; width: 100px; height: 100px; border-radius: 50%; background: rgba(255,255,255,.25); }
+#k-play::after { content: ""; position: absolute; left: 38px; top: 28px; border-left: 34px solid #fff; border-top: 22px solid transparent; border-bottom: 22px solid transparent; }
+#k-finger { position: absolute; left: 480px; top: 520px; width: 96px; height: 96px; border-radius: 50%; background: rgba(255,255,255,.5); box-shadow: 0 0 0 5px #fff; opacity: 0; }
+#k-network { position: absolute; left: 500px; top: 250px; width: 560px; height: 620px; }
+.pto { position: absolute; width: 16px; height: 16px; margin: -8px 0 0 -8px; border-radius: 50%; background: rgba(255,255,255,.22); opacity: 0; }
+#k-self { position: absolute; left: 250px; top: 280px; width: 60px; height: 60px; border-radius: 50%; background: var(--ac); box-shadow: 0 0 40px var(--ac); opacity: 0; }
+.question-wave { position: absolute; left: 280px; top: 310px; width: 0; height: 0; border-radius: 50%; box-shadow: 0 0 0 3px var(--ac); opacity: 0; }
+.question-signal { position: absolute; left: 480px; width: 520px; height: 130px; opacity: 0; }
+.question-signal span { position: absolute; left: 0; top: 0; font-size: 30px; font-weight: 600; white-space: nowrap; }
+.question-signal b { position: absolute; right: 0; top: -8px; font-size: 46px; font-weight: 800; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+.question-signal em { position: absolute; left: 0; top: 58px; width: 520px; height: 22px; border-radius: 11px; background: rgba(255,255,255,.12); overflow: hidden; }
+.question-signal em u { position: absolute; left: 0; top: 0; height: 22px; border-radius: 11px; background: var(--ac); transform-origin: 0 50%; }
+
+
+#M { --bg: #edf2f8; --tx: #0e1a2b; --ac: #1f6fd6; --su: rgba(14,26,43,.78); }
+#m-color { left: 540px; top: 240px; width: 470px; height: 470px; filter: drop-shadow(0 30px 40px rgba(20,40,80,.25)); }
+#m-ecg { position: absolute; left: 0; top: 700px; width: 1080px; height: 180px; }
+.question-art { left: 540px; top: 280px; width: 470px; height: 470px; filter: drop-shadow(0 30px 40px rgba(20,40,80,.25)); }
+#m-axis { position: absolute; left: 500px; top: 290px; width: 500px; height: 520px; opacity: 0; }
+.question-track { position: absolute; left: 500px; width: 500px; opacity: 0; }
+.question-track span { position: absolute; right: 12px; top: 10px; font-size: 22px; font-weight: 800; letter-spacing: .14em; }
+
+
+#N { --bg: #f4efe4; --tx: #1c2a1c; --ac: #1f7a3d; --su: rgba(28,42,28,.8); }
+#n-box { left: 580px; top: 250px; width: 420px; height: 420px; filter: drop-shadow(0 30px 40px rgba(60,40,10,.3)); }
+#n-glass { position: absolute; left: 640px; top: 330px; width: 300px; height: 500px; border: 8px solid rgba(28,42,28,.75); border-top: none; border-radius: 0 0 44px 44px; opacity: 0; background: linear-gradient(90deg, rgba(255,255,255,.55), rgba(255,255,255,.15)); }
+#n-glass::before { content: ""; position: absolute; left: -18px; top: -8px; width: 320px; height: 8px; border-radius: 4px; background: rgba(28,42,28,.75); }
+.cubo { position: absolute; width: 130px; height: 130px; opacity: 0; filter: drop-shadow(0 8px 10px rgba(60,40,10,.25)); }
+#n-mini { left: 500px; top: 250px; width: 170px; height: 170px; }
+#n-med { position: absolute; left: 520px; top: 420px; width: 480px; height: 60px; border-radius: 30px; background: rgba(28,42,28,.1); overflow: hidden; opacity: 0; }
+#n-fill { position: absolute; left: 0; top: 0; width: 480px; height: 60px; border-radius: 30px; background: linear-gradient(90deg, #f0a020, #e0481c); transform-origin: 0 50%; }
+#n-lim { position: absolute; left: 520px; top: 370px; width: 480px; font-size: 24px; font-weight: 800; letter-spacing: .14em; text-align: right; opacity: 0; }
+#n-lar { left: 590px; top: 510px; width: 380px; height: 380px; filter: drop-shadow(0 30px 40px rgba(60,40,10,.3)); }
+
+.question-pfundo{position:absolute;left:0;top:0;width:1080px;height:992px;background:var(--bg);opacity:0}
+
+.question-zone{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:0 0;transform:matrix(0.8,0,0,0.8,99.8,128)}
+</style>
+<div id="root" data-composition-id="engagement-panel" data-width="1080" data-height="1920" data-duration="6">
+<div class="question-pfundo" id="K3-background"></div>
+<div class="question-zone">
+<div class="question-layer" id="K3">
+      <div class="question-signal" id="k-g1" style="top:300px"><span>Watched to the end</span><b><i id="k-p1" style="font-style:normal">0</i>%</b><em><u style="width:354px"></u></em></div>
+      <div class="question-signal" id="k-g2" style="top:450px"><span>Shared</span><b><i id="k-p2" style="font-style:normal">0</i>%</b><em><u style="width:62px"></u></em></div>
+      <div class="question-signal" id="k-g3" style="top:600px"><span>Saved</span><b><i id="k-p3" style="font-style:normal">0</i>%</b><em><u style="width:47px"></u></em></div>
+      <video data-start="0" data-duration="6" data-track-index="1" class="question-obj" id="k-o3" src="assets/visuals/video/35-play.webm" muted playsinline style="left:90px;top:570px;width:300px;height:300px"></video>
+      <div class="question-num" id="k-n3" style="font-size:150px;top:340px">3</div>
+      <div class="question-subtitle" id="k-s3" style="top:520px">SIGNALS THAT COUNT</div>
+    </div>
+<div class="question-header-r">ALGORITHM</div><div class="question-header-n">How a video spreads</div><div class="question-header-a">• illustrative figures</div>
+</div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["engagement-panel"] || { words: [], duration: 6 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = 6, IR = { immediateRender: false }, a = 0, b = 0, k, n;
+  function ext(x, y) { var o = {}, i; for (i in x) o[i] = x[i]; for (i in y) o[i] = y[i]; return o; }
+  function thousands(v) { return String(Math.round(v)).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
+  function decimal(c) { return function (v) { return v.toFixed(c); }; }
+  function two(v) { v = Math.round(v); return (v < 10 ? "0" : "") + v; }
+  /* Scale tweens are converted to clipping or translation for the renderer contract. */
+  function rec(sel, axis, v) {
+    v = Math.max(0, Math.min(1, v)); var p = (100 - v * 100).toFixed(2) + "%";
+    if (axis === "x") return "inset(0% " + p + " 0% 0%)";
+    return /wire/.test(String(sel)) ? "inset(0% 0% " + p + " 0%)" : "inset(" + p + " 0% 0% 0%)";
+  }
+  function lim(sel, o, start) {
+    var r = {}, i;
+    for (i in o) {
+      if (i === "scale" || i === "transformOrigin" || i === "svgOrigin") continue;
+      if (i === "scaleX") { r.clipPath = rec(sel, "x", o[i]); continue; }
+      if (i === "scaleY") { r.clipPath = rec(sel, "y", o[i]); continue; }
+      r[i] = o[i];
+    }
+    if (start && ("scale" in o) && !("x" in r) && !("y" in r) && !("rotation" in r) && !("clipPath" in r)) r.y = 26;
+    return r;
+  }
+  var T = {
+    fromTo: function (s, x, y, t) { var X = lim(s, x, true), Y = lim(s, y, false); if (("y" in X) && !("y" in Y)) Y.y = 0; return tl.fromTo(s, X, Y, t); },
+    to: function (s, y, t) { return tl.to(s, lim(s, y, false), t); },
+    set: function (s, y, t) { return tl.set(s, lim(s, y, false), t); }
+  };
+  /* Format counters in a modifier so GSAP does not parse a grouped number as a decimal. */
+  function countNumber(sel, start, end, t, dur, fmt, ease) {
+    var f = fmt || thousands;
+    tl.fromTo(sel, { textContent: start }, { textContent: end, duration: dur, ease: ease || "power2.out", immediateRender: false,
+      modifiers: { textContent: function (v) { return f(parseFloat(v)); } } }, t);
+  }
+  function bounce(sel, t) { tl.to(sel, { y: "-=12", duration: .12, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, t); }
+  function exit(targets, t) { T.to(targets, ext({ opacity: 0, y: "-=70", duration: .24, ease: "power2.in", stagger: .02 }, IR), t + D - .32); }
+  function fadeOut(targets, t) { T.to(targets, ext({ opacity: 0, duration: .22, ease: "power2.in" }, IR), t + D - .3); }
+  function title(sel, t) { T.fromTo(sel, { opacity: 0, y: -70 }, { opacity: 1, y: 0, duration: .42, ease: "back.out(1.7)" }, t + .15); }
+  function object(sel, t, rot) { T.fromTo(sel, { opacity: 0, y: 160, rotation: rot || 30 }, { opacity: 1, y: 0, rotation: 0, duration: .55, ease: "back.out(1.8)" }, t); }
+  function footer(sel, t, center) { T.fromTo(sel, ext({ opacity: 0, y: 50 }, center ? { xPercent: -50 } : {}), { opacity: 1, y: 0, duration: .36, ease: "back.out(1.8)" }, t); }
+  function num(q, subtitle, t) {
+    T.fromTo(q, { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: .45, ease: "expo.out" }, t);
+    if (subtitle) T.fromTo(subtitle, { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: .35, ease: "power3.out" }, t + .2);
+  }
+  var enter = num;
+  function note(sel, t) { T.fromTo(sel, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: .36, ease: "back.out(2)" }, t); }
+  function reveal(sel, t, start) { T.fromTo(sel, ext({ opacity: 0, y: 80 }, start || {}), { opacity: 1, y: 0, rotation: 0, x: 0, duration: .6, ease: "back.out(1.6)" }, t); }
+
+  b = -12;
+  T.fromTo("#K3-background", { opacity: 0 }, { opacity: 1, duration: .2 }, 0);
+  T.to("#K3-background", ext({ opacity: 0, duration: .2 }, IR), D - .2);
+  T.fromTo("#K3", { opacity: 0 }, { opacity: 1, duration: .2 }, 0);
+  T.to("#K3", ext({ opacity: 0, duration: .2 }, IR), D - .2);
+  T.fromTo(".question-header-r, .question-header-n, .question-header-a", { opacity: 0 }, { opacity: 1, duration: .2 }, 0);
+  T.to(".question-header-r, .question-header-n, .question-header-a", ext({ opacity: 0, duration: .2 }, IR), D - .2);
+  num("#k-n3", "#k-s3", b + 12.3);
+  reveal("#k-o3", b + 12.6, { rotation: 30 });
+  [[1, 68], [2, 12], [3, 9]].forEach(function (g, i) {
+    var t = b + 12.8 + i * .9;
+    T.fromTo("#k-g" + g[0], { opacity: 0, x: 120 }, { opacity: 1, x: 0, duration: .4, ease: "power3.out" }, t);
+    T.fromTo("#k-g" + g[0] + " u", { scaleX: 0 }, { scaleX: 1, duration: .9, ease: "power3.out" }, t + .2);
+    countNumber("#k-p" + g[0], 0, g[1], t + .2, .9);
+  });
+  T.to("#k-g1 u", ext({ backgroundColor: "#ffffff", duration: .2, yoyo: true, repeat: 3 }, IR), b + 16.0);
+
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["engagement-panel"] = tl;
+})();
+</script>
+</template>
+</body></html>

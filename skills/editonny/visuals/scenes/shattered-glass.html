@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Shattered glass</title></head>
+<body>
+<!-- Shattered glass. For a broken-screen joke: glass cracks at x/y and the shards fly and fall, with a short flash and shake. -->
+
+<template id="shattered-glass-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+.shatteredglass-tr{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;backdrop-filter:url(#shatteredglass-f);-webkit-backdrop-filter:url(#shatteredglass-f)}
+.shatteredglass-v{position:absolute;object-fit:fill;opacity:0;filter:drop-shadow(0 0 1.5px rgba(0,0,0,.75)) drop-shadow(0 2px 3px rgba(0,0,0,.35))}
+.shatteredglass-fl{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0}
+</style>
+<div id="root" data-composition-id="shattered-glass" data-width="1080" data-height="1920" data-duration="3.0">
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0"><filter id="shatteredglass-f" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feOffset id="shatteredglass-o1" in="SourceGraphic" dx="0" dy="0" result="a"/><feOffset id="shatteredglass-o2" in="SourceGraphic" dx="0" dy="0" result="b"/><feComposite in="a" in2="b" operator="arithmetic" k1="0" k2=".5" k3=".5" k4="0"/></filter></svg>
+<div id="shatteredglass-tr" class="shatteredglass-tr"></div>
+<video id="shatteredglass-v" class="shatteredglass-v" data-layout-allow-overflow src="assets/visuals/video/44-glass.webm" data-start="0" data-duration="6" data-track-index="2" muted playsinline></video>
+<div id="shatteredglass-fl" class="shatteredglass-fl"></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["shattered-glass"] || { duration: 3.0 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 3.0, t0 = 0;
+
+  var P = {
+    x: 540, // Glass-break center on the 1080×1920 canvas, in pixels.
+    y: 820, // Glass-break point, in pixels.
+    size: 1200, // Glass width, in pixels; cracks cover most of it. A width of 1080–1600 covers the screen.
+  };
+
+
+  var pe = function (s) { return document.getElementById("shatteredglass-" + s); };
+  var TW = Math.max(500, Number(P.size) || 1200), TH = TW * 1280 / 720;
+  var vv = pe("v"); vv.style.left = (P.x - .55 * TW) + "px"; vv.style.top = (P.y - .49 * TH) + "px"; vv.style.width = TW + "px"; vv.style.height = TH + "px";
+  pe("fl").style.background = "radial-gradient(circle " + Math.round(TW * .55) + "px at " + P.x + "px " + P.y + "px,rgba(255,255,255,.95),rgba(255,255,255,.35) 40%,rgba(255,255,255,0) 100%)";
+  var bang = t0 + .5, videoEnd = t0 + Math.min(D, 3.9), exit = videoEnd - .3;
+  tl.fromTo(vv, { opacity: 0 }, { opacity: 1, duration: .04, ease: "none" }, t0 + .05);
+  tl.fromTo(pe("fl"), { opacity: 0 }, { opacity: .9, duration: .03, ease: "none" }, bang);
+  tl.to(pe("fl"), { opacity: 0, duration: .28, ease: "power2.out", immediateRender: false }, bang + .04);
+  tl.to(vv, { opacity: 0, duration: .3, ease: "power2.in", immediateRender: false }, exit);
+
+  var TX = [1, -.82, .64, -.9, .5, -.6, .42, -.3, .2], TY = [-.7, .9, -.6, .5, -.72, .4, -.3, .22, -.1];
+  var FQ = 1 / 30, q0 = Math.ceil((bang + FQ / 4) * 30 - .001), en = q0 * FQ - FQ / 4, nq = 9, pk = 18, ax = 0, ay = 0;
+  tl.fromTo(pe("tr"), { opacity: 0 }, { opacity: 1, duration: FQ / 8, ease: "none" }, en);
+  for (var kq = 0; kq <= nq; kq++) {
+    var am = kq < nq ? Math.pow(1 - kq / nq, 1.6) : 0, ddx = Math.round(TX[kq % 9] * am * pk), ddy = Math.round(TY[kq % 9] * am * pk);
+    tl.set(pe("o1"), { attr: { dx: Math.round(ddx - (ddx - ax) * .2), dy: Math.round(ddy - (ddy - ay) * .2) } }, en + kq * FQ);
+    tl.set(pe("o2"), { attr: { dx: Math.round(ddx + (ddx - ax) * .2), dy: Math.round(ddy + (ddy - ay) * .2) } }, en + kq * FQ);
+    ax = ddx; ay = ddy;
+  }
+  tl.to(pe("tr"), { opacity: 0, duration: FQ / 8, ease: "none", immediateRender: false }, en + (nq + 1) * FQ);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["shattered-glass"] = tl;
+})();
+</script>
+</template>
+</body></html>

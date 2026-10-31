@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Pointer number</title></head>
+<body>
+<!-- Pointer number. When numbering steps or items over the footage. -->
+
+<template id="pointer-number-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+#pointernumber-a{position:absolute;left:0;top:0;width:10px;height:10px;opacity:0}
+#pointernumber-b,#pointernumber-f{position:absolute;left:0;top:0;width:10px;height:10px}
+#pointernumber-f{filter:drop-shadow(0 0 1.5px rgba(0,0,0,.5)) drop-shadow(0 3px 4px rgba(0,0,0,.35)) drop-shadow(0 12px 18px rgba(0,0,0,.42))}
+#pointernumber-w,#pointernumber-s{position:absolute;left:0;top:0;overflow:visible}
+#pointernumber-w{filter:drop-shadow(0 0 2px rgba(0,0,0,.4))}
+#pointernumber-r{fill:none;stroke:#fff}
+#pointernumber-n{font-family:"Inter";font-weight:900;text-anchor:middle}
+#pointernumber-o{fill:none;stroke:#fff;opacity:0}
+</style>
+<div id="root" data-composition-id="pointer-number" data-width="1080" data-height="1920" data-duration="2.4">
+<div id="pointernumber-a"><svg id="pointernumber-w" xmlns="http://www.w3.org/2000/svg"><circle id="pointernumber-o" cx="0" cy="0" r="10" stroke-width="1"/></svg><div id="pointernumber-b"><div id="pointernumber-f"><svg id="pointernumber-s" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="pointernumber-g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".26"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".18"/></linearGradient></defs><circle id="pointernumber-d" cx="0" cy="0" r="10"/><circle id="pointernumber-l" cx="0" cy="0" r="10" fill="url(#pointernumber-g)"/><circle id="pointernumber-r" cx="0" cy="0" r="10"/><text id="pointernumber-n" x="0" y="0" font-size="10">1</text></svg></div></div></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["pointer-number"] || { duration: 2.4 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 2.4, t0 = 0;
+
+  var P = {
+    x: 540, // Dot center on the 1080×1920 canvas, in pixels.
+    y: 420, // Dot center, in pixels.
+    size: 150, // Dot diameter, in pixels.
+    number: "1", // One to three characters written inside.
+    color: "#ff3b30", // Dot background color.
+    textColor: "#ffffff", // Number color; insufficient contrast falls back to black or white.
+  };
+
+
+  var box = document.getElementById("pointernumber-a"), body = document.getElementById("pointernumber-b"), disc = document.getElementById("pointernumber-d"), sparkle = document.getElementById("pointernumber-l"),
+      hoop = document.getElementById("pointernumber-r"), text = document.getElementById("pointernumber-n"), wave = document.getElementById("pointernumber-o"), smallWindow = document.getElementById("pointernumber-s");
+  var sizeValue = Math.max(40, +P.size || 150), radius = sizeValue / 2, border = Math.max(4, sizeValue * .065), discRadius = radius - border / 2, fs = sizeValue / 150;
+  var written = String(P.number == null || P.number === "" ? "1" : P.number).trim().slice(0, 3) || "1";
+  var fontSize = sizeValue * [.6, .6, .47, .35][written.length], halfHeight = .3636;
+
+  var light = function (color) { if (color == null || !window.CSS || !CSS.supports("color", String(color))) return -1;
+    box.style.color = String(color); var cm = getComputedStyle(box).color.match(/[\d.]+/g); box.style.color = ""; if (!cm || cm.length < 3) return -1;
+    var channel = function (cv) { cv = cv / 255; return cv <= .03928 ? cv / 12.92 : Math.pow((cv + .055) / 1.055, 2.4); };
+    return .2126 * channel(+cm[0]) + .7152 * channel(+cm[1]) + .0722 * channel(+cm[2]); };
+  var ratio = function (la, lb) { return (Math.max(la, lb) + .05) / (Math.min(la, lb) + .05); };
+  var backgroundLight = light(P.color), textLight = light(P.textColor), numberColor = textLight < 0 ? "#ffffff" : P.textColor;
+  if (backgroundLight >= 0 && (textLight < 0 || ratio(backgroundLight, textLight) < 3)) numberColor = ratio(backgroundLight, .0116) > ratio(backgroundLight, 1) ? "#1c1c1e" : "#ffffff";
+  box.style.left = P.x + "px"; box.style.top = P.y + "px";
+  document.getElementById("pointernumber-f").style.filter = "drop-shadow(0 0 1.5px rgba(0,0,0,.5)) drop-shadow(0 " + (3 * fs) + "px " + (4 * fs) + "px rgba(0,0,0,.35)) drop-shadow(0 " + (12 * fs) + "px " + (18 * fs) + "px rgba(0,0,0,.42))";
+  disc.setAttribute("fill", P.color); hoop.setAttribute("stroke-width", border);
+  text.textContent = written; text.setAttribute("fill", numberColor);
+
+  var letterAt = function (k) { return { "font-size": fontSize * k, y: fontSize * k * halfHeight }; };
+
+  var cutout = function (r) { return "circle(" + Math.round(r) + "px at 0px 0px)"; };
+  var open = discRadius * 1.12 + border / 2 + 3;
+  var discs = [disc, sparkle, hoop];
+
+  var enter = t0 + .05, exit = t0 + D - .3, pop = .34, k0 = .42, spring = "back.out(2.4)";
+  tl.fromTo(box, { opacity: 0 }, { opacity: 1, duration: .14, ease: "power1.out" }, enter);
+  tl.fromTo(body, { y: sizeValue * .2 }, { y: 0, duration: pop, ease: spring }, enter);
+
+  tl.fromTo(smallWindow, { clipPath: cutout(0) }, { clipPath: cutout(open), duration: .1, ease: "power1.out" }, enter);
+  tl.fromTo(discs, { attr: { r: discRadius * k0 } }, { attr: { r: discRadius }, duration: pop, ease: spring }, enter);
+  tl.fromTo(text, { attr: letterAt(k0) }, { attr: letterAt(1), duration: pop, ease: spring }, enter);
+
+  tl.fromTo(wave, { opacity: .85, attr: { r: radius + border * .4, "stroke-width": border * .8 } }, { opacity: 0, attr: { r: radius * 1.65, "stroke-width": border * .2 }, duration: .45, ease: "power2.out", immediateRender: false }, enter + .1);
+
+  var liveFrom = enter + pop + .14, timeWindow = exit - liveFrom, turns = Math.max(1, Math.round(timeWindow / .95)), halfValue = timeWindow / (turns * 2), kr = 1.06;
+  if (timeWindow > .45) {
+    tl.fromTo(discs, { attr: { r: discRadius } }, { attr: { r: discRadius * kr }, duration: halfValue, ease: "sine.inOut", yoyo: true, repeat: turns * 2 - 1, immediateRender: false }, liveFrom);
+    tl.fromTo(text, { attr: letterAt(1) }, { attr: letterAt(kr), duration: halfValue, ease: "sine.inOut", yoyo: true, repeat: turns * 2 - 1, immediateRender: false }, liveFrom);
+  }
+
+  tl.fromTo(discs, { attr: { r: discRadius } }, { attr: { r: discRadius * .62 }, duration: .24, ease: "power2.in", immediateRender: false }, exit);
+  tl.fromTo(text, { attr: letterAt(1) }, { attr: letterAt(.62), duration: .24, ease: "power2.in", immediateRender: false }, exit);
+  tl.fromTo(box, { opacity: 1 }, { opacity: 0, duration: .22, ease: "power2.in", immediateRender: false }, exit + .02);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["pointer-number"] = tl;
+})();
+</script>
+</template>
+</body></html>

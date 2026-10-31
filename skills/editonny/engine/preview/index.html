@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="referrer" content="no-referrer">
+<title>Edit preview</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23121418'/%3E%3Cpath d='M9 8h4v16H9zM19 8l7 8-7 8z' fill='%2350D6AE'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<div class="app" id="app">
+  <header class="topbar">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8"/><path d="M9 8h4v16H9zM19 8l7 8-7 8z"/></svg>
+      <div class="brand-text">
+        <h1 class="brand-name">Edit preview</h1>
+        <span class="project" id="project-name"></span>
+      </div>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="Stages">
+      <button class="tab" role="tab" id="tab-cut" data-tab="cut" aria-controls="view-cut" aria-selected="true">Cut<span class="tab-dot" aria-hidden="true"></span></button>
+      <button class="tab" role="tab" id="tab-style" data-tab="style" aria-controls="view-style" aria-selected="false">Style<span class="tab-dot" aria-hidden="true"></span></button>
+      <button class="tab" role="tab" id="tab-final" data-tab="final" aria-controls="view-final" aria-selected="false">Final<span class="tab-dot" aria-hidden="true"></span></button>
+    </nav>
+    <button class="icon-btn help-btn" id="help-btn" type="button" aria-label="Keyboard shortcuts" title="Keyboard shortcuts (?)">?</button>
+  </header>
+
+  <div class="statusline" id="statusline" role="status" aria-live="polite">
+    <span class="status-dot" aria-hidden="true"></span>
+    <span class="status-badge" id="status-badge" hidden>Your turn</span>
+    <span class="status-text" id="status-text">Connecting to preview…</span>
+    <span class="status-meta" id="status-meta"></span>
+  </div>
+
+  <main class="main">
+    <section class="view" id="view-cut" role="tabpanel" aria-labelledby="tab-cut"></section>
+    <section class="view" id="view-style" role="tabpanel" aria-labelledby="tab-style" hidden>
+      <div class="empty" data-style-empty hidden>
+        <div class="empty-visual" aria-hidden="true"><span class="pulse"></span></div>
+        <h2>Styles are not ready yet</h2>
+        <p>Style options appear here automatically when the agent prepares them.</p>
+      </div>
+      <div class="style-layout" data-style-main hidden>
+        <div class="style-form">
+          <section class="style-section">
+            <header class="section-head"><span class="step">1</span><div><h2>Edit type</h2><p>How you appear on screen.</p></div></header>
+            <div class="type-grid" data-edit-types role="radiogroup" aria-label="Edit type"></div>
+            <div class="tv-pos" data-tv-pos hidden>
+              <p class="field-label">Your green-screen position</p>
+              <div class="tv-pos-grid" data-tv-pos-list role="radiogroup" aria-label="Green-screen position"></div>
+              <p class="tv-note" data-tv-note></p>
+              <p class="field-help">Top and bottom images become your background. Fullscreen and window media stay on top. The cutout takes about 3 minutes per minute of video.</p>
+            </div>
+          </section>
+
+          <section class="style-section">
+            <header class="section-head"><span class="step">2</span><div><h2>Accent color</h2><p>Used for captions, the hook, and the call to action.</p></div></header>
+            <div class="accent-row">
+              <label class="color-well" title="Choose color">
+                <input type="color" data-accent-picker value="#ffc400" aria-label="Color picker">
+              </label>
+              <label class="hex-field">
+                <span class="sr-only">Color code</span>
+                <input type="text" data-accent-hex value="#FFC400" maxlength="7" spellcheck="false" autocomplete="off" inputmode="text" aria-describedby="hex-help">
+              </label>
+              <div class="swatches" role="group" data-swatches aria-label="Color presets"></div>
+            </div>
+            <p class="field-help" id="hex-help" data-hex-help>Format: #RRGGBB.</p>
+          </section>
+
+          <section class="style-section">
+            <header class="section-head"><span class="step">3</span><div><h2>Hook</h2><p>The phrase shown in the opening seconds.</p></div></header>
+            <label class="field">
+              <span class="field-label">Hook text <span class="counter" data-hook-count></span></span>
+              <input type="text" data-hook-text maxlength="90" placeholder="Example: This mistake is costing you sales">
+              <span class="field-help">Leave blank for the agent to suggest text.</span>
+            </label>
+            <div class="card-grid" data-hook-styles role="radiogroup" aria-label="Hook style"></div>
+          </section>
+
+          <section class="style-section">
+            <header class="section-head"><span class="step">4</span><div><h2>Captions</h2><p>Designed for viewers watching without sound.</p></div></header>
+            <div class="card-grid" data-caption-styles role="radiogroup" aria-label="Caption style"></div>
+          </section>
+
+          <section class="style-section">
+            <header class="section-head"><span class="step">5</span><div><h2>Elements</h2><p>Enable what suits your video.</p></div></header>
+            <div class="toggle-list" data-elements></div>
+          </section>
+
+          <section class="style-section">
+            <header class="section-head"><span class="step">6</span><div><h2>Background music</h2><p>Choose a mood. Music comes from your library.</p></div></header>
+            <div class="music-grid" data-music role="radiogroup" aria-label="Background music"></div>
+            <p class="field-help" data-music-help>Loading your music library…</p>
+          </section>
+
+          <section class="style-section">
+            <header class="section-head"><span class="step">7</span><div><h2>Remove background noise</h2><p>Reduce hiss, fan noise, and street noise behind your voice.</p></div></header>
+            <div class="noise-grid" data-denoise role="radiogroup" aria-label="Remove background noise"></div>
+            <p class="field-help">Applies to the final video. Your approved cut stays unchanged.</p>
+          </section>
+
+          <section class="style-section">
+            <header class="section-head"><span class="step">8</span><div><h2>End call to action</h2><p>The card asking viewers to act in the final seconds.</p></div></header>
+            <label class="field">
+              <span class="field-label">Call-to-action text</span>
+              <input type="text" data-cta-text maxlength="80" placeholder="Example: Tap Learn more">
+              <span class="field-help" data-cta-help>Leave blank for the agent to suggest text.</span>
+            </label>
+          </section>
+
+          <section class="style-section">
+            <header class="section-head"><span class="step">9</span><div><h2>Note for the agent</h2><p>Optional details that may help.</p></div></header>
+            <label class="field">
+              <span class="sr-only">Note</span>
+              <textarea data-style-note rows="3" maxlength="1500" placeholder="Example: Use a restrained style with fewer animations"></textarea>
+            </label>
+          </section>
+        </div>
+
+        <aside class="style-aside">
+          <div class="card preview-card">
+            <div class="seg-toggle" role="group" aria-label="Sample">
+              <button type="button" class="seg on" data-pv="hook" aria-pressed="true">Hook</button>
+              <button type="button" class="seg" data-pv="caption" aria-pressed="false">Captions</button>
+            </div>
+            <div class="pv-frame">
+              <img data-pv-img alt="" hidden>
+              <div class="pv-placeholder" data-pv-placeholder><span data-pv-label></span><small>No sample yet</small></div>
+            </div>
+            <p class="hint" data-sample-note></p>
+          </div>
+          <div class="card summary-card">
+            <dl class="summary" data-summary></dl>
+            <div class="save-row">
+              <span class="save-state" data-style-saved></span>
+              <button type="button" class="btn primary block" data-save-style>Save style</button>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+    <section class="view" id="view-final" role="tabpanel" aria-labelledby="tab-final" hidden></section>
+  </main>
+</div>
+
+<template id="review-template">
+  <div class="empty" data-empty hidden>
+    <div class="empty-visual" aria-hidden="true"><span class="pulse"></span></div>
+    <h2 data-empty-title></h2>
+    <p data-empty-text></p>
+  </div>
+  <div class="review" data-review hidden>
+    <div class="player-col">
+      <div class="player-frame" data-frame>
+        <video data-video playsinline preload="auto"></video>
+        <button class="big-play" type="button" data-bigplay aria-label="Play">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>
+        </button>
+        <div class="video-msg" data-video-msg hidden></div>
+      </div>
+      <div class="transport">
+        <button class="icon-btn play-btn" type="button" data-play aria-label="Play or pause (Space)" title="Play or pause (Space)">
+          <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>
+          <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg>
+        </button>
+        <div class="timecode" role="timer" aria-label="Time"><span data-time>00:00.00</span><span class="tc-sep">/</span><span class="tc-total" data-duration>00:00.00</span></div>
+        <div class="transport-steps">
+          <button class="icon-btn small" type="button" data-jump="-1" aria-label="Back 1 second" title="Back 1 second (Shift + ←)">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 6 5 12l6 6M18 6l-6 6 6 6"/></svg>
+          </button>
+          <button class="icon-btn small" type="button" data-step="-1" aria-label="Back 1 frame" title="Back 1 frame (←)">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg>
+          </button>
+          <button class="icon-btn small" type="button" data-step="1" aria-label="Forward 1 frame" title="Forward 1 frame (→)">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+          </button>
+          <button class="icon-btn small" type="button" data-jump="1" aria-label="Forward 1 second" title="Forward 1 second (Shift + →)">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 6 6-6 6M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="now-playing" data-now></div>
+    </div>
+
+    <div class="work-col">
+      <div class="card timeline-card">
+        <div class="card-head">
+          <h2>Timeline</h2>
+          <div class="tl-zoom">
+            <span class="hint">Drag to navigate · Double-click to mark a segment</span>
+            <button class="icon-btn small" type="button" data-zoom="out" aria-label="Zoom out" title="Zoom out (key -)">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M8 11h6M20 20l-3.6-3.6"/></svg>
+            </button>
+            <span class="zoom-level" data-zoom-level title="Timeline zoom">1x</span>
+            <button class="icon-btn small" type="button" data-zoom="in" aria-label="Zoom in" title="Zoom in (key +)">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M8 11h6M11 8v6M20 20l-3.6-3.6"/></svg>
+            </button>
+            <button class="btn zoom-fit" type="button" data-zoom="fit" title="Show the whole video (key 0)">Fit all</button>
+          </div>
+        </div>
+        <div class="tl-scroll" data-tl-scroll>
+          <div class="timeline" data-timeline>
+            <div class="tl-ruler" data-ruler></div>
+            <div class="tl-layers" data-layers hidden></div>
+            <div class="tl-segments" data-segments></div>
+            <div class="tl-strip" data-filmstrip><img alt="" data-filmstrip-img draggable="false"></div>
+            <div class="tl-wave" data-wave></div>
+            <div class="tl-overlay" data-marks-overlay></div>
+            <div class="tl-selection" data-selection hidden></div>
+            <div class="tl-playhead" data-playhead><span class="ph-knob"></span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card trims-card" data-trims-card hidden>
+        <div class="card-head">
+          <h2>Extend segments <span class="count" data-trim-count></span></h2>
+          <span class="save-state" data-trims-state></span>
+        </div>
+        <p class="hint">Was a word clipped? Drag the segment edge on the timeline. The agent extends it from the source and renders again.</p>
+        <ul class="trims-list" data-trims-list></ul>
+        <div class="trims-actions">
+          <button class="btn ghost" type="button" data-clear-trims>Undo all</button>
+          <button class="btn secondary" type="button" data-save-trims>Send adjustments</button>
+        </div>
+      </div>
+
+      <div class="card marks-card">
+        <div class="card-head">
+          <h2>Marks <span class="count" data-mark-count></span></h2>
+          <span class="save-state" data-marks-state></span>
+        </div>
+        <p class="hint">Mark the beginning and end of a segment and describe the change.</p>
+        <div class="mark-tools">
+          <button class="btn" type="button" data-set-in>Mark start <kbd>I</kbd></button>
+          <button class="btn" type="button" data-set-out>Mark end <kbd>O</kbd></button>
+          <button class="btn motion-btn" type="button" data-motion-here title="Request an animation at this point">✦ Animation here <kbd>M</kbd></button>
+          <span class="pending" data-pending hidden></span>
+        </div>
+        <form class="note-box" data-note-box hidden>
+          <div class="note-range" data-note-range></div>
+          <input type="text" data-note-input maxlength="500" placeholder="What should change here? Example: remove this part" aria-label="What should change in this segment">
+          <div class="note-actions">
+            <button type="button" class="btn ghost" data-note-cancel>Cancel</button>
+            <button type="submit" class="btn accent-soft">Add mark</button>
+          </div>
+        </form>
+        <ul class="marks-list" data-marks-list></ul>
+        <p class="marks-empty" data-marks-empty>No marks yet.</p>
+      </div>
+
+      <div class="actions-bar">
+        <div class="banner" data-banner hidden></div>
+        <label class="approve-note-wrap">
+          <span class="sr-only">Comment for the agent (optional)</span>
+          <input type="text" class="approve-note" data-approve-note maxlength="500" placeholder="Comment for the agent (optional)">
+        </label>
+        <div class="actions">
+          <a class="btn ghost download" data-download hidden download>Download video</a>
+          <button class="btn secondary" type="button" data-save-marks>Save marks</button>
+          <button class="btn primary" type="button" data-approve>Approve</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<dialog class="dialog" id="help-dialog" aria-labelledby="help-title">
+  <form method="dialog">
+    <h2 id="help-title">Keyboard shortcuts</h2>
+    <ul class="shortcuts">
+      <li><span><kbd>Space</kbd></span>Play or pause</li>
+      <li><span><kbd>←</kbd> <kbd>→</kbd></span>Step back or forward 1 frame</li>
+      <li><span><kbd>Shift</kbd> + <kbd>←</kbd> <kbd>→</kbd></span>Step back or forward 1 second</li>
+      <li><span><kbd>I</kbd></span>Mark the segment start</li>
+      <li><span><kbd>O</kbd></span>Mark the end and describe the change</li>
+      <li><span>Double-click a segment</span>Mark the whole segment</li>
+      <li><span><kbd>Esc</kbd></span>Cancel marking</li>
+      <li><span><kbd>+</kbd> <kbd>−</kbd></span>Zoom the timeline in or out</li>
+      <li><span><kbd>0</kbd></span>Fit the whole video in the timeline</li>
+      <li><span><kbd>Ctrl</kbd> or <kbd>⌘</kbd> + mouse wheel</span>Zoom at the pointer</li>
+      <li><span><kbd>?</kbd></span>Open this help</li>
+    </ul>
+    <p class="hint">Shortcuts work in the Cut and Final tabs when you are not typing.</p>
+    <div class="dialog-actions"><button class="btn primary" value="close">Got it</button></div>
+  </form>
+</dialog>
+
+<dialog class="dialog" id="confirm-dialog" aria-labelledby="confirm-title">
+  <form method="dialog">
+    <h2 id="confirm-title" data-confirm-title></h2>
+    <p data-confirm-text></p>
+    <div class="dialog-actions">
+      <button class="btn ghost" value="cancel">Back</button>
+      <button class="btn primary" value="ok" data-confirm-ok>Confirm</button>
+    </div>
+  </form>
+</dialog>
+
+<script type="module" src="/app.js"></script>
+</body>
+</html>

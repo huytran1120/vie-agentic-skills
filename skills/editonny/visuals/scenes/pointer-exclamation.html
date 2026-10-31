@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Pointer exclamation</title></head>
+<body>
+<!-- Pointer exclamation. When warning about an error, risk, or important precaution. -->
+
+<template id="pointer-exclamation-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+#pointerexclamation-a{position:absolute;left:0;top:0;width:10px;height:10px;opacity:0;filter:drop-shadow(0 0 1.5px rgba(255,255,255,.7)) drop-shadow(0 6px 0 rgba(0,0,0,.35)) drop-shadow(0 12px 16px rgba(0,0,0,.45))}
+#pointerexclamation-b{position:absolute;left:0;top:0;width:0;height:0}
+#pointerexclamation-s{position:absolute;left:0;top:0;overflow:visible}
+.pointerexclamation-k{fill:#1c1c1e;stroke:#1c1c1e;stroke-linejoin:round}
+.pointerexclamation-f{stroke-linejoin:round}
+.pointerexclamation-l{fill:none;stroke:#fff;stroke-opacity:.6;stroke-linecap:round}
+.pointerexclamation-e{fill:#1c1c1e}
+</style>
+<div id="root" data-composition-id="pointer-exclamation" data-width="1080" data-height="1920" data-duration="2.2">
+<div id="pointerexclamation-a"><div id="pointerexclamation-b"><svg id="pointerexclamation-s" xmlns="http://www.w3.org/2000/svg">
+<path id="pointerexclamation-tk" class="pointerexclamation-k"/><g id="pointerexclamation-c"><path id="pointerexclamation-tf" class="pointerexclamation-f"/><path id="pointerexclamation-tl" class="pointerexclamation-l"/></g>
+<path id="pointerexclamation-eb" class="pointerexclamation-e"/><circle id="pointerexclamation-ep" class="pointerexclamation-e" cx="0" cy="0" r="10"/>
+</svg></div></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["pointer-exclamation"] || { duration: 2.2 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 2.2, t0 = 0;
+
+  var P = {
+    x: 540, // Triangle center on the 1080×1920 canvas, in pixels.
+    y: 400, // Triangle center, in pixels.
+    size: 240, // Triangle width, in pixels.
+    color: "#ffd60a", // Triangle color.
+  };
+
+
+  var un = P.size / 240, border = Math.max(5, 9.5 * un), corner = 26 * un;
+  var box = document.getElementById("pointerexclamation-a");
+  box.style.left = P.x + "px"; box.style.top = P.y + "px";
+  var pt = function (x, y) { return (x * un).toFixed(2) + " " + (y * un).toFixed(2); };
+  var tri = "M" + pt(0, -73.2) + " L" + pt(84.5, 73.2) + " L" + pt(-84.5, 73.2) + " Z";
+  var triK = document.getElementById("pointerexclamation-tk"), triF = document.getElementById("pointerexclamation-tf"), triL = document.getElementById("pointerexclamation-tl");
+  triK.setAttribute("d", tri); triK.setAttribute("stroke-width", ((corner + border) * 2).toFixed(2));
+  triF.setAttribute("d", tri); triF.setAttribute("stroke-width", (corner * 2).toFixed(2)); triF.setAttribute("fill", P.color); triF.setAttribute("stroke", P.color);
+  triL.setAttribute("d", "M" + pt(-17.3, -69.3) + " L" + pt(-50.3, -12.2)); triL.setAttribute("stroke-width", (8 * un).toFixed(2));
+  var r1 = (19 * un).toFixed(2), r2 = (12.5 * un).toFixed(2);
+  document.getElementById("pointerexclamation-eb").setAttribute("d", "M" + pt(-19, -34) + " A" + r1 + " " + r1 + " 0 0 1 " + pt(19, -34) + " L" + pt(12.5, 22) + " A" + r2 + " " + r2 + " 0 0 1 " + pt(-12.5, 22) + " Z");
+  var droplet = document.getElementById("pointerexclamation-ep"); droplet.setAttribute("cy", (64 * un).toFixed(2)); droplet.setAttribute("r", (17.5 * un).toFixed(2));
+
+  var enter = t0 + .05, exit = t0 + D - .3, settle = enter + .34;
+  var timeWindow = exit - settle, blinkCount = Math.max(2, Math.round(timeWindow / .55)), span = timeWindow / blinkCount;
+  var shake = Math.max(6, 12 * un), j;
+  var shaking = function (when, strength) {
+    tl.to("#pointerexclamation-b", { x: -strength, duration: .05, ease: "sine.out", immediateRender: false }, when);
+    tl.to("#pointerexclamation-b", { x: strength, duration: .07, ease: "sine.inOut", immediateRender: false }, when + .05);
+    tl.to("#pointerexclamation-b", { x: -strength * .55, duration: .07, ease: "sine.inOut", immediateRender: false }, when + .12);
+    tl.to("#pointerexclamation-b", { x: strength * .3, duration: .06, ease: "sine.inOut", immediateRender: false }, when + .19);
+    tl.to("#pointerexclamation-b", { x: 0, duration: .05, ease: "sine.in", immediateRender: false }, when + .25);
+  };
+  tl.fromTo("#pointerexclamation-a", { opacity: 0 }, { opacity: 1, duration: .1, ease: "none" }, enter);
+  tl.fromTo("#pointerexclamation-a", { y: Math.max(50, 90 * un) }, { y: 0, duration: .32, ease: "back.out(2.8)", immediateRender: false }, enter);
+  shaking(enter + .24, shake);
+  for (j = 0; j < blinkCount; j++) {
+    var blink = settle + span * (j + .5) - .1;
+    tl.to("#pointerexclamation-c", { opacity: .15, duration: .06, ease: "power1.in", immediateRender: false }, blink);
+    tl.to("#pointerexclamation-c", { opacity: 1, duration: .08, ease: "power1.out", immediateRender: false }, blink + .11);
+    if (span >= .45) shaking(blink + .13, shake * .6);
+  }
+  tl.to("#pointerexclamation-a", { opacity: 0, y: -Math.max(18, 24 * un), duration: .25, ease: "power2.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["pointer-exclamation"] = tl;
+})();
+</script>
+</template>
+</body></html>

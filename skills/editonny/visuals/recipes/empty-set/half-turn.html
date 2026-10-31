@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en-US"><head><meta charset="UTF-8"/><title>AI recipes · half turn</title></head>
+<body>
+<!-- Copy into compositions/scenes and use a unique matching template/composition/timeline ID.
+Set asset paths and exact media durations; register the scene in project.json. See the recipe README. -->
+<template id="half-turn-template">
+<style>
+#root{position:absolute;inset:0;overflow:hidden;background:#000}
+#turn-world{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0}
+#turn-room{position:absolute;left:0;top:0;width:1080px;height:1920px;object-fit:cover}
+#turn-person-wrap{position:absolute;left:0;top:0;width:1080px;height:1920px}
+#turn-person{position:absolute;left:0;top:0;width:1080px;height:1920px;object-fit:cover}
+</style>
+<div id="root" data-composition-id="half-turn" data-width="1080" data-height="1920" data-duration="0.9">
+  <div id="turn-world" data-layout-allow-overflow>
+    <div id="turn-room-wrap" data-layout-allow-overflow><img id="turn-room" src="assets/ai/empty-room.png" alt=""/></div>
+    <div id="turn-person-wrap" data-layout-allow-overflow>
+      <video id="turn-person" src="assets/person.webm" data-start="0" data-duration="0.9" data-track-index="2" data-media-start="0" muted playsinline></video>
+    </div>
+  </div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["half-turn"] || { words: [], duration: 0.9 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 0.9;
+  /* Scene parameters. */
+  var P = {
+    subject: "person",
+
+
+    turnAt: 0.35,
+    word: "",
+    duration: 0.38,
+    direction: 1,
+    pivotX: 540,
+    pivotY: 960,
+    blur: 16
+  };
+  /* Scene parameters. */
+  var normalize = function (s) { return s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]/g, ""); };
+  var atWord = function (text, fallback) {
+    var w = (C.words || []).find(function (p) { return normalize(p.text).indexOf(normalize(text)) === 0; });
+    return w ? w.t : fallback;
+  };
+  var g0 = P.word ? atWord(P.word, P.turnAt) : P.turnAt;
+  g0 = Math.max(0.05, Math.min(D - 0.1, g0));
+  var dg = Math.max(0.15, Math.min(D - g0, P.duration));
+  var target = P.subject === "room" ? "#turn-room-wrap" : (P.subject === "all" ? "#turn-world" : "#turn-person-wrap");
+  var origin = P.pivotX + "px " + P.pivotY + "px";
+  var r0 = 180 * (P.direction < 0 ? -1 : 1);
+  tl.fromTo("#turn-world", { opacity: 0 }, { opacity: 1, duration: 0.001 }, 0);
+  tl.fromTo(target, { rotation: r0, transformOrigin: origin }, { rotation: r0, transformOrigin: origin, duration: 0.001, immediateRender: false }, 0);
+  tl.fromTo(target, { rotation: r0 }, { rotation: 0, duration: dg, ease: "power3.inOut", immediateRender: false }, g0);
+  tl.fromTo(target, { filter: "blur(0px)" }, { filter: "blur(" + P.blur + "px)", duration: dg / 2, ease: "power2.in", immediateRender: false }, g0);
+  tl.fromTo(target, { filter: "blur(" + P.blur + "px)" }, { filter: "blur(0px)", duration: dg / 2, ease: "power2.out", immediateRender: false }, g0 + dg / 2);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["half-turn"] = tl;
+})();
+</script>
+</template>
+</body></html>

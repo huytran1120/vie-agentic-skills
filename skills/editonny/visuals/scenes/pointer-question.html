@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Pointer question</title></head>
+<body>
+<!-- Pointer question. When asking a question or showing uncertainty near the speaker's head. -->
+
+<template id="pointer-question-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+#pointerquestion-a{position:absolute;left:0;top:0;width:10px;height:10px;opacity:0;filter:drop-shadow(0 0 1.5px rgba(255,255,255,.7)) drop-shadow(0 6px 0 rgba(0,0,0,.35)) drop-shadow(0 12px 16px rgba(0,0,0,.45))}
+#pointerquestion-b{position:absolute;left:0;top:0;width:0;height:0}
+#pointerquestion-s{position:absolute;left:0;top:0;overflow:visible}
+#pointerquestion-d{opacity:0}
+.pointerquestion-k{fill:none;stroke:#1c1c1e;stroke-linecap:round;stroke-linejoin:round}
+.pointerquestion-f{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.pointerquestion-l{fill:none;stroke:#fff;stroke-opacity:.6;stroke-linecap:round}
+</style>
+<div id="root" data-composition-id="pointer-question" data-width="1080" data-height="1920" data-duration="2.4">
+<div id="pointerquestion-a"><div id="pointerquestion-b"><svg id="pointerquestion-s" xmlns="http://www.w3.org/2000/svg">
+<path id="pointerquestion-hk" class="pointerquestion-k"/><path id="pointerquestion-hf" class="pointerquestion-f"/><path id="pointerquestion-hl" class="pointerquestion-l"/>
+<g id="pointerquestion-d"><circle id="pointerquestion-dk" cx="0" cy="0" r="10" fill="#1c1c1e"/><circle id="pointerquestion-df" cx="0" cy="0" r="10"/><path id="pointerquestion-dl" class="pointerquestion-l"/></g>
+</svg></div></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["pointer-question"] || { duration: 2.4 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 2.4, t0 = 0;
+
+  var P = {
+    x: 800, // Question-mark center on the 1080×1920 canvas, in pixels.
+    y: 560, // Question-mark center, in pixels.
+    size: 260, // Question-mark height, in pixels.
+    color: "#ffd60a", // Fill color.
+  };
+
+
+  var un = P.size / 260, pe = 92.5;
+  var stroke = 52 * un, border = Math.max(5, 9.5 * un), largeRadius = 44, cyG = -50.5, smallRadius = 28;
+  var box = document.getElementById("pointerquestion-a"), spin = document.getElementById("pointerquestion-b");
+  box.style.left = P.x + "px"; box.style.top = P.y + "px"; spin.style.top = (pe * un).toFixed(2) + "px";
+  var pt = function (x, y) { return (x * un).toFixed(2) + " " + ((y - pe) * un).toFixed(2); };
+  var onArc = function (radius, degrees, cy) { var a = degrees * Math.PI / 180; return pt(radius * Math.cos(a), cy + radius * Math.sin(a)); };
+  var rg = (largeRadius * un).toFixed(2), endX = largeRadius * Math.cos(52 * Math.PI / 180), endY = cyG + largeRadius * Math.sin(52 * Math.PI / 180);
+  var hook = "M" + onArc(largeRadius, 190, cyG) + " A" + rg + " " + rg + " 0 1 1 " + pt(endX, endY) +
+    " C" + pt(endX - 12, endY + 10) + " " + pt(0, -10) + " " + pt(0, 4) + " L" + pt(0, 10);
+  var outline = document.getElementById("pointerquestion-hk"), full = document.getElementById("pointerquestion-hf"), sparkle = document.getElementById("pointerquestion-hl");
+  outline.setAttribute("d", hook); outline.setAttribute("stroke-width", (stroke + border * 2).toFixed(2));
+  full.setAttribute("d", hook); full.setAttribute("stroke-width", stroke.toFixed(2)); full.setAttribute("stroke", P.color);
+  var rb = (58.5 * un).toFixed(2);
+  sparkle.setAttribute("d", "M" + onArc(58.5, 204, cyG) + " A" + rb + " " + rb + " 0 0 1 " + onArc(58.5, 258, cyG)); sparkle.setAttribute("stroke-width", (7 * un).toFixed(2));
+  var dropletK = document.getElementById("pointerquestion-dk"), finalDroplet = document.getElementById("pointerquestion-df"), dropletWidth = document.getElementById("pointerquestion-dl");
+  dropletK.setAttribute("r", (smallRadius * un + border).toFixed(2));
+  finalDroplet.setAttribute("r", (smallRadius * un).toFixed(2)); finalDroplet.setAttribute("fill", P.color);
+  var rp = (17 * un).toFixed(2);
+  dropletWidth.setAttribute("d", "M" + onArc(17, 200, pe) + " A" + rp + " " + rp + " 0 0 1 " + onArc(17, 250, pe)); dropletWidth.setAttribute("stroke-width", (6 * un).toFixed(2));
+
+  var enter = t0 + .05, exit = t0 + D - .3, settle = enter + .42;
+  var timeWindow = exit - settle, halves = timeWindow < .55 ? 2 : Math.max(4, 2 * Math.round(timeWindow / .54)), halfValue = timeWindow / halves;
+  tl.fromTo("#pointerquestion-a", { opacity: 0 }, { opacity: 1, duration: .1, ease: "none" }, enter);
+  tl.fromTo("#pointerquestion-a", { y: Math.max(50, 90 * un) }, { y: 0, duration: .4, ease: "back.out(2.4)", immediateRender: false }, enter);
+  tl.fromTo("#pointerquestion-b", { rotation: -16 }, { rotation: 0, duration: .42, ease: "back.out(2.6)" }, enter);
+  tl.fromTo("#pointerquestion-d", { opacity: 0, y: 46 * un }, { opacity: 1, y: 0, duration: .3, ease: "back.out(3)" }, enter + .12);
+  tl.to("#pointerquestion-b", { rotation: 8, duration: halfValue, ease: "sine.out", immediateRender: false }, settle);
+  if (halves > 2) tl.to("#pointerquestion-b", { rotation: -8, duration: halfValue * 2, ease: "sine.inOut", yoyo: true, repeat: halves / 2 - 2, immediateRender: false }, settle + halfValue);
+  tl.to("#pointerquestion-b", { rotation: 0, duration: halfValue, ease: "sine.in", immediateRender: false }, exit - halfValue);
+  tl.to("#pointerquestion-a", { opacity: 0, y: -Math.max(18, 24 * un), duration: .25, ease: "power2.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["pointer-question"] = tl;
+})();
+</script>
+</template>
+</body></html>

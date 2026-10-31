@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>Exploded</title></head>
+<body>
+
+<template id="exploded-template">
+<style>
+@font-face{font-family:Montserrat;src:url("assets/fonts/Montserrat.ttf") format("truetype");font-weight:100 900;font-display:block}
+#root{position:absolute;inset:0;overflow:hidden;font-family:Montserrat}
+#exploded-stage{position:absolute;inset:0;opacity:0}
+#exploded-screen{position:absolute;left:0;top:0;width:100%;height:100%;display:block}
+#exploded-labels{position:absolute;inset:0}
+</style>
+<div id="root" data-composition-id="exploded" data-width="1080" data-height="1920" data-duration="5">
+  <div id="exploded-stage"><canvas id="exploded-screen" width="1080" height="1920"></canvas><div id="exploded-labels"></div></div>
+</div>
+<script>
+(function () {
+  const ID = "exploded";
+  const PARAM = {
+    pieces: [
+      { name: "Raw video", height: 0.26 },
+      { name: "Speech audio", height: 0.2 },
+      { name: "Each word", height: 0.2 },
+      { name: "The cuts", height: 0.2 },
+    ],
+    width: 2.6,
+    depth: 1.8,
+    shrink: 0.08,
+    spacing: 0.8,
+    separate: { word: "heard", standard: 0.9 },
+    separateDuration: 1.0,
+    join: { word: "word", after: 2.6, standard: 3.5 },
+    joinDuration: 0.7,
+    cameraStart: { azim: 26, elev: 20 },
+    cameraEnd: { azim: 44, elev: 28 },
+    labels: "right",
+    background: "paper",
+    area: null,
+    cutout: true,
+    shadows: true,
+    entry: 0.2,
+    exit: 0.2,
+  };
+  const C = Object.assign({ words: [], duration: 5, width: 1080, height: 1920, safeArea: [140, 230, 940, 1530], face: null,
+    colors: { paper: "#fffdfd", line: "#e6ddf8", base: "#c7b7ef", accent: "#665080", ink: "#352c40", green: "#2e9e5b", red: "#e5484d" } },
+    (window.__scenes || {})[ID] || {});
+  const DUR = C.duration;
+
+  async function build(K, P) {
+    const THREE = K.THREE;
+    const n = PARAM.pieces.length;
+    const tone = (i) => {
+      const a = new THREE.Color(C.colors.accent), b = new THREE.Color(C.colors.base);
+      return "#" + a.lerp(b, n > 1 ? i / (n - 1) : 0).getHexString();
+    };
+    const dark = (hex) => "#" + new THREE.Color(hex).multiplyScalar(0.72).getHexString();
+    P.lights({ key: [4, 9, 5], target: [0, 1, 0], area: 5 });
+    P.floor({ size: 22 });
+    const pieces = [];
+    let joinedY = 0, separatedY = 0;
+    for (let i = 0; i < n; i++) {
+      const p = PARAM.pieces[i];
+      const k = 1 - PARAM.shrink * i;
+      const w = PARAM.width * k, d = PARAM.depth * k, h = p.height || 0.2;
+      const color = p.color || tone(i), sides = p.sides || dark(color);
+      let obj;
+      if (p.shape === "model") obj = (await P.loadModel(p.file, { width: w })).object;
+      else if (p.shape === "cylinder") obj = P.cylinder({ radius: Math.min(w, d) / 2, height: h, color });
+      else if (p.shape === "box") obj = P.box({ width: w, height: h, depth: d, color, sides });
+      else obj = P.plate({ width: w, height: h, depth: d, radius: 0.16 * k, bevel: Math.min(0.035, h / 4), color, sides });
+      const hh = p.shape === "model" ? new THREE.Box3().setFromObject(obj).getSize(new THREE.Vector3()).y : h;
+      P.scene.add(obj);
+      P.solid(obj, p.name);
+      pieces.push({ obj, w, d, h: hh, joinedY, separatedY });
+      joinedY += hh;
+      separatedY += hh + PARAM.spacing;
+    }
+    const shadow = P.contactShadow({ width: PARAM.width, depth: PARAM.depth, intensity: 0.55 });
+    shadow.place(0, 0, 0);
+    const separateTime = K.moment(C, PARAM.separate, 0.9);
+    const joinTime = PARAM.join ? Math.max(separateTime + PARAM.separateDuration + 0.3, K.moment(C, PARAM.join, 3.5)) : Infinity;
+    const boxAt = (openProgress) => {
+      const b = new THREE.Box3();
+      pieces.forEach((q) => { q.obj.position.y = K.mix(q.joinedY, q.separatedY, openProgress); q.obj.updateMatrixWorld(true); b.union(new THREE.Box3().setFromObject(q.obj)); });
+      return b;
+    };
+    const joinedCenter = boxAt(0), cS = boxAt(1);
+    const joinedTarget = joinedCenter.getCenter(new THREE.Vector3()).toArray(), separatedTarget = cS.getCenter(new THREE.Vector3()).toArray();
+    const joinedDistance = P.fittingDistance(joinedCenter, { target: joinedTarget, ...PARAM.cameraStart }, 1.15);
+    const separatedDistance = P.fittingDistance(cS, { target: separatedTarget, ...PARAM.cameraEnd }, 1.03);
+    const rot = PARAM.labels ? P.labels(PARAM.pieces.map((p) => ({ text: p.name, side: PARAM.labels }))) : null;
+    const side = PARAM.labels === "left" ? -1 : 1;
+    return (t) => {
+      const openProgress = K.interval(t, separateTime, PARAM.separateDuration) * (1 - K.interval(t, joinTime, PARAM.joinDuration));
+      pieces.forEach((q) => { q.obj.position.y = K.mix(q.joinedY, q.separatedY, openProgress); });
+      const g = K.interval(t, separateTime, PARAM.separateDuration + 0.2);
+      const pose = K.mixPose(PARAM.cameraStart, PARAM.cameraEnd, g);
+      const target = [0, 1, 2].map((j) => K.mix(joinedTarget[j], separatedTarget[j], openProgress));
+      P.orbit({ target, dist: K.mix(joinedDistance, separatedDistance, openProgress), azim: pose.azim, elev: pose.elev });
+      if (rot) {
+        const entryTime = separateTime + PARAM.separateDuration * 0.7;
+        rot.update(pieces.map((q, i) => ({
+          point: [side * q.w / 2, q.obj.position.y + q.h / 2, 0],
+          opacity: K.interval(t, entryTime + i * 0.12, 0.25) * (1 - K.interval(t, joinTime - 0.25, 0.2)),
+        })), { column: true });
+      }
+    };
+  }
+  const stage = document.getElementById("exploded-stage");
+  const tl = gsap.timeline({ paused: true });
+  const clock = { t: 0 };
+  let draw = null;
+  tl.fromTo(clock, { t: 0 }, { t: DUR, duration: DUR, ease: "none", onUpdate: () => draw && draw(clock.t) }, 0);
+  if (PARAM.entry > 0) tl.fromTo(stage, { opacity: 0 }, { opacity: 1, duration: PARAM.entry, ease: "power1.out" }, 0);
+  else tl.set(stage, { opacity: 1 }, 0);
+  if (PARAM.exit > 0) tl.fromTo(stage, { opacity: 1 }, { opacity: 0, duration: PARAM.exit, ease: "power1.in", immediateRender: false }, Math.max(0, DUR - PARAM.exit));
+  window.__timelines["exploded"] = tl;
+  window.addEventListener("hf-seek", () => { if (draw) draw(clock.t); });
+  const src = typeof __hfCompositionSrc === "string" ? __hfCompositionSrc : "";
+  const PROJECT_ROOT = src.includes("/compositions/") ? src.slice(0, src.lastIndexOf("/compositions/") + 1) : document.baseURI;
+  const background = PARAM.background === "paper" ? C.colors.paper : PARAM.background;
+  const sceneBounds = PARAM.area || C.safeArea, reserve = PARAM.labels ? 260 * Math.min(C.width, C.height) / 1080 : 0;
+  const sceneArea = PARAM.labels === "left" ? [sceneBounds[0] + reserve, sceneBounds[1], sceneBounds[2], sceneBounds[3]] : [sceneBounds[0], sceneBounds[1], sceneBounds[2] - reserve, sceneBounds[3]];
+  (window.__hf = window.__hf || {}).buildReady = window.__hf.buildReady || {};
+  window.__hf.buildReady[ID] = import(new URL("compositions/scenes/3d/three-scene.js", PROJECT_ROOT).href)
+    .then((K) => K.initialize({ id: ID, C, root: PROJECT_ROOT, canvas: document.getElementById("exploded-screen"), layer: document.getElementById("exploded-labels"),
+      background, area: sceneArea, bounds: sceneBounds, cutout: PARAM.area && PARAM.cutout ? PARAM.area : null, fov: 30, shadows: PARAM.shadows, build: (P) => build(K, P) }))
+    .then((d) => { draw = d; draw(clock.t); })
+    .catch((e) => console.error(`[scene 3D ${ID}] could not load the 3D engine: ${e && e.message ? e.message : e}`));
+})();
+</script>
+</template>
+</body></html>

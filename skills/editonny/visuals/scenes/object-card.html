@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Object card</title></head>
+<body>
+<!-- Object card. When introducing an object with numeric facts: a rotating 3D object appears with a 2×2 fact card. Change the video src to a bundled object file; the renderer reads that HTML resource directly. -->
+
+<template id="object-card-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+.objectcard-a{position:absolute;left:0;top:0;width:0;height:0;opacity:0}
+.objectcard-row{position:absolute;left:-400px;width:800px;display:flex;justify-content:center}
+.objectcard-tt{position:relative;display:flex;align-items:center;gap:16px;height:84px;padding:0 36px 0 28px;border-radius:42px;background:rgba(14,14,16,.9);box-shadow:inset 0 0 0 2px rgba(255,255,255,.16),0 14px 34px rgba(0,0,0,.45);font-family:"Inter";font-weight:800;font-size:46px;letter-spacing:-.01em;color:#fff;white-space:nowrap;opacity:0}
+.objectcard-dot{flex:none;width:22px;height:22px;border-radius:50%}
+.objectcard-gl{position:absolute;border-radius:50%;opacity:0}
+.objectcard-sh{position:absolute;border-radius:50%;background:radial-gradient(ellipse at center,rgba(0,0,0,.55),rgba(0,0,0,.25) 45%,rgba(0,0,0,0) 70%);opacity:0}
+.objectcard-ow{position:absolute;filter:drop-shadow(0 16px 26px rgba(0,0,0,.45))}
+.objectcard-v{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:contain;opacity:0}
+.objectcard-f{position:absolute;width:290px;height:142px;border-radius:30px;background:rgba(14,14,16,.9);box-shadow:inset 0 0 0 2px rgba(255,255,255,.16),0 14px 30px rgba(0,0,0,.45);overflow:hidden;opacity:0}
+.objectcard-fb{position:absolute;left:0;top:26px;width:7px;height:90px;border-radius:0 4px 4px 0}
+.objectcard-fl{position:absolute;left:26px;top:24px;font-family:"Inter";font-weight:700;font-size:28px;letter-spacing:.08em;line-height:1;color:#b4b4bd;white-space:nowrap}
+.objectcard-fv{position:absolute;left:24px;top:62px;font-family:"Inter";font-weight:900;font-size:56px;letter-spacing:-.02em;line-height:1.05;color:#fff;white-space:nowrap}
+.objectcard-fv i{font-style:normal;font-size:.6em;letter-spacing:-.01em;margin-left:.16em}
+.objectcard-fv u{text-decoration:none;font-size:.6em;letter-spacing:-.01em;margin-right:.16em}
+</style>
+<div id="root" data-composition-id="object-card" data-width="1080" data-height="1920" data-duration="4.5">
+<div id="objectcard-a" class="objectcard-a">
+  <div id="objectcard-gl" class="objectcard-gl"></div><div id="objectcard-sh" class="objectcard-sh"></div>
+  <div id="objectcard-ow" class="objectcard-ow"><video id="objectcard-v" class="objectcard-v" src="assets/visuals/video/38-sun.webm" data-start="0" data-duration="6" data-track-index="2" muted playsinline></video></div>
+  <div id="objectcard-row" class="objectcard-row"><div id="objectcard-tt" class="objectcard-tt"><i id="objectcard-dot" class="objectcard-dot"></i><span id="objectcard-tx"></span></div></div>
+  <div id="objectcard-f0" class="objectcard-f"><i class="objectcard-fb"></i><span class="objectcard-fl"></span><b class="objectcard-fv"></b></div>
+  <div id="objectcard-f1" class="objectcard-f"><i class="objectcard-fb"></i><span class="objectcard-fl"></span><b class="objectcard-fv"></b></div>
+  <div id="objectcard-f2" class="objectcard-f"><i class="objectcard-fb"></i><span class="objectcard-fl"></span><b class="objectcard-fv"></b></div>
+  <div id="objectcard-f3" class="objectcard-f"><i class="objectcard-fb"></i><span class="objectcard-fl"></span><b class="objectcard-fv"></b></div>
+</div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["object-card"] || { duration: 4.5 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 4.5, t0 = 0;
+
+  var P = {
+    x: 540, // Object center on the 1080×1920 canvas, in pixels.
+    y: 505, // Object center, in pixels; the title is 273 pixels above and the fact card extends 221 pixels below.
+    title: "The Sun in 3D", // Text inside the top pill.
+    card: "Temperature|5,500 °C|Age|4.6 billion years|Diameter|1.39 million km|Core|15 million °C", // Up to four label|value pairs separated by |, two per side; numbers are larger than units.
+    color: "#ff6a1f", // Accent color for the title dot, fact-card line, and object glow.
+  };
+
+
+  var pe = function (s) { return document.getElementById("objectcard-" + s); };
+  var OBJ = 600, FW = 290, FH = 142, SPAN = 112, LIN = 150;
+  var anchor = pe("a"); anchor.style.left = P.x + "px"; anchor.style.top = P.y + "px";
+  var color = P.color || "#ff6a1f";
+
+  var vid = pe("v"), box = pe("ow");
+  box.style.cssText += ";left:" + (-OBJ / 2) + "px;top:" + (-OBJ / 2) + "px;width:" + OBJ + "px;height:" + OBJ + "px";
+  var gl = pe("gl"); gl.style.cssText += ";left:-320px;top:-320px;width:640px;height:640px;background:radial-gradient(circle at center," + color + "55," + color + "22 40%,rgba(0,0,0,0) 68%)";
+  var sh = pe("sh"); sh.style.cssText += ";left:-200px;top:" + (OBJ * .4 - 30) + "px;width:400px;height:80px";
+  pe("row").style.top = (-273) + "px"; pe("dot").style.background = color; pe("tx").textContent = String(P.title || "");
+
+  var bits = String(P.card || "").split("|").map(function (s) { return s.trim(); }), items = [];
+  for (var q = 0; q < 4; q++) {
+    var el = pe("f" + q), rot = bits[q * 2], val = bits[q * 2 + 1];
+    if (!rot && !val) { el.style.display = "none"; continue; }
+    var leftValue = q % 2 === 0, lin = q < 2 ? -1 : 1;
+    el.style.left = (leftValue ? -SPAN - FW : SPAN) + "px"; el.style.top = ((lin < 0 ? -122 : LIN) - FH / 2) + "px";
+    el.querySelector("i").style.background = color;
+    el.querySelector("span").textContent = String(rot || "").toUpperCase();
+
+    var vb = el.querySelector("b"), mm = String(val || "").match(/^(\D*?)\s*([\d][\d.,]*)\s*(.*)$/);
+    if (mm) { if (mm[1]) { var u0 = document.createElement("u"); u0.textContent = mm[1]; vb.appendChild(u0); } vb.appendChild(document.createTextNode(mm[2])); if (mm[3]) { var i0 = document.createElement("i"); i0.textContent = mm[3]; vb.appendChild(i0); } }
+    else vb.textContent = val || "";
+    items.push({ el: el, side: leftValue ? 1 : -1 });
+  }
+  if (items.length < 3) items.forEach(function (it) { it.el.style.top = (-FH / 2) + "px"; });
+
+  var widthValue = function (txt, css) {
+    var m = document.createElement("span"); m.style.cssText = "position:absolute;left:-99999px;top:0;visibility:hidden;white-space:nowrap;font-family:Inter,sans-serif;" + css;
+    m.textContent = txt; document.body.appendChild(m); var w = m.getBoundingClientRect().width; document.body.removeChild(m); return w;
+  };
+  var fit = function () {
+    var tx = pe("tx"), w = widthValue(tx.textContent, "font-weight:800;font-size:46px;letter-spacing:-.01em"), free = 800 - 64 - 38;
+    tx.style.fontSize = (w > free ? Math.max(26, 46 * free / w) : 46) + "px";
+    items.forEach(function (it) {
+      var s = it.el.querySelector("span"), b = it.el.querySelector("b");
+      var ws = widthValue(s.textContent, "font-weight:700;font-size:28px;letter-spacing:.08em"), ls = FW - 46;
+      s.style.fontSize = (ws > ls ? Math.max(16, 28 * ls / ws) : 28) + "px";
+      var cp = b.cloneNode(true); cp.style.cssText = "position:absolute;left:-99999px;top:0;visibility:hidden;white-space:nowrap;font-family:Inter,sans-serif;font-weight:900;font-size:56px;letter-spacing:-.02em";
+      document.body.appendChild(cp); var wb = cp.getBoundingClientRect().width, lb = FW - 42; document.body.removeChild(cp);
+      var fb = wb > lb ? Math.max(24, 56 * lb / wb) : 56; b.style.fontSize = fb + "px"; b.style.top = (62 + (56 - fb) * .5) + "px";
+    });
+  };
+  fit(); if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { fit(); tl.invalidate(); });
+
+  var enter = t0 + .05, exit = t0 + D - .3, n = Math.max(1, items.length);
+  var step = Math.min(.42, Math.max(.12, (D - 1.65) / Math.max(1, n - 1))), firstCard = enter + (D < 3.2 ? .38 : .5);
+  tl.fromTo(anchor, { opacity: 0 }, { opacity: 1, duration: .05, ease: "none" }, enter);
+  tl.fromTo(vid, { opacity: 0, y: 80, rotation: -50, filter: "blur(16px)" }, { opacity: 1, y: 0, rotation: 0, filter: "blur(0px)", duration: .62, ease: "power3.out" }, enter);
+  tl.fromTo(gl, { opacity: 0 }, { opacity: 1, duration: .5, ease: "power2.out" }, enter + .1);
+  tl.fromTo(sh, { opacity: 0, x: 0 }, { opacity: 1, x: 0, duration: .5, ease: "power2.out" }, enter + .1);
+  tl.fromTo(pe("tt"), { opacity: 0, y: -26 }, { opacity: 1, y: 0, duration: .4, ease: "back.out(1.8)" }, enter + .12);
+  items.forEach(function (it, k) {
+    tl.fromTo(it.el, { opacity: 0, x: it.side * 46, y: 10 }, { opacity: 1, x: 0, y: 0, duration: .36, ease: "back.out(1.7)" }, firstCard + k * step);
+  });
+
+  var live = enter + .7, padding = exit - live, turns = Math.max(1, Math.round(padding / 1.2)), halfValue = padding / (turns * 2);
+  if (halfValue > .15) {
+    tl.to(vid, { y: -12, duration: halfValue, ease: "sine.inOut", yoyo: true, repeat: turns * 2 - 1, immediateRender: false }, live);
+    tl.to(sh, { x: 0, opacity: .7, duration: halfValue, ease: "sine.inOut", yoyo: true, repeat: turns * 2 - 1, immediateRender: false }, live);
+  }
+  tl.to(anchor, { opacity: 0, y: -30, duration: .26, ease: "power2.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["object-card"] = tl;
+})();
+</script>
+</template>
+</body></html>

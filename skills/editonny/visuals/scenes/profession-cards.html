@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Profession cards</title></head>
+<body>
+<!-- Profession cards. When presenting several professions or niches: stacked cards fan out with an occupation icon on each. -->
+
+<template id="profession-cards-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+@font-face{font-family:"SoraV";src:url("assets/visuals/fonts/Sora.ttf");font-weight:100 800;font-display:block}
+@font-face{font-family:"PlayfairI";src:url("assets/visuals/fonts/Playfair-Italic.ttf");font-weight:400 900;font-display:block}
+#professioncards-o{position:absolute;left:0;top:0;width:0;height:0}
+#professioncards-a{position:absolute;left:0;top:0;width:0;height:0;opacity:0}
+#professioncards-c{position:absolute;left:-430px;top:0;width:860px;border-radius:44px;opacity:0;background:radial-gradient(rgba(36,32,33,.07) 1.2px,transparent 1.8px) 0 0/14px 14px,linear-gradient(170deg,#fbf8f3,#f3eee6);box-shadow:0 0 0 2px rgba(36,32,33,.06),0 6px 14px rgba(0,0,0,.18),0 34px 70px rgba(0,0,0,.38)}
+#professioncards-h{position:absolute;left:40px;top:18px;width:780px;height:72px;line-height:72px;text-align:center;font-family:"PlayfairI",serif;font-weight:500;letter-spacing:-.01em;color:#242021;white-space:pre;opacity:0}
+#professioncards-hu{position:absolute;left:0;top:0;width:10px;height:10px;overflow:visible}
+#professioncards-m{position:absolute;left:0;top:0;width:860px;height:10px}
+.professioncards-k{position:absolute;left:0;top:0;border-radius:24px;overflow:hidden;opacity:0;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.28),0 4px 8px rgba(36,32,33,.12),0 16px 28px rgba(36,32,33,.22)}
+.professioncards-k svg{position:absolute;left:50%;margin-left:-48px;width:96px;height:96px}
+.professioncards-k b{position:absolute;left:10px;right:10px;text-align:center;font-family:"SoraV",sans-serif;font-weight:600;letter-spacing:-.03em;line-height:1.05;white-space:nowrap;opacity:0}
+.professioncards-sw{position:absolute;top:-60px;left:0;width:90px;height:420px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.5),rgba(255,255,255,0));opacity:0}
+.professioncards-pg{position:absolute;left:18px;right:18px;bottom:14px;height:5px;border-radius:3px;background:currentColor;opacity:.45}
+</style>
+<div id="root" data-composition-id="profession-cards" data-width="1080" data-height="1920" data-duration="4.5">
+<div id="professioncards-o"><div id="professioncards-a"><div id="professioncards-c"><div id="professioncards-h"></div><svg id="professioncards-hu"><path id="professioncards-hp" fill="none" stroke-width="7" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg><div id="professioncards-m"></div></div></div></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["profession-cards"] || { duration: 4.5 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 4.5, t0 = 0;
+
+  var P = {
+    x: 540, // Panel center on the 1080×1920 canvas, in pixels.
+    y: 230, // Panel top above the head, in pixels.
+    size: 1, // Panel scale from 0.7 to 1.1, anchored at the top.
+    title: "A look of its own.", // Playfair italic title at the top; empty hides it.
+    items: "Dentist|Trainer|Lawyer|Nutritionist|Architect", // Three to six professions separated by |; known names select icons and colors, unknown names use a briefcase.
+    color: "#ff593d", // Accent color for the title line and unknown-profession card.
+  };
+
+
+  var $ = function (id) { return document.getElementById(id); }, color = String(P.color || "#ff593d");
+  var ICO = {
+    tooth: '<path d="M35 18C15 13 13 37 21 53c5 11 5 30 13 30 8 0 7-26 16-26s8 26 16 26c8 0 8-19 13-30 8-16 6-40-14-35-11 4-19 4-30 0Z"/>',
+    dumbbell: '<path d="M12 36v28m12-40v52m52-52v52m12-40v28M24 50h52" fill="none" stroke="currentColor" stroke-width="11" stroke-linecap="round"/>',
+    scales: '<path d="M50 14v68M24 84h52M16 30h68M26 30 12 58h28L26 30Zm48 0L60 58h28L74 30Z" fill="none" stroke="currentColor" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/><circle cx="50" cy="14" r="6"/>',
+    fruit: '<circle cx="50" cy="58" r="30"/><path d="M50 28c0-14 14-18 24-15-2 15-15 20-24 15Z" fill="#5f8f3a"/><path d="M48 30c-2-7-6-11-11-13" fill="none" stroke="#6b4a2b" stroke-width="4" stroke-linecap="round"/>',
+    house: '<path d="M14 44 50 16l36 28v40H14V44Zm0 0h72M40 84V58h20v26" fill="none" stroke="currentColor" stroke-width="6" stroke-linejoin="round"/>',
+    cross: '<path d="M38 12h24v26h26v24H62v26H38V62H12V38h26Z"/>',
+    bubble: '<path d="M18 18h64a9 9 0 0 1 9 9v36a9 9 0 0 1-9 9H48L28 88V72H18a9 9 0 0 1-9-9V27a9 9 0 0 1 9-9Z"/><circle cx="32" cy="45" r="5" fill="#fff"/><circle cx="50" cy="45" r="5" fill="#fff"/><circle cx="68" cy="45" r="5" fill="#fff"/>',
+    camera: '<path d="M14 32h16l7-10h26l7 10h16a6 6 0 0 1 6 6v40a6 6 0 0 1-6 6H14a6 6 0 0 1-6-6V38a6 6 0 0 1 6-6Z"/><circle cx="50" cy="57" r="17" fill="none" stroke="#fff" stroke-width="6"/>',
+    sparkle: '<path d="M44 12Q44 50 82 50Q44 50 44 88Q44 50 6 50Q44 50 44 12Z"/><path d="M78 10Q78 24 92 24Q78 24 78 38Q78 24 64 24Q78 24 78 10Z"/>',
+    briefcase: '<path fill-rule="evenodd" d="M36 26v-6a7 7 0 0 1 7-7h14a7 7 0 0 1 7 7v6h20a7 7 0 0 1 7 7v42a7 7 0 0 1-7 7H16a7 7 0 0 1-7-7V33a7 7 0 0 1 7-7Zm8 0h12v-5H44ZM9 48h82v6H9Z"/>'
+  };
+  var TYPES = [
+    [/dent|orthodont|smile/, "tooth", "#0a8f8c", "#e8f5f3", "#08706d"],
+    [/trainer|gym|fitness|muscle/, "dumbbell", "#c0e85d", "#171b17", "#c0e85d"],
+    [/lawyer|legal|rights|law\b/, "scales", "#ead3ab", "#3b1b29", "#ead3ab"],
+    [/nutri|diet|food|baker|cook|chef/, "fruit", "#e78530", "#f7ecd6", "#9a4a0c"],
+    [/architect|engineer|decor|interior|renovat/, "house", "#e2dcbc", "#464d39", "#e2dcbc"],
+    [/realtor|property|real.?estate/, "house", "#1f4f8f", "#e9f0f9", "#1f4f8f"],
+    [/medic|health|clinic|nurs|physio/, "cross", "#d64545", "#fbeeee", "#b02e2e"],
+    [/psych|therap|coach/, "bubble", "#7a5cc7", "#efeafa", "#5f3fb0"],
+    [/photograph|video|film|creator/, "camera", "#f2efe9", "#2a2a2e", "#f2efe9"],
+    [/esthetic|beauty|makeup|hair|nail|brow/, "sparkle", "#c75b8a", "#fbedf3", "#a3376a"]
+  ];
+  var type = function (name) {
+    var n = name.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+    for (var i = 0; i < TYPES.length; i++) if (TYPES[i][0].test(n)) return TYPES[i];
+    return [null, "briefcase", color, "#fffaf4", "#242021"];
+  };
+  var items = String(P.items == null ? "" : P.items).split("|").map(function (s) { return s.trim(); }).filter(function (s) { return s; }).slice(0, 6);
+  if (items.length < 3) items = items.concat(["Dentist", "Trainer", "Lawyer"]).slice(0, 3);
+  var n = items.length, title = String(P.title == null ? "" : P.title).trim();
+  var anchor = $("professioncards-a"), panel = $("professioncards-c"), tit = $("professioncards-h"), desk = $("professioncards-m"), stroke = $("professioncards-hp");
+
+  var outside = $("professioncards-o"), sizeValue = Math.min(1.5, Math.max(.5, parseFloat(P.size) || 1));
+  outside.style.left = P.x + "px"; outside.style.top = P.y + "px"; outside.style.transformOrigin = "50% 0"; outside.style.transform = "scale(" + sizeValue + ")";
+  stroke.setAttribute("stroke", color); if (!title) { tit.style.display = "none"; $("professioncards-hu").style.display = "none"; }
+
+
+  var W = n <= 3 ? 214 : 204, Hc = n <= 3 ? 256 : 250, sp = Math.min(260, (800 - W) / (n - 1)), middle = (n - 1) / 2, ov = Math.max(0, W - sp), IC = Math.round(Hc * .44);
+  var vis = function (i) { return i < n - 1 ? W - ov : W; };
+  var cards = [], names = [], sparkles = [], barElements = [];
+  items.forEach(function (s, i) {
+    var t = type(s), k = document.createElement("div");
+    k.className = "professioncards-k"; k.style.width = W + "px"; k.style.height = Hc + "px"; k.style.background = t[3]; k.style.color = t[2];
+    k.style.zIndex = String(10 + i);
+    k.innerHTML = '<svg viewBox="0 0 100 100" fill="currentColor" style="top:' + Math.round(Hc * .08) + 'px;left:' + Math.round(vis(i) / 2 - IC / 2) + 'px;margin-left:0;width:' + IC + 'px;height:' + IC + 'px">' + ICO[t[1]] + '</svg><b></b><i class="professioncards-sw"></i><i class="professioncards-pg"></i>';
+    var b = k.querySelector("b"); b.textContent = s; b.style.color = t[4]; b.style.left = "6px"; b.style.right = "auto"; b.style.width = (vis(i) - 12) + "px";
+    desk.appendChild(k); cards.push(k); names.push(b); sparkles.push(k.querySelector(".professioncards-sw")); barElements.push(k.querySelector(".professioncards-pg"));
+  });
+
+  var measure = function (txt, style, px) {
+    var m = document.createElement("span");
+    m.style.cssText = "position:absolute;left:-99999px;top:0;visibility:hidden;white-space:nowrap;" + style + ";font-size:" + px + "px";
+    m.textContent = txt; document.body.appendChild(m); var w = m.offsetWidth; document.body.removeChild(m); return w;
+  };
+  var fit = function (txt, style, maxPx, minPx, widthValue) { var w = measure(txt, style, maxPx); return Math.max(minPx, Math.floor(w > widthValue ? maxPx * widthValue / w : maxPx)); };
+  var PT = "font-family:PlayfairI,serif;font-weight:500;letter-spacing:-.01em", SN = "font-family:SoraV,sans-serif;font-weight:600;letter-spacing:-.03em";
+  var G = { topM: 136, fx: [], fy: [], fr: [], px: [], py: [], pr: [] };
+  var adjust = function () {
+    var hT = 0;
+    if (title) {
+      var pt = fit(title, PT, 60, 30, 770), lines = [title];
+      if (pt < 48 && title.indexOf(" ") > 0) {
+        var c = title.length / 2, best = -1;
+        title.split("").forEach(function (ch, i) { if (ch === " " && (best < 0 || Math.abs(i - c) < Math.abs(best - c))) best = i; });
+        lines = [title.slice(0, best), title.slice(best + 1)];
+        pt = Math.min(54, fit(lines[0], PT, 54, 30, 770), fit(lines[1], PT, 54, 30, 770));
+      }
+      tit.textContent = lines.join("\n"); tit.style.fontSize = pt + "px";
+      var lh = lines.length > 1 ? Math.round(pt * 1.1) : 72; tit.style.lineHeight = lh + "px"; tit.style.height = (lh * lines.length) + "px";
+      hT = 18 + lh * lines.length;
+      var wl = Math.min(770, Math.max.apply(null, lines.map(function (l) { return measure(l, PT, pt); }))), x0 = 430 - wl * .32, x1 = 430 + wl * .32, yy = hT + 4;
+      stroke.setAttribute("d", "M" + x0 + " " + (yy + 3) + " C" + (x0 + (x1 - x0) * .3) + " " + (yy - 5) + " " + (x0 + (x1 - x0) * .65) + " " + (yy + 5) + " " + x1 + " " + (yy - 2));
+    }
+
+    var VG = /[aeiouáéíóúâêôãõàü]/i, CLUSTER = /^(br|cr|dr|fr|gr|pr|tr|vr|bl|cl|fl|gl|pl|ch|lh|nh|gu|qu)$/i;
+    var syllable = function (w) {
+      var best = -1, cand = function (j) { if (j >= 2 && w.length - j >= 2 && (best < 0 || Math.max(j + 1, w.length - j) < Math.max(best + 1, w.length - best))) best = j; };
+      for (var j = 1; j < w.length - 1; j++) {
+        if (!VG.test(w[j + 1]) || VG.test(w[j])) continue;
+        if (VG.test(w[j - 1])) cand(j);
+        else if (CLUSTER.test(w[j - 1] + w[j])) { if (j >= 2 && VG.test(w[j - 2])) cand(j - 1); }
+        else cand(j);
+      }
+      return best < 0 ? null : [w.slice(0, best) + "-", w.slice(best)];
+    };
+    var options = names.map(function (b, i) {
+      var txt = items[i], widthValue = vis(i) - 12, oneValue = fit(txt, SN, 40, 14, widthValue), l2 = null, two = 0;
+      if (txt.indexOf(" ") > 0) {
+        var c = txt.length / 2, best = -1;
+        txt.split("").forEach(function (ch, j) { if (ch === " " && (best < 0 || Math.abs(j - c) < Math.abs(best - c))) best = j; });
+        l2 = [txt.slice(0, best), txt.slice(best + 1)];
+      } else l2 = syllable(txt);
+      if (l2) two = Math.min(38, fit(l2[0], SN, 38, 14, widthValue), fit(l2[1], SN, 38, 14, widthValue));
+      return { txt: txt, oneValue: oneValue, l2: l2, two: two };
+    });
+    var PX = Math.min.apply(null, options.map(function (o) { return Math.max(o.oneValue, o.two); }));
+    names.forEach(function (b, i) {
+      var o = options[i], two = o.oneValue < PX && o.l2;
+      b.style.whiteSpace = "pre"; b.textContent = two ? o.l2.join("\n") : o.txt; b.style.fontSize = PX + "px";
+      b.style.top = Math.round(Hc * .08 + IC + (two ? 6 : 14)) + "px";
+    });
+    var topM = title ? hT + 22 : 30, arc = 4, alt = topM + Hc + arc * middle * middle + 36;
+    desk.style.top = topM + "px"; panel.style.height = alt + "px";
+    G.fx = []; G.fy = []; G.fr = []; G.px = []; G.py = []; G.pr = [];
+    for (var i = 0; i < n; i++) {
+      var d = i - middle;
+      G.fx.push(Math.round(430 - (n - 1) * sp / 2 + i * sp - W / 2)); G.fy.push(Math.round(arc * d * d)); G.fr.push(d * 5);
+      G.px.push(Math.round(430 - W / 2 + (i % 2 ? 6 : -6) * (i / n))); G.py.push(Math.round(14 - i * 3)); G.pr.push(i % 2 ? 3 + i : -3 - i);
+    }
+  };
+  adjust();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { adjust(); tl.invalidate(); });
+
+
+  var enter = t0 + .05, exit = t0 + D - .28, k = Math.min(1, Math.max(.55, (D - .4) / 4.1));
+  tl.fromTo(anchor, { opacity: 0 }, { opacity: 1, duration: .05, ease: "none" }, enter);
+  tl.fromTo(panel, { opacity: 0, y: 44 }, { opacity: 1, y: 0, duration: .42, ease: "back.out(1.4)" }, enter);
+  if (title) {
+    tl.fromTo(tit, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: .32, ease: "power3.out" }, enter + .1);
+    tl.fromTo(stroke, { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: .35, ease: "power2.out" }, enter + .4 * k + .15);
+  }
+
+  var tM = enter + .22 * k + .05;
+  cards.forEach(function (c, i) {
+    tl.fromTo(c, { opacity: 0, x: function () { return G.px[i]; }, y: function () { return G.py[i] + 120; }, rotation: function () { return G.pr[i] - 8; } },
+      { opacity: 1, x: function () { return G.px[i]; }, y: function () { return G.py[i]; }, rotation: function () { return G.pr[i]; }, duration: .34, ease: "power3.out" }, tM + i * .04);
+  });
+
+  var tL = tM + .25 + .04 * n + .1 * k, lineEnd = tL;
+  cards.forEach(function (c, i) {
+    var q = tL + Math.abs(i - middle) * .05;
+    tl.to(c, { x: function () { return G.fx[i]; }, y: function () { return G.fy[i]; }, rotation: function () { return G.fr[i]; }, duration: .5 * k + .1, ease: "back.out(1.3)", immediateRender: false }, q);
+    tl.fromTo(names[i], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .3, ease: "power2.out" }, q + .3 * k);
+    lineEnd = Math.max(lineEnd, q + .5 * k + .1);
+  });
+
+  var tB = lineEnd - .1, step = Math.min(.12, Math.max(.05, (exit - .5 - tB) / n));
+  sparkles.forEach(function (b, i) {
+    var q = tB + i * step;
+    tl.fromTo(b, { opacity: 0, x: -120 }, { opacity: 1, x: W + 60, duration: .45, ease: "power2.inOut" }, q);
+    tl.fromTo(barElements[i], { clipPath: "inset(0px 100% 0px 0px)" }, { clipPath: "inset(0px 0% 0px 0px)", duration: .4, ease: "power2.out" }, q + .05);
+  });
+
+  var live = lineEnd + .05, padding = exit - live, turns = Math.max(1, Math.round(padding / 1.1)), halfValue = padding / (turns * 2);
+  if (halfValue > .14) cards.forEach(function (c, i) {
+    tl.to(c, { y: function () { return G.fy[i] + (i % 2 ? -7 : 7); }, duration: halfValue, ease: "sine.inOut", yoyo: true, repeat: turns * 2 - 1, immediateRender: false }, live);
+  });
+  tl.to(anchor, { opacity: 0, y: -28, duration: .26, ease: "power2.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["profession-cards"] = tl;
+})();
+</script>
+</template>
+</body></html>

@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>File</title></head>
+<body>
+
+<template id="file-template">
+<style>
+@font-face{font-family:Montserrat;src:url("assets/fonts/Montserrat.ttf") format("truetype");font-weight:100 900;font-display:block}
+@font-face{font-family:"JetBrains Mono";src:url("assets/fonts/JetBrainsMono.ttf") format("truetype");font-weight:100 800;font-display:block}
+#root{position:absolute;inset:0;overflow:hidden;font-family:Montserrat}
+#file-background{position:absolute;inset:0;opacity:0}
+#file-card{position:absolute;box-sizing:border-box;opacity:0}
+#file-icon{position:absolute}
+#file-play{position:absolute;inset:28%;clip-path:polygon(18% 0,100% 50%,18% 100%)}
+#file-name{position:absolute;display:block;font-weight:800;white-space:nowrap}
+#file-clock{position:absolute;display:block;font-family:"JetBrains Mono";font-weight:700;text-align:right;white-space:nowrap}
+#file-track{position:absolute;overflow:hidden}
+#file-end{position:absolute}
+.file-speech{position:absolute;overflow:hidden}
+.file-bar{position:absolute}
+.file-breath{position:absolute}
+.file-silence{position:absolute;left:0;right:0}
+.file-brand{position:absolute;inset:0;opacity:0}
+#file-badge{position:absolute;overflow:hidden}
+.file-badge-color{position:absolute;inset:0;opacity:0}
+.file-badge-txt{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;white-space:nowrap;opacity:0}
+</style>
+<div id="root" data-composition-id="file" data-width="1080" data-height="1920" data-duration="6">
+  <div id="file-background"></div>
+  <div id="file-card">
+    <div id="file-icon"><div id="file-play"></div></div>
+    <span id="file-name">recording.mp4</span>
+    <span id="file-clock">&#8203;0:35</span>
+    <div id="file-track"><div id="file-end"></div></div>
+    <div id="file-badge"></div>
+  </div>
+</div>
+<script>
+(function () {
+  const ID = "file";
+  const PARAM = {
+    name: "recording.mp4",
+    speeches: [3.2, 1.6, 2.4, 1.2, 2.8],
+    breaths: [1.1, 0.7, 1.4, 0.9],
+    duration: { before: "0:35", after: "0:22" },
+    badge: { before: "WITH BREATHS", after: "CLEAN", beforeColor: "red", afterColor: "green" },
+    actions: [
+      { type: "brand", at: { word: "error", standard: 1.2 } },
+      { type: "close", at: { word: "cut", standard: 2.6 } },
+      { type: "badge", at: { word: "cut", standard: 3.8 } },
+    ],
+    enter: 0,
+    pause: 0.6,
+    captions: true,
+    background: "auto",
+    area: null,
+    entry: 0.2,
+    exit: 0.25,
+  };
+  const C = Object.assign({ words: [], duration: 6, width: 1080, height: 1920, safeArea: [140, 230, 940, 1530], face: null, frame: null,
+    colors: { paper: "#fffdfd", line: "#e6ddf8", base: "#c7b7ef", accent: "#665080", ink: "#352c40", green: "#2e9e5b", red: "#e5484d" } },
+    (window.__scenes || {})[ID] || {});
+  const DUR = C.duration, U = Math.min(C.width, C.height) / 1080;
+  const root = document.getElementById("file-background").parentElement;
+  if (root.offsetWidth && (Math.abs(root.offsetWidth - C.width) > 2 || Math.abs(root.offsetHeight - C.height) > 2))
+    console.error(`[${ID}] scene root is ${root.offsetWidth} x ${root.offsetHeight}, video is ${C.width} x ${C.height}: update root data-width and data-height`);
+  const without = (s) => String(s).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]/g, "");
+  const word = (txt, after, standard) => { const a = without(txt), p = a && (C.words || []).find((w) => w.t >= after - 1e-3 && without(w.text).startsWith(a)); return p ? p.t : standard; };
+  const moment = (m, standard) => (typeof m === "number" ? m : typeof m === "string" ? word(m, 0, standard)
+    : m && typeof m === "object" ? word(m.word || "", m.after == null ? 0 : moment(m.after, 0), m.standard == null ? standard : m.standard) : standard);
+  let lastEnd = C.frame ? Math.max(0, C.frame.closedAt || 0) : 0, nextAvailable = lastEnd + PARAM.entry;
+  function schedule(desired, dur, adjacent) {
+    const t = Math.max(desired, adjacent ? lastEnd : nextAvailable);
+    if (t - desired > 0.4) console.warn(`[${ID}] action starts ${(t - desired).toFixed(2)} s after its word: space anchors farther apart or reduce pause`);
+    lastEnd = t + dur; nextAvailable = lastEnd + PARAM.pause; return t;
+  }
+  const color = (n) => C.colors[n] || n;
+  const rgb = (h) => { h = String(h).replace("#", ""); if (h.length === 3) h = h.replace(/./g, "$&$&"); return [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16)); };
+  const mix = (a, b, k) => "#" + rgb(a).map((v, i) => Math.round(v + (rgb(b)[i] - v) * k).toString(16).padStart(2, "0")).join("");
+  const weight = (ch) => { const b = ch.normalize("NFD")[0]; return b === " " ? 0.28 : "MW".includes(b) ? 1 : "mw".includes(b) ? 0.92 : "iljI.,:;'!|".includes(b) ? 0.32 : /[A-Z]/.test(b) ? 0.76 : /[0-9]/.test(b) ? 0.68 : 0.62; };
+  const width = (t, px) => [...String(t)].reduce((s, ch) => s + weight(ch), 0) * px * 1.1;
+  const lines = (t, px, w) => String(t).split(/\s+/).filter(Boolean).reduce((ls, p) => { const u = ls[ls.length - 1]; if (u !== undefined && width(u + " " + p, px) <= w) ls[ls.length - 1] = u + " " + p; else ls.push(p); return ls; }, []);
+  const fits = (t, w, h, larger, smaller, max) => { for (let px = Math.round(larger); px > smaller; px--) { const ls = lines(t, px, w); if (ls.length <= max && ls.every((l) => width(l, px) <= w) && ls.length * px * 1.16 <= h) return px; } return Math.round(smaller); };
+  const A = PARAM.area ? PARAM.area.slice() : C.frame && C.frame.freeArea ? C.frame.freeArea.slice()
+    : [C.safeArea[0], C.safeArea[1], C.safeArea[2], PARAM.captions ? Math.round(C.safeArea[1] + (C.safeArea[3] - C.safeArea[1]) * 0.7) : C.safeArea[3]];
+  const AW = A[2] - A[0], AH = A[3] - A[1];
+  const background = PARAM.background === "auto" ? (C.frame ? null : "paper") : PARAM.background;
+  function paintBackground(el) {
+    if (background === "paper" && C.backgroundCss) el.style.cssText += ";" + C.backgroundCss;
+    else if (background === "paper") { const g = Math.round(60 * U); Object.assign(el.style, { backgroundColor: C.colors.paper, backgroundSize: `${g}px ${g}px`, backgroundImage: `linear-gradient(${C.colors.line} 2px,transparent 2px),linear-gradient(90deg,${C.colors.line} 2px,transparent 2px)` }); }
+    else if (background) el.style.backgroundColor = background;
+  }
+  const createElement = (tag, id, cls, parent, style, text) => { const e = document.createElement(tag); if (id) e.id = id; if (cls) e.className = cls; if (style) Object.assign(e.style, style); if (text != null) e.textContent = text; parent.appendChild(e); return e; };
+  const px = (v) => `${v}px`;
+  const light = (h) => { const [r, g, b] = rgb(h); return 0.299 * r + 0.587 * g + 0.114 * b > 150; };
+  const over = (background) => (light(C.colors.ink) && light(background) ? C.colors.paper : "#ffffff");
+  const u = U * Math.min(1.4, AW / (860 * U), AH / (520 * U));
+  const P = 40 * u, hc = 84 * u, hf = 200 * u, hs = 72 * u, gap = 36 * u;
+  const W = Math.min(AW, 860 * u), H = P + hc + gap + hf + gap + hs + P, X = A[0] + (AW - W) / 2, Y = A[1] + (AH - H) / 2;
+  const $ = (id) => document.getElementById(id);
+  paintBackground($("file-background"));
+  Object.assign($("file-card").style, { left: px(X), top: px(Y), width: px(W), height: px(H), borderRadius: px(34 * u), background: C.colors.paper,
+    border: `${Math.max(3, 4 * u)}px solid ${C.colors.base}`, boxShadow: `0 ${14 * u}px 0 -2px ${C.colors.base}` });
+  Object.assign($("file-icon").style, { left: px(P), top: px(P), width: px(hc), height: px(hc), borderRadius: px(20 * u), background: C.colors.accent });
+  $("file-play").style.background = C.colors.paper;
+  const hasClock = !!(PARAM.duration && PARAM.duration.before);
+  const clockWidth = hasClock ? Math.max(width(PARAM.duration.before, 44 * u), width(PARAM.duration.after || "", 44 * u)) : 0;
+  const nameWidth = W - 2 * P - hc - 24 * u - (hasClock ? clockWidth + 24 * u : 0);
+  const $name = $("file-name"), $rel = $("file-clock");
+  $name.textContent = PARAM.name;
+  Object.assign($name.style, { left: px(P + hc + 24 * u), top: px(P), width: px(nameWidth), height: px(hc), lineHeight: px(hc), color: C.colors.ink, fontSize: px(fits(PARAM.name, nameWidth, hc, 44 * u, 20 * u, 1)) });
+  if (!hasClock) $rel.style.display = "none";
+  else {
+    $rel.textContent = "\u200B" + PARAM.duration.before;
+    Object.assign($rel.style, { right: px(P), top: px(P), width: px(clockWidth), height: px(hc), lineHeight: px(hc), color: C.colors.ink, fontSize: px(44 * u) });
+  }
+  const FW = W - 2 * P, fy = P + hc + gap, T = PARAM.speeches.reduce((s, v) => s + v, 0) + PARAM.breaths.reduce((s, v) => s + v, 0), scale = FW / T;
+  Object.assign($("file-track").style, { left: px(P), top: px(fy), width: px(FW), height: px(hf), borderRadius: px(18 * u), background: mix(C.colors.line, C.colors.paper, 0.3) });
+  let seed = 7;
+  const random = () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
+  const speeches = [], breaths = [], before = [];
+  let x = 0, accumulatedBreaths = 0;
+  PARAM.speeches.forEach((v, i) => {
+    before.push(accumulatedBreaths);
+    const w = v * scale, f = createElement("div", `file-speech-${i}`, "file-speech", $("file-track"), { left: px(x), top: px(hf * 0.1), width: px(w), height: px(hf * 0.8), borderRadius: px(14 * u), background: mix(C.colors.base, C.colors.paper, 0.45) });
+    const step = 15 * u, n = Math.max(1, Math.floor((w - 10 * u) / step));
+    for (let j = 0; j < n; j++) {
+      const h = hf * 0.8 * (0.22 + 0.68 * random());
+      createElement("div", null, "file-bar", f, { left: px(5 * u + j * step + (w - 10 * u - n * step) / 2), top: px((hf * 0.8 - h) / 2), width: px(8 * u), height: px(h), borderRadius: px(4 * u), background: C.colors.accent });
+    }
+    speeches.push(f);
+    x += w;
+    if (i < PARAM.breaths.length) {
+      const r = PARAM.breaths[i] * scale, g = createElement("div", `file-breath-${i}`, "file-breath", $("file-track"), { left: px(x), top: px(hf * 0.1), width: px(r), height: px(hf * 0.8) });
+      createElement("div", null, "file-silence", g, { top: px(hf * 0.4 - 3 * u), height: px(6 * u), background: C.colors.base });
+      createElement("div", `file-brand-${i}`, "file-brand", g, { borderRadius: px(10 * u), background: `repeating-linear-gradient(135deg, ${C.colors.red} 0 ${10 * u}px, ${mix(C.colors.red, C.colors.paper, 0.45)} ${10 * u}px ${20 * u}px)` });
+      breaths.push(g);
+      x += r; accumulatedBreaths += PARAM.breaths[i];
+    }
+  });
+  Object.assign($("file-end").style, { left: px(x - 6 * u), top: 0, width: px(6 * u), height: px(hf), background: C.colors.ink });
+  const S = PARAM.badge, $badgeElement = $("file-badge");
+  const badge = {};
+  if (!S) $badgeElement.style.display = "none";
+  else {
+    const fs = 34 * u, ws = Math.max(width(S.before, fs), width(S.after, fs)) + 64 * u;
+    Object.assign($badgeElement.style, { left: px(P), top: px(fy + hf + gap), width: px(ws), height: px(hs), borderRadius: px(hs / 2) });
+    ["before", "after"].forEach((k) => {
+      const c = mix(color(k === "before" ? S.beforeColor : S.afterColor), C.colors.ink, 0.18);
+      badge["color_" + k] = createElement("div", `file-badge-color-${k}`, "file-badge-color", $badgeElement, { background: c });
+      badge["text_" + k] = createElement("span", `file-badge-txt-${k}`, "file-badge-txt", $badgeElement, { fontSize: px(fs), color: over(c) }, S[k]);
+    });
+  }
+  const tl = gsap.timeline({ paused: true });
+  tl.fromTo("#file-background", { opacity: 0 }, { opacity: 1, duration: Math.max(0.01, PARAM.entry), ease: "power1.out" }, 0);
+  const tE = schedule(moment(PARAM.enter, 0), 0.45);
+  tl.fromTo("#file-card", { opacity: 0, y: 60 * u }, { opacity: 1, y: 0, duration: 0.45, ease: "back.out(1.5)" }, tE);
+  if (S) tl.fromTo([badge.color_before, badge.text_before], { opacity: 0 }, { opacity: 1, duration: 0.01 }, tE);
+  const segment = (s) => s.split(":").reduce((acc, v) => acc * 60 + Number(v), 0);
+  const formatValue = (n, template) => { const parts = template.split(":").length, typing = template.split(":")[0].length; const out = []; let r = Math.round(n);
+    for (let k = 0; k < parts; k++) { out.unshift(String(r % 60).padStart(k === parts - 1 ? typing : 2, "0")); r = Math.floor(r / 60); } return out.join(":"); };
+  PARAM.actions.forEach((a, n) => {
+    const desired = moment(a.at, 1 + n * 1.2) - 0.1;
+    if (a.type === "brand") {
+      const d = 0.3 + 0.07 * Math.max(0, breaths.length - 1), t = schedule(desired, d);
+      breaths.forEach((g, j) => tl.fromTo(g.lastChild, { opacity: 0, clipPath: "inset(50% 0% 50% 0%)" }, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", duration: 0.3, ease: "power2.out" }, t + 0.07 * j));
+    } else if (a.type === "close") {
+      const d = 0.7, t = schedule(desired, d), mov = { duration: d, ease: "power2.inOut" };
+      speeches.forEach((f, i) => { if (before[i] > 0) tl.fromTo(f, { x: 0 }, { x: -before[i] * scale, ...mov }, t); });
+      let sum = 0;
+      breaths.forEach((g, j) => { tl.fromTo(g, { x: 0, clipPath: "inset(0% 0% 0% 0%)" }, { x: -sum * scale, clipPath: "inset(0% 100% 0% 0%)", ...mov }, t); sum += PARAM.breaths[j]; });
+      tl.fromTo("#file-end", { x: 0 }, { x: -sum * scale, ...mov }, t);
+      if (hasClock && PARAM.duration.after) {
+        const a0 = segment(PARAM.duration.before), a1 = segment(PARAM.duration.after), steps = Math.max(1, Math.round(d * 15));
+        for (let k = 1; k <= steps; k++) {
+          const p = k / steps, e = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+          tl.set($rel, { textContent: "\u200B" + (k === steps ? PARAM.duration.after : formatValue(a0 + (a1 - a0) * e, PARAM.duration.before)) }, t + p * d);
+        }
+      }
+    } else if (a.type === "badge" && S) {
+      const t = schedule(desired, 0.55);
+      tl.to(badge.text_before, { opacity: 0, duration: 0.15, ease: "power1.in", immediateRender: false }, t);
+      tl.fromTo(badge.color_after, { opacity: 1, clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.3, ease: "power2.inOut" }, t + 0.1);
+      tl.fromTo(badge.text_after, { opacity: 0, y: 14 * u }, { opacity: 1, y: 0, duration: 0.2, ease: "power2.out" }, t + 0.35);
+      tl.fromTo($badgeElement, { y: 0 }, { y: -8 * u, duration: 0.12, ease: "power1.out", yoyo: true, repeat: 1 }, t + 0.35);
+    }
+  });
+  if (DUR - PARAM.exit - lastEnd < 0.6) console.warn(`[${ID}] last action leaves ${(DUR - PARAM.exit - lastEnd).toFixed(2)} s before the scene ends: hold the result for at least 0.6 s by extending end`);
+  if (PARAM.exit > 0) tl.fromTo(["#file-background", "#file-card"], { opacity: 1 }, { opacity: 0, duration: PARAM.exit, ease: "power1.in", immediateRender: false }, Math.max(0, DUR - PARAM.exit));
+  window.__timelines["file"] = tl;
+})();
+</script>
+</template>
+</body></html>

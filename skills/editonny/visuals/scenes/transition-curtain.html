@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Transition curtain</title></head>
+<body>
+<!-- Transition curtain. For a new item or topic: a strip in the accent color sweeps across the screen. -->
+
+<template id="transition-curtain-template">
+<style>
+#root{position:absolute;inset:0;overflow:hidden}
+#transitioncurtain-a{position:absolute;inset:0;background:linear-gradient(100deg,#ff6a1f,#ff9a4a);opacity:0}
+#transitioncurtain-b{position:absolute;inset:0;background:#fff;opacity:0}
+</style>
+<div id="root" data-composition-id="transition-curtain" data-width="1080" data-height="1920" data-duration="0.6">
+<div id="transitioncurtain-b"></div><div id="transitioncurtain-a"></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["transition-curtain"] || { duration: 0.6 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = 0.6, t0 = 0;
+
+  function rise(sel, a, b, c, peak, e1, e2) {
+    tl.fromTo(sel, { opacity: 0 }, { opacity: peak, duration: b - a, ease: e1 || "sine.inOut" }, t0 + a);
+    tl.to(sel, { opacity: 0, duration: c - b, ease: e2 || "sine.inOut", immediateRender: false }, t0 + b);
+  }
+
+  tl.fromTo("#transitioncurtain-b", { opacity: 1, clipPath: "inset(0% 100% 0% 0%)" }, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", duration: D * .42, ease: "power3.inOut" }, t0);
+  tl.fromTo("#transitioncurtain-a", { opacity: 1, clipPath: "inset(0% 100% 0% 0%)" }, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", duration: D * .42, ease: "power3.inOut" }, t0 + D * .07);
+  tl.to("#transitioncurtain-b", { clipPath: "inset(0% 0% 0% 100%)", duration: D * .42, ease: "power3.inOut", immediateRender: false }, t0 + D * .5);
+  tl.to("#transitioncurtain-a", { clipPath: "inset(0% 0% 0% 100%)", duration: D * .42, ease: "power3.inOut", immediateRender: false }, t0 + D * .56);
+  tl.to(["#transitioncurtain-a", "#transitioncurtain-b"], { opacity: 0, duration: .01, immediateRender: false }, t0 + D * .99);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["transition-curtain"] = tl;
+})();
+</script>
+</template>
+</body></html>

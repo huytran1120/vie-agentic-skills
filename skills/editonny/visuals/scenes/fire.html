@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Fire</title></head>
+<body>
+<!-- Fire. For a heat or fire joke: realistic flames rise from the lower edge and a warm flicker covers the footage. -->
+
+<template id="fire-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+.fire-w{position:absolute;left:-30px;width:1140px;opacity:0}
+.fire-v{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:fill}
+.fire-gl{position:absolute;left:0;top:0;width:1080px;height:1920px;mix-blend-mode:screen;opacity:0}
+</style>
+<div id="root" data-composition-id="fire" data-width="1080" data-height="1920" data-duration="3.5">
+<div id="fire-w" class="fire-w" data-layout-allow-overflow><video id="fire-v" class="fire-v" src="assets/visuals/video/42-fire.webm" data-start="0" data-duration="6" data-track-index="2" data-media-start="0.4" muted playsinline></video></div>
+<div id="fire-gl" class="fire-gl"></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["fire"] || { duration: 3.5 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 3.5, t0 = 0;
+
+  var P = {
+    x: 540, // Horizontal warm-glow center, in pixels; the fire spans the full width.
+    y: 1920, // Flame base, in pixels; 1920 places it at the lower edge.
+    height: 820, // Flame height, from 400 to 1400 pixels.
+    strength: 0.8, // 0–1: flame and warm-glow strength.
+  };
+
+
+  var pe = function (s) { return document.getElementById("fire-" + s); };
+  var fz = Number(P.strength); if (fz !== fz) fz = .8; fz = Math.max(0, Math.min(1, fz));
+  var AL = Math.max(300, Math.min(1500, Number(P.height) || 820)), pe0 = Number(P.y) || 1920;
+  var wf = pe("w"); wf.style.top = (pe0 - AL) + "px"; wf.style.height = (AL + 8) + "px";
+  var gfo = pe("gl"), cx = Number(P.x); if (cx !== cx) cx = 540;
+  gfo.style.background = "radial-gradient(ellipse " + Math.round(AL * 1.5) + "px " + Math.round(AL * 1.25) + "px at " + cx + "px " + pe0 + "px,rgba(255,140,40,.62),rgba(255,90,20,.28) 45%,rgba(255,60,0,0) 80%)";
+  var videoEnd = t0 + Math.min(D, 4.5), exit = videoEnd - .3, ent = t0 + .05;
+
+  tl.fromTo(wf, { opacity: 0, y: AL * .55 }, { opacity: .55 + .45 * fz, y: 0, duration: .45, ease: "power3.out" }, ent);
+  tl.fromTo(gfo, { opacity: 0 }, { opacity: .35 + .55 * fz, duration: .5, ease: "power2.out" }, ent + .08);
+
+  var live = ent + .6, padding = exit - live, nt = Math.max(1, Math.round(padding / .34)), step = padding / nt;
+  var NV = [.62, .9, .7, 1, .58, .84, .74, .96, .66, .88];
+  if (step > .12) for (var kf = 0; kf < nt; kf++) tl.to(gfo, { opacity: (.35 + .55 * fz) * NV[kf % 10], duration: step, ease: "sine.inOut", immediateRender: false }, live + kf * step);
+  tl.to(gfo, { opacity: 0, duration: .28, ease: "power2.in", immediateRender: false }, exit);
+  tl.to(wf, { opacity: 0, y: AL * .25, duration: .3, ease: "power2.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["fire"] = tl;
+})();
+</script>
+</template>
+</body></html>

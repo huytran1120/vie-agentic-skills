@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Entrance side zoom</title></head>
+<body>
+<!-- Entrance side zoom. When an image enters from the side and recedes: a mirrored edge accompanies a blurred half-screen slide, followed by gradual shrinking and a faster final shrink to about 0.8×. The side parameter selects direction. Set image to a file in the image folder. For footage, replace the image element with a video retaining its ID and class, and add src, data-start="0", data-duration, data-track-index="2", muted, and playsinline. Keep portrait cards beside or below the face; the default 16:9 card sits above it. -->
+
+<template id="entrance-side-zoom-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+.entrancesidezoom-a{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;pointer-events:none}
+.entrancesidezoom-t{position:absolute;left:0;top:0;width:1080px;height:1920px}
+.entrancesidezoom-q{overflow:hidden}
+.entrancesidezoom-pv{perspective:1200px}
+.entrancesidezoom-f{position:absolute;left:0;top:0;width:0;height:0;filter:url(#entrancesidezoom-bl)}
+.entrancesidezoom-c{position:absolute;left:0;top:0;width:100%;height:100%;overflow:hidden;background:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.2),0 8px 20px rgba(0,0,0,.26),0 30px 70px rgba(0,0,0,.4)}
+.entrancesidezoom-m{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;display:block}
+.entrancesidezoom-svg{position:absolute;left:0;top:0;width:0;height:0;overflow:hidden}
+</style>
+<div id="root" data-composition-id="entrance-side-zoom" data-width="1080" data-height="1920" data-duration="3.0">
+<div id="entrancesidezoom-a" class="entrancesidezoom-a">
+
+  <div id="entrancesidezoom-pv" class="entrancesidezoom-t entrancesidezoom-pv"><div id="entrancesidezoom-z" class="entrancesidezoom-t" data-layout-allow-overflow><div id="entrancesidezoom-e" class="entrancesidezoom-t" data-layout-allow-overflow><div id="entrancesidezoom-k4" class="entrancesidezoom-t"><div id="entrancesidezoom-k3" class="entrancesidezoom-t"><div id="entrancesidezoom-k2" class="entrancesidezoom-t"><div id="entrancesidezoom-k1" class="entrancesidezoom-t entrancesidezoom-q"><div id="entrancesidezoom-f" class="entrancesidezoom-f"><div id="entrancesidezoom-c" class="entrancesidezoom-c"><img id="entrancesidezoom-m" class="entrancesidezoom-m" src="assets/visuals/img/city.jpg" alt=""></div></div></div></div></div></div></div></div></div>
+  <svg class="entrancesidezoom-svg" xmlns="http://www.w3.org/2000/svg" width="0" height="0"><filter id="entrancesidezoom-bl" x="-60%" y="-60%" width="220%" height="220%" color-interpolation-filters="sRGB"><feGaussianBlur id="entrancesidezoom-g" stdDeviation="0 0"/></filter></svg>
+</div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["entrance-side-zoom"] || { duration: 3.0 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 3.0, t0 = 0;
+
+  var P = {
+    x: 540, // Card center on the 1080×1920 canvas, in pixels; shrinking is centered here.
+    y: 446, // Card center, in pixels; default upper band spans y=232–660, above the eyes.
+    width: 760, // Card width, in pixels.
+    height: 428, // Card height, in pixels; default aspect ratio is 16:9 and the image fills it with cropping.
+    radius: 28, // Corner radius, in pixels; zero gives square corners.
+    image: "city.jpg", // Image filename in the package image folder.
+    side: "right", // "right" slides in from the left; "left" slides in from the right.
+  };
+
+
+  var pe = function (s) { return document.getElementById("entrancesidezoom-" + s); };
+  var LX = 1080, FRAME = 1 / 30, POSE = FRAME / 2, PERSP = 1200;
+
+  var lg = Math.max(60, +P.width || 760), al = Math.max(60, +P.height || 428), cx = +P.x, cy = +P.y;
+  var radius = P.radius == null ? 28 : Math.max(0, +P.radius);
+  var box = pe("f"); box.style.left = (cx - lg / 2) + "px"; box.style.top = (cy - al / 2) + "px";
+  box.style.width = lg + "px"; box.style.height = al + "px"; pe("c").style.borderRadius = radius + "px";
+  var media = pe("m"); if (P.image && media.tagName === "IMG") media.setAttribute("src", /[\/:]/.test(P.image) ? P.image : "assets/visuals/img/" + P.image);
+  pe("pv").style.perspectiveOrigin = cx + "px " + cy + "px";
+
+  var leftValue = String(P.side || "right").toLowerCase().indexOf("esq") === 0;
+  var SIGNAL = leftValue ? 1 : -1, SPAN = leftValue ? "left" : "right", OTHER_VALUE = leftValue ? "right" : "left";
+
+  pe("k1").style.setProperty("-webkit-box-reflect", SPAN + " -1px"); pe("k2").style.setProperty("-webkit-box-reflect", OTHER_VALUE + " -1px");
+  pe("k3").style.setProperty("-webkit-box-reflect", "below -1px"); pe("k4").style.setProperty("-webkit-box-reflect", "above -1px");
+
+  var bz = function (x1, y1, x2, y2) {
+    var B = function (a, b, t) { var m = 1 - t; return 3 * m * m * t * a + 3 * m * t * t * b + t * t * t; };
+    var dB = function (a, b, t) { var m = 1 - t; return 3 * m * m * a + 6 * m * t * (b - a) + 3 * t * t * (1 - b); };
+    var rootNode = function (u) { var lo = 0, hi = 1; for (var i = 0; i < 46; i++) { var md = (lo + hi) / 2; if (B(x1, x2, md) < u) lo = md; else hi = md; } return (lo + hi) / 2; };
+    return {
+      y: function (u) { return u <= 0 ? 0 : u >= 1 ? 1 : B(y1, y2, rootNode(u)); },
+      v: function (u) { var t = rootNode(Math.min(1, Math.max(0, u))); return Math.abs(dB(y1, y2, t)) / Math.max(1e-6, dB(x1, x2, t)); }
+    };
+  };
+  var cDes = bz(.1, 1.09, .31, .99), cEnc = bz(.6, .06, .86, .05);
+
+  var K = .01, FLOOR_VALUE = 8, CEILING = 60, padding = 3 * CEILING + 90;
+  var fl = pe("bl"); fl.setAttribute("x", (-100 * padding / lg).toFixed(1) + "%"); fl.setAttribute("width", (100 + 200 * padding / lg).toFixed(1) + "%");
+  fl.setAttribute("y", (-100 * 120 / al).toFixed(1) + "%"); fl.setAttribute("height", (100 + 200 * 120 / al).toFixed(1) + "%");
+
+  var follow = function (target, tA, tB, f, assemble, extra) {
+    var a = f(tA), b = f(tB), difference = b - a, ext = 0, ni, vi;
+    for (ni = 1; ni <= 60; ni++) { vi = f(tA + (tB - tA) * ni / 60) - a; if (Math.abs(vi) > Math.abs(ext)) ext = vi; }
+    if (Math.abs(difference) < .05 * Math.abs(ext)) difference = ext; if (Math.abs(difference) < 1e-6) difference = 1e-6;
+    var start = assemble(a), targetState = assemble(a + difference), k; targetState.duration = tB - tA; targetState.ease = function (p) { return (f(tA + p * (tB - tA)) - a) / difference; };
+    if (extra) for (k in extra) targetState[k] = extra[k];
+    tl.fromTo(target, start, targetState, tA);
+  };
+
+  var ent = t0 + .05, end = t0 + D, Sd = Math.min(1.3, Math.max(.6, D)), Se = (end - ent) + .13;
+  var uD = function (t) { return Math.max(0, (t - ent - POSE) / Sd); };
+  var uC = function (t) { return Math.max(0, (t - ent) / Se); };
+  var anchor = pe("a"), elE = pe("and"), elZ = pe("z"), g = pe("g");
+  tl.fromTo(anchor, { opacity: 0 }, { opacity: 1, duration: .01, ease: "none" }, ent);
+
+  follow(elE, ent, ent + POSE + Sd, function (t) { return SIGNAL * LX / 2 * (1 - cDes.y(uD(t))); }, function (v) { return { x: v }; });
+  follow(g, ent, ent + POSE + .3 * Sd, function (t) { var u = uD(t); return u >= .3 ? 0 : Math.min(CEILING, Math.max(0, K * cDes.v(u) * LX / 2 / Sd - FLOOR_VALUE)); },
+    function (s) { return { attr: { stdDeviation: s.toFixed(2) + " 0" } }; });
+
+  follow(elZ, ent, end, function (t) { var s = 1 - .3 * cEnc.y(uC(t)); return PERSP * (1 - 1 / s); }, function (v) { return { z: v }; });
+  tl.to(anchor, { opacity: 0, duration: .01, ease: "none", immediateRender: false }, end - .01);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["entrance-side-zoom"] = tl;
+})();
+</script>
+</template>
+</body></html>

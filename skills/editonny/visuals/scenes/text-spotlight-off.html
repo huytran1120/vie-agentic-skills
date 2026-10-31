@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Text spotlight off</title></head>
+<body>
+<!-- Text spotlight off. For an emphatic exit: text flashes on under a moving spotlight; the spotlight closes toward the center and disappears in 0.3 seconds. -->
+
+<template id="text-spotlight-off-template">
+<style>
+@font-face{font-family:"Montserrat";src:url("assets/fonts/Montserrat.ttf") format("truetype");font-weight:100 900;font-display:block}
+@font-face{font-family:"Caveat";src:url("assets/fonts/Caveat.ttf") format("truetype");font-weight:400 700;font-display:block}
+@font-face{font-family:"JetBrainsMono";src:url("assets/fonts/JetBrainsMono.ttf") format("truetype");font-weight:100 800;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Montserrat",sans-serif}
+.textspotlightoff-k{position:absolute;inset:0;pointer-events:none}
+.textspotlightoff-b{position:absolute;left:140px;top:0;width:800px;opacity:0;--textspotlightoff-r:4000px}
+.textspotlightoff-t{position:absolute;left:0;top:0;width:800px;display:flex;flex-direction:column;align-items:center;font-family:"Montserrat",sans-serif;font-weight:900;line-height:1;letter-spacing:-.01em;white-space:nowrap;paint-order:stroke fill}
+.textspotlightoff-h{position:absolute;left:0;top:0;width:800px;height:100%;opacity:0;-webkit-mask-image:radial-gradient(circle at 50% 50%,#000 calc(var(--textspotlightoff-r) - 2px),rgba(0,0,0,0) var(--textspotlightoff-r));mask-image:radial-gradient(circle at 50% 50%,#000 calc(var(--textspotlightoff-r) - 2px),rgba(0,0,0,0) var(--textspotlightoff-r));-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.textspotlightoff-n{position:absolute;left:0;top:0;width:800px;height:100%;-webkit-mask-image:radial-gradient(circle at 50% 50%,#000 calc(var(--textspotlightoff-r) * .78 - 8px),rgba(0,0,0,0) var(--textspotlightoff-r));mask-image:radial-gradient(circle at 50% 50%,#000 calc(var(--textspotlightoff-r) * .78 - 8px),rgba(0,0,0,0) var(--textspotlightoff-r));-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.textspotlightoff-z{position:absolute;left:0;top:0;width:800px;height:100%;opacity:0;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.textspotlightoff-l{display:flex;justify-content:center;align-items:baseline}
+.textspotlightoff-w{display:block}
+</style>
+<div id="root" data-composition-id="text-spotlight-off" data-width="1080" data-height="1920" data-duration="2.4">
+<div id="textspotlightoff-c" class="textspotlightoff-k">
+  <div class="textspotlightoff-b" id="textspotlightoff-b">
+    <div class="textspotlightoff-h" id="textspotlightoff-h" data-layout-ignore data-layout-allow-overflow aria-hidden="true"><div class="textspotlightoff-t" id="textspotlightoff-r1" data-layout-ignore data-layout-allow-overflow aria-hidden="true"></div></div>
+    <div class="textspotlightoff-n" id="textspotlightoff-n">
+      <div class="textspotlightoff-t" id="textspotlightoff-t"></div>
+      <div class="textspotlightoff-t" id="textspotlightoff-u" data-layout-ignore data-layout-allow-overflow aria-hidden="true"></div>
+      <div class="textspotlightoff-z" id="textspotlightoff-z" data-layout-ignore data-layout-allow-overflow aria-hidden="true"><div class="textspotlightoff-t" id="textspotlightoff-zl" data-layout-ignore data-layout-allow-overflow aria-hidden="true"></div></div>
+    </div>
+  </div>
+</div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["text-spotlight-off"] || { duration: 2.4 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 2.4, t0 = 0;
+
+  var P = {
+    text: "R$ 500,000", // Text; | forces a line break, otherwise wrapping is automatic.
+    y: 1150, // Text center height on the 1080×1920 canvas, in pixels.
+    size: 130, // Maximum font size, in pixels; shrinks automatically to fit.
+    color: "#ff2a2a", // Text color.
+    light: "#ffffff", // Outline, moving spotlight, and bright closing-edge color.
+    exit: 0.3, // Exit duration from 0.2 to 0.6 seconds; closure is concentrated near the end, as in CapCut.
+  };
+
+
+
+  var W = Array.isArray(C.words) ? C.words : [
+    { text: "You", t: 0.10, end: 0.34 }, { text: "do not", t: 0.36, end: 0.58 }, { text: "need", t: 0.60, end: 0.98 },
+    { text: "an", t: 1.00, end: 1.10 }, { text: "editor", t: 1.12, end: 1.56 }, { text: "to", t: 1.92, end: 2.06 },
+    { text: "post", t: 2.08, end: 2.44 }, { text: "every", t: 2.46, end: 2.68 }, { text: "day.", t: 2.70, end: 3.05 }
+  ];
+
+  W = (function (a) { var o = [], u = 0.04, k, t; for (k = 0; k < a.length; k++) { t = Math.max(0.05, Number(a[k].t) || 0, u + 0.01); o.push({ text: a[k].text, t: t, end: Math.max(t + 0.02, Number(a[k].end) || 0) }); u = t; } return o; })(W);
+
+  var SCALE_FACTOR = (function () {
+    var e = (typeof HIDDEN_RANGES !== "undefined" && HIDDEN_RANGES) || [], b0 = (typeof C.start === "number") ? C.start : 0, o = [], k;
+    for (k = 0; k < e.length; k++) if (Number(e[k][1]) > Number(e[k][0])) o.push([Number(e[k][0]) - b0, Number(e[k][1]) - b0]);
+    return o;
+  })();
+  function hidden(t) { for (var k = 0; k < SCALE_FACTOR.length; k++) if (t >= SCALE_FACTOR[k][0] && t < SCALE_FACTOR[k][1]) return true; return false; }
+  function nextScale(t) { var r = Infinity, k; for (k = 0; k < SCALE_FACTOR.length; k++) if (SCALE_FACTOR[k][0] > t && SCALE_FACTOR[k][0] < r) r = SCALE_FACTOR[k][0]; return r; }
+  W = W.filter(function (w) { return !hidden(w.t); });
+
+  function show(s) { return String(s).replace(/^\s+|\s+$/g, "").replace(/[.,;:…]+$/g, ""); }
+
+  function screens(maxP, maxL) {
+    var groups = [], cur = [], letters = 0, i, w, txt, out = [];
+    for (i = 0; i < W.length; i++) {
+      w = W[i]; txt = show(w.text); if (!txt || !(w.t < D - 0.2)) continue;
+      if (cur.length && (cur.length >= maxP || letters + txt.length + 1 > maxL || w.t - cur[cur.length - 1].end > 0.7 || nextScale(cur[cur.length - 1].t) <= w.t)) { groups.push(cur); cur = []; letters = 0; }
+      cur.push({ text: txt, t: Math.max(0.05, w.t), end: Math.min(D - 0.05, Math.max(w.t + 0.08, w.end)) }); letters += txt.length + 1;
+      if (/[.!?…]$/.test(String(w.text).replace(/\s+$/, "")) || (cur.length >= 2 && /[,;:]$/.test(String(w.text).replace(/\s+$/, "")))) { groups.push(cur); cur = []; letters = 0; }
+    }
+    if (cur.length) groups.push(cur);
+    for (i = 0; i < groups.length; i++) {
+      var start = Math.max(0.05, groups[i][0].t - 0.05), speechEnd = groups[i][groups[i].length - 1].end;
+      var end = Math.min(D - 0.05, speechEnd + 0.5); if (i + 1 < groups.length) end = Math.min(end, Math.max(0.05, groups[i + 1][0].t - 0.05));
+      end = Math.min(end, Math.max(start + 0.15, nextScale(groups[i][groups[i].length - 1].t)));
+      if (end > start + 0.12) out.push({ words: groups[i], start: start, end: end });
+    }
+    return out;
+  }
+
+
+  function num(v, d) { if (v === "" || v === null || v === undefined) return d; v = Number(v); return isFinite(v) ? v : d; }
+  function correctColor(v, d) { return (typeof v === "string" && window.CSS && CSS.supports("color", v)) ? v : d; }
+  var ceiling = Math.max(40, Math.min(170, num(P.size, 130))), yy = Math.max(260, Math.min(1500, num(P.y, 1150)));
+  var colorL = correctColor(P.color, "#ff2a2a"), depthTint = correctColor(P.light, "#ffffff"), LEAVE = Math.max(.2, Math.min(.6, num(P.exit, .3)));
+  var raw = String(P.text === undefined || P.text === null ? "R$ 500,000" : P.text).toUpperCase().replace(/\r?\n/g, "|");
+  var bar = raw.indexOf("|") >= 0, orig = [];
+  raw.split("|").forEach(function (s) { s = s.replace(/^\s+|\s+$/g, ""); if (s) orig.push(s.split(/\s+/)); });
+  if (!orig.length) orig.push(["TITLE"]);
+
+
+  var SPACING_VALUE = .26, SPAN = .1, LIM = 740, MAXL = 4, HMAX = 900;
+  var med = document.createElement("div");
+  med.setAttribute("aria-hidden", "true"); med.setAttribute("data-layout-ignore", "");
+  med.style.cssText = "position:absolute;left:-6000px;top:0;visibility:hidden;white-space:nowrap;font-family:Montserrat,sans-serif;font-weight:900;font-size:100px;line-height:1;letter-spacing:-.01em";
+  document.body.appendChild(med);
+  var memo = {};
+  function widthValue(s) { var c = "_" + s; if (!(c in memo)) { med.textContent = s; memo[c] = med.getBoundingClientRect().width / 100; } return memo[c]; }
+  function lineWidthValue(ws) { var n = 0, q; for (q = 0; q < ws.length; q++) n += widthValue(ws[q]) + (q ? SPACING_VALUE : 0); return n; }
+
+  function divide(ws, q) {
+    var n = ws.length, m = [], c = [], a, b, d, v, out = [], end;
+    for (a = 1; a <= q; a++) {
+      m[a] = []; c[a] = [];
+      for (b = a; b <= n; b++) {
+        if (a === 1) { m[a][b] = lineWidthValue(ws.slice(0, b)); c[a][b] = 0; continue; }
+        m[a][b] = 1e9;
+        for (d = a - 1; d < b; d++) { v = Math.max(m[a - 1][d], lineWidthValue(ws.slice(d, b))); if (v < m[a][b]) { m[a][b] = v; c[a][b] = d; } }
+      }
+    }
+    for (a = q, end = n; a >= 1; a--) { out.unshift(ws.slice(c[a][end], end)); end = c[a][end]; }
+    return out;
+  }
+  var elB = document.getElementById("textspotlightoff-b"), elN = document.getElementById("textspotlightoff-n"), elT = document.getElementById("textspotlightoff-t"), elU = document.getElementById("textspotlightoff-u");
+  var elR1 = document.getElementById("textspotlightoff-r1"), elZ = document.getElementById("textspotlightoff-z"), elZL = document.getElementById("textspotlightoff-zl");
+  var lines = [], sizeValue = ceiling, H = 120, LW = 600, CT = 10, PV = 60, RS = 600;
+
+  function write(dest, fs) {
+    var i, j, ln, w;
+    while (dest.firstChild) dest.removeChild(dest.firstChild);
+    dest.style.fontSize = fs + "px";
+    for (i = 0; i < lines.length; i++) {
+      ln = document.createElement("div"); ln.className = "textspotlightoff-l"; if (i) ln.style.marginTop = Math.round(fs * SPAN) + "px";
+      for (j = 0; j < lines[i].length; j++) {
+        w = document.createElement("span"); w.className = "textspotlightoff-w"; w.textContent = lines[i][j];
+        if (j) w.style.marginLeft = Math.round(fs * SPACING_VALUE) + "px";
+        ln.appendChild(w);
+      }
+      dest.appendChild(ln);
+    }
+  }
+  function arrange() {
+    memo = {};
+    var parts = [], owner = [], largerValue = 0, im = 0, k, i, previousValue, which, n, top, sx, sy, middle;
+    var floor = bar ? Math.min(ceiling, 56) : Math.min(ceiling, Math.max(56, ceiling * .62));
+    for (i = 0; i < orig.length; i++) parts.push(1);
+    function split() {
+      var a, b, ws, lw;
+      lines = []; owner = []; largerValue = 0; im = 0;
+      for (a = 0; a < orig.length; a++) { ws = divide(orig[a], parts[a]); for (b = 0; b < ws.length; b++) { lines.push(ws[b]); owner.push(a); } }
+      for (a = 0; a < lines.length; a++) { lw = lineWidthValue(lines[a]); if (lw > largerValue) { largerValue = lw; im = a; } }
+      sizeValue = Math.max(24, Math.min(ceiling, Math.floor(LIM / largerValue)));
+    }
+
+    split();
+    for (k = 0; k < 12; k++) {
+      if (sizeValue >= floor || lines.length >= MAXL || parts[owner[im]] >= orig[owner[im]].length) break;
+      which = owner[im]; previousValue = largerValue; parts[which]++; split();
+      if (largerValue > previousValue * .98) { parts[which]--; split(); break; }
+    }
+    n = lines.length; H = n * sizeValue + (n - 1) * Math.round(sizeValue * SPAN);
+    if (H > HMAX) { sizeValue = Math.max(24, Math.floor(sizeValue * HMAX / H)); H = n * sizeValue + (n - 1) * Math.round(sizeValue * SPAN); }
+    LW = largerValue * sizeValue; CT = Math.max(6, Math.round(sizeValue * .1)); PV = Math.round(sizeValue * .35 + 2 * CT);
+    top = Math.round(Math.max(236 + PV, Math.min(1524 - H - PV, yy - H / 2)));
+
+    elB.style.top = (top - PV) + "px"; elB.style.height = (H + 2 * PV) + "px";
+
+    RS = Math.ceil((Math.sqrt(Math.pow(LW / 2 + 2 * CT, 2) + Math.pow(H / 2 + CT, 2)) + 10) / .78);
+    elB.style.setProperty("--textspotlightoff-r", RS + "px");
+
+
+    write(elT, sizeValue); elT.style.color = colorL; elT.style.webkitTextStroke = (2 * CT) + "px rgba(0,0,0,.82)";
+    elT.style.filter = "drop-shadow(0 " + Math.round(sizeValue * .045) + "px " + Math.round(sizeValue * .09) + "px rgba(0,0,0,.5))";
+    write(elU, sizeValue); elU.style.color = colorL; elU.style.webkitTextStroke = CT + "px " + depthTint;
+
+    write(elR1, sizeValue); elR1.style.color = depthTint; elR1.style.webkitTextStroke = CT + "px " + depthTint;
+    [elT, elU, elR1, elZL].forEach(function (e) { e.style.top = PV + "px"; });
+
+    write(elZL, sizeValue); elZL.style.color = depthTint; elZL.style.webkitTextStroke = "0px transparent";
+    sx = Math.round(Math.max(sizeValue * .55, LW * .07)); sy = Math.round(H / 2 + sizeValue * .3);
+    middle = "radial-gradient(ellipse " + sx + "px " + sy + "px at 50% 50%, #000 0%, rgba(0,0,0,.5) 42%, rgba(0,0,0,0) 100%)";
+    elZ.style.webkitMaskImage = middle; elZ.style.maskImage = middle;
+  }
+  arrange();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { arrange(); tl.invalidate(); });
+
+
+  var A0 = t0 + .05, END_TIME = t0 + D - .06, VIS = Math.max(.1, Math.min(.3, LEAVE * .5)), EV = END_TIME - VIS;
+
+  tl.fromTo("#textspotlightoff-b", { opacity: 0 }, { opacity: 1, duration: .01 }, A0);
+  tl.fromTo(["#textspotlightoff-t", "#textspotlightoff-u"], { color: depthTint }, { color: colorL, duration: .28, ease: "power2.out", immediateRender: false }, A0);
+
+  var V0 = A0 + .1, V1 = EV - .02, nV, pV;
+  function amp() { return LW * .44; }
+  if (V1 - V0 > .6) {
+    nV = Math.max(1, Math.round((V1 - V0) / 1.7)); pV = (V1 - V0) / nV;
+    tl.fromTo("#textspotlightoff-z", { opacity: 0 }, { opacity: .6, duration: .3, ease: "power1.out" }, V0);
+    tl.fromTo("#textspotlightoff-z", { x: function () { return -amp(); } }, { x: function () { return amp(); }, duration: pV, ease: "sine.inOut", yoyo: true, repeat: nV - 1, immediateRender: false }, V0);
+    tl.fromTo("#textspotlightoff-zl", { x: function () { return amp(); } }, { x: function () { return -amp(); }, duration: pV, ease: "sine.inOut", yoyo: true, repeat: nV - 1, immediateRender: false }, V0);
+  }
+
+  tl.fromTo("#textspotlightoff-h", { opacity: 0 }, { opacity: 1, duration: .01 }, EV);
+  tl.fromTo("#textspotlightoff-b", { "--textspotlightoff-r": function () { return RS + "px"; } }, { "--textspotlightoff-r": "0px", duration: VIS, ease: function (p) { return Math.pow(p, 1.2); }, immediateRender: false }, EV);
+
+  tl.to("#textspotlightoff-b", { opacity: 0, duration: .01, immediateRender: false }, END_TIME);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["text-spotlight-off"] = tl;
+})();
+</script>
+</template>
+</body></html>

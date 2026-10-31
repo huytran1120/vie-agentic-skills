@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>Before After</title></head>
+<body>
+
+<template id="before-after-template">
+<style>
+@font-face{font-family:Montserrat;src:url("assets/fonts/Montserrat.ttf") format("truetype");font-weight:100 900;font-display:block}
+@font-face{font-family:"JetBrains Mono";src:url("assets/fonts/JetBrainsMono.ttf") format("truetype");font-weight:100 800;font-display:block}
+#root{position:absolute;inset:0;overflow:hidden;font-family:Montserrat}
+#before-after-background{position:absolute;inset:0;opacity:0}
+.before-after-side{position:absolute;opacity:0}
+.before-after-label{position:absolute;display:block;font-weight:900;white-space:nowrap}
+.before-after-detail{position:absolute;display:block;font-weight:700;white-space:nowrap}
+.before-after-value{position:absolute;display:block;font-family:"JetBrains Mono";font-weight:700;text-align:right;white-space:nowrap}
+.before-after-track{position:absolute}
+.before-after-speech{position:absolute;overflow:hidden}
+.before-after-bar{position:absolute}
+.before-after-breath{position:absolute}
+.before-after-silence{position:absolute;left:0;right:0}
+.before-after-brand{position:absolute;inset:0;opacity:0}
+.before-after-name{position:absolute;display:block;font-weight:700;text-align:center;white-space:nowrap}
+.before-after-remainder{position:absolute;box-sizing:border-box;opacity:0}
+.before-after-box{position:absolute;overflow:hidden;box-sizing:border-box}
+.before-after-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.before-after-ring{position:absolute;box-sizing:border-box;opacity:0}
+</style>
+<div id="root" data-composition-id="before-after" data-width="1080" data-height="1920" data-duration="5">
+  <div id="before-after-background"></div>
+  <div id="before-after-stage"></div>
+</div>
+<script>
+(function () {
+  const ID = "before-after";
+  const PARAM = {
+    type: "track",
+    arrangement: "auto",
+    aspectRatio: 1,
+    before: { label: "RECORDED", detail: null, value: null, at: { word: "recorded", standard: 0.3 }, file: null,
+      intervals: [{ speech: 2.0, name: "first take", exit: true }, { breath: 0.6 }, { speech: 2.0, name: "second take" }] },
+    after: { label: "IN THE VIDEO", detail: null, value: null, at: { word: "became", standard: 1.8 }, file: null,
+      intervals: [{ speech: 2.0, name: "second take" }] },
+    difference: { at: { word: "best", standard: 3.0 }, box: null },
+    pause: 0.6,
+    captions: true,
+    background: "auto",
+    area: null,
+    entry: 0.2,
+    exit: 0.25,
+  };
+  const C = Object.assign({ words: [], duration: 5, width: 1080, height: 1920, safeArea: [140, 230, 940, 1530], face: null, frame: null,
+    colors: { paper: "#fffdfd", line: "#e6ddf8", base: "#c7b7ef", accent: "#665080", ink: "#352c40", green: "#2e9e5b", red: "#e5484d" } },
+    (window.__scenes || {})[ID] || {});
+  const DUR = C.duration, U = Math.min(C.width, C.height) / 1080;
+  const root = document.getElementById("before-after-background").parentElement;
+  if (root.offsetWidth && (Math.abs(root.offsetWidth - C.width) > 2 || Math.abs(root.offsetHeight - C.height) > 2))
+    console.error(`[${ID}] scene root is ${root.offsetWidth} x ${root.offsetHeight}, video is ${C.width} x ${C.height}: update root data-width and data-height`);
+  const without = (s) => String(s).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]/g, "");
+  const word = (txt, after, standard) => { const a = without(txt), p = a && (C.words || []).find((w) => w.t >= after - 1e-3 && without(w.text).startsWith(a)); return p ? p.t : standard; };
+  const moment = (m, standard) => (typeof m === "number" ? m : typeof m === "string" ? word(m, 0, standard)
+    : m && typeof m === "object" ? word(m.word || "", m.after == null ? 0 : moment(m.after, 0), m.standard == null ? standard : m.standard) : standard);
+  let lastEnd = C.frame ? Math.max(0, C.frame.closedAt || 0) : 0, nextAvailable = lastEnd + PARAM.entry;
+  function schedule(desired, dur, adjacent) {
+    const t = Math.max(desired, adjacent ? lastEnd : nextAvailable);
+    if (t - desired > 0.4) console.warn(`[${ID}] action starts ${(t - desired).toFixed(2)} s after its word: space anchors farther apart or reduce pause`);
+    lastEnd = t + dur; nextAvailable = lastEnd + PARAM.pause; return t;
+  }
+  const color = (n) => C.colors[n] || n;
+  const rgb = (h) => { h = String(h).replace("#", ""); if (h.length === 3) h = h.replace(/./g, "$&$&"); return [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16)); };
+  const mix = (a, b, k) => "#" + rgb(a).map((v, i) => Math.round(v + (rgb(b)[i] - v) * k).toString(16).padStart(2, "0")).join("");
+  const weight = (ch) => { const b = ch.normalize("NFD")[0]; return b === " " ? 0.28 : "MW".includes(b) ? 1 : "mw".includes(b) ? 0.92 : "iljI.,:;'!|".includes(b) ? 0.32 : /[A-Z]/.test(b) ? 0.76 : /[0-9]/.test(b) ? 0.68 : 0.62; };
+  const width = (t, px) => [...String(t)].reduce((s, ch) => s + weight(ch), 0) * px * 1.1;
+  const lines = (t, px, w) => String(t).split(/\s+/).filter(Boolean).reduce((ls, p) => { const u = ls[ls.length - 1]; if (u !== undefined && width(u + " " + p, px) <= w) ls[ls.length - 1] = u + " " + p; else ls.push(p); return ls; }, []);
+  const fits = (t, w, h, larger, smaller, max) => { for (let px = Math.round(larger); px > smaller; px--) { const ls = lines(t, px, w); if (ls.length <= max && ls.every((l) => width(l, px) <= w) && ls.length * px * 1.16 <= h) return px; } return Math.round(smaller); };
+  const A = PARAM.area ? PARAM.area.slice() : C.frame && C.frame.freeArea ? C.frame.freeArea.slice()
+    : [C.safeArea[0], C.safeArea[1], C.safeArea[2], PARAM.captions ? Math.round(C.safeArea[1] + (C.safeArea[3] - C.safeArea[1]) * 0.7) : C.safeArea[3]];
+  const AW = A[2] - A[0], AH = A[3] - A[1];
+  const background = PARAM.background === "auto" ? (C.frame ? null : "paper") : PARAM.background;
+  function paintBackground(el) {
+    if (background === "paper" && C.backgroundCss) el.style.cssText += ";" + C.backgroundCss;
+    else if (background === "paper") { const g = Math.round(60 * U); Object.assign(el.style, { backgroundColor: C.colors.paper, backgroundSize: `${g}px ${g}px`, backgroundImage: `linear-gradient(${C.colors.line} 2px,transparent 2px),linear-gradient(90deg,${C.colors.line} 2px,transparent 2px)` }); }
+    else if (background) el.style.backgroundColor = background;
+  }
+  const createElement = (tag, id, cls, parent, style, text) => { const e = document.createElement(tag); if (id) e.id = id; if (cls) e.className = cls; if (style) Object.assign(e.style, style); if (text != null) e.textContent = text; parent.appendChild(e); return e; };
+  const px = (v) => `${v}px`;
+  paintBackground(document.getElementById("before-after-background"));
+  const stage = document.getElementById("before-after-stage"), track = PARAM.type !== "image";
+  const side = PARAM.arrangement === "side" || (PARAM.arrangement === "auto" && !track && AW > AH * 1.25);
+  const u = U * Math.min(1, AH / (track ? 600 * U : AH));
+  const lh = 70 * u, fsR = 52 * u, fsD = 32 * u, fsV = 42 * u, gap = (track ? 70 : 40) * u, hf = 150 * u, hn = 46 * u;
+  let bw, bh;
+  if (track) { bw = Math.min(AW, 900 * u); bh = hf; }
+  else {
+    const freeWidth = side ? (AW - gap) / 2 : AW, availableHeight = side ? AH - lh - 12 * u : (AH - gap) / 2 - lh - 12 * u;
+    bw = Math.min(freeWidth, availableHeight * PARAM.aspectRatio); bh = bw / PARAM.aspectRatio;
+  }
+  const blockHeight = lh + 12 * u + bh + (track ? hn : 0);
+  const totW = side ? 2 * bw + gap : bw, totH = side ? blockHeight : 2 * blockHeight + gap;
+  const X0 = A[0] + (AW - totW) / 2, Y0 = A[1] + (AH - totH) / 2;
+  const total = (L) => L.intervals.reduce((s, q) => s + (q.speech || q.breath || 0), 0);
+  const scale = track ? bw / Math.max(total(PARAM.before), total(PARAM.after)) : 1;
+  let seed = 11;
+  const random = () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
+  const sides = {}, marks = [], rings = [], imgs = [];
+  ["before", "after"].forEach((k, n) => {
+    const L = PARAM[k], x = X0 + (side ? n * (bw + gap) : 0), y = Y0 + (side ? 0 : n * (blockHeight + gap));
+    const el = createElement("div", `before-after-${k}`, "before-after-side", stage, { left: px(x), top: px(y), width: px(bw), height: px(blockHeight) });
+    const videoWidth = L.value ? width(L.value, fsV) : 0, rightWidth = Math.min(bw - videoWidth - 20 * u, width(L.label, fsR));
+    const fr = fits(L.label, rightWidth + 2, lh, fsR, 24 * u, 1);
+    createElement("span", `before-after-label-${k}`, "before-after-label", el, { left: 0, top: 0, height: px(lh), lineHeight: px(lh), color: C.colors.ink, fontSize: px(fr) }, L.label);
+    if (L.detail) {
+      const xd = width(L.label, fr) + 18 * u, wd = bw - xd - videoWidth - 20 * u;
+      if (wd > 60 * u) createElement("span", `before-after-detail-${k}`, "before-after-detail", el, { left: px(xd), top: 0, width: px(wd), height: px(lh), lineHeight: px(lh + 6 * u), color: C.colors.accent, fontSize: px(fits(L.detail, wd, lh, fsD, 18 * u, 1)) }, L.detail);
+    }
+    if (L.value) createElement("span", `before-after-value-${k}`, "before-after-value", el, { right: 0, top: 0, width: px(videoWidth), height: px(lh), lineHeight: px(lh), color: C.colors.ink, fontSize: px(fsV) }, L.value);
+    const by = lh + 12 * u;
+    if (track) {
+      const tr = createElement("div", `before-after-track-${k}`, "before-after-track", el, { left: 0, top: px(by), width: px(bw), height: px(bh), borderRadius: px(16 * u), background: mix(C.colors.line, C.colors.paper, 0.3) });
+      let xx = 0;
+      L.intervals.forEach((q, j) => {
+        const w = (q.speech || q.breath || 0) * scale;
+        if (q.speech) {
+          const f = createElement("div", `before-after-speech-${k}-${j}`, "before-after-speech", tr, { left: px(xx), top: px(bh * 0.1), width: px(w), height: px(bh * 0.8), borderRadius: px(12 * u), background: mix(C.colors.base, C.colors.paper, 0.45) });
+          const step = 15 * u, nb = Math.max(1, Math.floor((w - 10 * u) / step));
+          for (let b = 0; b < nb; b++) { const h = bh * 0.8 * (0.22 + 0.68 * random()); createElement("div", null, "before-after-bar", f, { left: px(5 * u + b * step + (w - 10 * u - nb * step) / 2), top: px((bh * 0.8 - h) / 2), width: px(8 * u), height: px(h), borderRadius: px(4 * u), background: C.colors.accent }); }
+          if (q.name && width(q.name, 28 * u) < w - 8 * u) createElement("span", `before-after-name-${k}-${j}`, "before-after-name", el, { left: px(xx), top: px(by + bh + 8 * u), width: px(w), height: px(hn - 8 * u), lineHeight: px(hn - 8 * u), color: C.colors.ink, fontSize: px(28 * u) }, q.name);
+          if (q.exit) marks.push(createElement("div", `before-after-brand-${k}-${j}`, "before-after-brand", f, { borderRadius: px(12 * u), background: `repeating-linear-gradient(135deg, ${C.colors.red}cc 0 ${10 * u}px, ${C.colors.red}55 ${10 * u}px ${20 * u}px)` }));
+        } else {
+          const g = createElement("div", `before-after-breath-${k}-${j}`, "before-after-breath", tr, { left: px(xx), top: px(bh * 0.1), width: px(w), height: px(bh * 0.8) });
+          createElement("div", null, "before-after-silence", g, { top: px(bh * 0.4 - 3 * u), height: px(6 * u), background: C.colors.base });
+          marks.push(createElement("div", `before-after-brand-${k}-${j}`, "before-after-brand", g, { borderRadius: px(10 * u), background: `repeating-linear-gradient(135deg, ${C.colors.red} 0 ${10 * u}px, ${mix(C.colors.red, C.colors.paper, 0.45)} ${10 * u}px ${20 * u}px)` }));
+        }
+        xx += w;
+      });
+      const beforeEnd = total(PARAM.before) * scale;
+      if (k === "after" && beforeEnd - xx > 8 * u) sides.remainder = createElement("div", "before-after-remainder", "before-after-remainder", tr, { left: px(xx + 4 * u), top: px(bh * 0.1), width: px(beforeEnd - xx - 4 * u), height: px(bh * 0.8), borderRadius: px(12 * u), border: `${Math.max(3, 4 * u)}px dashed ${C.colors.red}` });
+    } else {
+      const cx = createElement("div", `before-after-box-${k}`, "before-after-box", el, { left: 0, top: px(by), width: px(bw), height: px(bh), borderRadius: px(18 * u), background: C.colors.paper, border: `${Math.max(3, 4 * u)}px solid ${C.colors.base}` });
+      if (L.file) { const im = createElement("img", `before-after-img-${k}`, "before-after-img", cx); im.alt = L.label; im.src = L.file; imgs.push(im); }
+      const cxd = PARAM.difference && PARAM.difference.box;
+      if (cxd) rings.push(createElement("div", `before-after-ring-${k}`, "before-after-ring", cx, { left: px(cxd[0] * bw), top: px(cxd[1] * bh), width: px(cxd[2] * bw), height: px(cxd[3] * bh), borderRadius: px(18 * u), border: `${Math.max(5, 8 * u)}px solid ${C.colors.red}` }));
+    }
+    sides[k] = el;
+  });
+  const tl = gsap.timeline({ paused: true });
+  tl.fromTo("#before-after-background", { opacity: 0 }, { opacity: 1, duration: Math.max(0.01, PARAM.entry), ease: "power1.out" }, 0);
+  tl.fromTo("#before-after-stage", { opacity: 0 }, { opacity: 1, duration: 0.01 }, 0);
+  ["before", "after"].forEach((k, n) => {
+    const t = schedule(moment(PARAM[k].at, n ? 1.8 : 0.3) - 0.1, 0.4);
+    tl.fromTo(sides[k], { opacity: 0, y: 30 * u }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, t);
+  });
+  if (PARAM.difference) {
+    const items = marks.concat(sides.remainder ? [sides.remainder] : [], rings), d = 0.3 + 0.07 * Math.max(0, items.length - 1);
+    const t = schedule(moment(PARAM.difference.at, 3.0) - 0.1, d);
+    items.forEach((m, j) => tl.fromTo(m, { opacity: 0, clipPath: "inset(50% 0% 50% 0%)" }, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", duration: 0.3, ease: "power2.out" }, t + 0.07 * j));
+  }
+  if (DUR - PARAM.exit - lastEnd < 0.6) console.warn(`[${ID}] difference appears ${(DUR - PARAM.exit - lastEnd).toFixed(2)} s before the scene ends: hold it for at least 0.6 s by extending end`);
+  if (PARAM.exit > 0) tl.fromTo(["#before-after-background", "#before-after-stage"], { opacity: 1 }, { opacity: 0, duration: PARAM.exit, ease: "power1.in", immediateRender: false }, Math.max(0, DUR - PARAM.exit));
+  if (imgs.length) ((window.__hf = window.__hf || {}).buildReady = window.__hf.buildReady || {})[ID] = Promise.all(imgs.map((im) => im.decode().catch(() => console.error(`[${ID}] could not open image ${im.src}`))));
+  window.__timelines["before-after"] = tl;
+})();
+</script>
+</template>
+</body></html>

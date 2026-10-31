@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>Diagram</title></head>
+<body>
+
+<template id="diagram-template">
+<style>
+@font-face{font-family:Montserrat;src:url("assets/fonts/Montserrat.ttf") format("truetype");font-weight:100 900;font-display:block}
+#root{position:absolute;inset:0;overflow:hidden;font-family:Montserrat}
+#diagram-background{position:absolute;inset:0;opacity:0}
+#diagram-stage{position:absolute;inset:0;opacity:0}
+#diagram-arrows{position:absolute;left:0;top:0;overflow:visible}
+.diagram-halo{position:absolute;opacity:0}
+.diagram-node{position:absolute;box-sizing:border-box;border-style:solid;display:flex;align-items:center;justify-content:center;opacity:0}
+.diagram-txt{position:relative;display:block;font-weight:800;text-align:center;line-height:1.12;overflow-wrap:break-word}
+.diagram-number{position:absolute;display:flex;align-items:center;justify-content:center;border-radius:50%;font-weight:900;color:#fff}
+.diagram-arrow{fill:none;stroke-linecap:round;opacity:0}
+.diagram-tip{opacity:0}
+#diagram-title{position:absolute;display:flex;align-items:center;justify-content:center;opacity:0}
+#diagram-title-txt{display:block;font-weight:900;text-align:center;line-height:1.1}
+</style>
+<div id="root" data-composition-id="diagram" data-width="1080" data-height="1920" data-duration="9">
+  <div id="diagram-background"></div>
+  <div id="diagram-stage">
+    <div id="diagram-halos"></div>
+    <svg id="diagram-arrows" xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+    <div id="diagram-nodes"></div>
+    <div id="diagram-title"><span id="diagram-title-txt">What AI did</span></div>
+  </div>
+</div>
+<script>
+(function () {
+  const ID = "diagram";
+  const PARAM = {
+    shape: "steps",
+    title: { text: "What AI did", at: { word: "first", standard: 0.2 } },
+    parts: [
+      { label: "Listened to everything", role: "does", at: { word: "heard", standard: 0.7 }, arrow: null },
+      { label: "Word by word", role: "does", at: { word: "word", standard: 2.1 }, arrow: { word: "word", standard: 2.1 } },
+      { label: "Found the mistakes", role: "finds", at: { word: "found", standard: 3.5 }, arrow: { word: "found", standard: 3.5 } },
+      { label: "Cut", role: "result", at: { word: "cut", standard: 6.7 }, arrow: { word: "cut", standard: 6.7 } },
+    ],
+    effect: null,
+    roles: { does: "accent", finds: "red", result: "green" },
+    numbers: true,
+    example: { at: { word: "pause", standard: 5.0 }, path: [2], end: null, lit: 1.4 },
+    pathColor: "#f2b705",
+    dim: 0.7,
+    final: 2.0,
+    pause: 0.5,
+    direction: "auto",
+    captions: true,
+    background: "auto",
+    area: null,
+    entry: 0.2,
+    exit: 0.25,
+  };
+  const C = Object.assign({ words: [], duration: 9, width: 1080, height: 1920, safeArea: [140, 230, 940, 1530], face: null, frame: null,
+    colors: { paper: "#fffdfd", line: "#e6ddf8", base: "#c7b7ef", accent: "#665080", ink: "#352c40", green: "#2e9e5b", red: "#e5484d" } },
+    (window.__scenes || {})[ID] || {});
+  const DUR = C.duration, U = Math.min(C.width, C.height) / 1080;
+  const root = document.getElementById("diagram-background").parentElement;
+  if (root.offsetWidth && (Math.abs(root.offsetWidth - C.width) > 2 || Math.abs(root.offsetHeight - C.height) > 2))
+    console.error(`[${ID}] scene root is ${root.offsetWidth} x ${root.offsetHeight}, video is ${C.width} x ${C.height}: update root data-width and data-height`);
+  const without = (s) => String(s).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]/g, "");
+  const word = (txt, after, standard) => { const a = without(txt), p = a && (C.words || []).find((w) => w.t >= after - 1e-3 && without(w.text).startsWith(a)); return p ? p.t : standard; };
+  const moment = (m, standard) => (typeof m === "number" ? m : typeof m === "string" ? word(m, 0, standard)
+    : m && typeof m === "object" ? word(m.word || "", m.after == null ? 0 : moment(m.after, 0), m.standard == null ? standard : m.standard) : standard);
+  let lastEnd = C.frame ? Math.max(0, C.frame.closedAt || 0) : 0, nextAvailable = lastEnd + PARAM.entry;
+  function schedule(desired, dur, adjacent) {
+    const t = Math.max(desired, adjacent ? lastEnd : nextAvailable);
+    if (t - desired > 0.4) console.warn(`[${ID}] action starts ${(t - desired).toFixed(2)} s after its word: space anchors farther apart or reduce pause`);
+    lastEnd = t + dur; nextAvailable = lastEnd + PARAM.pause; return t;
+  }
+  const color = (n) => C.colors[n] || n;
+  const rgb = (h) => { h = String(h).replace("#", ""); if (h.length === 3) h = h.replace(/./g, "$&$&"); return [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16)); };
+  const mix = (a, b, k) => "#" + rgb(a).map((v, i) => Math.round(v + (rgb(b)[i] - v) * k).toString(16).padStart(2, "0")).join("");
+  const weight = (ch) => { const b = ch.normalize("NFD")[0]; return b === " " ? 0.28 : "MW".includes(b) ? 1 : "mw".includes(b) ? 0.92 : "iljI.,:;'!|".includes(b) ? 0.32 : /[A-Z]/.test(b) ? 0.76 : /[0-9]/.test(b) ? 0.68 : 0.62; };
+  const width = (t, px) => [...String(t)].reduce((s, ch) => s + weight(ch), 0) * px * 1.1;
+  const lines = (t, px, w) => String(t).split(/\s+/).filter(Boolean).reduce((ls, p) => { const u = ls[ls.length - 1]; if (u !== undefined && width(u + " " + p, px) <= w) ls[ls.length - 1] = u + " " + p; else ls.push(p); return ls; }, []);
+  const fits = (t, w, h, larger, smaller, max) => { for (let px = Math.round(larger); px > smaller; px--) { const ls = lines(t, px, w); if (ls.length <= max && ls.every((l) => width(l, px) <= w) && ls.length * px * 1.16 <= h) return px; } return Math.round(smaller); };
+  const A = PARAM.area ? PARAM.area.slice() : C.frame && C.frame.freeArea ? C.frame.freeArea.slice()
+    : [C.safeArea[0], C.safeArea[1], C.safeArea[2], PARAM.captions ? Math.round(C.safeArea[1] + (C.safeArea[3] - C.safeArea[1]) * 0.7) : C.safeArea[3]];
+  const AW = A[2] - A[0], AH = A[3] - A[1];
+  const background = PARAM.background === "auto" ? (C.frame ? null : "paper") : PARAM.background;
+  function paintBackground(el) {
+    if (background === "paper" && C.backgroundCss) el.style.cssText += ";" + C.backgroundCss;
+    else if (background === "paper") { const g = Math.round(60 * U); Object.assign(el.style, { backgroundColor: C.colors.paper, backgroundSize: `${g}px ${g}px`, backgroundImage: `linear-gradient(${C.colors.line} 2px,transparent 2px),linear-gradient(90deg,${C.colors.line} 2px,transparent 2px)` }); }
+    else if (background) el.style.backgroundColor = background;
+  }
+  const createElement = (tag, id, cls, parent, style, text) => { const e = document.createElement(tag); if (id) e.id = id; if (cls) e.className = cls; if (style) Object.assign(e.style, style); if (text != null) e.textContent = text; parent.appendChild(e); return e; };
+  const px = (v) => `${v}px`;
+  const light = (h) => { const [r, g, b] = rgb(h); return 0.299 * r + 0.587 * g + 0.114 * b > 150; };
+  const over = (background) => (light(C.colors.ink) && light(background) ? C.colors.paper : "#ffffff");
+  const N = PARAM.parts.length, portrait = AW < AH * 1.25;
+  const effect = PARAM.shape === "cause" ? (PARAM.effect == null ? N - 1 : PARAM.effect) : -1;
+  const titleHeight = PARAM.title ? Math.round(Math.min(120 * U, AH * 0.14)) : 0;
+  const top = A[1] + (titleHeight ? titleHeight + 24 * U : 0), height = A[3] - top;
+  const boxes = new Array(N).fill(null), pairs = [];
+  const grid = (list, cols, w, h, gap, y0) => list.forEach((i, k) => {
+    const r = Math.floor(k / cols), itemsInRow = Math.min(cols, list.length - r * cols), x0 = A[0] + (AW - (itemsInRow * w + (itemsInRow - 1) * gap)) / 2;
+    boxes[i] = { x: x0 + (k - r * cols) * (w + gap), y: y0 + r * (h + gap), w, h };
+  });
+  const all = PARAM.parts.map((_, i) => i);
+  if (PARAM.shape === "steps") {
+    const lineGap = Math.min(90 * U, AW * 0.06), rowWidth = (AW - (N - 1) * lineGap) / N, columnHeight = (height - (N - 1) * 56 * U) / N;
+    let mode = PARAM.direction === "column" || (PARAM.direction === "auto" && portrait) ? "column" : "line";
+    if (PARAM.direction === "auto" && N > 2 && ((mode === "line" && rowWidth < 300 * U) || columnHeight < 96 * U)) mode = columnHeight >= 96 * U ? "column" : "grid";
+    if (mode === "grid") {
+      const rows = Math.ceil(N / 2), gap = Math.min(84 * U, AW * 0.08), w = (AW - gap) / 2, h = Math.min(170 * U, (height - (rows - 1) * gap) / rows);
+      grid(all, 2, w, h, gap, top + (height - (rows * h + (rows - 1) * gap)) / 2);
+    } else if (mode === "column") {
+      let gap = 84 * U, h = Math.min(170 * U, (height - (N - 1) * gap) / N);
+      if (h < 96 * U) { gap = 56 * U; h = (height - (N - 1) * gap) / N; }
+      grid(all, 1, Math.min(AW, 680 * U), h, gap, top + (height - (N * h + (N - 1) * gap)) / 2);
+    } else {
+      const gap = Math.min(90 * U, AW * 0.06), w = (AW - (N - 1) * gap) / N, h = Math.min(w * 0.7, 240 * U, height);
+      grid(all, N, w, h, gap, top + (height - h) / 2);
+    }
+    for (let i = 1; i < N; i++) if (PARAM.parts[i].arrow) pairs.push([i - 1, i, i]);
+  } else if (PARAM.shape === "groups") {
+    const cols = portrait ? Math.min(N, 2) : Math.min(N, 4), rows = Math.ceil(N / cols), gap = 36 * U;
+    const w = (AW - (cols - 1) * gap) / cols, h = Math.min(200 * U, (height - (rows - 1) * gap) / rows);
+    grid(all, cols, w, h, gap, top + (height - (rows * h + (rows - 1) * gap)) / 2);
+  } else {
+    const causes = all.filter((i) => i !== effect), nc = causes.length, gap = 30 * U;
+    if (portrait) {
+      const cols = nc <= 3 ? nc : 2, rows = Math.ceil(nc / cols), w = (AW - (cols - 1) * gap) / cols, causeGap = Math.max(110 * U, height * 0.16);
+      const h = Math.min(170 * U, (height - causeGap - (rows - 1) * gap) / (rows + 1.1)), he = h * 1.1, we = Math.min(AW, 600 * U);
+      const layout = rows * h + (rows - 1) * gap + causeGap + he, y0 = top + (height - layout) / 2;
+      grid(causes, cols, w, h, gap, y0);
+      boxes[effect] = { x: A[0] + (AW - we) / 2, y: y0 + layout - he, w: we, h: he };
+    } else {
+      const wc = AW * 0.4, we = AW * 0.34, h = Math.min(160 * U, (height - (nc - 1) * gap) / nc), he = Math.min(height, h * 1.4);
+      const y0 = top + (height - (nc * h + (nc - 1) * gap)) / 2;
+      causes.forEach((ic, k) => { boxes[ic] = { x: A[0], y: y0 + k * (h + gap), w: wc, h }; });
+      boxes[effect] = { x: A[2] - we, y: top + (height - he) / 2, w: we, h: he };
+    }
+    causes.forEach((ic) => { if (PARAM.parts[ic].arrow) pairs.push([ic, effect, ic]); });
+  }
+  const backgroundElement = document.getElementById("diagram-background");
+  paintBackground(backgroundElement);
+  const svg = document.getElementById("diagram-arrows"), svgNS = "http://www.w3.org/2000/svg";
+  svg.setAttribute("width", C.width); svg.setAttribute("height", C.height); svg.setAttribute("viewBox", `0 0 ${C.width} ${C.height}`);
+  const radius = 26 * U, border = Math.max(4, Math.round(6 * U)), withNumber = PARAM.shape === "steps" && PARAM.numbers;
+  const dot = (r) => Math.min(r.h * 0.46, 64 * U);
+  const space = (r) => r.w - 2 * border - 52 * U - (withNumber ? dot(r) + 12 * U : 0);
+  const fitsIn = (i, larger) => fits(PARAM.parts[i].label, space(boxes[i]), boxes[i].h - 2 * border - 16 * U, larger, 26 * U, 2);
+  const effectLetter = effect >= 0 ? fitsIn(effect, 64 * U) : 0;
+  const letter = N > (effect >= 0 ? 1 : 0) ? Math.min(...PARAM.parts.map((p, i) => (i === effect ? Infinity : fitsIn(i, 58 * U)))) : effectLetter;
+  const halos = [], nodes = [];
+  PARAM.parts.forEach((p, i) => {
+    const r = boxes[i], c = color(PARAM.roles[p.role] || "accent"), f = 14 * U;
+    halos.push(createElement("div", `diagram-halo-${i}`, "diagram-halo", document.getElementById("diagram-halos"),
+      { left: px(r.x - f), top: px(r.y - f), width: px(r.w + 2 * f), height: px(r.h + 2 * f), borderRadius: px(radius + f), background: PARAM.pathColor }));
+    const node = createElement("div", `diagram-node-${i}`, "diagram-node", document.getElementById("diagram-nodes"), { left: px(r.x), top: px(r.y), width: px(r.w), height: px(r.h),
+      borderRadius: px(radius), borderWidth: px(border), borderColor: c, background: mix(c, C.colors.paper, 0.86), boxShadow: `0 ${Math.round(10 * U)}px 0 -2px ${mix(c, C.colors.paper, 0.55)}` });
+    const d = dot(r), leftInset = withNumber ? 22 * U + d + 16 * U : 26 * U;
+    if (withNumber) createElement("span", `diagram-number-${i}`, "diagram-number", node, { left: px(22 * U), top: px((r.h - 2 * border - d) / 2), width: px(d), height: px(d), background: mix(c, C.colors.ink, 0.22), color: over(mix(c, C.colors.ink, 0.22)), fontSize: px(Math.round(d * 0.55)) }, String(i + 1));
+    createElement("span", `diagram-txt-${i}`, "diagram-txt", node, { width: px(space(r)), marginLeft: px(leftInset - 26 * U), fontSize: px(i === effect ? effectLetter : letter), color: C.colors.ink }, p.label);
+    nodes.push(node);
+  });
+  if (!PARAM.title) document.getElementById("diagram-title").style.display = "none";
+  else {
+    Object.assign(document.getElementById("diagram-title").style, { left: px(A[0]), top: px(A[1]), width: px(AW), height: px(titleHeight) });
+    Object.assign(document.getElementById("diagram-title-txt"), { textContent: PARAM.title.text });
+    Object.assign(document.getElementById("diagram-title-txt").style, { color: C.colors.ink, fontSize: px(fits(PARAM.title.text, AW, titleHeight, 68 * U, 30 * U, 2)) });
+  }
+  const atBorder = (r, dx, dy) => { const t = Math.min(dx ? r.w / 2 / Math.abs(dx) : Infinity, dy ? r.h / 2 / Math.abs(dy) : Infinity); return [r.x + r.w / 2 + dx * t, r.y + r.h / 2 + dy * t]; };
+  function newArrow(a, b, lineColor, thickness, id) {
+    const ra = boxes[a], rb = boxes[b], padding = 8 * U, arrowHeadSize = 30 * U;
+    let dx = rb.x + rb.w / 2 - ra.x - ra.w / 2, dy = rb.y + rb.h / 2 - ra.y - ra.h / 2;
+    const n = Math.hypot(dx, dy) || 1; dx /= n; dy /= n;
+    const p1 = atBorder(ra, dx, dy), p2 = atBorder(rb, -dx, -dy), x1 = p1[0] + dx * padding, y1 = p1[1] + dy * padding, x2 = p2[0] - dx * padding, y2 = p2[1] - dy * padding;
+    const xs = x2 - dx * arrowHeadSize * 0.7, ys = y2 - dy * arrowHeadSize * 0.7, L = Math.hypot(xs - x1, ys - y1), lg = arrowHeadSize * 0.62, f = (v) => v.toFixed(1);
+    const stem = document.createElementNS(svgNS, "path"), tip = document.createElementNS(svgNS, "path");
+    [["class", "diagram-arrow"], ["id", `${id}-stem`], ["d", `M ${f(x1)} ${f(y1)} L ${f(xs)} ${f(ys)}`], ["stroke", lineColor], ["stroke-width", thickness]].forEach(([k, v]) => stem.setAttribute(k, v));
+    Object.assign(stem.style, { strokeDasharray: f(L), strokeDashoffset: f(L) });
+    const bx = x2 - dx * arrowHeadSize, by = y2 - dy * arrowHeadSize;
+    [["class", "diagram-tip"], ["id", `${id}-tip`], ["fill", lineColor], ["d", `M ${f(x2)} ${f(y2)} L ${f(bx - dy * lg)} ${f(by + dx * lg)} L ${f(bx + dy * lg)} ${f(by - dx * lg)} Z`]].forEach(([k, v]) => tip.setAttribute(k, v));
+    svg.appendChild(stem); svg.appendChild(tip);
+    return { stem, tip, L };
+  }
+  const arrows = pairs.map(([a, b, owner], k) => ({ a, b, owner, ...newArrow(a, b, C.colors.ink, Math.max(5, 8 * U), `diagram-arrow-${k}`) }));
+  const ex = PARAM.example, path = ex ? ex.path.filter((i) => i >= 0 && i < N) : [];
+  const link = (a, b) => arrows.findIndex((q) => (q.a === a && q.b === b) || (q.a === b && q.b === a));
+  const pathArrows = path.slice(1).map((b, k) => ({ k: k + 1, s: link(path[k], b) })).filter((q) => q.s >= 0)
+    .map((q) => ({ k: q.k, ...newArrow(arrows[q.s].a, arrows[q.s].b, PARAM.pathColor, Math.max(8, 13 * U), `diagram-path-${q.k}`) }));
+  const tl = gsap.timeline({ paused: true });
+  tl.fromTo(backgroundElement, { opacity: 0 }, { opacity: 1, duration: Math.max(0.01, PARAM.entry), ease: "power1.out" }, 0);
+  tl.fromTo("#diagram-stage", { opacity: 0 }, { opacity: 1, duration: 0.01 }, 0);
+  const ev = [];
+  if (PARAM.title) ev.push({ type: "title", desired: moment(PARAM.title.at, 0.2) - 0.1, pre: [] });
+  PARAM.parts.forEach((p, i) => ev.push({ type: "node", i, desired: moment(p.at, 0.6 + i * 1.4) - 0.1, pre: [] }));
+  arrows.forEach((s, k) => ev.push({ type: "arrow", k, desired: moment(PARAM.parts[s.owner].arrow, 0), pre: [s.a, s.b] }));
+  if (path.length) ev.push({ type: "example", desired: moment(ex.at, DUR * 0.6), pre: path.slice() });
+  const eventNode = (i) => ev.find((e) => e.type === "node" && e.i === i);
+  ev.forEach((e) => { e.ef = Math.max(e.desired, ...e.pre.map((i) => eventNode(i).desired + 0.01)); if (e.type === "example") pathArrows.forEach((q) => { e.ef = Math.max(e.ef, moment(PARAM.parts[arrows[link(path[q.k - 1], path[q.k])].owner].arrow, 0) + 0.02); }); });
+  const order = { title: 0, node: 1, arrow: 2, example: 3 };
+  ev.sort((a, b) => a.ef - b.ef || order[a.type] - order[b.type]);
+  const settled = {}, POP = 0.35, DRAW_DURATION = 0.32;
+  ev.forEach((e, n) => {
+    if (e.type === "title") {
+      tl.fromTo("#diagram-title", { opacity: 0, y: 24 * U }, { opacity: 1, y: 0, duration: POP, ease: "power2.out" }, schedule(e.desired, POP));
+    } else if (e.type === "node") {
+      const t = schedule(e.desired, POP);
+      tl.fromTo(nodes[e.i], { opacity: 0, y: 28 * U }, { opacity: 1, y: 0, duration: POP, ease: "back.out(1.6)" }, t);
+      settled[e.i] = t + POP;
+    } else if (e.type === "arrow") {
+      const s = arrows[e.k], readyAt = Math.max(settled[s.a] || 0, settled[s.b] || 0), desired = Math.max(e.desired, readyAt);
+      const t = schedule(desired, DRAW_DURATION + 0.12, desired <= readyAt + 0.15 && readyAt >= lastEnd - 1e-3);
+      tl.fromTo(s.stem, { opacity: 0 }, { opacity: 1, duration: 0.01, ease: "none" }, t);
+      tl.fromTo(s.stem, { strokeDashoffset: s.L }, { strokeDashoffset: 0, duration: DRAW_DURATION, ease: "power2.inOut", immediateRender: false }, t);
+      tl.fromTo(s.tip, { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "none" }, t + DRAW_DURATION);
+    } else {
+      const step = 0.28, dur = path.length * step + 0.1, t = schedule(e.desired, dur);
+      const outside = nodes.filter((_, i) => !path.includes(i) && (settled[i] || Infinity) <= t);
+      path.forEach((i, k) => tl.fromTo(halos[i], { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, t + k * step));
+      pathArrows.forEach((q) => {
+        tl.fromTo(q.stem, { opacity: 0 }, { opacity: 1, duration: 0.01, ease: "none" }, t + (q.k - 1) * step + 0.1);
+        tl.fromTo(q.stem, { strokeDashoffset: q.L }, { strokeDashoffset: 0, duration: step * 0.8, ease: "none", immediateRender: false }, t + (q.k - 1) * step + 0.1);
+        tl.fromTo(q.tip, { opacity: 0 }, { opacity: 1, duration: 0.08 }, t + q.k * step);
+      });
+      if (outside.length && PARAM.dim < 1) tl.fromTo(outside, { opacity: 1 }, { opacity: PARAM.dim, duration: 0.3, ease: "power1.inOut", immediateRender: false }, t);
+      const next = ev[n + 1];
+      const desired = ex.end != null ? moment(ex.end, t + dur + ex.lit) : Math.min(t + dur + (ex.lit || 1.4), next ? next.ef - 0.3 - PARAM.pause : Infinity);
+      const actionTime = schedule(Math.max(desired, t + dur + 0.6), 0.3, true), returnMotion = { opacity: 0, duration: 0.3, ease: "power1.inOut", immediateRender: false };
+      tl.to(path.map((i) => halos[i]).concat(...pathArrows.map((q) => [q.stem, q.tip])), returnMotion, actionTime);
+      if (outside.length && PARAM.dim < 1) tl.to(outside, { ...returnMotion, opacity: 1 }, actionTime);
+    }
+  });
+  const stopped = DUR - PARAM.exit - lastEnd;
+  if (stopped < PARAM.final - 0.05) console.warn(`[${ID}] complete diagram holds for only ${stopped.toFixed(2)} s (requested ${PARAM.final} s): extend the scene end or use endHold`);
+  if (PARAM.exit > 0) tl.fromTo(["#diagram-stage", backgroundElement], { opacity: 1 }, { opacity: 0, duration: PARAM.exit, ease: "power1.in", immediateRender: false }, Math.max(0, DUR - PARAM.exit));
+  window.__timelines["diagram"] = tl;
+})();
+</script>
+</template>
+</body></html>

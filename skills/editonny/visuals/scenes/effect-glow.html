@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Effect glow</title></head>
+<body>
+<!-- Effect glow. For a dream, memory, luxury mood, or beautiful moment: bright areas gain a soft halo. -->
+
+<template id="effect-glow-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+#effectglow-v{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;backdrop-filter:url(#effectglow-f);-webkit-backdrop-filter:url(#effectglow-f)}
+</style>
+<div id="root" data-composition-id="effect-glow" data-width="1080" data-height="1920" data-duration="2.8">
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0"><filter id="effectglow-f" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feComponentTransfer in="SourceGraphic" result="cl"><feFuncR id="effectglow-cr" type="gamma" amplitude="1" exponent="2.2" offset="0"/><feFuncG id="effectglow-cg" type="gamma" amplitude="1" exponent="2.2" offset="0"/><feFuncB id="effectglow-cb" type="gamma" amplitude="1" exponent="2.2" offset="0"/></feComponentTransfer><feGaussianBlur id="effectglow-b1" in="cl" stdDeviation="18" result="h1"/><feColorMatrix in="h1" type="matrix" values="0.6 0 0 0 0  0 0.6 0 0 0  0 0 0.6 0 0  0 0 0 0 1" result="n1"/><feGaussianBlur id="effectglow-b3" in="cl" stdDeviation="46" result="h3"/><feColorMatrix in="h3" type="matrix" values="0.4 0 0 0 0  0 0.4 0 0 0  0 0 0.4 0 0  0 0 0 0 1" result="n3"/><feColorMatrix in="SourceGraphic" type="matrix" values="1.2 4.8 2 0 -7.04  1.2 4.8 2 0 -7.04  1.2 4.8 2 0 -7.04  0 0 0 1 0" result="lz"/><feGaussianBlur id="effectglow-b2" in="lz" stdDeviation="8" result="h2"/><feColorMatrix id="effectglow-n2" in="h2" type="matrix" values="2.5 0 0 0 0  0 2.5 0 0 0  0 0 2.5 0 0  0 0 0 0 1" result="n2"/><feComposite in="n1" in2="n3" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="ha"/><feComponentTransfer in="ha" result="hs"><feFuncR type="table" tableValues="0 .125 .25 .36 .45 .52 .57 .6 .62"/><feFuncG type="table" tableValues="0 .125 .25 .36 .45 .52 .57 .6 .62"/><feFuncB type="table" tableValues="0 .125 .25 .36 .45 .52 .57 .6 .62"/></feComponentTransfer><feComposite in="hs" in2="n2" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="h"/><feColorMatrix id="effectglow-q" in="h" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0" result="hq"/><feBlend in="hq" in2="SourceGraphic" mode="screen"/></filter></svg>
+<div id="effectglow-v"></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["effect-glow"] || { duration: 2.8 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 2.8, t0 = 0;
+
+  var P = {
+    strength: 0.65, // 0–1: highlight glow strength.
+    radius: 18, // Halo radius from 4 to 60 pixels.
+    warmth: 0.3, // 0–1: shift the halo toward warm gold.
+  };
+
+
+  var strength = Number(P.strength); if (!(strength >= 0)) strength = .65; strength = Math.min(1, strength);
+  var radius = Number(P.radius); if (!(radius > 0)) radius = 18; radius = Math.max(4, Math.min(60, radius));
+  var warmth = Number(P.warmth); if (!(warmth >= 0)) warmth = .3; warmth = Math.min(1, warmth);
+  var amp = (1.55 * strength).toFixed(3), ki, FN = ["effectglow-cr", "effectglow-cg", "effectglow-cb"];
+  for (ki = 0; ki < 3; ki++) document.getElementById(FN[ki]).setAttribute("amplitude", amp);
+
+  var light = (3.5 * Math.pow(strength, .67)).toFixed(3);
+  document.getElementById("effectglow-n2").setAttribute("values", light + " 0 0 0 0  0 " + light + " 0 0 0  0 0 " + light + " 0 0  0 0 0 0 1");
+  document.getElementById("effectglow-b1").setAttribute("stdDeviation", radius.toFixed(1));
+  document.getElementById("effectglow-b2").setAttribute("stdDeviation", (radius * .45).toFixed(1));
+  document.getElementById("effectglow-b3").setAttribute("stdDeviation", (radius * 2.6).toFixed(1));
+  document.getElementById("effectglow-q").setAttribute("values", (1 + .1 * warmth).toFixed(3) + " 0 0 0 0  0 " + (1 - .06 * warmth).toFixed(3) + " 0 0 0  0 0 " + (1 - .45 * warmth).toFixed(3) + " 0 0  0 0 0 1 0");
+
+  var enter = t0 + .05, exit = t0 + D - .3, live = enter + .34;
+  var padding = exit - live, turns = Math.max(1, Math.round(padding / 2.3)), halfValue = padding / (turns * 2);
+  tl.fromTo("#effectglow-v", { opacity: 0 }, { opacity: 1, duration: .34, ease: "sine.out" }, enter);
+  if (halfValue > .45) tl.to("#effectglow-v", { opacity: .87, duration: halfValue, ease: "sine.inOut", yoyo: true, repeat: turns * 2 - 1, immediateRender: false }, live);
+  tl.to("#effectglow-v", { opacity: 0, duration: .28, ease: "sine.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["effect-glow"] = tl;
+})();
+</script>
+</template>
+</body></html>

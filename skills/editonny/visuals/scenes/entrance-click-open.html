@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Entrance click open</title></head>
+<body>
+<!-- Entrance click open. When opening a dashboard, link, or result: an image rises at 44% scale, a cursor clicks it, and it expands with an elastic shake and brief blur. It holds until the cut. The 1.3-second entrance compresses below 2.4 seconds to occupy 55% of the scene; sound timing must compress with it. Set image to a file in the image folder. For footage, replace the image element with a video retaining its ID and class, and add src, data-start="0", data-duration, data-track-index="2", muted, and playsinline. Keep portrait cards beside or below the face; the default 16:9 card sits above it. -->
+
+<template id="entrance-click-open-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+.entranceclickopen-a{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;pointer-events:none}
+.entranceclickopen-t{position:absolute;left:0;top:0;width:1080px;height:1920px}
+.entranceclickopen-gl{filter:url(#entranceclickopen-gw)}
+.entranceclickopen-pv{perspective:1200px}
+.entranceclickopen-w{position:absolute;left:0;top:0;width:0;height:0}
+.entranceclickopen-j{position:absolute;left:0;top:0;width:100%;height:100%}
+.entranceclickopen-f{filter:url(#entranceclickopen-bl)}
+.entranceclickopen-mk{position:absolute;left:-200px;top:0;width:calc(100% + 400px);height:calc(100% + 200px);overflow:hidden}
+.entranceclickopen-mi{position:absolute;left:200px;top:0;width:calc(100% - 400px);height:calc(100% - 200px)}
+.entranceclickopen-c{position:absolute;left:0;top:0;width:100%;height:100%;overflow:hidden;background:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.2),0 8px 20px rgba(0,0,0,.26),0 30px 70px rgba(0,0,0,.4)}
+.entranceclickopen-m{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;display:block}
+.entranceclickopen-cw{position:absolute;left:0;top:0;width:0;height:0;opacity:0}
+.entranceclickopen-cur{position:absolute;left:0;top:0;overflow:visible;filter:drop-shadow(0 4px 5px rgba(0,0,0,.45))}
+.entranceclickopen-svg{position:absolute;left:0;top:0;width:0;height:0;overflow:hidden}
+</style>
+<div id="root" data-composition-id="entrance-click-open" data-width="1080" data-height="1920" data-duration="3.0">
+<div id="entranceclickopen-a" class="entranceclickopen-a">
+
+  <div id="entranceclickopen-gl" class="entranceclickopen-t entranceclickopen-gl">
+    <div id="entranceclickopen-ry" class="entranceclickopen-t"><div id="entranceclickopen-pv" class="entranceclickopen-t entranceclickopen-pv"><div id="entranceclickopen-z" class="entranceclickopen-t" data-layout-allow-overflow><div id="entranceclickopen-w" class="entranceclickopen-w"><div id="entranceclickopen-sx" class="entranceclickopen-j"><div id="entranceclickopen-sy" class="entranceclickopen-j"><div id="entranceclickopen-f" class="entranceclickopen-j entranceclickopen-f"><div id="entranceclickopen-mk" class="entranceclickopen-mk"><div id="entranceclickopen-mi" class="entranceclickopen-mi"><div id="entranceclickopen-c" class="entranceclickopen-c"><img id="entranceclickopen-m" class="entranceclickopen-m" src="assets/visuals/img/city.jpg" alt=""></div></div></div></div></div></div></div></div></div></div>
+    <div id="entranceclickopen-pc" class="entranceclickopen-t entranceclickopen-pv"><div id="entranceclickopen-cw" class="entranceclickopen-cw"><svg id="entranceclickopen-cur" class="entranceclickopen-cur" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 19" shape-rendering="crispEdges"><path fill="#fff" d="M1 2h1v1h-1zM1 3h2v1h-2zM1 4h3v1h-3zM1 5h4v1h-4zM1 6h5v1h-5zM1 7h6v1h-6zM1 8h7v1h-7zM1 9h8v1h-8zM1 10h5v1h-5zM1 11h2v1h-2zM4 11h2v1h-2zM1 12h1v1h-1zM5 12h2v1h-2zM5 13h2v1h-2zM6 14h2v1h-2zM6 15h2v1h-2zM7 16h2v1h-2zM7 17h2v1h-2z"/><path fill="#000" d="M0 0h1v1h-1zM0 1h2v1h-2zM0 2h1v1h-1zM2 2h1v1h-1zM0 3h1v1h-1zM3 3h1v1h-1zM0 4h1v1h-1zM4 4h1v1h-1zM0 5h1v1h-1zM5 5h1v1h-1zM0 6h1v1h-1zM6 6h1v1h-1zM0 7h1v1h-1zM7 7h1v1h-1zM0 8h1v1h-1zM8 8h1v1h-1zM0 9h1v1h-1zM9 9h1v1h-1zM0 10h1v1h-1zM6 10h5v1h-5zM0 11h1v1h-1zM3 11h1v1h-1zM6 11h1v1h-1zM0 12h1v1h-1zM2 12h1v1h-1zM4 12h1v1h-1zM7 12h1v1h-1zM0 13h2v1h-2zM4 13h1v1h-1zM7 13h1v1h-1zM0 14h1v1h-1zM5 14h1v1h-1zM8 14h1v1h-1zM5 15h1v1h-1zM8 15h1v1h-1zM6 16h1v1h-1zM9 16h1v1h-1zM6 17h1v1h-1zM9 17h1v1h-1zM7 18h2v1h-2z"/></svg></div></div>
+  </div>
+  <svg class="entranceclickopen-svg" xmlns="http://www.w3.org/2000/svg" width="0" height="0">
+    <filter id="entranceclickopen-bl" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB"><feGaussianBlur id="entranceclickopen-g" stdDeviation="0"/></filter>
+    <filter id="entranceclickopen-gw" filterUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1920" color-interpolation-filters="sRGB"><feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  .6 1.18 .22 0 -.2" result="br"/><feGaussianBlur id="entranceclickopen-g1" in="br" stdDeviation="9" result="g1"/><feGaussianBlur id="entranceclickopen-g2" in="br" stdDeviation="50" result="g2"/><feComposite in="g1" in2="g2" operator="arithmetic" k1="0" k2=".6" k3=".7" k4="0" result="gg"/><feComposite id="entranceclickopen-ex" in="SourceGraphic" in2="gg" operator="arithmetic" k1="0" k2="1" k3=".5" k4="0" result="lu"/><feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1 0" result="si"/><feGaussianBlur id="entranceclickopen-g3" in="si" stdDeviation="20" result="g3"/><feComposite id="entranceclickopen-cl" in="lu" in2="g3" operator="arithmetic" k1="0" k2="1" k3="0" k4="0"/></filter>
+  </svg>
+</div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["entrance-click-open"] || { duration: 3.0 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 3.0, t0 = 0;
+
+  var P = {
+    x: 540, // Card center on the 1080×1920 canvas, in pixels; the cursor clicks here.
+    y: 446, // Card center, in pixels; default upper band spans y=232–660, above the eyes.
+    width: 760, // Card width, in pixels; the cursor scales with it.
+    height: 428, // Card height, in pixels; default aspect ratio is 16:9 and the image fills it with cropping.
+    radius: 28, // Final corner radius, in pixels; zero gives square corners, as in CapCut.
+    image: "city.jpg", // Image filename in the package image folder.
+  };
+
+
+  var pe = function (s) { return document.getElementById("entranceclickopen-" + s); };
+  var PERSP = 1200, COMP = 1.3;
+
+  var lg = Math.max(60, +P.width || 760), al = Math.max(60, +P.height || 428), cx = +P.x, cy = +P.y;
+  var radius = P.radius == null ? 28 : Math.max(0, +P.radius), initialRadius = Math.max(radius, 55 / 1080 * lg);
+  var box = pe("w"); box.style.left = (cx - lg / 2) + "px"; box.style.top = (cy - al / 2) + "px";
+  box.style.width = lg + "px"; box.style.height = al + "px"; pe("c").style.borderRadius = initialRadius + "px";
+  var media = pe("m"); if (P.image && media.tagName === "IMG") media.setAttribute("src", /[\/:]/.test(P.image) ? P.image : "assets/visuals/img/" + P.image);
+  pe("pv").style.perspectiveOrigin = cx + "px " + cy + "px"; pe("pc").style.perspectiveOrigin = cx + "px " + cy + "px";
+
+  var cel = Math.max(3.2, .0058 * lg), cur = pe("cur");
+  cur.setAttribute("width", (12 * cel).toFixed(1)); cur.setAttribute("height", (19 * cel).toFixed(1));
+  cur.style.left = (-2.03 * cel).toFixed(1) + "px"; cur.style.top = (-4.59 * cel).toFixed(1) + "px";
+  var arrow = pe("cw"); arrow.style.left = (cx + 4.5 / 1080 * lg) + "px"; arrow.style.top = (cy + 9.5 / 1080 * al) + "px";
+
+  var mg = .12 * lg + 70, gw = pe("gw"), gx0 = Math.max(0, cx - lg / 2 - mg), gy0 = Math.max(0, cy - al / 2 - mg);
+  gw.setAttribute("x", gx0.toFixed(0)); gw.setAttribute("y", gy0.toFixed(0));
+  gw.setAttribute("width", (Math.max(1080, cx + lg / 2 + mg) - gx0).toFixed(0)); gw.setAttribute("height", (cy + al / 2 + mg + .2 * al - gy0).toFixed(0));
+  pe("g1").setAttribute("stdDeviation", (.012 * lg).toFixed(1)); pe("g2").setAttribute("stdDeviation", (.07 * lg).toFixed(1));
+  pe("g3").setAttribute("stdDeviation", (.03 * lg).toFixed(1));
+
+  var bz = function (x1, y1, x2, y2) {
+    var B = function (a, b, t) { var m = 1 - t; return 3 * m * m * t * a + 3 * m * t * t * b + t * t * t; };
+    var rootNode = function (u) { var lo = 0, hi = 1; for (var i = 0; i < 46; i++) { var md = (lo + hi) / 2; if (B(x1, x2, md) < u) lo = md; else hi = md; } return (lo + hi) / 2; };
+    return function (u) { return u <= 0 ? 0 : u >= 1 ? 1 : B(y1, y2, rootNode(u)); };
+  };
+
+  var KF = function (list) {
+    var segs = list.map(function (s) { return { a: s[0], b: s[1], va: s[2], vb: s[3], c: bz(s[4][0], s[4][1], s[4][2], s[4][3]) }; });
+    return function (tau) {
+      if (tau <= segs[0].a) return segs[0].va;
+      for (var i = 0; i < segs.length; i++) { var s = segs[i]; if (tau <= s.b) return s.va + (s.vb - s.va) * s.c((tau - s.a) / (s.b - s.a)); }
+      return segs[segs.length - 1].vb;
+    };
+  };
+  var scale = KF([[.2, .6333, 44, 41, [1, 0, .999, 1]], [.6333, .6667, 41, 44, [.3366, 0, .7035, .483]], [.6667, .7, 44, 51, [.3, .2242, .8333, .7976]],
+    [.7, .7333, 51, 61, [.1667, .1417, .8469, .813]], [.7333, .7667, 61, 73, [.3, .3053, .7, .8329]], [.7667, .8, 73, 74, [.3, 1.762, .7, 1.5642]],
+    [.8, .8333, 74, 71, [.1605, .1006, .6667, 1]], [.8333, .8667, 71, 73, [.3333, 0, .7, .2313]], [.8667, 1.3, 73, 100, [.1181, .5603, .3113, 1]]]);
+  var posY = KF([[0, .5333, 750, 540, [.001, 0, .45, 1]]]);
+  var maskY = KF([[0, .3667, 741, 75.813, [.23, .07, .41, .92]]]);
+  var foldX = KF([[.6333, .6667, 0, -100, [.001, 0, .3, 1]], [.6667, .8667, -100, 26, [.6082, 0, .6802, 1]], [.8667, 1.1667, 26, 0, [.1648, 0, .3587, 1]]]);
+  var foldY = KF([[.6667, .7, 0, -22, [.3274, .2946, .8333, .8182]], [.7, .7333, -22, -48, [.1667, .1538, .718, .5897]], [.7333, .7667, -48, -88, [.5644, .5338, .6667, 1]],
+    [.7667, .8, -88, -58, [.3333, 0, .7, .5602]], [.8, .8333, -58, -21.765, [.1272, .1543, .8218, .8674]], [.8333, .8667, -21.765, 0, [.3, .3717, .6211, .7764]]]);
+  var blur = KF([[.6667, .7333, 0, 8, [0, 0, 1, 1]], [.7333, .9333, 8, 0, [.33, 0, .67, 1]]]);
+  var corners = KF([[.9333, 1.3, initialRadius, radius, [.2, 0, .8, 1]]]);
+  var arrowX = KF([[.1333, .2, 1713.5, 1165.5, [.02, .03, .51, .7]], [.2, .5667, 1165.5, 544.5, [.02, .14, .4, 1]]]);
+  var arrowE = KF([[.6, .6333, 68, 42, [.95, .04, .999, 1]], [.6333, .7, 42, 68, [.89, .08, .999, 1]]]);
+  var arrowO = KF([[.7333, .9, 1, 0, [.42, 0, .58, 1]]]);
+  var sparkle = KF([[.6, .6667, .5, 1.5, [1, 0, .85, .916]], [.6667, 1.3, 1.5, 0, [.1477, .5639, .8119, .9672]]]);
+
+  var flash = KF([[.6, .6667, 0, .55, [1, 0, .85, .916]], [.6667, .8333, .55, 0, [.15, .55, .5, 1]]]);
+
+  var ent = t0 + .05, end = t0 + D, A = Math.min(COMP, .55 * D), k = A / COMP;
+  var T = function (tau) { return ent + tau * k; }, TAU = function (t) { return (t - ent) / k; };
+
+  var follow = function (target, tA, tB, f, assemble, extra) {
+    var a = f(tA), b = f(tB), difference = b - a, ext = 0, ni, vi;
+    for (ni = 1; ni <= 60; ni++) { vi = f(tA + (tB - tA) * ni / 60) - a; if (Math.abs(vi) > Math.abs(ext)) ext = vi; }
+    if (Math.abs(difference) < .05 * Math.abs(ext)) difference = ext; if (Math.abs(difference) < 1e-6) difference = 1e-6;
+    var start = assemble(a), targetState = assemble(a + difference), q; targetState.duration = tB - tA; targetState.ease = function (p) { return (f(tA + p * (tB - tA)) - a) / difference; };
+    if (extra) for (q in extra) targetState[q] = extra[q];
+    tl.fromTo(target, start, targetState, tA);
+  };
+  var followTau = function (target, ta, tb, f, assemble, extra) { follow(target, T(ta), T(tb), function (t) { return f(TAU(t)); }, assemble, extra); };
+
+  var fX = function (tau) { return 1 - .15 * foldX(tau) / 100; }, fY = function (tau) { return 1 - .15 * foldY(tau) / 100; };
+  var size = function (tau) { return scale(tau) / 100 * Math.max(fX(tau), fY(tau)); };
+  var anchor = pe("a");
+  tl.fromTo(anchor, { opacity: 0 }, { opacity: 1, duration: .01, ease: "none" }, ent);
+
+  followTau(pe("ry"), 0, .5333, function (tau) { return (posY(tau) - 540) / 1080 * al; }, function (v) { return { y: v }; });
+  followTau(pe("z"), 0, 1.3, function (tau) { return PERSP * (1 - 1 / size(tau)); }, function (v) { return { z: v }; });
+  followTau(pe("sx"), .6333, 1.1667, function (tau) { return Math.acos(Math.min(1, fX(tau) / Math.max(fX(tau), fY(tau)))) * 180 / Math.PI; }, function (v) { return { rotationY: v }; });
+  followTau(pe("sy"), .6333, 1.1667, function (tau) { return Math.acos(Math.min(1, fY(tau) / Math.max(fX(tau), fY(tau)))) * 180 / Math.PI; }, function (v) { return { rotationX: v }; });
+  var cut = function (tau) {
+    if (tau >= .3667) return -60;
+    var s = scale(tau) / 100, top = posY(tau) - 540 * s;
+    return Math.max(-60, Math.min(100, 100 * (maskY(tau) + 540 * .46 - top) / (1080 * s)));
+  };
+
+  var openAt = function (tau) { var h = cut(tau); return h <= -60 ? -.3 * al - 60 : h / 100 * al; };
+  followTau(pe("mk"), 0, .38, openAt, function (v) { return { y: v }; });
+  followTau(pe("mi"), 0, .38, function (tau) { return -openAt(tau); }, function (v) { return { y: v }; });
+  followTau(pe("g"), .6667, .9333, function (tau) { return blur(tau) * lg / 1080; }, function (v) { return { attr: { stdDeviation: v.toFixed(2) } }; });
+  followTau(pe("c"), .9333, 1.3, corners, function (v) { return { borderRadius: v.toFixed(2) + "px" }; });
+
+  var finalX = cx + 4.5 / 1080 * lg, x0 = Math.max(cx + (1713.5 - 540) / 1080 * lg, 1080 + 8 * cel);
+  tl.fromTo(arrow, { opacity: 0 }, { opacity: 1, duration: .01, ease: "none", immediateRender: false }, T(.1333));
+  followTau(arrow, .1333, .5667, function (tau) { return (x0 - finalX) * (arrowX(tau) - 544.5) / (1713.5 - 544.5); }, function (v) { return { x: v }; });
+  followTau(arrow, .6, .7, function (tau) { return PERSP * (1 - 68 / arrowE(tau)); }, function (v) { return { z: v }; }, { immediateRender: false });
+  followTau(arrow, .7333, .9, arrowO, function (v) { return { opacity: v }; }, { immediateRender: false });
+
+  followTau(pe("ex"), .6, 1.3, sparkle, function (v) { return { attr: { k3: v.toFixed(3) } }; });
+  followTau(pe("cl"), .6, .8333, flash, function (v) { return { attr: { k3: v.toFixed(3) } }; });
+
+  tl.to(anchor, { opacity: 0, duration: .01, ease: "none", immediateRender: false }, end - .01);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["entrance-click-open"] = tl;
+})();
+</script>
+</template>
+</body></html>

@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Text typewriter</title></head>
+<body>
+<!-- Text typewriter. For commands, code, or AI tutorials: letters type into a dark strip with a moving block cursor that blinks during pauses. -->
+
+<template id="text-typewriter-template">
+<style>
+@font-face{font-family:"Montserrat";src:url("assets/fonts/Montserrat.ttf") format("truetype");font-weight:100 900;font-display:block}
+@font-face{font-family:"Caveat";src:url("assets/fonts/Caveat.ttf") format("truetype");font-weight:400 700;font-display:block}
+@font-face{font-family:"JetBrainsMono";src:url("assets/fonts/JetBrainsMono.ttf") format("truetype");font-weight:100 800;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Montserrat",sans-serif}
+.texttypewriter-f{position:absolute;left:0;top:0;opacity:0;background:rgba(12,12,16,.8);border-radius:10px;box-shadow:0 10px 28px rgba(0,0,0,.38)}
+.texttypewriter-k{position:absolute;left:0;top:0;border-radius:3px}
+.texttypewriter-l{position:absolute;left:0;top:0;display:flex;white-space:nowrap;color:#fff;font-family:"JetBrainsMono",monospace;font-weight:700;line-height:1;text-shadow:0 2px 0 rgba(0,0,0,.55)}
+.texttypewriter-w{display:flex}
+.texttypewriter-e{display:block;opacity:0}
+</style>
+<div id="root" data-composition-id="text-typewriter" data-width="1080" data-height="1920" data-duration="3.4">
+<div id="texttypewriter-c"></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["text-typewriter"] || { duration: 3.4 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 3.4, t0 = 0;
+
+  var P = {
+    y: 1280, // Strip center height on the 1080×1920 canvas, in pixels.
+    size: 54, // Font size, in pixels.
+    maxWords: 4, // Words per caption group.
+    color: "#ffffff", // Text color; dark text switches the strip to a light color.
+    accent: "#30d158", // Cursor color.
+  };
+
+
+  var HIDDEN_RANGES = [];
+
+
+  var W = Array.isArray(C.words) ? C.words : [
+    { text: "You", t: 0.10, end: 0.34 }, { text: "do not", t: 0.36, end: 0.58 }, { text: "need", t: 0.60, end: 0.98 },
+    { text: "an", t: 1.00, end: 1.10 }, { text: "editor", t: 1.12, end: 1.56 }, { text: "to", t: 1.92, end: 2.06 },
+    { text: "post", t: 2.08, end: 2.44 }, { text: "every", t: 2.46, end: 2.68 }, { text: "day.", t: 2.70, end: 3.05 }
+  ];
+
+  W = (function (a) { var o = [], u = 0.04, k, t; for (k = 0; k < a.length; k++) { t = Math.max(0.05, Number(a[k].t) || 0, u + 0.01); o.push({ text: a[k].text, t: t, end: Math.max(t + 0.02, Number(a[k].end) || 0) }); u = t; } return o; })(W);
+
+  var SCALE_FACTOR = (function () {
+    var e = (typeof HIDDEN_RANGES !== "undefined" && HIDDEN_RANGES) || [], b0 = (typeof C.start === "number") ? C.start : 0, o = [], k;
+    for (k = 0; k < e.length; k++) if (Number(e[k][1]) > Number(e[k][0])) o.push([Number(e[k][0]) - b0, Number(e[k][1]) - b0]);
+    return o;
+  })();
+  function hidden(t) { for (var k = 0; k < SCALE_FACTOR.length; k++) if (t >= SCALE_FACTOR[k][0] && t < SCALE_FACTOR[k][1]) return true; return false; }
+  function nextScale(t) { var r = Infinity, k; for (k = 0; k < SCALE_FACTOR.length; k++) if (SCALE_FACTOR[k][0] > t && SCALE_FACTOR[k][0] < r) r = SCALE_FACTOR[k][0]; return r; }
+  W = W.filter(function (w) { return !hidden(w.t); });
+
+  function show(s) { return String(s).replace(/^\s+|\s+$/g, "").replace(/[.,;:…]+$/g, ""); }
+
+  function screens(maxP, maxL) {
+    var groups = [], cur = [], letters = 0, i, w, txt, out = [];
+    for (i = 0; i < W.length; i++) {
+      w = W[i]; txt = show(w.text); if (!txt || !(w.t < D - 0.2)) continue;
+      if (cur.length && (cur.length >= maxP || letters + txt.length + 1 > maxL || w.t - cur[cur.length - 1].end > 0.7 || nextScale(cur[cur.length - 1].t) <= w.t)) { groups.push(cur); cur = []; letters = 0; }
+      cur.push({ text: txt, t: Math.max(0.05, w.t), end: Math.min(D - 0.05, Math.max(w.t + 0.08, w.end)) }); letters += txt.length + 1;
+      if (/[.!?…]$/.test(String(w.text).replace(/\s+$/, "")) || (cur.length >= 2 && /[,;:]$/.test(String(w.text).replace(/\s+$/, "")))) { groups.push(cur); cur = []; letters = 0; }
+    }
+    if (cur.length) groups.push(cur);
+    for (i = 0; i < groups.length; i++) {
+      var start = Math.max(0.05, groups[i][0].t - 0.05), speechEnd = groups[i][groups[i].length - 1].end;
+      var end = Math.min(D - 0.05, speechEnd + 0.5); if (i + 1 < groups.length) end = Math.min(end, Math.max(0.05, groups[i + 1][0].t - 0.05));
+      end = Math.min(end, Math.max(start + 0.15, nextScale(groups[i][groups[i].length - 1].t)));
+      if (end > start + 0.12) out.push({ words: groups[i], start: start, end: end });
+    }
+    return out;
+  }
+
+
+  var sizeValue = Math.max(44, Math.min(84, Number(P.size) || 54));
+  var yy = Math.max(230 + sizeValue * 0.95, Math.min(1530 - sizeValue * 0.95, Number(P.y) || 1280));
+
+  var maxP = Math.max(1, Math.min(8, Math.round(Number(P.maxWords) || 4))), maxL = Math.max(6, Math.floor((800 / sizeValue - 1.1) / 0.6));
+  var color = P.color || "#ffffff", dest = P.accent || "#30d158";
+
+  function light(c) {
+    var h = String(c).replace("#", ""); if (h.length === 3) h = h.charAt(0) + h.charAt(0) + h.charAt(1) + h.charAt(1) + h.charAt(2) + h.charAt(2);
+    if (!(/^[0-9a-fA-F]{6}$/.test(h))) return -1;
+    var v = parseInt(h, 16); return 0.299 * ((v >> 16) & 255) + 0.587 * ((v >> 8) & 255) + 0.114 * (v & 255);
+  }
+
+  var lightStrip = light(color) >= 0 && light(color) < 90, bandLight = lightStrip ? 240 : 14;
+  if (light(dest) >= 0 && Math.abs(light(dest) - bandLight) < 60) dest = color;
+
+  function fit(ps) { var n = ps.length - 1, q; for (q = 0; q < ps.length; q++) n += Array.from(String(ps[q].text).normalize("NFC")).length; return Math.min(sizeValue, Math.floor(800 / (0.6 * (n + 1) + 1.1))); }
+  var box = document.getElementById("texttypewriter-c"), list = screens(maxP, maxL), i, j, k, n, a, b, u, s, tk, cut, m, squeeze, q, ps, txt, characterCount, tt, cw, lg, alt, track, cur, line, pal, fontSize, pos, previousX, newX, beginTime, lim, wordDuration, spread, letterTime, lastValue, base, padding, count, idK, fromTime, untilTime;
+
+  var pont = {}, has = {};
+  for (k = 0; k < W.length; k++) { s = String(W[k].text).replace(/\s+$/, ""); if (/[.!?…,;:]$/.test(s)) pont[Math.max(0.05, W[k].t).toFixed(3)] = 1; }
+
+  for (i = 0; i < list.length; i++) for (j = 0; j < list[i].words.length; j++) has[list[i].words[j].t.toFixed(3)] = 1;
+  for (k = W.length - 1; k >= 0; k--) {
+    s = show(W[k].text); tk = Math.max(0.05, W[k].t);
+    if (!s || !(W[k].t < D - 0.2) || has[tk.toFixed(3)]) continue;
+    for (i = 0; i < list.length && list[i].words[0].t <= tk; i++) { }
+    if (i >= list.length) continue;
+    list[i].words.unshift({ text: s, t: tk, end: Math.min(D - 0.05, Math.max(W[k].t + 0.08, W[k].end)) });
+    list[i].start = Math.max(0.05, tk - 0.05); if (i) list[i - 1].end = Math.min(list[i - 1].end, list[i].start);
+  }
+
+  for (i = 0; i + 1 < list.length; i++) {
+    a = list[i]; b = list[i + 1]; if (b.start - a.end > 0.02) continue;
+    n = a.words.length; k = 0; cut = a.end;
+    while (k < n) { u = a.words[n - 1 - k]; if (pont[u.t.toFixed(3)] || cut - u.t >= 0.15) break; k++; cut = Math.max(0.05, u.t - 0.05); }
+    if (!k) continue;
+    b.words = a.words.splice(n - k, k).concat(b.words); b.start = cut; a.end = cut;
+
+    squeeze = fit(b.words) < sizeValue * 0.9;
+    for (m = k; m + 1 < b.words.length; m++) if ((squeeze || pont[b.words[m].t.toFixed(3)]) && b.words[m + 1].t - 0.05 - b.words[m].t >= 0.15) {
+      u = { words: b.words.splice(m + 1), start: 0, end: b.end }; u.start = Math.max(0.05, u.words[0].t - 0.05);
+      b.end = Math.min(b.end, b.words[m].end + 0.5, u.start); list.splice(i + 2, 0, u); break;
+    }
+    if (!a.words.length) { list.splice(i, 1); i--; }
+  }
+  for (i = 0; i < list.length; i++) {
+    ps = list[i].words; txt = []; characterCount = ps.length - 1; fromTime = t0 + list[i].start; untilTime = t0 + list[i].end;
+    for (j = 0; j < ps.length; j++) { txt[j] = Array.from(String(ps[j].text).normalize("NFC")); characterCount += txt[j].length; }
+    tt = fit(ps); cw = tt * 0.6;
+    lg = Math.round((characterCount + 1) * cw + tt * 1.06); alt = Math.round(tt * 1.74);
+    track = document.createElement("div"); track.className = "texttypewriter-f"; track.id = "texttypewriter-f" + i;
+    track.style.left = Math.round(540 - lg / 2) + "px"; track.style.top = Math.round(yy - alt / 2) + "px"; track.style.width = lg + "px"; track.style.height = alt + "px";
+    track.style.borderRadius = Math.round(tt * 0.17) + "px";
+    if (lightStrip) track.style.background = "rgba(244,244,247,.88)";
+    cur = document.createElement("div"); cur.className = "texttypewriter-k"; cur.id = "texttypewriter-k" + i;
+    cur.style.left = (tt * 0.5).toFixed(1) + "px"; cur.style.top = ((alt - tt * 1.12) / 2).toFixed(1) + "px"; cur.style.width = (tt * 0.5).toFixed(1) + "px"; cur.style.height = (tt * 1.12).toFixed(1) + "px";
+    cur.style.background = dest; cur.style.borderRadius = Math.max(2, Math.round(tt * 0.05)) + "px";
+    track.appendChild(cur);
+    line = document.createElement("div"); line.className = "texttypewriter-l";
+    line.style.left = (tt * 0.5).toFixed(1) + "px"; line.style.top = ((alt - tt) / 2 - tt * 0.03).toFixed(1) + "px"; line.style.fontSize = tt + "px"; line.style.color = color;
+    if (lightStrip) line.style.textShadow = "none";
+    for (j = 0; j < ps.length; j++) {
+      pal = document.createElement("span"); pal.className = "texttypewriter-w";
+      if (j) pal.style.marginLeft = cw.toFixed(2) + "px";
+      for (q = 0; q < txt[j].length; q++) {
+        fontSize = document.createElement("span"); fontSize.className = "texttypewriter-e"; fontSize.id = "texttypewriter-e" + i + "_" + j + "_" + q; fontSize.textContent = txt[j][q];
+        pal.appendChild(fontSize);
+      }
+      line.appendChild(pal);
+    }
+    track.appendChild(line); box.appendChild(track);
+    idK = "#texttypewriter-k" + i;
+
+    tl.fromTo("#texttypewriter-f" + i, { opacity: 0 }, { opacity: 1, duration: .05, ease: "none" }, fromTime);
+    pos = 0; previousX = 0; lastValue = fromTime - 0.012;
+    for (j = 0; j < ps.length; j++) {
+
+      beginTime = t0 + ps[j].t; lim = (j + 1 < ps.length) ? t0 + ps[j + 1].t : untilTime;
+      wordDuration = Math.max(0, Math.min(t0 + ps[j].end, lim) - beginTime);
+      spread = (j + 1 < ps.length) ? wordDuration * 0.66 : Math.max(0, Math.min(wordDuration * 0.66, untilTime - beginTime - 0.18));
+      for (q = 0; q < txt[j].length; q++) {
+        letterTime = beginTime + spread * q / txt[j].length;
+        letterTime = Math.max(fromTime, Math.min(untilTime - 0.04, Math.max(letterTime, lastValue + 0.012))); lastValue = letterTime;
+        newX = Math.round(((pos + q + 1) * cw + tt * 0.08) * 10) / 10;
+        tl.fromTo("#texttypewriter-e" + i + "_" + j + "_" + q, { opacity: 0 }, { opacity: 1, duration: .01, ease: "steps(1)" }, letterTime);
+        tl.fromTo(idK, { x: previousX }, { x: newX, duration: .01, ease: "steps(1)", immediateRender: false }, letterTime);
+        previousX = newX;
+      }
+      pos += txt[j].length + 1;
+
+      base = lastValue + 0.01; padding = lim - base;
+      count = Math.max(0, Math.min(6, Math.floor((padding - 0.03) / 0.24)));
+      for (q = 0; q < count; q++) {
+        tl.fromTo(idK, { opacity: 1 }, { opacity: 0, duration: .01, ease: "steps(1)", immediateRender: false }, base + 0.10 + q * 0.24);
+        tl.fromTo(idK, { opacity: 0 }, { opacity: 1, duration: .01, ease: "steps(1)", immediateRender: false }, base + 0.22 + q * 0.24);
+      }
+    }
+    tl.to("#texttypewriter-f" + i, { opacity: 0, duration: .01, ease: "none", immediateRender: false }, untilTime - .01);
+  }
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["text-typewriter"] = tl;
+})();
+</script>
+</template>
+</body></html>

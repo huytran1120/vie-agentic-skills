@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Effect vignette</title></head>
+<body>
+<!-- Effect vignette. To create a darker cinematic mood or draw attention to the speaker's face. -->
+
+<template id="effect-vignette-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+.effectvignette-c{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0}
+.effectvignette-n{background-repeat:repeat;background-size:256px 256px}
+#effectvignette-g{mix-blend-mode:screen;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='256' height='256'><filter id='n' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' seed='11' stitchTiles='stitch'/><feColorMatrix values='0.0235 0 0 0 -0.0078  0.0235 0 0 0 -0.0078  0.0235 0 0 0 -0.0078  0 0 0 0 1'/></filter><rect width='256' height='256' filter='url(%23n)'/></svg>")}
+#effectvignette-h{mix-blend-mode:difference;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='256' height='256'><filter id='n' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' seed='29' stitchTiles='stitch'/><feColorMatrix values='0.0235 0 0 0 -0.0078  0.0235 0 0 0 -0.0078  0.0235 0 0 0 -0.0078  0 0 0 0 1'/></filter><rect width='256' height='256' filter='url(%23n)'/></svg>")}
+</style>
+<div id="root" data-composition-id="effect-vignette" data-width="1080" data-height="1920" data-duration="2.6">
+<div class="effectvignette-c effectvignette-n" id="effectvignette-g"></div><div class="effectvignette-c effectvignette-n" id="effectvignette-h"></div><div class="effectvignette-c" id="effectvignette-v"></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["effect-vignette"] || { duration: 2.6 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 2.6, t0 = 0;
+
+  var P = {
+    strength: 0.8, // 0–1: edge and corner darkness.
+    size: 0.4, // 0–1: size of the clear center; zero clears only the middle, one darkens only the corners.
+    x: 540, // Clear-area center on the 1080×1920 canvas, in pixels.
+    y: 800, // Clear-area center near the face, in pixels.
+    color: "#000000", // Vignette color; black gives a cinematic look.
+  };
+
+
+  var strength = Number(P.strength); if (!(strength >= 0)) strength = .8; strength = Math.min(1, strength);
+  var sizeValue = Number(P.size); if (!(sizeValue >= 0)) sizeValue = .4; sizeValue = Math.min(1, sizeValue);
+  var cx = Number(P.x); if (!(cx === cx)) cx = 540; cx = Math.max(0, Math.min(1080, cx));
+  var cy = Number(P.y); if (!(cy === cy)) cy = 800; cy = Math.max(0, Math.min(1920, cy));
+  var veil = document.getElementById("effectvignette-v"), GR = [document.getElementById("effectvignette-g"), document.getElementById("effectvignette-h")], ki;
+  veil.style.backgroundColor = String(P.color); if (!veil.style.backgroundColor) veil.style.backgroundColor = "#000";
+
+  var rx = Math.max(cx, 1080 - cx) * 1.4142, ry = Math.max(cy, 1920 - cy) * 1.4142;
+  var inside = .7 * sizeValue, outside = 1.02, top = strength * .92;
+  var steps = 28, gi, gu, tracks = "rgba(0,0,0,0) 0%";
+  for (gi = 0; gi <= steps; gi++) {
+    gu = gi / steps;
+    tracks += ", rgba(0,0,0," + (top * gu * gu * (3 - 2 * gu)).toFixed(4) + ") " + ((inside + (outside - inside) * gu) / outside * 100).toFixed(2) + "%";
+  }
+  var oval = "radial-gradient(ellipse " + (rx * outside).toFixed(1) + "px " + (ry * outside).toFixed(1) + "px at " + cx + "px " + cy + "px, ";
+  veil.style.webkitMaskImage = oval + tracks + ")"; veil.style.maskImage = oval + tracks + ")";
+
+  var pg = (Math.max(0, inside - .07) / outside * 100), pg2 = (inside / outside * 100);
+  var mg = oval + "rgba(0,0,0,0) " + pg.toFixed(2) + "%, rgba(0,0,0,1) " + pg2.toFixed(2) + "%)";
+  for (ki = 0; ki < 2; ki++) { GR[ki].style.webkitMaskImage = mg; GR[ki].style.maskImage = mg; }
+  var og = Math.min(1, strength * 3);
+
+  var enter = t0 + .05, exit = t0 + D - .3;
+  tl.fromTo("#effectvignette-v", { opacity: 0 }, { opacity: 1, duration: .32, ease: "sine.out" }, enter);
+  tl.fromTo(".effectvignette-n", { opacity: 0 }, { opacity: og, duration: .32, ease: "sine.out" }, enter);
+  tl.to("#effectvignette-v", { opacity: 0, duration: .28, ease: "sine.in", immediateRender: false }, exit);
+  tl.to(".effectvignette-n", { opacity: 0, duration: .28, ease: "sine.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["effect-vignette"] = tl;
+})();
+</script>
+</template>
+</body></html>

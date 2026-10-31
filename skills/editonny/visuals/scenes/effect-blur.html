@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Effect blur</title></head>
+<body>
+<!-- Effect blur. To blur the background while keeping the face sharp, like portrait mode. -->
+
+<template id="effect-blur-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+.effectblur-c{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;backdrop-filter:blur(0px);-webkit-backdrop-filter:blur(0px)}
+</style>
+<div id="root" data-composition-id="effect-blur" data-width="1080" data-height="1920" data-duration="2.8">
+<div class="effectblur-c" id="effectblur-a"></div><div class="effectblur-c" id="effectblur-b"></div><div class="effectblur-c" id="effectblur-c"></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["effect-blur"] || { duration: 2.8 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 2.8, t0 = 0;
+
+  var P = {
+    strength: 0.6, // 0–1: background blur; one gives about a 22-pixel radius.
+    x: 540, // Sharp-area center on the 1080×1920 canvas, in pixels.
+    y: 760, // Sharp-area center at the face, in pixels.
+    radiusX: 330, // Half-width of the sharp area, in pixels; zero blurs the whole screen.
+    radiusY: 440, // Half-height of the sharp area, in pixels.
+  };
+
+
+  var strength = Number(P.strength); if (!(strength >= 0)) strength = .6; strength = Math.min(1, strength);
+  var cx = Number(P.x); if (!(cx === cx)) cx = 540; cx = Math.max(0, Math.min(1080, cx));
+  var cy = Number(P.y); if (!(cy === cy)) cy = 760; cy = Math.max(0, Math.min(1920, cy));
+  var rx = Number(P.radiusX); if (!(rx >= 0)) rx = 330; rx = Math.min(1200, rx);
+  var ry = Number(P.radiusY); if (!(ry >= 0)) ry = 440; ry = Math.min(2200, ry);
+  var radius = 22 * strength;
+  var IDS = ["#effectblur-a", "#effectblur-b", "#effectblur-c"], WEIGHTS = [.30, .50, .81], INSIDE_SCALE = [1, 1.07, 1.15], OUTSIDE_SCALE = [1.22, 1.36, 1.5];
+  var ci, gi, gu, tracks, maskValue, el, steps = 12;
+
+  for (ci = 0; ci < 3; ci++) {
+    el = document.getElementById(IDS[ci].slice(1));
+    if (rx >= 1 && ry >= 1) {
+      tracks = "rgba(0,0,0,0) 0%";
+      for (gi = 0; gi <= steps; gi++) {
+        gu = gi / steps;
+        tracks += ", rgba(0,0,0," + (gu * gu * (3 - 2 * gu)).toFixed(4) + ") " + ((INSIDE_SCALE[ci] + (OUTSIDE_SCALE[ci] - INSIDE_SCALE[ci]) * gu) / OUTSIDE_SCALE[ci] * 100).toFixed(2) + "%";
+      }
+      maskValue = "radial-gradient(ellipse " + (rx * OUTSIDE_SCALE[ci]).toFixed(1) + "px " + (ry * OUTSIDE_SCALE[ci]).toFixed(1) + "px at " + cx + "px " + cy + "px, " + tracks + ")";
+      el.style.webkitMaskImage = maskValue; el.style.maskImage = maskValue;
+    }
+  }
+
+  var enter = t0 + .05, exit = t0 + D - .34;
+  var full;
+  for (ci = 0; ci < 3; ci++) {
+
+    full = "blur(" + (Math.round(radius * WEIGHTS[ci] * 100) / 100) + "px)";
+    tl.fromTo(IDS[ci], { opacity: 0 }, { opacity: 1, duration: .01, ease: "none" }, enter);
+    tl.fromTo(IDS[ci], { backdropFilter: "blur(0px)" }, { backdropFilter: full, duration: .34, ease: "sine.out", immediateRender: false }, enter);
+    tl.fromTo(IDS[ci], { backdropFilter: full }, { backdropFilter: "blur(0px)", duration: .3, ease: "sine.in", immediateRender: false }, exit);
+    tl.to(IDS[ci], { opacity: 0, duration: .01, ease: "none", immediateRender: false }, exit + .3);
+  }
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["effect-blur"] = tl;
+})();
+</script>
+</template>
+</body></html>

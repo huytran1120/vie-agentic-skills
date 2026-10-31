@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Text exhale</title></head>
+<body>
+<!-- Text exhale. For an expiring offer or deadline: text types in, holds, then ripples, flattens, blurs horizontally, and evaporates in a 0.5-second exit. -->
+
+<template id="text-exhale-template">
+<style>
+@font-face{font-family:"Montserrat";src:url("assets/fonts/Montserrat.ttf") format("truetype");font-weight:100 900;font-display:block}
+@font-face{font-family:"Caveat";src:url("assets/fonts/Caveat.ttf") format("truetype");font-weight:400 700;font-display:block}
+@font-face{font-family:"JetBrainsMono";src:url("assets/fonts/JetBrainsMono.ttf") format("truetype");font-weight:100 800;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Montserrat",sans-serif}
+.textexhale-k{position:absolute;inset:0;pointer-events:none}
+.textexhale-s{position:absolute;left:0;top:0;width:0;height:0;overflow:hidden}
+.textexhale-b{position:absolute;left:140px;top:0;width:800px;opacity:0;perspective:1200px;perspective-origin:50% 50%}
+.textexhale-z,.textexhale-r{position:absolute;left:0;top:0;width:800px;height:100%}
+.textexhale-t{display:flex;flex-direction:column;align-items:center;width:800px;filter:url(#textexhale-fx);font-family:"Montserrat",sans-serif;font-weight:800;line-height:1;letter-spacing:-.01em;white-space:nowrap;paint-order:stroke fill}
+.textexhale-l{display:flex;justify-content:center;align-items:baseline}
+.textexhale-w{display:flex;align-items:baseline}
+.textexhale-g{display:inline-block;position:relative;--textexhale-k:0}
+.textexhale-g::after{content:"";position:absolute;left:100%;top:.06em;bottom:.02em;width:.075em;margin-left:.03em;background:var(--textexhale-q,#fff);box-shadow:0 0 0 .025em rgba(0,0,0,.8);opacity:var(--textexhale-k)}
+</style>
+<div id="root" data-composition-id="text-exhale" data-width="1080" data-height="1920" data-duration="2.4">
+<div id="textexhale-c" class="textexhale-k">
+  <svg class="textexhale-s" width="0" height="0" aria-hidden="true"><defs>
+    <filter id="textexhale-fx" x="-25%" y="-100%" width="150%" height="300%" color-interpolation-filters="sRGB"><feTurbulence id="textexhale-tb" type="fractalNoise" baseFrequency="0.005 0.02" numOctaves="1" seed="11" result="r"/><feOffset id="textexhale-fo" in="r" dx="0" dy="0" result="r2"/><feColorMatrix in="r2" type="matrix" values="1 0 0 0 0  0 .6 0 0 .2  0 0 1 0 0  0 0 0 0 1" result="r3"/><feDisplacementMap id="textexhale-dm" in="SourceGraphic" in2="r3" scale="0" xChannelSelector="R" yChannelSelector="G" result="d"/><feGaussianBlur id="textexhale-bh" in="d" stdDeviation="0 0"/></filter>
+  </defs></svg>
+  <div class="textexhale-b" id="textexhale-b"><div class="textexhale-z" id="textexhale-z"><div class="textexhale-r" id="textexhale-r"><div class="textexhale-t" id="textexhale-t"></div></div></div></div>
+</div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["text-exhale"] || { duration: 2.4 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 2.4, t0 = 0;
+
+  var P = {
+    text: "95%|OFF", // Text; | forces a line break, otherwise wrapping is automatic.
+    y: 1150, // Text center height on the 1080×1920 canvas, in pixels.
+    size: 124, // Maximum font size, in pixels; shrinks automatically to fit.
+    color: "#ffffff", // Text color with a dark outer outline.
+    exit: 0.5, // Exit duration from 0.3 to 1 second; evaporation is concentrated in the last third, as in CapCut.
+    typing: 1, // 1 types letters with a cursor at the beginning; 0 reveals the whole text.
+  };
+
+
+
+  var W = Array.isArray(C.words) ? C.words : [
+    { text: "You", t: 0.10, end: 0.34 }, { text: "do not", t: 0.36, end: 0.58 }, { text: "need", t: 0.60, end: 0.98 },
+    { text: "an", t: 1.00, end: 1.10 }, { text: "editor", t: 1.12, end: 1.56 }, { text: "to", t: 1.92, end: 2.06 },
+    { text: "post", t: 2.08, end: 2.44 }, { text: "every", t: 2.46, end: 2.68 }, { text: "day.", t: 2.70, end: 3.05 }
+  ];
+
+  W = (function (a) { var o = [], u = 0.04, k, t; for (k = 0; k < a.length; k++) { t = Math.max(0.05, Number(a[k].t) || 0, u + 0.01); o.push({ text: a[k].text, t: t, end: Math.max(t + 0.02, Number(a[k].end) || 0) }); u = t; } return o; })(W);
+
+  var SCALE_FACTOR = (function () {
+    var e = (typeof HIDDEN_RANGES !== "undefined" && HIDDEN_RANGES) || [], b0 = (typeof C.start === "number") ? C.start : 0, o = [], k;
+    for (k = 0; k < e.length; k++) if (Number(e[k][1]) > Number(e[k][0])) o.push([Number(e[k][0]) - b0, Number(e[k][1]) - b0]);
+    return o;
+  })();
+  function hidden(t) { for (var k = 0; k < SCALE_FACTOR.length; k++) if (t >= SCALE_FACTOR[k][0] && t < SCALE_FACTOR[k][1]) return true; return false; }
+  function nextScale(t) { var r = Infinity, k; for (k = 0; k < SCALE_FACTOR.length; k++) if (SCALE_FACTOR[k][0] > t && SCALE_FACTOR[k][0] < r) r = SCALE_FACTOR[k][0]; return r; }
+  W = W.filter(function (w) { return !hidden(w.t); });
+
+  function show(s) { return String(s).replace(/^\s+|\s+$/g, "").replace(/[.,;:…]+$/g, ""); }
+
+  function screens(maxP, maxL) {
+    var groups = [], cur = [], letters = 0, i, w, txt, out = [];
+    for (i = 0; i < W.length; i++) {
+      w = W[i]; txt = show(w.text); if (!txt || !(w.t < D - 0.2)) continue;
+      if (cur.length && (cur.length >= maxP || letters + txt.length + 1 > maxL || w.t - cur[cur.length - 1].end > 0.7 || nextScale(cur[cur.length - 1].t) <= w.t)) { groups.push(cur); cur = []; letters = 0; }
+      cur.push({ text: txt, t: Math.max(0.05, w.t), end: Math.min(D - 0.05, Math.max(w.t + 0.08, w.end)) }); letters += txt.length + 1;
+      if (/[.!?…]$/.test(String(w.text).replace(/\s+$/, "")) || (cur.length >= 2 && /[,;:]$/.test(String(w.text).replace(/\s+$/, "")))) { groups.push(cur); cur = []; letters = 0; }
+    }
+    if (cur.length) groups.push(cur);
+    for (i = 0; i < groups.length; i++) {
+      var start = Math.max(0.05, groups[i][0].t - 0.05), speechEnd = groups[i][groups[i].length - 1].end;
+      var end = Math.min(D - 0.05, speechEnd + 0.5); if (i + 1 < groups.length) end = Math.min(end, Math.max(0.05, groups[i + 1][0].t - 0.05));
+      end = Math.min(end, Math.max(start + 0.15, nextScale(groups[i][groups[i].length - 1].t)));
+      if (end > start + 0.12) out.push({ words: groups[i], start: start, end: end });
+    }
+    return out;
+  }
+
+
+  function num(v, d) { if (v === "" || v === null || v === undefined) return d; v = Number(v); return isFinite(v) ? v : d; }
+  function correctColor(v, d) { return (typeof v === "string" && window.CSS && CSS.supports("color", v)) ? v : d; }
+  var ceiling = Math.max(40, Math.min(170, num(P.size, 124))), yy = Math.max(260, Math.min(1500, num(P.y, 1150)));
+  var colorL = correctColor(P.color, "#ffffff"), LEAVE = Math.max(.3, Math.min(1, num(P.exit, .5))), typing = num(P.typing, 1) >= .5;
+  var raw = String(P.text === undefined || P.text === null ? "95%|OFF" : P.text).toUpperCase().replace(/\r?\n/g, "|");
+  var bar = raw.indexOf("|") >= 0, orig = [], letters = [];
+  var elB = document.getElementById("textexhale-b"), elT = document.getElementById("textexhale-t");
+
+  function word(t) {
+    var w = document.createElement("span"), g, cs = Array.from(t.normalize("NFC")), q;
+    w.className = "textexhale-w";
+    for (q = 0; q < cs.length; q++) {
+      g = document.createElement("span"); g.className = "textexhale-g"; g.id = "textexhale-g" + letters.length; g.textContent = cs[q];
+      if (typing) g.style.opacity = "0";
+      w.appendChild(g); letters.push(g);
+    }
+    return { s: t, el: w };
+  }
+  raw.split("|").forEach(function (s) { s = s.replace(/^\s+|\s+$/g, ""); if (s) orig.push(s.split(/\s+/).map(word)); });
+  if (!orig.length) orig.push([word("TITLE")]);
+
+
+  var SPACING_VALUE = .27, SPAN = .14, LIM = 700, MAXL = 4, HMAX = 860;
+  var med = document.createElement("div");
+  med.setAttribute("aria-hidden", "true"); med.setAttribute("data-layout-ignore", "");
+  med.style.cssText = "position:absolute;left:-6000px;top:0;visibility:hidden;white-space:nowrap;display:flex;font-family:Montserrat,sans-serif;font-weight:800;font-size:100px;line-height:1;letter-spacing:-.01em";
+  document.body.appendChild(med);
+  var memo = {};
+  function widthValue(o) {
+    var c = "_" + o.s, q, sp, cs;
+    if (!(c in memo)) {
+      while (med.firstChild) med.removeChild(med.firstChild);
+      cs = Array.from(o.s.normalize("NFC"));
+      for (q = 0; q < cs.length; q++) { sp = document.createElement("span"); sp.style.display = "inline-block"; sp.textContent = cs[q]; med.appendChild(sp); }
+      memo[c] = med.getBoundingClientRect().width / 100;
+    }
+    return memo[c];
+  }
+  function lineWidthValue(ws) { var n = 0, q; for (q = 0; q < ws.length; q++) n += widthValue(ws[q]) + (q ? SPACING_VALUE : 0); return n; }
+
+  function divide(ws, q) {
+    var n = ws.length, m = [], c = [], a, b, d, v, out = [], end;
+    for (a = 1; a <= q; a++) {
+      m[a] = []; c[a] = [];
+      for (b = a; b <= n; b++) {
+        if (a === 1) { m[a][b] = lineWidthValue(ws.slice(0, b)); c[a][b] = 0; continue; }
+        m[a][b] = 1e9;
+        for (d = a - 1; d < b; d++) { v = Math.max(m[a - 1][d], lineWidthValue(ws.slice(d, b))); if (v < m[a][b]) { m[a][b] = v; c[a][b] = d; } }
+      }
+    }
+    for (a = q, end = n; a >= 1; a--) { out.unshift(ws.slice(c[a][end], end)); end = c[a][end]; }
+    return out;
+  }
+  var lines = [], sizeValue = ceiling, BASE = [255, 255, 255];
+  function arrange() {
+    memo = {};
+    var parts = [], owner = [], largerValue = 0, im = 0, previousValue, which, n, H, top, ln, a, b;
+    var floor = bar ? Math.min(ceiling, 56) : Math.min(ceiling, Math.max(56, ceiling * .62));
+    for (a = 0; a < orig.length; a++) parts.push(1);
+    function split() {
+      var x, y, ws, lw;
+      lines = []; owner = []; largerValue = 0; im = 0;
+      for (x = 0; x < orig.length; x++) { ws = divide(orig[x], parts[x]); for (y = 0; y < ws.length; y++) { lines.push(ws[y]); owner.push(x); } }
+      for (x = 0; x < lines.length; x++) { lw = lineWidthValue(lines[x]); if (lw > largerValue) { largerValue = lw; im = x; } }
+      sizeValue = Math.max(24, Math.min(ceiling, Math.floor(LIM / largerValue)));
+    }
+
+    split();
+    for (a = 0; a < 12; a++) {
+      if (sizeValue >= floor || lines.length >= MAXL || parts[owner[im]] >= orig[owner[im]].length) break;
+      which = owner[im]; previousValue = largerValue; parts[which]++; split();
+      if (largerValue > previousValue * .98) { parts[which]--; split(); break; }
+    }
+    n = lines.length; H = n * sizeValue + (n - 1) * Math.round(sizeValue * SPAN);
+    if (H > HMAX) { sizeValue = Math.max(24, Math.floor(sizeValue * HMAX / H)); H = n * sizeValue + (n - 1) * Math.round(sizeValue * SPAN); }
+    top = Math.round(Math.max(254, Math.min(1506 - H, yy - H / 2)));
+
+    elB.style.top = top + "px"; elB.style.height = H + "px"; elB.style.setProperty("--textexhale-q", colorL);
+    elT.style.fontSize = sizeValue + "px"; elT.style.color = colorL;
+    var m = /(\d+)[^\d]+(\d+)[^\d]+(\d+)/.exec(getComputedStyle(elT).color); if (m) BASE = [Number(m[1]), Number(m[2]), Number(m[3])];
+    elT.style.webkitTextStroke = Math.max(5, Math.round(sizeValue * .09)) + "px rgba(0,0,0,.85)";
+    elT.style.textShadow = "0 " + Math.round(sizeValue * .05) + "px " + Math.round(sizeValue * .14) + "px rgba(0,0,0,.5)";
+
+    while (elT.firstChild) elT.removeChild(elT.firstChild);
+    for (a = 0; a < n; a++) {
+      ln = document.createElement("div"); ln.className = "textexhale-l"; if (a) ln.style.marginTop = Math.round(sizeValue * SPAN) + "px";
+      for (b = 0; b < lines[a].length; b++) { lines[a][b].el.style.marginLeft = b ? Math.round(sizeValue * SPACING_VALUE) + "px" : "0px"; ln.appendChild(lines[a][b].el); }
+      elT.appendChild(ln);
+    }
+
+    document.getElementById("textexhale-tb").setAttribute("baseFrequency", (.5 / sizeValue).toFixed(4) + " " + (1.4 / sizeValue).toFixed(4));
+  }
+  arrange();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { arrange(); tl.invalidate(); });
+
+
+  var A0 = t0 + .05, END_TIME = t0 + D - .06, ACT = Math.max(.12, Math.min(.3, LEAVE * .3)), E0 = Math.max(A0 + .3, END_TIME - LEAVE);
+  var NL = letters.length, STEP = Math.min(.05, Math.max(.02, Math.min(.65, (D - LEAVE) * .3) / Math.max(1, NL - 1))), FD = A0, k, tq;
+  tl.fromTo("#textexhale-b", { opacity: 0 }, { opacity: 1, duration: .01 }, A0);
+
+  if (typing) {
+    for (k = 0; k < NL; k++) {
+      tq = A0 + k * STEP;
+      tl.fromTo("#textexhale-g" + k, { opacity: 0 }, { opacity: 1, duration: .01 }, tq);
+      tl.set("#textexhale-g" + k, { "--textexhale-k": 1 }, tq);
+      if (k) tl.set("#textexhale-g" + (k - 1), { "--textexhale-k": 0 }, tq);
+    }
+    FD = A0 + (NL - 1) * STEP;
+    [[.25, 0], [.5, 1], [.75, 0], [1, 1]].forEach(function (p) { if (FD + p[0] < E0 - .05) tl.set("#textexhale-g" + (NL - 1), { "--textexhale-k": p[1] }, FD + p[0]); });
+    tl.set("#textexhale-g" + (NL - 1), { "--textexhale-k": 0 }, Math.min(FD + 1.25, E0 - .04));
+  }
+
+  function T(f) { return function () { return (sizeValue * f).toFixed(2); }; }
+  var nF = Math.max(1, Math.round((END_TIME - A0) / 1.6));
+  tl.fromTo("#textexhale-fo", { attr: { dy: 0 } }, { attr: { dy: function () { return (-elB.offsetHeight * .7).toFixed(1); } }, duration: (END_TIME - A0) / nF, ease: "sine.inOut", yoyo: true, repeat: nF - 1 }, A0);
+
+  var EV = END_TIME - ACT, W0 = END_TIME - ACT * 1.2;
+  tl.fromTo("#textexhale-dm", { attr: { scale: 0 } }, { attr: { scale: T(.34) }, duration: ACT * .55, ease: "power1.in" }, W0);
+  tl.to("#textexhale-dm", { attr: { scale: T(.5) }, duration: END_TIME - .015 - (W0 + ACT * .55), ease: "none", immediateRender: false }, W0 + ACT * .55);
+
+  var ANG = Math.acos(.3 / 1.1) * 180 / Math.PI;
+  function flatten(p) { return Math.acos(1 - (1 - .3 / 1.1) * p) * 180 / Math.PI / ANG; }
+  tl.fromTo("#textexhale-r", { rotationX: 0 }, { rotationX: ANG, duration: ACT * .8 - .015, ease: flatten }, END_TIME - ACT * .8);
+
+  tl.fromTo("#textexhale-z", { z: 0 }, { z: 110, duration: ACT - .015, ease: "power2.in" }, EV);
+  tl.fromTo("#textexhale-bh", { attr: { stdDeviation: "0 0" } }, { attr: { stdDeviation: function () { return (sizeValue * .17).toFixed(1) + " " + (sizeValue * .02).toFixed(1); } }, duration: ACT * .8 - .015, ease: "power2.in", immediateRender: false }, END_TIME - ACT * .8);
+
+  function rgbL(f) { return function () { var q = [], i; for (i = 0; i < 3; i++) q.push(Math.round(BASE[i] + (255 - BASE[i]) * f)); return "rgb(" + q.join(",") + ")"; }; }
+  tl.fromTo("#textexhale-t", { color: rgbL(0), webkitTextStrokeColor: "rgba(0,0,0,0.85)" }, { color: rgbL(.65), webkitTextStrokeColor: "rgba(0,0,0,0.25)", duration: ACT * .6, ease: "power1.in", immediateRender: false }, END_TIME - ACT * .6);
+  tl.fromTo("#textexhale-b", { opacity: 1 }, { opacity: .6, duration: ACT * .5 - .015, ease: "power1.in", immediateRender: false }, END_TIME - ACT * .5);
+
+  tl.to("#textexhale-b", { opacity: 0, duration: .01, immediateRender: false }, END_TIME);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["text-exhale"] = tl;
+})();
+</script>
+</template>
+</body></html>

@@ -1,0 +1,16 @@
+{
+  "title": "My video",
+  "skill": "",
+  "edit": "../edit",
+  "format": "9:16",
+  "style": "paper",
+  "corrections": {},
+  "blocks": [
+    {"scene": "fullscreen", "start": 0, "zoom": 1.0}
+  ],
+  "captions": {"enabled": true, "style": "standard", "maxWords": 3, "inFrame": false},
+  "animations": [],
+  "sounds": [],
+  "endHold": 0,
+  "endCard": {"enabled": false, "seconds": 1.8, "title": "", "sub": "", "button": "Tap Learn more", "logo": ""}
+}

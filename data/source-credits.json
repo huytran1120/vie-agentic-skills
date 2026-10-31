@@ -446,6 +446,10 @@
     "videoeditor": [
       "- **[appariciojunior/video-editor-skills](https://github.com/appariciojunior/video-editor-skills/tree/6709678d7d5b169149e13480428e12b0f09a47f0)**: 12 DaVinci Resolve Studio video editing skills for Claude Code by appariciojunior, CC-BY-NC-4.0. Keep attribution, original repository link and license in copies/adaptations; non-commercial use only.",
       "- Standalone payload includes SKILL.md, LICENSE, config templates and reference learnings. No unapproved scripts, package installations, external APIs, or project modifications are executed."
+    ],
+    "editonny": [
+      "- **[soumatheusgomes/editonny](https://github.com/soumatheusgomes/editonny/tree/49714f2fba6eafb76b903376e1fe9f50b685506a)**: MIT official source for the `editonny` skill — local video editing, pause cutting, captions and visual scenes for Claude Code and Codex by Matheus Gomes.",
+      "- Standalone payload includes SKILL.md, LICENSE.md, scripts, visual scenes/library and engine helpers. No downloaded code is executed and no runtime/service is connected during installation."
     ]
   }
 }

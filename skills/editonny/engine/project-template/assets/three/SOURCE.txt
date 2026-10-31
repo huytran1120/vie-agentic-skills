@@ -1,0 +1,4 @@
+Three.js r181 (0.181.0), bundled locally for deterministic offline rendering.
+Source: https://github.com/mrdoob/three.js/tree/r181
+License: MIT; see LICENSE in this directory.
+Files retain their upstream implementation and attribution.

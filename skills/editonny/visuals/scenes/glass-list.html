@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Glass list</title></head>
+<body>
+<!-- Glass list. When listing completed work or benefits: dim items light up one by one with green checks on a glass card. -->
+
+<template id="glass-list-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+@font-face{font-family:"SoraV";src:url("assets/visuals/fonts/Sora.ttf");font-weight:100 800;font-display:block}
+#glasslist-w{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;overflow:hidden;background:#000;font-family:"Inter",sans-serif;color:#fff}
+#glasslist-lz{position:absolute;left:-200px;top:-200px;width:1480px;height:2320px}
+#glasslist-lf{position:absolute;inset:0}
+.glasslist-l{position:absolute;inset:0;opacity:0;mix-blend-mode:screen}
+#glasslist-lcg{background:radial-gradient(ellipse 900px 840px at 1150px 200px,rgba(46,255,62,.82),rgba(0,0,0,0) 70%),radial-gradient(ellipse 820px 700px at 286px 2120px,rgba(46,255,62,.5),rgba(0,0,0,0) 70%)}
+#glasslist-lca{background:radial-gradient(ellipse 900px 840px at 1150px 200px,rgba(255,122,26,.82),rgba(0,0,0,0) 70%),radial-gradient(ellipse 820px 700px at 286px 2120px,rgba(255,122,26,.5),rgba(0,0,0,0) 70%)}
+#glasslist-lcr{background:radial-gradient(ellipse 900px 840px at 1150px 200px,rgba(255,24,40,.82),rgba(0,0,0,0) 70%),radial-gradient(ellipse 820px 700px at 286px 2120px,rgba(255,24,40,.5),rgba(0,0,0,0) 70%)}
+#glasslist-lfg{background:linear-gradient(180deg,rgba(40,240,54,.95) 0%,rgba(22,150,34,.6) 30%,rgba(0,0,0,0) 68%)}
+#glasslist-lfa{background:linear-gradient(180deg,rgba(255,122,26,.92) 0%,rgba(160,70,10,.6) 30%,rgba(0,0,0,0) 68%)}
+#glasslist-lfr{background:linear-gradient(180deg,rgba(225,10,26,.95) 0%,rgba(140,6,16,.6) 30%,rgba(0,0,0,0) 68%)}
+#glasslist-vin{position:absolute;inset:0;box-shadow:inset 0 0 200px 30px rgba(0,0,0,.35)}
+#glasslist-ct{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0}
+#glasslist-an{position:absolute;left:140px;top:930px;width:800px;transform:translateY(-50%)}
+#glasslist-cd{position:relative;width:800px;padding:46px 36px 40px;border-radius:52px;overflow:hidden;opacity:0;background:linear-gradient(180deg,rgba(255,255,255,.19),rgba(255,255,255,.06) 70%,rgba(255,255,255,.03));border:1.5px solid rgba(255,255,255,.26);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.42),0 40px 90px rgba(0,0,0,.55);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px)}
+.glasslist-gd{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.12) 1.5px,transparent 1.5px),linear-gradient(90deg,rgba(255,255,255,.12) 1.5px,transparent 1.5px);background-size:72px 72px;background-position:-2px -2px;-webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.9) 20%,rgba(0,0,0,.2) 100%);mask-image:linear-gradient(180deg,rgba(0,0,0,.9) 20%,rgba(0,0,0,.2) 100%)}
+#glasslist-hd{position:relative;display:flex;align-items:center;gap:18px;padding:0 10px 30px;color:#ececf0;font-weight:600;letter-spacing:.05em;line-height:1.15}
+.glasslist-hi{flex:0 0 auto;width:50px;height:50px;fill:none;stroke:#fff;stroke-width:4.5;stroke-linecap:round}
+#glasslist-ti{flex:1 1 auto}
+#glasslist-ls{position:relative;display:flex;flex-direction:column;gap:22px}
+.glasslist-it{position:relative;display:flex;align-items:center;gap:26px;min-height:138px;padding:20px 30px;border-radius:40px;overflow:hidden;opacity:0;background:linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.05));border:1.5px solid rgba(255,255,255,.2)}
+.glasslist-sw{position:absolute;left:0;top:0;width:220px;height:100%;opacity:0;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(170,255,180,.35),rgba(255,255,255,0))}
+.glasslist-ok{position:relative;flex:0 0 auto;width:78px;height:78px;border-radius:50%;border:4px solid rgba(255,255,255,.3)}
+.glasslist-of{position:absolute;left:-4px;top:-4px;width:78px;height:78px;border-radius:50%;opacity:0;background:radial-gradient(circle at 38% 30%,#e3ffe6,#3dff4e 55%,#1fbf2e);box-shadow:0 0 34px rgba(60,255,80,.95),0 0 80px rgba(60,255,80,.45)}
+.glasslist-ck{position:absolute;left:-4px;top:-4px;width:78px;height:78px;fill:none;stroke:#04300c;stroke-width:8;stroke-linecap:round;stroke-linejoin:round}
+.glasslist-tx{position:relative;flex:1 1 auto;font-family:"SoraV","Inter",sans-serif;font-weight:700;line-height:1.1;letter-spacing:.005em;color:#fff;opacity:.38}
+#glasslist-fl{position:absolute;inset:0;background:#fff;opacity:0}
+</style>
+<div id="root" data-composition-id="glass-list" data-width="1080" data-height="1920" data-duration="4.5">
+<div id="glasslist-w"><div id="glasslist-lz"><div class="glasslist-l" id="glasslist-lcg"></div><div class="glasslist-l" id="glasslist-lca"></div><div class="glasslist-l" id="glasslist-lcr"></div></div><div id="glasslist-lf"><div class="glasslist-l" id="glasslist-lfg"></div><div class="glasslist-l" id="glasslist-lfa"></div><div class="glasslist-l" id="glasslist-lfr"></div></div><div id="glasslist-vin"></div><div id="glasslist-ct"><div id="glasslist-an"><div id="glasslist-cd"><div class="glasslist-gd"></div><div id="glasslist-hd"><svg class="glasslist-hi" viewBox="0 0 48 48"><path d="M8 12 H12 M20 12 H40 M8 24 H12 M20 24 H40 M8 36 H12 M20 36 H34"/></svg><span id="glasslist-ti"></span></div><div id="glasslist-ls"></div></div></div></div><div id="glasslist-fl"></div></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["glass-list"] || { duration: 4.5 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 4.5, t0 = 0;
+
+  var P = {
+    title: "what remains", // Label at the top of the card.
+    items: "best moments|natural speech rhythm|captions that matter", // Two to five items separated by |.
+  };
+
+
+  var $ = function (id) { return document.getElementById(id); };
+  var LZ = { g: [0, 0], a: [0, 0], r: [0, 0] };
+  function light(t, k, mode, d) { ["g", "a", "r"].forEach(function (c) { [0, 1].forEach(function (m) { var target = c === k ? (m === 0 ? 1 : (mode === "f" ? 1 : 0)) : 0; if (target === LZ[c][m]) return; tl.fromTo("#glasslist-l" + (m ? "f" : "c") + c, { opacity: LZ[c][m] }, { opacity: target, duration: d || .5, ease: "power2.inOut", immediateRender: false }, t); LZ[c][m] = target; }); }); }
+  function flash(t, f) { tl.fromTo("#glasslist-fl", { opacity: 0 }, { opacity: f || .3, duration: .04, ease: "none", immediateRender: false }, t); tl.to("#glasslist-fl", { opacity: 0, duration: .32, ease: "power2.out", immediateRender: false }, t + .05); }
+  var items = String(P.items || "best moments|natural speech rhythm|captions that matter").split("|").map(function (s) { return s.replace(/\s+/g, " ").trim(); }).filter(function (s) { return s; }).slice(0, 5);
+  if (items.length < 1) items = ["Done"];
+  var n = items.length, tit = String(P.title || "what remains").replace(/\s+/g, " ").trim(), ls = $("glasslist-ls");
+  $("glasslist-ti").textContent = tit;
+  if (!tit) $("glasslist-hd").style.display = "none";
+  items.forEach(function (s, q) {
+    var it = document.createElement("div"); it.className = "glasslist-it"; it.id = "glasslist-it" + q;
+    it.innerHTML = '<i class="glasslist-sw" id="glasslist-sw' + q + '"></i><div class="glasslist-ok"><i class="glasslist-of" id="glasslist-of' + q + '"></i><svg class="glasslist-ck" viewBox="0 0 78 78"><path id="glasslist-cp' + q + '" d="M22 40 L34 52 L57 27" stroke-dasharray="52" stroke-dashoffset="52"/></svg></div><div class="glasslist-tx" id="glasslist-tx' + q + '"></div>';
+    ls.appendChild(it); $("glasslist-tx" + q).textContent = s;
+  });
+
+  function measure(txts, widthValue, mx, mn, lines, lh, style) {
+    var m = document.createElement("div"), px, j, okm = false;
+    m.style.cssText = "position:absolute;left:-99999px;top:0;visibility:hidden;white-space:normal;" + style + ";width:" + widthValue + "px;line-height:" + lh;
+    document.body.appendChild(m);
+    for (px = mx; px >= mn; px -= 2) { m.style.fontSize = px + "px"; okm = true; for (j = 0; j < txts.length; j++) { m.textContent = txts[j]; if (m.offsetHeight > px * lh * lines + 4 || m.scrollWidth > widthValue + 1) { okm = false; break; } } if (okm) break; }
+    document.body.removeChild(m); return okm ? px : 0;
+  }
+  function adjust() {
+    var E = "font-family:SoraV,Inter,sans-serif;font-weight:700;letter-spacing:.005em", lim = n > 3 ? 50 : 58;
+    var px = measure(items, 560, lim, 42, 1, 1.1, E) || measure(items, 560, 46, 34, 2, 1.1, E) || 34;
+    document.querySelectorAll("#glasslist-ls .glasslist-tx").forEach(function (e) { e.style.fontSize = px + "px"; });
+    var H = "font-family:Inter,sans-serif;font-weight:600;letter-spacing:.05em";
+    $("glasslist-ti").style.fontSize = (measure([tit], 640, 44, 36, 1, 1.15, H) || measure([tit], 640, 40, 34, 2, 1.15, H) || 34) + "px";
+  }
+  adjust();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { adjust(); tl.invalidate(); });
+
+
+  var enter = t0 + .05, exit = t0 + D - .32, u = exit - enter;
+  var t1 = enter + Math.max(.55, .18 * u), tEnd = exit - Math.max(.45, .15 * u), slot = (tEnd - t1) / n;
+  tl.fromTo("#glasslist-w", { opacity: 0 }, { opacity: 1, duration: .16, ease: "power1.out" }, enter);
+  tl.fromTo("#glasslist-ct", { opacity: 0 }, { opacity: 1, duration: .01, ease: "none" }, enter);
+  light(enter, "a", "c", .5);
+  tl.fromTo("#glasslist-lz", { x: 180, y: -180 }, { x: 0, y: 0, duration: .8, ease: "power3.out" }, enter);
+  var vM = Math.max(1, Math.round((exit - enter - .8) / 1.5)), dM = (exit - enter - .8) / vM;
+  tl.fromTo("#glasslist-lz", { x: 0, y: 0 }, { x: -46, y: 34, duration: dM, ease: "sine.inOut", yoyo: true, repeat: vM - 1, immediateRender: false }, enter + .8);
+
+  tl.fromTo("#glasslist-cd", { opacity: 0, y: 220, rotationX: 22, transformPerspective: 1700, filter: "blur(18px)" }, { opacity: 1, y: 0, rotationX: 5, transformPerspective: 1700, filter: "blur(0px)", duration: .55, ease: "power3.out" }, enter + .04);
+  tl.to("#glasslist-cd", { rotationX: 0, y: -16, duration: Math.max(.2, exit - enter - .6), ease: "sine.inOut", immediateRender: false }, enter + .59);
+
+  var pas = Math.min(.08, (t1 - enter - .3) / Math.max(1, n));
+  items.forEach(function (s, q) { tl.fromTo("#glasslist-it" + q, { opacity: 0, x: 50 }, { opacity: 1, x: 0, duration: .26, ease: "power3.out" }, enter + .22 + q * pas); });
+
+  items.forEach(function (s, q) {
+    var tq = t1 + q * slot, ult = q === n - 1;
+    if (q === 0) light(tq - .05, "g", "c", .4);
+    tl.fromTo("#glasslist-of" + q, { opacity: 0 }, { opacity: 1, duration: .1, ease: "none" }, tq);
+    tl.fromTo("#glasslist-cp" + q, { strokeDashoffset: 52 }, { strokeDashoffset: 0, duration: .22, ease: "power2.out" }, tq + .04);
+    tl.to("#glasslist-tx" + q, { opacity: 1, textShadow: "0 0 22px rgba(120,255,140,.55)", duration: .2, ease: "none", immediateRender: false }, tq);
+    tl.to("#glasslist-it" + q, { borderColor: "rgba(125,255,138,.8)", duration: .2, ease: "none", immediateRender: false }, tq);
+    tl.fromTo("#glasslist-it" + q, { backgroundImage: "linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.05))" }, { backgroundImage: "linear-gradient(180deg, rgba(110,255,130,0.24), rgba(40,200,60,0.08))", duration: .2, ease: "none", immediateRender: false }, tq);
+    tl.fromTo("#glasslist-sw" + q, { opacity: 1, x: -240 }, { opacity: 1, x: 760, duration: .45, ease: "power2.inOut" }, tq);
+    if (ult && n > 1) { var tf = tq + .05; light(tf, "g", "f", .18); flash(tf, .22); light(tf + Math.min(.5, Math.max(.25, (exit - tf) * .35)), "g", "c", .45); }
+  });
+
+  tl.to("#glasslist-ct", { opacity: 0, y: -50, filter: "blur(16px)", duration: .28, ease: "power2.in", immediateRender: false }, exit);
+  tl.to("#glasslist-w", { opacity: 0, duration: .3, ease: "power2.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["glass-list"] = tl;
+})();
+</script>
+</template>
+</body></html>

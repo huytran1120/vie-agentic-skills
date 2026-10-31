@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>Volume</title></head>
+<body>
+
+<template id="volume-template">
+<style>
+@font-face{font-family:Montserrat;src:url("assets/fonts/Montserrat.ttf") format("truetype");font-weight:100 900;font-display:block}
+#root{position:absolute;inset:0;overflow:hidden;font-family:Montserrat}
+#volume-stage{position:absolute;inset:0;opacity:0}
+#volume-screen{position:absolute;left:0;top:0;width:100%;height:100%;display:block}
+#volume-labels{position:absolute;inset:0}
+</style>
+<div id="root" data-composition-id="volume" data-width="1080" data-height="1920" data-duration="5">
+  <div id="volume-stage"><canvas id="volume-screen" width="1080" height="1920"></canvas><div id="volume-labels"></div></div>
+</div>
+<script>
+(function () {
+  const ID = "volume";
+  const PARAM = {
+    object: "text",
+    text: "JUST\nONCE",
+    template: "assets/template.glb",
+    color: null,
+    sideColor: null,
+    thickness: 0.34,
+    turn: { word: "just", standard: 0.8 },
+    turnDuration: 1.3,
+    startAngle: -34,
+    endAngle: 18,
+    elevation: 13,
+    background: "paper",
+    area: null,
+    cutout: true,
+    label: null,
+    shadows: true,
+    entry: 0.2,
+    exit: 0.2,
+  };
+  const C = Object.assign({ words: [], duration: 5, width: 1080, height: 1920, safeArea: [140, 230, 940, 1530], face: null,
+    colors: { paper: "#fffdfd", line: "#e6ddf8", base: "#c7b7ef", accent: "#665080", ink: "#352c40", green: "#2e9e5b", red: "#e5484d" } },
+    (window.__scenes || {})[ID] || {});
+  const DUR = C.duration;
+  async function build(K, P) {
+    const THREE = K.THREE;
+    const color = PARAM.color || C.colors.accent, sides = PARAM.sideColor || C.colors.ink;
+    P.lights({ key: [3.2, 7, 6.5], target: [0, 0.5, 0], area: 6 });
+    P.floor({ size: 22 });
+    let piece, atTime = null;
+    if (PARAM.object === "model") {
+      const m = await P.loadModel(PARAM.template, { height: 1.6 });
+      piece = m.object;
+      atTime = m.atTime;
+    }
+    else if (PARAM.object === "box") piece = P.box({ width: 1.6, height: 1.6, depth: 1.6, radius: 0.18, bevel: 0.06, color, sides });
+    else piece = await P.volumeText(PARAM.text, { height: 1, thickness: PARAM.thickness, color, sides });
+    const turn = new THREE.Group();
+    turn.add(piece);
+    P.scene.add(turn);
+    P.solid(piece, "the object");
+    const size = new THREE.Box3().setFromObject(piece).getSize(new THREE.Vector3());
+    const shadow = P.contactShadow({ width: size.x, depth: Math.max(size.z, 0.35), intensity: 0.5 });
+    const turnBounds = new THREE.Box3();
+    for (let k = 0; k <= 8; k++) {
+      turn.rotation.y = THREE.MathUtils.degToRad(K.mix(PARAM.startAngle, PARAM.endAngle, k / 8));
+      turn.updateMatrixWorld(true);
+      turnBounds.union(new THREE.Box3().setFromObject(piece));
+    }
+    const target = turnBounds.getCenter(new THREE.Vector3()).toArray();
+    const dist = P.fittingDistance(turnBounds, { target, azim: 0, elev: PARAM.elevation }, 1.0);
+    const turnTime = K.moment(C, PARAM.turn, 0.8);
+    const rot = PARAM.label ? P.labels([{ text: PARAM.label.text, side: "right" }]) : null;
+    const labelTime = PARAM.label ? K.moment(C, PARAM.label, turnTime + PARAM.turnDuration) : 0;
+    const side = new THREE.Vector3();
+    return (t) => {
+      const k = K.interval(t, turnTime, PARAM.turnDuration);
+      const ang = THREE.MathUtils.degToRad(K.mix(PARAM.startAngle, PARAM.endAngle, k));
+      turn.rotation.y = ang;
+      if (atTime) atTime(t);
+      shadow.place(0, 0, 0, 1, ang);
+      P.orbit({ target, dist, azim: 0, elev: PARAM.elevation });
+      if (rot) {
+        side.set(size.x / 2, size.y * 0.55, 0).applyAxisAngle(new THREE.Vector3(0, 1, 0), ang);
+        rot.update([{ point: side, opacity: K.interval(t, labelTime, 0.25) }]);
+      }
+    };
+  }
+  const stage = document.getElementById("volume-stage");
+  const tl = gsap.timeline({ paused: true });
+  const clock = { t: 0 };
+  let draw = null;
+  tl.fromTo(clock, { t: 0 }, { t: DUR, duration: DUR, ease: "none", onUpdate: () => draw && draw(clock.t) }, 0);
+  if (PARAM.entry > 0) tl.fromTo(stage, { opacity: 0 }, { opacity: 1, duration: PARAM.entry, ease: "power1.out" }, 0);
+  else tl.set(stage, { opacity: 1 }, 0);
+  if (PARAM.exit > 0) tl.fromTo(stage, { opacity: 1 }, { opacity: 0, duration: PARAM.exit, ease: "power1.in", immediateRender: false }, Math.max(0, DUR - PARAM.exit));
+  window.__timelines["volume"] = tl;
+  window.addEventListener("hf-seek", () => { if (draw) draw(clock.t); });
+  const src = typeof __hfCompositionSrc === "string" ? __hfCompositionSrc : "";
+  const PROJECT_ROOT = src.includes("/compositions/") ? src.slice(0, src.lastIndexOf("/compositions/") + 1) : document.baseURI;
+  const background = PARAM.background === "paper" ? C.colors.paper : PARAM.background;
+  (window.__hf = window.__hf || {}).buildReady = window.__hf.buildReady || {};
+  window.__hf.buildReady[ID] = import(new URL("compositions/scenes/3d/three-scene.js", PROJECT_ROOT).href)
+    .then((K) => K.initialize({ id: ID, C, root: PROJECT_ROOT, canvas: document.getElementById("volume-screen"), layer: document.getElementById("volume-labels"),
+      background, area: PARAM.area, cutout: PARAM.area && PARAM.cutout ? PARAM.area : null, fov: 28, shadows: PARAM.shadows, build: (P) => build(K, P) }))
+    .then((d) => { draw = d; draw(clock.t); })
+    .catch((e) => console.error(`[scene 3D ${ID}] could not load the 3D engine: ${e && e.message ? e.message : e}`));
+})();
+</script>
+</template>
+</body></html>

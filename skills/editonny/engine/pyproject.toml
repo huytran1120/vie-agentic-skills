@@ -1,0 +1,19 @@
+[project]
+name = "editonny-engine"
+version = "0.1.0"
+description = "Local video editing, transcription, captions, and motion processing for editonny"
+authors = [{ name = "Matheus Gomes", email = "eu@matheusgom.es" }]
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "numpy>=1.26",
+    "pillow>=10.3",
+    "requests>=2.31",
+    "opencv-python-headless>=5.0",
+    "mlx-whisper>=0.4; sys_platform == 'darwin' and platform_machine == 'arm64' and platform_release >= '23'",
+    "faster-whisper>=1.1; sys_platform != 'darwin' or platform_machine != 'arm64' or platform_release < '23'",
+    "onnxruntime>=1.17",
+    "onnxruntime<1.24; sys_platform == 'darwin' and (platform_machine == 'x86_64' or platform_release < '23')",
+]
+
+[tool.uv]
+package = false

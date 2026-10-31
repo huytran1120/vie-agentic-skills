@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Effect money rain</title></head>
+<body>
+<!-- Effect money rain. When discussing sales, profit, revenue, or incoming money. -->
+
+<template id="effect-money-rain-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+.effectmoneyrain-c{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0}
+#effectmoneyrain-c0{filter:url(#effectmoneyrain-f0)}
+#effectmoneyrain-c1{filter:url(#effectmoneyrain-f1)}
+#effectmoneyrain-c2{filter:url(#effectmoneyrain-f2)}
+.effectmoneyrain-n{position:absolute;left:0;top:0;width:190px;height:88px}
+.effectmoneyrain-s{position:absolute;left:0;top:0;width:100%;height:100%}
+.effectmoneyrain-g{display:block;position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible}
+.effectmoneyrain-l{opacity:0}
+</style>
+<div id="root" data-composition-id="effect-money-rain" data-width="1080" data-height="1920" data-duration="3.0">
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0"><defs>
+<linearGradient id="effectmoneyrain-gr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".3"/><stop offset=".4" stop-color="#fff" stop-opacity="0"/><stop offset=".6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".3"/></linearGradient>
+<symbol id="effectmoneyrain-note" viewBox="0 0 200 92" preserveAspectRatio="none"><rect id="effectmoneyrain-q1" x="2.5" y="2.5" width="195" height="87" rx="7" fill="#2e9e4f" stroke="#b5e0c0" stroke-width="5"/><rect id="effectmoneyrain-q2" x="14" y="13" width="172" height="66" rx="3" fill="#257f3f" stroke="#b5e0c0" stroke-width="1.8"/><circle id="effectmoneyrain-q3" cx="38" cy="46" r="10" fill="#2e9e4f" stroke="#b5e0c0" stroke-width="2.2"/><circle id="effectmoneyrain-q4" cx="162" cy="46" r="10" fill="#2e9e4f" stroke="#b5e0c0" stroke-width="2.2"/><path id="effectmoneyrain-q7" d="M20 21.5h7M173 21.5h7M20 70.5h7M173 70.5h7" fill="none" stroke="#b5e0c0" stroke-width="5" stroke-linecap="round"/><path id="effectmoneyrain-q8" d="M54 29h15M54 35h10M54 57h10M54 63h15M131 29h15M136 35h10M136 57h10M131 63h15" fill="none" stroke="#b5e0c0" stroke-width="1.7" stroke-linecap="round" opacity=".6"/><circle id="effectmoneyrain-q9" cx="100" cy="46" r="33" fill="none" stroke="#b5e0c0" stroke-width="1.3" opacity=".65"/><path id="effectmoneyrain-q10" d="M38 41.5v9M162 41.5v9" fill="none" stroke="#b5e0c0" stroke-width="2.4" stroke-linecap="round"/><circle id="effectmoneyrain-q5" cx="100" cy="46" r="28" fill="#d8f0df" stroke="#2e9e4f" stroke-width="3"/><path id="effectmoneyrain-q6" d="M100 25V67M109.5 38C109.5 32.4 105 30 100 30C95 30 90.5 32.8 90.5 38C90.5 43 95 45 100 46C105 47 109.5 49 109.5 54C109.5 59.2 105 62 100 62C95 62 90.5 59.6 90.5 54" fill="none" stroke="#154a26" stroke-width="5.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="2.5" y="2.5" width="195" height="87" rx="7" fill="url(#effectmoneyrain-gr)"/></symbol>
+<symbol id="effectmoneyrain-reverse" viewBox="0 0 200 92" preserveAspectRatio="none"><rect id="effectmoneyrain-v1" x="2.5" y="2.5" width="195" height="87" rx="7" fill="#27873f" stroke="#8fcfa0" stroke-width="5"/><rect id="effectmoneyrain-v2" x="14" y="13" width="172" height="66" rx="3" fill="#1f6c33" stroke="#8fcfa0" stroke-width="1.8"/><ellipse id="effectmoneyrain-v3" cx="100" cy="46" rx="50" ry="24" fill="#27873f" stroke="#8fcfa0" stroke-width="2.4"/><ellipse id="effectmoneyrain-v4" cx="100" cy="46" rx="34" ry="14" fill="none" stroke="#8fcfa0" stroke-width="2"/><path id="effectmoneyrain-v6" d="M34 24h22M34 68h22M144 24h22M144 68h22" fill="none" stroke="#8fcfa0" stroke-width="1.7" stroke-linecap="round" opacity=".6"/><path id="effectmoneyrain-v5" d="M20 21.5h7M173 21.5h7M20 70.5h7M173 70.5h7M26 46h12M162 46h12" fill="none" stroke="#8fcfa0" stroke-width="5" stroke-linecap="round"/><rect x="2.5" y="2.5" width="195" height="87" rx="7" fill="url(#effectmoneyrain-gr)"/></symbol></defs>
+<filter id="effectmoneyrain-f0" filterUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1920" color-interpolation-filters="sRGB"><feGaussianBlur id="effectmoneyrain-fb0" in="SourceGraphic" stdDeviation="1 3" result="b"/><feDropShadow id="effectmoneyrain-fs0" in="b" dx="0" dy="10" stdDeviation="8" flood-color="#000" flood-opacity=".42"/></filter>
+<filter id="effectmoneyrain-f1" filterUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1920" color-interpolation-filters="sRGB"><feGaussianBlur id="effectmoneyrain-fb1" in="SourceGraphic" stdDeviation="1 3" result="b"/><feDropShadow id="effectmoneyrain-fs1" in="b" dx="0" dy="10" stdDeviation="8" flood-color="#000" flood-opacity=".42"/></filter>
+<filter id="effectmoneyrain-f2" filterUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1920" color-interpolation-filters="sRGB"><feGaussianBlur id="effectmoneyrain-fb2" in="SourceGraphic" stdDeviation="1 3" result="b"/><feDropShadow id="effectmoneyrain-fs2" in="b" dx="0" dy="10" stdDeviation="8" flood-color="#000" flood-opacity=".42"/></filter>
+</svg>
+<div class="effectmoneyrain-c" id="effectmoneyrain-c2"><div class="effectmoneyrain-n" id="effectmoneyrain-n19"><div class="effectmoneyrain-s" id="effectmoneyrain-s19"><svg class="effectmoneyrain-g" id="effectmoneyrain-g19" viewBox="0 0 200 92"><use id="effectmoneyrain-u19" href="#effectmoneyrain-note" x="0" y="0" width="200" height="92"/><rect class="effectmoneyrain-l" id="effectmoneyrain-l19" x="0" y="0" width="200" height="92" rx="9" fill="#fff"/></svg></div></div><div class="effectmoneyrain-n" id="effectmoneyrain-n20"><div class="effectmoneyrain-s" id="effectmoneyrain-s20"><svg class="effectmoneyrain-g" id="effectmoneyrain-g20" viewBox="0 0 200 92"><use id="effectmoneyrain-u20" href="#effectmoneyrain-note" x="0" y="0" width="200" height="92"/><rect class="effectmoneyrain-l" id="effectmoneyrain-l20" x="0" y="0" width="200" height="92" rx="9" fill="#fff"/></svg></div></div><div class="effectmoneyrain-n" id="effectmoneyrain-n21"><div class="effectmoneyrain-s" id="effectmoneyrain-s21"><svg class="effectmoneyrain-g" id="effectmoneyrain-g21" viewBox="0 0 200 92"><use id="effectmoneyrain-u21" href="#effectmoneyrain-note" x="0" y="0" width="200" height="92"/><rect class="effectmoneyrain-l" id="effectmoneyrain-l21" x="0" y="0" width="200" height="92" rx="9" fill="#fff"/></svg></div></div><div class="effectmoneyrain-n" id="effectmoneyrain-n22"><div class="effectmoneyrain-s" id="effectmoneyrain-s22"><svg class="effectmoneyrain-g" id="effectmoneyrain-g22" viewBox="0 0 200 92"><use id="effectmoneyrain-u22" href="#effectmoneyrain-note" x="0" y="0" width="200" height="92"/><rect class="effectmoneyrain-l" id="effectmoneyrain-l22" x="0" y="0" width="200" height="92" rx="9" fill="#fff"/></svg></div></div><div class="effectmoneyrain-n" id="effectmoneyrain-n23"><div class="effectmoneyrain-s" id="effectmoneyrain-s23"><svg class="effectmoneyrain-g" id="effectmoneyrain-g23" viewBox="0 0 200 92"><use id="effectmoneyrain-u23" href="#effectmoneyrain-note" x="0" y="0" width="200" height="92"/><rect class="effectmoneyrain-l" id="effectmoneyrain-l23" x="0" y="0" width="200" height="92" rx="9" fill="#fff"/></svg></div></div><div class="effectmoneyrain-n" id="effectmoneyrain-n24"><div class="effectmoneyrain-s" id="effectmoneyrain-s24"><svg class="effectmoneyrain-g" id="effectmoneyrain-g24" viewBox="0 0 200 92"><use id="effectmoneyrain-u24" href="#effectmoneyrain-note" x="0" y="0" width="200" height="92"/><rect class="effectmoneyrain-l" id="effectmoneyrain-l24" x="0" y="0" width="200" height="92" rx="9" fill="#fff"/></svg></div></div><div class="effectmoneyrain-n" id="effectmoneyrain-n25"><div class="effectmoneyrain-s" id="effectmoneyrain-s25"><svg class="effectmoneyrain-g" id="effectmoneyrain-g25" viewBox="0 0 200 92"><use id="effectmoneyrain-u25" href="#effectmoneyrain-note" x="0" y="0" width="200" height="92"/><rect class="effectmoneyrain-l" id="effectmoneyrain-l25" x="0" y="0" width="200" height="92" rx="9" fill="#fff"/></svg></div></div><div class="effectmoneyrain-n" id="effectmoneyrain-n26"><div class="effectmoneyrain-s" id="effectmoneyrain-s26"><svg class="effectmoneyrain-g" id="effectmoneyrain-g26" viewBox="0 0 200 92"><use id="effectmoneyrain-u26" href="#effectmoneyrain-note" x="0" y="0" width="200" height="92"/><rect class="effectmoneyrain-l" id="effectmoneyrain-l26" x="0" y="0" width="200" height="92" rx="9" fill="#fff"/></svg></div></div><div class="effectmoneyrain-n" id="effectmoneyrain-n27"><div class="effectmoneyrain-s" id="effectmoneyrain-s27"><svg class="effectmoneyrain-g" id="effectmoneyrain-g27" viewBox="0 0 200 92"><use id="effectmoneyrain-u27" href="#effectmoneyrain-note" x="0" y="0" width="200" height="92"/><rect class="effectmoneyrain-l" id="effectmoneyrain-l27" x="0" y="0" width="200" height="92" rx="9" fill="#fff"/></svg></div></div><div class="effectmoneyrain-n" id="effectmoneyrain-n28"><div class="effectmoneyrain-s" id="effectmoneyrain-s28"><svg class="effectmoneyrain-g" id="effectmoneyrain-g28" viewBox="0 0 200 92"><use id="effectmoneyrain-u28" href="#effectmoneyrain-note" x="0" y="0" width="200" height="92"/><rect class="effectmoneyrain-l" id="effectmoneyrain-l28" x="0" y="0" width="200" height="92" rx="9" fill="#fff"/></svg></div></div><div class="effectmoneyrain-n" id="effectmoneyrain-n29"><div class="effectmoneyrain-s" id="effectmoneyrain-s29"><svg class="effectmoneyrain-g" id="effectmoneyrain-g29" viewBox="0 0 200 92"><use id="effectmoneyrain-u29" href="#effectmoneyrain-note" x="0" y="0" width="200" height="92"/><rect class="effectmoneyrain-l" id="effectmoneyrain-l29" x="0" y="0" width="200" height="92" rx="9" fill="#fff"/></svg></div></div><div class="effectmoneyrain-n" id="effectmoneyrain-n30"><div class="effectmoneyrain-s" id="effectmoneyrain-s30"><svg class="effectmoneyrain-g" id="effectmoneyrain-g30" viewBox="0 0 200 92"><use id="effectmoneyrain-u30" href="#effectmoneyrain-note" x="0" y="0" width="200" height="92"/><rect class="effectmoneyrain-l" id="effectmoneyrain-l30" x="0" y="0" width="200" height="92" rx="9" fill="#fff"/></svg></div></div><div class="effectmoneyrain-n" id="effectmoneyrain-n31"><div class="effectmoneyrain-s" id="effectmoneyrain-s31"><svg class="effectmoneyrain-g" id="effectmoneyrain-g31" viewBox="0 0 200 92"><use id="effectmoneyrain-u31" href="#effectmoneyrain-note" x="0" y="0" width="200" height="92"/><rect class="effectmoneyrain-l" id="effectmoneyrain-l31" x="0" y="0" width="200" height="92" rx="9" fill="#fff"/></svg></div></div></div>
+<div class="effectmoneyrain-c" id="effectmoneyrain-c1"><div class="effectmoneyrain-n" id="effectmoneyrain-n8"><div class="effectmoneyrain-s" id="effectmoneyrain-s8"><svg class="effectmoneyrain-g" id="effectmoneyrain-g8" viewBox="0 0 200 92"><use id="effectmoneyrain-u8" href="#effectmoneyrain-note" x="0" y="0" width="200" height="92"/><rect class="effectmoneyrain-l" id="effectmoneyrain-l8" x="0" y="0" width="200" height="92" rx="9" fill="#fff"/></svg></div></div><div class="effectmoneyrain-n" id="effectmoneyrain-n9"><div class="effectmoneyrain-s" id="effectmoneyrain-s9"><svg class="effectmoneyrain-g" id="effectmoneyrain-g9" viewBox="0 0 200 92"><use id="effectmoneyrain-u9" href="#effectmoneyrain-note" x="0" y="0" width="200" height="92"/><rect class="effectmoneyrain-l" id="effectmoneyrain-l9" x="0" y="0" width="200" height="92" rx="9" fill="#fff"/></svg></div></div><div class="effectmoneyrain-n" id="effectmoneyrain-n10"><div class="effectmoneyrain-s" id="effectmoneyrain-s10"><svg class="effectmoneyrain-g" id="effectmoneyrain-g10" viewBox="0 0 200 92"><use id="effectmoneyrain-u10" href="#effectmoneyrain-note" x="0" y="0" width="200" height="92"/><rect class="effectmoneyrain-l" id="effectmoneyrain-l10" x="0" y="0" width="200" height="92" rx="9" fill="#fff"/></svg></div></div><div class="effectmoneyrain-n" id="effectmoneyrain-n11"><div class="effectmoneyrain-s" id="effectmoneyrain-s11"><svg class="effectmoneyrain-g" id="effectmoneyrain-g11" viewBox="0 0 200 92"><use id="effectmoneyrain-u11" href="#effectmoneyrain-note" x="0" y="0" width="200" height="92"/><rect class="effectmoneyrain-l" id="effectmoneyrain-l11" x="0" y="0" width="200" height="92" rx="9" fill="#fff"/></svg></div></div><div class="effectmoneyrain-n" id="effectmoneyrain-n12"><div class="effectmoneyrain-s" id="effectmoneyrain-s12"><svg class="effectmoneyrain-g" id="effectmoneyrain-g12" viewBox="0 0 200 92"><use id="effectmoneyrain-u12" href="#effectmoneyrain-note" x="0" y="0" width="200" height="92"/><rect class="effectmoneyrain-l" id="effectmoneyrain-l12" x="0" y="0" width="200" height="92" rx="9" fill="#fff"/></svg></div></div><div class="effectmoneyrain-n" id="effectmoneyrain-n13"><div class="effectmoneyrain-s" id="effectmoneyrain-s13"><svg class="effectmoneyrain-g" id="effectmoneyrain-g13" viewBox="0 0 200 92"><use id="effectmoneyrain-u13" href="#effectmoneyrain-note" x="0" y="0" width="200" height="92"/><rect class="effectmoneyrain-l" id="effectmoneyrain-l13" x="0" y="0" width="200" height="92" rx="9" fill="#fff"/></svg></div></div><div class="effectmoneyrain-n" id="effectmoneyrain-n14"><div class="effectmoneyrain-s" id="effectmoneyrain-s14"><svg class="effectmoneyrain-g" id="effectmoneyrain-g14" viewBox="0 0 200 92"><use id="effectmoneyrain-u14" href="#effectmoneyrain-note" x="0" y="0" width="200" height="92"/><rect class="effectmoneyrain-l" id="effectmoneyrain-l14" x="0" y="0" width="200" height="92" rx="9" fill="#fff"/></svg></div></div><div class="effectmoneyrain-n" id="effectmoneyrain-n15"><div class="effectmoneyrain-s" id="effectmoneyrain-s15"><svg class="effectmoneyrain-g" id="effectmoneyrain-g15" viewBox="0 0 200 92"><use id="effectmoneyrain-u15" href="#effectmoneyrain-note" x="0" y="0" width="200" height="92"/><rect class="effectmoneyrain-l" id="effectmoneyrain-l15" x="0" y="0" width="200" height="92" rx="9" fill="#fff"/></svg></div></div><div class="effectmoneyrain-n" id="effectmoneyrain-n16"><div class="effectmoneyrain-s" id="effectmoneyrain-s16"><svg class="effectmoneyrain-g" id="effectmoneyrain-g16" viewBox="0 0 200 92"><use id="effectmoneyrain-u16" href="#effectmoneyrain-note" x="0" y="0" width="200" height="92"/><rect class="effectmoneyrain-l" id="effectmoneyrain-l16" x="0" y="0" width="200" height="92" rx="9" fill="#fff"/></svg></div></div><div class="effectmoneyrain-n" id="effectmoneyrain-n17"><div class="effectmoneyrain-s" id="effectmoneyrain-s17"><svg class="effectmoneyrain-g" id="effectmoneyrain-g17" viewBox="0 0 200 92"><use id="effectmoneyrain-u17" href="#effectmoneyrain-note" x="0" y="0" width="200" height="92"/><rect class="effectmoneyrain-l" id="effectmoneyrain-l17" x="0" y="0" width="200" height="92" rx="9" fill="#fff"/></svg></div></div><div class="effectmoneyrain-n" id="effectmoneyrain-n18"><div class="effectmoneyrain-s" id="effectmoneyrain-s18"><svg class="effectmoneyrain-g" id="effectmoneyrain-g18" viewBox="0 0 200 92"><use id="effectmoneyrain-u18" href="#effectmoneyrain-note" x="0" y="0" width="200" height="92"/><rect class="effectmoneyrain-l" id="effectmoneyrain-l18" x="0" y="0" width="200" height="92" rx="9" fill="#fff"/></svg></div></div></div>
+<div class="effectmoneyrain-c" id="effectmoneyrain-c0"><div class="effectmoneyrain-n" id="effectmoneyrain-n0"><div class="effectmoneyrain-s" id="effectmoneyrain-s0"><svg class="effectmoneyrain-g" id="effectmoneyrain-g0" viewBox="0 0 200 92"><use id="effectmoneyrain-u0" href="#effectmoneyrain-note" x="0" y="0" width="200" height="92"/><rect class="effectmoneyrain-l" id="effectmoneyrain-l0" x="0" y="0" width="200" height="92" rx="9" fill="#fff"/></svg></div></div><div class="effectmoneyrain-n" id="effectmoneyrain-n1"><div class="effectmoneyrain-s" id="effectmoneyrain-s1"><svg class="effectmoneyrain-g" id="effectmoneyrain-g1" viewBox="0 0 200 92"><use id="effectmoneyrain-u1" href="#effectmoneyrain-note" x="0" y="0" width="200" height="92"/><rect class="effectmoneyrain-l" id="effectmoneyrain-l1" x="0" y="0" width="200" height="92" rx="9" fill="#fff"/></svg></div></div><div class="effectmoneyrain-n" id="effectmoneyrain-n2"><div class="effectmoneyrain-s" id="effectmoneyrain-s2"><svg class="effectmoneyrain-g" id="effectmoneyrain-g2" viewBox="0 0 200 92"><use id="effectmoneyrain-u2" href="#effectmoneyrain-note" x="0" y="0" width="200" height="92"/><rect class="effectmoneyrain-l" id="effectmoneyrain-l2" x="0" y="0" width="200" height="92" rx="9" fill="#fff"/></svg></div></div><div class="effectmoneyrain-n" id="effectmoneyrain-n3"><div class="effectmoneyrain-s" id="effectmoneyrain-s3"><svg class="effectmoneyrain-g" id="effectmoneyrain-g3" viewBox="0 0 200 92"><use id="effectmoneyrain-u3" href="#effectmoneyrain-note" x="0" y="0" width="200" height="92"/><rect class="effectmoneyrain-l" id="effectmoneyrain-l3" x="0" y="0" width="200" height="92" rx="9" fill="#fff"/></svg></div></div><div class="effectmoneyrain-n" id="effectmoneyrain-n4"><div class="effectmoneyrain-s" id="effectmoneyrain-s4"><svg class="effectmoneyrain-g" id="effectmoneyrain-g4" viewBox="0 0 200 92"><use id="effectmoneyrain-u4" href="#effectmoneyrain-note" x="0" y="0" width="200" height="92"/><rect class="effectmoneyrain-l" id="effectmoneyrain-l4" x="0" y="0" width="200" height="92" rx="9" fill="#fff"/></svg></div></div><div class="effectmoneyrain-n" id="effectmoneyrain-n5"><div class="effectmoneyrain-s" id="effectmoneyrain-s5"><svg class="effectmoneyrain-g" id="effectmoneyrain-g5" viewBox="0 0 200 92"><use id="effectmoneyrain-u5" href="#effectmoneyrain-note" x="0" y="0" width="200" height="92"/><rect class="effectmoneyrain-l" id="effectmoneyrain-l5" x="0" y="0" width="200" height="92" rx="9" fill="#fff"/></svg></div></div><div class="effectmoneyrain-n" id="effectmoneyrain-n6"><div class="effectmoneyrain-s" id="effectmoneyrain-s6"><svg class="effectmoneyrain-g" id="effectmoneyrain-g6" viewBox="0 0 200 92"><use id="effectmoneyrain-u6" href="#effectmoneyrain-note" x="0" y="0" width="200" height="92"/><rect class="effectmoneyrain-l" id="effectmoneyrain-l6" x="0" y="0" width="200" height="92" rx="9" fill="#fff"/></svg></div></div><div class="effectmoneyrain-n" id="effectmoneyrain-n7"><div class="effectmoneyrain-s" id="effectmoneyrain-s7"><svg class="effectmoneyrain-g" id="effectmoneyrain-g7" viewBox="0 0 200 92"><use id="effectmoneyrain-u7" href="#effectmoneyrain-note" x="0" y="0" width="200" height="92"/><rect class="effectmoneyrain-l" id="effectmoneyrain-l7" x="0" y="0" width="200" height="92" rx="9" fill="#fff"/></svg></div></div></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["effect-money-rain"] || { duration: 3.0 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 3.0, t0 = 0;
+
+  var P = {
+    strength: 0.8, // 0–1: banknote count; one gives about 28 visible notes.
+    size: 300, // Foreground banknote width, in pixels; middle and distant notes are smaller.
+    color: "#2e9e4f", // Banknote color.
+    speed: 0.5, // 0–1: falling speed.
+  };
+
+
+  var NT = [
+    [0, 123, -0.7, 1.11, -132, 33, 1.09, 0.65, -5, -166, 13, 1.08, 0.79, 0.1, 248, 0.26],
+    [0, 409, -0.06, 0.98, -132, 53, 1.3, 0.2, -10, 62, 18, 0.93, 0.34, 0.12, -287, 0.21],
+    [0, 1014, -0.32, 1.03, 113, 57, 1.24, 0.09, 44, -39, 12, 0.97, 0.5, 0.55, -392, 0.26],
+    [0, 266, 0.16, 1.07, -103, 31, 1.46, 0.18, 6, 38, 14, 0.69, 0.9, 0.55, -341, 0.03],
+    [0, 783, -0.67, 1.04, 66, 21, 1.53, 0.91, 32, 69, 10, 0.84, 0.67, 0.3, 238, 0.2],
+    [0, 871, 0.09, 1.09, -103, 51, 1.5, 0.68, 27, -67, 12, 0.92, 0.81, 0.12, 229, 0.28],
+    [0, 497, -0.38, 1.13, 106, 45, 1.47, 0.48, 66, -19, 19, 1.1, 0.45, 0.3, 189, 0.19],
+    [0, 640, -0.06, 1.17, -141, 37, 1.43, 0.19, 2, -54, 20, 0.88, 0.46, 0.55, -412, 0.17],
+    [1, 136, -0.21, 1.18, 80, 28, 1.07, 0.7, -7, 144, 14, 0.82, 0.23, 0.08, -430, 0.0],
+    [1, 742, 0.43, 1.08, -145, 41, 1.14, 0.95, 36, 26, 11, 1.0, 0.1, 0.07, -311, 0.23],
+    [1, 599, -0.31, 0.96, -85, 42, 1.3, 0.62, -38, -156, 9, 1.09, 0.29, 0.3, -223, 0.14],
+    [1, 973, 0.43, 0.91, 86, 22, 1.55, 0.13, -35, 70, 15, 1.07, 0.62, 0.07, -258, 0.28],
+    [1, 82, -0.58, 1.03, -142, 41, 0.98, 0.66, -1, 39, 8, 1.15, 0.24, 0.07, -341, 0.18],
+    [1, 368, 0.27, 1.01, 130, 35, 1.57, 0.11, -15, 155, 14, 0.87, 0.54, 0.08, 251, 0.24],
+    [1, 830, -0.05, 1.05, 95, 26, 1.33, 0.44, 29, -163, 11, 0.85, 0.01, 0.07, -436, 0.27],
+    [1, 225, -0.56, 0.97, 104, 39, 0.99, 0.34, 35, 24, 13, 1.07, 0.7, 0.07, -238, 0.12],
+    [1, 456, -0.53, 1.05, -53, 24, 1.43, 0.37, -38, 27, 16, 1.18, 0.55, 0.3, 239, 0.28],
+    [1, 687, 0.11, 1.09, 62, 44, 0.98, 0.16, 20, -37, 19, 0.66, 0.99, 0.45, -311, 0.04],
+    [1, 313, -0.13, 0.91, -83, 41, 1.4, 0.35, -64, -20, 16, 1.22, 0.12, 0.45, 275, 0.11],
+    [2, 932, -0.07, 1.1, -113, 19, 1.58, 0.41, -43, -66, 17, 0.79, 0.96, 0.55, -256, 0.06],
+    [2, 1021, 0.19, 0.99, 59, 25, 1.56, 0.52, 4, 28, 17, 0.97, 0.26, 0.12, -210, 0.11],
+    [2, 558, 0.15, 0.92, -119, 14, 1.62, 0.88, 36, 122, 16, 0.96, 0.3, 0.45, 299, 0.08],
+    [2, 415, -0.74, 1.07, -88, 16, 1.63, 0.91, -50, -35, 18, 0.89, 0.87, 0.45, 348, 0.27],
+    [2, 326, -0.17, 0.89, -138, 24, 1.17, 0.74, 55, -63, 15, 1.2, 0.19, 0.3, -324, 0.01],
+    [2, 789, 0.52, 1.18, 57, 34, 1.28, 0.1, 5, 56, 17, 0.77, 0.73, 0.55, -194, 0.0],
+    [2, 95, 0.54, 0.97, 47, 20, 0.97, 0.69, -55, -22, 17, 0.83, 0.69, 0.45, -284, 0.25],
+    [2, 469, -0.11, 1.13, 104, 28, 1.16, 0.97, -8, 46, 8, 0.87, 0.16, 0.55, -187, 0.08],
+    [2, 701, -0.27, 0.98, -146, 15, 1.54, 0.51, -56, 40, 16, 0.79, 0.25, 0.07, -235, 0.04],
+    [2, 184, 0.3, 0.91, -102, 18, 1.51, 0.73, -17, 25, 11, 1.04, 0.31, 0.1, 364, 0.13],
+    [2, 646, 0.54, 0.9, 94, 26, 1.29, 0.77, 51, -149, 7, 0.85, 0.2, 0.3, 346, 0.06],
+    [2, 272, -0.74, 0.95, -71, 30, 1.62, 0.72, 56, 140, 17, 0.94, 0.43, 0.3, 256, 0.14],
+    [2, 878, -0.33, 0.89, 111, 16, 1.6, 0.97, 30, -39, 9, 1.21, 0.16, 0.45, -185, 0.08]
+  ];
+
+  var num = function (v, pad) { var n = (v === null || v === undefined || v === "") ? NaN : Number(v); return n === n ? n : pad; };
+  var strength = Math.max(0, Math.min(1, num(P.strength, .8)));
+  var widthValue = Math.max(90, Math.min(360, num(P.size, 190)));
+  var vel = Math.max(0, Math.min(1, num(P.speed, .5)));
+  var hx = /^#?([0-9a-f]{6}|[0-9a-f]{3})$/i.exec(String(P.color).replace(/\s/g, "")), hs = hx ? hx[1] : "2e9e4f";
+  if (hs.length === 3) hs = hs.charAt(0) + hs.charAt(0) + hs.charAt(1) + hs.charAt(1) + hs.charAt(2) + hs.charAt(2);
+  var rgb = [parseInt(hs.substr(0, 2), 16), parseInt(hs.substr(2, 2), 16), parseInt(hs.substr(4, 2), 16)];
+
+  var mix = function (targetState, q) { return "rgb(" + Math.round(rgb[0] + (targetState - rgb[0]) * q) + "," + Math.round(rgb[1] + (targetState - rgb[1]) * q) + "," + Math.round(rgb[2] + (targetState - rgb[2]) * q) + ")"; };
+  var paint = function (id, fill, stroke) { var e = document.getElementById("effectmoneyrain-" + id); if (fill) e.setAttribute("fill", fill); if (stroke) e.setAttribute("stroke", stroke); };
+  var lightTint = mix(255, .66), halfValue = mix(255, .42), deepValue = mix(0, .2);
+  paint("q1", mix(0, 0), lightTint); paint("q2", deepValue, lightTint); paint("q3", mix(0, 0), lightTint); paint("q4", mix(0, 0), lightTint);
+  paint("q5", mix(255, .82), mix(0, 0)); paint("q6", null, mix(0, .55)); paint("q7", null, lightTint); paint("q8", null, lightTint); paint("q9", null, lightTint); paint("q10", null, lightTint);
+  paint("v1", mix(0, .14), halfValue); paint("v2", mix(0, .32), halfValue); paint("v3", mix(0, .14), halfValue); paint("v4", null, halfValue); paint("v5", null, halfValue); paint("v6", null, halfValue);
+
+  var LW = [widthValue, Math.round(widthValue * .74), Math.round(widthValue * .52)], LV = [1, .8, .62], LA = [1, .94, .78], LN = [8, 11, 13];
+  var time = 2.7 - 1.7 * vel;
+  var FOCUS = [.0075, .0015, .006];
+  var cam, blur, focus;
+  for (cam = 0; cam < 3; cam++) {
+
+    blur = Math.min(5, 2140 / time * LV[cam] / 30 * .075); focus = widthValue * FOCUS[cam];
+    document.getElementById("effectmoneyrain-fb" + cam).setAttribute("stdDeviation", focus.toFixed(2) + " " + Math.sqrt(focus * focus + blur * blur).toFixed(2));
+    document.getElementById("effectmoneyrain-fs" + cam).setAttribute("dy", (LW[cam] * .06).toFixed(1));
+    document.getElementById("effectmoneyrain-fs" + cam).setAttribute("stdDeviation", (LW[cam] * .045).toFixed(1));
+  }
+
+  var wave = function (n, f) { return function (p) { return .5 + .5 * Math.sin(6.28319 * (n * p + f)); }; };
+  var sparkle = function (n, f) { return function (p) { var b = Math.max(0, Math.sin(6.28319 * (n * p + f))); return b * b; }; };
+  var turn = function (n, f, m) { return function (p) { return (1 - m) * (1 - Math.abs(Math.cos(3.14159 * (n * p + f)))); }; };
+  var enter = t0 + .05, end = t0 + D, exit = end - .32;
+  var ni, nk, lin, w, h, v, el, ts, te, ys, xs, cut, lifetime, top, background, side, usedItems = [0, 0, 0];
+  for (ni = 0; ni < NT.length; ni++) {
+    lin = NT[ni]; cam = lin[0]; el = document.getElementById("effectmoneyrain-n" + ni);
+    if (usedItems[cam] >= Math.round(LN[cam] * strength)) { el.style.display = "none"; continue; }
+    usedItems[cam]++;
+    w = LW[cam]; h = w * .46; el.style.width = w + "px"; el.style.height = h + "px";
+    v = 2140 / time * LV[cam] * lin[3];
+    top = -(w * .56 + 24); background = 1920 + w * .56 + 24;
+
+    ts = enter; ys = 1920 * lin[2]; xs = lin[1]; lifetime = 0;
+    for (nk = 0; nk < 9; nk++) {
+      te = ts + (background - ys) / v; cut = Math.min(te, end);
+      tl.fromTo(el, { x: xs - w / 2, y: ys - h / 2 }, { x: xs - w / 2 + lin[4] * v * (cut - ts) / 2140, y: ys - h / 2 + v * (cut - ts), duration: cut - ts, ease: "none", immediateRender: nk === 0 }, ts);
+      lifetime = cut - enter;
+      if (te + lin[15] > exit - .25) break;
+      ts = te + lin[15]; ys = top; xs = 30 + (((lin[1] + (nk + 1) * lin[14] - 30) % 1020) + 1020) % 1020;
+    }
+    tl.fromTo("#effectmoneyrain-s" + ni, { x: -lin[5] }, { x: lin[5], duration: lifetime, ease: wave(lifetime / lin[6], lin[7]) }, enter);
+    tl.fromTo("#effectmoneyrain-s" + ni, { rotation: -lin[10] }, { rotation: lin[10], duration: lifetime, ease: wave(lifetime / lin[6], lin[7] + .25), immediateRender: false }, enter);
+    tl.fromTo("#effectmoneyrain-g" + ni, { rotation: lin[8] }, { rotation: lin[8] + lin[9] * lifetime, duration: lifetime, ease: "none" }, enter);
+    tl.fromTo(["#effectmoneyrain-u" + ni, "#effectmoneyrain-l" + ni], { attr: { y: 0, height: 92 } }, { attr: { y: 46, height: 0 }, duration: lifetime, ease: turn(lifetime / lin[11], lin[12], lin[13]) }, enter);
+
+    tl.fromTo("#effectmoneyrain-l" + ni, { opacity: 0 }, { opacity: .32, duration: lifetime, ease: sparkle(lifetime / lin[11], lin[12]), immediateRender: false }, enter);
+
+    if (lin[13] <= .15) for (nk = 0, side = 0; nk < 40; nk++) {
+      ts = enter + (nk + .5 - lin[12]) * lin[11];
+      if (ts >= enter + lifetime) break;
+      if (ts > enter) { side = 1 - side; tl.set("#effectmoneyrain-u" + ni, { attr: { href: side ? "#effectmoneyrain-reverse" : "#effectmoneyrain-note" } }, ts); }
+    }
+  }
+
+  for (cam = 0; cam < 3; cam++) {
+    tl.fromTo("#effectmoneyrain-c" + cam, { opacity: 0 }, { opacity: strength > 0 ? LA[cam] : 0, duration: .22, ease: "sine.out" }, enter);
+    tl.to("#effectmoneyrain-c" + cam, { opacity: 0, duration: .27, ease: "sine.in", immediateRender: false }, exit);
+  }
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["effect-money-rain"] = tl;
+})();
+</script>
+</template>
+</body></html>

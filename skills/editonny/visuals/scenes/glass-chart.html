@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Glass chart</title></head>
+<body>
+<!-- Glass chart. When a metric rises or falls: a white curve draws progressively while its marker and counter move to the final value. -->
+
+<template id="glass-chart-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+@font-face{font-family:"SoraV";src:url("assets/visuals/fonts/Sora.ttf");font-weight:100 800;font-display:block}
+#glasschart-w{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;overflow:hidden;background:#000;font-family:"Inter",sans-serif;color:#fff}
+#glasschart-lz{position:absolute;left:-200px;top:-200px;width:1480px;height:2320px}
+#glasschart-lf{position:absolute;inset:0}
+.glasschart-l{position:absolute;inset:0;opacity:0;mix-blend-mode:screen}
+#glasschart-lcg{background:radial-gradient(ellipse 900px 840px at 1150px 200px,rgba(46,255,62,.82),rgba(0,0,0,0) 70%),radial-gradient(ellipse 820px 700px at 286px 2120px,rgba(46,255,62,.5),rgba(0,0,0,0) 70%)}
+#glasschart-lca{background:radial-gradient(ellipse 900px 840px at 1150px 200px,rgba(255,122,26,.82),rgba(0,0,0,0) 70%),radial-gradient(ellipse 820px 700px at 286px 2120px,rgba(255,122,26,.5),rgba(0,0,0,0) 70%)}
+#glasschart-lcr{background:radial-gradient(ellipse 900px 840px at 1150px 200px,rgba(255,24,40,.82),rgba(0,0,0,0) 70%),radial-gradient(ellipse 820px 700px at 286px 2120px,rgba(255,24,40,.5),rgba(0,0,0,0) 70%)}
+#glasschart-lfg{background:linear-gradient(180deg,rgba(40,240,54,.95) 0%,rgba(22,150,34,.6) 30%,rgba(0,0,0,0) 68%)}
+#glasschart-lfa{background:linear-gradient(180deg,rgba(255,122,26,.92) 0%,rgba(160,70,10,.6) 30%,rgba(0,0,0,0) 68%)}
+#glasschart-lfr{background:linear-gradient(180deg,rgba(225,10,26,.95) 0%,rgba(140,6,16,.6) 30%,rgba(0,0,0,0) 68%)}
+#glasschart-vin{position:absolute;inset:0;box-shadow:inset 0 0 200px 30px rgba(0,0,0,.35)}
+#glasschart-ct{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0}
+#glasschart-cd{position:absolute;left:140px;top:540px;width:800px;height:800px;opacity:0}
+.glasschart-vd{position:absolute;inset:0;border-radius:52px;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.19),rgba(255,255,255,.06) 70%,rgba(255,255,255,.03));border:1.5px solid rgba(255,255,255,.26);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.42),0 40px 90px rgba(0,0,0,.55);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px)}
+.glasschart-gd{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.12) 1.5px,transparent 1.5px),linear-gradient(90deg,rgba(255,255,255,.12) 1.5px,transparent 1.5px);background-size:72px 72px;background-position:-2px -2px;-webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.9) 30%,rgba(0,0,0,.25) 100%);mask-image:linear-gradient(180deg,rgba(0,0,0,.9) 30%,rgba(0,0,0,.25) 100%)}
+#glasschart-hd{position:absolute;left:60px;top:54px;width:680px;display:flex;align-items:center;gap:18px;color:#ececf0;font-weight:600;letter-spacing:.04em;line-height:1.15}
+.glasschart-hi{flex:0 0 auto;width:52px;height:52px;fill:none;stroke:#fff;stroke-width:4.5;stroke-linecap:round;stroke-linejoin:round}
+#glasschart-ti{flex:1 1 auto}
+#glasschart-nm{position:absolute;left:56px;top:142px;width:690px;white-space:nowrap;font-family:"SoraV","Inter",sans-serif;font-weight:800;line-height:1;letter-spacing:-.02em;color:#fff;text-shadow:0 0 30px rgba(255,255,255,.25)}
+#glasschart-ns{font-size:.56em;letter-spacing:0;margin-left:.06em}
+#glasschart-nb{position:absolute;left:62px;top:330px;width:150px;height:12px;border-radius:6px;background:#ff8a2e;box-shadow:0 0 18px rgba(255,138,46,.7)}
+#glasschart-ar{position:absolute;left:60px;top:400px;width:680px;height:340px;clip-path:inset(0 100% 0 0)}
+#glasschart-ar svg,#glasschart-sv{display:block;overflow:visible}
+#glasschart-sv{position:absolute;left:60px;top:400px;width:680px;height:340px;filter:drop-shadow(0 0 7px rgba(255,255,255,.95)) drop-shadow(0 0 18px rgba(255,255,255,.5))}
+#glasschart-fl{position:absolute;inset:0;background:#fff;opacity:0}
+</style>
+<div id="root" data-composition-id="glass-chart" data-width="1080" data-height="1920" data-duration="4.5">
+<div id="glasschart-w"><div id="glasschart-lz"><div class="glasschart-l" id="glasschart-lcg"></div><div class="glasschart-l" id="glasschart-lca"></div><div class="glasschart-l" id="glasschart-lcr"></div></div><div id="glasschart-lf"><div class="glasschart-l" id="glasschart-lfg"></div><div class="glasschart-l" id="glasschart-lfa"></div><div class="glasschart-l" id="glasschart-lfr"></div></div><div id="glasschart-vin"></div><div id="glasschart-ct"><div id="glasschart-cd"><div class="glasschart-vd"><div class="glasschart-gd"></div><div id="glasschart-hd"><svg class="glasschart-hi" viewBox="0 0 48 48"><path d="M5 38 L17 24 L27 31 L43 11"/><path d="M33 11 H43 V21"/></svg><span id="glasschart-ti"></span></div><div id="glasschart-nm"><span id="glasschart-nv"></span><span id="glasschart-ns"></span></div><div id="glasschart-nb"></div><div id="glasschart-ar"><svg viewBox="0 0 680 340" width="680" height="340"><defs><linearGradient id="glasschart-ga" x1="0" y1="0" x2="0" y2="1"><stop offset="0" id="glasschart-gs0" stop-color="#ffffff" stop-opacity=".26"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></linearGradient></defs><path id="glasschart-pa" d="" fill="url(#glasschart-ga)"/></svg></div><svg id="glasschart-sv" viewBox="0 0 680 340" width="680" height="340"><path id="glasschart-pc" d="" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-dasharray="2000 2000" stroke-dashoffset="2000"/><circle id="glasschart-rg" r="14" cx="0" cy="0" fill="none" stroke="#fff" stroke-width="4" opacity="0"/><circle id="glasschart-dt" r="14" cx="0" cy="0" fill="#fff" opacity="0"/></svg></div></div></div><div id="glasschart-fl"></div></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["glass-chart"] || { duration: 4.5 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 4.5, t0 = 0;
+
+  var P = {
+    title: "viewer attention", // Chart label at the top of the card.
+    start: 100, // Starting number.
+    end: 12, // Ending number.
+    direction: "falling", // "falling" or "rising" sets curve shape and final color: red for falling, green for rising.
+    suffix: "%", // Suffix after the number, such as %, thousand, or x; empty omits it.
+  };
+
+
+  var $ = function (id) { return document.getElementById(id); };
+  var LZ = { g: [0, 0], a: [0, 0], r: [0, 0] };
+  function light(t, k, mode, d) { ["g", "a", "r"].forEach(function (c) { [0, 1].forEach(function (m) { var target = c === k ? (m === 0 ? 1 : (mode === "f" ? 1 : 0)) : 0; if (target === LZ[c][m]) return; tl.fromTo("#glasschart-l" + (m ? "f" : "c") + c, { opacity: LZ[c][m] }, { opacity: target, duration: d || .5, ease: "power2.inOut", immediateRender: false }, t); LZ[c][m] = target; }); }); }
+  function num(v, pad) { var s = String(v === undefined || v === null || v === "" ? pad : v).trim().replace(/\s/g, ""); if (/^-?\d{1,3}(,\d{3})+(\.\d+)?$/.test(s)) s = s.replace(/,/g, ""); var n = parseFloat(s); return { n: isFinite(n) ? n : pad, c: (s.split(".")[1] || "").length }; }
+  var A = num(P.start, 100), B = num(P.end, 12), decimals = Math.min(2, Math.max(A.c, B.c));
+  var sen = String(P.direction || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+  var rise = sen.indexOf("subtitle") === 0 || sen.indexOf("cres") === 0 || sen.indexOf("sub") === 0 ? true : sen.indexOf("ca") === 0 || sen.indexOf("des") === 0 ? false : B.n > A.n;
+  var suf = P.suffix === undefined || P.suffix === null ? "%" : String(P.suffix);
+  function fmt(v) { var s = Math.abs(v).toFixed(decimals).split("."), i = s[0].replace(/\B(?=(\d{3})+(?!\d))/g, "."); return (v < 0 ? "-" : "") + i + (s[1] ? "," + s[1] : ""); }
+  var COLOR = rise ? "#45ff55" : "#ff3448", RGB = rise ? "60,255,80" : "255,40,60", KF = rise ? "g" : "r";
+
+  var dC = rise ? "M0 300 C150 300 230 292 340 172 C450 52 530 40 680 38" : "M0 40 C150 40 230 48 340 168 C450 288 530 300 680 302";
+  $("glasschart-pc").setAttribute("d", dC); $("glasschart-pa").setAttribute("d", dC + " L680 340 L0 340 Z");
+  $("glasschart-ti").textContent = String(P.title || "viewer attention");
+
+  var ZW = "\u2060";
+  $("glasschart-nv").textContent = ZW + fmt(A.n); $("glasschart-ns").textContent = suf;
+
+  function measure(txts, widthValue, mx, mn, lines, lh, style) {
+    var m = document.createElement("div"), px, j, ok;
+    m.style.cssText = "position:absolute;left:-99999px;top:0;visibility:hidden;white-space:normal;" + style + ";width:" + widthValue + "px;line-height:" + lh;
+    document.body.appendChild(m);
+    for (px = mx; px >= mn; px -= 2) { m.style.fontSize = px + "px"; ok = true; for (j = 0; j < txts.length; j++) { m.innerHTML = txts[j]; if (m.offsetHeight > px * lh * lines + 4 || m.scrollWidth > widthValue + 1) { ok = false; break; } } if (ok) break; }
+    document.body.removeChild(m); return ok ? px : 0;
+  }
+  function adjust() {
+    var t = String(P.title || "viewer attention").replace(/[<>&]/g, " "), E = "font-family:Inter,sans-serif;font-weight:600;letter-spacing:.04em";
+    var pt = measure([t], 610, 44, 36, 1, 1.15, E), lin = 1;
+    if (!pt) { pt = measure([t], 610, 40, 34, 2, 1.15, E); lin = 2; }
+    if (!pt) { pt = 34; lin = 3; }
+    $("glasschart-ti").style.fontSize = pt + "px";
+    var nums = [fmt(A.n), fmt(B.n), fmt(Math.max(A.n, B.n))].map(function (s) { return s + '<span style="font-size:.56em;margin-left:.06em">' + suf.replace(/[<>&]/g, "") + "</span>"; });
+    var pn = measure(nums, 680, 176, 90, 1, 1, "font-family:SoraV,Inter,sans-serif;font-weight:800;letter-spacing:-.02em;white-space:nowrap") || 90;
+    if (lin > 2) pn = Math.min(pn, 140);
+    $("glasschart-nm").style.fontSize = pn + "px";
+
+    var dy = lin > 1 ? Math.round(pt * 1.15 * (lin - 1)) - 6 : 0;
+    $("glasschart-nm").style.top = (142 + dy) + "px"; $("glasschart-nb").style.top = (142 + dy + pn + 14) + "px";
+  }
+  adjust();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { adjust(); tl.invalidate(); });
+
+  var pc = $("glasschart-pc"), Lc = pc.getTotalLength(), NP = 40, pts = [], q;
+  for (q = 0; q <= NP; q++) { var pp = pc.getPointAtLength(Lc * q / NP); pts.push({ x: pp.x, y: pp.y }); }
+  var yA = pts[0].y, yB = pts[NP].y;
+
+  var LD = Math.ceil(Lc) + 8;
+  pc.setAttribute("stroke-dasharray", LD + " " + (LD + 40)); pc.setAttribute("stroke-dashoffset", LD + 8);
+
+
+  var enter = t0 + .05, exit = t0 + D - .32, u = exit - enter;
+  var tD0 = enter + .4, dD = Math.max(.7, Math.min(3, .55 * u)), tD1 = tD0 + dD;
+  tl.fromTo("#glasschart-w", { opacity: 0 }, { opacity: 1, duration: .16, ease: "power1.out" }, enter);
+  tl.fromTo("#glasschart-ct", { opacity: 0 }, { opacity: 1, duration: .01, ease: "none" }, enter);
+  light(enter, "a", "c", .5);
+  tl.fromTo("#glasschart-lz", { x: 180, y: -180 }, { x: 0, y: 0, duration: .8, ease: "power3.out" }, enter);
+  var vM = Math.max(1, Math.round((exit - enter - .8) / 1.5)), dM = (exit - enter - .8) / vM;
+  tl.fromTo("#glasschart-lz", { x: 0, y: 0 }, { x: -46, y: 34, duration: dM, ease: "sine.inOut", yoyo: true, repeat: vM - 1, immediateRender: false }, enter + .8);
+
+  tl.fromTo("#glasschart-cd", { opacity: 0, y: 220, rotationX: 22, transformPerspective: 1700, filter: "blur(18px)" }, { opacity: 1, y: 0, rotationX: 5, transformPerspective: 1700, filter: "blur(0px)", duration: .55, ease: "power3.out" }, enter + .04);
+  tl.to("#glasschart-cd", { rotationX: 0, rotationY: rise ? 3 : -3, y: -14, duration: Math.max(.2, exit - enter - .6), ease: "sine.inOut", immediateRender: false }, enter + .59);
+
+  var e = gsap.parseEase("power1.inOut"), tk, k, previousValue = 0;
+  tl.fromTo("#glasschart-pc", { strokeDashoffset: LD + 8 }, { strokeDashoffset: 8, duration: dD, ease: "power1.inOut" }, tD0);
+  tl.fromTo("#glasschart-ar", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: dD, ease: "power1.inOut" }, tD0);
+  tl.fromTo("#glasschart-dt", { attr: { cx: pts[0].x, cy: pts[0].y }, opacity: 0 }, { attr: { cx: pts[0].x, cy: pts[0].y }, opacity: 1, duration: .12, ease: "none" }, tD0 - .12);
+  for (k = 1; k <= 30; k++) {
+    var pr = e(k / 30), ix = pr * NP, i0 = Math.floor(ix), fr = ix - i0, P0 = pts[i0], P1 = pts[Math.min(NP, i0 + 1)];
+    var px = P0.x + (P1.x - P0.x) * fr, py = P0.y + (P1.y - P0.y) * fr;
+    tk = tD0 + dD * (k - 1) / 30;
+    tl.to("#glasschart-dt", { attr: { cx: px, cy: py }, duration: dD / 30, ease: "none", immediateRender: false }, tk);
+    var f = Math.abs(yB - yA) < 1 ? pr : (py - yA) / (yB - yA);
+    tl.set("#glasschart-nv", { textContent: ZW + fmt(A.n + (B.n - A.n) * Math.max(0, Math.min(1, f))) }, tD0 + dD * k / 30);
+  }
+  tl.set("#glasschart-nv", { textContent: ZW + fmt(B.n) }, tD1 + .01);
+
+  light(tD1 - .15, KF, "c", .5);
+  tl.to("#glasschart-nm", { color: COLOR, textShadow: "0 0 34px rgba(" + RGB + ",.75)", duration: .25, ease: "power1.out", immediateRender: false }, tD1 - .05);
+  tl.to("#glasschart-nb", { backgroundColor: COLOR, boxShadow: "0 0 22px rgba(" + RGB + ",.85)", duration: .25, ease: "power1.out", immediateRender: false }, tD1 - .05);
+  tl.to("#glasschart-gs0", { attr: { "stop-color": COLOR }, duration: .3, ease: "none", immediateRender: false }, tD1 - .05);
+  tl.fromTo("#glasschart-rg", { attr: { cx: pts[NP].x, cy: pts[NP].y, r: 14 }, opacity: 0 }, { attr: { cx: pts[NP].x, cy: pts[NP].y, r: 14 }, opacity: .9, duration: .01, ease: "none" }, tD1);
+  tl.to("#glasschart-rg", { attr: { r: 58 }, opacity: 0, duration: .55, ease: "power2.out", immediateRender: false }, tD1 + .01);
+  tl.fromTo("#glasschart-dt", { attr: { r: 14 } }, { attr: { r: 21 }, duration: .14, ease: "sine.inOut", yoyo: true, repeat: 1, immediateRender: false }, tD1);
+
+  var nR = Math.max(0, Math.min(3, Math.floor((exit - tD1 - .75) / .7))), jr;
+  for (jr = 1; jr <= nR; jr++) {
+    tl.fromTo("#glasschart-rg", { attr: { cx: pts[NP].x, cy: pts[NP].y, r: 14 }, opacity: .75 }, { attr: { cx: pts[NP].x, cy: pts[NP].y, r: 54 }, opacity: 0, duration: .6, ease: "power2.out", immediateRender: false }, tD1 + jr * .7);
+    tl.fromTo("#glasschart-dt", { attr: { r: 14 } }, { attr: { r: 18 }, duration: .12, ease: "sine.inOut", yoyo: true, repeat: 1, immediateRender: false }, tD1 + jr * .7);
+  }
+
+  tl.to("#glasschart-ct", { opacity: 0, y: -50, filter: "blur(16px)", duration: .28, ease: "power2.in", immediateRender: false }, exit);
+  tl.to("#glasschart-w", { opacity: 0, duration: .3, ease: "power2.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["glass-chart"] = tl;
+})();
+</script>
+</template>
+</body></html>

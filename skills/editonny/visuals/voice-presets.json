@@ -1,0 +1,192 @@
+{
+  "version": "2026-10-13",
+  "about": "Local voice filters. Each FFmpeg chain receives mono 48 kHz speech at [0:a] and returns [out]. Auxiliary inputs follow auxiliaryFiles order. The processor normalizes to inputLufs, compensates delayMs, then restores the original interval loudness and timing.",
+  "presets": [
+    {
+      "id": "old-phone",
+      "name": "Old phone",
+      "whenToUse": "Speech from an old telephone, a recalled conversation, or a quoted voice.",
+      "description": "Remove bass, emphasize midrange and narrow speaker resonances, then apply saturation and compression.",
+      "channels": 1,
+      "inputLufs": -17.0,
+      "delayMs": 0,
+      "filterChain": "[0:a]highpass=f=380:t=q:w=0.5,lowpass=f=7500:t=q:w=3.9,equalizer=f=640:t=q:w=1.5:g=6.1,equalizer=f=1160:t=q:w=0.94:g=8.1,equalizer=f=6000:t=q:w=1:g=2.7,equalizer=f=480:t=q:w=2:g=-2,equalizer=f=3000:t=q:w=1.2:g=2,asplit=2[s0][s1];[s1]volume=7dB,asoftclip=type=atan:threshold=0.35:output=0.6,volume=-3dB[w];[s0][w]amix=inputs=2:weights='0.25 0.75':normalize=0,acompressor=threshold=-15dB:ratio=4.95:attack=7.2:release=100:knee=6.6:makeup=2.15,alimiter=limit=-1dB:level=0:attack=1:release=11:latency=1[out]"
+    },
+    {
+      "id": "sweet",
+      "name": "Sweet voice",
+      "whenToUse": "A playful, light, higher-pitched phrase.",
+      "description": "Raise pitch and timbre by 2.13 semitones with gentle EQ while preserving duration.",
+      "channels": 1,
+      "inputLufs": -20.0,
+      "delayMs": -10.0,
+      "changesPitch": true,
+      "filterChain": "[0:a]asetrate=54284.28,aresample=48000,atempo=0.884234,equalizer=f=1000:t=q:w=0.22:g=2,equalizer=f=6000:t=q:w=0.81:g=1.5,equalizer=f=7000:t=q:w=7.68:g=-4,volume=-1.9dB,alimiter=limit=-1dB:level=0:release=250:latency=1[out]"
+    },
+    {
+      "id": "monster",
+      "name": "Monster",
+      "whenToUse": "A brief low, rough creature or villain voice.",
+      "description": "Lower pitch by three semitones, add rasp, reduce treble, and control noise between words.",
+      "channels": 1,
+      "inputLufs": -16.0,
+      "delayMs": 4.0,
+      "changesPitch": true,
+      "approximation": true,
+      "caveat": "This local filter creates a lower, rougher tone. It does not reproduce neural voice replacement or an exact effect from another application.",
+      "filterChain": "[0:a]asetrate=40363.03,aresample=48000,atempo=1.189207,tremolo=f=55:d=0.4,lowpass=f=7800:t=q:w=0.7,lowpass=f=7800:t=q:w=0.7,acompressor=threshold=-20dB:ratio=3:attack=5:release=80:makeup=2,agate=threshold=0.08:ratio=2.5:range=0.2:attack=3:release=150:knee=2,apad=pad_dur=0.05,firequalizer=gain_entry='entry(50,0.0);entry(63,0.0);entry(80,-15.0);entry(100,-23.2);entry(125,-11.5);entry(160,-7.0);entry(200,2.0);entry(250,-1.2);entry(315,-12.4);entry(400,5.4);entry(500,2.8);entry(630,1.6);entry(800,3.4);entry(1000,-0.6);entry(1250,6.5);entry(1600,3.2);entry(2000,0.3);entry(2500,-3.3);entry(3150,-5.8);entry(4000,2.9);entry(5000,8.1);entry(6300,11.4);entry(8000,9.0);entry(10000,0.0);entry(12500,0.0);entry(16000,0.0)':delay=0.05:accuracy=5,atrim=start=0.05,asetpts=PTS-STARTPTS,alimiter=limit=-1dB:level=0:latency=1[out]"
+    },
+    {
+      "id": "analog-echo",
+      "name": "Analog echo",
+      "whenToUse": "An emphatic phrase with an old-radio sound and one delayed repeat.",
+      "description": "Apply narrow radio resonances and compression, with a single echo at 2.342 seconds. Use an interval longer than 2.5 seconds to hear it.",
+      "channels": 1,
+      "inputLufs": -19.5,
+      "delayMs": 0,
+      "filterChain": "[0:a]apad=pad_dur=0.05,firequalizer=gain_entry='entry(50,-17.3);entry(63,-17.3);entry(80,-17.3);entry(100,-17.3);entry(112,-17.3);entry(126,-17.8);entry(141,-24.4);entry(159,-35.7);entry(178,-35.4);entry(200,-28.0);entry(224,-23.1);entry(252,-18.3);entry(283,-14.8);entry(317,-10.9);entry(356,-6.6);entry(400,-2.0);entry(449,3.9);entry(504,12.2);entry(566,16.8);entry(635,14.5);entry(713,12.2);entry(800,9.7);entry(898,9.0);entry(1008,8.2);entry(1131,6.9);entry(1270,6.7);entry(1425,7.3);entry(1600,7.0);entry(1796,6.5);entry(2016,6.7);entry(2263,7.4);entry(2540,7.2);entry(2851,10.1);entry(3200,11.8);entry(3592,18.7);entry(4032,16.3);entry(4525,10.8);entry(5080,6.9);entry(5702,5.4);entry(6400,4.5);entry(7184,4.4);entry(8063,4.2);entry(9051,3.5);entry(10159,3.2);entry(11404,3.3);entry(12800,3.4);entry(14368,3.2)':delay=0.05:accuracy=5,atrim=start=0.05,asetpts=PTS-STARTPTS,acompressor=threshold=-13dB:ratio=4:attack=5:release=100:knee=4:makeup=2,volume=-1dB,aecho=1:1:2342:0.16,alimiter=limit=-1.79dB:level=0:release=500:latency=1[out]"
+    },
+    {
+      "id": "surround",
+      "name": "Surround room",
+      "whenToUse": "A headphone effect placing the voice toward the left ear.",
+      "description": "Position the voice 45 degrees left with a 7 dB level difference, 0.42 ms right-channel delay, reduced right treble, a short room, and a 52 ms reflection.",
+      "channels": 2,
+      "inputLufs": -20.0,
+      "delayMs": 0,
+      "caveat": "Check on headphones and in mono; stereo room processing can sound hollow on a single speaker.",
+      "auxiliaryFiles": [
+        {
+          "file": "library/voice/surround-impulse.wav"
+        }
+      ],
+      "filterChain": "[0:a]pan=stereo|c0=c0|c1=c0[x];[x][1:a]afir=dry=1:wet=1:irnorm=-1:irgain=1,asplit=3[y0][y1][y2];[y1]pan=stereo|c0=0.056*c0|c1=0.126*c0,adelay=59|52[r1];[y2]pan=stereo|c0=0.056*c0|c1=0*c0,adelay=76|76[r2];[y0][r1][r2]amix=inputs=3:normalize=0:duration=first[y];[y]volume=-3.2dB,alimiter=limit=-1dB:level=0:release=200:latency=1[out]"
+    },
+    {
+      "id": "echo",
+      "name": "Hall echo",
+      "whenToUse": "A repeated phrase or a thought spoken aloud.",
+      "description": "Add repeats every 250 ms at -10 dB, a right-only repeat at 375 ms, and a 3.9 second tail without changing timbre.",
+      "channels": 2,
+      "inputLufs": -17.0,
+      "delayMs": 0,
+      "auxiliaryFiles": [
+        {
+          "file": "library/voice/echo-impulse.wav"
+        }
+      ],
+      "filterChain": "[0:a]pan=stereo|c0=c0|c1=c0[x];[x][1:a]afir=dry=1:wet=1:irnorm=-1:irgain=1[y];[y]volume=-1.4dB,alimiter=limit=-0.3dB:level=0:release=1:latency=1[out]"
+    },
+    {
+      "id": "trembling",
+      "name": "Trembling voice",
+      "whenToUse": "A short passage expressing suspense or tension.",
+      "description": "Apply 5 Hz vibrato of about 1.5 semitones and a low heartbeat loop. This changes pitch and does not create conventional distortion.",
+      "channels": 1,
+      "inputLufs": -21.0,
+      "delayMs": 7.0,
+      "changesPitch": true,
+      "auxiliaryFiles": [
+        {
+          "file": "library/voice/beat.wav",
+          "loop": true
+        }
+      ],
+      "filterChain": "[0:a]vibrato=f=5.025:d=0.6,vibrato=f=5.025:d=0.6[v];[1:a]adelay=190,lowpass=f=190,aecho=1:1:61|127|197|263|331|401|467|541|613|683|757|829:0.644|0.546|0.458|0.389|0.328|0.275|0.233|0.194|0.162|0.136|0.113|0.094,volume=-3.5dB[h];[v][h]amix=inputs=2:normalize=0:duration=first,alimiter=limit=-0.6dB:level=0:release=500:latency=1[out]"
+    },
+    {
+      "id": "full-voice",
+      "name": "Full voice",
+      "whenToUse": "A fuller, smoother passage without an obvious special effect.",
+      "description": "Apply EQ only: add 3–4 dB bass, reduce 1–2.5 kHz by 7–10 dB, and add 3 dB at 8 kHz.",
+      "channels": 1,
+      "inputLufs": -18.0,
+      "delayMs": 0,
+      "filterChain": "[0:a]lowshelf=f=130:t=q:w=0.7:g=3,equalizer=f=250:t=q:w=1:g=3.56,equalizer=f=1000:t=q:w=1:g=-3.44,equalizer=f=1500:t=q:w=1:g=-2.7,equalizer=f=2000:t=q:w=1:g=-6.38,equalizer=f=2500:t=q:w=1:g=-1.8,equalizer=f=4000:t=q:w=1:g=-2.2,equalizer=f=8000:t=q:w=1:g=4.16,alimiter=limit=-0.3dB:level=0:release=500:latency=1[out]"
+    },
+    {
+      "id": "phonograph",
+      "name": "Phonograph",
+      "whenToUse": "A historical recording or gramophone-style flashback.",
+      "description": "Use a narrow historical-recording band with midrange peaks, reduced bass and treble, and gentle compression without echo.",
+      "channels": 1,
+      "inputLufs": -14.8,
+      "delayMs": 0,
+      "filterChain": "[0:a]apad=pad_dur=0.05,firequalizer=gain_entry='entry(50,-30.2);entry(63,-30.2);entry(80,-30.2);entry(100,-30.2);entry(112,-31.2);entry(126,-32.1);entry(141,-30.2);entry(159,-29.6);entry(178,-32.7);entry(200,-26.8);entry(224,-23.6);entry(252,-20.6);entry(283,-18.3);entry(317,-16.9);entry(356,-13.3);entry(400,-12.4);entry(449,-10.4);entry(504,-8.4);entry(566,-6.1);entry(635,-5.5);entry(713,-2.2);entry(800,-0.6);entry(898,1.9);entry(1008,5.6);entry(1131,8.5);entry(1270,10.8);entry(1425,13.9);entry(1600,13.4);entry(1796,10.0);entry(2016,5.8);entry(2263,4.1);entry(2540,2.2);entry(2851,-0.6);entry(3200,-3.5);entry(3592,-5.8);entry(4032,-7.5);entry(4525,-9.1);entry(5080,-11.2);entry(5702,-13.9);entry(6400,-15.0);entry(7184,-15.8);entry(8063,-16.2);entry(9051,-13.5);entry(10159,-14.0);entry(11404,-14.3);entry(12800,-14.6);entry(14368,-14.8)':delay=0.05:accuracy=5,atrim=start=0.05,asetpts=PTS-STARTPTS,equalizer=f=1300:t=q:w=1.2:g=3,acompressor=threshold=-15dB:ratio=2:attack=2:release=80:knee=8:makeup=1,alimiter=level_in=1.41:limit=-0.5dB:level=0:release=500:latency=1[out]"
+    },
+    {
+      "id": "youthful",
+      "name": "Youthful voice",
+      "whenToUse": "A slightly higher, lighter voice for a playful phrase.",
+      "description": "Raise pitch and timbre by 1.92 semitones with a gentle 1.87 kHz emphasis while preserving duration.",
+      "channels": 1,
+      "inputLufs": -23.9,
+      "delayMs": -10.0,
+      "changesPitch": true,
+      "filterChain": "[0:a]asetrate=53629.78,aresample=48000,atempo=0.895025,equalizer=f=1874:t=q:w=0.54:g=2.32,alimiter=limit=-1dB:level=0:release=500:latency=1[out]"
+    },
+    {
+      "id": "live-room",
+      "name": "Live room",
+      "whenToUse": "A voice placed toward the left with a short room reflection.",
+      "description": "Use left-biased headphone placement, a 0.42 ms right delay, reduced right treble, and a short room reflection.",
+      "channels": 2,
+      "inputLufs": -20.0,
+      "delayMs": 0,
+      "caveat": "Check on headphones and in mono; stereo room processing can sound hollow on a single speaker.",
+      "auxiliaryFiles": [
+        {
+          "file": "library/voice/surround-impulse.wav"
+        }
+      ],
+      "filterChain": "[0:a]pan=stereo|c0=c0|c1=c0[x];[x][1:a]afir=dry=1:wet=1:irnorm=-1:irgain=1,asplit=3[y0][y1][y2];[y1]pan=stereo|c0=0.056*c0|c1=0.126*c0,adelay=59|52[r1];[y2]pan=stereo|c0=0.056*c0|c1=0*c0,adelay=76|76[r2];[y0][r1][r2]amix=inputs=3:normalize=0:duration=first[y];[y]volume=-3.2dB,alimiter=limit=-1dB:level=0:release=200:latency=1[out]"
+    },
+    {
+      "id": "classic-film",
+      "name": "Classic film",
+      "whenToUse": "An old-film or newsreel narration with quiet record hiss.",
+      "description": "Limit the band to 750 Hz–4 kHz, add parallel saturation, strong compression, and vinyl hiss.",
+      "channels": 1,
+      "inputLufs": -22.1,
+      "delayMs": 0,
+      "auxiliaryFiles": [
+        {
+          "file": "library/voice/hiss.wav",
+          "loop": true
+        }
+      ],
+      "filterChain": "[0:a]highpass=f=750:t=q:w=1,lowpass=f=4000:t=q:w=1,asplit=2[s0][s1];[s1]volume=18.00dB,asoftclip=type=sin:threshold=1,volume=-7.8dB[w];[s0][w]amix=inputs=2:weights='0.6 0.4':normalize=0,acompressor=threshold=-3.9dB:ratio=8.2:attack=0.25:release=100:knee=2:makeup=1,volume=-0.8dB[v];[1:a]volume=0dB[n];[v][n]amix=inputs=2:normalize=0:duration=first[out]"
+    },
+    {
+      "id": "am-radio",
+      "name": "AM radio",
+      "whenToUse": "A compressed, muffled voice from a small radio.",
+      "description": "Use a 200 Hz–4.2 kHz band, midrange emphasis, strong compression, and light saturation.",
+      "channels": 1,
+      "inputLufs": -20.0,
+      "delayMs": 0,
+      "filterChain": "[0:a]highpass=f=200:t=q:w=0.7,highpass=f=200:t=q:w=0.7,lowpass=f=4200:t=q:w=0.7,lowpass=f=4200:t=q:w=0.7,equalizer=f=1500:t=q:w=0.9:g=4,equalizer=f=400:t=q:w=1:g=-2,acompressor=threshold=-22dB:ratio=6:attack=3:release=120:knee=4:makeup=4,asoftclip=type=tanh:threshold=0.7,alimiter=limit=-1dB:level=0:attack=2:release=80:latency=1[out]"
+    },
+    {
+      "id": "megaphone",
+      "name": "Megaphone",
+      "whenToUse": "Speech through a street loudspeaker or megaphone.",
+      "description": "Use a narrow 550 Hz–3.2 kHz band, horn resonance at 1.7 kHz, strong saturation, and short reflections.",
+      "channels": 1,
+      "inputLufs": -20.0,
+      "delayMs": 0,
+      "filterChain": "[0:a]highpass=f=550:t=q:w=0.7,highpass=f=550:t=q:w=0.7,lowpass=f=3200:t=q:w=0.7,lowpass=f=3200:t=q:w=0.7,equalizer=f=1700:t=q:w=1.4:g=8,acompressor=threshold=-24dB:ratio=4:attack=2:release=60:knee=4:makeup=6,volume=6dB,asoftclip=type=hard:threshold=0.4,highpass=f=450:t=q:w=0.7,lowpass=f=4500:t=q:w=0.7,aecho=1:0.85:9|17:0.3|0.2,alimiter=limit=-1dB:level=0:attack=1:release=40:latency=1[out]"
+    },
+    {
+      "id": "robot",
+      "name": "Robot",
+      "whenToUse": "A metallic, fixed-pitch robot or artificial voice.",
+      "description": "Lock pitch around 125 Hz and add a brief metallic reflection while preserving word timing.",
+      "channels": 1,
+      "inputLufs": -20.0,
+      "delayMs": 11.0,
+      "changesPitch": true,
+      "filterChain": "[0:a]afftfilt=real='hypot(re,im)*cos(PI*b)':imag='0':win_size=1024:overlap=0.625,highpass=f=110:t=q:w=0.7,equalizer=f=2000:t=q:w=1:g=3,aecho=1:0.8:6:0.35,alimiter=limit=-1dB:level=0:attack=1:release=50:latency=1[out]"
+    }
+  ]
+}

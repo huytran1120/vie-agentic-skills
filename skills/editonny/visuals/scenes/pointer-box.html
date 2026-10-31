@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Pointer box</title></head>
+<body>
+<!-- Pointer box. To outline a region, screenshot detail, button, or object. -->
+
+<template id="pointer-box-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+#pointerbox-a{position:absolute;left:0;top:0;width:10px;height:10px;opacity:0;filter:drop-shadow(0 6px 10px rgba(0,0,0,.45))}
+#pointerbox-s{position:absolute;left:0;top:0;overflow:visible}
+#pointerbox-b,#pointerbox-c{fill:none;stroke-linecap:round;stroke-linejoin:round}
+#pointerbox-b{stroke:#fff}
+</style>
+<div id="root" data-composition-id="pointer-box" data-width="1080" data-height="1920" data-duration="2.6">
+<div id="pointerbox-a"><svg id="pointerbox-s" xmlns="http://www.w3.org/2000/svg" width="10" height="10"><path id="pointerbox-b" d="M0 0"/><path id="pointerbox-c" d="M0 0"/></svg></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["pointer-box"] || { duration: 2.6 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 2.6, t0 = 0;
+
+  var P = {
+    x: 490, // Box center on the 1080×1920 canvas, in pixels.
+    y: 850, // Box center, in pixels.
+    width: 520, // Box width, in pixels.
+    height: 300, // Box height, in pixels.
+    color: "#ff3b30", // Stroke color.
+    thickness: 12, // Stroke thickness, in pixels.
+  };
+
+
+  var widthValue = Number(P.width) || 520, alt = Number(P.height) || 300, esp = Number(P.thickness) || 12;
+  var corner = Math.min(Math.max(10, Math.min(36, Math.round(Math.min(widthValue, alt) * .1))), widthValue / 2, alt / 2);
+  var mx = widthValue / 2, my = alt / 2;
+
+  var strike = "M" + (-mx) + " " + (-my + corner)
+    + "A" + corner + " " + corner + " 0 0 1 " + (-mx + corner) + " " + (-my) + "H" + (mx - corner)
+    + "A" + corner + " " + corner + " 0 0 1 " + mx + " " + (-my + corner) + "V" + (my - corner)
+    + "A" + corner + " " + corner + " 0 0 1 " + (mx - corner) + " " + my + "H" + (-mx + corner)
+    + "A" + corner + " " + corner + " 0 0 1 " + (-mx) + " " + (my - corner) + "Z";
+  var returnMotion = 2 * (widthValue - 2 * corner) + 2 * (alt - 2 * corner) + 2 * Math.PI * corner;
+  var box = document.getElementById("pointerbox-a"), border = document.getElementById("pointerbox-b"), stroke = document.getElementById("pointerbox-c");
+  box.style.left = P.x + "px"; box.style.top = P.y + "px";
+  border.setAttribute("d", strike); stroke.setAttribute("d", strike);
+  border.setAttribute("stroke-width", esp + 6); stroke.setAttribute("stroke-width", esp); stroke.setAttribute("stroke", P.color);
+  border.setAttribute("stroke-dasharray", returnMotion); border.setAttribute("stroke-dashoffset", returnMotion);
+  stroke.setAttribute("stroke-dasharray", returnMotion); stroke.setAttribute("stroke-dashoffset", returnMotion);
+
+  var enter = t0 + .05, exit = t0 + D - .3, live = enter + .6;
+  var padding = exit - live, turns = Math.max(1, Math.round(padding / .9)), halfValue = padding / (turns * 2);
+  tl.fromTo("#pointerbox-a", { opacity: 0 }, { opacity: 1, duration: .05, ease: "none" }, enter);
+  tl.fromTo("#pointerbox-b", { strokeDashoffset: returnMotion }, { strokeDashoffset: 0, duration: .45, ease: "power1.inOut" }, enter);
+  tl.fromTo("#pointerbox-c", { strokeDashoffset: returnMotion }, { strokeDashoffset: 0, duration: .45, ease: "power1.inOut" }, enter);
+  if (halfValue > .08) tl.to("#pointerbox-a", { opacity: .72, duration: halfValue, ease: "sine.inOut", yoyo: true, repeat: turns * 2 - 1, immediateRender: false }, live);
+  tl.to("#pointerbox-a", { opacity: 0, duration: .25, ease: "power2.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["pointer-box"] = tl;
+})();
+</script>
+</template>
+</body></html>

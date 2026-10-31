@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Pointer highlighter</title></head>
+<body>
+<!-- Pointer highlighter. To highlight a written phrase, value, or screenshot line. -->
+
+<template id="pointer-highlighter-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+#pointerhighlighter-a{position:absolute;left:0;top:0;width:10px;height:10px;opacity:0;backdrop-filter:url(#pointerhighlighter-f);-webkit-backdrop-filter:url(#pointerhighlighter-f)}
+</style>
+<div id="root" data-composition-id="pointer-highlighter" data-width="1080" data-height="1920" data-duration="2.4">
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0"><filter id="pointerhighlighter-f" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feColorMatrix in="SourceGraphic" type="matrix" values=".2126 .7152 .0722 0 0  .2126 .7152 .0722 0 0  .2126 .7152 .0722 0 0  0 0 0 0 1" result="cinza"/><feGaussianBlur id="pointerhighlighter-fb" in="cinza" stdDeviation="30" result="media"/><feComponentTransfer in="media" result="sobe"><feFuncR type="table" tableValues=".62 .62 .6 .55 .42 .22 .08 .03 0"/><feFuncG type="table" tableValues=".62 .62 .6 .55 .42 .22 .08 .03 0"/><feFuncB type="table" tableValues=".62 .62 .6 .55 .42 .22 .08 .03 0"/><feFuncA type="linear" slope="0" intercept="1"/></feComponentTransfer><feComposite in="cinza" in2="sobe" operator="arithmetic" k1="-1" k2="1" k3="1" k4="0" result="luz"/><feComponentTransfer in="luz"><feFuncR id="pointerhighlighter-r" type="linear" slope="1"/><feFuncG id="pointerhighlighter-g" type="linear" slope=".9"/><feFuncB id="pointerhighlighter-b" type="linear" slope="0"/></feComponentTransfer></filter></svg>
+<div id="pointerhighlighter-a"></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["pointer-highlighter"] || { duration: 2.4 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 2.4, t0 = 0;
+
+  var P = {
+    x: 490, // Strip center on the 1080×1920 canvas, in pixels.
+    y: 700, // Strip center, in pixels.
+    width: 520, // Strip length, in pixels.
+    height: 90, // Strip height, in pixels.
+    color: "#ffe600", // Ink color.
+  };
+
+
+  var widthValue = P.width, alt = P.height;
+  var ink = document.getElementById("pointerhighlighter-a");
+  ink.style.left = Math.round(P.x - widthValue / 2) + "px"; ink.style.top = Math.round(P.y - alt / 2) + "px";
+  ink.style.width = widthValue + "px"; ink.style.height = alt + "px";
+  ink.style.color = P.color;
+
+  ink.style.backgroundImage = "linear-gradient(to bottom, rgba(0,0,0,.06) 0%, rgba(0,0,0,0) 14%, rgba(0,0,0,0) 84%, rgba(0,0,0,.07) 100%)";
+  var channels = (getComputedStyle(ink).color.match(/[\d.]+/g) || [255, 230, 0]), ci;
+  for (ci = 0; ci < 3; ci++) document.getElementById("pointerhighlighter-" + "rgb".charAt(ci)).setAttribute("slope", (channels[ci] / 255).toFixed(3));
+  document.getElementById("pointerhighlighter-fb").setAttribute("stdDeviation", Math.max(12, Math.min(60, Math.round(alt / 3))));
+
+  var tip = Math.min(alt * .26, widthValue * .12), n1 = function (v) { return Math.round(v * 10) / 10; };
+  var shape = function (end) {
+    var e0 = tip * .3, go = function (f) { return e0 + (end - tip * .3 - e0) * f; }, pi, q, m, d;
+    var pts = [[e0, .02], [go(.33), 0], [go(.68), .05], [end - tip * .2, .01],
+      [end, .1], [end - tip * .12, .3], [end - tip * .02, .48], [end - tip * .2, .66], [end - tip * .1, .84], [end - tip * .34, .99],
+      [go(.66), .96], [go(.3), 1],
+      [tip * .06, .98], [tip * .14, .8], [0, .6], [tip * .12, .4], [tip * .04, .2]];
+    q = pts[pts.length - 1]; d = "M " + n1((q[0] + pts[0][0]) / 2) + " " + n1((q[1] + pts[0][1]) / 2 * alt);
+    for (pi = 0; pi < pts.length; pi++) {
+      q = pts[pi]; m = pts[(pi + 1) % pts.length];
+      d += " Q " + n1(q[0]) + " " + n1(q[1] * alt) + ", " + n1((q[0] + m[0]) / 2) + " " + n1((q[1] + m[1]) / 2 * alt);
+    }
+    return "path('" + d + " Z')";
+  };
+
+  var enter = t0 + .05, exit = t0 + D - .3, live = enter + .5;
+  var padding = exit - live, turns = Math.max(1, Math.round(padding / .9)), halfValue = padding / (turns * 2);
+  tl.fromTo("#pointerhighlighter-a", { opacity: 0 }, { opacity: 1, duration: .04, ease: "none" }, enter);
+  tl.fromTo("#pointerhighlighter-a", { clipPath: shape(tip * .9) }, { clipPath: shape(widthValue), duration: .35, ease: "power1.inOut", immediateRender: false }, enter);
+  if (halfValue > .08) tl.to("#pointerhighlighter-a", { opacity: .8, duration: halfValue, ease: "sine.inOut", yoyo: true, repeat: turns * 2 - 1, immediateRender: false }, live);
+  tl.to("#pointerhighlighter-a", { opacity: 0, duration: .25, ease: "power2.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["pointer-highlighter"] = tl;
+})();
+</script>
+</template>
+</body></html>

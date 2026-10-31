@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Text pop</title></head>
+<body>
+<!-- Text pop. For a hook or emphatic reversal: one or two large words pop on their spoken timing; the last word is highlighted. -->
+
+<template id="text-pop-template">
+<style>
+@font-face{font-family:"Montserrat";src:url("assets/fonts/Montserrat.ttf") format("truetype");font-weight:100 900;font-display:block}
+@font-face{font-family:"Caveat";src:url("assets/fonts/Caveat.ttf") format("truetype");font-weight:400 700;font-display:block}
+@font-face{font-family:"JetBrainsMono";src:url("assets/fonts/JetBrainsMono.ttf") format("truetype");font-weight:100 800;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Montserrat",sans-serif}
+.textpop-l{position:absolute;left:140px;top:0;width:800px;display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;opacity:0;color:#fff;
+  font-family:"Montserrat",sans-serif;font-weight:900;line-height:1.08;text-transform:uppercase;letter-spacing:-.01em;white-space:nowrap;
+  -webkit-text-stroke:14px #000;paint-order:stroke fill;text-shadow:0 .055em 0 rgba(0,0,0,.85),0 .11em .2em rgba(0,0,0,.5)}
+.textpop-w{display:block;opacity:0}
+</style>
+<div id="root" data-composition-id="text-pop" data-width="1080" data-height="1920" data-duration="3.4">
+<div id="textpop-c"></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["text-pop"] || { duration: 3.4 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 3.4, t0 = 0;
+
+  var P = {
+    y: 1280, // Caption center height on the 1080×1920 canvas, in pixels.
+    size: 118, // Font size, in pixels.
+    maxWords: 2, // Words per caption group; one or two gives greater emphasis.
+    color: "#ffffff", // Text color; dark text receives a white outline.
+    accent: "#ffe600", // Color of the last word in each phrase.
+  };
+
+
+  var HIDDEN_RANGES = [];
+
+
+  var W = Array.isArray(C.words) ? C.words : [
+    { text: "You", t: 0.10, end: 0.34 }, { text: "do not", t: 0.36, end: 0.58 }, { text: "need", t: 0.60, end: 0.98 },
+    { text: "an", t: 1.00, end: 1.10 }, { text: "editor", t: 1.12, end: 1.56 }, { text: "to", t: 1.92, end: 2.06 },
+    { text: "post", t: 2.08, end: 2.44 }, { text: "every", t: 2.46, end: 2.68 }, { text: "day.", t: 2.70, end: 3.05 }
+  ];
+
+  W = (function (a) { var o = [], u = 0.04, k, t; for (k = 0; k < a.length; k++) { t = Math.max(0.05, Number(a[k].t) || 0, u + 0.01); o.push({ text: a[k].text, t: t, end: Math.max(t + 0.02, Number(a[k].end) || 0) }); u = t; } return o; })(W);
+
+  var SCALE_FACTOR = (function () {
+    var e = (typeof HIDDEN_RANGES !== "undefined" && HIDDEN_RANGES) || [], b0 = (typeof C.start === "number") ? C.start : 0, o = [], k;
+    for (k = 0; k < e.length; k++) if (Number(e[k][1]) > Number(e[k][0])) o.push([Number(e[k][0]) - b0, Number(e[k][1]) - b0]);
+    return o;
+  })();
+  function hidden(t) { for (var k = 0; k < SCALE_FACTOR.length; k++) if (t >= SCALE_FACTOR[k][0] && t < SCALE_FACTOR[k][1]) return true; return false; }
+  function nextScale(t) { var r = Infinity, k; for (k = 0; k < SCALE_FACTOR.length; k++) if (SCALE_FACTOR[k][0] > t && SCALE_FACTOR[k][0] < r) r = SCALE_FACTOR[k][0]; return r; }
+  W = W.filter(function (w) { return !hidden(w.t); });
+
+  function show(s) { return String(s).replace(/^\s+|\s+$/g, "").replace(/[.,;:…]+$/g, ""); }
+
+  function screens(maxP, maxL) {
+    var groups = [], cur = [], letters = 0, i, w, txt, out = [];
+    for (i = 0; i < W.length; i++) {
+      w = W[i]; txt = show(w.text); if (!txt || !(w.t < D - 0.2)) continue;
+      if (cur.length && (cur.length >= maxP || letters + txt.length + 1 > maxL || w.t - cur[cur.length - 1].end > 0.7 || nextScale(cur[cur.length - 1].t) <= w.t)) { groups.push(cur); cur = []; letters = 0; }
+      cur.push({ text: txt, t: Math.max(0.05, w.t), end: Math.min(D - 0.05, Math.max(w.t + 0.08, w.end)) }); letters += txt.length + 1;
+      if (/[.!?…]$/.test(String(w.text).replace(/\s+$/, "")) || (cur.length >= 2 && /[,;:]$/.test(String(w.text).replace(/\s+$/, "")))) { groups.push(cur); cur = []; letters = 0; }
+    }
+    if (cur.length) groups.push(cur);
+    for (i = 0; i < groups.length; i++) {
+      var start = Math.max(0.05, groups[i][0].t - 0.05), speechEnd = groups[i][groups[i].length - 1].end;
+      var end = Math.min(D - 0.05, speechEnd + 0.5); if (i + 1 < groups.length) end = Math.min(end, Math.max(0.05, groups[i + 1][0].t - 0.05));
+      end = Math.min(end, Math.max(start + 0.15, nextScale(groups[i][groups[i].length - 1].t)));
+      if (end > start + 0.12) out.push({ words: groups[i], start: start, end: end });
+    }
+    return out;
+  }
+
+
+  var sizeValue = Math.max(64, Math.min(150, Number(P.size) || 118));
+
+  var yy = Math.max(248 + sizeValue * 0.68, Math.min(1530 - sizeValue * 0.72, Number(P.y) || 1280));
+  var maxP = Math.max(1, Math.min(4, Math.round(Number(P.maxWords) || 2))), maxL = Math.max(5, Math.floor(800 / (sizeValue * 0.66)));
+  var color = P.color || "#ffffff", dest = P.accent || "#ffe600";
+
+  function dark(c) {
+    var h = String(c).replace("#", ""), v; if (h.length === 3) h = h.charAt(0) + h.charAt(0) + h.charAt(1) + h.charAt(1) + h.charAt(2) + h.charAt(2);
+    v = parseInt(h, 16); if (!(/^[0-9a-fA-F]{6}$/.test(h))) return false;
+    return 0.299 * ((v >> 16) & 255) + 0.587 * ((v >> 8) & 255) + 0.114 * (v & 255) < 90;
+  }
+
+  var WIDTH = [81, 77, 74, 83, 67, 64, 77, 80, 35, 57, 77, 62, 95, 80, 85, 74, 85, 75, 66, 65, 78, 79, 121, 76, 71, 69];
+  function widthValue(s) {
+    var b = String(s).toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""), n = 0, q, c;
+    for (q = 0; q < b.length; q++) { c = b.charCodeAt(q); n += (c >= 65 && c <= 90) ? WIDTH[c - 65] : (c === 33 || c === 49) ? 38 : 68; }
+    return n / 100;
+  }
+
+  function fit(ps) { var n = (ps.length - 1) * 0.3 + 0.12, q; for (q = 0; q < ps.length; q++) n += widthValue(ps[q].text); return Math.min(sizeValue, Math.floor(772 / n)); }
+  var box = document.getElementById("textpop-c"), list = screens(maxP, maxL), i, j, k, n, a, b, u, s, tk, cut, m, squeeze, ps, tt, line, pal, id, when, lifetime, fill;
+
+  var phraseEnd = {}, pont = {}, has = {};
+  for (k = 0; k < W.length; k++) {
+    s = String(W[k].text).replace(/\s+$/, ""); tk = Math.max(0.05, W[k].t).toFixed(3);
+    if (/[.!?…]$/.test(s)) phraseEnd[tk] = 1;
+    if (/[.!?…,;:]$/.test(s)) pont[tk] = 1;
+  }
+
+  for (i = 0; i < list.length; i++) for (j = 0; j < list[i].words.length; j++) has[list[i].words[j].t.toFixed(3)] = 1;
+  for (k = W.length - 1; k >= 0; k--) {
+    s = show(W[k].text); tk = Math.max(0.05, W[k].t);
+    if (!s || !(W[k].t < D - 0.2) || has[tk.toFixed(3)]) continue;
+    for (i = 0; i < list.length && list[i].words[0].t <= tk; i++) { }
+    if (i >= list.length) continue;
+    list[i].words.unshift({ text: s, t: tk, end: Math.min(D - 0.05, Math.max(W[k].t + 0.08, W[k].end)) });
+    list[i].start = Math.max(0.05, tk - 0.05); if (i) list[i - 1].end = Math.min(list[i - 1].end, list[i].start);
+  }
+
+  for (i = 0; i + 1 < list.length; i++) {
+    a = list[i]; b = list[i + 1]; if (b.start - a.end > 0.02) continue;
+    n = a.words.length; k = 0; cut = a.end;
+    while (k < n) { u = a.words[n - 1 - k]; if (pont[u.t.toFixed(3)] || cut - u.t >= 0.15) break; k++; cut = Math.max(0.05, u.t - 0.05); }
+    if (!k) continue;
+    b.words = a.words.splice(n - k, k).concat(b.words); b.start = cut; a.end = cut;
+
+    squeeze = fit(b.words) < sizeValue * 0.9;
+    for (m = k; m + 1 < b.words.length; m++) if ((squeeze || pont[b.words[m].t.toFixed(3)]) && b.words[m + 1].t - 0.05 - b.words[m].t >= 0.15) {
+      u = { words: b.words.splice(m + 1), start: 0, end: b.end }; u.start = Math.max(0.05, u.words[0].t - 0.05);
+      b.end = Math.min(b.end, b.words[m].end + 0.5, u.start); list.splice(i + 2, 0, u); break;
+    }
+    if (!a.words.length) { list.splice(i, 1); i--; }
+  }
+  for (i = 0; i < list.length; i++) {
+    ps = list[i].words;
+    tt = fit(ps);
+    line = document.createElement("div"); line.className = "textpop-l"; line.id = "textpop-l" + i;
+    line.style.top = Math.round(yy - tt * 0.55) + "px"; line.style.fontSize = tt + "px";
+    for (j = 0; j < ps.length; j++) {
+      pal = document.createElement("span"); pal.className = "textpop-w"; pal.id = "textpop-w" + i + "_" + j; pal.textContent = ps[j].text;
+      if (j) pal.style.marginLeft = Math.round(tt * 0.3) + "px";
+      fill = phraseEnd[ps[j].t.toFixed(3)] ? dest : color;
+      pal.style.color = fill;
+      pal.style.webkitTextStroke = Math.round(tt * 0.12) + "px " + (dark(fill) ? "#ffffff" : "#000000");
+      line.appendChild(pal);
+    }
+    box.appendChild(line);
+
+    tl.fromTo("#textpop-l" + i, { opacity: 0 }, { opacity: 1, duration: .01, ease: "none" }, t0 + list[i].start);
+    for (j = 0; j < ps.length; j++) {
+
+      id = "#textpop-w" + i + "_" + j; when = t0 + (j ? ps[j].t : list[i].start); lifetime = t0 + list[i].end - when;
+
+      tl.fromTo(id, { y: 46 }, { y: 0, duration: Math.max(.07, Math.min(.14, lifetime * .6)), ease: "back.out(4)" }, when);
+      tl.fromTo(id, { opacity: 0 }, { opacity: 1, duration: Math.max(.01, Math.min(.066, lifetime * .3)), ease: "none", immediateRender: false }, when);
+    }
+    tl.to("#textpop-l" + i, { opacity: 0, duration: .01, ease: "none", immediateRender: false }, t0 + list[i].end - .01);
+  }
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["text-pop"] = tl;
+})();
+</script>
+</template>
+</body></html>

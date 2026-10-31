@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Text color glitch</title></head>
+<body>
+<!-- Text color glitch. For a technology headline or launch notice: text appears with a chromatic jolt, holds, then briefly splits red and cyan channels across displaced bands. -->
+
+<template id="text-color-glitch-template">
+<style>
+@font-face{font-family:"Montserrat";src:url("assets/fonts/Montserrat.ttf") format("truetype");font-weight:100 900;font-display:block}
+@font-face{font-family:"Caveat";src:url("assets/fonts/Caveat.ttf") format("truetype");font-weight:400 700;font-display:block}
+@font-face{font-family:"JetBrainsMono";src:url("assets/fonts/JetBrainsMono.ttf") format("truetype");font-weight:100 800;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Montserrat",sans-serif}
+.textcolorglitch-k{position:absolute;inset:0;pointer-events:none}
+.textcolorglitch-s{position:absolute;left:0;top:0;width:0;height:0;overflow:hidden}
+.textcolorglitch-b{position:absolute;left:140px;top:0;width:800px;display:flex;flex-direction:column;align-items:center}
+.textcolorglitch-x{display:flex;flex-direction:column;align-items:center;opacity:0;filter:url(#textcolorglitch-fg);font-family:"Montserrat",sans-serif;font-weight:900;line-height:1;letter-spacing:-.01em;white-space:nowrap;paint-order:stroke fill}
+.textcolorglitch-l{display:flex;justify-content:center;align-items:baseline}
+.textcolorglitch-w{display:block}
+</style>
+<div id="root" data-composition-id="text-color-glitch" data-width="1080" data-height="1920" data-duration="3.0">
+<div id="textcolorglitch-c" class="textcolorglitch-k">
+  <svg class="textcolorglitch-s" width="0" height="0" aria-hidden="true"><defs>
+    <filter id="textcolorglitch-fg" x="-8%" y="-30%" width="116%" height="160%" primitiveUnits="objectBoundingBox" color-interpolation-filters="sRGB"><feColorMatrix id="textcolorglitch-m1" in="SourceGraphic" type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="m"/><feColorMatrix id="textcolorglitch-m2" in="SourceGraphic" type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0" result="s"/><feOffset id="textcolorglitch-o0" in="m" dx="0" dy="0" result="o0"/><feBlend id="textcolorglitch-e0" in="o0" in2="s" mode="screen" x="-.08" y="-5" width="1.16" height=".01" result="e0"/><feOffset id="textcolorglitch-o1" in="m" dx="0" dy="0" result="o1"/><feBlend id="textcolorglitch-e1" in="o1" in2="s" mode="screen" x="-.08" y="-5" width="1.16" height=".01" result="e1"/><feOffset id="textcolorglitch-o2" in="m" dx="0" dy="0" result="o2"/><feBlend id="textcolorglitch-e2" in="o2" in2="s" mode="screen" x="-.08" y="-5" width="1.16" height=".01" result="e2"/><feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="e0"/><feMergeNode in="e1"/><feMergeNode in="e2"/></feMerge></filter>
+  </defs></svg>
+  <div class="textcolorglitch-b" id="textcolorglitch-b"><div class="textcolorglitch-x" id="textcolorglitch-x"></div></div>
+</div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["text-color-glitch"] || { duration: 3.0 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 3.0, t0 = 0;
+
+  var P = {
+    text: "TOMORROW|AT 8 PM", // Text; | forces a line break, otherwise wrapping is automatic.
+    y: 1150, // Box center height on the 1080×1920 canvas, in pixels.
+    size: 92, // Maximum font size, in pixels; shrinks automatically to fit.
+    color: "#111111", // Text color; insufficient box contrast falls back to black or white.
+    box: "#ffffff", // Box color behind text; "none" removes the box and adds a text outline.
+    cycle: 0.5, // Loop duration from 0.2 to 3 seconds, with five flashes per cycle; 0.5 is nervous and 2.5 is slow.
+  };
+
+
+
+  var W = Array.isArray(C.words) ? C.words : [
+    { text: "You", t: 0.10, end: 0.34 }, { text: "do not", t: 0.36, end: 0.58 }, { text: "need", t: 0.60, end: 0.98 },
+    { text: "an", t: 1.00, end: 1.10 }, { text: "editor", t: 1.12, end: 1.56 }, { text: "to", t: 1.92, end: 2.06 },
+    { text: "post", t: 2.08, end: 2.44 }, { text: "every", t: 2.46, end: 2.68 }, { text: "day.", t: 2.70, end: 3.05 }
+  ];
+
+  W = (function (a) { var o = [], u = 0.04, k, t; for (k = 0; k < a.length; k++) { t = Math.max(0.05, Number(a[k].t) || 0, u + 0.01); o.push({ text: a[k].text, t: t, end: Math.max(t + 0.02, Number(a[k].end) || 0) }); u = t; } return o; })(W);
+
+  var SCALE_FACTOR = (function () {
+    var e = (typeof HIDDEN_RANGES !== "undefined" && HIDDEN_RANGES) || [], b0 = (typeof C.start === "number") ? C.start : 0, o = [], k;
+    for (k = 0; k < e.length; k++) if (Number(e[k][1]) > Number(e[k][0])) o.push([Number(e[k][0]) - b0, Number(e[k][1]) - b0]);
+    return o;
+  })();
+  function hidden(t) { for (var k = 0; k < SCALE_FACTOR.length; k++) if (t >= SCALE_FACTOR[k][0] && t < SCALE_FACTOR[k][1]) return true; return false; }
+  function nextScale(t) { var r = Infinity, k; for (k = 0; k < SCALE_FACTOR.length; k++) if (SCALE_FACTOR[k][0] > t && SCALE_FACTOR[k][0] < r) r = SCALE_FACTOR[k][0]; return r; }
+  W = W.filter(function (w) { return !hidden(w.t); });
+
+  function show(s) { return String(s).replace(/^\s+|\s+$/g, "").replace(/[.,;:…]+$/g, ""); }
+
+  function screens(maxP, maxL) {
+    var groups = [], cur = [], letters = 0, i, w, txt, out = [];
+    for (i = 0; i < W.length; i++) {
+      w = W[i]; txt = show(w.text); if (!txt || !(w.t < D - 0.2)) continue;
+      if (cur.length && (cur.length >= maxP || letters + txt.length + 1 > maxL || w.t - cur[cur.length - 1].end > 0.7 || nextScale(cur[cur.length - 1].t) <= w.t)) { groups.push(cur); cur = []; letters = 0; }
+      cur.push({ text: txt, t: Math.max(0.05, w.t), end: Math.min(D - 0.05, Math.max(w.t + 0.08, w.end)) }); letters += txt.length + 1;
+      if (/[.!?…]$/.test(String(w.text).replace(/\s+$/, "")) || (cur.length >= 2 && /[,;:]$/.test(String(w.text).replace(/\s+$/, "")))) { groups.push(cur); cur = []; letters = 0; }
+    }
+    if (cur.length) groups.push(cur);
+    for (i = 0; i < groups.length; i++) {
+      var start = Math.max(0.05, groups[i][0].t - 0.05), speechEnd = groups[i][groups[i].length - 1].end;
+      var end = Math.min(D - 0.05, speechEnd + 0.5); if (i + 1 < groups.length) end = Math.min(end, Math.max(0.05, groups[i + 1][0].t - 0.05));
+      end = Math.min(end, Math.max(start + 0.15, nextScale(groups[i][groups[i].length - 1].t)));
+      if (end > start + 0.12) out.push({ words: groups[i], start: start, end: end });
+    }
+    return out;
+  }
+
+
+  function num(v, d) { if (v === "" || v === null || v === undefined) return d; v = Number(v); return isFinite(v) ? v : d; }
+  function correctColor(v, d) { return (typeof v === "string" && window.CSS && CSS.supports("color", v)) ? v : d; }
+  var ceiling = Math.max(36, Math.min(150, num(P.size, 92))), yy = Math.max(260, Math.min(1500, num(P.y, 1150)));
+  var cycle = Math.max(.2, Math.min(3, num(P.cycle, .5)));
+  var cx = String(P.box === undefined || P.box === null ? "#ffffff" : P.box).replace(/^\s+|\s+$/g, "");
+  var withoutBox = !cx || /^(none|transparent|0)$/i.test(cx);
+  var colorC = withoutBox ? "" : correctColor(cx, "#ffffff"), colorL = correctColor(P.color, "#111111");
+  var raw = String(P.text === undefined || P.text === null ? "TOMORROW|AT 8 PM" : P.text).toUpperCase().replace(/\r?\n/g, "|");
+  var bar = raw.indexOf("|") >= 0, orig = [];
+  raw.split("|").forEach(function (s) { s = s.replace(/^\s+|\s+$/g, ""); if (s) orig.push(s.split(/\s+/)); });
+  if (!orig.length) orig.push(["TITLE"]);
+  var box = document.getElementById("textcolorglitch-c"), elB = document.getElementById("textcolorglitch-b"), elX = document.getElementById("textcolorglitch-x");
+
+
+  function rgbFrom(c) {
+    var s = document.createElement("span"), m; s.style.color = String(c || "");
+    if (!s.style.color) return null;
+    box.appendChild(s); m = /^rgba?\((\d+)[^\d]+(\d+)[^\d]+(\d+)/.exec(getComputedStyle(s).color); box.removeChild(s);
+    return m ? [Number(m[1]), Number(m[2]), Number(m[3])] : [];
+  }
+  function light(v) { var k, c, n = 0, WEIGHTS = [.2126, .7152, .0722]; for (k = 0; k < 3; k++) { c = v[k] / 255; n += WEIGHTS[k] * (c <= .03928 ? c / 12.92 : Math.pow((c + .055) / 1.055, 2.4)); } return n; }
+  var rl = rgbFrom(colorL) || [17, 17, 17], rc = withoutBox ? null : (rgbFrom(colorC) || [255, 255, 255]);
+  if (rc && rc.length && rl.length && (Math.max(light(rc), light(rl)) + .05) / (Math.min(light(rc), light(rl)) + .05) < 3) colorL = light(rc) > .18 ? "#111111" : "#ffffff";
+  var lightL = rl.length ? light(rgbFrom(colorL) || rl) > .3 : false;
+
+
+  var SPACING_VALUE = .27, SPAN = .1, PADX = .36, PADT = .2, PADB = .22, LIM = 712, MAXL = 4, HMAX = 900;
+  var med = document.createElement("div");
+  med.setAttribute("aria-hidden", "true"); med.setAttribute("data-layout-ignore", "");
+  med.style.cssText = "position:absolute;left:-6000px;top:0;visibility:hidden;white-space:nowrap;font-family:Montserrat,sans-serif;font-weight:900;font-size:100px;line-height:1;letter-spacing:-.01em";
+  document.body.appendChild(med);
+  var memo = {};
+  function widthValue(s) { var c = "_" + s; if (!(c in memo)) { med.textContent = s; memo[c] = med.getBoundingClientRect().width / 100; } return memo[c]; }
+  function lineWidthValue(ws) { var n = 0, q; for (q = 0; q < ws.length; q++) n += widthValue(ws[q]) + (q ? SPACING_VALUE : 0); return n; }
+
+  function divide(ws, q) {
+    var n = ws.length, m = [], c = [], a, b, d, v, out = [], end;
+    for (a = 1; a <= q; a++) {
+      m[a] = []; c[a] = [];
+      for (b = a; b <= n; b++) {
+        if (a === 1) { m[a][b] = lineWidthValue(ws.slice(0, b)); c[a][b] = 0; continue; }
+        m[a][b] = 1e9;
+        for (d = a - 1; d < b; d++) { v = Math.max(m[a - 1][d], lineWidthValue(ws.slice(d, b))); if (v < m[a][b]) { m[a][b] = v; c[a][b] = d; } }
+      }
+    }
+    for (a = q, end = n; a >= 1; a--) { out.unshift(ws.slice(c[a][end], end)); end = c[a][end]; }
+    return out;
+  }
+  var lines = [], sizeValue = ceiling, LX = 600, HX = 200, TOP_POSITION = .52;
+  function arrange() {
+    memo = {};
+    var parts = [], owner = [], largerValue = 0, im = 0, k, i, j, previousValue, which, n, H, top, ln, w, pt, pb, px;
+    var floor = bar ? Math.min(ceiling, 50) : Math.min(ceiling, Math.max(50, ceiling * .62));
+    for (i = 0; i < orig.length; i++) parts.push(1);
+    function split() {
+      var a, b, ws, lw;
+      lines = []; owner = []; largerValue = 0; im = 0;
+      for (a = 0; a < orig.length; a++) { ws = divide(orig[a], parts[a]); for (b = 0; b < ws.length; b++) { lines.push(ws[b]); owner.push(a); } }
+      for (a = 0; a < lines.length; a++) { lw = lineWidthValue(lines[a]); if (lw > largerValue) { largerValue = lw; im = a; } }
+      sizeValue = Math.max(24, Math.min(ceiling, Math.floor(LIM / (largerValue + 2 * PADX))));
+    }
+
+    split();
+    for (k = 0; k < 12; k++) {
+      if (sizeValue >= floor || lines.length >= MAXL || parts[owner[im]] >= orig[owner[im]].length) break;
+      which = owner[im]; previousValue = largerValue; parts[which]++; split();
+      if (largerValue > previousValue * .98) { parts[which]--; split(); break; }
+    }
+    n = lines.length; pt = Math.round(sizeValue * PADT); pb = Math.round(sizeValue * PADB); px = Math.round(sizeValue * PADX);
+    H = n * sizeValue + (n - 1) * Math.round(sizeValue * SPAN) + pt + pb;
+    if (H > HMAX) { sizeValue = Math.max(24, Math.floor(sizeValue * HMAX / H)); pt = Math.round(sizeValue * PADT); pb = Math.round(sizeValue * PADB); px = Math.round(sizeValue * PADX); H = n * sizeValue + (n - 1) * Math.round(sizeValue * SPAN) + pt + pb; }
+    top = Math.round(Math.max(246, Math.min(1514 - H, yy - H / 2)));
+    LX = Math.round(largerValue * sizeValue) + 2 * px; HX = H;
+    TOP_POSITION = n > 1 ? (pt + sizeValue + Math.round(sizeValue * SPAN) / 2) / H : .54;
+    elB.style.top = top + "px";
+    while (elX.firstChild) elX.removeChild(elX.firstChild);
+    elX.style.fontSize = sizeValue + "px"; elX.style.color = colorL; elX.style.padding = pt + "px " + px + "px " + pb + "px";
+    if (withoutBox) {
+
+      elX.style.background = "none";
+      elX.style.webkitTextStroke = Math.max(6, Math.round(sizeValue * .12)) + "px " + (lightL ? "#000" : "#fff");
+      elX.style.textShadow = "0 " + Math.round(sizeValue * .05) + "px " + Math.round(sizeValue * .14) + "px rgba(0,0,0,.5)";
+    } else {
+      elX.style.background = colorC; elX.style.borderRadius = Math.round(sizeValue * .2) + "px";
+      elX.style.webkitTextStroke = "0px transparent"; elX.style.textShadow = "none";
+      elX.style.boxShadow = "0 " + Math.round(sizeValue * .06) + "px " + Math.round(sizeValue * .22) + "px rgba(0,0,0,.35)";
+    }
+    for (i = 0; i < n; i++) {
+      ln = document.createElement("div"); ln.className = "textcolorglitch-l"; if (i) ln.style.marginTop = Math.round(sizeValue * SPAN) + "px";
+      for (j = 0; j < lines[i].length; j++) {
+        w = document.createElement("span"); w.className = "textcolorglitch-w"; w.textContent = lines[i][j];
+        if (j) w.style.marginLeft = Math.round(sizeValue * SPACING_VALUE) + "px";
+        ln.appendChild(w);
+      }
+      elX.appendChild(ln);
+    }
+  }
+  arrange();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { arrange(); tl.invalidate(); });
+
+
+
+  var MAT = {
+    r: ["1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0", "0 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"],
+    gb: ["0 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0", "1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0"],
+    g: ["0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0", "1 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0"]
+  };
+
+  function ofx() { return Math.max(.02, 9 / Math.max(80, LX)); }
+  function ofy() { return sizeValue * .035 / Math.max(40, HX); }
+
+  function fy(v) { return v === "C" ? TOP_POSITION : v; }
+
+  var CYCLE = [
+    { a: 2 / 15, b: 3 / 15, t: "g", f: [[.36, .63, .9, .6]] },
+    { a: 7 / 15, b: 9 / 15, t: "r", f: [[-.3, "C", -.85, 0], ["C", 1.3, -.55, .5]] },
+    { a: 10 / 15, b: 11 / 15, t: "gb", f: [[-.3, 1.3, 1, -.4]] },
+    { a: 13 / 15, b: 16 / 15, t: "r", f: [[-.3, "C", -1, 0]] }
+  ];
+  var ENT = [{ t: "r", f: [[-.3, 1.3, -1.7, .5]] }, { t: "gb", f: [["C", 1.3, 1.25, 0], [-.3, "C", -.7, -.3]] }];
+  var LEAVE = [{ t: "g", f: [[-.3, .42, -1.2, 0], [.6, 1.3, 1, .4]] }, { t: "r", f: [[-.3, 1.3, 1.9, -.5]] }];
+  var Q = 1 / 30, A0 = t0 + .05, END_TIME = t0 + D - .06, L0 = A0 + 3 * Q, CUT = END_TIME - 2 * Q - .012, list = [], c, k, s, e, base, jn;
+  list.push({ s: A0, e: A0 + Q, j: ENT[0] }, { s: A0 + Q, e: A0 + 2 * Q, j: ENT[1] });
+  for (c = -1; L0 + c * cycle < CUT; c++) {
+    base = L0 + c * cycle;
+    for (k = 0; k < CYCLE.length; k++) {
+      s = Math.max(L0, base + CYCLE[k].a * cycle); e = Math.min(CUT, base + CYCLE[k].b * cycle);
+      if (e - s >= .02) list.push({ s: s, e: e, j: CYCLE[k] });
+    }
+  }
+  list.push({ s: END_TIME - 2 * Q, e: END_TIME - Q, j: LEAVE[0] }, { s: END_TIME - Q, e: END_TIME, j: LEAVE[1] });
+  list.sort(function (x, y) { return x.s - y.s; });
+  function enable(jn, tq) {
+    var q, fx;
+    tl.set("#textcolorglitch-m1", { attr: { values: MAT[jn.t][0] } }, tq);
+    tl.set("#textcolorglitch-m2", { attr: { values: MAT[jn.t][1] } }, tq);
+    for (q = 0; q < 3; q++) {
+      fx = jn.f[q];
+      if (!fx) { tl.set("#textcolorglitch-e" + q, { attr: { y: -5, height: .01 } }, tq); continue; }
+      (function (fx) {
+        tl.set("#textcolorglitch-o" + q, { attr: { dx: function () { return (fx[2] * ofx()).toFixed(4); }, dy: function () { return (fx[3] * ofy()).toFixed(4); } } }, tq);
+        tl.set("#textcolorglitch-e" + q, { attr: { y: function () { return fy(fx[0]).toFixed(4); }, height: function () { return (fy(fx[1]) - fy(fx[0])).toFixed(4); } } }, tq);
+      })(fx);
+    }
+  }
+  function disable(tq) { for (var q = 0; q < 3; q++) tl.set("#textcolorglitch-e" + q, { attr: { y: -5, height: .01 } }, tq); }
+  for (k = 0; k < list.length; k++) {
+    enable(list[k].j, list[k].s);
+    if (k + 1 >= list.length || list[k + 1].s > list[k].e + .001) disable(list[k].e);
+  }
+
+  tl.fromTo("#textcolorglitch-x", { opacity: 0 }, { opacity: 1, duration: .01 }, A0);
+  tl.to("#textcolorglitch-x", { opacity: 0, duration: .01, immediateRender: false }, END_TIME);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["text-color-glitch"] = tl;
+})();
+</script>
+</template>
+</body></html>

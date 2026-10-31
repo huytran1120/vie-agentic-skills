@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Consumer rights</title></head>
+<body>
+<!-- Consumer rights. When explaining retained and lost rights: retained items gain checks while excluded items are crossed out and move away. Verify the applicable jurisdiction and facts. -->
+
+<template id="consumer-rights-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Inter",sans-serif}
+@font-face{font-family:"SoraV";src:url("assets/visuals/fonts/Sora.ttf");font-weight:100 800;font-display:block}
+@font-face{font-family:"PlayfairI";src:url("assets/visuals/fonts/Playfair-Italic.ttf");font-weight:400 900;font-display:block}
+#consumerrights-o{position:absolute;left:0;top:0;width:0;height:0}
+#consumerrights-a{position:absolute;left:0;top:0;width:0;height:0;opacity:0}
+#consumerrights-c{position:absolute;left:-430px;top:0;width:860px;border-radius:44px;opacity:0;background:radial-gradient(rgba(234,211,171,.07) 1.2px,transparent 1.8px) 0 0/14px 14px,linear-gradient(160deg,#3d2232 0%,#2a1721 55%,#23151b 100%);box-shadow:0 0 0 2px rgba(234,211,171,.16),0 6px 14px rgba(0,0,0,.28),0 34px 70px rgba(0,0,0,.5)}
+#consumerrights-h{position:absolute;left:40px;top:16px;width:780px;height:72px;line-height:72px;text-align:center;font-family:"PlayfairI",serif;font-weight:500;font-size:62px;letter-spacing:-.01em;color:#fbefdb;white-space:pre;opacity:0}
+#consumerrights-d{position:absolute;left:20px;top:96px;width:820px;border-radius:3px 40px 3px 3px;opacity:0;color:#341d2b;background:radial-gradient(rgba(173,151,114,.13) 1px,transparent 1.8px) 0 0/6px 6px,linear-gradient(140deg,#fff9ec,#eadfc7);box-shadow:4px 6px 0 #cdbfa6,8px 11px 0 #8f7a68,0 22px 34px rgba(10,4,8,.45)}
+.consumerrights-fo{position:absolute;right:0;top:0;width:44px;height:44px;border-radius:0 0 0 9px;background:linear-gradient(45deg,#d6c6ab 50%,#2a1721 51%)}
+#consumerrights-dt{position:absolute;left:32px;top:12px;font-family:"PlayfairI",serif;font-weight:500;font-size:34px;line-height:42px;color:#5a3a45;white-space:nowrap;opacity:0}
+#consumerrights-ru{position:absolute;left:32px;top:60px;width:640px;height:3px;border-radius:2px;background:#d2ad6a;opacity:0}
+.consumerrights-r{position:absolute;left:26px;width:780px;height:54px;opacity:0}
+.consumerrights-b{position:absolute;left:2px;top:5px;width:44px;height:44px}
+.consumerrights-t{position:absolute;left:58px;top:0;height:54px;line-height:54px;font-family:"SoraV",sans-serif;font-weight:600;letter-spacing:-.015em;color:#341d2b;white-space:nowrap}
+.consumerrights-k{position:absolute;right:4px;top:3px;width:48px;height:48px;overflow:visible}
+#consumerrights-lb{position:absolute;left:32px;font-family:"PlayfairI",serif;font-weight:500;font-size:32px;line-height:36px;color:#8a5f59;white-space:nowrap;opacity:0}
+.consumerrights-s{position:absolute;height:54px;border-radius:6px;background:#efe0c1;border-top:2px dashed #bda782;box-shadow:0 6px 9px rgba(30,15,27,.13);opacity:0}
+.consumerrights-u{position:absolute;left:15px;top:0;height:52px;line-height:52px;font-family:"SoraV",sans-serif;font-weight:400;letter-spacing:-.01em;color:#75433c;white-space:nowrap}
+.consumerrights-x{position:absolute;left:0;top:0;width:10px;height:10px;overflow:visible}
+</style>
+<div id="root" data-composition-id="consumer-rights" data-width="1080" data-height="1920" data-duration="5.0">
+<div id="consumerrights-o"><div id="consumerrights-a"><div id="consumerrights-c"><div id="consumerrights-h"></div><div id="consumerrights-d"><i class="consumerrights-fo"></i><div id="consumerrights-dt">retained rights</div><i id="consumerrights-ru"></i><div id="consumerrights-lb">excluded rights</div></div></div></div></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["consumer-rights"] || { duration: 5.0 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 5.0, t0 = 0;
+
+  var P = {
+    x: 540, // Panel center on the 1080×1920 canvas, in pixels.
+    y: 230, // Panel top above the head, in pixels.
+    size: 1, // Panel scale from 0.7 to 1.1, anchored at the top.
+    title: "Resigned?", // Question at the top of the panel.
+    stay: "Prorated vacation|Annual bonus", // One to three retained items separated by |; each receives a check.
+    leave: "40% severance penalty|Unemployment benefits", // One to three excluded items separated by |; each is crossed out.
+  };
+
+
+  var ns = "http://www.w3.org/2000/svg", $ = function (id) { return document.getElementById(id); };
+  var list = function (s, defaultValue) { var l = String(s == null ? "" : s).split("|").map(function (x) { return x.trim(); }).filter(function (x) { return x; }).slice(0, 3); return l.length ? l : defaultValue; };
+  var stay = list(P.stay, ["Prorated vacation"]), leave = list(P.leave, ["40% severance penalty"]);
+  var nf = stay.length, nsai = leave.length;
+  var anchor = $("consumerrights-a"), panel = $("consumerrights-c"), tit = $("consumerrights-h"), sheet = $("consumerrights-d"), header = $("consumerrights-dt"), ruler = $("consumerrights-ru"), rot = $("consumerrights-lb"), outside = $("consumerrights-o");
+
+  var sizeValue = Math.min(1.5, Math.max(.5, parseFloat(P.size) || 1));
+  outside.style.left = P.x + "px"; outside.style.top = P.y + "px"; outside.style.transformOrigin = "50% 0"; outside.style.transform = "scale(" + sizeValue + ")";
+  tit.textContent = String(P.title == null ? "" : P.title).trim() || "Resigned?";
+
+  var PF = 54, finalTop = 70, leftTop = finalTop + nf * PF + 2, startTop = leftTop + 40, CH = 54, WIDTH = 780;
+  rot.style.top = leftTop + "px";
+  var titleText = tit.textContent, textLines = [titleText];
+  var arrange = function (nl, altF) {
+    var hT = nl > 1 ? 128 : 72, rightTop = 16 + hT + 8;
+    tit.style.height = hT + "px"; tit.style.lineHeight = (nl > 1 ? 64 : 72) + "px";
+    sheet.style.top = rightTop + "px"; sheet.style.height = altF + "px"; panel.style.height = (rightTop + altF + 24) + "px";
+  };
+  var linF = [], txF = [], badge = [], checkmark = [], handCheckmark = [];
+  stay.forEach(function (s, i) {
+    var r = document.createElement("div"); r.className = "consumerrights-r"; r.style.top = (finalTop + i * PF) + "px";
+    r.innerHTML = '<svg class="consumerrights-b" viewBox="0 0 46 46"><circle cx="23" cy="23" r="22" fill="#466c58"/><path id="consumerrights-v' + i + '" d="M13 24 L20 31 L33 16" fill="none" stroke="#fff9ec" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg>' +
+      '<div class="consumerrights-t"></div><svg class="consumerrights-k" viewBox="0 0 56 56"><path id="consumerrights-m' + i + '" d="M9 31 C13 35 17 40 21 45 C28 31 37 18 50 7" fill="none" stroke="#466c58" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg>';
+    sheet.appendChild(r); r.querySelector(".consumerrights-t").textContent = s;
+    linF.push(r); txF.push(r.querySelector(".consumerrights-t")); badge.push(r.querySelector(".consumerrights-b")); checkmark.push($("consumerrights-v" + i)); handCheckmark.push($("consumerrights-m" + i));
+  });
+  var linS = [], txS = [], strike = [];
+  leave.forEach(function (s, i) {
+    var r = document.createElement("div"); r.className = "consumerrights-s";
+    var t = document.createElement("div"); t.className = "consumerrights-u"; t.textContent = s;
+    var sv = document.createElementNS(ns, "svg"), pa = document.createElementNS(ns, "path");
+    sv.setAttribute("class", "consumerrights-x"); pa.setAttribute("fill", "none"); pa.setAttribute("stroke", "#b04f42"); pa.setAttribute("stroke-width", "6");
+    pa.setAttribute("stroke-linecap", "round"); pa.setAttribute("pathLength", "1"); pa.setAttribute("stroke-dasharray", "1"); pa.setAttribute("stroke-dashoffset", "1");
+    sv.appendChild(pa); r.appendChild(t); r.appendChild(sv); sheet.appendChild(r);
+    linS.push(r); txS.push(t); strike.push(pa);
+  });
+
+  var measure = function (txt, style, px) {
+    var m = document.createElement("span");
+    m.style.cssText = "position:absolute;left:-99999px;top:0;visibility:hidden;white-space:nowrap;" + style + ";font-size:" + px + "px";
+    m.textContent = txt; document.body.appendChild(m); var w = m.offsetWidth; document.body.removeChild(m); return w;
+  };
+  var fit = function (txts, style, maxPx, minPx, widthValue) {
+    var px = maxPx; txts.forEach(function (t) { var w = measure(t, style, maxPx); if (w > widthValue) px = Math.min(px, maxPx * widthValue / w); });
+    return Math.max(minPx, Math.floor(px));
+  };
+  var SF = "font-family:SoraV,sans-serif;font-weight:600;letter-spacing:-.015em", SS = "font-family:SoraV,sans-serif;font-weight:400;letter-spacing:-.01em", PL = "font-family:PlayfairI,serif;font-weight:500";
+  var adjust = function () {
+    var PT = PL + ";letter-spacing:-.01em", pt = fit([titleText], PT, 62, 30, 770);
+    textLines = [titleText];
+    if (pt < 50 && titleText.indexOf(" ") > 0) {
+      var middle = titleText.length / 2, best = -1;
+      titleText.split("").forEach(function (c, i) { if (c === " " && (best < 0 || Math.abs(i - middle) < Math.abs(best - middle))) best = i; });
+      textLines = [titleText.slice(0, best), titleText.slice(best + 1)];
+      pt = Math.min(56, fit(textLines, PT, 56, 30, 770));
+    }
+    tit.textContent = textLines.join("\n"); tit.style.fontSize = pt + "px";
+    var pf = fit(stay, SF, 40, 26, WIDTH - 58 - 60);
+    txF.forEach(function (t) { t.style.fontSize = pf + "px"; });
+
+    var ps = fit(leave, SS, 40, 24, WIDTH - 30), xx = 0, lin = 0;
+    leave.forEach(function (s, i) {
+      txS[i].style.fontSize = ps + "px"; var lg = Math.min(WIDTH, measure(s, SS, ps) + 30);
+      if (xx > 0 && xx + lg > WIDTH) { xx = 0; lin++; }
+      linS[i].style.left = (22 + xx) + "px"; linS[i].style.top = (startTop + lin * (CH + 10)) + "px"; linS[i].style.width = lg + "px"; xx += lg + 12;
+      var x0 = 10, x1 = lg - 10, y = 28, a = x0 + (x1 - x0) * .35, b = x0 + (x1 - x0) * .7;
+      strike[i].setAttribute("d", "M" + x0 + " " + (y + 4) + " C" + a + " " + (y - 4) + " " + a + " " + (y + 3) + " " + ((x0 + x1) / 2) + " " + y + " S" + b + " " + (y - 5) + " " + x1 + " " + (y - 2));
+    });
+    arrange(textLines.length, startTop + (lin + 1) * CH + lin * 10 + 16);
+  };
+  adjust();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { adjust(); tl.invalidate(); });
+
+
+  var enter = t0 + .05, exit = t0 + D - .28;
+  var beginTime = enter + Math.min(.7, .16 * D), end = exit - Math.min(.45, .1 * D);
+  var slot = (end - beginTime) / (nf + nsai + .35), dd = Math.max(.16, Math.min(.32, slot * .8));
+  tl.fromTo(anchor, { opacity: 0 }, { opacity: 1, duration: .05, ease: "none" }, enter);
+  tl.fromTo(panel, { opacity: 0, y: 46 }, { opacity: 1, y: 0, duration: .42, ease: "back.out(1.4)" }, enter);
+  tl.fromTo(tit, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: .3, ease: "power3.out" }, enter + .1);
+  var tF = enter + Math.min(.26, .06 * D);
+  tl.fromTo(sheet, { opacity: 0, y: 150, rotation: -7 }, { opacity: 1, y: 0, rotation: -1.2, duration: .5, ease: "expo.out" }, tF);
+  tl.fromTo(header, { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: .26, ease: "power2.out" }, tF + .16);
+  tl.fromTo(ruler, { opacity: 1, clipPath: "inset(0px 100% 0px 0px)" }, { opacity: 1, clipPath: "inset(0px 0% 0px 0px)", duration: .3, ease: "power2.out" }, tF + .2);
+
+  stay.forEach(function (s, i) {
+    var q = beginTime + slot * i;
+    tl.fromTo(linF[i], { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: dd, ease: "power3.out" }, q);
+    tl.fromTo(badge[i], { opacity: 0, rotation: -120 }, { opacity: 1, rotation: 0, duration: dd * .8, ease: "back.out(2)" }, q + .06);
+    tl.fromTo(checkmark[i], { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: dd * .7, ease: "power2.out" }, q + .1);
+    tl.fromTo(handCheckmark[i], { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: dd * .9, ease: "power1.inOut" }, q + .1 + dd * .5);
+  });
+
+  var tL = beginTime + slot * nf;
+  tl.fromTo(rot, { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: .24, ease: "power2.out" }, tL);
+  leave.forEach(function (s, i) {
+    var q = tL + slot * (i + .35), strikeOut = q + dd * .7, go = strikeOut + dd * .95, originalDuration = Math.max(.15, Math.min(.45, exit - .04 - go));
+    tl.fromTo(linS[i], { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: dd * .9, ease: "power3.out" }, q);
+    tl.fromTo(strike[i], { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: dd, ease: "power1.inOut" }, strikeOut);
+    tl.fromTo(txS[i], { color: "#75433c" }, { color: "#9a5a4e", duration: dd, ease: "none", immediateRender: false }, strikeOut);
+    tl.to(linS[i], { x: 10, y: 6, rotation: i % 2 ? -2.2 : 2.6, opacity: .62, duration: originalDuration, ease: "power3.inOut", immediateRender: false }, go);
+  });
+
+  var live = enter + .5, padding = exit - live, turns = Math.max(1, Math.round(padding / 1.3)), halfValue = padding / (turns * 2);
+  if (halfValue > .12) tl.to(anchor, { y: -7, duration: halfValue, ease: "sine.inOut", yoyo: true, repeat: turns * 2 - 1, immediateRender: false }, live);
+  tl.to(sheet, { rotation: 0, duration: Math.max(.3, end - beginTime), ease: "sine.inOut", immediateRender: false }, beginTime);
+  tl.to(anchor, { opacity: 0, y: -28, duration: .26, ease: "power2.in", immediateRender: false }, exit);
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["consumer-rights"] = tl;
+})();
+</script>
+</template>
+</body></html>

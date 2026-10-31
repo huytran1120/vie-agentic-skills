@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Revenue counter</title></head>
+<body>
+<!-- Revenue counter. When speech mentions revenue, profit, or a monetary result. -->
+
+<template id="revenue-counter-template">
+<style>
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin-ext.woff2") format("woff2");font-weight:100 900;font-display:block;unicode-range:U+0100-02BA,U+1E00-1E9F,U+20A0-20C0}
+#root *{margin:0;padding:0;box-sizing:border-box}
+#root{position:absolute;inset:0;overflow: hidden;  font-family: "Inter", sans-serif; color: #fff; --ac: #ff6a1f; --green: #30d158; --red: #ff453a;}
+.scene-abs { position: absolute; }
+.scene-scene { position: absolute; inset: 0; opacity: 0; visibility: hidden; overflow: hidden; }
+.scene-cam { position: absolute; inset: 0; transform-origin: 50% 46%; }
+.scene-background { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+.scene-light { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; mix-blend-mode: screen; opacity: 0; pointer-events: none; }
+.scene-vignette { position: absolute; inset: 0; background: radial-gradient(120% 90% at 50% 45%, transparent 45%, rgba(0,0,0,.72) 100%); pointer-events: none; }
+.scene-obj { position: absolute; opacity: 0; filter: drop-shadow(0 40px 50px rgba(0,0,0,.5)); }
+.scene-center { left: 0; width: 1080px; text-align: center; }
+.scene-pill { position: absolute; left: 50%; display: inline-flex; align-items: center; gap: 14px; padding: 18px 34px; border-radius: 999px; background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 2px rgba(255,255,255,.2); font-weight: 700; font-size: 34px; letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; opacity: 0; }
+.scene-point { width: 16px; height: 16px; border-radius: 50%; background: var(--green); box-shadow: 0 0 18px var(--green); }
+#flash { position: absolute; inset: 0; background: #fff; opacity: 0; pointer-events: none; z-index: 50; }
+
+
+#c1-value { top: 1118px; font-weight: 900; font-size: 172px; letter-spacing: -.045em; line-height: 1; opacity: 0; font-variant-numeric: tabular-nums; text-shadow: 0 10px 40px rgba(0,0,0,.45); }
+#c1-value small { font-size: 84px; font-weight: 800; letter-spacing: -.02em; margin-right: 14px; opacity: .85; }
+#c1-sub { top: 1350px; font-size: 44px; font-weight: 500; color: rgba(255,255,255,.78); opacity: 0; }
+.scene-chip { position: absolute; display: inline-flex; align-items: center; gap: 14px; padding: 20px 30px; border-radius: 26px; background: rgba(12,14,12,.82); box-shadow: inset 0 0 0 2px rgba(255,255,255,.14), 0 18px 40px rgba(0,0,0,.4); font-size: 38px; font-weight: 700; white-space: nowrap; opacity: 0; }
+.scene-chip b { color: var(--green); font-weight: 800; }
+#c1-badge { position: absolute; right: 140px; top: 1010px; max-width: 800px; white-space: nowrap; padding: 14px 28px; border-radius: 20px; background: var(--green); color: #04210c; font-weight: 900; font-size: 54px; opacity: 0; box-shadow: 0 14px 30px rgba(48,209,88,.35); }
+
+
+#c2-background { filter: brightness(.42) saturate(.9) blur(3px); }
+#c2-word { position: absolute; left: 0; top: 300px; width: 1080px; text-align: center; font-weight: 900; font-size: 372px; letter-spacing: -.05em; line-height: .92; white-space: nowrap; }
+#c2-word span { display: inline-block; opacity: 0; }
+#c2-line { top: 1340px; }
+#c2-line span { display: inline-block; padding: 18px 34px; border-radius: 26px; background: #fff; color: #111; font-weight: 800; font-size: 50px; line-height: 1.16; letter-spacing: -.02em; opacity: 0; }
+#c2-line i { font-style: normal; color: #e04a0c; }
+
+
+#c3-title { top: 262px; font-weight: 900; font-size: 118px; letter-spacing: -.04em; opacity: 0; }
+#c3-title i { font-style: normal; color: var(--ac); }
+.scene-step { position: absolute; left: 110px; width: 860px; height: 300px; border-radius: 44px; background: rgba(24,24,27,.94); box-shadow: inset 0 0 0 2px rgba(255,255,255,.1), 0 26px 60px rgba(0,0,0,.5); opacity: 0; }
+.scene-step .scene-n { position: absolute; left: 36px; top: 34px; width: 74px; height: 74px; border-radius: 50%; background: var(--ac); color: #000; font-weight: 900; font-size: 42px; display: grid; place-items: center; }
+.scene-step .scene-t { position: absolute; left: 36px; top: 132px; font-weight: 800; font-size: 68px; letter-spacing: -.03em; line-height: 1; }
+.scene-step .scene-s { position: absolute; left: 36px; top: 214px; font-size: 36px; font-weight: 500; color: rgba(255,255,255,.62); }
+.scene-step .scene-ok { position: absolute; right: 290px; top: 40px; width: 62px; height: 62px; border-radius: 50%; background: var(--green); opacity: 0; display: grid; place-items: center; }
+.scene-step .scene-ok::after { content: ""; width: 26px; height: 14px; border-left: 7px solid #04210c; border-bottom: 7px solid #04210c; transform: translateY(-3px) rotate(-45deg); }
+.scene-step video { position: absolute; right: 12px; top: 20px; width: 260px; height: 260px; opacity: 0; filter: drop-shadow(0 20px 26px rgba(0,0,0,.5)); }
+.scene-wire { position: absolute; left: 180px; width: 6px; border-radius: 3px; background: var(--ac); transform-origin: 50% 0; opacity: 0; }
+
+
+.scene-half { position: absolute; left: 0; width: 1080px; height: 960px; overflow: hidden; }
+#c4-a { top: 0; height: 1920px; } #c4-d { top: 960px; }
+#c4-ai { position: absolute; left: 0; top: 0; width: 1080px; height: 960px; }
+#c4-a .scene-ink { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(120,12,8,.72), rgba(40,6,6,.86)); }
+#c4-d .scene-ink { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,60,26,.5), rgba(4,30,14,.74)); }
+.scene-label { position: absolute; left: 140px; padding: 12px 26px; border-radius: 14px; font-weight: 900; font-size: 40px; letter-spacing: .14em; opacity: 0; }
+#c4-ra { top: 262px; background: var(--red); color: #2b0503; } #c4-rd { top: 84px; background: var(--green); color: #04210c; }
+.scene-num { position: absolute; left: 140px; font-weight: 900; font-size: 190px; letter-spacing: -.05em; line-height: 1; opacity: 0; font-variant-numeric: tabular-nums; }
+.scene-num small { font-size: 76px; font-weight: 800; letter-spacing: -.02em; margin-left: 12px; }
+#c4-na { top: 352px; } #c4-nd { top: 176px; }
+.scene-leg { position: absolute; left: 146px; width: 450px; font-size: 42px; line-height: 1.2; font-weight: 500; color: rgba(255,255,255,.78); opacity: 0; }
+#c4-la { top: 566px; } #c4-ld { top: 392px; }
+#c4-strike { position: absolute; left: 136px; top: 438px; width: 520px; height: 16px; border-radius: 8px; background: var(--red); transform-origin: 0 50%; opacity: 0; }
+#c4-bar { position: absolute; left: 0; top: 954px; width: 1080px; height: 12px; background: #fff; transform-origin: 0 50%; opacity: 0; box-shadow: 0 0 40px rgba(255,255,255,.7); }
+#c4-badge { position: absolute; left: 50%; top: 960px; padding: 22px 44px; border-radius: 999px; background: #fff; color: #111; font-weight: 900; font-size: 60px; letter-spacing: -.02em; white-space: nowrap; opacity: 0; box-shadow: 0 20px 50px rgba(0,0,0,.5); }
+#c4-badge i { font-style: normal; color: #128a3a; }
+
+
+#c5-background { filter: brightness(.6) saturate(1.05); }
+#c5-phrase { top: 952px; font-weight: 900; font-size: 116px; letter-spacing: -.045em; line-height: 1.0; }
+#c5-phrase span { display: inline-block; opacity: 0; }
+#c5-sub { top: 1206px; font-size: 46px; font-weight: 500; color: rgba(255,255,255,.82); opacity: 0; }
+#c5-btn { position: absolute; left: 50%; top: 1300px; padding: 34px 76px; border-radius: 999px; background: #fff; color: #111; font-weight: 900; font-size: 62px; letter-spacing: -.02em; white-space: nowrap; opacity: 0; box-shadow: 0 24px 60px rgba(0,0,0,.45); }
+#c5-ring { position: absolute; left: 50%; top: 1300px; width: 470px; height: 142px; border-radius: 999px; box-shadow: 0 0 0 5px rgba(255,255,255,.9); opacity: 0; }
+.scene-arrow { position: absolute; left: 50%; width: 54px; height: 54px; border-right: 10px solid #fff; border-bottom: 10px solid #fff; opacity: 0; }
+
+.scene-scene{visibility:visible}
+#u1-int::before{content:attr(data-t)}
+.gig::before{content:attr(data-t)}
+</style>
+<div id="root" data-composition-id="revenue-counter" data-width="1080" data-height="1920" data-duration="6">
+<div class="scene-scene" id="c1"><div class="scene-cam" id="c1-cam">
+    <video data-start="0" data-duration="6" data-track-index="1" class="scene-background" id="c1-background" src="assets/visuals/video/neon-green-fluid.mp4" muted playsinline style="filter:brightness(.5) saturate(.9)"></video>
+    <div class="scene-vignette"></div>
+    <video data-start="0" data-duration="6" data-track-index="2" class="scene-light" id="c1-light" src="assets/visuals/video/golden-light.mp4" muted playsinline></video>
+    <div class="scene-pill" id="c1-rot" style="top:300px"><span class="scene-point"></span>Monthly revenue</div>
+    <video data-start="0" data-duration="6" data-track-index="3" class="scene-obj" id="c1-obj" src="assets/visuals/video/05-money.webm" muted playsinline style="left:170px;top:400px;width:740px;height:740px"></video>
+    <div class="scene-abs scene-center" id="c1-value"><small>R$</small><span id="c1-n">0</span></div>
+    <div id="c1-badge">+218%</div>
+    <div class="scene-abs scene-center" id="c1-sub">in 30 days, with one video a day</div>
+    <div class="scene-chip" id="c1-ch1" style="left:140px;top:1460px"><b>+37</b> sales today</div>
+    <div class="scene-chip" id="c1-ch2" style="left:560px;top:1460px">ticket <b>R$ 97</b></div>
+  </div></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["revenue-counter"] || { words: [], duration: 6 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = 6, IR = { immediateRender: false }, a = 0, b = 0, k, n;
+  function ext(x, y) { var o = {}, i; for (i in x) o[i] = x[i]; for (i in y) o[i] = y[i]; return o; }
+  function thousands(v) { return String(Math.round(v)).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
+  function decimal(c) { return function (v) { return v.toFixed(c); }; }
+  function two(v) { v = Math.round(v); return (v < 10 ? "0" : "") + v; }
+  /* Scale tweens are converted to clipping or translation for the renderer contract. */
+  function rec(sel, axis, v) {
+    v = Math.max(0, Math.min(1, v)); var p = (100 - v * 100).toFixed(2) + "%";
+    if (axis === "x") return "inset(0% " + p + " 0% 0%)";
+    return /wire/.test(String(sel)) ? "inset(0% 0% " + p + " 0%)" : "inset(" + p + " 0% 0% 0%)";
+  }
+  function lim(sel, o, start) {
+    var r = {}, i;
+    for (i in o) {
+      if (i === "scale" || i === "transformOrigin" || i === "svgOrigin") continue;
+      if (i === "scaleX") { r.clipPath = rec(sel, "x", o[i]); continue; }
+      if (i === "scaleY") { r.clipPath = rec(sel, "y", o[i]); continue; }
+      r[i] = o[i];
+    }
+    if (start && ("scale" in o) && !("x" in r) && !("y" in r) && !("rotation" in r) && !("clipPath" in r)) r.y = 26;
+    return r;
+  }
+  var T = {
+    fromTo: function (s, x, y, t) { var X = lim(s, x, true), Y = lim(s, y, false); if (("y" in X) && !("y" in Y)) Y.y = 0; return tl.fromTo(s, X, Y, t); },
+    to: function (s, y, t) { return tl.to(s, lim(s, y, false), t); },
+    set: function (s, y, t) { return tl.set(s, lim(s, y, false), t); }
+  };
+  /* Format counters in a modifier so GSAP does not parse a grouped number as a decimal. */
+  function countNumber(sel, start, end, t, dur, fmt, ease) {
+    var f = fmt || thousands;
+    tl.fromTo(sel, { textContent: start }, { textContent: end, duration: dur, ease: ease || "power2.out", immediateRender: false,
+      modifiers: { textContent: function (v) { return f(parseFloat(v)); } } }, t);
+  }
+  function bounce(sel, t) { tl.to(sel, { y: "-=12", duration: .12, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, t); }
+  function exit(targets, t) { T.to(targets, ext({ opacity: 0, y: "-=70", duration: .24, ease: "power2.in", stagger: .02 }, IR), t + D - .32); }
+  function fadeOut(targets, t) { T.to(targets, ext({ opacity: 0, duration: .22, ease: "power2.in" }, IR), t + D - .3); }
+  function title(sel, t) { T.fromTo(sel, { opacity: 0, y: -70 }, { opacity: 1, y: 0, duration: .42, ease: "back.out(1.7)" }, t + .15); }
+  function object(sel, t, rot) { T.fromTo(sel, { opacity: 0, y: 160, rotation: rot || 30 }, { opacity: 1, y: 0, rotation: 0, duration: .55, ease: "back.out(1.8)" }, t); }
+  function footer(sel, t, center) { T.fromTo(sel, ext({ opacity: 0, y: 50 }, center ? { xPercent: -50 } : {}), { opacity: 1, y: 0, duration: .36, ease: "back.out(1.8)" }, t); }
+  function num(q, subtitle, t) {
+    T.fromTo(q, { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: .45, ease: "expo.out" }, t);
+    if (subtitle) T.fromTo(subtitle, { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: .35, ease: "power3.out" }, t + .2);
+  }
+  var enter = num;
+  function note(sel, t) { T.fromTo(sel, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: .36, ease: "back.out(2)" }, t); }
+  function reveal(sel, t, start) { T.fromTo(sel, ext({ opacity: 0, y: 80 }, start || {}), { opacity: 1, y: 0, rotation: 0, x: 0, duration: .6, ease: "back.out(1.6)" }, t); }
+
+  T.fromTo("#c1", { opacity: 0 }, { opacity: 1, duration: .2 }, 0);
+  T.to("#c1", ext({ opacity: 0, duration: .2 }, IR), D - .2);
+
+  T.fromTo("#c1-light", { opacity: 0 }, { opacity: .55, duration: 1.2, ease: "power1.out" }, a + .1);
+  T.fromTo("#c1-rot", { opacity: 0, xPercent: -50, y: -40 }, { opacity: 1, y: 0, duration: .45, ease: "back.out(1.8)" }, a + .25);
+  T.fromTo("#c1-obj", { opacity: 0, y: 260, scale: .5, rotation: -12 }, { opacity: 1, y: 0, scale: 1, rotation: 0, duration: .7, ease: "back.out(1.5)" }, a + .5);
+  T.fromTo("#c1-value", { opacity: 0, y: 70 }, { opacity: 1, y: 0, duration: .4, ease: "expo.out" }, a + 1.05);
+  countNumber("#c1-n", 0, 12480, a + 1.1, 1.7);
+  T.fromTo("#c1-value", { scale: 1 }, ext({ scale: 1.1, duration: .12, yoyo: true, repeat: 1, ease: "power2.out" }, IR), a + 2.8);
+  T.fromTo("#c1-badge", { opacity: 0, scale: .3, rotation: -16 }, { opacity: 1, scale: 1, rotation: -6, duration: .4, ease: "back.out(2.6)" }, a + 2.95);
+  T.fromTo("#c1-sub", { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: .35, ease: "power3.out" }, a + 3.3);
+  T.fromTo("#c1-ch1", { opacity: 0, x: -120 }, { opacity: 1, x: 0, duration: .42, ease: "back.out(1.6)" }, a + 3.75);
+  T.fromTo("#c1-ch2", { opacity: 0, x: 120 }, { opacity: 1, x: 0, duration: .42, ease: "back.out(1.6)" }, a + 3.95);
+  T.to(["#c1-rot", "#c1-value", "#c1-sub", "#c1-ch1", "#c1-ch2", "#c1-badge", "#c1-obj"], ext({ opacity: 0, y: -90, duration: .26, ease: "power2.in", stagger: .02 }, IR), a + 5.66);
+
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["revenue-counter"] = tl;
+})();
+</script>
+</template>
+</body></html>

@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"/><title>editonny · Text chromatic</title></head>
+<body>
+<!-- Text chromatic. For energetic technology, AI, or editing captions with a chromatic glitch look. -->
+
+<template id="text-chromatic-template">
+<style>
+@font-face{font-family:"Montserrat";src:url("assets/fonts/Montserrat.ttf") format("truetype");font-weight:100 900;font-display:block}
+@font-face{font-family:"Caveat";src:url("assets/fonts/Caveat.ttf") format("truetype");font-weight:400 700;font-display:block}
+@font-face{font-family:"JetBrainsMono";src:url("assets/fonts/JetBrainsMono.ttf") format("truetype");font-weight:100 800;font-display:block}
+@font-face{font-family:"Inter";src:url("assets/visuals/fonts/inter-var-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+#root{position:absolute;inset:0;overflow:hidden;font-family:"Montserrat",sans-serif}
+.textchromatic-l{position:absolute;left:140px;top:0;width:800px;display:flex;flex-wrap:wrap;justify-content:center;align-content:center;align-items:baseline;opacity:0;
+  font-family:"Montserrat",sans-serif;font-weight:900;line-height:1.08;white-space:nowrap;color:#fff}
+.textchromatic-w{display:block;isolation:isolate;--textchromatic-x:4px}
+.textchromatic-g{display:inline-block;position:relative;-webkit-text-stroke:.03em #000;paint-order:stroke fill}
+.textchromatic-g::before,.textchromatic-g::after{content:attr(data-t);position:absolute;top:0}
+.textchromatic-g::before{z-index:1;left:calc(var(--textchromatic-x) * -1);color:#00e5ff;-webkit-text-stroke-color:#00e5ff;text-shadow:calc(var(--textchromatic-x) * 2) 0 0 #ff2a6d}
+.textchromatic-g::after{z-index:2;left:0;color:inherit;text-shadow:none}
+</style>
+<div id="root" data-composition-id="text-chromatic" data-width="1080" data-height="1920" data-duration="3.4">
+<div id="textchromatic-c"></div>
+</div>
+<script>
+(function () {
+  const C = (window.__scenes || {})["text-chromatic"] || { duration: 3.4 };
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  var D = C.duration || 3.4, t0 = 0;
+
+  var P = {
+    y: 1280, // Caption center height on the 1080×1920 canvas, in pixels.
+    size: 88, // Font size, in pixels.
+    maxWords: 3, // Words per caption group.
+    color: "#ffffff", // Text color.
+    spacing: 4, // Distance of cyan and magenta copies from the resting word, in pixels.
+  };
+
+
+  var HIDDEN_RANGES = [];
+
+
+  var W = Array.isArray(C.words) ? C.words : [
+    { text: "You", t: 0.10, end: 0.34 }, { text: "do not", t: 0.36, end: 0.58 }, { text: "need", t: 0.60, end: 0.98 },
+    { text: "an", t: 1.00, end: 1.10 }, { text: "editor", t: 1.12, end: 1.56 }, { text: "to", t: 1.92, end: 2.06 },
+    { text: "post", t: 2.08, end: 2.44 }, { text: "every", t: 2.46, end: 2.68 }, { text: "day.", t: 2.70, end: 3.05 }
+  ];
+
+  W = (function (a) { var o = [], u = 0.04, k, t; for (k = 0; k < a.length; k++) { t = Math.max(0.05, Number(a[k].t) || 0, u + 0.01); o.push({ text: a[k].text, t: t, end: Math.max(t + 0.02, Number(a[k].end) || 0) }); u = t; } return o; })(W);
+
+  var SCALE_FACTOR = (function () {
+    var e = (typeof HIDDEN_RANGES !== "undefined" && HIDDEN_RANGES) || [], b0 = (typeof C.start === "number") ? C.start : 0, o = [], k;
+    for (k = 0; k < e.length; k++) if (Number(e[k][1]) > Number(e[k][0])) o.push([Number(e[k][0]) - b0, Number(e[k][1]) - b0]);
+    return o;
+  })();
+  function hidden(t) { for (var k = 0; k < SCALE_FACTOR.length; k++) if (t >= SCALE_FACTOR[k][0] && t < SCALE_FACTOR[k][1]) return true; return false; }
+  function nextScale(t) { var r = Infinity, k; for (k = 0; k < SCALE_FACTOR.length; k++) if (SCALE_FACTOR[k][0] > t && SCALE_FACTOR[k][0] < r) r = SCALE_FACTOR[k][0]; return r; }
+  W = W.filter(function (w) { return !hidden(w.t); });
+
+  function show(s) { return String(s).replace(/^\s+|\s+$/g, "").replace(/[.,;:…]+$/g, ""); }
+
+  function screens(maxP, maxL) {
+    var groups = [], cur = [], letters = 0, i, w, txt, out = [];
+    for (i = 0; i < W.length; i++) {
+      w = W[i]; txt = show(w.text); if (!txt || !(w.t < D - 0.2)) continue;
+      if (cur.length && (cur.length >= maxP || letters + txt.length + 1 > maxL || w.t - cur[cur.length - 1].end > 0.7 || nextScale(cur[cur.length - 1].t) <= w.t)) { groups.push(cur); cur = []; letters = 0; }
+      cur.push({ text: txt, t: Math.max(0.05, w.t), end: Math.min(D - 0.05, Math.max(w.t + 0.08, w.end)) }); letters += txt.length + 1;
+      if (/[.!?…]$/.test(String(w.text).replace(/\s+$/, "")) || (cur.length >= 2 && /[,;:]$/.test(String(w.text).replace(/\s+$/, "")))) { groups.push(cur); cur = []; letters = 0; }
+    }
+    if (cur.length) groups.push(cur);
+    for (i = 0; i < groups.length; i++) {
+      var start = Math.max(0.05, groups[i][0].t - 0.05), speechEnd = groups[i][groups[i].length - 1].end;
+      var end = Math.min(D - 0.05, speechEnd + 0.5); if (i + 1 < groups.length) end = Math.min(end, Math.max(0.05, groups[i + 1][0].t - 0.05));
+      end = Math.min(end, Math.max(start + 0.15, nextScale(groups[i][groups[i].length - 1].t)));
+      if (end > start + 0.12) out.push({ words: groups[i], start: start, end: end });
+    }
+    return out;
+  }
+
+
+  function num(v, defaultValue) { return (v === "" || v == null || !isFinite(Number(v))) ? defaultValue : Number(v); }
+  var sizeValue = Math.max(40, Math.min(140, num(P.size, 88) || 88)), maxP = Math.max(1, Math.min(5, Math.round(num(P.maxWords, 3)) || 3));
+  var af = num(P.spacing, 4); af = af >= 0 ? Math.min(12, af) : 4;
+  var openAt = af + Math.max(4, Math.round(sizeValue * 0.07));
+  var yy = Math.max(230 + sizeValue * 0.75, Math.min(1530 - sizeValue * 0.75, num(P.y, 1280)));
+  var span = 0.26, radius = 0.062, util = 800 - 2 * (sizeValue * radius + openAt) - 6;
+
+  var LU = [81, 77, 74, 83, 67, 64, 77, 80, 35, 57, 77, 62, 95, 80, 85, 74, 85, 75, 66, 65, 78, 79, 121, 76, 71, 69];
+  function width(s) {
+    var n = String(s).normalize("NFD").replace(/[̀-ͯ]/g, "").toUpperCase(), k, c, tot = 0;
+    for (k = 0; k < n.length; k++) { c = n.charCodeAt(k) - 65; tot += (c >= 0 && c < 26) ? LU[c] : 66; }
+    return tot / 100;
+  }
+  function atStart(pals) { var s = 0, q; for (q = 0; q < pals.length; q++) s += width(pals[q].text) + (q ? span : 0); return s; }
+
+  function correctColor(v, defaultValue) { return (typeof v === "string" && window.CSS && CSS.supports("color", v)) ? v : defaultValue; }
+
+  function stage(ax, ay, bx, by, r, color, px, front) {
+    var dx = bx - ax, dy = by - ay, L = Math.sqrt(dx * dx + dy * dy), a0 = L ? Math.atan2(dy, dx) : 0, step = 1.4 / px, pts = [], k, a, f;
+    var n = Math.max(8, Math.min(34, Math.ceil(Math.PI * r / step))), m = L ? Math.max(1, Math.min(30, Math.ceil(L / step))) : 0;
+    for (k = 0; k < (L ? n + 1 : 2 * n); k++) { a = a0 - Math.PI / 2 + Math.PI * k / n; pts.push([bx + r * Math.cos(a), by + r * Math.sin(a)]); }
+    if (L && !front) for (k = 0; k <= n; k++) { a = a0 + Math.PI / 2 + Math.PI * k / n; pts.push([ax + r * Math.cos(a), ay + r * Math.sin(a)]); }
+    for (k = 1; k < m; k++) {
+      f = k / m; pts.push([ax + dx * f - r * dy / L, ay + dy * f + r * dx / L], [ax + dx * f + r * dy / L, ay + dy * f - r * dx / L]);
+      if (!front) pts.push([ax + dx * f, ay + dy * f]);
+    }
+    for (k = 0; k < pts.length; k++) pts[k] = pts[k][0].toFixed(3) + "em " + pts[k][1].toFixed(3) + "em 0 " + color;
+    return pts.join(",");
+  }
+
+  function withoutJump(list) {
+    var all = [], out = [], k = 0, i, p, w, u;
+    function fits(pals) { return pals.length <= maxP + 2 && util / atStart(pals) >= sizeValue * 0.6; }
+    for (i = 0; i < W.length; i++) if (show(W[i].text) && W[i].t < D - 0.2) all.push(W[i]);
+    for (i = 0; i <= list.length; i++) {
+      p = i < list.length ? list[i].words[0] : null;
+      while (k < all.length && !(p && show(all[k].text) === p.text && Math.max(0.05, all[k].t) === p.t)) {
+        w = all[k++]; w = { text: show(w.text), t: Math.max(0.05, w.t), end: Math.min(D - 0.05, Math.max(w.t + 0.08, w.end)) };
+        u = out.length ? out[out.length - 1] : null;
+        if (u && fits(u.words.concat([w]))) u.words.push(w); else out.push({ words: [w], release: true });
+      }
+      if (!p) break;
+      k += list[i].words.length; u = out.length ? out[out.length - 1] : null;
+
+      if (u && u.release && p.t - u.words[0].t < 0.15 && fits(u.words.concat(list[i].words))) { out.pop(); out.push({ words: u.words.concat(list[i].words) }); }
+      else out.push({ words: list[i].words.slice() });
+    }
+    for (i = 0; i < out.length; i++) { out[i].start = Math.max(0.05, out[i].words[0].t - 0.05); if (i) out[i].start = Math.max(out[i].start, out[i - 1].start + 0.04); }
+    for (i = 0; i < out.length; i++) {
+      p = out[i].words; out[i].end = Math.min(D - 0.05, p[p.length - 1].end + 0.5);
+      if (i + 1 < out.length) out[i].end = Math.min(out[i].end, out[i + 1].start);
+      out[i].end = Math.max(out[i].end, out[i].start + 0.04);
+    }
+    return out;
+  }
+  var box = document.getElementById("textchromatic-c"), list = withoutJump(screens(maxP, Math.floor(800 / (sizeValue * 0.66)))), i, j, k, line, pal, gl, letters, tt, w;
+  for (i = 0; i < list.length; i++) {
+    tt = Math.min(sizeValue, Math.floor(util / atStart(list[i].words)));
+    line = document.createElement("div"); line.className = "textchromatic-l"; line.id = "textchromatic-l" + i;
+    line.style.top = Math.round(yy - sizeValue * 1.5) + "px"; line.style.height = Math.round(sizeValue * 3) + "px"; line.style.fontSize = tt + "px"; line.style.color = correctColor(P.color, "#ffffff");
+
+    line.style.textShadow = stage(-af / tt, 0, af / tt, 0, radius, "#000", tt) + ",0 .08em .2em rgba(0,0,0,.55)";
+    for (j = 0; j < list[i].words.length; j++) {
+      w = list[i].words[j];
+      pal = document.createElement("span"); pal.className = "textchromatic-w"; pal.id = "textchromatic-w" + i + "-" + j; pal.style.setProperty("--textchromatic-x", af + "px");
+      if (j) pal.style.marginLeft = Math.round(tt * span) + "px";
+      letters = Array.from(String(w.text).normalize("NFC").toUpperCase());
+      for (k = 0; k < letters.length; k++) {
+        gl = document.createElement("span"); gl.className = "textchromatic-g"; gl.textContent = letters[k]; gl.setAttribute("data-t", letters[k]);
+        if (k % 2) gl.style.top = Math.max(2, Math.round(tt * 0.034)) + "px";
+        pal.appendChild(gl);
+      }
+      line.appendChild(pal);
+    }
+    box.appendChild(line);
+
+    tl.fromTo("#textchromatic-l" + i, { opacity: 0 }, { opacity: 1, duration: .01 }, t0 + list[i].start);
+    for (j = 0; j < list[i].words.length; j++)
+      tl.fromTo("#textchromatic-w" + i + "-" + j, { "--textchromatic-x": openAt + "px" }, { "--textchromatic-x": af + "px", duration: .15, ease: "power2.out", immediateRender: false }, t0 + (j ? Math.max(list[i].start, list[i].words[j].t) : list[i].start));
+
+    tl.to("#textchromatic-l" + i, { opacity: 0, duration: .01, immediateRender: false }, t0 + list[i].end - .01);
+  }
+  tl.to({}, { duration: D }, 0);
+  window.__timelines["text-chromatic"] = tl;
+})();
+</script>
+</template>
+</body></html>
