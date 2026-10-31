@@ -505,7 +505,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
   const youtube = catalog.filterSkills(skills, { sources: ['youtube'] });
   assert.equal(youtube.length, 11);
   assert.equal(catalog.filterSkills(skills, { query: 'youtube-agent-skill' }).length, 11);
-  assert.equal(skills.length, 3172);
+  assert.equal(skills.length, 3184);
   for (const skill of youtube) {
     assert.ok(skill.id.startsWith('youtube-agent-skill/'));
     assert.equal(skill.source_repo, 'Jakeschincariol/youtube-agent-skill');
@@ -520,7 +520,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
     assert.deepEqual(state.sources, ['youtube']);
     assert.equal(state.selected, youtube[0].id);
     assert.ok(i18n.translate('collections.youtube', language).startsWith('11 '));
-    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '3.172' : '3,172'));
+    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '3.184' : '3,184'));
   }
   assert.equal(catalog.filterSkills(skills, { sources: ['youtube'], category: 'security' }).length, 0);
   const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
@@ -1010,4 +1010,39 @@ test('language changes retain theme state and history still reports missing skil
   window.listeners.get('popstate')();
   assert.equal(runtime.elements.get('toast').hidden, false);
   assert.equal(runtime.elements.get('toast').textContent, 'This skill is no longer in the catalog. Search for another one below.');
+});
+
+test('Video Editor DaVinci Resolve skills retain exact source filtering, CC-BY-NC license and agent prompts', () => {
+  const videoSkills = catalog.filterSkills(skills, { sources: ['videoeditor'] });
+  assert.equal(videoSkills.length, 12);
+  const expectedIds = [
+    'broll', 'captions', 'edit-video', 'figma-roundtrip',
+    'motion-overlays', 'music-and-sound', 'resolve-scripting',
+    'rough-cut', 'video-editor-setup', 'vlog-pacing',
+    'voice-and-audio', 'youtube-export'
+  ];
+  assert.deepEqual(videoSkills.map(s => s.id).sort(), expectedIds.sort());
+
+  for (const s of videoSkills) {
+    assert.equal(s.source_repo, 'appariciojunior/video-editor-skills');
+    assert.equal(s.author, 'appariciojunior');
+    assert.equal(s.license, 'CC-BY-NC-4.0');
+    assert.equal(s.category, 'media');
+  }
+
+  for (const language of ['vi', 'en']) {
+    assert.ok(i18n.translate('collections.videoeditor', language).startsWith('12 '));
+    for (const [agent] of catalog.agents.filter(([key]) => key !== 'all')) {
+      const prompt = catalog.agentInstallPrompt(videoSkills[0], agent, language);
+      assert.ok(prompt.includes(`/install-manifests/${videoSkills[0].id}.json`));
+      assert.ok(prompt.includes(catalog.targetFolders[agent]));
+      assert.ok(prompt.includes('SHA-256'));
+      assert.ok(prompt.includes('.vas-manifest.json'));
+    }
+  }
+
+  const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
+  assert.ok(html.includes('name="source" value="videoeditor"'));
+  assert.ok(html.includes('data-source-count="videoeditor">12<'));
+  assert.ok(html.includes('id="videoeditor-collection"'));
 });

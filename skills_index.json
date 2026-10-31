@@ -10156,6 +10156,30 @@
     "author": "zebbern"
   },
   {
+    "id": "broll",
+    "canonical_id": "broll",
+    "name": "broll",
+    "path": "skills/broll",
+    "description": "How to find, watch and cut B-roll in a vlog - clips with no speech placed by time between talking clips, chosen by their action and story, not a fixed length. Use when footage mixes talking clips (A-roll) and silent clips, or when the creator says the B-roll pacing feels wrong.",
+    "category": "media",
+    "tags": [
+      "video-editing",
+      "davinci-resolve",
+      "broll",
+      "vlog",
+      "media",
+      "cutting"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/appariciojunior/video-editor-skills/tree/6709678d7d5b169149e13480428e12b0f09a47f0/skills/broll",
+    "source_repo": "appariciojunior/video-editor-skills",
+    "author": "appariciojunior",
+    "license": "CC-BY-NC-4.0",
+    "license_source": "https://github.com/appariciojunior/video-editor-skills/blob/6709678d7d5b169149e13480428e12b0f09a47f0/LICENSE",
+    "source_revision": "6709678d7d5b169149e13480428e12b0f09a47f0",
+    "source_path": "skills/broll/SKILL.md"
+  },
+  {
     "id": "brooks-audit",
     "canonical_id": "brooks-audit",
     "name": "brooks-audit",
@@ -11134,6 +11158,30 @@
     "source": "self",
     "source_repo": "WHOISABHISHEKADHIKARI/sme-ops-system-builder",
     "author": "WHOISABHISHEKADHIKARI"
+  },
+  {
+    "id": "captions",
+    "canonical_id": "captions",
+    "name": "captions",
+    "path": "skills/captions",
+    "description": "Clean, readable burned-in style subtitles from the verbatim transcript - stutters and fillers removed, spoken slang written correctly, one short line at a time, names checked, every line read by Claude before import into DaVinci Resolve. Use for \"subtitles\", \"captions\", \"legendas\", or when the creator reports wrong words in the captions.",
+    "category": "media",
+    "tags": [
+      "video-editing",
+      "davinci-resolve",
+      "captions",
+      "subtitles",
+      "media",
+      "transcript"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/appariciojunior/video-editor-skills/tree/6709678d7d5b169149e13480428e12b0f09a47f0/skills/captions",
+    "source_repo": "appariciojunior/video-editor-skills",
+    "author": "appariciojunior",
+    "license": "CC-BY-NC-4.0",
+    "license_source": "https://github.com/appariciojunior/video-editor-skills/blob/6709678d7d5b169149e13480428e12b0f09a47f0/LICENSE",
+    "source_revision": "6709678d7d5b169149e13480428e12b0f09a47f0",
+    "source_path": "skills/captions/SKILL.md"
   },
   {
     "id": "captions-overlay",
@@ -18569,6 +18617,30 @@
     "source_path": "system/edge-to-edge/SKILL.md"
   },
   {
+    "id": "edit-video",
+    "canonical_id": "edit-video",
+    "name": "edit-video",
+    "path": "skills/edit-video",
+    "description": "The one-command first-pass edit. Takes footage from raw video/, transcribes it, cuts retakes and dead air while keeping a natural vlog rhythm, keeps B-roll, and builds the timeline in the open DaVinci Resolve project (footage in bins, a copy of the creator's template timeline, markers, zoom, grade, audio normalize). Use for \"/edit-video\", \"edit the new video\", \"do it\", or follow-up changes to a cut.",
+    "category": "media",
+    "tags": [
+      "video-editing",
+      "davinci-resolve",
+      "workflow",
+      "vlog",
+      "automation",
+      "media"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/appariciojunior/video-editor-skills/tree/6709678d7d5b169149e13480428e12b0f09a47f0/skills/edit-video",
+    "source_repo": "appariciojunior/video-editor-skills",
+    "author": "appariciojunior",
+    "license": "CC-BY-NC-4.0",
+    "license_source": "https://github.com/appariciojunior/video-editor-skills/blob/6709678d7d5b169149e13480428e12b0f09a47f0/LICENSE",
+    "source_revision": "6709678d7d5b169149e13480428e12b0f09a47f0",
+    "source_path": "skills/edit-video/SKILL.md"
+  },
+  {
     "id": "edr-bypass-re",
     "canonical_id": "edr-bypass-re",
     "name": "edr-bypass-re",
@@ -20347,6 +20419,30 @@
     ],
     "risk": "critical",
     "source": "community"
+  },
+  {
+    "id": "figma-roundtrip",
+    "canonical_id": "figma-roundtrip",
+    "name": "figma-roundtrip",
+    "path": "skills/figma-roundtrip",
+    "description": "Keeps a video motion-graphics kit and its editable Figma boards in sync - the creator designs and tweaks in Figma, Claude ports the changes into the Remotion components and brand tokens, and mirrors code changes back. Use when the creator says they changed the boards, wants a new graphic designed, or wants the kit visible in Figma.",
+    "category": "media",
+    "tags": [
+      "video-editing",
+      "figma",
+      "remotion",
+      "motion-graphics",
+      "design",
+      "tokens"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/appariciojunior/video-editor-skills/tree/6709678d7d5b169149e13480428e12b0f09a47f0/skills/figma-roundtrip",
+    "source_repo": "appariciojunior/video-editor-skills",
+    "author": "appariciojunior",
+    "license": "CC-BY-NC-4.0",
+    "license_source": "https://github.com/appariciojunior/video-editor-skills/blob/6709678d7d5b169149e13480428e12b0f09a47f0/LICENSE",
+    "source_revision": "6709678d7d5b169149e13480428e12b0f09a47f0",
+    "source_path": "skills/figma-roundtrip/SKILL.md"
   },
   {
     "id": "file-organizer",
@@ -33114,6 +33210,29 @@
     "risk": "safe"
   },
   {
+    "id": "motion-overlays",
+    "canonical_id": "motion-overlays",
+    "name": "motion-overlays",
+    "path": "skills/motion-overlays",
+    "description": "Brand motion graphics for creator videos - a Remotion component kit (key phrases, lists, lower thirds, journeys, big words…) timed to the creator's words from a beats sheet, rendered as transparent ProRes and placed on V2+ in DaVinci Resolve, with face-safe and caption-safe layouts. Use for \"overlays\", \"motion graphics\", \"make it interesting\", \"graphics\", or when overlays cover the face or fight the captions.",
+    "category": "media",
+    "tags": [
+      "video-editing",
+      "remotion",
+      "motion-graphics",
+      "overlays",
+      "davinci-resolve"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/appariciojunior/video-editor-skills/tree/6709678d7d5b169149e13480428e12b0f09a47f0/skills/motion-overlays",
+    "source_repo": "appariciojunior/video-editor-skills",
+    "author": "appariciojunior",
+    "license": "CC-BY-NC-4.0",
+    "license_source": "https://github.com/appariciojunior/video-editor-skills/blob/6709678d7d5b169149e13480428e12b0f09a47f0/LICENSE",
+    "source_revision": "6709678d7d5b169149e13480428e12b0f09a47f0",
+    "source_path": "skills/motion-overlays/SKILL.md"
+  },
+  {
     "id": "movie-coupon",
     "canonical_id": "movie-coupon",
     "name": "movie-coupon",
@@ -33324,6 +33443,30 @@
     "source_repo": "BagelHole/DevOps-Security-Agent-Skills",
     "license": "MIT",
     "license_source": "https://github.com/BagelHole/DevOps-Security-Agent-Skills/blob/main/LICENSE"
+  },
+  {
+    "id": "music-and-sound",
+    "canonical_id": "music-and-sound",
+    "name": "music-and-sound",
+    "path": "skills/music-and-sound",
+    "description": "Scores a vlog with Epidemic Sound - one music cue per section edited to exact length, a ducking envelope baked into one bed (quiet under speech, up on B-roll), and tasteful transition sound instead of cheesy literal foley. Use for \"add music\", \"background music\", \"sound effects\", \"SFX\", or when the creator says the music or SFX feel wrong.",
+    "category": "media",
+    "tags": [
+      "video-editing",
+      "audio",
+      "music",
+      "sound-design",
+      "epidemic-sound",
+      "davinci-resolve"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/appariciojunior/video-editor-skills/tree/6709678d7d5b169149e13480428e12b0f09a47f0/skills/music-and-sound",
+    "source_repo": "appariciojunior/video-editor-skills",
+    "author": "appariciojunior",
+    "license": "CC-BY-NC-4.0",
+    "license_source": "https://github.com/appariciojunior/video-editor-skills/blob/6709678d7d5b169149e13480428e12b0f09a47f0/LICENSE",
+    "source_revision": "6709678d7d5b169149e13480428e12b0f09a47f0",
+    "source_path": "skills/music-and-sound/SKILL.md"
   },
   {
     "id": "music-generation-studio",
@@ -40691,6 +40834,30 @@
     "author": "davidondrej"
   },
   {
+    "id": "resolve-scripting",
+    "canonical_id": "resolve-scripting",
+    "name": "resolve-scripting",
+    "path": "skills/resolve-scripting",
+    "description": "Practical DaVinci Resolve Studio scripting knowledge for building edits from code - timelines from a template, frame-exact appends, zoom, grades, custom frame sizes, subtitles, renders, and the traps that silently fail or crash Resolve 21. Use when writing or debugging any script that talks to Resolve.",
+    "category": "media",
+    "tags": [
+      "video-editing",
+      "davinci-resolve",
+      "scripting",
+      "python",
+      "api",
+      "automation"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/appariciojunior/video-editor-skills/tree/6709678d7d5b169149e13480428e12b0f09a47f0/skills/resolve-scripting",
+    "source_repo": "appariciojunior/video-editor-skills",
+    "author": "appariciojunior",
+    "license": "CC-BY-NC-4.0",
+    "license_source": "https://github.com/appariciojunior/video-editor-skills/blob/6709678d7d5b169149e13480428e12b0f09a47f0/LICENSE",
+    "source_revision": "6709678d7d5b169149e13480428e12b0f09a47f0",
+    "source_path": "skills/resolve-scripting/SKILL.md"
+  },
+  {
     "id": "resolving-mcp-region-configs",
     "canonical_id": "resolving-mcp-region-configs",
     "name": "resolving-mcp-region-configs",
@@ -41341,6 +41508,30 @@
     "license_source": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9/LICENSE",
     "source_revision": "19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9",
     "source_path": "skills/genres/roguelike/SKILL.md"
+  },
+  {
+    "id": "rough-cut",
+    "canonical_id": "rough-cut",
+    "name": "rough-cut",
+    "path": "skills/rough-cut",
+    "description": "Editorial rules for choosing what to keep in talking-head footage (retakes, false starts, spoken notes to the editor, fillers) and the keep-list / moments formats that a planner script turns into frame-exact cuts. Use when deciding a cut, revising one from feedback, or writing keep.json.",
+    "category": "media",
+    "tags": [
+      "video-editing",
+      "davinci-resolve",
+      "rough-cut",
+      "editorial",
+      "transcript",
+      "pacing"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/appariciojunior/video-editor-skills/tree/6709678d7d5b169149e13480428e12b0f09a47f0/skills/rough-cut",
+    "source_repo": "appariciojunior/video-editor-skills",
+    "author": "appariciojunior",
+    "license": "CC-BY-NC-4.0",
+    "license_source": "https://github.com/appariciojunior/video-editor-skills/blob/6709678d7d5b169149e13480428e12b0f09a47f0/LICENSE",
+    "source_revision": "6709678d7d5b169149e13480428e12b0f09a47f0",
+    "source_path": "skills/rough-cut/SKILL.md"
   },
   {
     "id": "router",
@@ -50481,6 +50672,30 @@
     "author": "274326424"
   },
   {
+    "id": "video-editor-setup",
+    "canonical_id": "video-editor-setup",
+    "name": "video-editor-setup",
+    "path": "skills/video-editor-setup",
+    "description": "Sets up an AI first-pass video editing workspace for DaVinci Resolve Studio with Claude Code - folders, tools, API keys handled safely, the Resolve template, and which small scripts to build first. Use for \"set up my video editor\", \"start the video editing system\", or before the first /edit-video when no workspace exists yet.",
+    "category": "media",
+    "tags": [
+      "video-editing",
+      "davinci-resolve",
+      "setup",
+      "claude-code",
+      "workspace",
+      "workflow"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/appariciojunior/video-editor-skills/tree/6709678d7d5b169149e13480428e12b0f09a47f0/skills/video-editor-setup",
+    "source_repo": "appariciojunior/video-editor-skills",
+    "author": "appariciojunior",
+    "license": "CC-BY-NC-4.0",
+    "license_source": "https://github.com/appariciojunior/video-editor-skills/blob/6709678d7d5b169149e13480428e12b0f09a47f0/LICENSE",
+    "source_revision": "6709678d7d5b169149e13480428e12b0f09a47f0",
+    "source_path": "skills/video-editor-setup/SKILL.md"
+  },
+  {
     "id": "video-router",
     "canonical_id": "video-router",
     "name": "video-router",
@@ -50667,6 +50882,30 @@
     "license_source": "https://github.com/BagelHole/DevOps-Security-Agent-Skills/blob/main/LICENSE"
   },
   {
+    "id": "vlog-pacing",
+    "canonical_id": "vlog-pacing",
+    "name": "vlog-pacing",
+    "path": "skills/vlog-pacing",
+    "description": "The numbers and rules that make a transcript-based cut feel natural instead of \"popping\" - silence detection, word pads, pause shortening, room at scene edges, jump-cut zoom alternation and punch-ins. Use when building the cut planner, tuning pauses, or when the creator says the edit is too choppy or too slow.",
+    "category": "media",
+    "tags": [
+      "video-editing",
+      "davinci-resolve",
+      "pacing",
+      "vlog",
+      "timing",
+      "rhythm"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/appariciojunior/video-editor-skills/tree/6709678d7d5b169149e13480428e12b0f09a47f0/skills/vlog-pacing",
+    "source_repo": "appariciojunior/video-editor-skills",
+    "author": "appariciojunior",
+    "license": "CC-BY-NC-4.0",
+    "license_source": "https://github.com/appariciojunior/video-editor-skills/blob/6709678d7d5b169149e13480428e12b0f09a47f0/LICENSE",
+    "source_revision": "6709678d7d5b169149e13480428e12b0f09a47f0",
+    "source_path": "skills/vlog-pacing/SKILL.md"
+  },
+  {
     "id": "vmware-vcenter-attack",
     "canonical_id": "vmware-vcenter-attack",
     "name": "vmware-vcenter-attack",
@@ -50726,6 +50965,30 @@
     ],
     "risk": "critical",
     "source": "community"
+  },
+  {
+    "id": "voice-and-audio",
+    "canonical_id": "voice-and-audio",
+    "name": "voice-and-audio",
+    "path": "skills/voice-and-audio",
+    "description": "Voice treatment for creator videos in DaVinci Resolve - loudness normalization, diagnosing a muffled or \"underwater\" voice from the spectrum, Voice Isolation, an EQ recipe, and fixing clips that normalization made worse. Use when building the timeline's audio step or when the creator says their voice sounds bad.",
+    "category": "media",
+    "tags": [
+      "video-editing",
+      "audio",
+      "voice",
+      "normalization",
+      "eq",
+      "davinci-resolve"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/appariciojunior/video-editor-skills/tree/6709678d7d5b169149e13480428e12b0f09a47f0/skills/voice-and-audio",
+    "source_repo": "appariciojunior/video-editor-skills",
+    "author": "appariciojunior",
+    "license": "CC-BY-NC-4.0",
+    "license_source": "https://github.com/appariciojunior/video-editor-skills/blob/6709678d7d5b169149e13480428e12b0f09a47f0/LICENSE",
+    "source_revision": "6709678d7d5b169149e13480428e12b0f09a47f0",
+    "source_path": "skills/voice-and-audio/SKILL.md"
   },
   {
     "id": "voice-cloning-studio",
@@ -52761,6 +53024,30 @@
     ],
     "risk": "critical",
     "source": "community"
+  },
+  {
+    "id": "youtube-export",
+    "canonical_id": "youtube-export",
+    "name": "youtube-export",
+    "path": "skills/youtube-export",
+    "description": "DaVinci Resolve Deliver settings for great YouTube quality without 25 GB files - bitrate, profile, audio, burned-in subtitles and the colour tags that stop the \"faded on YouTube\" look. Use when the creator asks about export or render settings.",
+    "category": "media",
+    "tags": [
+      "video-editing",
+      "davinci-resolve",
+      "youtube",
+      "export",
+      "render",
+      "encoding"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/appariciojunior/video-editor-skills/tree/6709678d7d5b169149e13480428e12b0f09a47f0/skills/youtube-export",
+    "source_repo": "appariciojunior/video-editor-skills",
+    "author": "appariciojunior",
+    "license": "CC-BY-NC-4.0",
+    "license_source": "https://github.com/appariciojunior/video-editor-skills/blob/6709678d7d5b169149e13480428e12b0f09a47f0/LICENSE",
+    "source_revision": "6709678d7d5b169149e13480428e12b0f09a47f0",
+    "source_path": "skills/youtube-export/SKILL.md"
   },
   {
     "id": "youtube-full",

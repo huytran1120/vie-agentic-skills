@@ -1,0 +1,237 @@
+{
+  "source_repo": "appariciojunior/video-editor-skills",
+  "revision": "6709678d7d5b169149e13480428e12b0f09a47f0",
+  "skill_count": 12,
+  "skipped": [],
+  "namespaces": {},
+  "duplicate_check": {
+    "catalog_count_before": 3172,
+    "upstream_is_fork": false,
+    "methods": [
+      "canonical-id/name",
+      "source-repo/path",
+      "raw-sha256",
+      "normalized-body",
+      "renamed-body",
+      "body-containment",
+      "7-word-shingles"
+    ],
+    "collision_rationale": "No collisions found across all 3,172 catalog skills. All 12 DaVinci Resolve Studio video editing skills are genuine new additions."
+  },
+  "adaptations": [
+    "Preserve upstream runbooks and their non-executable permissions.",
+    "Package CC-BY-NC-4.0 LICENSE in each skill folder for standalone distribution.",
+    "Package templates/config.example.json and references/LEARNINGS.md inside video-editor-setup for standalone completeness.",
+    "Append reversible VAS installation, attribution, prerequisites (DaVinci Resolve Studio with local scripting enabled) and consent notes to each SKILL.md."
+  ],
+  "files": [
+    {
+      "source_path": "LICENSE",
+      "path": "skills/broll/LICENSE",
+      "source_sha256": "aa2d89d6b5ddb8730f2c3da68dd0da463d9a7b41eb18b30418b013d49f74494d",
+      "sha256": "aa2d89d6b5ddb8730f2c3da68dd0da463d9a7b41eb18b30418b013d49f74494d",
+      "source_git_blob": "98af22a13f86df99e6386330df9c58575d9539c2",
+      "executable": false
+    },
+    {
+      "source_path": "skills/broll/SKILL.md",
+      "path": "skills/broll/SKILL.md",
+      "source_sha256": "66dace70b661af2dd12d678ef97b267cbbc2a8a29aab0f4b89aadc5f07a9e194",
+      "sha256": "ee4f3ad79f6d6b1d4ce6015051a2d06bf605d5bdfadc80fb478e613f0c634b40",
+      "source_git_blob": "ea944a5e386924ebd04fe49aa7992180915a6810",
+      "executable": false
+    },
+    {
+      "source_path": "LICENSE",
+      "path": "skills/captions/LICENSE",
+      "source_sha256": "aa2d89d6b5ddb8730f2c3da68dd0da463d9a7b41eb18b30418b013d49f74494d",
+      "sha256": "aa2d89d6b5ddb8730f2c3da68dd0da463d9a7b41eb18b30418b013d49f74494d",
+      "source_git_blob": "98af22a13f86df99e6386330df9c58575d9539c2",
+      "executable": false
+    },
+    {
+      "source_path": "skills/captions/SKILL.md",
+      "path": "skills/captions/SKILL.md",
+      "source_sha256": "259fdaba23cea2f8c684b6fbbc741b2199faf59352c71896375779ecdbb0176f",
+      "sha256": "5685877b21a703726bcb0303d41532d194b32b322bf1aab2329898ae28c1d697",
+      "source_git_blob": "c8034138d59f45ca3f11699aad60f2801f6a1409",
+      "executable": false
+    },
+    {
+      "source_path": "LICENSE",
+      "path": "skills/edit-video/LICENSE",
+      "source_sha256": "aa2d89d6b5ddb8730f2c3da68dd0da463d9a7b41eb18b30418b013d49f74494d",
+      "sha256": "aa2d89d6b5ddb8730f2c3da68dd0da463d9a7b41eb18b30418b013d49f74494d",
+      "source_git_blob": "98af22a13f86df99e6386330df9c58575d9539c2",
+      "executable": false
+    },
+    {
+      "source_path": "skills/edit-video/SKILL.md",
+      "path": "skills/edit-video/SKILL.md",
+      "source_sha256": "972c1bd6f8f47ec7531bbae088c8e1f457f8c255f8750a97b39907e4d27f06fd",
+      "sha256": "f59e33c74d4f942c5b342c9a0c155a2ff08a5d4718030c23c6aab969fa15a050",
+      "source_git_blob": "c42cc2c66f7d42ed4e658437d3e52e857064db3e",
+      "executable": false
+    },
+    {
+      "source_path": "LICENSE",
+      "path": "skills/figma-roundtrip/LICENSE",
+      "source_sha256": "aa2d89d6b5ddb8730f2c3da68dd0da463d9a7b41eb18b30418b013d49f74494d",
+      "sha256": "aa2d89d6b5ddb8730f2c3da68dd0da463d9a7b41eb18b30418b013d49f74494d",
+      "source_git_blob": "98af22a13f86df99e6386330df9c58575d9539c2",
+      "executable": false
+    },
+    {
+      "source_path": "skills/figma-roundtrip/SKILL.md",
+      "path": "skills/figma-roundtrip/SKILL.md",
+      "source_sha256": "de84e48e9b3d72e6c98af4cccb74ce91e7a9f92cd654870a7788f1ca5b1bbd87",
+      "sha256": "74615e0d14249823065a8f94bc25413e57d16e6ed7c85f14331afa2d50c27bbd",
+      "source_git_blob": "e7d0a96c3ff4d647e327698c233ab38a195fddc7",
+      "executable": false
+    },
+    {
+      "source_path": "LICENSE",
+      "path": "skills/motion-overlays/LICENSE",
+      "source_sha256": "aa2d89d6b5ddb8730f2c3da68dd0da463d9a7b41eb18b30418b013d49f74494d",
+      "sha256": "aa2d89d6b5ddb8730f2c3da68dd0da463d9a7b41eb18b30418b013d49f74494d",
+      "source_git_blob": "98af22a13f86df99e6386330df9c58575d9539c2",
+      "executable": false
+    },
+    {
+      "source_path": "skills/motion-overlays/SKILL.md",
+      "path": "skills/motion-overlays/SKILL.md",
+      "source_sha256": "2c9bec2becbf5c41b367c750ea52d42a38b438404a658af8636b34a63a372152",
+      "sha256": "f13e34c8bab2a899886c39e9a682b7229ec9383301ff98181656a87d0e973363",
+      "source_git_blob": "e472b84f127c459d6ce9efb9f60a2c5c5b921b85",
+      "executable": false
+    },
+    {
+      "source_path": "LICENSE",
+      "path": "skills/music-and-sound/LICENSE",
+      "source_sha256": "aa2d89d6b5ddb8730f2c3da68dd0da463d9a7b41eb18b30418b013d49f74494d",
+      "sha256": "aa2d89d6b5ddb8730f2c3da68dd0da463d9a7b41eb18b30418b013d49f74494d",
+      "source_git_blob": "98af22a13f86df99e6386330df9c58575d9539c2",
+      "executable": false
+    },
+    {
+      "source_path": "skills/music-and-sound/SKILL.md",
+      "path": "skills/music-and-sound/SKILL.md",
+      "source_sha256": "4053ad091ed97b30a2ef7755ffbd926ebf31ffc289aedfa333073ca5e1356940",
+      "sha256": "210ec73b54364b2186f610bbb1039c56b480f205271d89a8b8c16a9aa800e425",
+      "source_git_blob": "45a89a147d8df8b2d0d2f935a89bee81aabbb2df",
+      "executable": false
+    },
+    {
+      "source_path": "LICENSE",
+      "path": "skills/resolve-scripting/LICENSE",
+      "source_sha256": "aa2d89d6b5ddb8730f2c3da68dd0da463d9a7b41eb18b30418b013d49f74494d",
+      "sha256": "aa2d89d6b5ddb8730f2c3da68dd0da463d9a7b41eb18b30418b013d49f74494d",
+      "source_git_blob": "98af22a13f86df99e6386330df9c58575d9539c2",
+      "executable": false
+    },
+    {
+      "source_path": "skills/resolve-scripting/SKILL.md",
+      "path": "skills/resolve-scripting/SKILL.md",
+      "source_sha256": "393bede2a2932ac056fb0c43bc4ed2c9a1d7395fdc9efe96c06278608b48885f",
+      "sha256": "f8e558c8c4f9a6760a606d349cf5fabb0bd308959cee56b62f49fc804b61c59e",
+      "source_git_blob": "0e8783f046be0bfa5a241da3e482eb20e7c7684e",
+      "executable": false
+    },
+    {
+      "source_path": "LICENSE",
+      "path": "skills/rough-cut/LICENSE",
+      "source_sha256": "aa2d89d6b5ddb8730f2c3da68dd0da463d9a7b41eb18b30418b013d49f74494d",
+      "sha256": "aa2d89d6b5ddb8730f2c3da68dd0da463d9a7b41eb18b30418b013d49f74494d",
+      "source_git_blob": "98af22a13f86df99e6386330df9c58575d9539c2",
+      "executable": false
+    },
+    {
+      "source_path": "skills/rough-cut/SKILL.md",
+      "path": "skills/rough-cut/SKILL.md",
+      "source_sha256": "e3d8a1428e3e084900abd4da7fe1d8e9f3029df9f999f66971533073993cf60c",
+      "sha256": "a7c1a647e32f74a759363f641061a706ce405db8cc440d17cc57fbbae64d4f6b",
+      "source_git_blob": "5130119f633b11fd4e5715e557774cb1fef4fdd3",
+      "executable": false
+    },
+    {
+      "source_path": "LICENSE",
+      "path": "skills/video-editor-setup/LICENSE",
+      "source_sha256": "aa2d89d6b5ddb8730f2c3da68dd0da463d9a7b41eb18b30418b013d49f74494d",
+      "sha256": "aa2d89d6b5ddb8730f2c3da68dd0da463d9a7b41eb18b30418b013d49f74494d",
+      "source_git_blob": "98af22a13f86df99e6386330df9c58575d9539c2",
+      "executable": false
+    },
+    {
+      "source_path": "templates/config.example.json",
+      "path": "skills/video-editor-setup/templates/config.example.json",
+      "source_sha256": "002b50b7a08001032000421792874e7af0ce365383d188bad62a063c578f3342",
+      "sha256": "002b50b7a08001032000421792874e7af0ce365383d188bad62a063c578f3342",
+      "source_git_blob": "71f33d633c48a84b8fe9cd39a0d8989685c413b5",
+      "executable": false
+    },
+    {
+      "source_path": "LEARNINGS.md",
+      "path": "skills/video-editor-setup/references/LEARNINGS.md",
+      "source_sha256": "3bcf3a172872dcb48f97e400f2fe51897c8205ff268df996cd2a31e47e93af78",
+      "sha256": "3bcf3a172872dcb48f97e400f2fe51897c8205ff268df996cd2a31e47e93af78",
+      "source_git_blob": "4e31cd10b1577d2840b0043505d3667e295960c0",
+      "executable": false
+    },
+    {
+      "source_path": "skills/video-editor-setup/SKILL.md",
+      "path": "skills/video-editor-setup/SKILL.md",
+      "source_sha256": "c60475baa5306334f92b223d310e37dccc040292b3afb5ad19fe05d9ba4b8a83",
+      "sha256": "cd057175d9601a094b253cd0d7b9f8bda3af9fc6018d0d9ae05c2b1232742e96",
+      "source_git_blob": "c88b0fc03ab3dccf80fe6b490a42169c58f523c3",
+      "executable": false
+    },
+    {
+      "source_path": "LICENSE",
+      "path": "skills/vlog-pacing/LICENSE",
+      "source_sha256": "aa2d89d6b5ddb8730f2c3da68dd0da463d9a7b41eb18b30418b013d49f74494d",
+      "sha256": "aa2d89d6b5ddb8730f2c3da68dd0da463d9a7b41eb18b30418b013d49f74494d",
+      "source_git_blob": "98af22a13f86df99e6386330df9c58575d9539c2",
+      "executable": false
+    },
+    {
+      "source_path": "skills/vlog-pacing/SKILL.md",
+      "path": "skills/vlog-pacing/SKILL.md",
+      "source_sha256": "8c7fc8182dcf1373182a6027cd48e12c2c8948f7f74ceced8ffae1d75b6f42b0",
+      "sha256": "e249e1dc4932e67af3080fe0a31145aa97a9690d0c5f0f60cb536c08aa3c672c",
+      "source_git_blob": "72cca07632ef289c56dd0194a18c1cc084fd90b9",
+      "executable": false
+    },
+    {
+      "source_path": "LICENSE",
+      "path": "skills/voice-and-audio/LICENSE",
+      "source_sha256": "aa2d89d6b5ddb8730f2c3da68dd0da463d9a7b41eb18b30418b013d49f74494d",
+      "sha256": "aa2d89d6b5ddb8730f2c3da68dd0da463d9a7b41eb18b30418b013d49f74494d",
+      "source_git_blob": "98af22a13f86df99e6386330df9c58575d9539c2",
+      "executable": false
+    },
+    {
+      "source_path": "skills/voice-and-audio/SKILL.md",
+      "path": "skills/voice-and-audio/SKILL.md",
+      "source_sha256": "bba7bccd3930c0c085c8256eeac887e435cb9d80f00e688b46bfbe8092572bf2",
+      "sha256": "b7a81b9bc6e3d41a92b5369c47fa6f54dc2864c1c6c954c6ab0d09e284a32149",
+      "source_git_blob": "19438f6d44d4b3c29819faeea9c6abc9b530798c",
+      "executable": false
+    },
+    {
+      "source_path": "LICENSE",
+      "path": "skills/youtube-export/LICENSE",
+      "source_sha256": "aa2d89d6b5ddb8730f2c3da68dd0da463d9a7b41eb18b30418b013d49f74494d",
+      "sha256": "aa2d89d6b5ddb8730f2c3da68dd0da463d9a7b41eb18b30418b013d49f74494d",
+      "source_git_blob": "98af22a13f86df99e6386330df9c58575d9539c2",
+      "executable": false
+    },
+    {
+      "source_path": "skills/youtube-export/SKILL.md",
+      "path": "skills/youtube-export/SKILL.md",
+      "source_sha256": "bbb49157a75199b30eb8331a614929609748a4841019e9618245f6469ea78afd",
+      "sha256": "a854f06b66152f7dbc3d02607bc8bf0358d2ddac5960b513b098d30dfe6ac7e5",
+      "source_git_blob": "e77a5a838d0e86b84a8b8c14b16c85a608eb469c",
+      "executable": false
+    }
+  ]
+}

@@ -182,7 +182,7 @@
   function escapeHtml(value) {
     return String(value == null ? '' : value).replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
   }
-  const sourceNames = { mattpocock: 'Matt Pocock', addy: 'Addy Osmani', blender: 'Blender Skills', youtube: 'YouTube Skills', hallmark: 'Hallmark', typesafe: 'TypeSafe AI', android: 'Android Skills', gamedev: 'GameDev Skills', heydamir: 'UI Unslop · Damir Sokolovsky' };
+  const sourceNames = { mattpocock: 'Matt Pocock', addy: 'Addy Osmani', blender: 'Blender Skills', youtube: 'YouTube Skills', hallmark: 'Hallmark', typesafe: 'TypeSafe AI', android: 'Android Skills', gamedev: 'GameDev Skills', heydamir: 'UI Unslop · Damir Sokolovsky', videoeditor: 'Video Editor · DaVinci Resolve' };
   function matchesSource(skill, source) {
     if (source === 'mattpocock') return skill.source_repo === 'mattpocock/skills';
     if (source === 'addy') return normalize(skill.author).includes('addy osmani');
@@ -193,6 +193,7 @@
     if (source === 'android') return skill.source_repo === 'android/skills';
     if (source === 'gamedev') return skill.source_repo === 'gamedev-skills/awesome-gamedev-agent-skills';
     if (source === 'heydamir') return skill.source_repo === 'heydamir/unslop';
+    if (source === 'videoeditor') return skill.source_repo === 'appariciojunior/video-editor-skills';
     return false;
   }
 
@@ -650,6 +651,7 @@
   byId('android-collection').addEventListener('click', () => selectSource('android'));
   byId('gamedev-collection').addEventListener('click', () => selectSource('gamedev'));
   byId('unslop-collection').addEventListener('click', () => selectSource('heydamir'));
+  byId('videoeditor-collection').addEventListener('click', () => selectSource('videoeditor'));
   byId('menu-toggle').addEventListener('click', () => { const menu = byId('mobile-menu'); menu.hidden = !menu.hidden; byId('menu-toggle').setAttribute('aria-expanded', String(!menu.hidden)); });
   byId('mobile-menu').addEventListener('click', event => { if (event.target.closest('a')) { byId('mobile-menu').hidden = true; byId('menu-toggle').setAttribute('aria-expanded', 'false'); } });
   byId('theme-toggle').addEventListener('click', event => {

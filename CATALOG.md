@@ -1,6 +1,6 @@
 # Vie Agentic Skill (VAS) - Catalog
 
-Tổng hợp **3,172** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
+Tổng hợp **3,184** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
 
 | Danh mục | Số lượng | Lệnh cài đặt nhanh |
 | :--- | :---: | :--- |
@@ -78,7 +78,7 @@ Tổng hợp **3,172** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **lifestyle** | 1 skills | `./vas install --category lifestyle --target codex` |
 | **marketing** | 115 skills | `./vas install --category marketing --target codex` |
 | **mcp** | 8 skills | `./vas install --category mcp --target codex` |
-| **media** | 53 skills | `./vas install --category media --target codex` |
+| **media** | 65 skills | `./vas install --category media --target codex` |
 | **media-processing** | 1 skills | `./vas install --category media-processing --target codex` |
 | **memory** | 7 skills | `./vas install --category memory --target codex` |
 | **meta** | 38 skills | `./vas install --category meta --target codex` |
@@ -2692,7 +2692,7 @@ Tổng hợp **3,172** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `protect-mcp-governance` | `critical` | Agent governance skill for MCP tool calls — Cedar policy authoring, shadow-to... |
 | `serply-search-mcp` | `safe` | Search Google, Bing, Google News and Google Scholar, and read public pages, w... |
 
-### MEDIA (53 skills)
+### MEDIA (65 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
@@ -2708,8 +2708,12 @@ Tổng hợp **3,172** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `atlas-cloud-media` | `critical` | Generate Atlas Cloud images and videos through its asynchronous media API wit... |
 | `beatra` | `critical` | Install and use the official AI Media Generator package, pinned by digest, fo... |
 | `beatra-ai-video-studio` | `critical` | Install and use the official Beatra AI Video Studio package, pinned by digest... |
+| `broll` | `safe` | How to find, watch and cut B-roll in a vlog - clips with no speech placed by ... |
+| `captions` | `safe` | Clean, readable burned-in style subtitles from the verbatim transcript - stut... |
 | `ecommerce-listing-image-set` | `critical` | Install and use the official Ecommerce Product Images package, pinned by dige... |
+| `edit-video` | `safe` | The one-command first-pass edit. Takes footage from raw video/, transcribes i... |
 | `ffmpeg-skill` | `safe` | Edit video and audio with local FFmpeg from natural-language requests: cut, t... |
+| `figma-roundtrip` | `safe` | Keeps a video motion-graphics kit and its editable Figma boards in sync - the... |
 | `film-crew` | `safe` | Turn a one-line AI video idea into a shot list and per-shot, model-ready prom... |
 | `gemini-omni-flash-api` | `critical` | Use this skill for generative video editing, text-to-video, image-referenced ... |
 | `generate-nanobanana` | `critical` | Generate and edit images/video with Google's Gemini media models (Nano Banana... |
@@ -2719,7 +2723,9 @@ Tổng hợp **3,172** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `macos-screen-recorder` | `critical` | macOS screen recorder that captures the main display PLUS system audio via Sc... |
 | `magic-animator` | `safe` | AI-powered animation tool for creating motion in logos, UI, icons, and social... |
 | `md2video-audio` | `critical` | Convert Markdown documents into narrated MP4 videos with synchronized visuals... |
+| `motion-overlays` | `safe` | Brand motion graphics for creator videos - a Remotion component kit (key phra... |
 | `muapi-media` | `critical` | Generate images and videos with MuAPI's schema-driven asynchronous media API ... |
+| `music-and-sound` | `safe` | Scores a vlog with Epidemic Sound - one music cue per section edited to exact... |
 | `music-generation-studio` | `critical` | Install and use the official AI Music Generator package, pinned by digest, fo... |
 | `nsfw-ai-spicyapi` | `critical` | Generate adult (18+) images, image-to-video clips and image edits through the... |
 | `obs-studio` | `safe` | OBS Studio automation, programmatic screen capture, and recording pipelines v... |
@@ -2733,21 +2739,27 @@ Tổng hợp **3,172** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `remotion-docs` | `unknown` | Search Remotion documentation |
 | `remotion-interactivity` | `unknown` | Structure Remotion markup for interactivity |
 | `remotion-render` | `unknown` | Export a Remotion video |
+| `resolve-scripting` | `safe` | Practical DaVinci Resolve Studio scripting knowledge for building edits from ... |
+| `rough-cut` | `safe` | Editorial rules for choosing what to keep in talking-head footage (retakes, f... |
 | `screenstudio-alt` | `critical` | Open-source headless Screen Studio alternative: auto speed-up of idle, auto-z... |
 | `slack-gif-creator` | `critical` | Knowledge and utilities for creating animated GIFs optimized for Slack. Provi... |
 | `stability-ai` | `critical` | Geracao de imagens via Stability AI (SD3.5, Ultra, Core). Text-to-image, img2... |
 | `suno-lyrics-to-song` | `critical` | Install and use the official Lyrics to Song package, pinned by digest, for pa... |
 | `talking-avatar-video` | `critical` | Install and use the official Talking Avatar Video package, pinned by digest, ... |
 | `tonejs` | `safe` | Interactive Web Audio framework for audio synthesis, sound effects, music sch... |
+| `video-editor-setup` | `safe` | Sets up an AI first-pass video editing workspace for DaVinci Resolve Studio w... |
 | `video-router` | `none` | Route a video-production brief to generation, deterministic composition, supp... |
 | `videodb` | `critical` | Video and audio perception, indexing, and editing. Ingest files/URLs/live str... |
 | `videodb-skills` | `critical` | Upload, stream, search, edit, transcribe, and generate AI video and audio usi... |
 | `viral-video-teardown-remake` | `critical` | Install and use the official Viral Video Remake package, pinned by digest, fo... |
+| `vlog-pacing` | `safe` | The numbers and rules that make a transcript-based cut feel natural instead o... |
+| `voice-and-audio` | `safe` | Voice treatment for creator videos in DaVinci Resolve - loudness normalizatio... |
 | `voice-cloning-studio` | `critical` | Install and use the official AI Voice Cloning package, pinned by digest, for ... |
 | `voiceover-narration-studio` | `critical` | Install and use the official AI Voiceover Generator package, pinned by digest... |
 | `watch-igaming` | `safe` | Reviews a video link or local screen recording from transcript and scene-chan... |
 | `web-media-getter` | `safe` | One query across free image / video / GIF APIs (stock + historical/archival +... |
 | `wechat-cover-maker` | `critical` | Install and use the official WeChat Article Cover package, pinned by digest, ... |
+| `youtube-export` | `safe` | DaVinci Resolve Deliver settings for great YouTube quality without 25 GB file... |
 | `zhongcao-cover-maker` | `critical` | Install and use the official Xiaohongshu Cover Maker package, pinned by diges... |
 
 ### MEDIA-PROCESSING (1 skills)
