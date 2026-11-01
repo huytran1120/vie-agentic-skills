@@ -505,7 +505,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
   const youtube = catalog.filterSkills(skills, { sources: ['youtube'] });
   assert.equal(youtube.length, 11);
   assert.equal(catalog.filterSkills(skills, { query: 'youtube-agent-skill' }).length, 11);
-  assert.equal(skills.length, 3354);
+  assert.equal(skills.length, 3355);
   for (const skill of youtube) {
     assert.ok(skill.id.startsWith('youtube-agent-skill/'));
     assert.equal(skill.source_repo, 'Jakeschincariol/youtube-agent-skill');
@@ -520,7 +520,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
     assert.deepEqual(state.sources, ['youtube']);
     assert.equal(state.selected, youtube[0].id);
     assert.ok(i18n.translate('collections.youtube', language).startsWith('11 '));
-    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '3.354' : '3,354'));
+    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '3.355' : '3,355'));
   }
   assert.equal(catalog.filterSkills(skills, { sources: ['youtube'], category: 'security' }).length, 0);
   const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
@@ -1174,4 +1174,34 @@ test('stageshow retains exact source filtering, MIT license and agent prompts', 
   assert.ok(html.includes('name="source" value="stageshow"'));
   assert.ok(html.includes('data-source-count="stageshow">1<'));
   assert.ok(html.includes('id="stageshow-collection"'));
+});
+
+test('stackdiagram retains exact source filtering, MIT license and agent prompts', () => {
+  const stackSkills = catalog.filterSkills(skills, { sources: ['stackdiagram'] });
+  assert.equal(stackSkills.length, 1);
+  assert.equal(catalog.filterSkills(skills, { query: 'caru-ini/stack-diagram' }).length, 1);
+  for (const skill of stackSkills) {
+    assert.equal(skill.source_repo, 'caru-ini/stack-diagram');
+    assert.equal(skill.author, 'caru-ini');
+    assert.ok(skill.license.includes('MIT'));
+    assert.equal(skill.category, 'architecture');
+    assert.equal(skill.risk, 'safe');
+  }
+
+  const sample = stackSkills[0];
+  for (const language of ['vi', 'en']) {
+    assert.ok(i18n.translate('collections.stackdiagram', language).startsWith('1 '));
+    for (const [agent] of catalog.agents.filter(([key]) => key !== 'all')) {
+      const prompt = catalog.agentInstallPrompt(sample, agent, language);
+      assert.ok(prompt.includes(`/install-manifests/${sample.id}.json`));
+      assert.ok(prompt.includes(catalog.targetFolders[agent]));
+      assert.ok(prompt.includes('SHA-256'));
+      assert.ok(prompt.includes('.vas-manifest.json'));
+    }
+  }
+
+  const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
+  assert.ok(html.includes('name="source" value="stackdiagram"'));
+  assert.ok(html.includes('data-source-count="stackdiagram">1<'));
+  assert.ok(html.includes('id="stackdiagram-collection"'));
 });

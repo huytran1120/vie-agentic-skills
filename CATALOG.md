@@ -1,6 +1,6 @@
 # Vie Agentic Skill (VAS) - Catalog
 
-Tổng hợp **3,354** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
+Tổng hợp **3,355** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
 
 | Danh mục | Số lượng | Lệnh cài đặt nhanh |
 | :--- | :---: | :--- |
@@ -20,7 +20,7 @@ Tổng hợp **3,354** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **antigravity** | 9 skills | `./vas install --category antigravity --target codex` |
 | **api-integration** | 44 skills | `./vas install --category api-integration --target codex` |
 | **app-builder** | 4 skills | `./vas install --category app-builder --target codex` |
-| **architecture** | 34 skills | `./vas install --category architecture --target codex` |
+| **architecture** | 35 skills | `./vas install --category architecture --target codex` |
 | **automation** | 64 skills | `./vas install --category automation --target codex` |
 | **backend** | 46 skills | `./vas install --category backend --target codex` |
 | **blender** | 94 skills | `./vas install --category blender --target codex` |
@@ -494,7 +494,7 @@ Tổng hợp **3,354** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `frontend-mobile-development-component-scaffold` | `critical` | Scaffold React and React Native components with TypeScript, accessibility, te... |
 | `javascript-typescript-typescript-scaffold` | `critical` | Scaffold TypeScript projects with build tooling, type checking, testing, and ... |
 
-### ARCHITECTURE (34 skills)
+### ARCHITECTURE (35 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
@@ -532,6 +532,7 @@ Tổng hợp **3,354** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `saga-orchestration` | `critical` | Patterns for managing distributed transactions and long-running business proc... |
 | `site-architecture` | `safe` | Plan or restructure website hierarchy, navigation, URL patterns, breadcrumbs,... |
 | `software-architecture` | `critical` | Guide for quality focused software architecture. This skill should be used wh... |
+| `stack-diagram` | `safe` | Create cloud-architecture-style diagrams of tech stacks, system architectures... |
 
 ### AUTOMATION (64 skills)
 

@@ -464,6 +464,11 @@
       "- **[benjitaylor/skills](https://github.com/benjitaylor/skills/tree/802057409787133703c56001080169e347305572/stageshow)**: Stageshow \u2014 mock UI, product walkthroughs, animated cursor demos, and React kit by Benji Taylor ([@benjitaylor](https://github.com/benjitaylor)) at revision `802057409787133703c56001080169e347305572` under the MIT License.",
       "- Standalone payload includes `kit/`, gold `examples/`, `teaching/` pairs, `references/`, local SVG brand/icon assets, verification scripts, and local Vite playground. Third-party brand artwork and example marks are documented in `NOTICE.md`.",
       "- Installation runs no code, installs no dependencies or MCP servers, and connects no external accounts. Node.js 20.19+ and optional dev dependencies (Vite, Playwright, PostCSS) are separate user prerequisites."
+    ],
+    "stackdiagram": [
+      "- **[caru-ini/stack-diagram](https://github.com/caru-ini/stack-diagram/tree/75dbd3e3c6fe28844322e6064d3a947b870a6c61)**: Stack Diagram \u2014 cloud-architecture-style diagrams for tech stacks, systems, and infra with official brand logos by caru-ini ([@caru-ini](https://github.com/caru-ini)) at revision `75dbd3e3c6fe28844322e6064d3a947b870a6c61` under the MIT License.",
+      "- Standalone payload includes `assets/` (HTML template, generic SVGs, OFL 1.1 fonts), `references/` (geometry, TSX), and scripts (`build.py`, `fetch_icons.py`, `render_png.py`). Third-party marks and font licenses are documented in `NOTICE.md`.",
+      "- Installation runs no code, installs no dependencies or MCP servers, and connects no external accounts. Python 3.9+ and optional Playwright are separate user prerequisites."
     ]
   }
 }

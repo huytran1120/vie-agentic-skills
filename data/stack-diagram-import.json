@@ -1,0 +1,169 @@
+{
+  "source_repo": "caru-ini/stack-diagram",
+  "revision": "75dbd3e3c6fe28844322e6064d3a947b870a6c61",
+  "skill_count": 1,
+  "skipped": [],
+  "namespaces": {},
+  "duplicate_check": {
+    "catalog_count_before": 3354,
+    "upstream_is_fork": false,
+    "methods": [
+      "canonical-id/name",
+      "source-repo/path",
+      "raw-sha256",
+      "normalized-body",
+      "renamed-body",
+      "body-containment",
+      "7-word-shingles"
+    ],
+    "collision_rationale": "No collision found across all 3,354 catalog skills. stack-diagram is a unique, genuine new addition for cloud-architecture-style system diagrams, infra topologies, and tech stack overviews."
+  },
+  "adaptations": [
+    "Preserve upstream payload structure: assets/ (template HTML, generic SVGs, OFL fonts), references/ (geometry, TSX), and scripts/ (build, fetch_icons, render_png).",
+    "Append reversible VAS installation, attribution, prerequisites and safety notes to SKILL.md.",
+    "Include upstream MIT LICENSE, add comprehensive NOTICE.md, and include upstream README.md.",
+    "No runtime/dependency or MCP service is executed during installation."
+  ],
+  "files": [
+    {
+      "source_path": "LICENSE",
+      "path": "skills/stack-diagram/LICENSE",
+      "source_sha256": "be10012fc23bb7f2e332d62312b80cfca01c3eb7abd8970ebb1cdf8ff5b04faa",
+      "sha256": "be10012fc23bb7f2e332d62312b80cfca01c3eb7abd8970ebb1cdf8ff5b04faa",
+      "executable": false
+    },
+    {
+      "source_path": "NOTICE.md",
+      "path": "skills/stack-diagram/NOTICE.md",
+      "source_sha256": "b949190ccb3bd1c9329f5cf01bcdf620ffed61afdaffdc2a4427ae7be2cc0f9b",
+      "sha256": "b949190ccb3bd1c9329f5cf01bcdf620ffed61afdaffdc2a4427ae7be2cc0f9b",
+      "executable": false
+    },
+    {
+      "source_path": "README.md",
+      "path": "skills/stack-diagram/README.md",
+      "source_sha256": "0962661c1dc7b3b32993477702201a3dbcd0525f8d29e5338afbbaa9122c8388",
+      "sha256": "0962661c1dc7b3b32993477702201a3dbcd0525f8d29e5338afbbaa9122c8388",
+      "executable": false
+    },
+    {
+      "source_path": "SKILL.md",
+      "path": "skills/stack-diagram/SKILL.md",
+      "source_sha256": "b32b05b7eeb0f93fcc297fa1e1d8e56a7306b6b7c989c4ed4f8522a996a9086e",
+      "sha256": "f66518db02e61f266aa251d460114372813415fdaff36af0f3c673b70875d799",
+      "executable": false
+    },
+    {
+      "source_path": "assets/fonts/Geist.woff2",
+      "path": "skills/stack-diagram/assets/fonts/Geist.woff2",
+      "source_sha256": "19f9c92546aa300c312235e3125af1b81394d8db9a4bc4a425cd5b641d2d54e1",
+      "sha256": "19f9c92546aa300c312235e3125af1b81394d8db9a4bc4a425cd5b641d2d54e1",
+      "executable": false
+    },
+    {
+      "source_path": "assets/fonts/JetBrainsMono.woff2",
+      "path": "skills/stack-diagram/assets/fonts/JetBrainsMono.woff2",
+      "source_sha256": "2c32b9b3ee358c119e210f6f5195f9bd34894d78a785ff2e95d60e718e400af4",
+      "sha256": "2c32b9b3ee358c119e210f6f5195f9bd34894d78a785ff2e95d60e718e400af4",
+      "executable": false
+    },
+    {
+      "source_path": "assets/fonts/OFL-Geist.txt",
+      "path": "skills/stack-diagram/assets/fonts/OFL-Geist.txt",
+      "source_sha256": "c683bfbcc7e087f5d37a54ef628f10387c451a83ddc459b151403a164ac46c90",
+      "sha256": "c683bfbcc7e087f5d37a54ef628f10387c451a83ddc459b151403a164ac46c90",
+      "executable": false
+    },
+    {
+      "source_path": "assets/fonts/OFL-JetBrainsMono.txt",
+      "path": "skills/stack-diagram/assets/fonts/OFL-JetBrainsMono.txt",
+      "source_sha256": "8790c0909f720c509810f95268779450cd6b0aa75b6d24e32f0878afe068427c",
+      "sha256": "8790c0909f720c509810f95268779450cd6b0aa75b6d24e32f0878afe068427c",
+      "executable": false
+    },
+    {
+      "source_path": "assets/fonts/README.md",
+      "path": "skills/stack-diagram/assets/fonts/README.md",
+      "source_sha256": "9b858f504cefd75b79970b724dc55c4b8e16ecb3dc59bba059bdea38c5dff551",
+      "sha256": "9b858f504cefd75b79970b724dc55c4b8e16ecb3dc59bba059bdea38c5dff551",
+      "executable": false
+    },
+    {
+      "source_path": "assets/generic/browser.svg",
+      "path": "skills/stack-diagram/assets/generic/browser.svg",
+      "source_sha256": "626b27b7681ff5ff0c25b1d235ca49883bdb59185fe2b4063b44ab9a147f88a8",
+      "sha256": "626b27b7681ff5ff0c25b1d235ca49883bdb59185fe2b4063b44ab9a147f88a8",
+      "executable": false
+    },
+    {
+      "source_path": "assets/generic/device.svg",
+      "path": "skills/stack-diagram/assets/generic/device.svg",
+      "source_sha256": "abe1c203068bef6c10727e434614fefcb68d3b02139838fcfd3a9b9d2fac7f91",
+      "sha256": "abe1c203068bef6c10727e434614fefcb68d3b02139838fcfd3a9b9d2fac7f91",
+      "executable": false
+    },
+    {
+      "source_path": "assets/generic/internet.svg",
+      "path": "skills/stack-diagram/assets/generic/internet.svg",
+      "source_sha256": "f28c67cdda8b1b234f4993d1ac557b20fb8e5cb307e398c1cf720f54ef5dc3de",
+      "sha256": "f28c67cdda8b1b234f4993d1ac557b20fb8e5cb307e398c1cf720f54ef5dc3de",
+      "executable": false
+    },
+    {
+      "source_path": "assets/generic/server.svg",
+      "path": "skills/stack-diagram/assets/generic/server.svg",
+      "source_sha256": "81a828c927db27160a7af9d076e541686ae0b6ec96794638b7a265a4e3e26289",
+      "sha256": "81a828c927db27160a7af9d076e541686ae0b6ec96794638b7a265a4e3e26289",
+      "executable": false
+    },
+    {
+      "source_path": "assets/generic/user.svg",
+      "path": "skills/stack-diagram/assets/generic/user.svg",
+      "source_sha256": "a383d2e82346d3c14958eab164946898a0cf07f0f33defce7f55532ec1c9f1e9",
+      "sha256": "a383d2e82346d3c14958eab164946898a0cf07f0f33defce7f55532ec1c9f1e9",
+      "executable": false
+    },
+    {
+      "source_path": "assets/template.html",
+      "path": "skills/stack-diagram/assets/template.html",
+      "source_sha256": "6b4a32f762de15684e3ae09f51524c92edf5b27092f4fd6cf88ba73fb8811be0",
+      "sha256": "6b4a32f762de15684e3ae09f51524c92edf5b27092f4fd6cf88ba73fb8811be0",
+      "executable": false
+    },
+    {
+      "source_path": "references/geometry.md",
+      "path": "skills/stack-diagram/references/geometry.md",
+      "source_sha256": "0b823440933abb5c1c25dbd19f98e74bf3289e89b4adecb970c5e99c56e09f6e",
+      "sha256": "0b823440933abb5c1c25dbd19f98e74bf3289e89b4adecb970c5e99c56e09f6e",
+      "executable": false
+    },
+    {
+      "source_path": "references/tsx.md",
+      "path": "skills/stack-diagram/references/tsx.md",
+      "source_sha256": "7f39b64a61c64c2860ca78868a99b63c6f1ee909f686efd625d3bfd6d8751053",
+      "sha256": "7f39b64a61c64c2860ca78868a99b63c6f1ee909f686efd625d3bfd6d8751053",
+      "executable": false
+    },
+    {
+      "source_path": "scripts/build.py",
+      "path": "skills/stack-diagram/scripts/build.py",
+      "source_sha256": "28049a14bbec3a1264a9b61a7d6abe435f1932393ba9b991068ea5690e83d3a7",
+      "sha256": "28049a14bbec3a1264a9b61a7d6abe435f1932393ba9b991068ea5690e83d3a7",
+      "executable": false
+    },
+    {
+      "source_path": "scripts/fetch_icons.py",
+      "path": "skills/stack-diagram/scripts/fetch_icons.py",
+      "source_sha256": "7d33945bd80aebef01d601295347021a2b74dc3c6772b86be0cf2fb0da74730a",
+      "sha256": "7d33945bd80aebef01d601295347021a2b74dc3c6772b86be0cf2fb0da74730a",
+      "executable": false
+    },
+    {
+      "source_path": "scripts/render_png.py",
+      "path": "skills/stack-diagram/scripts/render_png.py",
+      "source_sha256": "588873e0441cf4e796a1f916e00f90975c23c952def4a9477f01ef8ebb0f206b",
+      "sha256": "588873e0441cf4e796a1f916e00f90975c23c952def4a9477f01ef8ebb0f206b",
+      "executable": false
+    }
+  ]
+}

@@ -49411,6 +49411,32 @@
     "author": "renat"
   },
   {
+    "id": "stack-diagram",
+    "canonical_id": "stack-diagram",
+    "name": "stack-diagram",
+    "path": "skills/stack-diagram",
+    "description": "Create cloud-architecture-style diagrams of tech stacks, system architectures, infra layouts, and service topologies — with real brand logos, grouped containers, and clean orthogonal arrows — delivered as self-contained HTML, a PNG image, a React/TSX component, or a live artifact. Use this skill whenever the user asks for an architecture / system / stack / infra diagram, a tech-stack overview, a service topology, a cloud-vendor-style diagram, or wants tech logos arranged into a picture of how their services connect — in any language, even if they don't name an output format, and even if the tools involved aren't cloud services.",
+    "category": "architecture",
+    "tags": [
+      "architecture",
+      "diagram",
+      "infra",
+      "cloud",
+      "system-design",
+      "stack-diagram",
+      "svg",
+      "html"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/caru-ini/stack-diagram/tree/75dbd3e3c6fe28844322e6064d3a947b870a6c61/skills/stack-diagram",
+    "source_repo": "caru-ini/stack-diagram",
+    "author": "caru-ini",
+    "license": "MIT (see LICENSE); bundled fonts are SIL OFL 1.1",
+    "license_source": "https://github.com/caru-ini/stack-diagram/blob/75dbd3e3c6fe28844322e6064d3a947b870a6c61/LICENSE",
+    "source_revision": "75dbd3e3c6fe28844322e6064d3a947b870a6c61",
+    "source_path": "skills/stack-diagram/SKILL.md"
+  },
+  {
     "id": "stageshow",
     "canonical_id": "stageshow",
     "name": "stageshow",
