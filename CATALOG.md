@@ -1,6 +1,6 @@
 # Vie Agentic Skill (VAS) - Catalog
 
-Tổng hợp **3,353** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
+Tổng hợp **3,354** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
 
 | Danh mục | Số lượng | Lệnh cài đặt nhanh |
 | :--- | :---: | :--- |
@@ -64,7 +64,7 @@ Tổng hợp **3,353** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **finance** | 33 skills | `./vas install --category finance --target codex` |
 | **framework** | 13 skills | `./vas install --category framework --target codex` |
 | **front-end** | 16 skills | `./vas install --category front-end --target codex` |
-| **frontend** | 47 skills | `./vas install --category frontend --target codex` |
+| **frontend** | 48 skills | `./vas install --category frontend --target codex` |
 | **fullstack** | 1 skills | `./vas install --category fullstack --target codex` |
 | **game-development** | 189 skills | `./vas install --category game-development --target codex` |
 | **general** | 65 skills | `./vas install --category general --target codex` |
@@ -2221,7 +2221,7 @@ Tổng hợp **3,353** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `ui-ux-pro-max` | `critical` | UI/UX design intelligence for web, mobile, and desktop. This skill should be ... |
 | `web-performance-optimization` | `critical` | Optimize website and web application performance including loading speed, Cor... |
 
-### FRONTEND (47 skills)
+### FRONTEND (48 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
@@ -2262,6 +2262,7 @@ Tổng hợp **3,353** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `react-spring` | `safe` | Master physics-based spring animations in React, Three.js (@react-spring/thre... |
 | `redesign-existing-projects` | `safe` | Use when upgrading existing websites or apps by auditing generic UI patterns ... |
 | `review-animations` | `safe` | Use when reviewing animation and motion code against a strict craft, performa... |
+| `stageshow` | `safe` | Build faux product UI that looks like a real product, as a still illustration... |
 | `stitch-design-taste` | `safe` | Use when generating Google Stitch DESIGN.md systems for premium typography, c... |
 | `sveltekit` | `safe` | Build full-stack web applications with SvelteKit — file-based routing, SSR, S... |
 | `tailwind-patterns` | `none` | Tailwind CSS v4 principles. CSS-first configuration, container queries, moder... |

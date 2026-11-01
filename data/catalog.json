@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-11-01T00:00:00Z",
-  "total": 3173,
+  "total": 3174,
   "skills": [
     {
       "id": "00-andruia-consultant",
@@ -92680,6 +92680,32 @@
       "license": "MIT",
       "license_source": "https://github.com/scenario-labs/skills/blob/7f4b801c7248d51b093ec365aceb114bd06139e6/LICENSE",
       "path": "skills/scenario-zbrush-stylized/SKILL.md"
+    },
+    {
+      "id": "stageshow",
+      "canonical_id": "stageshow",
+      "name": "stageshow",
+      "description": "Build faux product UI that looks like a real product, as a still illustration or an animated demo with a cursor. Browser and app windows, dashboards, phones, notifications, terminals, bento grids and cursor walkthroughs, framed, masked and cropped the way a marketing page, feature card or docs hero needs them. Use whenever someone wants a fake or mocked UI, a product demo or walkthrough animation, a hero or feature-card illustration of an app, a product shot in the style of a polished marketing site, or an animated cursor doing things in an interface, even if they never say \"faux UI\". React and plain CSS.",
+      "category": "frontend",
+      "risk": "safe",
+      "tags": [
+        "frontend",
+        "ui",
+        "react",
+        "motion",
+        "product-design",
+        "illustrations",
+        "demo",
+        "stageshow"
+      ],
+      "source": "https://github.com/benjitaylor/skills/tree/802057409787133703c56001080169e347305572/stageshow",
+      "source_repo": "benjitaylor/skills",
+      "source_revision": "802057409787133703c56001080169e347305572",
+      "source_path": "stageshow/SKILL.md",
+      "author": "Benji Taylor",
+      "license": "MIT",
+      "license_source": "https://github.com/benjitaylor/skills/blob/802057409787133703c56001080169e347305572/stageshow/LICENSE",
+      "path": "skills/stageshow/SKILL.md"
     }
   ]
 }

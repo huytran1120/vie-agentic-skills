@@ -459,6 +459,11 @@
       "- **[scenario-labs/skills](https://github.com/scenario-labs/skills/tree/7f4b801c7248d51b093ec365aceb114bd06139e6)**: 167 MIT-licensed creative AI, DCC, and game engine skills by Scenario Inc. ([@scenario-labs](https://github.com/scenario-labs)) at revision `7f4b801c7248d51b093ec365aceb114bd06139e6`.",
       "- Covers 78 Scenario AI generation workflows (media) and 89 DCC and game engine skills across Blender, Maya, ZBrush, Godot, Roblox, Unity, and Unreal Engine (game-development). Exact MIT LICENSE, reference documentation, shaders, and executable scripts are preserved.",
       "- Installation runs no code, installs no dependencies or MCP servers, and connects no external accounts. Software runtimes (Blender, Maya, ZBrush, Godot, Roblox Studio, Unity, Unreal) and optional Scenario API/MCP accounts are separate user prerequisites."
+    ],
+    "stageshow": [
+      "- **[benjitaylor/skills](https://github.com/benjitaylor/skills/tree/802057409787133703c56001080169e347305572/stageshow)**: Stageshow \u2014 mock UI, product walkthroughs, animated cursor demos, and React kit by Benji Taylor ([@benjitaylor](https://github.com/benjitaylor)) at revision `802057409787133703c56001080169e347305572` under the MIT License.",
+      "- Standalone payload includes `kit/`, gold `examples/`, `teaching/` pairs, `references/`, local SVG brand/icon assets, verification scripts, and local Vite playground. Third-party brand artwork and example marks are documented in `NOTICE.md`.",
+      "- Installation runs no code, installs no dependencies or MCP servers, and connects no external accounts. Node.js 20.19+ and optional dev dependencies (Vite, Playwright, PostCSS) are separate user prerequisites."
     ]
   }
 }
