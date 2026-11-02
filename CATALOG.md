@@ -1,6 +1,6 @@
 # Vie Agentic Skill (VAS) - Catalog
 
-Tổng hợp **3,355** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
+Tổng hợp **3,429** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
 
 | Danh mục | Số lượng | Lệnh cài đặt nhanh |
 | :--- | :---: | :--- |
@@ -66,7 +66,7 @@ Tổng hợp **3,355** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **front-end** | 16 skills | `./vas install --category front-end --target codex` |
 | **frontend** | 48 skills | `./vas install --category frontend --target codex` |
 | **fullstack** | 1 skills | `./vas install --category fullstack --target codex` |
-| **game-development** | 189 skills | `./vas install --category game-development --target codex` |
+| **game-development** | 263 skills | `./vas install --category game-development --target codex` |
 | **general** | 65 skills | `./vas install --category general --target codex` |
 | **granular-workflow-bundle** | 16 skills | `./vas install --category granular-workflow-bundle --target codex` |
 | **graphics-processing** | 10 skills | `./vas install --category graphics-processing --target codex` |
@@ -2281,20 +2281,40 @@ Tổng hợp **3,355** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | :--- | :---: | :--- |
 | `vibe-code-cleanup` | `safe` | Safe production cleanup and hardening for vibe-coded fullstack apps (Next.js,... |
 
-### GAME-DEVELOPMENT (189 skills)
+### GAME-DEVELOPMENT (263 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
+| `adopt` | `safe` | Brownfield audit — do existing artifacts actually work? Numbered migration pl... |
 | `ai-behavior-trees-utility-ai` | `unknown` | Build a production behavior-tree runtime (Blackboard, action/condition leaves... |
+| `architecture-decision` | `safe` | Create an ADR documenting a technical decision: context, alternatives conside... |
+| `art-bible` | `safe` | Author the Art Bible — visual identity gating asset production. Run before /m... |
+| `asset-audit` | `safe` | Audit assets against naming conventions, file size budgets, format standards.... |
+| `asset-spec` | `safe` | Per-asset visual specs plus AI generation prompts from GDDs and character pro... |
 | `audio-design` | `unknown` | Implement game audio practice — bus/mixer architecture and gain in decibels, ... |
+| `balance-check` | `safe` | Find balance outliers, broken progressions, degenerate strategies, economy im... |
 | `bevy-ecs` | `unknown` | Structure a Bevy app around its Entity Component System: build the App with p... |
 | `bevy-ecs-expert` | `safe` | Master Bevy's Entity Component System (ECS) in Rust, covering Systems, Querie... |
+| `brainstorm` | `safe` | Guides the user through finding and choosing a game concept. Use when the use... |
+| `bug-report` | `safe` | Structured bug report from a description, or analyze code for potential bugs.... |
+| `bug-triage` | `safe` | Re-evaluate open bugs — priority vs severity, assign to sprints, surface syst... |
 | `camera-systems` | `unknown` | Build game cameras that feel good — 2D follow with a deadzone, look-ahead, sm... |
 | `card-game` | `unknown` | Build a card game: card data, deck/hand/discard zones, draw/shuffle/reshuffle... |
+| `changelog` | `safe` | Auto-generate a changelog from git commits and sprint data. Internal and play... |
+| `consistency-check` | `safe` | Scan GDDs against the entity registry for cross-document conflicts. Grep-firs... |
+| `content-audit` | `safe` | Audit GDD content counts against what's implemented — planned vs built. |
+| `create-architecture` | `safe` | Author the architecture blueprint before code is written. Validates decisions... |
+| `create-control-manifest` | `safe` | Builds a short list of must-do and never-do coding rules per system from acce... |
+| `create-epics` | `safe` | Turns the GDDs and architecture into epics, one per architectural module. Use... |
 | `create-game-assets` | `unknown` | Plan, generate, source, normalize, and validate cohesive visual game assets. ... |
+| `create-stories` | `safe` | Breaks one epic into implementable stories with acceptance criteria. Use when... |
+| `day-one-patch` | `safe` | Day-one launch patch — focused fix for known issues found after gold master. ... |
 | `defold-core` | `unknown` | Build and debug the core of a Defold game in Lua: game.project settings, coll... |
+| `design-review` | `safe` | Reviews one design document for completeness, internal consistency, implement... |
+| `dev-story` | `safe` | Implements one story in code with tests, following its ADRs. Use when the use... |
 | `dialogue-systems` | `unknown` | Build branching dialogue and narrative — a node/choice graph with conditions,... |
 | `ebitengine-game` | `unknown` | Create, improve, debug and package playable 2D games in Go with Ebitengine (g... |
+| `estimate` | `safe` | Estimate task effort from complexity, dependencies, velocity, risk. Structure... |
 | `fps-shooter` | `unknown` | Build a first-person shooter: move+mouse-look controller, hitscan or projecti... |
 | `game-ai` | `unknown` | Design NPC and enemy decision-making with finite state machines, behavior tre... |
 | `game-development` | `none` | Game development orchestrator. Routes by platform, dimension, and engine fit ... |
@@ -2314,6 +2334,12 @@ Tổng hợp **3,355** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `game-ui-ux` | `unknown` | Design and build game UI/UX — HUDs, menus, and overlays — that survive every ... |
 | `gamedev-godot-export` | `unknown` | Export and build a Godot 4.7 project for distribution: install export templat... |
 | `gamedev-performance-optimization` | `unknown` | Find and fix game performance problems methodically — measure with the engine... |
+| `gamestudio-architecture-review` | `safe` | Traceability matrix mapping GDD requirements to ADRs. Finds gaps, cross-ADR c... |
+| `gamestudio-code-review` | `safe` | Architectural code review — coding standards, SOLID, testability, performance... |
+| `gamestudio-design-system` | `safe` | Section-by-section GDD authoring for one system — walks through each required... |
+| `gamestudio-prototype` | `safe` | Concept prototype before GDDs — throwaway HTML, Engine or Paper build, PROCEE... |
+| `gamestudio-security-audit` | `safe` | Security audit — save tampering, cheat vectors, network exploits, data exposu... |
+| `gate-check` | `safe` | Ready to advance between development phases? PASS/CONCERNS/NOT ASSESSED/FAIL ... |
 | `godot-2d-movement` | `unknown` | Implement 2D kinematic character movement in Godot 4.7 with CharacterBody2D a... |
 | `godot-3d-essentials` | `unknown` | Set up a Godot 4.7 3D scene: Node3D transforms, Camera3D, lighting (Direction... |
 | `godot-4-migration` | `safe` | Specialized guide for migrating Godot 3.x projects to Godot 4 (GDScript 2.0),... |
@@ -2331,22 +2357,41 @@ Tổng hợp **3,355** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `godot-signals-groups` | `unknown` | Build event-driven, decoupled Godot 4.7 gameplay with signals and node groups... |
 | `godot-tilemap` | `unknown` | Build and edit tile-based 2D levels in Godot 4.7 with TileMapLayer and TileSe... |
 | `godot-ui-control` | `unknown` | Build Godot 4.7 user interfaces with Control nodes: anchors and offsets for r... |
+| `help` | `safe` | What should I do next? Use when stuck or you don't know what to do. |
+| `hotfix` | `safe` | Emergency fix bypassing normal sprint process — hotfix branch, approvals trac... |
 | `input-systems` | `unknown` | Architect game input — action mapping (abstracting keys into named actions), ... |
 | `itch-publish` | `unknown` | Publish and update a game on itch.io: create the project page and upload buil... |
+| `launch-checklist` | `safe` | Launch readiness across every department: code, content, store, marketing, co... |
 | `level-design` | `unknown` | Design and build playable levels — the blockout/whitebox-to-playable workflow... |
+| `localize` | `safe` | Localization pipeline — find hardcoded strings, extract string tables, cultur... |
 | `love2d-core` | `unknown` | Structure and debug a LÖVE (Love2D) game in Lua: the love.load/update/draw lo... |
+| `map-systems` | `safe` | Decompose a concept into individual systems, map dependencies, prioritize des... |
 | `matterjs` | `safe` | 2D rigid body physics simulation with Matter.js. Covers Engine, World, Bodies... |
+| `milestone-review` | `safe` | Milestone progress review — completeness, quality metrics, risk, go/no-go rec... |
 | `minecraft-bukkit-pro` | `safe` | Master Minecraft server plugin development with Bukkit, Spigot, and Paper APIs. |
+| `onboard` | `safe` | Onboarding doc for a new contributor or agent — project state, conventions, p... |
+| `patch-notes` | `safe` | Player-facing patch notes from git history and changelogs. Translates develop... |
+| `perf-profile` | `safe` | Performance profiling — find bottlenecks, measure against budgets, produce ra... |
 | `phaser-arcade-physics` | `unknown` | Use Phaser 4 Arcade Physics: enable the world, give sprites bodies, set veloc... |
 | `phaser-core` | `unknown` | Set up and debug a Phaser 4 game: the Game config, the Scene lifecycle (init/... |
 | `physics-tuning` | `unknown` | Tune game physics for stable, good-feeling motion — fixed vs variable timeste... |
 | `pixijs-rendering` | `unknown` | Build a PixiJS v8 render layer: create the async Application, load textures w... |
 | `platformer` | `unknown` | Build a 2D platformer: run/jump control with coyote time, jump buffering, and... |
+| `playtest-report` | `safe` | Structured playtest report template, or turn existing playtest notes into str... |
 | `procedural-gen` | `unknown` | Generate game content procedurally — seeded deterministic RNG, value/Perlin/ ... |
+| `project-stage-detect` | `safe` | Analyze project state, detect stage, identify gaps, recommend next steps. 'Wh... |
+| `propagate-design-change` | `safe` | Finds architecture decisions (ADRs) made stale by a changed GDD and walks thr... |
 | `prototype-fast` | `unknown` | Build a playable prototype in about an hour to answer one question — is it fu... |
 | `puzzle` | `unknown` | Build a puzzle game: grid/board state, move input, rule-based resolution (mat... |
 | `pygame-core` | `unknown` | Structure a pygame (pygame-ce) game in Python: the init/event/update/draw loo... |
+| `qa-plan` | `safe` | QA test plan for a sprint — classifies stories by Logic/Integration/Visual/UI... |
+| `quick-design` | `safe` | Lightweight spec for small changes — tuning adjustments, minor mechanics. Emb... |
 | `rapier` | `safe` | Cross-platform 2D and 3D physics engine written in Rust with fast WebAssembly... |
+| `regression-suite` | `safe` | Map test coverage to GDD critical paths, find fixed bugs lacking regression t... |
+| `release-checklist` | `safe` | Pre-release checklist — build verification, certification requirements, store... |
+| `retrospective` | `safe` | Sprint or milestone retrospective from completed work, velocity, blockers. Ac... |
+| `reverse-document` | `safe` | Generate missing design or architecture docs from existing implementation — w... |
+| `review-all-gdds` | `safe` | Holistic cross-GDD review — contradictions between systems, dominant strategi... |
 | `roblox-characters` | `unknown` | Build respawn-safe Roblox character systems around Players, CharacterAdded/Ch... |
 | `roblox-datastores` | `unknown` | Persist player data in Roblox with DataStoreService: GetDataStore, GetAsync/ ... |
 | `roblox-luau` | `unknown` | Script a Roblox experience in Luau: get services, create and parent Instances... |
@@ -2448,10 +2493,36 @@ Tổng hợp **3,355** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `scenario-zbrush-retopology-export` | `safe` | Use when a ZBrush sculpt, scan or AI-generated mesh must become production to... |
 | `scenario-zbrush-sculpting` | `safe` | Use when an agent sculpts organic forms in ZBrush 2026 (sculpt a head, bust o... |
 | `scenario-zbrush-stylized` | `safe` | Use when sculpting a stylized or cartoon character, bust, collectible or toy ... |
+| `scope-check` | `safe` | Scope creep check — current scope versus the original plan. Flags additions, ... |
+| `settings` | `safe` | View or change project config — effective merged values, or set locally in pr... |
+| `setup-engine` | `safe` | Configure engine and version. Pins it in CLAUDE.md; WebSearch fills reference... |
 | `shader-programming` | `unknown` | Write game shaders from cross-engine fundamentals — the vertex→fragment pipel... |
 | `shader-programming-glsl` | `safe` | Expert guide for writing efficient GLSL shaders (Vertex/Fragment) for web and... |
+| `skill-improve` | `safe` | Improve a skill via a test-fix-retest loop — static checks, targeted fixes, k... |
+| `skill-test` | `safe` | Validate skill files for structural compliance and behavioral correctness. Fo... |
+| `smoke-check` | `safe` | Critical-path smoke gate before QA hand-off — runs the automated suite. A fai... |
+| `soak-test` | `safe` | Soak test protocol for extended play — what to observe and log for slow leaks... |
+| `sprint-plan` | `safe` | New or updated sprint plan from the current milestone, completed work, and av... |
+| `sprint-status` | `safe` | Fast, concise sprint snapshot — burndown and emerging risks for situational a... |
+| `start` | `safe` | Guides a first-time user through onboarding and picks the right workflow. Use... |
 | `steam-publish` | `unknown` | Publish or update a game on Steam with Steamworks and SteamPipe: configure de... |
+| `story-done` | `safe` | Closes a finished story: verifies each acceptance criterion, checks for desig... |
+| `story-readiness` | `safe` | Checks whether a story is ready to implement: clear acceptance criteria, no o... |
 | `survival-crafting` | `unknown` | Build a survival-crafting game: resource gathering, inventory, crafting and a... |
+| `team-audio` | `safe` | Orchestrate the audio team — audio-director, sound-designer, technical-artist... |
+| `team-combat` | `safe` | Orchestrate the combat team — game-designer, gameplay-programmer, ai-programm... |
+| `team-level` | `safe` | Orchestrate the level team — level-designer, narrative-director, world-builde... |
+| `team-live-ops` | `safe` | Orchestrate the live-ops team — live-ops-designer, economy-designer, analytic... |
+| `team-narrative` | `safe` | Orchestrate the narrative team — narrative-director, writer, world-builder, l... |
+| `team-polish` | `safe` | Orchestrate the polish team — performance-analyst, technical-artist, sound-de... |
+| `team-qa` | `safe` | Orchestrate the QA team through a full testing cycle — qa-lead strategy and t... |
+| `team-release` | `safe` | Orchestrate the release team — release-manager, qa-lead, devops-engineer, pro... |
+| `team-ui` | `safe` | Orchestrate the UI team through the UX pipeline — authoring, visual design, i... |
+| `tech-debt` | `safe` | Track, categorize and prioritize technical debt across the codebase — scans f... |
+| `test-evidence-review` | `safe` | Quality review of test files and evidence — goes beyond existence, evaluates ... |
+| `test-flakiness` | `safe` | Find flaky tests from CI logs — aggregates pass rates, spots intermittent fai... |
+| `test-helpers` | `safe` | Generate engine-specific test helper libraries — assertion utilities, factory... |
+| `test-setup` | `safe` | Scaffold the test framework and CI — tests/ directory, engine test runner, Gi... |
 | `threejs-gltf-loading` | `unknown` | Load glTF/GLB models in three.js with GLTFLoader and play their skinned anima... |
 | `threejs-materials-lighting` | `unknown` | Light and shade a three.js scene: choose materials (MeshStandardMaterial PBR ... |
 | `threejs-scene-setup` | `unknown` | Stand up a three.js scene: import maps and the three/addons path, the Scene/P... |
@@ -2473,6 +2544,9 @@ Tổng hợp **3,355** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `unreal-enhanced-input` | `unknown` | Set up player input in Unreal Engine 5 with Enhanced Input: Input Actions, In... |
 | `unreal-niagara` | `unknown` | Create and control VFX in Unreal Engine 5 with Niagara: systems and emitters,... |
 | `unreal-packaging` | `unknown` | Package and ship an Unreal Engine 5 project: the Platforms menu Package Proje... |
+| `ux-design` | `safe` | Section-by-section UX spec authoring for a screen, flow or HUD. Reads the pla... |
+| `ux-review` | `safe` | Validate a UX spec, HUD design or pattern library — accessibility, GDD alignm... |
+| `vertical-slice` | `safe` | Pre-production validation — end-to-end build to confirm the full loop is achi... |
 | `visual-novel` | `unknown` | Build a visual novel: a branching script, character and background display, a... |
 
 ### GENERAL (65 skills)

@@ -469,6 +469,12 @@
       "- **[caru-ini/stack-diagram](https://github.com/caru-ini/stack-diagram/tree/75dbd3e3c6fe28844322e6064d3a947b870a6c61)**: Stack Diagram \u2014 cloud-architecture-style diagrams for tech stacks, systems, and infra with official brand logos by caru-ini ([@caru-ini](https://github.com/caru-ini)) at revision `75dbd3e3c6fe28844322e6064d3a947b870a6c61` under the MIT License.",
       "- Standalone payload includes `assets/` (HTML template, generic SVGs, OFL 1.1 fonts), `references/` (geometry, TSX), and scripts (`build.py`, `fetch_icons.py`, `render_png.py`). Third-party marks and font licenses are documented in `NOTICE.md`.",
       "- Installation runs no code, installs no dependencies or MCP servers, and connects no external accounts. Python 3.9+ and optional Playwright are separate user prerequisites."
+    ],
+    "gamestudios": [
+      "- **[Donchitos/Claude-Code-Game-Studios](https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418)**: 74 game development studio workflow skills for AI coding agents by Donchitos ([@Donchitos](https://github.com/Donchitos)) at revision `05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418` under the MIT License.",
+      "- Covers complete game studio lifecycle: concept brainstorming, game design documents, art/sound bibles, sprint planning, engine setup (Godot 4, Unity, Unreal Engine 5), story implementation, testing & QA, and release management.",
+      "- Standalone payloads preserve upstream SKILL.md, contracts, references, helper scripts, and templates. Colliding names use the `gamestudio-` namespace.",
+      "- Installation runs no code, installs no dependencies or MCP servers, and connects no external accounts. Game engines and Python 3 runtime are separate user prerequisites."
     ]
   }
 }

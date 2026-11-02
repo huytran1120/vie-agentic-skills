@@ -1,0 +1,3432 @@
+{
+  "source_repo": "Donchitos/Claude-Code-Game-Studios",
+  "revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+  "skill_count": 74,
+  "skipped": [],
+  "namespaces": {
+    "architecture-review": "gamestudio-architecture-review",
+    "code-review": "gamestudio-code-review",
+    "design-system": "gamestudio-design-system",
+    "prototype": "gamestudio-prototype",
+    "security-audit": "gamestudio-security-audit"
+  },
+  "duplicate_check": {
+    "catalog_count_before": 3355,
+    "upstream_is_fork": false,
+    "methods": [
+      "canonical-id/name",
+      "source-repo/path",
+      "raw-sha256",
+      "normalized-body",
+      "renamed-body",
+      "body-containment",
+      "7-word-shingles"
+    ],
+    "collision_rationale": "Exact and high-similarity shingle comparison against all 3,355 catalog skills identified zero existing duplicates. The 5 colliding generic names (architecture-review, code-review, design-system, prototype, security-audit) are namespaced with the gamestudio- prefix."
+  },
+  "adaptations": [
+    "Preserve upstream payload structure: SKILL.md, CONTRACT.md, and references/.",
+    "Bundle referenced helper scripts (scripts/*.sh) and templates (templates/*.md) into each skill so it remains fully operable when installed independently.",
+    "Append reversible VAS installation, attribution, prerequisites and safety notes to SKILL.md.",
+    "Apply gamestudio- namespace prefix exclusively to the 5 skills with colliding catalog names.",
+    "Include upstream MIT LICENSE and add NOTICE.md acknowledging game studio architecture and safe offline execution.",
+    "No runtime/dependency or MCP service is executed during installation."
+  ],
+  "files": [
+    {
+      "source_path": ".claude/skills/adopt/LICENSE",
+      "path": "skills/adopt/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/adopt/NOTICE.md",
+      "path": "skills/adopt/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/adopt/SKILL.md",
+      "path": "skills/adopt/SKILL.md",
+      "source_sha256": "79547d656e76fde14f1761a6840cb3a6fbb058f69f33d7829d5e073390f46b98",
+      "sha256": "a2e3c81dc5c58a55ec54e01baebe8b05c3aa78383899a5c117d003407f931f0b",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/adopt/references/1-detect.md",
+      "path": "skills/adopt/references/1-detect.md",
+      "source_sha256": "4120e881103940ec84816951b7f4fd2b5e206b6ad0325fa172a0354b79575ea8",
+      "sha256": "4120e881103940ec84816951b7f4fd2b5e206b6ad0325fa172a0354b79575ea8",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/adopt/references/2-format-audit.md",
+      "path": "skills/adopt/references/2-format-audit.md",
+      "source_sha256": "625b3d1dbfe60001089e66253a09f5e0e9dd62f5162d55bc4a79419212739c46",
+      "sha256": "625b3d1dbfe60001089e66253a09f5e0e9dd62f5162d55bc4a79419212739c46",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/adopt/references/3-classify.md",
+      "path": "skills/adopt/references/3-classify.md",
+      "source_sha256": "ba708873c7a72055da515a7f290be80b6a6b8e63610b4f6a1549fab82ed9e042",
+      "sha256": "ba708873c7a72055da515a7f290be80b6a6b8e63610b4f6a1549fab82ed9e042",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/adopt/references/4-migration-plan.md",
+      "path": "skills/adopt/references/4-migration-plan.md",
+      "source_sha256": "27386c73a5fde71606320013f80d55d093c3cbbdca0318dbcbf70d13a9f7b99e",
+      "sha256": "27386c73a5fde71606320013f80d55d093c3cbbdca0318dbcbf70d13a9f7b99e",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/adopt/references/5-summary.md",
+      "path": "skills/adopt/references/5-summary.md",
+      "source_sha256": "0661b1c4feb24d630ad4a1fd6a888cee699d907fbe01cef18e8dc658b0178622",
+      "sha256": "0661b1c4feb24d630ad4a1fd6a888cee699d907fbe01cef18e8dc658b0178622",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/adopt/references/6-write.md",
+      "path": "skills/adopt/references/6-write.md",
+      "source_sha256": "cb23a80201a30fbe66b92f3356220945fb3fd18ff4ea8966238dff4804152ed9",
+      "sha256": "cb23a80201a30fbe66b92f3356220945fb3fd18ff4ea8966238dff4804152ed9",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/adopt/references/7-first-action.md",
+      "path": "skills/adopt/references/7-first-action.md",
+      "source_sha256": "290607da90ceea57ddceccf45c4444c1136fc8e258a8bd631658121ec55462bf",
+      "sha256": "290607da90ceea57ddceccf45c4444c1136fc8e258a8bd631658121ec55462bf",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/scripts/gdd-structure-check.sh",
+      "path": "skills/adopt/scripts/gdd-structure-check.sh",
+      "source_sha256": "b5c8cf8b50ceb8eff6afe61beb82fec2c9258e87aefbe9a0dfd96f9422996204",
+      "sha256": "b5c8cf8b50ceb8eff6afe61beb82fec2c9258e87aefbe9a0dfd96f9422996204",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/scripts/migrate-v1-config.sh",
+      "path": "skills/adopt/scripts/migrate-v1-config.sh",
+      "source_sha256": "8dea94fc7f4b4339c074c9d4f73088bd237382ed7e209c6ddd770930ff1e6323",
+      "sha256": "8dea94fc7f4b4339c074c9d4f73088bd237382ed7e209c6ddd770930ff1e6323",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/adopt/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/docs/templates/game-brief.md",
+      "path": "skills/adopt/templates/game-brief.md",
+      "source_sha256": "70d49670b663619843301aa9a1e105f892d6db715f3e0a552b5241632e212b60",
+      "sha256": "70d49670b663619843301aa9a1e105f892d6db715f3e0a552b5241632e212b60",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/docs/templates/game-design-document.md",
+      "path": "skills/adopt/templates/game-design-document.md",
+      "source_sha256": "8631250debc1b322f6ae3795296ea7fdf18aba14b9430cfa21abd18e92629f43",
+      "sha256": "8631250debc1b322f6ae3795296ea7fdf18aba14b9430cfa21abd18e92629f43",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/architecture-decision/CONTRACT.md",
+      "path": "skills/architecture-decision/CONTRACT.md",
+      "source_sha256": "f295ec9326ff3050d71219be899bc4a75a97fff28a1221ead0693006c8f8a2be",
+      "sha256": "f295ec9326ff3050d71219be899bc4a75a97fff28a1221ead0693006c8f8a2be",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/architecture-decision/LICENSE",
+      "path": "skills/architecture-decision/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/architecture-decision/NOTICE.md",
+      "path": "skills/architecture-decision/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/architecture-decision/SKILL.md",
+      "path": "skills/architecture-decision/SKILL.md",
+      "source_sha256": "b550883ebd9973ad6534c2984a77fdb6229f47eb8d2b2c31e7501d8a89f2cdf5",
+      "sha256": "9f5d2ce52818da31c0fdc8577da4e30218f58f41d548baa3634363b95c316043",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/architecture-decision/references/0-accept.md",
+      "path": "skills/architecture-decision/references/0-accept.md",
+      "source_sha256": "abc2ab957854d947d7ee01c132cebf9c19c851aef3dfa788e3ee21ce82881016",
+      "sha256": "abc2ab957854d947d7ee01c132cebf9c19c851aef3dfa788e3ee21ce82881016",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/architecture-decision/references/0-retrofit.md",
+      "path": "skills/architecture-decision/references/0-retrofit.md",
+      "source_sha256": "f41ba65eda577623b3dbcef762495672924bf8ab382e7c2650e61006a378d0ce",
+      "sha256": "f41ba65eda577623b3dbcef762495672924bf8ab382e7c2650e61006a378d0ce",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/architecture-decision/references/1-engine-context.md",
+      "path": "skills/architecture-decision/references/1-engine-context.md",
+      "source_sha256": "0e0e4e96781ee752bff34d705c1dc26359fd662b50087ae7780495ddfaea353c",
+      "sha256": "0e0e4e96781ee752bff34d705c1dc26359fd662b50087ae7780495ddfaea353c",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/architecture-decision/references/3-gather-context.md",
+      "path": "skills/architecture-decision/references/3-gather-context.md",
+      "source_sha256": "f226269d8c23f6d9fbc784fbc0dbf050d12a860ec20be0a3388b9b9345ff2d55",
+      "sha256": "f226269d8c23f6d9fbc784fbc0dbf050d12a860ec20be0a3388b9b9345ff2d55",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/architecture-decision/references/4-decide.md",
+      "path": "skills/architecture-decision/references/4-decide.md",
+      "source_sha256": "14a595f2efc8c0fdbbd9dbf6c0912250b817073db2a1de17ebf1c831d0822f8a",
+      "sha256": "14a595f2efc8c0fdbbd9dbf6c0912250b817073db2a1de17ebf1c831d0822f8a",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/architecture-decision/references/5-generate.md",
+      "path": "skills/architecture-decision/references/5-generate.md",
+      "source_sha256": "c6862e0d8ce98ad9b0d1c2287f685019d5cb47cb808456d1d164c6dd4deb3138",
+      "sha256": "c6862e0d8ce98ad9b0d1c2287f685019d5cb47cb808456d1d164c6dd4deb3138",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/scripts/registry.sh",
+      "path": "skills/architecture-decision/scripts/registry.sh",
+      "source_sha256": "4b698b1af5ec413da992a459dba2cdb71b505e50fbb1972c80b4e8f33105959e",
+      "sha256": "4b698b1af5ec413da992a459dba2cdb71b505e50fbb1972c80b4e8f33105959e",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/architecture-decision/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/art-bible/LICENSE",
+      "path": "skills/art-bible/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/art-bible/NOTICE.md",
+      "path": "skills/art-bible/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/art-bible/SKILL.md",
+      "path": "skills/art-bible/SKILL.md",
+      "source_sha256": "7873271f9e19fd6f126f00770c3861a2001afa492350f9232e3609fb4d61518a",
+      "sha256": "14d3fe2006b296d39f565e1caf95136d59b2797bd2e556e8b8a05f5d2896504a",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/art-bible/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/docs/templates/art-bible.md",
+      "path": "skills/art-bible/templates/art-bible.md",
+      "source_sha256": "a28c30415db944f38fb08c27c05543cc79f207ccfd9b5343680b15ab7665e6f6",
+      "sha256": "a28c30415db944f38fb08c27c05543cc79f207ccfd9b5343680b15ab7665e6f6",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/asset-audit/LICENSE",
+      "path": "skills/asset-audit/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/asset-audit/NOTICE.md",
+      "path": "skills/asset-audit/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/asset-audit/SKILL.md",
+      "path": "skills/asset-audit/SKILL.md",
+      "source_sha256": "9aaa056c533cd0d61af1da5332fd26065fbfa6937db4bd117ac0692f8c65a3f4",
+      "sha256": "59da5e2d0f042362fdc479c6806fe1ed0cd81315f49bcb1717e5b5f69b9f2f00",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/asset-spec/LICENSE",
+      "path": "skills/asset-spec/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/asset-spec/NOTICE.md",
+      "path": "skills/asset-spec/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/asset-spec/SKILL.md",
+      "path": "skills/asset-spec/SKILL.md",
+      "source_sha256": "8e9126653dcf25bdd2e197ee9df6587e3ffd7ee67de7103087cf8971c59fe025",
+      "sha256": "abcdf58dd91e3968d9e7f97d8562553a42d42f538794a5c1a6b0902fba0d5d3a",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/asset-spec/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/balance-check/LICENSE",
+      "path": "skills/balance-check/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/balance-check/NOTICE.md",
+      "path": "skills/balance-check/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/balance-check/SKILL.md",
+      "path": "skills/balance-check/SKILL.md",
+      "source_sha256": "1081b0a21d197310c7ea244c8ac1cf1832b95b0235c6288fcf1575fceacdfa44",
+      "sha256": "a86858e3da070148b605c6f60904eb000ae0af832faeec93bf83de709219d714",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/balance-check/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/brainstorm/LICENSE",
+      "path": "skills/brainstorm/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/brainstorm/NOTICE.md",
+      "path": "skills/brainstorm/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/brainstorm/SKILL.md",
+      "path": "skills/brainstorm/SKILL.md",
+      "source_sha256": "fa665de84aea3834111c981e919ac166f0a8400764c4c23d579d9a929c0539b6",
+      "sha256": "2ccf6a4abc6a0ff6755926cfc1b7709bc9cfe42f1323aa7ab43a9301fb46623c",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/brainstorm/references/full-concept.md",
+      "path": "skills/brainstorm/references/full-concept.md",
+      "source_sha256": "ce34add9f9eb81de45a955d47bda252091a3d8fd6a6c390ee2c09d277f0e1dfa",
+      "sha256": "ce34add9f9eb81de45a955d47bda252091a3d8fd6a6c390ee2c09d277f0e1dfa",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/brainstorm/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/docs/templates/game-brief.md",
+      "path": "skills/brainstorm/templates/game-brief.md",
+      "source_sha256": "70d49670b663619843301aa9a1e105f892d6db715f3e0a552b5241632e212b60",
+      "sha256": "70d49670b663619843301aa9a1e105f892d6db715f3e0a552b5241632e212b60",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/docs/templates/game-concept.md",
+      "path": "skills/brainstorm/templates/game-concept.md",
+      "source_sha256": "fa94f05c71decac7183be449c87767acd99db822f05701121f45f5a5e2251156",
+      "sha256": "fa94f05c71decac7183be449c87767acd99db822f05701121f45f5a5e2251156",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/bug-report/LICENSE",
+      "path": "skills/bug-report/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/bug-report/NOTICE.md",
+      "path": "skills/bug-report/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/bug-report/SKILL.md",
+      "path": "skills/bug-report/SKILL.md",
+      "source_sha256": "cf643bf40ba2bfd45d580ecb5dfadb186b779b1152ca650962418bbcb3c8d783",
+      "sha256": "7723813fa272c513dd447d9115e6eb425a71da33895fd7888eb52842be2a790e",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/bug-report/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/bug-triage/LICENSE",
+      "path": "skills/bug-triage/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/bug-triage/NOTICE.md",
+      "path": "skills/bug-triage/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/bug-triage/SKILL.md",
+      "path": "skills/bug-triage/SKILL.md",
+      "source_sha256": "818f27203a1adfe2f5a6bc3a351a2673d5297d2fd3e69d773c228c98c8a83b01",
+      "sha256": "73ca6d552fc59626a0e4a455fabf609d1879f2968ffc3c1a82a5c0ee4525a89c",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/bug-triage/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/changelog/LICENSE",
+      "path": "skills/changelog/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/changelog/NOTICE.md",
+      "path": "skills/changelog/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/changelog/SKILL.md",
+      "path": "skills/changelog/SKILL.md",
+      "source_sha256": "e8ab97b0b07e7cfef09d00b1d273ec7b926fba26c567853a03843243e25874f2",
+      "sha256": "0aa687adf44f20ed3d94e0b001bfa9b57255de3759d1201bf9844c4510c9973b",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/changelog/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/consistency-check/LICENSE",
+      "path": "skills/consistency-check/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/consistency-check/NOTICE.md",
+      "path": "skills/consistency-check/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/consistency-check/SKILL.md",
+      "path": "skills/consistency-check/SKILL.md",
+      "source_sha256": "be7697de6ff3b8b38b0078c7fa9a71eafe87cc04d008db7192a0439e3d000228",
+      "sha256": "2cced49e4a0a01d495328300b11ddd21452145ec4912645149340fe74a66d685",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/scripts/registry.sh",
+      "path": "skills/consistency-check/scripts/registry.sh",
+      "source_sha256": "4b698b1af5ec413da992a459dba2cdb71b505e50fbb1972c80b4e8f33105959e",
+      "sha256": "4b698b1af5ec413da992a459dba2cdb71b505e50fbb1972c80b4e8f33105959e",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/consistency-check/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/content-audit/LICENSE",
+      "path": "skills/content-audit/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/content-audit/NOTICE.md",
+      "path": "skills/content-audit/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/content-audit/SKILL.md",
+      "path": "skills/content-audit/SKILL.md",
+      "source_sha256": "56f522eabb8c7a8e70f9fd8f9dcdc40563fdbe3586fad18c027579c9dfb49cba",
+      "sha256": "b0e4960e9822e7ba5707db0315f13f43e86f5026aebd968ef020457341e70b25",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/content-audit/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/create-architecture/LICENSE",
+      "path": "skills/create-architecture/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/create-architecture/NOTICE.md",
+      "path": "skills/create-architecture/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/create-architecture/SKILL.md",
+      "path": "skills/create-architecture/SKILL.md",
+      "source_sha256": "0613360ba1247bbfc53f840b0f97d15430f38799b4a67498c6efabe53763c23d",
+      "sha256": "c59ed08422461006eb51db37bcd52241a1f0835666d03ac7b14b264b3b3b8276",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/create-architecture/references/0-load-context.md",
+      "path": "skills/create-architecture/references/0-load-context.md",
+      "source_sha256": "2083798d7784c597ca8b9c0933f13d3fd2161936c0fc6771a351f98ab0b56481",
+      "sha256": "2083798d7784c597ca8b9c0933f13d3fd2161936c0fc6771a351f98ab0b56481",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/create-architecture/references/1-layers.md",
+      "path": "skills/create-architecture/references/1-layers.md",
+      "source_sha256": "889231d49bd42e96bb0d4cd3bb052434bce83f5567ebf2d1567b82b3712a0f46",
+      "sha256": "889231d49bd42e96bb0d4cd3bb052434bce83f5567ebf2d1567b82b3712a0f46",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/create-architecture/references/2-module-ownership.md",
+      "path": "skills/create-architecture/references/2-module-ownership.md",
+      "source_sha256": "1c373de52748ed4941a223092f6a6d17b251df32cac500f275672f4742ee5dff",
+      "sha256": "1c373de52748ed4941a223092f6a6d17b251df32cac500f275672f4742ee5dff",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/create-architecture/references/3-data-flow.md",
+      "path": "skills/create-architecture/references/3-data-flow.md",
+      "source_sha256": "33664f68c24c751182df4a95eda3ae2740a94381d58a7806b1d2a40c2b96506a",
+      "sha256": "33664f68c24c751182df4a95eda3ae2740a94381d58a7806b1d2a40c2b96506a",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/create-architecture/references/4-api-boundaries.md",
+      "path": "skills/create-architecture/references/4-api-boundaries.md",
+      "source_sha256": "dc914d8fa14cb7e80b46fbc4702d327ba473284744425272f854237645f6d0fd",
+      "sha256": "dc914d8fa14cb7e80b46fbc4702d327ba473284744425272f854237645f6d0fd",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/create-architecture/references/5-adr-audit.md",
+      "path": "skills/create-architecture/references/5-adr-audit.md",
+      "source_sha256": "f2dffe08fe962b555cf87f62141cd82b12928ceb7fa67544f5a6c8f485b58e51",
+      "sha256": "f2dffe08fe962b555cf87f62141cd82b12928ceb7fa67544f5a6c8f485b58e51",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/create-architecture/references/6-missing-adrs.md",
+      "path": "skills/create-architecture/references/6-missing-adrs.md",
+      "source_sha256": "d88aa82cabb0803e6b8d989664da8b219eed7f8e39de7fe66b9c635aefdf1ade",
+      "sha256": "d88aa82cabb0803e6b8d989664da8b219eed7f8e39de7fe66b9c635aefdf1ade",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/create-architecture/references/7-write.md",
+      "path": "skills/create-architecture/references/7-write.md",
+      "source_sha256": "e10e9fb89a6b09bd0cd41791d8da83dd79f996a83847982daccf144e0960ee69",
+      "sha256": "e10e9fb89a6b09bd0cd41791d8da83dd79f996a83847982daccf144e0960ee69",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/create-architecture/references/8-handoff.md",
+      "path": "skills/create-architecture/references/8-handoff.md",
+      "source_sha256": "dd6f3eb676c4497cf61383cee696d94db1dc7d22c73d5baa574a1f215229bf77",
+      "sha256": "dd6f3eb676c4497cf61383cee696d94db1dc7d22c73d5baa574a1f215229bf77",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/scripts/registry.sh",
+      "path": "skills/create-architecture/scripts/registry.sh",
+      "source_sha256": "4b698b1af5ec413da992a459dba2cdb71b505e50fbb1972c80b4e8f33105959e",
+      "sha256": "4b698b1af5ec413da992a459dba2cdb71b505e50fbb1972c80b4e8f33105959e",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/create-architecture/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/create-control-manifest/LICENSE",
+      "path": "skills/create-control-manifest/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/create-control-manifest/NOTICE.md",
+      "path": "skills/create-control-manifest/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/create-control-manifest/SKILL.md",
+      "path": "skills/create-control-manifest/SKILL.md",
+      "source_sha256": "a487bb167b3154b19fe76ac618625ef0bfeb65a2a90432804e96e0a83271b75a",
+      "sha256": "3e2dd99cf9f7a83e5b00b434e0497a585e7ab328bae03dce11dfbd912aaf34fc",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/scripts/adr-status.sh",
+      "path": "skills/create-control-manifest/scripts/adr-status.sh",
+      "source_sha256": "92c2c02283aa4c8a76ba7c2c0cf36dabacc1d3ba2c618878322fde21d4bc13ff",
+      "sha256": "92c2c02283aa4c8a76ba7c2c0cf36dabacc1d3ba2c618878322fde21d4bc13ff",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/scripts/md-section.sh",
+      "path": "skills/create-control-manifest/scripts/md-section.sh",
+      "source_sha256": "0ffa55a3f7215fda020c4070c160e7992577005b00aad3d7b6d527870dd7cfa8",
+      "sha256": "0ffa55a3f7215fda020c4070c160e7992577005b00aad3d7b6d527870dd7cfa8",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/create-control-manifest/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/create-epics/CONTRACT.md",
+      "path": "skills/create-epics/CONTRACT.md",
+      "source_sha256": "a48adfb04175d21ba016118e614c11def9477ad76c06ca26acf767d3ad4139b3",
+      "sha256": "a48adfb04175d21ba016118e614c11def9477ad76c06ca26acf767d3ad4139b3",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/create-epics/LICENSE",
+      "path": "skills/create-epics/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/create-epics/NOTICE.md",
+      "path": "skills/create-epics/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/create-epics/SKILL.md",
+      "path": "skills/create-epics/SKILL.md",
+      "source_sha256": "a867fed460ac1ad49debf36302da1f1e44d0c9bc08aee2e14119fa09b572abd0",
+      "sha256": "2fc105bc0f9bf796ec232614a17ee9255b250a70e01e2bb617bfe570307ad23a",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/create-epics/references/pr-epic-gate.md",
+      "path": "skills/create-epics/references/pr-epic-gate.md",
+      "source_sha256": "990efdfb2d6955ace5c3562e4753a5a8599f63cb39a48e51366124bcbca4f6d3",
+      "sha256": "990efdfb2d6955ace5c3562e4753a5a8599f63cb39a48e51366124bcbca4f6d3",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/scripts/adr-status.sh",
+      "path": "skills/create-epics/scripts/adr-status.sh",
+      "source_sha256": "92c2c02283aa4c8a76ba7c2c0cf36dabacc1d3ba2c618878322fde21d4bc13ff",
+      "sha256": "92c2c02283aa4c8a76ba7c2c0cf36dabacc1d3ba2c618878322fde21d4bc13ff",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/scripts/gdd-structure-check.sh",
+      "path": "skills/create-epics/scripts/gdd-structure-check.sh",
+      "source_sha256": "b5c8cf8b50ceb8eff6afe61beb82fec2c9258e87aefbe9a0dfd96f9422996204",
+      "sha256": "b5c8cf8b50ceb8eff6afe61beb82fec2c9258e87aefbe9a0dfd96f9422996204",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/scripts/md-section.sh",
+      "path": "skills/create-epics/scripts/md-section.sh",
+      "source_sha256": "0ffa55a3f7215fda020c4070c160e7992577005b00aad3d7b6d527870dd7cfa8",
+      "sha256": "0ffa55a3f7215fda020c4070c160e7992577005b00aad3d7b6d527870dd7cfa8",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/scripts/write-guard.sh",
+      "path": "skills/create-epics/scripts/write-guard.sh",
+      "source_sha256": "c7ac4ccf0b7f13e2019391697b5933fee324675194bebf15cfe6e41f5e6d86ff",
+      "sha256": "c7ac4ccf0b7f13e2019391697b5933fee324675194bebf15cfe6e41f5e6d86ff",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/create-epics/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/create-stories/CONTRACT.md",
+      "path": "skills/create-stories/CONTRACT.md",
+      "source_sha256": "7ab7c94960b73477bbd2620e986d7c6c1b7046e7cecfe48aa10e7f420d117b5e",
+      "sha256": "7ab7c94960b73477bbd2620e986d7c6c1b7046e7cecfe48aa10e7f420d117b5e",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/create-stories/LICENSE",
+      "path": "skills/create-stories/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/create-stories/NOTICE.md",
+      "path": "skills/create-stories/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/create-stories/SKILL.md",
+      "path": "skills/create-stories/SKILL.md",
+      "source_sha256": "6fbbc16b580e90cf219e1bc67aaebeaf5e81e0dbc24c3b419d493dc6362282c3",
+      "sha256": "6cb4a2ecf8e5dfa61da990ea0c31e2fbc63c116d534079602126560218909c8e",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/create-stories/references/qa-lead-gate.md",
+      "path": "skills/create-stories/references/qa-lead-gate.md",
+      "source_sha256": "752d3bc7d4d5de0fa36031821d00128d5c7eb3f3bf66fd6f9e869e943e51eb98",
+      "sha256": "752d3bc7d4d5de0fa36031821d00128d5c7eb3f3bf66fd6f9e869e943e51eb98",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/scripts/adr-status.sh",
+      "path": "skills/create-stories/scripts/adr-status.sh",
+      "source_sha256": "92c2c02283aa4c8a76ba7c2c0cf36dabacc1d3ba2c618878322fde21d4bc13ff",
+      "sha256": "92c2c02283aa4c8a76ba7c2c0cf36dabacc1d3ba2c618878322fde21d4bc13ff",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/scripts/md-section.sh",
+      "path": "skills/create-stories/scripts/md-section.sh",
+      "source_sha256": "0ffa55a3f7215fda020c4070c160e7992577005b00aad3d7b6d527870dd7cfa8",
+      "sha256": "0ffa55a3f7215fda020c4070c160e7992577005b00aad3d7b6d527870dd7cfa8",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/create-stories/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/docs/templates/story.md",
+      "path": "skills/create-stories/templates/story.md",
+      "source_sha256": "312132c53a67d903609fe33644ea342feeaff47fecffb07851cb20a44e66644f",
+      "sha256": "312132c53a67d903609fe33644ea342feeaff47fecffb07851cb20a44e66644f",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/day-one-patch/LICENSE",
+      "path": "skills/day-one-patch/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/day-one-patch/NOTICE.md",
+      "path": "skills/day-one-patch/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/day-one-patch/SKILL.md",
+      "path": "skills/day-one-patch/SKILL.md",
+      "source_sha256": "dcd3d710b55dfd9e426965850cb572945d00d5d2d52daf53e83682ad573da971",
+      "sha256": "6e6b0db2202cd7fa073574fc5808968c082eb0f43433f8eef851f070195c2ad7",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/design-review/LICENSE",
+      "path": "skills/design-review/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/design-review/NOTICE.md",
+      "path": "skills/design-review/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/design-review/SKILL.md",
+      "path": "skills/design-review/SKILL.md",
+      "source_sha256": "8ed70a1d109fdd5e1a765ae4b2198730c033fb183ac3e3539fa339c106cebe1f",
+      "sha256": "3164836343442929b8ab0dc20e9501536ace6fccb715a008a81f3d0963e2ca60",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/scripts/gdd-structure-check.sh",
+      "path": "skills/design-review/scripts/gdd-structure-check.sh",
+      "source_sha256": "b5c8cf8b50ceb8eff6afe61beb82fec2c9258e87aefbe9a0dfd96f9422996204",
+      "sha256": "b5c8cf8b50ceb8eff6afe61beb82fec2c9258e87aefbe9a0dfd96f9422996204",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/scripts/review-receipts.sh",
+      "path": "skills/design-review/scripts/review-receipts.sh",
+      "source_sha256": "e4234095b47a12875179932508874627012ff086e136ff72f8324d2c0e9836db",
+      "sha256": "e4234095b47a12875179932508874627012ff086e136ff72f8324d2c0e9836db",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/design-review/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/dev-story/CONTRACT.md",
+      "path": "skills/dev-story/CONTRACT.md",
+      "source_sha256": "95abf80e16dfc28230989db818e6f8afeb05d73cb4600882855f598f5ee77071",
+      "sha256": "95abf80e16dfc28230989db818e6f8afeb05d73cb4600882855f598f5ee77071",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/dev-story/LICENSE",
+      "path": "skills/dev-story/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/dev-story/NOTICE.md",
+      "path": "skills/dev-story/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/dev-story/SKILL.md",
+      "path": "skills/dev-story/SKILL.md",
+      "source_sha256": "ca76457c34ec9a8468c34bcc55664273eff2b077afbebe36f1dda0c8ec8e474d",
+      "sha256": "e51a0eade21034a0b822d147436b413b14cf841773f61b12a9e11ac04529a3a0",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/dev-story/references/engine-checks.md",
+      "path": "skills/dev-story/references/engine-checks.md",
+      "source_sha256": "c3ec789cc1c424366e5e85ebc56e5df317b5dfdd011f9e944e6242235640fdb4",
+      "sha256": "c3ec789cc1c424366e5e85ebc56e5df317b5dfdd011f9e944e6242235640fdb4",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/dev-story/references/version-mismatch.md",
+      "path": "skills/dev-story/references/version-mismatch.md",
+      "source_sha256": "2f38c7964569cba3b22bfbfc0cc702ecb1c4580e7aa294994b3047cae9318a41",
+      "sha256": "2f38c7964569cba3b22bfbfc0cc702ecb1c4580e7aa294994b3047cae9318a41",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/scripts/adr-status.sh",
+      "path": "skills/dev-story/scripts/adr-status.sh",
+      "source_sha256": "92c2c02283aa4c8a76ba7c2c0cf36dabacc1d3ba2c618878322fde21d4bc13ff",
+      "sha256": "92c2c02283aa4c8a76ba7c2c0cf36dabacc1d3ba2c618878322fde21d4bc13ff",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/scripts/godot-parse-check.gd",
+      "path": "skills/dev-story/scripts/godot-parse-check.gd",
+      "source_sha256": "c009f12256161f64d0eaf031ddbcf177dec4b02eb8ff469ab7e6d12632705c5e",
+      "sha256": "c009f12256161f64d0eaf031ddbcf177dec4b02eb8ff469ab7e6d12632705c5e",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/scripts/md-section.sh",
+      "path": "skills/dev-story/scripts/md-section.sh",
+      "source_sha256": "0ffa55a3f7215fda020c4070c160e7992577005b00aad3d7b6d527870dd7cfa8",
+      "sha256": "0ffa55a3f7215fda020c4070c160e7992577005b00aad3d7b6d527870dd7cfa8",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/scripts/review-receipts.sh",
+      "path": "skills/dev-story/scripts/review-receipts.sh",
+      "source_sha256": "e4234095b47a12875179932508874627012ff086e136ff72f8324d2c0e9836db",
+      "sha256": "e4234095b47a12875179932508874627012ff086e136ff72f8324d2c0e9836db",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/scripts/session-state.sh",
+      "path": "skills/dev-story/scripts/session-state.sh",
+      "source_sha256": "0838a0cc1c2c23240af3ba569a360e6f7959361ab2c16ae91d093cad03874a13",
+      "sha256": "0838a0cc1c2c23240af3ba569a360e6f7959361ab2c16ae91d093cad03874a13",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/scripts/story-facts.sh",
+      "path": "skills/dev-story/scripts/story-facts.sh",
+      "source_sha256": "546a4aa73e73192a876a125464848e1378357457ef5cd3e2ab72155bb579736d",
+      "sha256": "546a4aa73e73192a876a125464848e1378357457ef5cd3e2ab72155bb579736d",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/dev-story/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/docs/templates/session-state.md",
+      "path": "skills/dev-story/templates/session-state.md",
+      "source_sha256": "68b8d7ccd6a09f600facc73607bcffd449277633f3a956149b7122419c47487a",
+      "sha256": "68b8d7ccd6a09f600facc73607bcffd449277633f3a956149b7122419c47487a",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/estimate/LICENSE",
+      "path": "skills/estimate/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/estimate/NOTICE.md",
+      "path": "skills/estimate/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/estimate/SKILL.md",
+      "path": "skills/estimate/SKILL.md",
+      "source_sha256": "61d821627b3db4f4038f60b7ce799599a219b864036023ce15d5fc85348874f0",
+      "sha256": "b289c2fe169bbfcca6b4ce14a0206f73e49d254c48dcd485fad7aecb6bbcc618",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/architecture-review/LICENSE",
+      "path": "skills/gamestudio-architecture-review/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/architecture-review/NOTICE.md",
+      "path": "skills/gamestudio-architecture-review/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/architecture-review/SKILL.md",
+      "path": "skills/gamestudio-architecture-review/SKILL.md",
+      "source_sha256": "0219e6c2545af2416775bff139d921c1bc3c3e9cc1ffc25a25d6186f8e444f6e",
+      "sha256": "e32bb519431e71dcffd2eaa3695a4c5b33a24f16ad91e4b71440f4e7b6117e1c",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/architecture-review/references/1-load.md",
+      "path": "skills/gamestudio-architecture-review/references/1-load.md",
+      "source_sha256": "d866809875b0d6499cb9ae243ea28643c6d7a72bb06a0dec0894853c45f807ce",
+      "sha256": "d866809875b0d6499cb9ae243ea28643c6d7a72bb06a0dec0894853c45f807ce",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/architecture-review/references/2-extract-requirements.md",
+      "path": "skills/gamestudio-architecture-review/references/2-extract-requirements.md",
+      "source_sha256": "c34e4466059db1c71ccbd42946a91ee62964db38f761f333288cb59db2a84263",
+      "sha256": "c34e4466059db1c71ccbd42946a91ee62964db38f761f333288cb59db2a84263",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/architecture-review/references/3-traceability.md",
+      "path": "skills/gamestudio-architecture-review/references/3-traceability.md",
+      "source_sha256": "dd90c9669632cb844d45ca3a1ce2007fd0f34dbf8b13031f22db100cc8961a75",
+      "sha256": "dd90c9669632cb844d45ca3a1ce2007fd0f34dbf8b13031f22db100cc8961a75",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/architecture-review/references/4-conflicts.md",
+      "path": "skills/gamestudio-architecture-review/references/4-conflicts.md",
+      "source_sha256": "b20b53754a69064941366d5ab8ca34cc1aced6f0e40ef09b4d39a0b6d48d2d57",
+      "sha256": "b20b53754a69064941366d5ab8ca34cc1aced6f0e40ef09b4d39a0b6d48d2d57",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/architecture-review/references/5-engine.md",
+      "path": "skills/gamestudio-architecture-review/references/5-engine.md",
+      "source_sha256": "6d48c267b83bca7de2fba89e7c57685277d2fa5c728a10dc6d01a6b876cd3939",
+      "sha256": "6d48c267b83bca7de2fba89e7c57685277d2fa5c728a10dc6d01a6b876cd3939",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/architecture-review/references/6-document-coverage.md",
+      "path": "skills/gamestudio-architecture-review/references/6-document-coverage.md",
+      "source_sha256": "f902dc64c01721cee13fd880a3670704c409cc82b9686eb7c0b7609dbdd5fcb7",
+      "sha256": "f902dc64c01721cee13fd880a3670704c409cc82b9686eb7c0b7609dbdd5fcb7",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/architecture-review/references/7-report.md",
+      "path": "skills/gamestudio-architecture-review/references/7-report.md",
+      "source_sha256": "d0d31c337e976a1427a770d5f8d761212de181ad66455963a87900a196b966cc",
+      "sha256": "d0d31c337e976a1427a770d5f8d761212de181ad66455963a87900a196b966cc",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/architecture-review/references/8-write.md",
+      "path": "skills/gamestudio-architecture-review/references/8-write.md",
+      "source_sha256": "f7c34fad5198874728b61cb23faae6555debaa63bed376082ed2da1f24e165bc",
+      "sha256": "f7c34fad5198874728b61cb23faae6555debaa63bed376082ed2da1f24e165bc",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/architecture-review/references/9-handoff.md",
+      "path": "skills/gamestudio-architecture-review/references/9-handoff.md",
+      "source_sha256": "5620d237cb8f5c429215ec60921ec1ea83f723b004611217f7ccd11422eb7516",
+      "sha256": "5620d237cb8f5c429215ec60921ec1ea83f723b004611217f7ccd11422eb7516",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/scripts/adr-dep-graph.sh",
+      "path": "skills/gamestudio-architecture-review/scripts/adr-dep-graph.sh",
+      "source_sha256": "f7f4f21c447cc4bd4c87f6f8a9a83f2ab70bb3da1d0613b69f51513f53b808e8",
+      "sha256": "f7f4f21c447cc4bd4c87f6f8a9a83f2ab70bb3da1d0613b69f51513f53b808e8",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/scripts/registry.sh",
+      "path": "skills/gamestudio-architecture-review/scripts/registry.sh",
+      "source_sha256": "4b698b1af5ec413da992a459dba2cdb71b505e50fbb1972c80b4e8f33105959e",
+      "sha256": "4b698b1af5ec413da992a459dba2cdb71b505e50fbb1972c80b4e8f33105959e",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/scripts/review-receipts.sh",
+      "path": "skills/gamestudio-architecture-review/scripts/review-receipts.sh",
+      "source_sha256": "e4234095b47a12875179932508874627012ff086e136ff72f8324d2c0e9836db",
+      "sha256": "e4234095b47a12875179932508874627012ff086e136ff72f8324d2c0e9836db",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/gamestudio-architecture-review/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/code-review/LICENSE",
+      "path": "skills/gamestudio-code-review/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/code-review/NOTICE.md",
+      "path": "skills/gamestudio-code-review/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/code-review/SKILL.md",
+      "path": "skills/gamestudio-code-review/SKILL.md",
+      "source_sha256": "3468d605b4627e0568c80d0732d1ab1281652641f3dede555191657c40571b8c",
+      "sha256": "a4fcd8b3372ee511c282a790bfc6a46903eb9ea75e88b8ba8459b8dd437b0fbc",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/gamestudio-code-review/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/design-system/LICENSE",
+      "path": "skills/gamestudio-design-system/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/design-system/NOTICE.md",
+      "path": "skills/gamestudio-design-system/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/design-system/SKILL.md",
+      "path": "skills/gamestudio-design-system/SKILL.md",
+      "source_sha256": "9c4e7d1f1594e062c50f96e60a06d5a0fbaae1f90a7f4f9762f0952b7248d396",
+      "sha256": "11423cfebcfc4eabdf2eb46c71d06016c3e4c151995e66c1f0424c2f3f379d98",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/design-system/references/1-parse-arguments.md",
+      "path": "skills/gamestudio-design-system/references/1-parse-arguments.md",
+      "source_sha256": "5a0ad57af5d5d3b4d225c6a81f1d21d5e6e709c723ab48d115829d2531175329",
+      "sha256": "5a0ad57af5d5d3b4d225c6a81f1d21d5e6e709c723ab48d115829d2531175329",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/design-system/references/2-gather-context.md",
+      "path": "skills/gamestudio-design-system/references/2-gather-context.md",
+      "source_sha256": "149f349250ed5c49c8fbe9cba92f4f1f750b9d5dce96c9a98267cfe29d8a0040",
+      "sha256": "149f349250ed5c49c8fbe9cba92f4f1f750b9d5dce96c9a98267cfe29d8a0040",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/design-system/references/3-file-skeleton.md",
+      "path": "skills/gamestudio-design-system/references/3-file-skeleton.md",
+      "source_sha256": "95dc956f90e443d15f4cd0ff4f7709f70c9068d5da5b163c9226220ac7d89e52",
+      "sha256": "95dc956f90e443d15f4cd0ff4f7709f70c9068d5da5b163c9226220ac7d89e52",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/design-system/references/4-section-design.md",
+      "path": "skills/gamestudio-design-system/references/4-section-design.md",
+      "source_sha256": "56ad86f7973a67284731c7ff02e5b740a5e1738e95fe7f8bb2b72d736ac3d29d",
+      "sha256": "56ad86f7973a67284731c7ff02e5b740a5e1738e95fe7f8bb2b72d736ac3d29d",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/design-system/references/5-post-design.md",
+      "path": "skills/gamestudio-design-system/references/5-post-design.md",
+      "source_sha256": "ea90124e8c6caa5e9cdbd61480f4e94ac540c058e709dd1cac4b2c46a32f86df",
+      "sha256": "ea90124e8c6caa5e9cdbd61480f4e94ac540c058e709dd1cac4b2c46a32f86df",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/scripts/registry.sh",
+      "path": "skills/gamestudio-design-system/scripts/registry.sh",
+      "source_sha256": "4b698b1af5ec413da992a459dba2cdb71b505e50fbb1972c80b4e8f33105959e",
+      "sha256": "4b698b1af5ec413da992a459dba2cdb71b505e50fbb1972c80b4e8f33105959e",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/gamestudio-design-system/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/docs/templates/game-design-document.md",
+      "path": "skills/gamestudio-design-system/templates/game-design-document.md",
+      "source_sha256": "8631250debc1b322f6ae3795296ea7fdf18aba14b9430cfa21abd18e92629f43",
+      "sha256": "8631250debc1b322f6ae3795296ea7fdf18aba14b9430cfa21abd18e92629f43",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/prototype/LICENSE",
+      "path": "skills/gamestudio-prototype/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/prototype/NOTICE.md",
+      "path": "skills/gamestudio-prototype/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/prototype/SKILL.md",
+      "path": "skills/gamestudio-prototype/SKILL.md",
+      "source_sha256": "3fc9e89b027234972d595df6adf2d6b6ed501aae7bd11a24fe3887d0e92f0956",
+      "sha256": "6a63e86ade9e83d588df79ac9b26adfea499eb9aaa781b07764b9e64fa6d726c",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/prototype/references/1-question.md",
+      "path": "skills/gamestudio-prototype/references/1-question.md",
+      "source_sha256": "0e3e23eb0e55f565292ee744ccd102d1297c8b95e82ab891624b9634ffb68954",
+      "sha256": "0e3e23eb0e55f565292ee744ccd102d1297c8b95e82ab891624b9634ffb68954",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/prototype/references/2-load-context.md",
+      "path": "skills/gamestudio-prototype/references/2-load-context.md",
+      "source_sha256": "be6b3a58b15b69a7d4dd1bf6f54daf70c0abfb05016c8f5f2fe91d40154330ef",
+      "sha256": "be6b3a58b15b69a7d4dd1bf6f54daf70c0abfb05016c8f5f2fe91d40154330ef",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/prototype/references/3-choose-path.md",
+      "path": "skills/gamestudio-prototype/references/3-choose-path.md",
+      "source_sha256": "66e109f694bea94d07b9ba4d33fa577028cb8c0fb23f1e1fc4f6d8bac9a227d8",
+      "sha256": "66e109f694bea94d07b9ba4d33fa577028cb8c0fb23f1e1fc4f6d8bac9a227d8",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/prototype/references/4-plan.md",
+      "path": "skills/gamestudio-prototype/references/4-plan.md",
+      "source_sha256": "8e2c9901b370d38506cfc9253d6035de4f5796e91da2088b1511f51f5b9e0072",
+      "sha256": "8e2c9901b370d38506cfc9253d6035de4f5796e91da2088b1511f51f5b9e0072",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/prototype/references/5-implement.md",
+      "path": "skills/gamestudio-prototype/references/5-implement.md",
+      "source_sha256": "49ed558badc1b7f5c539094fdaf61f3fa1197ed65f072916bef35b3fd1130c78",
+      "sha256": "49ed558badc1b7f5c539094fdaf61f3fa1197ed65f072916bef35b3fd1130c78",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/prototype/references/6-debrief.md",
+      "path": "skills/gamestudio-prototype/references/6-debrief.md",
+      "source_sha256": "cc1f527562b4c202ae09050738c041950d0bbf78b08370c422bcafd08fec8b76",
+      "sha256": "cc1f527562b4c202ae09050738c041950d0bbf78b08370c422bcafd08fec8b76",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/prototype/references/7-report.md",
+      "path": "skills/gamestudio-prototype/references/7-report.md",
+      "source_sha256": "d04c5a675e652a83aa5f7bdfa166004324874a667ae5891100a97250f604c8ab",
+      "sha256": "d04c5a675e652a83aa5f7bdfa166004324874a667ae5891100a97250f604c8ab",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/prototype/references/8-cd-review.md",
+      "path": "skills/gamestudio-prototype/references/8-cd-review.md",
+      "source_sha256": "cb05e4a4667666af6517ec469b3b3094ad1ac6bacd2b69c04b28ae126b2e1f03",
+      "sha256": "cb05e4a4667666af6517ec469b3b3094ad1ac6bacd2b69c04b28ae126b2e1f03",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/prototype/references/9-summary.md",
+      "path": "skills/gamestudio-prototype/references/9-summary.md",
+      "source_sha256": "9773ac9f283228d16dc7bcb23217f6da2b43f58aa19a34cc7b2127dbdf327ba1",
+      "sha256": "9773ac9f283228d16dc7bcb23217f6da2b43f58aa19a34cc7b2127dbdf327ba1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/prototype/references/spike-mode.md",
+      "path": "skills/gamestudio-prototype/references/spike-mode.md",
+      "source_sha256": "52588d00b47dca01513730126e70dab8af627c9e23eb5a8f6491f9cb586aaffe",
+      "sha256": "52588d00b47dca01513730126e70dab8af627c9e23eb5a8f6491f9cb586aaffe",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/gamestudio-prototype/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/docs/templates/prototype-report.md",
+      "path": "skills/gamestudio-prototype/templates/prototype-report.md",
+      "source_sha256": "2228475bd6122e826affd20039ab117acaea064872893a21b2b70e7f8d510145",
+      "sha256": "2228475bd6122e826affd20039ab117acaea064872893a21b2b70e7f8d510145",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/security-audit/LICENSE",
+      "path": "skills/gamestudio-security-audit/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/security-audit/NOTICE.md",
+      "path": "skills/gamestudio-security-audit/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/security-audit/SKILL.md",
+      "path": "skills/gamestudio-security-audit/SKILL.md",
+      "source_sha256": "91d9c01dfed0f6bb2dc977c0e3bfe76d705653c307546b19e1d5fd413033daf4",
+      "sha256": "77434e4d316ebf34ad234dc444ab4d60ffffeb7b853604c0ce92547fef57adb7",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/gamestudio-security-audit/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/gate-check/CONTRACT.md",
+      "path": "skills/gate-check/CONTRACT.md",
+      "source_sha256": "efc3ec5e64ffe3fef6c5acb475d6f3d6246e9ac46ba877d45c780b0a28bbe380",
+      "sha256": "efc3ec5e64ffe3fef6c5acb475d6f3d6246e9ac46ba877d45c780b0a28bbe380",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/gate-check/LICENSE",
+      "path": "skills/gate-check/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/gate-check/NOTICE.md",
+      "path": "skills/gate-check/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/gate-check/SKILL.md",
+      "path": "skills/gate-check/SKILL.md",
+      "source_sha256": "e2ca66469e396bfd53de98fe3ba9761c24ce76b514cb933e5c5b00f17b36c8de",
+      "sha256": "dac0865a8f9ffb6a6648c8512ed5ad0e7f24028716ad8e414ddca65b2495ba34",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/gate-check/references/2b-workflow-tier.md",
+      "path": "skills/gate-check/references/2b-workflow-tier.md",
+      "source_sha256": "3daee07be4df4801b2d5295dbfee80d04cccb526ca37552fd32a3d3b101fc055",
+      "sha256": "3daee07be4df4801b2d5295dbfee80d04cccb526ca37552fd32a3d3b101fc055",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/gate-check/references/3-run-gate-check.md",
+      "path": "skills/gate-check/references/3-run-gate-check.md",
+      "source_sha256": "c1194a18249ee653ec5b582d66dc2499c48ef93b2d5224fb72b56bbb30e62bca",
+      "sha256": "c1194a18249ee653ec5b582d66dc2499c48ef93b2d5224fb72b56bbb30e62bca",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/gate-check/references/4-assessment.md",
+      "path": "skills/gate-check/references/4-assessment.md",
+      "source_sha256": "f3ebcc4955e4b76c1f20e8d417dcfc9a049dc627f9588d2a08db10c578bcd9d3",
+      "sha256": "f3ebcc4955e4b76c1f20e8d417dcfc9a049dc627f9588d2a08db10c578bcd9d3",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/gate-check/references/5-verdict.md",
+      "path": "skills/gate-check/references/5-verdict.md",
+      "source_sha256": "d373188788563e8683727bd42baee68dcd82a0814174ebd5eaf79a242abc727c",
+      "sha256": "d373188788563e8683727bd42baee68dcd82a0814174ebd5eaf79a242abc727c",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/gate-check/references/6-update-stage.md",
+      "path": "skills/gate-check/references/6-update-stage.md",
+      "source_sha256": "6f5039acd8c824e4a2ece527cb2bcf4c00571194cb6060e739ebea076c875b94",
+      "sha256": "6f5039acd8c824e4a2ece527cb2bcf4c00571194cb6060e739ebea076c875b94",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/gate-check/references/7-next-steps.md",
+      "path": "skills/gate-check/references/7-next-steps.md",
+      "source_sha256": "a1f9be494110861ce15ce0157e56b568fd42d12f0d0c396f0abd134b522966b1",
+      "sha256": "a1f9be494110861ce15ce0157e56b568fd42d12f0d0c396f0abd134b522966b1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/gate-check/references/gate-polish.md",
+      "path": "skills/gate-check/references/gate-polish.md",
+      "source_sha256": "f55ab0697622578b8bf84b41806f9e17cd23247f81975e84031a299f0fc3d1e2",
+      "sha256": "f55ab0697622578b8bf84b41806f9e17cd23247f81975e84031a299f0fc3d1e2",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/gate-check/references/gate-pre-production.md",
+      "path": "skills/gate-check/references/gate-pre-production.md",
+      "source_sha256": "6acf2cf7a92ed8ce4d2a77f8d75560fce49b98ad5218f2b06606a5ba0545786b",
+      "sha256": "6acf2cf7a92ed8ce4d2a77f8d75560fce49b98ad5218f2b06606a5ba0545786b",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/gate-check/references/gate-production.md",
+      "path": "skills/gate-check/references/gate-production.md",
+      "source_sha256": "9d77573b61576d4fb233ed9d3ee3f1efab81e26814c1596208fb408b57956e4a",
+      "sha256": "9d77573b61576d4fb233ed9d3ee3f1efab81e26814c1596208fb408b57956e4a",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/gate-check/references/gate-release.md",
+      "path": "skills/gate-check/references/gate-release.md",
+      "source_sha256": "acc2705086afe5cf766b839fbfbe6dfd0b96039af56737e3d0726457b0a0973f",
+      "sha256": "acc2705086afe5cf766b839fbfbe6dfd0b96039af56737e3d0726457b0a0973f",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/gate-check/references/gate-systems-design.md",
+      "path": "skills/gate-check/references/gate-systems-design.md",
+      "source_sha256": "2472d9706f3b938c76eeb747b571d9a695232ada2ca05f4ecce4dffbd868be67",
+      "sha256": "2472d9706f3b938c76eeb747b571d9a695232ada2ca05f4ecce4dffbd868be67",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/gate-check/references/gate-technical-setup.md",
+      "path": "skills/gate-check/references/gate-technical-setup.md",
+      "source_sha256": "26279888b7a13b8b2f2ecbdc0105a1b743ddd39f621e304391d917df1d388bcb",
+      "sha256": "26279888b7a13b8b2f2ecbdc0105a1b743ddd39f621e304391d917df1d388bcb",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/scripts/adr-dep-graph.sh",
+      "path": "skills/gate-check/scripts/adr-dep-graph.sh",
+      "source_sha256": "f7f4f21c447cc4bd4c87f6f8a9a83f2ab70bb3da1d0613b69f51513f53b808e8",
+      "sha256": "f7f4f21c447cc4bd4c87f6f8a9a83f2ab70bb3da1d0613b69f51513f53b808e8",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/scripts/artifact-check.sh",
+      "path": "skills/gate-check/scripts/artifact-check.sh",
+      "source_sha256": "53bfb4c03ae52a711755145f1b7fe5dc3218f26f69f78e3a94ecc489f149b540",
+      "sha256": "53bfb4c03ae52a711755145f1b7fe5dc3218f26f69f78e3a94ecc489f149b540",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/scripts/gdd-structure-check.sh",
+      "path": "skills/gate-check/scripts/gdd-structure-check.sh",
+      "source_sha256": "b5c8cf8b50ceb8eff6afe61beb82fec2c9258e87aefbe9a0dfd96f9422996204",
+      "sha256": "b5c8cf8b50ceb8eff6afe61beb82fec2c9258e87aefbe9a0dfd96f9422996204",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/scripts/set-stage.sh",
+      "path": "skills/gate-check/scripts/set-stage.sh",
+      "source_sha256": "717aae86e7fa76f8cb7d0b5ba7b451a2f754e6e949cf8add7400be9174d9e346",
+      "sha256": "717aae86e7fa76f8cb7d0b5ba7b451a2f754e6e949cf8add7400be9174d9e346",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/gate-check/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/docs/templates/difficulty-curve.md",
+      "path": "skills/gate-check/templates/difficulty-curve.md",
+      "source_sha256": "4aa7b30c66c2882110c3b1cd794594a52d8fd98666bf6c491921515993290279",
+      "sha256": "4aa7b30c66c2882110c3b1cd794594a52d8fd98666bf6c491921515993290279",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/docs/templates/player-journey.md",
+      "path": "skills/gate-check/templates/player-journey.md",
+      "source_sha256": "fcb350eefe8fd77ce179880beff2e55023ec1e3101e3f48bff32cb8777a05be7",
+      "sha256": "fcb350eefe8fd77ce179880beff2e55023ec1e3101e3f48bff32cb8777a05be7",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/help/LICENSE",
+      "path": "skills/help/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/help/NOTICE.md",
+      "path": "skills/help/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/help/SKILL.md",
+      "path": "skills/help/SKILL.md",
+      "source_sha256": "3a5fd66a1e29fd86133ef3085e764cf0f8e15ce935ed06e9000580a577ddbeb6",
+      "sha256": "971a59287480042def925b0bf629f75ac4a5d1285e23aab8b0207305070d25df",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/scripts/artifact-check.sh",
+      "path": "skills/help/scripts/artifact-check.sh",
+      "source_sha256": "53bfb4c03ae52a711755145f1b7fe5dc3218f26f69f78e3a94ecc489f149b540",
+      "sha256": "53bfb4c03ae52a711755145f1b7fe5dc3218f26f69f78e3a94ecc489f149b540",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/scripts/story-status.sh",
+      "path": "skills/help/scripts/story-status.sh",
+      "source_sha256": "9fb510e4164909f4704c141f38ca42f0e1eb02e6476f73ab8dc7e9141d54ff4d",
+      "sha256": "9fb510e4164909f4704c141f38ca42f0e1eb02e6476f73ab8dc7e9141d54ff4d",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/help/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/docs/templates/session-state.md",
+      "path": "skills/help/templates/session-state.md",
+      "source_sha256": "68b8d7ccd6a09f600facc73607bcffd449277633f3a956149b7122419c47487a",
+      "sha256": "68b8d7ccd6a09f600facc73607bcffd449277633f3a956149b7122419c47487a",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/hotfix/LICENSE",
+      "path": "skills/hotfix/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/hotfix/NOTICE.md",
+      "path": "skills/hotfix/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/hotfix/SKILL.md",
+      "path": "skills/hotfix/SKILL.md",
+      "source_sha256": "20233b7851f526da3ad80ee9acb9e2ec9b99bd15e861252eddef04c0d7aaee6c",
+      "sha256": "38e3b8f94cba52fdacd8f8d9face7285c6aafb45fca8371f85fe4e7251859e40",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/docs/templates/incident-response.md",
+      "path": "skills/hotfix/templates/incident-response.md",
+      "source_sha256": "a332006b15e79a3e8a40bd20cbd6e3c88e79883c1deda3073be27df14402689e",
+      "sha256": "a332006b15e79a3e8a40bd20cbd6e3c88e79883c1deda3073be27df14402689e",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/launch-checklist/LICENSE",
+      "path": "skills/launch-checklist/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/launch-checklist/NOTICE.md",
+      "path": "skills/launch-checklist/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/launch-checklist/SKILL.md",
+      "path": "skills/launch-checklist/SKILL.md",
+      "source_sha256": "ce8813df00b1b1f513c935fa6fcefd560c293e96fee02040a7705063a6afa7d2",
+      "sha256": "a92cc071d9dea025fdcb4c978b2bac8278815c31f900e79146e4bd7719cb8338",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/launch-checklist/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/localize/LICENSE",
+      "path": "skills/localize/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/localize/NOTICE.md",
+      "path": "skills/localize/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/localize/SKILL.md",
+      "path": "skills/localize/SKILL.md",
+      "source_sha256": "321672db96810276c52b6630119d38bfeee8010cf6cd4a4f39511737ed450144",
+      "sha256": "af03202680c3b19ecb35d3780c33d7c7d9fd390a87f63468f7ac19d84629049d",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/localize/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/map-systems/LICENSE",
+      "path": "skills/map-systems/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/map-systems/NOTICE.md",
+      "path": "skills/map-systems/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/map-systems/SKILL.md",
+      "path": "skills/map-systems/SKILL.md",
+      "source_sha256": "d27959d0043bd8c9f08c0f3fb56aa66de8e6ce84812a7e43d5f2d2c43cae01dd",
+      "sha256": "0b68d5b228056aac3c7d07f71f814287a2b456dd985cdb031fdfe4c5d00a31a2",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/map-systems/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/docs/templates/systems-index.md",
+      "path": "skills/map-systems/templates/systems-index.md",
+      "source_sha256": "a40a9957676be4adc79d36f654d17e98badb59bd12480dfa67bc47ac51e11d38",
+      "sha256": "a40a9957676be4adc79d36f654d17e98badb59bd12480dfa67bc47ac51e11d38",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/milestone-review/LICENSE",
+      "path": "skills/milestone-review/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/milestone-review/NOTICE.md",
+      "path": "skills/milestone-review/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/milestone-review/SKILL.md",
+      "path": "skills/milestone-review/SKILL.md",
+      "source_sha256": "1028ff3cc2f0f1ad609efb5c91d62b40be9644a0d39cc1fb3bb8c0fd42ca29df",
+      "sha256": "04e8b7ea47bad6854adaf6392564214c8746d1c25c52b699c79f89306cb990a4",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/milestone-review/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/docs/templates/milestone-definition.md",
+      "path": "skills/milestone-review/templates/milestone-definition.md",
+      "source_sha256": "787462069d14754bb367a63ed41228cf15e78725326c5f4ca6638c1ea2e6932b",
+      "sha256": "787462069d14754bb367a63ed41228cf15e78725326c5f4ca6638c1ea2e6932b",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/docs/templates/risk-register-entry.md",
+      "path": "skills/milestone-review/templates/risk-register-entry.md",
+      "source_sha256": "0d4460ea5b5a3b2a87506fab8db2344efbffb9cf39b4ece285025038f9e0ff34",
+      "sha256": "0d4460ea5b5a3b2a87506fab8db2344efbffb9cf39b4ece285025038f9e0ff34",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/onboard/LICENSE",
+      "path": "skills/onboard/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/onboard/NOTICE.md",
+      "path": "skills/onboard/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/onboard/SKILL.md",
+      "path": "skills/onboard/SKILL.md",
+      "source_sha256": "e10acba4b4cac6b95471b3b5b11c524dfea578e030029b87a55407ac129c756c",
+      "sha256": "0bbc2186526b85a3abbdc30157b8cc9b4c6b10e37c4b04ab7bfb535fe195fcbf",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/onboard/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/patch-notes/LICENSE",
+      "path": "skills/patch-notes/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/patch-notes/NOTICE.md",
+      "path": "skills/patch-notes/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/patch-notes/SKILL.md",
+      "path": "skills/patch-notes/SKILL.md",
+      "source_sha256": "41e7a4b4b1d5536dd2957ffa048a80391ddcf2c6cf8eac169b05962d66c5f0e7",
+      "sha256": "1ae6a28a1445200b5a72cf7937a27329ed96dc5fda533a19e4c1722821316960",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/patch-notes/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/perf-profile/LICENSE",
+      "path": "skills/perf-profile/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/perf-profile/NOTICE.md",
+      "path": "skills/perf-profile/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/perf-profile/SKILL.md",
+      "path": "skills/perf-profile/SKILL.md",
+      "source_sha256": "6d9d1967d68f06b2d3f4f4f8b144ea38894612d3cf9885e50c459fcfa8dc6e8b",
+      "sha256": "253c7c2d80462b073de7ddce0b176849c9cb2c7c1d6426a47bc5d95615c5518f",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/perf-profile/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/playtest-report/LICENSE",
+      "path": "skills/playtest-report/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/playtest-report/NOTICE.md",
+      "path": "skills/playtest-report/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/playtest-report/SKILL.md",
+      "path": "skills/playtest-report/SKILL.md",
+      "source_sha256": "503d55d2b3a0144dfdc287e6dc3ba8c6da998e2611fe62ef0cd0d546438286fe",
+      "sha256": "33128b6062f5fbbc7a256d5c2c61c76512e8aedddafa506411d002c5eeced6f5",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/playtest-report/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/project-stage-detect/LICENSE",
+      "path": "skills/project-stage-detect/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/project-stage-detect/NOTICE.md",
+      "path": "skills/project-stage-detect/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/project-stage-detect/SKILL.md",
+      "path": "skills/project-stage-detect/SKILL.md",
+      "source_sha256": "be78698fe68ddc7fa79a0d763a1f5e474b1b4c2947237c4ca741071ac1b8f4b8",
+      "sha256": "cc3beffe578dddb4e8fee91d87ee99b80ea5dbc3f217e13b457057d00676a0f9",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/scripts/artifact-check.sh",
+      "path": "skills/project-stage-detect/scripts/artifact-check.sh",
+      "source_sha256": "53bfb4c03ae52a711755145f1b7fe5dc3218f26f69f78e3a94ecc489f149b540",
+      "sha256": "53bfb4c03ae52a711755145f1b7fe5dc3218f26f69f78e3a94ecc489f149b540",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/project-stage-detect/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/docs/templates/project-stage-report.md",
+      "path": "skills/project-stage-detect/templates/project-stage-report.md",
+      "source_sha256": "1b69bbf848758f639bec2579fb5e5e8c46b4b4c4d1191e7947614c0b9a4a26bb",
+      "sha256": "1b69bbf848758f639bec2579fb5e5e8c46b4b4c4d1191e7947614c0b9a4a26bb",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/propagate-design-change/LICENSE",
+      "path": "skills/propagate-design-change/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/propagate-design-change/NOTICE.md",
+      "path": "skills/propagate-design-change/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/propagate-design-change/SKILL.md",
+      "path": "skills/propagate-design-change/SKILL.md",
+      "source_sha256": "bf110550ddd1ca9c8bbd266cda2808b40aec02646b6ff9886d850ab9f1f1d7c9",
+      "sha256": "bff7d9de51c0526634fd9c7ba145f4c511e10545a104a5dc2b5e3182c233da08",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/scripts/adr-status.sh",
+      "path": "skills/propagate-design-change/scripts/adr-status.sh",
+      "source_sha256": "92c2c02283aa4c8a76ba7c2c0cf36dabacc1d3ba2c618878322fde21d4bc13ff",
+      "sha256": "92c2c02283aa4c8a76ba7c2c0cf36dabacc1d3ba2c618878322fde21d4bc13ff",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/scripts/md-section.sh",
+      "path": "skills/propagate-design-change/scripts/md-section.sh",
+      "source_sha256": "0ffa55a3f7215fda020c4070c160e7992577005b00aad3d7b6d527870dd7cfa8",
+      "sha256": "0ffa55a3f7215fda020c4070c160e7992577005b00aad3d7b6d527870dd7cfa8",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/propagate-design-change/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/qa-plan/LICENSE",
+      "path": "skills/qa-plan/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/qa-plan/NOTICE.md",
+      "path": "skills/qa-plan/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/qa-plan/SKILL.md",
+      "path": "skills/qa-plan/SKILL.md",
+      "source_sha256": "fa3a333c9f0e298979e8e174165bcd58042d686b788327644487644c25c8efa5",
+      "sha256": "1c77901cdadd2bf5900b52d480cceb8153f1fd52cef0df8719e417ed3033ddfc",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/qa-plan/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/quick-design/LICENSE",
+      "path": "skills/quick-design/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/quick-design/NOTICE.md",
+      "path": "skills/quick-design/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/quick-design/SKILL.md",
+      "path": "skills/quick-design/SKILL.md",
+      "source_sha256": "32a4521f5290f459b84cf3500f86487d63b03d192281c392b7a023dcede03fb3",
+      "sha256": "989eab5c82f7fb7dcd140fa783e6316a4223c4a59dfda347b52066b0bbd1fcd9",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/quick-design/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/regression-suite/LICENSE",
+      "path": "skills/regression-suite/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/regression-suite/NOTICE.md",
+      "path": "skills/regression-suite/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/regression-suite/SKILL.md",
+      "path": "skills/regression-suite/SKILL.md",
+      "source_sha256": "65b91a43cfc319b8f369d31f78686549a84cbfaa32ba2c125b9b3abce7f29717",
+      "sha256": "cf7397b6e5f9a8795a2652fafba1bf09922c3d9c7cf8d49a33c47885a107055a",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/regression-suite/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/release-checklist/LICENSE",
+      "path": "skills/release-checklist/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/release-checklist/NOTICE.md",
+      "path": "skills/release-checklist/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/release-checklist/SKILL.md",
+      "path": "skills/release-checklist/SKILL.md",
+      "source_sha256": "a7bd13a309e683c5a2b8a39f18df753d423d9d0b02ccf384802e3882cac4cfd5",
+      "sha256": "1bd9863d61b03624c822c9607816b07bc4ec0f538977146b5dbde00b51aa8a4a",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/release-checklist/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/retrospective/LICENSE",
+      "path": "skills/retrospective/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/retrospective/NOTICE.md",
+      "path": "skills/retrospective/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/retrospective/SKILL.md",
+      "path": "skills/retrospective/SKILL.md",
+      "source_sha256": "29b136a0f3ea57c09acbc6e97e18df413444305f26e2eeac35c7c99de9f9dc61",
+      "sha256": "acdc602627ee642bb26d172a0c972df39aa52afa13d7f59b32ab884e3e21a1df",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/retrospective/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/reverse-document/LICENSE",
+      "path": "skills/reverse-document/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/reverse-document/NOTICE.md",
+      "path": "skills/reverse-document/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/reverse-document/SKILL.md",
+      "path": "skills/reverse-document/SKILL.md",
+      "source_sha256": "c498c673b8f1b8d5634e33839b6117b17a827c2f41207acb115eb276f716189a",
+      "sha256": "772c9ffbd1f3c9cfbca384718d6cd94647491a8626e08f3d89addc9a57cc41bc",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/reverse-document/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/docs/templates/game-brief.md",
+      "path": "skills/reverse-document/templates/game-brief.md",
+      "source_sha256": "70d49670b663619843301aa9a1e105f892d6db715f3e0a552b5241632e212b60",
+      "sha256": "70d49670b663619843301aa9a1e105f892d6db715f3e0a552b5241632e212b60",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/review-all-gdds/LICENSE",
+      "path": "skills/review-all-gdds/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/review-all-gdds/NOTICE.md",
+      "path": "skills/review-all-gdds/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/review-all-gdds/SKILL.md",
+      "path": "skills/review-all-gdds/SKILL.md",
+      "source_sha256": "2b5bae8837d3b47bee678ab78aa23f0e177326b4655f22d5c16470089a25241b",
+      "sha256": "0f2f00da5f0ca5319f4def477720935ec67d7e5b827727ce498c428bbc69cde2",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/review-all-gdds/references/1-load.md",
+      "path": "skills/review-all-gdds/references/1-load.md",
+      "source_sha256": "1bafd370ec7fa114b23e1d109eff3c1f9dfadca2c432427f214521d197a27ddd",
+      "sha256": "1bafd370ec7fa114b23e1d109eff3c1f9dfadca2c432427f214521d197a27ddd",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/review-all-gdds/references/2-consistency.md",
+      "path": "skills/review-all-gdds/references/2-consistency.md",
+      "source_sha256": "38596caeb557efbca1ecb7b767f558865453b2266a35a59f7e34f173b44a2351",
+      "sha256": "38596caeb557efbca1ecb7b767f558865453b2266a35a59f7e34f173b44a2351",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/review-all-gdds/references/3-design-holism.md",
+      "path": "skills/review-all-gdds/references/3-design-holism.md",
+      "source_sha256": "8855ba326fc36a2406c15afbcbdb22f01875ed079e4cd1446d8ffed668e819ee",
+      "sha256": "8855ba326fc36a2406c15afbcbdb22f01875ed079e4cd1446d8ffed668e819ee",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/review-all-gdds/references/4-scenarios.md",
+      "path": "skills/review-all-gdds/references/4-scenarios.md",
+      "source_sha256": "6cbabdb03c253ab2c2fe384ae075d68fbeeef705fc5acd60fcb60f9784ae286d",
+      "sha256": "6cbabdb03c253ab2c2fe384ae075d68fbeeef705fc5acd60fcb60f9784ae286d",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/review-all-gdds/references/5-report.md",
+      "path": "skills/review-all-gdds/references/5-report.md",
+      "source_sha256": "ae51d4b943c57dbedb5f08a78ec7b4608324c0a9bb97b509c40bb1772e4040cb",
+      "sha256": "ae51d4b943c57dbedb5f08a78ec7b4608324c0a9bb97b509c40bb1772e4040cb",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/review-all-gdds/references/6-write.md",
+      "path": "skills/review-all-gdds/references/6-write.md",
+      "source_sha256": "e4f3a48fd218f010138b5ef0453178dc7d4617db93044a1c57b7f2d35cbd2942",
+      "sha256": "e4f3a48fd218f010138b5ef0453178dc7d4617db93044a1c57b7f2d35cbd2942",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/review-all-gdds/references/7-handoff.md",
+      "path": "skills/review-all-gdds/references/7-handoff.md",
+      "source_sha256": "76a11e26daef756825db1aabf6380c3781a1ac479eea38a63104ad697163b4c6",
+      "sha256": "76a11e26daef756825db1aabf6380c3781a1ac479eea38a63104ad697163b4c6",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/scripts/review-scope.sh",
+      "path": "skills/review-all-gdds/scripts/review-scope.sh",
+      "source_sha256": "9817c9fa450a20dab05e9922c9840231e8e24786590a7ea49a61ae3d00327704",
+      "sha256": "9817c9fa450a20dab05e9922c9840231e8e24786590a7ea49a61ae3d00327704",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/review-all-gdds/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/scope-check/LICENSE",
+      "path": "skills/scope-check/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/scope-check/NOTICE.md",
+      "path": "skills/scope-check/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/scope-check/SKILL.md",
+      "path": "skills/scope-check/SKILL.md",
+      "source_sha256": "70af8cd294881a0c1e62852bc5e47a63f142381f008f4f92adc1b0ed03ab5e11",
+      "sha256": "f3e363a11ef1b005a08ec91380b7b85e23189b48c50431abc8322b265c4646a3",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/settings/LICENSE",
+      "path": "skills/settings/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/settings/NOTICE.md",
+      "path": "skills/settings/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/settings/SKILL.md",
+      "path": "skills/settings/SKILL.md",
+      "source_sha256": "5741b2ef90d60ee3ee350b908d106c10fcd037ad280d2a9ee4cb8f8a7fcc506e",
+      "sha256": "56cebc7a31e2e0a1505f535674d0600dfc36d87379112a78f562f1992fcc4f4b",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/scripts/config-set.sh",
+      "path": "skills/settings/scripts/config-set.sh",
+      "source_sha256": "9bae063fc2405d19feaca97f75d008a0cd3272af953595a5abded6050eb13c4b",
+      "sha256": "9bae063fc2405d19feaca97f75d008a0cd3272af953595a5abded6050eb13c4b",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/settings/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/setup-engine/LICENSE",
+      "path": "skills/setup-engine/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/setup-engine/NOTICE.md",
+      "path": "skills/setup-engine/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/setup-engine/SKILL.md",
+      "path": "skills/setup-engine/SKILL.md",
+      "source_sha256": "37c08d68ed58b70e6880e269e711e2617b89f2f165d9bba5d966e326e73e9a17",
+      "sha256": "8941bdef0c70ec0992468266cec7623dcedb85eb03393c4213900b6973170468",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/setup-engine/references/11-upgrade.md",
+      "path": "skills/setup-engine/references/11-upgrade.md",
+      "source_sha256": "4099ab07db41a6ef9cc7c19280c52e1241b3c1cb46621aeffed3365ab466d248",
+      "sha256": "4099ab07db41a6ef9cc7c19280c52e1241b3c1cb46621aeffed3365ab466d248",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/setup-engine/references/12-output-summary.md",
+      "path": "skills/setup-engine/references/12-output-summary.md",
+      "source_sha256": "0d722f38faecad23c1acf89aa085d6bf9a5db3f0814129c11869a013b2dc90bb",
+      "sha256": "0d722f38faecad23c1acf89aa085d6bf9a5db3f0814129c11869a013b2dc90bb",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/setup-engine/references/2-guided-mode.md",
+      "path": "skills/setup-engine/references/2-guided-mode.md",
+      "source_sha256": "77ef8e043ef536db796f3d32a78d960ecde7a8320caf568f30b7b93036128ffa",
+      "sha256": "77ef8e043ef536db796f3d32a78d960ecde7a8320caf568f30b7b93036128ffa",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/setup-engine/references/3-version.md",
+      "path": "skills/setup-engine/references/3-version.md",
+      "source_sha256": "e39430dbb5b1e0afe002568fb150ebd123de5079be48d5a257ada36a22be74ac",
+      "sha256": "e39430dbb5b1e0afe002568fb150ebd123de5079be48d5a257ada36a22be74ac",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/setup-engine/references/4-claude-md-stack.md",
+      "path": "skills/setup-engine/references/4-claude-md-stack.md",
+      "source_sha256": "a122df4ebb9167c2defa5a8b9dc5b6a4a649e29f0c48eb43795a1230fb24d2cf",
+      "sha256": "a122df4ebb9167c2defa5a8b9dc5b6a4a649e29f0c48eb43795a1230fb24d2cf",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/setup-engine/references/5-technical-preferences.md",
+      "path": "skills/setup-engine/references/5-technical-preferences.md",
+      "source_sha256": "fc332503d281bfbd6163b89f835276ba4ad3f3d6d17ec6df673ffbe2d0103aa5",
+      "sha256": "fc332503d281bfbd6163b89f835276ba4ad3f3d6d17ec6df673ffbe2d0103aa5",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/setup-engine/references/5.5-project-yaml.md",
+      "path": "skills/setup-engine/references/5.5-project-yaml.md",
+      "source_sha256": "853492f39487b65f8155d8dc972e7861adbd01087068c3c525a2954f45b601bd",
+      "sha256": "853492f39487b65f8155d8dc972e7861adbd01087068c3c525a2954f45b601bd",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/setup-engine/references/6-knowledge-gap.md",
+      "path": "skills/setup-engine/references/6-knowledge-gap.md",
+      "source_sha256": "694517ca40542c55b671af5c47afe39420dbe9170b29f749e479894acef67a27",
+      "sha256": "694517ca40542c55b671af5c47afe39420dbe9170b29f749e479894acef67a27",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/setup-engine/references/7-reference-docs.md",
+      "path": "skills/setup-engine/references/7-reference-docs.md",
+      "source_sha256": "f072c0a70331e75f7931b5b9ed4d63c9b10b5455e044683616220b4f7846704e",
+      "sha256": "f072c0a70331e75f7931b5b9ed4d63c9b10b5455e044683616220b4f7846704e",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/setup-engine/references/7.5-scaffold.md",
+      "path": "skills/setup-engine/references/7.5-scaffold.md",
+      "source_sha256": "4906f271bd3020520dfe22716f65fb1a8df60554946faf74be810611cb383e22",
+      "sha256": "4906f271bd3020520dfe22716f65fb1a8df60554946faf74be810611cb383e22",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/setup-engine/references/8-verify.md",
+      "path": "skills/setup-engine/references/8-verify.md",
+      "source_sha256": "9d75412fd622ec9a51686a9ba81bc9e3f81b097eee0cba22e8cf67bd38d15fa1",
+      "sha256": "9d75412fd622ec9a51686a9ba81bc9e3f81b097eee0cba22e8cf67bd38d15fa1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/setup-engine/references/godot-language-config.md",
+      "path": "skills/setup-engine/references/godot-language-config.md",
+      "source_sha256": "82b2aad2ad6a63616c30a5168f720eb6e83ca40e585bddf82dc13395a0a7d404",
+      "sha256": "82b2aad2ad6a63616c30a5168f720eb6e83ca40e585bddf82dc13395a0a7d404",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/scripts/godot-parse-check.gd",
+      "path": "skills/setup-engine/scripts/godot-parse-check.gd",
+      "source_sha256": "c009f12256161f64d0eaf031ddbcf177dec4b02eb8ff469ab7e6d12632705c5e",
+      "sha256": "c009f12256161f64d0eaf031ddbcf177dec4b02eb8ff469ab7e6d12632705c5e",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/scripts/project-coherence.sh",
+      "path": "skills/setup-engine/scripts/project-coherence.sh",
+      "source_sha256": "6b4da1aff42a3c653c2c532d4385f923667ec37d01546b57d1459d659ece3c3b",
+      "sha256": "6b4da1aff42a3c653c2c532d4385f923667ec37d01546b57d1459d659ece3c3b",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/setup-engine/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/skill-improve/LICENSE",
+      "path": "skills/skill-improve/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/skill-improve/NOTICE.md",
+      "path": "skills/skill-improve/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/skill-improve/SKILL.md",
+      "path": "skills/skill-improve/SKILL.md",
+      "source_sha256": "79b9febba255d732e2e722d45be8e2b90f7182b7ce5bdb772195e22c1ad8c65e",
+      "sha256": "cd60b26509c14641b97fb009fad8e1c0df2303aefe4a504174c5a9336720c038",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/skill-improve/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/skill-test/LICENSE",
+      "path": "skills/skill-test/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/skill-test/NOTICE.md",
+      "path": "skills/skill-test/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/skill-test/SKILL.md",
+      "path": "skills/skill-test/SKILL.md",
+      "source_sha256": "c4a1775aabdac131a0fde02fa380bd741eaffb380516f4e004ae34cfedb363c9",
+      "sha256": "f3dfb47a34e8b4ff3949cee1cbb0343ee14607c41ca443a21227a1171ee9cad5",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/scripts/agent-check.sh",
+      "path": "skills/skill-test/scripts/agent-check.sh",
+      "source_sha256": "b8a1b78415ddc29760f21bb14f0c4502b0d49b8135ff70c7f2377c001cbb24f0",
+      "sha256": "b8a1b78415ddc29760f21bb14f0c4502b0d49b8135ff70c7f2377c001cbb24f0",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/scripts/compat-inventory.sh",
+      "path": "skills/skill-test/scripts/compat-inventory.sh",
+      "source_sha256": "4d1f2a7951d8ad54ac5d72a79e4939ec601742792a61d691b87e736e27799cb1",
+      "sha256": "4d1f2a7951d8ad54ac5d72a79e4939ec601742792a61d691b87e736e27799cb1",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/skill-test/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/smoke-check/LICENSE",
+      "path": "skills/smoke-check/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/smoke-check/NOTICE.md",
+      "path": "skills/smoke-check/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/smoke-check/SKILL.md",
+      "path": "skills/smoke-check/SKILL.md",
+      "source_sha256": "8531f6d673bf35704b2a0676594e3ab4d6af0153fe772ab590479247fddee6d0",
+      "sha256": "938fec3c1b7d905ddff1c9c7b19bde5ee0237d9edfc0e52f78abda99cf566fdf",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/smoke-check/references/1-detect-setup.md",
+      "path": "skills/smoke-check/references/1-detect-setup.md",
+      "source_sha256": "07af6a1dc13f17fddb6f1877e578969471ffa37e3e5b1845334ca216a36fdff3",
+      "sha256": "07af6a1dc13f17fddb6f1877e578969471ffa37e3e5b1845334ca216a36fdff3",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/smoke-check/references/2-run-tests.md",
+      "path": "skills/smoke-check/references/2-run-tests.md",
+      "source_sha256": "93981f1b4aadeff6d3c8db199de990972e7a7d0540313e3cad4c74aaf52c9f62",
+      "sha256": "93981f1b4aadeff6d3c8db199de990972e7a7d0540313e3cad4c74aaf52c9f62",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/smoke-check/references/3-coverage.md",
+      "path": "skills/smoke-check/references/3-coverage.md",
+      "source_sha256": "34cee3af8199169ed5771a889174c96f955ed3a56cf26fd56077fada46d62224",
+      "sha256": "34cee3af8199169ed5771a889174c96f955ed3a56cf26fd56077fada46d62224",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/smoke-check/references/4-manual-checks.md",
+      "path": "skills/smoke-check/references/4-manual-checks.md",
+      "source_sha256": "08d9d33dd0441f00346500e00bbea206c21239d83190cc6edbb5d986f9721d07",
+      "sha256": "08d9d33dd0441f00346500e00bbea206c21239d83190cc6edbb5d986f9721d07",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/smoke-check/references/5-report.md",
+      "path": "skills/smoke-check/references/5-report.md",
+      "source_sha256": "f819079544bfd59504d79d1e6a6607aaf98f7476cef0a91e15eb6cf1f73adabb",
+      "sha256": "f819079544bfd59504d79d1e6a6607aaf98f7476cef0a91e15eb6cf1f73adabb",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/smoke-check/references/6-write-gate.md",
+      "path": "skills/smoke-check/references/6-write-gate.md",
+      "source_sha256": "35510aaea59e83332a5eccc98a417afed5327114a6180fe62f2b7344cd716192",
+      "sha256": "35510aaea59e83332a5eccc98a417afed5327114a6180fe62f2b7344cd716192",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/scripts/project-coherence.sh",
+      "path": "skills/smoke-check/scripts/project-coherence.sh",
+      "source_sha256": "6b4da1aff42a3c653c2c532d4385f923667ec37d01546b57d1459d659ece3c3b",
+      "sha256": "6b4da1aff42a3c653c2c532d4385f923667ec37d01546b57d1459d659ece3c3b",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/smoke-check/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/soak-test/LICENSE",
+      "path": "skills/soak-test/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/soak-test/NOTICE.md",
+      "path": "skills/soak-test/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/soak-test/SKILL.md",
+      "path": "skills/soak-test/SKILL.md",
+      "source_sha256": "cd1ad9ab08b98b978f7dc5188822597b602e4f8170a811f0ca2ccab2f7f96122",
+      "sha256": "e65f8fa9ab9d8c4c08fffa4e5a3aadcddb1094597ea2207b4ed107255e48321a",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/soak-test/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/sprint-plan/LICENSE",
+      "path": "skills/sprint-plan/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/sprint-plan/NOTICE.md",
+      "path": "skills/sprint-plan/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/sprint-plan/SKILL.md",
+      "path": "skills/sprint-plan/SKILL.md",
+      "source_sha256": "55b5da9a8180dd0d62a6babffd63dc2cbcc6d5156a2dbcc2528b427253a1606e",
+      "sha256": "f8b6243e95abac99dd950bdcb61591a80c185b656505360d68b44285d32a076d",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/sprint-plan/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/docs/templates/milestone-definition.md",
+      "path": "skills/sprint-plan/templates/milestone-definition.md",
+      "source_sha256": "787462069d14754bb367a63ed41228cf15e78725326c5f4ca6638c1ea2e6932b",
+      "sha256": "787462069d14754bb367a63ed41228cf15e78725326c5f4ca6638c1ea2e6932b",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/docs/templates/risk-register-entry.md",
+      "path": "skills/sprint-plan/templates/risk-register-entry.md",
+      "source_sha256": "0d4460ea5b5a3b2a87506fab8db2344efbffb9cf39b4ece285025038f9e0ff34",
+      "sha256": "0d4460ea5b5a3b2a87506fab8db2344efbffb9cf39b4ece285025038f9e0ff34",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/sprint-status/LICENSE",
+      "path": "skills/sprint-status/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/sprint-status/NOTICE.md",
+      "path": "skills/sprint-status/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/sprint-status/SKILL.md",
+      "path": "skills/sprint-status/SKILL.md",
+      "source_sha256": "34d09121606a14f6b5c5a82cafe65796f97adb4ed8ed8857554384ae6fe90a14",
+      "sha256": "472e8a5ccc7a99cc083372775d4cb327e300ae17a4d9fa771aaddeda795a26db",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/scripts/story-status.sh",
+      "path": "skills/sprint-status/scripts/story-status.sh",
+      "source_sha256": "9fb510e4164909f4704c141f38ca42f0e1eb02e6476f73ab8dc7e9141d54ff4d",
+      "sha256": "9fb510e4164909f4704c141f38ca42f0e1eb02e6476f73ab8dc7e9141d54ff4d",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/sprint-status/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/start/LICENSE",
+      "path": "skills/start/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/start/NOTICE.md",
+      "path": "skills/start/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/start/SKILL.md",
+      "path": "skills/start/SKILL.md",
+      "source_sha256": "ab6e079a48c99479ac71deca11b9143a4b87874b6589e39c3e0a81422d9d1f32",
+      "sha256": "b24e2478785a445855c5b7d4e651b9e1ce9e011f8eb43defdcf248186d13402c",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/scripts/config-set.sh",
+      "path": "skills/start/scripts/config-set.sh",
+      "source_sha256": "9bae063fc2405d19feaca97f75d008a0cd3272af953595a5abded6050eb13c4b",
+      "sha256": "9bae063fc2405d19feaca97f75d008a0cd3272af953595a5abded6050eb13c4b",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/scripts/project-state.sh",
+      "path": "skills/start/scripts/project-state.sh",
+      "source_sha256": "fce992b9762b6c70f549ec21f12e99c8bca3e17c57a49e6ece15c0cefe115d1a",
+      "sha256": "fce992b9762b6c70f549ec21f12e99c8bca3e17c57a49e6ece15c0cefe115d1a",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/scripts/set-stage.sh",
+      "path": "skills/start/scripts/set-stage.sh",
+      "source_sha256": "717aae86e7fa76f8cb7d0b5ba7b451a2f754e6e949cf8add7400be9174d9e346",
+      "sha256": "717aae86e7fa76f8cb7d0b5ba7b451a2f754e6e949cf8add7400be9174d9e346",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/story-done/CONTRACT.md",
+      "path": "skills/story-done/CONTRACT.md",
+      "source_sha256": "b805929ac2ad562172f5ff9d0492268b172cd7db0f3043a94bf35dc7eec9117a",
+      "sha256": "b805929ac2ad562172f5ff9d0492268b172cd7db0f3043a94bf35dc7eec9117a",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/story-done/LICENSE",
+      "path": "skills/story-done/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/story-done/NOTICE.md",
+      "path": "skills/story-done/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/story-done/SKILL.md",
+      "path": "skills/story-done/SKILL.md",
+      "source_sha256": "3946b6770a8f27fd679a0a2f5d9c8aec6096bba6ee7982827700d1b542c9e74f",
+      "sha256": "62bfff2ed7890f138ee479be00168c0b368be586cc053be6b0d8224d33f09103",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/story-done/references/review-gates.md",
+      "path": "skills/story-done/references/review-gates.md",
+      "source_sha256": "49618b4e574a5db5dd9b25bc681b92d357b513ef9e05c760a4509d0471913741",
+      "sha256": "49618b4e574a5db5dd9b25bc681b92d357b513ef9e05c760a4509d0471913741",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/story-done/references/sprint-next.md",
+      "path": "skills/story-done/references/sprint-next.md",
+      "source_sha256": "d18331c32a0e15ac6858d60ac4c9b220b81da607c3f5c83f69eaa691cc932c10",
+      "sha256": "d18331c32a0e15ac6858d60ac4c9b220b81da607c3f5c83f69eaa691cc932c10",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/story-done/references/tech-debt-row.md",
+      "path": "skills/story-done/references/tech-debt-row.md",
+      "source_sha256": "9bc9090f96ee6b1e3e03a99fee382dcd5029647f07ce1bcdb6d730a492f8c31e",
+      "sha256": "9bc9090f96ee6b1e3e03a99fee382dcd5029647f07ce1bcdb6d730a492f8c31e",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/scripts/adr-status.sh",
+      "path": "skills/story-done/scripts/adr-status.sh",
+      "source_sha256": "92c2c02283aa4c8a76ba7c2c0cf36dabacc1d3ba2c618878322fde21d4bc13ff",
+      "sha256": "92c2c02283aa4c8a76ba7c2c0cf36dabacc1d3ba2c618878322fde21d4bc13ff",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/scripts/md-section.sh",
+      "path": "skills/story-done/scripts/md-section.sh",
+      "source_sha256": "0ffa55a3f7215fda020c4070c160e7992577005b00aad3d7b6d527870dd7cfa8",
+      "sha256": "0ffa55a3f7215fda020c4070c160e7992577005b00aad3d7b6d527870dd7cfa8",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/scripts/review-receipts.sh",
+      "path": "skills/story-done/scripts/review-receipts.sh",
+      "source_sha256": "e4234095b47a12875179932508874627012ff086e136ff72f8324d2c0e9836db",
+      "sha256": "e4234095b47a12875179932508874627012ff086e136ff72f8324d2c0e9836db",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/scripts/session-state.sh",
+      "path": "skills/story-done/scripts/session-state.sh",
+      "source_sha256": "0838a0cc1c2c23240af3ba569a360e6f7959361ab2c16ae91d093cad03874a13",
+      "sha256": "0838a0cc1c2c23240af3ba569a360e6f7959361ab2c16ae91d093cad03874a13",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/scripts/story-facts.sh",
+      "path": "skills/story-done/scripts/story-facts.sh",
+      "source_sha256": "546a4aa73e73192a876a125464848e1378357457ef5cd3e2ab72155bb579736d",
+      "sha256": "546a4aa73e73192a876a125464848e1378357457ef5cd3e2ab72155bb579736d",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/scripts/story-status.sh",
+      "path": "skills/story-done/scripts/story-status.sh",
+      "source_sha256": "9fb510e4164909f4704c141f38ca42f0e1eb02e6476f73ab8dc7e9141d54ff4d",
+      "sha256": "9fb510e4164909f4704c141f38ca42f0e1eb02e6476f73ab8dc7e9141d54ff4d",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/story-done/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/docs/templates/session-state.md",
+      "path": "skills/story-done/templates/session-state.md",
+      "source_sha256": "68b8d7ccd6a09f600facc73607bcffd449277633f3a956149b7122419c47487a",
+      "sha256": "68b8d7ccd6a09f600facc73607bcffd449277633f3a956149b7122419c47487a",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/story-readiness/CONTRACT.md",
+      "path": "skills/story-readiness/CONTRACT.md",
+      "source_sha256": "9f72e5fad1591d91ddb19f295ef392ac31d227908c248354b7584327ebd73891",
+      "sha256": "9f72e5fad1591d91ddb19f295ef392ac31d227908c248354b7584327ebd73891",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/story-readiness/LICENSE",
+      "path": "skills/story-readiness/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/story-readiness/NOTICE.md",
+      "path": "skills/story-readiness/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/story-readiness/SKILL.md",
+      "path": "skills/story-readiness/SKILL.md",
+      "source_sha256": "0c73e0a2c22b13a711a40ea4682a1d31c3c61cd8ad4a5a5115c41f8270659d12",
+      "sha256": "2591816186909cf8b211397b29db5465d6390255c058cc3c828d1d4f68e35582",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/story-readiness/references/qa-lead-gate.md",
+      "path": "skills/story-readiness/references/qa-lead-gate.md",
+      "source_sha256": "f919c5e0cfc94d1caccd0c68c4ab5b97b64fca75c24d1632ab6f2297a534c226",
+      "sha256": "f919c5e0cfc94d1caccd0c68c4ab5b97b64fca75c24d1632ab6f2297a534c226",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/scripts/adr-status.sh",
+      "path": "skills/story-readiness/scripts/adr-status.sh",
+      "source_sha256": "92c2c02283aa4c8a76ba7c2c0cf36dabacc1d3ba2c618878322fde21d4bc13ff",
+      "sha256": "92c2c02283aa4c8a76ba7c2c0cf36dabacc1d3ba2c618878322fde21d4bc13ff",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/scripts/story-facts.sh",
+      "path": "skills/story-readiness/scripts/story-facts.sh",
+      "source_sha256": "546a4aa73e73192a876a125464848e1378357457ef5cd3e2ab72155bb579736d",
+      "sha256": "546a4aa73e73192a876a125464848e1378357457ef5cd3e2ab72155bb579736d",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/story-readiness/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/team-audio/LICENSE",
+      "path": "skills/team-audio/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/team-audio/NOTICE.md",
+      "path": "skills/team-audio/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/team-audio/SKILL.md",
+      "path": "skills/team-audio/SKILL.md",
+      "source_sha256": "ba6c237d4e63b25a397c06c967c7f98f7827db920237fd9be0170d3e0c59e4e3",
+      "sha256": "b6123b7faf80fa6d5fc909cc5c16413bb030c04ac49eb94e62ba9551b7cc67ed",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/team-audio/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/docs/templates/sound-bible.md",
+      "path": "skills/team-audio/templates/sound-bible.md",
+      "source_sha256": "f15d102361545eb93c1e265a50bff958bdba1e276fe03ba701eddc168b99037f",
+      "sha256": "f15d102361545eb93c1e265a50bff958bdba1e276fe03ba701eddc168b99037f",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/team-combat/LICENSE",
+      "path": "skills/team-combat/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/team-combat/NOTICE.md",
+      "path": "skills/team-combat/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/team-combat/SKILL.md",
+      "path": "skills/team-combat/SKILL.md",
+      "source_sha256": "2bea102f0344c9387f281b59cf3ad9905523e8fe084f63d12091594eb3fd7eb9",
+      "sha256": "5ba37880e43f9e1685092cd3abd48fdbbca98949e18ee17c577928613743925c",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/team-combat/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/docs/templates/game-design-document.md",
+      "path": "skills/team-combat/templates/game-design-document.md",
+      "source_sha256": "8631250debc1b322f6ae3795296ea7fdf18aba14b9430cfa21abd18e92629f43",
+      "sha256": "8631250debc1b322f6ae3795296ea7fdf18aba14b9430cfa21abd18e92629f43",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/team-level/LICENSE",
+      "path": "skills/team-level/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/team-level/NOTICE.md",
+      "path": "skills/team-level/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/team-level/SKILL.md",
+      "path": "skills/team-level/SKILL.md",
+      "source_sha256": "226bbc8a01b071761fedc60ba222bb51b62818e2ceacc792c6c898fd90311fd4",
+      "sha256": "edcf038b7e385ff690b83d67a8ee92786c0b348a0ca40607af198ab128836b6b",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/team-level/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/team-live-ops/LICENSE",
+      "path": "skills/team-live-ops/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/team-live-ops/NOTICE.md",
+      "path": "skills/team-live-ops/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/team-live-ops/SKILL.md",
+      "path": "skills/team-live-ops/SKILL.md",
+      "source_sha256": "ac1996365db5638b43ae25dd92cba785bdd33333929a43614149c68d0e1a7f03",
+      "sha256": "a8d852c255b98a1f907ed87497907bae9d66c7000c46b2409dd582efdb1e0346",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/team-live-ops/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/team-narrative/LICENSE",
+      "path": "skills/team-narrative/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/team-narrative/NOTICE.md",
+      "path": "skills/team-narrative/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/team-narrative/SKILL.md",
+      "path": "skills/team-narrative/SKILL.md",
+      "source_sha256": "66b923ff3dd13b9e633d3ba05885bb5f53b1294c5765ab3a891205dbd8dea8c3",
+      "sha256": "a3a01bfaef13f09391549e8dfec8bed444642d42144746c1c8b3babdb37cbfa3",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/team-narrative/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/team-polish/LICENSE",
+      "path": "skills/team-polish/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/team-polish/NOTICE.md",
+      "path": "skills/team-polish/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/team-polish/SKILL.md",
+      "path": "skills/team-polish/SKILL.md",
+      "source_sha256": "8d394fd7111b8ee96d4a91809e6959225d73938ffeafdaa06b0fa5a33679086d",
+      "sha256": "b2b18323e954bc7c45ca0867090c1f5e6946cbeb2fe10f23d594e83c4580aa44",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/team-polish/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/team-qa/LICENSE",
+      "path": "skills/team-qa/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/team-qa/NOTICE.md",
+      "path": "skills/team-qa/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/team-qa/SKILL.md",
+      "path": "skills/team-qa/SKILL.md",
+      "source_sha256": "19448b88956168db4a56c8e6be312def07f7c8297cdaa746d8bead633a1716bb",
+      "sha256": "c101d04906db4ebbc6b67b66a1594fa2bd3e5f5e9de57f99ad73df692238b1bb",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/team-qa/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/docs/templates/test-evidence.md",
+      "path": "skills/team-qa/templates/test-evidence.md",
+      "source_sha256": "20974d965d2b57fed99fb94b8f309af852ce879fa6ad9052819840fc645280c8",
+      "sha256": "20974d965d2b57fed99fb94b8f309af852ce879fa6ad9052819840fc645280c8",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/team-release/LICENSE",
+      "path": "skills/team-release/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/team-release/NOTICE.md",
+      "path": "skills/team-release/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/team-release/SKILL.md",
+      "path": "skills/team-release/SKILL.md",
+      "source_sha256": "7b9950f0848a72af225564d9820bda4655d56493cd0930208447dfe728d34933",
+      "sha256": "596456a5ec3f59dfe44ea8847f61230e8c84925087237188557e973e441824f4",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/team-release/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/team-ui/LICENSE",
+      "path": "skills/team-ui/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/team-ui/NOTICE.md",
+      "path": "skills/team-ui/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/team-ui/SKILL.md",
+      "path": "skills/team-ui/SKILL.md",
+      "source_sha256": "dce06487831bdcea7f62ead4f47de38c6b6acd877fb047655bf82ed28cfcfb36",
+      "sha256": "f555e4c141c749a546c1e9eab38a304cab8b8345641a1d27b99471d2109a13fb",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/team-ui/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/tech-debt/LICENSE",
+      "path": "skills/tech-debt/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/tech-debt/NOTICE.md",
+      "path": "skills/tech-debt/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/tech-debt/SKILL.md",
+      "path": "skills/tech-debt/SKILL.md",
+      "source_sha256": "11299c8a170286b24a040e965fc19d74d9d631b32a021678286e4480a24d1408",
+      "sha256": "8156c2fe50863ba619baaccce834c494b886bb364173ab3c49f3f242ca154d23",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/tech-debt/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/test-evidence-review/LICENSE",
+      "path": "skills/test-evidence-review/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/test-evidence-review/NOTICE.md",
+      "path": "skills/test-evidence-review/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/test-evidence-review/SKILL.md",
+      "path": "skills/test-evidence-review/SKILL.md",
+      "source_sha256": "a7ab49090d3018910d1efc2a43bb16f8239c9150bc3b180bdfdaf8bca208c96f",
+      "sha256": "9b47dd9da8d1d1241bcf7052cdba33a4d726fa59be6ead61630b3d1ce32cd4aa",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/scripts/review-receipts.sh",
+      "path": "skills/test-evidence-review/scripts/review-receipts.sh",
+      "source_sha256": "e4234095b47a12875179932508874627012ff086e136ff72f8324d2c0e9836db",
+      "sha256": "e4234095b47a12875179932508874627012ff086e136ff72f8324d2c0e9836db",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/test-evidence-review/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/test-flakiness/LICENSE",
+      "path": "skills/test-flakiness/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/test-flakiness/NOTICE.md",
+      "path": "skills/test-flakiness/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/test-flakiness/SKILL.md",
+      "path": "skills/test-flakiness/SKILL.md",
+      "source_sha256": "382ee117ffbcade9c0b598db075a43087762da6873c5e7c7af67b0472e1d42b3",
+      "sha256": "634c112fb52bb3c4d93416909e6e0f489e6553b13cbfd3a094cd76a5772fbb8a",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/test-flakiness/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/test-helpers/LICENSE",
+      "path": "skills/test-helpers/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/test-helpers/NOTICE.md",
+      "path": "skills/test-helpers/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/test-helpers/SKILL.md",
+      "path": "skills/test-helpers/SKILL.md",
+      "source_sha256": "b368b009a8abd6fd9282ce55b6a88aaccb512535cd9622b405b1f5a3f98053c1",
+      "sha256": "b6c3227e9258b9d1aa278d53ea063b9bf2c254bc150572adb2ac6fe6851fd6af",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/test-helpers/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/test-setup/LICENSE",
+      "path": "skills/test-setup/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/test-setup/NOTICE.md",
+      "path": "skills/test-setup/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/test-setup/SKILL.md",
+      "path": "skills/test-setup/SKILL.md",
+      "source_sha256": "7d420f14829ba4062dcaf354a91808e41523c091516160593bac048533679973",
+      "sha256": "e7943d0c262ce0511137f8bfe33eb5764b543142692b7faed163d8c73121c868",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/test-setup/references/1-detect.md",
+      "path": "skills/test-setup/references/1-detect.md",
+      "source_sha256": "88e37a991c459ec5021a6be8657e5ca0ef6909354c407cd00364eb36c17c31c2",
+      "sha256": "88e37a991c459ec5021a6be8657e5ca0ef6909354c407cd00364eb36c17c31c2",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/test-setup/references/2-plan.md",
+      "path": "skills/test-setup/references/2-plan.md",
+      "source_sha256": "c815ab098204cdf75159bc544100b7538f20500204f60590a3544ac6969932b4",
+      "sha256": "c815ab098204cdf75159bc544100b7538f20500204f60590a3544ac6969932b4",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/test-setup/references/3-directories.md",
+      "path": "skills/test-setup/references/3-directories.md",
+      "source_sha256": "87d07a2a7a8fd4eeb642a6d310057f6a315e2d534cdab2c4739de86c57468be1",
+      "sha256": "87d07a2a7a8fd4eeb642a6d310057f6a315e2d534cdab2c4739de86c57468be1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/test-setup/references/4-ci.md",
+      "path": "skills/test-setup/references/4-ci.md",
+      "source_sha256": "1897b67d5b21a5274e83758a356837076e5bd6fd2886ad05dbb96eccb1a45245",
+      "sha256": "1897b67d5b21a5274e83758a356837076e5bd6fd2886ad05dbb96eccb1a45245",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/test-setup/references/5-smoke-seed.md",
+      "path": "skills/test-setup/references/5-smoke-seed.md",
+      "source_sha256": "c2c4dabcf16bca70fa3d4170b5fbb6ea9ae92dae4567a23fc0066025f5c9ba6e",
+      "sha256": "c2c4dabcf16bca70fa3d4170b5fbb6ea9ae92dae4567a23fc0066025f5c9ba6e",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/test-setup/references/6-summary.md",
+      "path": "skills/test-setup/references/6-summary.md",
+      "source_sha256": "4b614ab4edcc1e9b90f7b8429b3498e17dd59055f592c7565c3689484f18298a",
+      "sha256": "4b614ab4edcc1e9b90f7b8429b3498e17dd59055f592c7565c3689484f18298a",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/test-setup/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/ux-design/LICENSE",
+      "path": "skills/ux-design/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/ux-design/NOTICE.md",
+      "path": "skills/ux-design/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/ux-design/SKILL.md",
+      "path": "skills/ux-design/SKILL.md",
+      "source_sha256": "4afc2b07ed5c854906f6a6bebd06f7f10ddc174a80ce30d0df2beddb80cfe101",
+      "sha256": "1dd9a0d5d4232806dd448c3710341d8c43f882acb22d7036229b9db027b22f2f",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/ux-design/references/2-gather-context.md",
+      "path": "skills/ux-design/references/2-gather-context.md",
+      "source_sha256": "b8c7dac24f6ea2fdd7ef278bf5074a4cba6c068e500154099231dad0997d2b8e",
+      "sha256": "b8c7dac24f6ea2fdd7ef278bf5074a4cba6c068e500154099231dad0997d2b8e",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/ux-design/references/3-file-skeleton.md",
+      "path": "skills/ux-design/references/3-file-skeleton.md",
+      "source_sha256": "ec58c4982148229b4d336f217c92f9fdf71029e22e68b9d0d0e51e909b22a901",
+      "sha256": "ec58c4982148229b4d336f217c92f9fdf71029e22e68b9d0d0e51e909b22a901",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/ux-design/references/4-authoring.md",
+      "path": "skills/ux-design/references/4-authoring.md",
+      "source_sha256": "c0df1eb0c791565c660e93ee813cc96dcc4a5f687ac25406cd75f8801f3abd40",
+      "sha256": "c0df1eb0c791565c660e93ee813cc96dcc4a5f687ac25406cd75f8801f3abd40",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/ux-design/references/5-crossref-handoff.md",
+      "path": "skills/ux-design/references/5-crossref-handoff.md",
+      "source_sha256": "b1785beef772c20984ce2f545edd29104a5587df8fca57f1d4d7d547af5aaa00",
+      "sha256": "b1785beef772c20984ce2f545edd29104a5587df8fca57f1d4d7d547af5aaa00",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/ux-design/references/sections-hud.md",
+      "path": "skills/ux-design/references/sections-hud.md",
+      "source_sha256": "41f737fdc05271030b85f8d8af1e2030d9558eca831376bb4fd92a3d4243b054",
+      "sha256": "41f737fdc05271030b85f8d8af1e2030d9558eca831376bb4fd92a3d4243b054",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/ux-design/references/sections-patterns.md",
+      "path": "skills/ux-design/references/sections-patterns.md",
+      "source_sha256": "f22f4012b3d7e7a78ebe3b18d7aee67319aef65b2799405d6a8e5a5717e8fe75",
+      "sha256": "f22f4012b3d7e7a78ebe3b18d7aee67319aef65b2799405d6a8e5a5717e8fe75",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/ux-design/references/sections-ux-spec.md",
+      "path": "skills/ux-design/references/sections-ux-spec.md",
+      "source_sha256": "fce8ca3eb9ab452328e2f1b20ceb01c707a3be9d6a74b5acf481ecdb6a1e9219",
+      "sha256": "fce8ca3eb9ab452328e2f1b20ceb01c707a3be9d6a74b5acf481ecdb6a1e9219",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/ux-design/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/docs/templates/accessibility-requirements.md",
+      "path": "skills/ux-design/templates/accessibility-requirements.md",
+      "source_sha256": "cc0ca46ab59d6aeb9d59166b8da3ef094053808f5e7d2e8bf240934077c0455f",
+      "sha256": "cc0ca46ab59d6aeb9d59166b8da3ef094053808f5e7d2e8bf240934077c0455f",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/docs/templates/hud-design.md",
+      "path": "skills/ux-design/templates/hud-design.md",
+      "source_sha256": "b98ab81a3c23a473909358240947193ebe99c37a2aeb30524e2fcb200c815c87",
+      "sha256": "b98ab81a3c23a473909358240947193ebe99c37a2aeb30524e2fcb200c815c87",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/docs/templates/player-journey.md",
+      "path": "skills/ux-design/templates/player-journey.md",
+      "source_sha256": "fcb350eefe8fd77ce179880beff2e55023ec1e3101e3f48bff32cb8777a05be7",
+      "sha256": "fcb350eefe8fd77ce179880beff2e55023ec1e3101e3f48bff32cb8777a05be7",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/docs/templates/ux-spec.md",
+      "path": "skills/ux-design/templates/ux-spec.md",
+      "source_sha256": "dc7797c608967844786fd301dea0ba9e01af867feb73f2abd63b46a604150a99",
+      "sha256": "dc7797c608967844786fd301dea0ba9e01af867feb73f2abd63b46a604150a99",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/ux-review/LICENSE",
+      "path": "skills/ux-review/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/ux-review/NOTICE.md",
+      "path": "skills/ux-review/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/ux-review/SKILL.md",
+      "path": "skills/ux-review/SKILL.md",
+      "source_sha256": "064b9ce2ad6b8dd954448dab6e5130da6c8bfc784e368c852202a71bf5a2c619",
+      "sha256": "57fcdc8762e674c7bdf83b18f8c7939637d8ace4bcba570b649cca1a9264568d",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/ux-review/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/skills/vertical-slice/LICENSE",
+      "path": "skills/vertical-slice/LICENSE",
+      "source_sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "sha256": "6ecc068715c0edffc4bc21e5dca450803e0a45af145f72221da23d14e7588359",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/vertical-slice/NOTICE.md",
+      "path": "skills/vertical-slice/NOTICE.md",
+      "source_sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "sha256": "3476b5029dfff1d754745dc7d683cc33ba4ca8ffba22b8327ef2f76fe5eae8d1",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/skills/vertical-slice/SKILL.md",
+      "path": "skills/vertical-slice/SKILL.md",
+      "source_sha256": "e7d48f49119cf1ea8c18b13a6cf5857e7d9e11bb91b8c76b12cc322103021aa5",
+      "sha256": "c0635b3bf7d308e854c7d66100990ef7b7f4de15b6413ab54632e21bfb05a1ff",
+      "executable": false
+    },
+    {
+      "source_path": ".claude/hooks/yaml-helper.sh",
+      "path": "skills/vertical-slice/scripts/yaml-helper.sh",
+      "source_sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "sha256": "8299e656cb8afc49ec02b2e17e32b61f3df50b13b93a8544226e30e459f68424",
+      "executable": true
+    },
+    {
+      "source_path": ".claude/docs/templates/vertical-slice-report.md",
+      "path": "skills/vertical-slice/templates/vertical-slice-report.md",
+      "source_sha256": "fec321cce5380d3bd99a90175b6457ef22e7ca199fa0f04ff2636c344ff2ce47",
+      "sha256": "fec321cce5380d3bd99a90175b6457ef22e7ca199fa0f04ff2636c344ff2ce47",
+      "executable": false
+    }
+  ]
+}

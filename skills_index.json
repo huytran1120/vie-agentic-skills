@@ -572,6 +572,29 @@
     "author": "WHOISABHISHEKADHIKARI"
   },
   {
+    "id": "adopt",
+    "canonical_id": "adopt",
+    "name": "adopt",
+    "path": "skills/adopt",
+    "description": "Brownfield audit — do existing artifacts actually work? Numbered migration plan. Unlike /project-stage-detect, checks compliance not existence.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "adopt"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/adopt",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/adopt/SKILL.md"
+  },
+  {
     "id": "advanced-analytics-dashboard",
     "canonical_id": "advanced-analytics-dashboard",
     "name": "advanced-analytics-dashboard",
@@ -3848,6 +3871,29 @@
     "source": "community"
   },
   {
+    "id": "architecture-decision",
+    "canonical_id": "architecture-decision",
+    "name": "architecture-decision",
+    "path": "skills/architecture-decision",
+    "description": "Create an ADR documenting a technical decision: context, alternatives considered, consequences.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "architecture-decision"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/architecture-decision",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/architecture-decision/SKILL.md"
+  },
+  {
     "id": "architecture-decision-records",
     "canonical_id": "architecture-decision-records",
     "name": "architecture-decision-records",
@@ -3978,6 +4024,29 @@
     "license": "Apache-2.0",
     "license_source": "https://github.com/Genefold/arrowspace-skills/blob/main/LICENSE",
     "author": "Genefold AI"
+  },
+  {
+    "id": "art-bible",
+    "canonical_id": "art-bible",
+    "name": "art-bible",
+    "path": "skills/art-bible",
+    "description": "Author the Art Bible — visual identity gating asset production. Run before /map-systems.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "art-bible"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/art-bible",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/art-bible/SKILL.md"
   },
   {
     "id": "article-illustrations",
@@ -4131,6 +4200,29 @@
     "author": "awss1i"
   },
   {
+    "id": "asset-audit",
+    "canonical_id": "asset-audit",
+    "name": "asset-audit",
+    "path": "skills/asset-audit",
+    "description": "Audit assets against naming conventions, file size budgets, format standards. Finds orphaned assets, missing references.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "asset-audit"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/asset-audit",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/asset-audit/SKILL.md"
+  },
+  {
     "id": "asset-inventory",
     "canonical_id": "asset-inventory",
     "name": "asset-inventory",
@@ -4159,6 +4251,29 @@
     "source": "self",
     "source_repo": "WHOISABHISHEKADHIKARI/sme-ops-system-builder",
     "author": "WHOISABHISHEKADHIKARI"
+  },
+  {
+    "id": "asset-spec",
+    "canonical_id": "asset-spec",
+    "name": "asset-spec",
+    "path": "skills/asset-spec",
+    "description": "Per-asset visual specs plus AI generation prompts from GDDs and character profiles. After the art bible.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "asset-spec"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/asset-spec",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/asset-spec/SKILL.md"
   },
   {
     "id": "astro",
@@ -7202,6 +7317,29 @@
     "license_source": "https://github.com/BagelHole/DevOps-Security-Agent-Skills/blob/main/LICENSE"
   },
   {
+    "id": "balance-check",
+    "canonical_id": "balance-check",
+    "name": "balance-check",
+    "path": "skills/balance-check",
+    "description": "Find balance outliers, broken progressions, degenerate strategies, economy imbalances in formulas and data. 'Check game balance'.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "balance-check"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/balance-check",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/balance-check/SKILL.md"
+  },
+  {
     "id": "bamboohr-automation",
     "canonical_id": "bamboohr-automation",
     "name": "bamboohr-automation",
@@ -9924,6 +10062,29 @@
     "author": "davidondrej"
   },
   {
+    "id": "brainstorm",
+    "canonical_id": "brainstorm",
+    "name": "brainstorm",
+    "path": "skills/brainstorm",
+    "description": "Guides the user through finding and choosing a game concept. Use when the user wants game ideas, a new concept, a game jam idea, or to explore other directions, including dropping the current idea and starting over.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "brainstorm"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/brainstorm",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/brainstorm/SKILL.md"
+  },
+  {
     "id": "brainstorming",
     "canonical_id": "brainstorming",
     "name": "brainstorming",
@@ -10545,6 +10706,52 @@
     ],
     "risk": "safe",
     "source": "community"
+  },
+  {
+    "id": "bug-report",
+    "canonical_id": "bug-report",
+    "name": "bug-report",
+    "path": "skills/bug-report",
+    "description": "Structured bug report from a description, or analyze code for potential bugs. Reproduction steps, severity.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "bug-report"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/bug-report",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/bug-report/SKILL.md"
+  },
+  {
+    "id": "bug-triage",
+    "canonical_id": "bug-triage",
+    "name": "bug-triage",
+    "path": "skills/bug-triage",
+    "description": "Re-evaluate open bugs — priority vs severity, assign to sprints, surface systemic trends. Run when the count grows.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "bug-triage"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/bug-triage",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/bug-triage/SKILL.md"
   },
   {
     "id": "bugcrowd-reporting",
@@ -11431,6 +11638,29 @@
     "source_repo": "BagelHole/DevOps-Security-Agent-Skills",
     "license": "MIT",
     "license_source": "https://github.com/BagelHole/DevOps-Security-Agent-Skills/blob/main/LICENSE"
+  },
+  {
+    "id": "changelog",
+    "canonical_id": "changelog",
+    "name": "changelog",
+    "path": "skills/changelog",
+    "description": "Auto-generate a changelog from git commits and sprint data. Internal and player-facing versions.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "changelog"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/changelog",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/changelog/SKILL.md"
   },
   {
     "id": "changelog-automation",
@@ -13541,6 +13771,29 @@
     "source_repo": "monte-carlo-data/mc-agent-toolkit"
   },
   {
+    "id": "consistency-check",
+    "canonical_id": "consistency-check",
+    "name": "consistency-check",
+    "path": "skills/consistency-check",
+    "description": "Scan GDDs against the entity registry for cross-document conflicts. Grep-first approach targets conflicting sections, different stats.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "consistency-check"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/consistency-check",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/consistency-check/SKILL.md"
+  },
+  {
     "id": "constant-time-analysis",
     "canonical_id": "constant-time-analysis",
     "name": "constant-time-analysis",
@@ -13637,6 +13890,29 @@
     ],
     "risk": "critical",
     "source": "community"
+  },
+  {
+    "id": "content-audit",
+    "canonical_id": "content-audit",
+    "name": "content-audit",
+    "path": "skills/content-audit",
+    "description": "Audit GDD content counts against what's implemented — planned vs built.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "content-audit"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/content-audit",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/content-audit/SKILL.md"
   },
   {
     "id": "content-creator",
@@ -14170,6 +14446,29 @@
     "source": "community"
   },
   {
+    "id": "create-architecture",
+    "canonical_id": "create-architecture",
+    "name": "create-architecture",
+    "path": "skills/create-architecture",
+    "description": "Author the architecture blueprint before code is written. Validates decisions against the pinned engine, flags knowledge gaps.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "create-architecture"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/create-architecture",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/create-architecture/SKILL.md"
+  },
+  {
     "id": "create-branch",
     "canonical_id": "create-branch",
     "name": "create-branch",
@@ -14182,6 +14481,52 @@
     ],
     "risk": "critical",
     "source": "community"
+  },
+  {
+    "id": "create-control-manifest",
+    "canonical_id": "create-control-manifest",
+    "name": "create-control-manifest",
+    "path": "skills/create-control-manifest",
+    "description": "Builds a short list of must-do and never-do coding rules per system from accepted ADRs. Use when the user wants programmer rules or a cheat sheet from the ADRs, or needs it regenerated after ADR changes.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "create-control-manifest"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/create-control-manifest",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/create-control-manifest/SKILL.md"
+  },
+  {
+    "id": "create-epics",
+    "canonical_id": "create-epics",
+    "name": "create-epics",
+    "path": "skills/create-epics",
+    "description": "Turns the GDDs and architecture into epics, one per architectural module. Use when the user wants to break the game into epics or plan the work before writing stories. Not for splitting one epic into stories.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "create-epics"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/create-epics",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/create-epics/SKILL.md"
   },
   {
     "id": "create-game-assets",
@@ -14232,6 +14577,29 @@
     ],
     "risk": "critical",
     "source": "community"
+  },
+  {
+    "id": "create-stories",
+    "canonical_id": "create-stories",
+    "name": "create-stories",
+    "path": "skills/create-stories",
+    "description": "Breaks one epic into implementable stories with acceptance criteria. Use when the user wants stories for an epic or the next batch of work to build. Not for turning the whole design into epics.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "create-stories"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/create-stories",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/create-stories/SKILL.md"
   },
   {
     "id": "cred-omega",
@@ -15417,6 +15785,29 @@
     "source": "self",
     "source_repo": "WHOISABHISHEKADHIKARI/sme-ops-system-builder",
     "author": "WHOISABHISHEKADHIKARI"
+  },
+  {
+    "id": "day-one-patch",
+    "canonical_id": "day-one-patch",
+    "name": "day-one-patch",
+    "path": "skills/day-one-patch",
+    "description": "Day-one launch patch — focused fix for known issues found after gold master. Mini-sprint with QA gate and rollback.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "day-one-patch"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/day-one-patch",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/day-one-patch/SKILL.md"
   },
   {
     "id": "day-trader-skill",
@@ -16962,6 +17353,29 @@
     "author": "Conner K Ward"
   },
   {
+    "id": "design-review",
+    "canonical_id": "design-review",
+    "name": "design-review",
+    "path": "skills/design-review",
+    "description": "Reviews one design document for completeness, internal consistency, implementability, and design standards. Before handing to programmers.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "design-review"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/design-review",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/design-review/SKILL.md"
+  },
+  {
     "id": "design-spatial",
     "canonical_id": "design-spatial",
     "name": "design-spatial",
@@ -17170,6 +17584,29 @@
     "source_repo": "connerkward/deterministic-design-skill",
     "license": "MIT",
     "author": "Conner K Ward"
+  },
+  {
+    "id": "dev-story",
+    "canonical_id": "dev-story",
+    "name": "dev-story",
+    "path": "skills/dev-story",
+    "description": "Implements one story in code with tests, following its ADRs. Use when the user says to build, implement or start working on a story. Not for checking readiness beforehand or closing the story after.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "dev-story"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/dev-story",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/dev-story/SKILL.md"
   },
   {
     "id": "dev-to-hashnode",
@@ -19359,6 +19796,29 @@
     "source": "self",
     "source_repo": "WHOISABHISHEKADHIKARI/sme-ops-system-builder",
     "author": "WHOISABHISHEKADHIKARI"
+  },
+  {
+    "id": "estimate",
+    "canonical_id": "estimate",
+    "name": "estimate",
+    "path": "skills/estimate",
+    "description": "Estimate task effort from complexity, dependencies, velocity, risk. Structured estimate with confidence levels.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "estimate"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/estimate",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/estimate/SKILL.md"
   },
   {
     "id": "ethical-hacking-methodology",
@@ -22211,6 +22671,121 @@
     "source_path": "skills/disciplines/performance-optimization/SKILL.md"
   },
   {
+    "id": "gamestudio-architecture-review",
+    "canonical_id": "gamestudio-architecture-review",
+    "name": "gamestudio-architecture-review",
+    "path": "skills/gamestudio-architecture-review",
+    "description": "Traceability matrix mapping GDD requirements to ADRs. Finds gaps, cross-ADR conflicts, engine compatibility. PASS/CONCERNS/NOT ASSESSED/FAIL.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "architecture-review"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/architecture-review",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/architecture-review/SKILL.md"
+  },
+  {
+    "id": "gamestudio-code-review",
+    "canonical_id": "gamestudio-code-review",
+    "name": "gamestudio-code-review",
+    "path": "skills/gamestudio-code-review",
+    "description": "Architectural code review — coding standards, SOLID, testability, performance concerns.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "code-review"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/code-review",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/code-review/SKILL.md"
+  },
+  {
+    "id": "gamestudio-design-system",
+    "canonical_id": "gamestudio-design-system",
+    "name": "gamestudio-design-system",
+    "path": "skills/gamestudio-design-system",
+    "description": "Section-by-section GDD authoring for one system — walks through each required section, cross-references dependencies.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "design-system"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/design-system",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/design-system/SKILL.md"
+  },
+  {
+    "id": "gamestudio-prototype",
+    "canonical_id": "gamestudio-prototype",
+    "name": "gamestudio-prototype",
+    "path": "skills/gamestudio-prototype",
+    "description": "Concept prototype before GDDs — throwaway HTML, Engine or Paper build, PROCEED/PIVOT/KILL/NOT ASSESSED. After /brainstorm and /setup-engine.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "prototype"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/prototype",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/prototype/SKILL.md"
+  },
+  {
+    "id": "gamestudio-security-audit",
+    "canonical_id": "gamestudio-security-audit",
+    "name": "gamestudio-security-audit",
+    "path": "skills/gamestudio-security-audit",
+    "description": "Security audit — save tampering, cheat vectors, network exploits, data exposure, input validation. Before public or multiplayer release.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "security-audit"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/security-audit",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/security-audit/SKILL.md"
+  },
+  {
     "id": "gamification-engine",
     "canonical_id": "gamification-engine",
     "name": "gamification-engine",
@@ -22231,6 +22806,29 @@
     "source": "self",
     "source_repo": "WHOISABHISHEKADHIKARI/sme-ops-system-builder",
     "author": "WHOISABHISHEKADHIKARI"
+  },
+  {
+    "id": "gate-check",
+    "canonical_id": "gate-check",
+    "name": "gate-check",
+    "path": "skills/gate-check",
+    "description": "Ready to advance between development phases? PASS/CONCERNS/NOT ASSESSED/FAIL with blockers and required artifacts. 'Can we move to production?",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "gate-check"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/gate-check",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/gate-check/SKILL.md"
   },
   {
     "id": "gbp-local-seo-intent",
@@ -24765,6 +25363,29 @@
     "license_source": "https://github.com/BagelHole/DevOps-Security-Agent-Skills/blob/main/LICENSE"
   },
   {
+    "id": "help",
+    "canonical_id": "help",
+    "name": "help",
+    "path": "skills/help",
+    "description": "What should I do next? Use when stuck or you don't know what to do.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "help"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/help",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/help/SKILL.md"
+  },
+  {
     "id": "helpdesk-automation",
     "canonical_id": "helpdesk-automation",
     "name": "helpdesk-automation",
@@ -25172,6 +25793,29 @@
     ],
     "risk": "critical",
     "source": "community"
+  },
+  {
+    "id": "hotfix",
+    "canonical_id": "hotfix",
+    "name": "hotfix",
+    "path": "skills/hotfix",
+    "description": "Emergency fix bypassing normal sprint process — hotfix branch, approvals tracked, backport verified, full audit trail.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "hotfix"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/hotfix",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/hotfix/SKILL.md"
   },
   {
     "id": "hr-pro",
@@ -28998,6 +29642,29 @@
     "author": "Ces107"
   },
   {
+    "id": "launch-checklist",
+    "canonical_id": "launch-checklist",
+    "name": "launch-checklist",
+    "path": "skills/launch-checklist",
+    "description": "Launch readiness across every department: code, content, store, marketing, community, infrastructure, legal, go/no-go sign-offs.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "launch-checklist"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/launch-checklist",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/launch-checklist/SKILL.md"
+  },
+  {
     "id": "launch-strategy",
     "canonical_id": "launch-strategy",
     "name": "launch-strategy",
@@ -30199,6 +30866,29 @@
     "source": "community"
   },
   {
+    "id": "localize",
+    "canonical_id": "localize",
+    "name": "localize",
+    "path": "skills/localize",
+    "description": "Localization pipeline — find hardcoded strings, extract string tables, cultural review, VO, RTL, enforce string freeze.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "localize"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/localize",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/localize/SKILL.md"
+  },
+  {
     "id": "logic-diff",
     "canonical_id": "logic-diff",
     "name": "logic-diff",
@@ -31368,6 +32058,29 @@
     "source": "community"
   },
   {
+    "id": "map-systems",
+    "canonical_id": "map-systems",
+    "name": "map-systems",
+    "path": "skills/map-systems",
+    "description": "Decompose a concept into individual systems, map dependencies, prioritize design order, create the systems index.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "map-systems"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/map-systems",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/map-systems/SKILL.md"
+  },
+  {
     "id": "markdown-rendering",
     "canonical_id": "markdown-rendering",
     "name": "markdown-rendering",
@@ -32395,6 +33108,29 @@
     "license_source": "https://github.com/android/skills/blob/6daa53ef27fa2aa87827d183a85c06cedceca833/LICENSE.txt",
     "source_revision": "6daa53ef27fa2aa87827d183a85c06cedceca833",
     "source_path": "jetpack-compose/migration/migrate-xml-views-to-jetpack-compose/SKILL.md"
+  },
+  {
+    "id": "milestone-review",
+    "canonical_id": "milestone-review",
+    "name": "milestone-review",
+    "path": "skills/milestone-review",
+    "description": "Milestone progress review — completeness, quality metrics, risk, go/no-go recommendation. At checkpoints or before a deadline.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "milestone-review"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/milestone-review",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/milestone-review/SKILL.md"
   },
   {
     "id": "minecraft-bukkit-pro",
@@ -35424,6 +36160,29 @@
     "source": "community"
   },
   {
+    "id": "onboard",
+    "canonical_id": "onboard",
+    "name": "onboard",
+    "path": "skills/onboard",
+    "description": "Onboarding doc for a new contributor or agent — project state, conventions, priorities relevant to the specified role.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "onboard"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/onboard",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/onboard/SKILL.md"
+  },
+  {
     "id": "onboarding",
     "canonical_id": "onboarding",
     "name": "onboarding",
@@ -36385,6 +37144,29 @@
     "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
   },
   {
+    "id": "patch-notes",
+    "canonical_id": "patch-notes",
+    "name": "patch-notes",
+    "path": "skills/patch-notes",
+    "description": "Player-facing patch notes from git history and changelogs. Translates developer language into player communication.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "patch-notes"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/patch-notes",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/patch-notes/SKILL.md"
+  },
+  {
     "id": "payment-accounting",
     "canonical_id": "payment-accounting",
     "name": "payment-accounting",
@@ -36869,6 +37651,29 @@
     "source": "self",
     "source_repo": "WHOISABHISHEKADHIKARI/sme-ops-system-builder",
     "author": "WHOISABHISHEKADHIKARI"
+  },
+  {
+    "id": "perf-profile",
+    "canonical_id": "perf-profile",
+    "name": "perf-profile",
+    "path": "skills/perf-profile",
+    "description": "Performance profiling — find bottlenecks, measure against budgets, produce ranked optimization recommendations.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "perf-profile"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/perf-profile",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/perf-profile/SKILL.md"
   },
   {
     "id": "performance-engineer",
@@ -37591,6 +38396,29 @@
     "license_source": "https://github.com/android/skills/blob/6daa53ef27fa2aa87827d183a85c06cedceca833/LICENSE.txt",
     "source_revision": "6daa53ef27fa2aa87827d183a85c06cedceca833",
     "source_path": "play/play-policy-insights/SKILL.md"
+  },
+  {
+    "id": "playtest-report",
+    "canonical_id": "playtest-report",
+    "name": "playtest-report",
+    "path": "skills/playtest-report",
+    "description": "Structured playtest report template, or turn existing playtest notes into structured feedback.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "playtest-report"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/playtest-report",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/playtest-report/SKILL.md"
   },
   {
     "id": "playwright-java",
@@ -38822,6 +39650,29 @@
     "source": "Dimillian/Skills (MIT)"
   },
   {
+    "id": "project-stage-detect",
+    "canonical_id": "project-stage-detect",
+    "name": "project-stage-detect",
+    "path": "skills/project-stage-detect",
+    "description": "Analyze project state, detect stage, identify gaps, recommend next steps. 'Where are we in development?",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "project-stage-detect"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/project-stage-detect",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/project-stage-detect/SKILL.md"
+  },
+  {
     "id": "project-state-governor",
     "canonical_id": "project-state-governor",
     "name": "project-state-governor",
@@ -39044,6 +39895,29 @@
     ],
     "risk": "critical",
     "source": "community"
+  },
+  {
+    "id": "propagate-design-change",
+    "canonical_id": "propagate-design-change",
+    "name": "propagate-design-change",
+    "path": "skills/propagate-design-change",
+    "description": "Finds architecture decisions (ADRs) made stale by a changed GDD and walks through resolving each. Use when the user changed a number or rule in a GDD and asks which ADRs or architecture decisions are now out of date.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "propagate-design-change"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/propagate-design-change",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/propagate-design-change/SKILL.md"
   },
   {
     "id": "protect-mcp-governance",
@@ -39537,6 +40411,29 @@
     "source": "community"
   },
   {
+    "id": "qa-plan",
+    "canonical_id": "qa-plan",
+    "name": "qa-plan",
+    "path": "skills/qa-plan",
+    "description": "QA test plan for a sprint — classifies stories by Logic/Integration/Visual/UI, covers automated tests, manual cases, smoke scope.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "qa-plan"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/qa-plan",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/qa-plan/SKILL.md"
+  },
+  {
     "id": "qiskit",
     "canonical_id": "qiskit",
     "name": "qiskit",
@@ -39616,6 +40513,29 @@
     ],
     "risk": "safe",
     "source": "community"
+  },
+  {
+    "id": "quick-design",
+    "canonical_id": "quick-design",
+    "name": "quick-design",
+    "path": "skills/quick-design",
+    "description": "Lightweight spec for small changes — tuning adjustments, minor mechanics. Embeds directly into stories; skips full GDD.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "quick-design"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/quick-design",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/quick-design/SKILL.md"
   },
   {
     "id": "quickgo-database",
@@ -40444,6 +41364,29 @@
     "source": "community"
   },
   {
+    "id": "regression-suite",
+    "canonical_id": "regression-suite",
+    "name": "regression-suite",
+    "path": "skills/regression-suite",
+    "description": "Map test coverage to GDD critical paths, find fixed bugs lacking regression tests, flag drift from new features.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "regression-suite"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/regression-suite",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/regression-suite/SKILL.md"
+  },
+  {
     "id": "rehabilitation-analyzer",
     "canonical_id": "rehabilitation-analyzer",
     "name": "rehabilitation-analyzer",
@@ -40456,6 +41399,29 @@
     ],
     "risk": "critical",
     "source": "community"
+  },
+  {
+    "id": "release-checklist",
+    "canonical_id": "release-checklist",
+    "name": "release-checklist",
+    "path": "skills/release-checklist",
+    "description": "Pre-release checklist — build verification, certification requirements, store metadata, launch readiness.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "release-checklist"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/release-checklist",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/release-checklist/SKILL.md"
   },
   {
     "id": "remote-gpu-trainer",
@@ -40988,6 +41954,29 @@
     "source_path": "skills/engineering/retro"
   },
   {
+    "id": "retrospective",
+    "canonical_id": "retrospective",
+    "name": "retrospective",
+    "path": "skills/retrospective",
+    "description": "Sprint or milestone retrospective from completed work, velocity, blockers. Actionable insights for the next iteration.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "retrospective"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/retrospective",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/retrospective/SKILL.md"
+  },
+  {
     "id": "returns-reverse-logistics",
     "canonical_id": "returns-reverse-logistics",
     "name": "returns-reverse-logistics",
@@ -41018,6 +42007,29 @@
     "source_repo": "zhaoxuya520/reverse-skill",
     "license": "MIT",
     "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
+  },
+  {
+    "id": "reverse-document",
+    "canonical_id": "reverse-document",
+    "name": "reverse-document",
+    "path": "skills/reverse-document",
+    "description": "Generate missing design or architecture docs from existing implementation — works backwards from code and prototypes.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "reverse-document"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/reverse-document",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/reverse-document/SKILL.md"
   },
   {
     "id": "reverse-engineer",
@@ -41100,6 +42112,29 @@
     "source_repo": "BagelHole/DevOps-Security-Agent-Skills",
     "license": "MIT",
     "license_source": "https://github.com/BagelHole/DevOps-Security-Agent-Skills/blob/main/LICENSE"
+  },
+  {
+    "id": "review-all-gdds",
+    "canonical_id": "review-all-gdds",
+    "name": "review-all-gdds",
+    "path": "skills/review-all-gdds",
+    "description": "Holistic cross-GDD review — contradictions between systems, dominant strategies, economic imbalance, cognitive overload, pillar drift.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "review-all-gdds"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/review-all-gdds",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/review-all-gdds/SKILL.md"
   },
   {
     "id": "review-and-simplify-changes",
@@ -46241,6 +47276,29 @@
     "license": "BSD-3-Clause license"
   },
   {
+    "id": "scope-check",
+    "canonical_id": "scope-check",
+    "name": "scope-check",
+    "path": "skills/scope-check",
+    "description": "Scope creep check — current scope versus the original plan. Flags additions, quantifies bloat, recommends cuts. 'Any scope creep?",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "scope-check"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/scope-check",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/scope-check/SKILL.md"
+  },
+  {
     "id": "score-eval",
     "canonical_id": "score-eval",
     "name": "score-eval",
@@ -47603,6 +48661,52 @@
     "author": "alapha888"
   },
   {
+    "id": "settings",
+    "canonical_id": "settings",
+    "name": "settings",
+    "path": "skills/settings",
+    "description": "View or change project config — effective merged values, or set locally in project.local.yaml.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "settings"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/settings",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/settings/SKILL.md"
+  },
+  {
+    "id": "setup-engine",
+    "canonical_id": "setup-engine",
+    "name": "setup-engine",
+    "path": "skills/setup-engine",
+    "description": "Configure engine and version. Pins it in CLAUDE.md; WebSearch fills reference docs when the version is beyond LLM training data.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "setup-engine"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/setup-engine",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/setup-engine/SKILL.md"
+  },
+  {
     "id": "setup-help",
     "canonical_id": "setup-help",
     "name": "setup-help",
@@ -48157,6 +49261,29 @@
     "author": "WHOISABHISHEKADHIKARI"
   },
   {
+    "id": "skill-improve",
+    "canonical_id": "skill-improve",
+    "name": "skill-improve",
+    "path": "skills/skill-improve",
+    "description": "Improve a skill via a test-fix-retest loop — static checks, targeted fixes, keep or revert on score change.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "skill-improve"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/skill-improve",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/skill-improve/SKILL.md"
+  },
+  {
     "id": "skill-improver",
     "canonical_id": "skill-improver",
     "name": "skill-improver",
@@ -48355,6 +49482,29 @@
     "source_repo": "mskadu/opencode-agent-skills",
     "license": "MIT",
     "license_source": "https://github.com/mskadu/opencode-agent-skills/blob/main/LICENSE"
+  },
+  {
+    "id": "skill-test",
+    "canonical_id": "skill-test",
+    "name": "skill-test",
+    "path": "skills/skill-test",
+    "description": "Validate skill files for structural compliance and behavioral correctness. Four modes: static linter, spec, category rubric, audit.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "skill-test"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/skill-test",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/skill-test/SKILL.md"
   },
   {
     "id": "skill-writer",
@@ -48615,6 +49765,29 @@
     "license_source": "https://github.com/LambdaTest/agent-skills/blob/main/LICENSE"
   },
   {
+    "id": "smoke-check",
+    "canonical_id": "smoke-check",
+    "name": "smoke-check",
+    "path": "skills/smoke-check",
+    "description": "Critical-path smoke gate before QA hand-off — runs the automated suite. A failed check means the build is not QA-ready.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "smoke-check"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/smoke-check",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/smoke-check/SKILL.md"
+  },
+  {
     "id": "smtp-penetration-testing",
     "canonical_id": "smtp-penetration-testing",
     "name": "smtp-penetration-testing",
@@ -48641,6 +49814,29 @@
     ],
     "risk": "safe",
     "source": "community"
+  },
+  {
+    "id": "soak-test",
+    "canonical_id": "soak-test",
+    "name": "soak-test",
+    "path": "skills/soak-test",
+    "description": "Soak test protocol for extended play — what to observe and log for slow leaks, fatigue, late-appearing edge cases.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "soak-test"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/soak-test",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/soak-test/SKILL.md"
   },
   {
     "id": "soc2-compliance",
@@ -49162,6 +50358,52 @@
     "author": "WHOISABHISHEKADHIKARI"
   },
   {
+    "id": "sprint-plan",
+    "canonical_id": "sprint-plan",
+    "name": "sprint-plan",
+    "path": "skills/sprint-plan",
+    "description": "New or updated sprint plan from the current milestone, completed work, and available capacity.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "sprint-plan"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/sprint-plan",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/sprint-plan/SKILL.md"
+  },
+  {
+    "id": "sprint-status",
+    "canonical_id": "sprint-status",
+    "name": "sprint-status",
+    "path": "skills/sprint-status",
+    "description": "Fast, concise sprint snapshot — burndown and emerging risks for situational awareness. 'How is the sprint going?",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "sprint-status"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/sprint-status",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/sprint-status/SKILL.md"
+  },
+  {
     "id": "sql-injection-testing",
     "canonical_id": "sql-injection-testing",
     "name": "sql-injection-testing",
@@ -49485,6 +50727,29 @@
     "author": "WHOISABHISHEKADHIKARI"
   },
   {
+    "id": "start",
+    "canonical_id": "start",
+    "name": "start",
+    "path": "skills/start",
+    "description": "Guides a first-time user through onboarding and picks the right workflow. Use when the user is new, just cloned or installed the studio, has no idea or engine yet, asks where to begin, or wants to bring in an existing game.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "start"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/start",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/start/SKILL.md"
+  },
+  {
     "id": "startup-analyst",
     "canonical_id": "startup-analyst",
     "name": "startup-analyst",
@@ -49782,6 +51047,52 @@
     "source": "self",
     "license": "Apache-2.0",
     "author": "jiawood2006"
+  },
+  {
+    "id": "story-done",
+    "canonical_id": "story-done",
+    "name": "story-done",
+    "path": "skills/story-done",
+    "description": "Closes a finished story: verifies each acceptance criterion, checks for design or ADR deviations and updates its status. Use when the user says a story is done, finished or ready to close.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "story-done"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/story-done",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/story-done/SKILL.md"
+  },
+  {
+    "id": "story-readiness",
+    "canonical_id": "story-readiness",
+    "name": "story-readiness",
+    "path": "skills/story-readiness",
+    "description": "Checks whether a story is ready to implement: clear acceptance criteria, no open questions, valid ADR and dependencies. Use when the user asks if a story, or the sprint's stories, are ready to start or build.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "story-readiness"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/story-readiness",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/story-readiness/SKILL.md"
   },
   {
     "id": "stride-analysis-patterns",
@@ -50932,6 +52243,29 @@
     "author": "Matt Pocock"
   },
   {
+    "id": "team-audio",
+    "canonical_id": "team-audio",
+    "name": "team-audio",
+    "path": "skills/team-audio",
+    "description": "Orchestrate the audio team — audio-director, sound-designer, technical-artist, gameplay-programmer — direction through implementation.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "team-audio"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/team-audio",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/team-audio/SKILL.md"
+  },
+  {
     "id": "team-calendar",
     "canonical_id": "team-calendar",
     "name": "team-calendar",
@@ -50985,6 +52319,29 @@
     "source": "community"
   },
   {
+    "id": "team-combat",
+    "canonical_id": "team-combat",
+    "name": "team-combat",
+    "path": "skills/team-combat",
+    "description": "Orchestrate the combat team — game-designer, gameplay-programmer, ai-programmer, technical-artist, sound-designer, qa-tester — design through implement and validate.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "team-combat"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/team-combat",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/team-combat/SKILL.md"
+  },
+  {
     "id": "team-composition-analysis",
     "canonical_id": "team-composition-analysis",
     "name": "team-composition-analysis",
@@ -50997,6 +52354,167 @@
     ],
     "risk": "none",
     "source": "community"
+  },
+  {
+    "id": "team-level",
+    "canonical_id": "team-level",
+    "name": "team-level",
+    "path": "skills/team-level",
+    "description": "Orchestrate the level team — level-designer, narrative-director, world-builder, art-director, systems-designer, qa-tester — for complete area creation.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "team-level"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/team-level",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/team-level/SKILL.md"
+  },
+  {
+    "id": "team-live-ops",
+    "canonical_id": "team-live-ops",
+    "name": "team-live-ops",
+    "path": "skills/team-live-ops",
+    "description": "Orchestrate the live-ops team — live-ops-designer, economy-designer, analytics-engineer, community-manager, writer — for a season or live event.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "team-live-ops"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/team-live-ops",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/team-live-ops/SKILL.md"
+  },
+  {
+    "id": "team-narrative",
+    "canonical_id": "team-narrative",
+    "name": "team-narrative",
+    "path": "skills/team-narrative",
+    "description": "Orchestrate the narrative team — narrative-director, writer, world-builder, level-designer — for story, world lore, narrative-driven levels.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "team-narrative"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/team-narrative",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/team-narrative/SKILL.md"
+  },
+  {
+    "id": "team-polish",
+    "canonical_id": "team-polish",
+    "name": "team-polish",
+    "path": "skills/team-polish",
+    "description": "Orchestrate the polish team — performance-analyst, technical-artist, sound-designer, qa-tester — to optimize and harden a feature or area.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "team-polish"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/team-polish",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/team-polish/SKILL.md"
+  },
+  {
+    "id": "team-qa",
+    "canonical_id": "team-qa",
+    "name": "team-qa",
+    "path": "skills/team-qa",
+    "description": "Orchestrate the QA team through a full testing cycle — qa-lead strategy and test plan, qa-tester case writing, execution, sign-off.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "team-qa"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/team-qa",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/team-qa/SKILL.md"
+  },
+  {
+    "id": "team-release",
+    "canonical_id": "team-release",
+    "name": "team-release",
+    "path": "skills/team-release",
+    "description": "Orchestrate the release team — release-manager, qa-lead, devops-engineer, producer — to execute a release from candidate to deployment.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "team-release"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/team-release",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/team-release/SKILL.md"
+  },
+  {
+    "id": "team-ui",
+    "canonical_id": "team-ui",
+    "name": "team-ui",
+    "path": "skills/team-ui",
+    "description": "Orchestrate the UI team through the UX pipeline — authoring, visual design, implementation, review, polish. Uses /ux-design, /ux-review, studio templates.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "team-ui"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/team-ui",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/team-ui/SKILL.md"
   },
   {
     "id": "teardown",
@@ -51022,6 +52540,29 @@
     "license_source": "https://github.com/elvarofficial/teardown/blob/e7e668cd44f48ba79a3c575e9f55c7e194d26eef/LICENSE",
     "source_revision": "e7e668cd44f48ba79a3c575e9f55c7e194d26eef",
     "source_path": "skills/teardown/SKILL.md"
+  },
+  {
+    "id": "tech-debt",
+    "canonical_id": "tech-debt",
+    "name": "tech-debt",
+    "path": "skills/tech-debt",
+    "description": "Track, categorize and prioritize technical debt across the codebase — scans for debt indicators, maintains a register.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "tech-debt"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/tech-debt",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/tech-debt/SKILL.md"
   },
   {
     "id": "tech-writing-proofread",
@@ -51389,6 +52930,29 @@
     "license_source": "https://github.com/addyosmani/agent-skills/blob/main/LICENSE"
   },
   {
+    "id": "test-evidence-review",
+    "canonical_id": "test-evidence-review",
+    "name": "test-evidence-review",
+    "path": "skills/test-evidence-review",
+    "description": "Quality review of test files and evidence — goes beyond existence, evaluates assertion coverage. ADEQUATE/INCOMPLETE/MISSING/NOT ASSESSED per story.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "test-evidence-review"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/test-evidence-review",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/test-evidence-review/SKILL.md"
+  },
+  {
     "id": "test-fixing",
     "canonical_id": "test-fixing",
     "name": "test-fixing",
@@ -51400,6 +52964,29 @@
     ],
     "risk": "critical",
     "source": "community"
+  },
+  {
+    "id": "test-flakiness",
+    "canonical_id": "test-flakiness",
+    "name": "test-flakiness",
+    "path": "skills/test-flakiness",
+    "description": "Find flaky tests from CI logs — aggregates pass rates, spots intermittent failures, recommends quarantine. After multiple runs.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "test-flakiness"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/test-flakiness",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/test-flakiness/SKILL.md"
   },
   {
     "id": "test-framework-migration-skill",
@@ -51431,6 +53018,52 @@
     "source": "community",
     "source_repo": "amElnagdy/guard-skills",
     "author": "community"
+  },
+  {
+    "id": "test-helpers",
+    "canonical_id": "test-helpers",
+    "name": "test-helpers",
+    "path": "skills/test-helpers",
+    "description": "Generate engine-specific test helper libraries — assertion utilities, factory functions, mocks in the engine's test folder. Reduces boilerplate.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "test-helpers"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/test-helpers",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/test-helpers/SKILL.md"
+  },
+  {
+    "id": "test-setup",
+    "canonical_id": "test-setup",
+    "name": "test-setup",
+    "path": "skills/test-setup",
+    "description": "Scaffold the test framework and CI — tests/ directory, engine test runner, GitHub Actions workflow. Once, before the first sprint.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "test-setup"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/test-setup",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/test-setup/SKILL.md"
   },
   {
     "id": "testdriver-e2e-testing",
@@ -54157,6 +55790,29 @@
     "license_source": "https://github.com/bitjaru/styleseed/blob/main/LICENSE"
   },
   {
+    "id": "ux-design",
+    "canonical_id": "ux-design",
+    "name": "ux-design",
+    "path": "skills/ux-design",
+    "description": "Section-by-section UX spec authoring for a screen, flow or HUD. Reads the player journey to provide context; also project-wide accessibility.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "ux-design"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/ux-design",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/ux-design/SKILL.md"
+  },
+  {
     "id": "ux-feedback",
     "canonical_id": "ux-feedback",
     "name": "ux-feedback",
@@ -54203,6 +55859,29 @@
     ],
     "risk": "safe",
     "source": "community"
+  },
+  {
+    "id": "ux-review",
+    "canonical_id": "ux-review",
+    "name": "ux-review",
+    "path": "skills/ux-review",
+    "description": "Validate a UX spec, HUD design or pattern library — accessibility, GDD alignment, readiness. APPROVED / NOT ASSESSED / NEEDS REVISION / MAJOR REVISION NEEDED.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "ux-review"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/ux-review",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/ux-review/SKILL.md"
   },
   {
     "id": "uxkin-research",
@@ -54561,6 +56240,29 @@
     "license": "Apache-2.0",
     "license_source": "https://github.com/Sketchjar/stipple-agent-skills/blob/main/LICENSE",
     "author": "Sketchjar"
+  },
+  {
+    "id": "vertical-slice",
+    "canonical_id": "vertical-slice",
+    "name": "vertical-slice",
+    "path": "skills/vertical-slice",
+    "description": "Pre-production validation — end-to-end build to confirm the full loop is achievable before committing to Production. After GDDs, architecture, UX specs.",
+    "category": "game-development",
+    "tags": [
+      "game-development",
+      "gamedev",
+      "claude-code-game-studios",
+      "studio-workflow",
+      "vertical-slice"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/Donchitos/Claude-Code-Game-Studios/tree/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/skills/vertical-slice",
+    "source_repo": "Donchitos/Claude-Code-Game-Studios",
+    "author": "Donchitos",
+    "license": "MIT",
+    "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+    "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+    "source_path": ".claude/skills/vertical-slice/SKILL.md"
   },
   {
     "id": "vexor",

@@ -505,7 +505,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
   const youtube = catalog.filterSkills(skills, { sources: ['youtube'] });
   assert.equal(youtube.length, 11);
   assert.equal(catalog.filterSkills(skills, { query: 'youtube-agent-skill' }).length, 11);
-  assert.equal(skills.length, 3355);
+  assert.equal(skills.length, 3429);
   for (const skill of youtube) {
     assert.ok(skill.id.startsWith('youtube-agent-skill/'));
     assert.equal(skill.source_repo, 'Jakeschincariol/youtube-agent-skill');
@@ -520,7 +520,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
     assert.deepEqual(state.sources, ['youtube']);
     assert.equal(state.selected, youtube[0].id);
     assert.ok(i18n.translate('collections.youtube', language).startsWith('11 '));
-    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '3.355' : '3,355'));
+    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '3.429' : '3,429'));
   }
   assert.equal(catalog.filterSkills(skills, { sources: ['youtube'], category: 'security' }).length, 0);
   const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
@@ -1204,4 +1204,34 @@ test('stackdiagram retains exact source filtering, MIT license and agent prompts
   assert.ok(html.includes('name="source" value="stackdiagram"'));
   assert.ok(html.includes('data-source-count="stackdiagram">1<'));
   assert.ok(html.includes('id="stackdiagram-collection"'));
+});
+
+test('gamestudios retains exact source filtering, MIT license and agent prompts', () => {
+  const gameStudioSkills = catalog.filterSkills(skills, { sources: ['gamestudios'] });
+  assert.equal(gameStudioSkills.length, 74);
+  assert.equal(catalog.filterSkills(skills, { query: 'Donchitos/Claude-Code-Game-Studios' }).length, 74);
+  for (const skill of gameStudioSkills) {
+    assert.equal(skill.source_repo, 'Donchitos/Claude-Code-Game-Studios');
+    assert.equal(skill.author, 'Donchitos');
+    assert.ok(skill.license.includes('MIT'));
+    assert.equal(skill.category, 'game-development');
+    assert.equal(skill.risk, 'safe');
+  }
+
+  const sample = gameStudioSkills.find(s => s.id === 'setup-engine') || gameStudioSkills[0];
+  for (const language of ['vi', 'en']) {
+    assert.ok(i18n.translate('collections.gamestudios', language).startsWith('74 '));
+    for (const [agent] of catalog.agents.filter(([key]) => key !== 'all')) {
+      const prompt = catalog.agentInstallPrompt(sample, agent, language);
+      assert.ok(prompt.includes(`/install-manifests/${sample.id}.json`));
+      assert.ok(prompt.includes(catalog.targetFolders[agent]));
+      assert.ok(prompt.includes('SHA-256'));
+      assert.ok(prompt.includes('.vas-manifest.json'));
+    }
+  }
+
+  const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
+  assert.ok(html.includes('name="source" value="gamestudios"'));
+  assert.ok(html.includes('data-source-count="gamestudios">74<'));
+  assert.ok(html.includes('id="gamestudios-collection"'));
 });
