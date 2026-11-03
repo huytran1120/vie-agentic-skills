@@ -1,6 +1,6 @@
 ---
 name: product-marketing-context-global
-description: "Use when starting work on a new product, client, or market — this skill creates the file `.agents/product-marketing-context-global.md` that 60+ other global skills read before they write anything: product, ICP, positioning, proof, objections, brand voice, pricing, and KPIs, with a region variant for US, EU, SEA, or LATAM. Run once, reuse forever. Trigger on 'set up marketing context', 'new client setup', 'onboard a new product', 'the AI does not know my product', 'US marketing context', 'EU GDPR setup', 'SEA market context', 'LATAM setup'. Also use when the user complains every answer comes back generic because nothing about the business was ever provided. Not for — a personal brand belonging to a founder, coach, or creator, see `22-personal-brand-context-global`; deep persona and JTBD research, see `09-customer-insight-global`; the period plan itself, see `00-marketing-plan-global`."
+description: "Use when starting work on a new product, client, or market — this skill creates the file `.agents/product-marketing-context-global.md` that 60+ other global skills read before they write anything: product, ICP, positioning, proof, objections, brand voice, pricing, and KPIs, with a region variant for US, EU, SEA, or LATAM. Run once, reuse forever. Trigger on 'set up marketing context', 'new client setup', 'onboard a new product', 'the AI does not know my product', 'US marketing context', 'EU GDPR setup', 'SEA market context', 'LATAM setup'. Also use when the user complains every answer comes back generic because nothing about the business was ever provided. Not for — a personal brand belonging to a founder, coach, or creator, see `personal-brand-context-global`; deep persona and JTBD research, see `customer-insight-global`; the period plan itself, see `marketing-plan-global`."
 metadata:
   version: 1.1.0
   category: foundation
@@ -16,10 +16,10 @@ triggers:
   - "multi-region context"
 related:
   - product-marketing-context
-  - 00-marketing-plan-global
-  - 22-personal-brand-context-global
-  - 10-reverse-kpi-global
-  - 53-tracking-setup-global
+  - marketing-plan-global
+  - personal-brand-context-global
+  - reverse-kpi-global
+  - tracking-setup-global
 ---
 
 # Product Marketing Context (Global Foundation)
@@ -44,8 +44,8 @@ related:
 ### Who is this NOT for?
 
 - **Vietnam-only marketing** -> Use `product-marketing-context` (VN foundation) instead
-- **Personal brand (founder/coach/creator)** -> Use `22-personal-brand-context-global` (when available)
-- **Single ad campaign** -> Use `02-campaign-brief-global` directly; you do not need a full context file
+- **Personal brand (founder/coach/creator)** -> Use `personal-brand-context-global` (when available)
+- **Single ad campaign** -> Use `campaign-brief-global` directly; you do not need a full context file
 
 ### 30-second pre-read
 
@@ -165,11 +165,11 @@ Save to `.agents/product-marketing-context-global.md` (create the `.agents/` fol
 
 ## 13. Paid Ads (optional; skip if you do not run ads yet)
 
-> Ads skills (`10-reverse-kpi-global`, `53-tracking-setup-global`, `54-media-plan-global`, `21-ads-audit-global`) read this block. Where a value is unknown, write `[REAL DATA NEEDED]`; do not guess.
+> Ads skills (`reverse-kpi-global`, `tracking-setup-global`, `media-plan-global`, `ads-audit-global`) read this block. Where a value is unknown, write `[REAL DATA NEEDED]`; do not guess.
 
 - **Ad accounts:** (platform, account name, ID. NEVER write tokens or passwords)
-- **Pixel / CAPI status:** (not installed / installing / verified). **Last verified:** [YYYY-MM-DD] (how to check: see `53-tracking-setup-global`)
-- **Target CPA / ROAS:** [REAL DATA NEEDED] (how to derive: see `10-reverse-kpi-global`)
+- **Pixel / CAPI status:** (not installed / installing / verified). **Last verified:** [YYYY-MM-DD] (how to check: see `tracking-setup-global`)
+- **Target CPA / ROAS:** [REAL DATA NEEDED] (how to derive: see `reverse-kpi-global`)
 - **Monthly budget:**
 - **Approver for budget and account changes:** [name]
 
@@ -198,7 +198,7 @@ Save to `.agents/product-marketing-context-global.md` (create the `.agents/` fol
 
 ## How other skills use this file
 
-In every global marketing skill (00-marketing-plan-global, 05-ad-copy-global, etc.), add this block under "Collect info":
+In every global marketing skill (marketing-plan-global, ad-copy-global, etc.), add this block under "Collect info":
 
 ```markdown
 ## Collect info
@@ -211,7 +211,7 @@ Check whether `.agents/product-marketing-context-global.md` exists:
   If user wants to continue anyway, ask 2-3 minimum questions about product + region.
 ```
 
-**Skills that will read this file:** `00-marketing-plan-global`, `01-content-calendar-global`, `02-campaign-brief-global`, ... `29-*` (all global cluster skills).
+**Skills that will read this file:** `marketing-plan-global`, `content-calendar-global`, `campaign-brief-global`, ... `29-*` (all global cluster skills).
 
 ---
 
@@ -233,8 +233,8 @@ Check whether `.agents/product-marketing-context-global.md` exists:
 ## Related skills
 
 - `product-marketing-context` — Vietnam foundation (parallel)
-- `00-marketing-plan-global` — reads this file first
-- `22-personal-brand-context-global` — personal brand foundation (when available)
+- `marketing-plan-global` — reads this file first
+- `personal-brand-context-global` — personal brand foundation (when available)
 
 *Global Foundation Skill | Over Powers Agency | v1.0.0*
 

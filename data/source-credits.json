@@ -477,7 +477,7 @@
       "- Installation runs no code, installs no dependencies or MCP servers, and connects no external accounts. Game engines and Python 3 runtime are separate user prerequisites."
     ],
     "aibusiness": [
-      "- **[minhnv0807/ai-business-skills](https://github.com/minhnv0807/ai-business-skills/tree/fe33cb1a47e6140d3693651acbb743e2b1b5b26f)**: 147 AI Marketing & Business workflow skills by Nguyễn Văn Minh ([@minhnv0807](https://github.com/minhnv0807)) and Over Powers Agency at revision `fe33cb1a47e6140d3693651acbb743e2b1b5b26f` under the MIT License.",
+      "- **[minhnv0807/ai-business-skills](https://github.com/minhnv0807/ai-business-skills/tree/fe33cb1a47e6140d3693651acbb743e2b1b5b26f)**: 147 AI Marketing & Business workflow skills by Over Powers Agency at revision `fe33cb1a47e6140d3693651acbb743e2b1b5b26f` under the MIT License.",
       "- Covers end-to-end business and marketing lifecycle: strategy & planning, content production, paid media (Facebook, Google, TikTok Ads), conversion rate optimization (CRO), e-commerce & dropshipping, personal branding & AI avatars, and sales chatbot scripts.",
       "- Includes both Vietnam cluster (79 skills tailored for Vietnam market benchmarks, legal frameworks, and platforms) and Global cluster (68 skills for US, EU, APAC, and international platforms).",
       "- Standalone payloads preserve upstream SKILL.md, variants, evals, templates, and references. The single colliding name uses the `aibiz-` namespace.",

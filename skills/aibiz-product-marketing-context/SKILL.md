@@ -1,6 +1,6 @@
 ---
 name: aibiz-product-marketing-context
-description: "Dung khi bat dau lam viec voi mot san pham hoac khach hang moi — skill nay tao FILE CONTEXT ma hon 60 skill khac se doc, gom san pham, khach hang, dinh vi, proof, objection, brand voice va KPI. Chay mot lan, dung lai mai ve sau. Kich hoat khi user nhac 'tao context', 'setup product marketing context', 'bat dau du an moi', 'AI chua hieu san pham cua toi', 'khai bao thong tin san pham'. Khong dung cho — context cho thuong hieu CA NHAN thi dung skill 22-personal-brand-context; nghien cuu insight sau thi dung skill 09-insight-khach-hang."
+description: "Dùng khi bat dau lam viec voi mot san pham hoac khach hang moi — skill nay tao FILE CONTEXT ma hon 60 skill khac se doc, gom san pham, khach hang, dinh vi, proof, objection, brand voice va KPI. Chay mot lan, dung lai mai ve sau. Kích hoạt khi người dùng nhắc 'tao context', 'setup product marketing context', 'bat dau du an moi', 'AI chua hieu san pham cua toi', 'khai bao thong tin san pham'. Không dùng cho — context cho thuong hieu CA NHAN thi dung skill personal-brand-context; nghien cuu insight sau thi dung skill insight-khach-hang."
 metadata:
   version: 1.2.0
   category: foundation
@@ -13,12 +13,12 @@ triggers:
   - "khai bao thong tin san pham"
 output: file .agents/product-marketing-context.md (12 section + 3 muc tuy chon - Paid Ads, Agent permissions, Learnings)
 related:
-  - 22-personal-brand-context
-  - 09-insight-khach-hang
-  - 00-ke-hoach-mkt
-  - 10-tinh-kpi-nguoc
-  - 53-tracking-setup
-  - 35-brand-voice
+  - personal-brand-context
+  - insight-khach-hang
+  - ke-hoach-mkt
+  - tinh-kpi-nguoc
+  - tracking-setup
+  - brand-voice
 ---
 
 # Product Marketing Context (Foundation Skill)
@@ -109,7 +109,7 @@ Ghi moi nhat len dau. **Them dong moi, khong sua dong cu.** Moi dong ghi: muc na
 
 **Khi nao bump phien ban:** doi dinh vi, doi persona uu tien, doi offer/gia, doi brand voice, doi muc tieu. **Khong bump** khi chi sua chinh ta hoac dien them chi tiet nho.
 
-**Vi sao bat buoc:** hon 60 skill doc file nay lam nguon su that. Khi dinh vi doi ma khong ghi lai, moi output sau do doi theo trong im lang — 3 thang sau khong ai truy duoc ban brief thang truoc sinh ra tu phien ban nao. Skill `63-campaign-retrospective` va `39-content-audit` deu can biet dieu nay de so sanh dung ky.
+**Vi sao bat buoc:** hon 60 skill doc file nay lam nguon su that. Khi dinh vi doi ma khong ghi lai, moi output sau do doi theo trong im lang — 3 thang sau khong ai truy duoc ban brief thang truoc sinh ra tu phien ban nao. Skill `campaign-retrospective` va `aibiz-content-audit` deu can biet dieu nay de so sanh dung ky.
 
 ---
 
@@ -208,7 +208,7 @@ Ghi lai cac cau khach noi NGUYEN VAN — khong paraphrase.
 
 ## 10. Giong noi thuong hieu (Brand Voice)
 
-> Phan tich giong dieu tu mau that cua brand. Chi tiet brand voice day du: `35-brand-voice`.
+> Phan tich giong dieu tu mau that cua brand. Chi tiet brand voice day du: `brand-voice`.
 
 ### 10a. Brand voice co ban
 - **3 tinh tu mo ta thuong hieu:**
@@ -255,11 +255,11 @@ Neu user cung cap 3–5 mau content da dang (bai post, email, video script), pha
 
 ## 13. Paid Ads (tuy chon — bo qua neu chua chay ads)
 
-> Cac skill ads (`10-tinh-kpi-nguoc`, `53-tracking-setup`, `54-media-plan`, `21-audit-ads-performance`) doc muc nay. Chua co thong tin thi ghi `[CAN SO LIEU THAT]`, khong doan.
+> Cac skill ads (`tinh-kpi-nguoc`, `tracking-setup`, `media-plan`, `audit-ads-performance`) doc muc nay. Chua co thong tin thi ghi `[CAN SO LIEU THAT]`, khong doan.
 
 - **Tai khoan quang cao:** (nen tang, ten tai khoan, ID — KHONG ghi token / mat khau)
-- **Pixel / CAPI:** (trang thai: chua cai / dang cai / da verify) — **Ngay verify lan cuoi:** [YYYY-MM-DD] (cach kiem tra: xem `53-tracking-setup`)
-- **CPA / ROAS muc tieu:** [CAN SO LIEU THAT] (cach tinh: xem `10-tinh-kpi-nguoc`)
+- **Pixel / CAPI:** (trang thai: chua cai / dang cai / da verify) — **Ngay verify lan cuoi:** [YYYY-MM-DD] (cach kiem tra: xem `tracking-setup`)
+- **CPA / ROAS muc tieu:** [CAN SO LIEU THAT] (cach tinh: xem `tinh-kpi-nguoc`)
 - **Ngan sach hang thang:**
 - **Nguoi duyet thay doi ngan sach / tai khoan:** [ten]
 
@@ -288,10 +288,10 @@ Neu user cung cap 3–5 mau content da dang (bai post, email, video script), pha
 
 ## Cach cac skill khac dung file nay
 
-Trong moi skill (`00-ke-hoach-mkt`, `05-copy-quang-cao`, v.v.), them doan nay vao buoc "Thu thap thong tin":
+Trong moi skill (`ke-hoach-mkt`, `copy-quang-cao`, v.v.), them doan nay vao buoc "Thu thap thong tin":
 
 ```markdown
-## Thu thap thong tin
+## Thu thập thông tin
 
 ### Buoc 0: Kiem tra context file
 
@@ -303,7 +303,7 @@ Kiem tra co file `.agents/product-marketing-context.md` khong:
 
 ---
 
-## Checklist chat luong
+## Checklist chất lượng
 
 Truoc khi ket thuc:
 

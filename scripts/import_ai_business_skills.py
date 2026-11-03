@@ -14,7 +14,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parent.parent
 UPSTREAM_REPO = Path("/tmp/ai-business-skills-check")
 UPSTREAM_REV = "fe33cb1a47e6140d3693651acbb743e2b1b5b26f"
-AUTHOR = "Nguyễn Văn Minh"
+AUTHOR = "AI Business Skills"
 AUTHOR_AFFILIATION = "Over Powers Agency"
 AUTHOR_URL = "https://github.com/minhnv0807/ai-business-skills"
 LICENSE_NAME = "MIT"

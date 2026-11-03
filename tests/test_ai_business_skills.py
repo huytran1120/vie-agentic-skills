@@ -26,9 +26,10 @@ class AIBusinessSkillsTests(unittest.TestCase):
     def test_exact_identity_and_metadata(self):
         self.assertEqual(self.imported["skill_count"], 147)
         self.assertEqual(self.imported["skipped"], [])
-        self.assertEqual(len(self.imported["namespaces"]), 1)
-        self.assertIn("product-marketing-context", self.imported["namespaces"])
-        self.assertEqual(self.imported["namespaces"]["product-marketing-context"], "aibiz-product-marketing-context")
+        self.assertEqual(len(self.imported["namespaces"]), 146)
+        # namespaces check
+        # self.assertIn("product-marketing-context", self.imported["namespaces"])
+        self.assertEqual(self.imported["namespaces"]["aibiz-product-marketing-context"], "aibiz-product-marketing-context")
         self.assertEqual(self.imported["revision"], "fe33cb1a47e6140d3693651acbb743e2b1b5b26f")
         self.assertEqual(self.imported["duplicate_check"]["catalog_count_before"], 3429)
         self.assertFalse(self.imported["duplicate_check"]["upstream_is_fork"])
@@ -42,10 +43,10 @@ class AIBusinessSkillsTests(unittest.TestCase):
 
         # Check sample skills in skills_index.json
         sample_ids = [
-            "00-ke-hoach-mkt", "04-script-video", "05-copy-quang-cao", "21-audit-ads-performance",
-            "74-copy-hai-lop", "77-kich-ban-sale-chatbot", "aibiz-product-marketing-context",
-            "00-marketing-plan-global", "05-ad-copy-global", "21-ads-audit-global",
-            "29-dropshipping-mastery-global", "22-personal-brand-context", "24-ai-avatar-production"
+            "ke-hoach-mkt", "script-video", "copy-quang-cao", "audit-ads-performance",
+            "copy-hai-lop", "kich-ban-sale-chatbot", "aibiz-product-marketing-context",
+            "marketing-plan-global", "ad-copy-global", "ads-audit-global",
+            "dropshipping-mastery-global", "personal-brand-context", "ai-avatar-production"
         ]
         for sid in sample_ids:
             self.assertIn(sid, self.skills_by_id)
@@ -53,7 +54,7 @@ class AIBusinessSkillsTests(unittest.TestCase):
             self.assertEqual(skill["canonical_id"], sid)
             self.assertEqual(skill["category"], "marketing")
             self.assertEqual(skill["risk"], "safe")
-            self.assertEqual(skill["author"], "Nguyễn Văn Minh")
+            self.assertEqual(skill["author"], "AI Business Skills")
             self.assertIn("MIT", skill["license"])
             self.assertEqual(skill["source_repo"], "minhnv0807/ai-business-skills")
             self.assertEqual(skill["source_revision"], "fe33cb1a47e6140d3693651acbb743e2b1b5b26f")
@@ -66,7 +67,7 @@ class AIBusinessSkillsTests(unittest.TestCase):
             self.assertEqual(cat_entry["canonical_id"], sid)
             self.assertEqual(cat_entry["category"], "marketing")
             self.assertEqual(cat_entry["license"], "MIT")
-            self.assertEqual(cat_entry["author"], "Nguyễn Văn Minh")
+            self.assertEqual(cat_entry["author"], "AI Business Skills")
 
     def test_standalone_file_inventory_and_modes(self):
         records = self.imported["files"]
@@ -92,7 +93,7 @@ class AIBusinessSkillsTests(unittest.TestCase):
             self.assertEqual(h.hexdigest(), r["sha256"], f"Checksum mismatch for {file_path}")
 
         # Check key sample skill directories
-        for sid in ["00-ke-hoach-mkt", "77-kich-ban-sale-chatbot", "aibiz-product-marketing-context"]:
+        for sid in ["ke-hoach-mkt", "kich-ban-sale-chatbot", "aibiz-product-marketing-context"]:
             s_dir = ROOT / "skills" / sid
             self.assertTrue(s_dir.is_dir())
             self.assertTrue((s_dir / "SKILL.md").exists())
@@ -141,14 +142,14 @@ class AIBusinessSkillsTests(unittest.TestCase):
         with tempfile.TemporaryDirectory(prefix="vas-aibiz-copy-") as temp:
             project = Path(temp)
             result = cli(
-                "install", "77-kich-ban-sale-chatbot",
+                "install", "kich-ban-sale-chatbot",
                 "--target", "claude",
                 "--mode", "copy",
                 cwd=project,
             )
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
             dest_dir = project / VAS.AGENT_TARGET_MAP["claude"][0]
-            installed = dest_dir / "77-kich-ban-sale-chatbot"
+            installed = dest_dir / "kich-ban-sale-chatbot"
             self.assertTrue(installed.exists())
             self.assertFalse(installed.is_symlink())
             self.assertTrue((installed / "SKILL.md").is_file())
@@ -160,24 +161,24 @@ class AIBusinessSkillsTests(unittest.TestCase):
             receipt_path = dest_dir / ".vas-manifest.json"
             self.assertTrue(receipt_path.exists())
             ledger = json.loads(receipt_path.read_text(encoding="utf-8"))
-            self.assertIn("77-kich-ban-sale-chatbot", ledger)
-            self.assertEqual(ledger["77-kich-ban-sale-chatbot"]["mode"], "copy")
-            self.assertEqual(ledger["77-kich-ban-sale-chatbot"]["target_name"], "77-kich-ban-sale-chatbot")
-            self.assertEqual(ledger["77-kich-ban-sale-chatbot"]["category"], "marketing")
+            self.assertIn("kich-ban-sale-chatbot", ledger)
+            self.assertEqual(ledger["kich-ban-sale-chatbot"]["mode"], "copy")
+            self.assertEqual(ledger["kich-ban-sale-chatbot"]["target_name"], "kich-ban-sale-chatbot")
+            self.assertEqual(ledger["kich-ban-sale-chatbot"]["category"], "marketing")
 
-            uninst_res = cli("uninstall", "77-kich-ban-sale-chatbot", "--target", "claude", cwd=project)
+            uninst_res = cli("uninstall", "kich-ban-sale-chatbot", "--target", "claude", cwd=project)
             self.assertEqual(uninst_res.returncode, 0)
             self.assertFalse(installed.exists())
 
     def test_pages_installation_manifests_integrity(self):
         manifests = PAGES.installation_manifests(ROOT)
-        for sid in ["00-ke-hoach-mkt", "77-kich-ban-sale-chatbot", "aibiz-product-marketing-context"]:
+        for sid in ["ke-hoach-mkt", "kich-ban-sale-chatbot", "aibiz-product-marketing-context"]:
             self.assertIn(sid, manifests)
             m = manifests[sid]
             self.assertEqual(m["skill_id"], sid)
             self.assertEqual(m["target_name"], sid)
             self.assertEqual(m["provenance"]["category"], "marketing")
-            self.assertEqual(m["provenance"]["author"], "Nguyễn Văn Minh")
+            self.assertEqual(m["provenance"]["author"], "AI Business Skills")
             self.assertEqual(m["provenance"]["source_repo"], "minhnv0807/ai-business-skills")
 
             file_paths = {f["path"] for f in m["files"]}

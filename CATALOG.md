@@ -2728,181 +2728,104 @@ Tổng hợp **3,576** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
-| `00-ke-hoach-mkt` | `safe` | Dung khi can ke hoach marketing tong the cho mot ky — muc tieu, phan khuc, ke... |
-| `00-marketing-plan-global` | `safe` | Use when the user needs an overall marketing plan for a period — objectives, ... |
-| `01-content-calendar-global` | `safe` | Use when the user needs a monthly or weekly content calendar — posting schedu... |
-| `01-lich-noi-dung` | `safe` | Dung khi can lich dang bai cho ca thang — chot content pillar va ti le, xep b... |
-| `02-brief-chien-dich` | `safe` | Dung khi can brief mot chien dich cu the cho ca team thuc thi — muc tieu, tho... |
-| `02-campaign-brief-global` | `safe` | Use when a specific campaign needs a brief the whole team can execute from — ... |
-| `03-danh-gia-hieu-suat` | `safe` | Dung khi so lieu marketing dang xau va can biet TAI SAO — chan doan theo 5 lo... |
-| `03-performance-eval-global` | `safe` | Use when marketing numbers look bad and the user needs to know WHY — layered ... |
-| `04-script-video` | `safe` | Dung khi can viet kich ban video ngan — TikTok, Reels, Shorts — voi hook 3 th... |
-| `04-script-video-global` | `safe` | Use when the user needs a spoken script for short-form video — TikTok, Reels,... |
-| `05-ad-copy-global` | `safe` | Use when the user needs PAID ad copy for Meta, Google, or TikTok — six varian... |
-| `05-copy-quang-cao` | `safe` | Dung khi can viet copy quang cao TRA TIEN cho Meta, TikTok hoac Google — 6 bi... |
-| `06-brief-ugc-egc` | `safe` | Dung khi can brief NGUOI KHAC quay video ho — khach hang lam UGC, nhan vien l... |
-| `06-ugc-egc-brief-global` | `safe` | Use when someone outside the marketing team has to film — a customer for UGC,... |
-| `07-bao-cao-marketing` | `safe` | Dung khi can viet bao cao marketing cho nguoi khac doc — weekly 1 trang cho C... |
-| `07-marketing-report-global` | `safe` | Use when the user needs to WRITE a marketing report someone else will read — ... |
-| `08-competitor-research-global` | `safe` | Use when the user needs to understand competitors — direct, indirect, and sub... |
-| `08-nghien-cuu-doi-thu` | `safe` | Dung khi can biet doi thu dang lam gi va minh dang dung o dau — phan tich 3 t... |
-| `09-customer-insight-global` | `safe` | Use when the user needs to understand customers deeply enough to write copy a... |
-| `09-insight-khach-hang` | `safe` | Dung khi can hieu khach hang du sau de viet duoc content va chon duoc tep — p... |
-| `10-reverse-kpi-global` | `safe` | Use when the user needs to work backward from a revenue goal to the numbers t... |
-| `10-tinh-kpi-nguoc` | `safe` | Dung khi can tinh nguoc tu muc tieu doanh thu ra so lead can, CPL toi da va n... |
-| `11-channel-setup-global` | `safe` | Use when the user needs to choose and stand up marketing channels and the tec... |
-| `11-thiet-lap-kenh` | `safe` | Dung khi can MO va thiet lap kenh marketing tu con so khong — TikTok Brand, Z... |
-| `12-brief-landing-page` | `safe` | Dung khi can viet brief de XAY landing page moi hoac trang ban hang moi — cau... |
-| `12-landing-page-brief-global` | `safe` | Use when a NEW landing page, sales page, or single-product page has to be bui... |
-| `13-data-analysis-global` | `safe` | Use when raw data exists — Meta, Google, TikTok, GA4, Shopify, a CRM export, ... |
-| `13-phan-tich-du-lieu` | `safe` | Dung khi co data tho tu Meta, TikTok, GA4, CRM hay Google Sheet va can bien t... |
-| `14-email-marketing` | `safe` | Dung khi can xay chuoi email hoac Zalo OA gui theo kich ban — welcome series,... |
-| `14-email-marketing-global` | `safe` | Use when the user needs email or lifecycle automation — welcome series, nurtu... |
-| `15-social-listening` | `safe` | Dung khi can theo doi lien tuc nguoi ta noi gi ve thuong hieu, doi thu va nga... |
-| `15-social-listening-global` | `safe` | Use when the user wants to monitor what is being said about the brand, compet... |
-| `16-marketing-psychology` | `safe` | Dung khi can hieu VI SAO nguoi ta mua va ap dung nguyen tac tam ly vao market... |
-| `16-marketing-psychology-global` | `safe` | Use when persuasion principles have to be applied to a specific asset — recip... |
-| `17-pricing-strategy` | `safe` | Dung khi can dat gia hoac sua gia san pham va dich vu — chon mo hinh gia, thi... |
-| `17-pricing-strategy-global` | `safe` | Use when a price has to be set or changed — value-based pricing, anchoring, c... |
-| `18-referral-program` | `safe` | Dung khi muon khach cu hoac CTV keo khach moi — thiet ke chuong trinh gioi th... |
-| `18-referral-program-global` | `safe` | Use when customers should bring other customers — one-way versus two-way ince... |
-| `19-ab-test-setup` | `safe` | Dung khi can test co ky luat de biet phuong an nao thang that — chon dung mot... |
-| `19-ab-test-setup-global` | `safe` | Use when the user wants a VALID experiment instead of a guess — hypothesis, o... |
-| `20-brief-client-intake` | `safe` | Dung khi agency hoac freelancer nhan khach moi va can CHINH KHACH DIEN thong ... |
-| `20-client-intake-brief-global` | `safe` | Use when an agency or freelancer takes on a NEW client and needs everything u... |
-| `21-ads-audit-global` | `safe` | Use when an ad account needs a systematic CONFIGURATION audit — 84 checkpoint... |
-| `21-audit-ads-performance` | `safe` | Dung khi can ra soat CAU HINH tai khoan quang cao mot cach he thong — 6 khau ... |
-| `22-personal-brand-context` | `safe` | Dung khi bat dau xay thuong hieu CA NHAN cho mot con nguoi cu the — founder, ... |
-| `22-personal-brand-context-global` | `safe` | Use when starting work on a PERSONAL brand — a founder, coach, or creator, no... |
-| `23-personal-brand-strategy` | `safe` | Dung khi mot CA NHAN — founder, coach, creator — can chien luoc thuong hieu c... |
-| `23-personal-brand-strategy-global` | `safe` | Use when a PERSONAL brand — founder, coach, or creator — needs a 12-month str... |
-| `24-ai-avatar-production` | `safe` | Dung khi mot CA NHAN muon len hinh bang AI thay vi tu quay — pipeline avatar ... |
-| `24-ai-avatar-production-global` | `safe` | Use when a PERSONAL brand needs AI avatar video at scale — three tool tiers, ... |
-| `25-voice-clone-podcast` | `safe` | Dung khi mot CA NHAN can AM THANH bang AI — clone giong noi, lam podcast, aud... |
-| `25-voice-clone-podcast-global` | `safe` | Use when a PERSONAL brand needs AUDIO — voice cloning with ElevenLabs, Murf, ... |
-| `26-thought-leadership-content` | `safe` | Dung khi mot CA NHAN can viet BAI DAI de xay uy tin, khong phai copy ban hang... |
-| `26-thought-leadership-content-global` | `safe` | Use when a PERSONAL brand needs long-form WRITTEN content that builds authori... |
-| `27-personal-brand-monetize` | `safe` | Dung khi mot CA NHAN da co nguoi theo doi va muon RA TIEN — 3 phien ban funne... |
-| `27-personal-brand-monetize-global` | `safe` | Use when a PERSONAL brand needs to make money — three funnel versions for fou... |
-| `28-community-building` | `safe` | Dung khi mot CA NHAN muon xay CONG DONG quanh minh — Zalo Group, Telegram, Fa... |
-| `28-community-building-global` | `safe` | Use when a PERSONAL brand needs its OWN community — Skool, Mighty Networks, D... |
-| `29-dropshipping-mastery-global` | `safe` | Use when the user is launching or running a DROPSHIPPING business end to end ... |
-| `29-xuat-khau-b2b` | `safe` | Dung khi doanh nghiep Viet Nam muon ban ra NUOC NGOAI theo duong B2B — ho so ... |
-| `30-design-master-global` | `safe` | Use when the user wants a marketing image GENERATED or an image prompt writte... |
-| `30-thiet-ke-master` | `safe` | Dung khi can TAO RA anh hoac prompt anh bang AI — anh thuong hieu ca nhan, lo... |
-| `31-offer-design` | `safe` | Dung khi goi ban chua du hap dan va can dong goi lai — value stack, bonus, ba... |
-| `31-offer-design-global` | `safe` | Use when the WHAT being sold needs work, not the price and not the copy — cor... |
-| `32-seo-growth` | `safe` | Khi nguoi dung muon tang traffic tu SEO, AI SEO, GEO/AEO, Google, ChatGPT, Pe... |
-| `32-seo-growth-global` | `safe` | Use when the user wants SEO growth, AI SEO, GEO/AEO, Google visibility, ChatG... |
-| `33-b2b-lead-gen` | `safe` | Dung khi can tim va tiep can khach hang doanh nghiep — xac dinh ICP, dung dan... |
-| `33-b2b-lead-gen-global` | `safe` | Use when the user needs B2B pipeline work — ICP and account lists, prospectin... |
-| `34-ai-marketing-os` | `safe` | Dung khi muon bien cach team dung AI thanh mot he thong van hanh — Brand Hub ... |
-| `34-ai-marketing-os-global` | `safe` | Use when a team wants to design, audit, or operate an AI Marketing OS — a Bra... |
-| `35-brand-voice` | `safe` | Dung khi can chot giong noi thuong hieu mot lan de moi output content ve sau ... |
-| `35-brand-voice-global` | `safe` | Use when the user needs to define, document, or enforce how the brand SOUNDS ... |
-| `36-content-brief` | `safe` | Dung khi da co lich content va can brief tung bai truoc khi viet — goc tiep c... |
-| `36-content-brief-global` | `safe` | Use when ONE specific piece of content needs a brief before anyone writes — p... |
-| `37-caption-social` | `safe` | Dung khi can viet caption dang ORGANIC cho Facebook, Instagram, TikTok, Threa... |
-| `37-social-caption-global` | `safe` | Use when the user needs ORGANIC social captions for Instagram, LinkedIn, TikT... |
-| `38-community-seeding-global` | `safe` | Use when the user wants to show up in OTHER communities without astroturfing ... |
-| `38-seeding-plan` | `safe` | Dung khi can hien dien trong group va cong dong cua nguoi khac mot cach minh ... |
-| `39-content-audit` | `safe` | Dung khi cuoi thang can biet bai nao work bai nao khong va TAI SAO — phan loa... |
-| `39-content-audit-global` | `safe` | Use when published content has to be audited — pull channel data, classify wi... |
-| `40-next-content-plan` | `safe` | Dung khi da co ket qua audit va can lap plan content ky sau TU DATA chu khong... |
-| `40-next-content-plan-global` | `safe` | Use when the next period content plan must be built from last period DATA — k... |
-| `41-campaign-asset-list` | `safe` | Dung khi campaign da chot huong va can biet phai thiet ke NHUNG GI — danh sac... |
-| `41-campaign-asset-list-global` | `safe` | Use when a campaign needs its full design asset list before anyone opens a to... |
-| `42-brief-hinh-anh` | `safe` | Dung khi can brief mot ANH TINH cho designer hoac photographer — banner, thum... |
-| `42-image-brief-global` | `safe` | Use when ONE static image needs a full brief for a designer or photographer —... |
-| `43-brief-carousel` | `safe` | Dung khi can brief mot CHUOI NHIEU SLIDE — carousel Facebook, Instagram, Link... |
-| `43-carousel-brief-global` | `safe` | Use when a multi-slide carousel is needed for Instagram, Facebook, or LinkedI... |
-| `44-brief-video-editor` | `safe` | Dung khi da co y tuong va can huong dan NGUOI QUAY hoac NGUOI DUNG PHIM — sto... |
-| `44-video-editor-brief-global` | `safe` | Use when an editor or videographer needs production direction — beat-by-beat ... |
-| `45-brief-canva` | `safe` | Dung khi designer se lam TREN CANVA hoac Figma va can direction thao tac cu t... |
-| `45-design-tool-brief-global` | `safe` | Use when a designer needs hands-on production direction inside a tool — Canva... |
-| `46-brand-guideline` | `safe` | Dung khi can chot QUY CHUAN NHIN cua thuong hieu de moi nguoi lam ra deu gion... |
-| `46-brand-guideline-global` | `safe` | Use when brand VISUAL rules have to be created or updated — brand personality... |
-| `47-design-review` | `safe` | Dung khi da co THIET KE va can duyet truoc khi dang — cham diem 4 nhom brand ... |
-| `47-design-review-global` | `safe` | Use when a finished DESIGN needs scoring and feedback — brand consistency, hi... |
-| `48-quick-visual-brief` | `safe` | Dung khi campaign DANG CHAY va can asset moi ngay trong hom nay — creative ch... |
-| `48-quick-visual-brief-global` | `safe` | Use when a LIVE campaign needs a new asset the same day — creative fatigue, C... |
-| `49-html-email-template` | `safe` | Dung khi can FILE HTML email chay duoc tren moi email client — cau truc table... |
-| `49-html-email-template-global` | `safe` | Use when responsive HTML email has to render correctly in every client — tabl... |
-| `50-asset-resize` | `safe` | Dung khi da co MOT master design va can ra du kich thuoc cho tat ca kenh — ba... |
-| `50-asset-resize-global` | `safe` | Use when one master design has to become every size a campaign needs — feed, ... |
-| `51-audience-research` | `safe` | Dung khi can nghien cuu tep truoc khi chay ads — interest va behavior mapping... |
-| `51-audience-research-global` | `safe` | Use when paid ad AUDIENCES must be researched and defined before launch — tar... |
-| `52-account-structure` | `safe` | Dung khi can dung cau truc tai khoan quang cao truoc khi bat campaign — phan ... |
-| `52-account-structure-global` | `safe` | Use when an ad account HIERARCHY needs designing or cleaning up — campaign, a... |
-| `53-tracking-setup` | `safe` | Dung khi phai setup do luong TRUOC khi tieu bat ky dong nao — pixel va CAPI, ... |
-| `53-tracking-setup-global` | `safe` | Use when conversion TRACKING must be set up or fixed before spending — Meta P... |
-| `54-media-plan` | `safe` | Dung khi can lap ke hoach chi tieu quang cao cho mot ky — tinh nguoc tu doanh... |
-| `54-media-plan-global` | `safe` | Use when a PAID MEDIA plan is needed — work backward from revenue to max CPA ... |
-| `55-scaling-ads` | `safe` | Dung khi da co winner va muon tang quy mo ma khong lam hong — 7 dieu kien du ... |
-| `55-scaling-ads-global` | `safe` | Use when a WINNING ad has to be scaled without breaking it — readiness checks... |
-| `56-retargeting-plan` | `safe` | Dung khi can chay lai vao nguoi da tuong tac — phan tang warm theo hanh vi va... |
-| `56-retargeting-plan-global` | `safe` | Use when warm audiences need a plan — retargeting tiers by intent and recency... |
-| `57-next-ads-plan` | `safe` | Dung khi ket thuc mot ky va can lap plan quang cao ky sau tu data that — giu ... |
-| `57-next-ads-plan-global` | `safe` | Use when the next period ADS plan must be built from last period results — re... |
-| `58-positioning` | `safe` | Dung khi can tra loi duoc tai sao khach chon MINH chu khong chon nguoi khac —... |
-| `58-positioning-global` | `safe` | Use when positioning needs defining or sharpening — a statement built on Prom... |
-| `59-go-to-market` | `safe` | Dung khi sap ra mat san pham, dich vu hoac khoa hoc MOI va can duong di ra th... |
-| `59-go-to-market-global` | `safe` | Use when a NEW product, offer, or course is going to market — beachhead segme... |
-| `60-launch-playbook` | `safe` | Dung khi da co huong launch va can QUY TRINH chay cho khong vo tran — timelin... |
-| `60-launch-playbook-global` | `safe` | Use when a launch needs a repeatable EXECUTION playbook — a T-30 to D+7 timel... |
-| `61-budget-planning` | `safe` | Dung khi can chia TIEN marketing di dau bao nhieu — phan bo theo kenh, theo t... |
-| `61-budget-planning-global` | `safe` | Use when a marketing BUDGET has to be planned or managed in USD — allocation ... |
-| `62-marketing-review` | `safe` | Dung khi leader phai DUYET output CHU cua team truoc khi trien khai — content... |
-| `62-marketing-review-global` | `safe` | Use when a leader must review or approve TEXT-based team output before it shi... |
-| `63-campaign-retrospective` | `safe` | Dung khi campaign DA KET THUC va can rut ra bai hoc dung cho lan sau — scorec... |
-| `63-campaign-retrospective-global` | `safe` | Use when a campaign has ENDED and the team needs a structured retrospective —... |
-| `64-team-brief` | `safe` | Dung khi can GIAO VIEC cho tung nguoi trong team marketing hoac chuan bi hop ... |
-| `64-team-brief-global` | `safe` | Use when a leader assigns work to a marketing team member or runs a cross-fun... |
-| `65-team-performance-review` | `safe` | Dung khi can danh gia CON NGUOI trong team marketing dua tren du lieu — KPI s... |
-| `65-team-performance-review-global` | `safe` | Use when a leader evaluates a marketing TEAM MEMBER using data — a KPI scorec... |
-| `66-crisis-playbook` | `safe` | Dung khi thuong hieu DANG bi tan cong hoac campaign gay phan ung xau — phan l... |
-| `66-crisis-playbook-global` | `safe` | Use when a brand faces a communications CRISIS or a campaign is failing in pu... |
-| `67-agency-vendor-brief` | `safe` | Dung khi thue NGUOI NGOAI lam — agency, freelancer, production house, vendor:... |
-| `67-agency-vendor-brief-global` | `safe` | Use when briefing or managing an EXTERNAL agency, freelancer, or production v... |
-| `68-cro-audit-trang` | `safe` | Chan doan be mat chuyen doi DANG CHAY nhung khong ra don — phan loai 3 truc (... |
-| `69-giu-chan-khach-hang` | `safe` | Xay he thong giu chan khach hang cho SME VN — phan nhanh theo mo hinh kinh do... |
-| `70-lead-magnet` | `safe` | Thiet ke thu mien phi de doi lay thong tin lien he — ma tran loai lead magnet... |
-| `71-sales-enablement` | `safe` | Bo tai lieu ban hang cong voi ky luat giu pipeline cho SME VN, gop mot skill ... |
-| `72-hoi-dong-marketing` | `safe` | Mo phong hoi dong co van marketing bang nam archetype an danh de chong kieu t... |
-| `74-copy-hai-lop` | `safe` | Dung khi can viet slogan, headline poster hoac cau ngan co HAI LOP NGHIA — ma... |
-| `75-hop-tac-koc-affiliate` | `safe` | Dung khi thiet ke CHUONG TRINH hop tac voi KOC / creator o cap chuong trinh —... |
-| `76-van-hanh-san-tmdt` | `safe` | Van hanh gian hang DANG CHAY tren san TMDT (Shopee, TikTok Shop, Lazada) theo... |
-| `77-kich-ban-sale-chatbot` | `safe` | Dung khi can bien thong tin shop, danh muc san pham, chinh sach va hoi thoai ... |
 | `ab-test-setup` | `critical` | Use when designing an A/B or split test: define the hypothesis, control and v... |
+| `ab-test-setup-global` | `safe` | Use when the user wants a VALID experiment instead of a guess — hypothesis, o... |
+| `account-structure` | `safe` | Dùng khi cần dung cau truc tai khoan quang cao truoc khi bat campaign — phan ... |
+| `account-structure-global` | `safe` | Use when an ad account HIERARCHY needs designing or cleaning up — campaign, a... |
 | `activecampaign-automation` | `critical` | Automate ActiveCampaign tasks via Rube MCP (Composio): manage contacts, tags,... |
 | `ad-campaign-analyzer` | `critical` | Analyze cross-channel campaign data, quantify uncertainty, and propose eviden... |
+| `ad-copy-global` | `safe` | Use when the user needs PAID ad copy for Meta, Google, or TikTok — six varian... |
 | `ad-creative` | `critical` | Create, iterate, and scale paid ad creative for Google Ads, Meta, LinkedIn, T... |
-| `aibiz-product-marketing-context` | `safe` | Dung khi bat dau lam viec voi mot san pham hoac khach hang moi — skill nay ta... |
+| `ads-audit-global` | `safe` | Use when an ad account needs a systematic CONFIGURATION audit — 84 checkpoint... |
+| `agency-vendor-brief` | `safe` | Dùng khi thue NGUOI NGOAI lam — agency, freelancer, production house, vendor:... |
+| `agency-vendor-brief-global` | `safe` | Use when briefing or managing an EXTERNAL agency, freelancer, or production v... |
+| `ai-avatar-production` | `safe` | Dùng khi mot CA NHAN muon len hinh bang AI thay vi tu quay — pipeline avatar ... |
+| `ai-avatar-production-global` | `safe` | Use when a PERSONAL brand needs AI avatar video at scale — three tool tiers, ... |
+| `ai-marketing-os` | `safe` | Dùng khi muon bien cach team dung AI thanh mot he thong van hanh — Brand Hub ... |
+| `ai-marketing-os-global` | `safe` | Use when a team wants to design, audit, or operate an AI Marketing OS — a Bra... |
+| `aibiz-ab-test-setup` | `safe` | Dùng khi cần test co ky luat de biet phuong an nao thang that — chon dung mot... |
+| `aibiz-community-building` | `safe` | Dùng khi mot CA NHAN muon xay CONG DONG quanh minh — Zalo Group, Telegram, Fa... |
+| `aibiz-content-audit` | `safe` | Dùng khi cuoi thang can biet bai nao work bai nao khong va TAI SAO — phan loa... |
+| `aibiz-design-review` | `safe` | Dùng khi da co THIET KE va can duyet truoc khi dang — cham diem 4 nhom brand ... |
+| `aibiz-marketing-psychology` | `safe` | Dùng khi cần hieu VI SAO nguoi ta mua va ap dung nguyen tac tam ly vao market... |
+| `aibiz-pricing-strategy` | `safe` | Dùng khi cần dat gia hoac sua gia san pham va dich vu — chon mo hinh gia, thi... |
+| `aibiz-product-marketing-context` | `safe` | Dùng khi bat dau lam viec voi mot san pham hoac khach hang moi — skill nay ta... |
+| `aibiz-referral-program` | `safe` | Dùng khi muon khach cu hoac CTV keo khach moi — thiet ke chuong trinh gioi th... |
+| `aibiz-sales-enablement` | `safe` | Bo tai lieu ban hang cong voi ky luat giu pipeline cho SME VN, gop mot skill ... |
 | `alternatives-pages` | `critical` | Create \"[Competitor] alternative\" and comparison pages for developer tools.... |
 | `app-store-optimization` | `critical` | Complete App Store Optimization (ASO) toolkit for researching, optimizing, an... |
+| `asset-resize` | `safe` | Dùng khi da co MOT master design va can ra du kich thuoc cho tat ca kenh — ba... |
+| `asset-resize-global` | `safe` | Use when one master design has to become every size a campaign needs — feed, ... |
+| `audience-research` | `safe` | Dùng khi cần nghien cuu tep truoc khi chay ads — interest va behavior mapping... |
+| `audience-research-global` | `safe` | Use when paid ad AUDIENCES must be researched and defined before launch — tar... |
+| `audit-ads-performance` | `safe` | Dùng khi cần ra soat CAU HINH tai khoan quang cao mot cach he thong — 6 khau ... |
 | `awareness-stage-mapper` | `safe` | Map audience awareness stages to messaging strategy when planning a campaign,... |
+| `b2b-lead-gen` | `safe` | Dùng khi cần tim va tiep can khach hang doanh nghiep — xac dinh ICP, dung dan... |
+| `b2b-lead-gen-global` | `safe` | Use when the user needs B2B pipeline work — ICP and account lists, prospectin... |
+| `bao-cao-marketing` | `safe` | Dùng khi cần viet bao cao marketing cho nguoi khac doc — weekly 1 trang cho C... |
+| `brand-guideline` | `safe` | Dùng khi cần chot QUY CHUAN NHIN cua thuong hieu de moi nguoi lam ra deu gion... |
+| `brand-guideline-global` | `safe` | Use when brand VISUAL rules have to be created or updated — brand personality... |
 | `brand-guidelines` | `none` | Applies Anthropic's official brand colors and typography to any sort of artif... |
 | `brand-guidelines-anthropic` | `none` | To access Anthropic's official brand identity and style resources, use this s... |
 | `brand-guidelines-community` | `none` | To access Anthropic's official brand identity and style resources, use this s... |
 | `brand-perception-psychologist` | `safe` | Audit visual, verbal, and behavioral brand signals and propose alignment chan... |
+| `brand-voice` | `safe` | Dùng khi cần chot giong noi thuong hieu mot lan de moi output content ve sau ... |
+| `brand-voice-global` | `safe` | Use when the user needs to define, document, or enforce how the brand SOUNDS ... |
 | `brevo-automation` | `critical` | Automate Brevo (formerly Sendinblue) email marketing operations through Compo... |
+| `brief-canva` | `safe` | Dùng khi designer se lam TREN CANVA hoac Figma va can direction thao tac cu t... |
+| `brief-carousel` | `safe` | Dùng khi cần brief mot CHUOI NHIEU SLIDE — carousel Facebook, Instagram, Link... |
+| `brief-chien-dich` | `safe` | Dùng khi cần brief một chiến dịch cụ thể cho cả nhóm thực thi — muc tieu, tho... |
+| `brief-client-intake` | `safe` | Dùng khi agency hoac freelancer nhan khach moi va can CHINH KHACH DIEN thong ... |
+| `brief-hinh-anh` | `safe` | Dùng khi cần brief mot ANH TINH cho designer hoac photographer — banner, thum... |
+| `brief-landing-page` | `safe` | Dùng khi cần viet brief de XAY landing page moi hoac trang ban hang moi — cau... |
+| `brief-ugc-egc` | `safe` | Dùng khi cần brief NGUOI KHAC quay video ho — khach hang lam UGC, nhan vien l... |
+| `brief-video-editor` | `safe` | Dùng khi da co y tuong va can huong dan NGUOI QUAY hoac NGUOI DUNG PHIM — sto... |
+| `budget-planning` | `safe` | Dùng khi cần chia TIEN marketing di dau bao nhieu — phan bo theo kenh, theo t... |
+| `budget-planning-global` | `safe` | Use when a marketing BUDGET has to be planned or managed in USD — allocation ... |
+| `campaign-asset-list` | `safe` | Dùng khi campaign da chot huong va can biet phai thiet ke NHUNG GI — danh sac... |
+| `campaign-asset-list-global` | `safe` | Use when a campaign needs its full design asset list before anyone opens a to... |
+| `campaign-brief-global` | `safe` | Use when a specific campaign needs a brief the whole team can execute from — ... |
+| `campaign-retrospective` | `safe` | Dùng khi campaign DA KET THUC va can rut ra bai hoc dung cho lan sau — scorec... |
+| `campaign-retrospective-global` | `safe` | Use when a campaign has ENDED and the team needs a structured retrospective —... |
+| `caption-social` | `safe` | Dùng khi cần viet caption dang ORGANIC cho Facebook, Instagram, TikTok, Threa... |
+| `carousel-brief-global` | `safe` | Use when a multi-slide carousel is needed for Instagram, Facebook, or LinkedI... |
+| `channel-setup-global` | `safe` | Use when the user needs to choose and stand up marketing channels and the tec... |
 | `churn-prevention` | `critical` | Reduce voluntary and involuntary churn with cancel flows, save offers, dunnin... |
+| `client-intake-brief-global` | `safe` | Use when an agency or freelancer takes on a NEW client and needs everything u... |
 | `co-marketing` | `safe` | When the user wants to find co-marketing partners, plan joint campaigns, or b... |
 | `cold-email` | `safe` | Write B2B cold emails and follow-up sequences that earn replies. Use when cre... |
 | `community-building` | `critical` | When the user wants to build, grow, or improve a developer community on Disco... |
+| `community-building-global` | `safe` | Use when a PERSONAL brand needs its OWN community — Skool, Mighty Networks, D... |
+| `community-seeding-global` | `safe` | Use when the user wants to show up in OTHER communities without astroturfing ... |
 | `competitor-ad-intelligence` | `critical` | Research public competitor ads, analyze creative patterns and landing pages, ... |
 | `competitor-analysis` | `critical` | Research competitors with Browserbase discovery, enrichment lanes, screenshot... |
 | `competitor-profiling` | `critical` | When the user wants to research, profile, or analyze competitors from their U... |
+| `competitor-research-global` | `safe` | Use when the user needs to understand competitors — direct, indirect, and sub... |
 | `competitor-tracking` | `critical` | Systematic competitor analysis for developer tools. Track features, pricing, ... |
+| `content-audit-global` | `safe` | Use when published content has to be audited — pull channel data, classify wi... |
+| `content-brief` | `safe` | Dùng khi da co lich content va can brief tung bai truoc khi viet — goc tiep c... |
+| `content-brief-global` | `safe` | Use when ONE specific piece of content needs a brief before anyone writes — p... |
+| `content-calendar-global` | `safe` | Use when the user needs a monthly or weekly content calendar — posting schedu... |
 | `content-creator` | `critical` | Draft and review audience-specific content using supplied brand examples, loc... |
 | `content-strategy` | `critical` | Plan a content strategy, topic clusters, editorial roadmap, and content mix f... |
 | `convertkit-automation` | `critical` | Automate ConvertKit (Kit) tasks via Rube MCP (Composio): manage subscribers, ... |
 | `copy-editing` | `none` | You are an expert copy editor specializing in marketing and conversion copy. ... |
+| `copy-hai-lop` | `safe` | Dùng khi cần viet slogan, headline poster hoac cau ngan co HAI LOP NGHIA — ma... |
+| `copy-quang-cao` | `safe` | Dùng khi cần viết copy quảng cáo TRA TIEN cho Meta, TikTok hoac Google — 6 bi... |
 | `copywriting` | `none` | Write rigorous, conversion-focused marketing copy for landing pages and email... |
+| `crisis-playbook` | `safe` | Dùng khi thuong hieu DANG bi tan cong hoac campaign gay phan ung xau — phan l... |
+| `crisis-playbook-global` | `safe` | Use when a brand faces a communications CRISIS or a campaign is failing in pu... |
 | `cro` | `safe` | When the user wants to optimize, improve, or increase conversions on any mark... |
+| `cro-audit-trang` | `safe` | Chan doan be mat chuyen doi DANG CHAY nhung khong ra don — phan loai 3 truc (... |
+| `customer-insight-global` | `safe` | Use when the user needs to understand customers deeply enough to write copy a... |
 | `customer-psychographic-profiler` | `safe` | Build an evidence-grounded customer profile of motivations, fears, identity, ... |
 | `customer-research` | `critical` | When the user wants to conduct, analyze, or synthesize customer research. |
+| `danh-gia-hieu-suat` | `safe` | Dùng khi số liệu marketing đang xấu và cần biết TẠI SAO — chan doan theo 5 lo... |
+| `data-analysis-global` | `safe` | Use when raw data exists — Meta, Google, TikTok, GA4, Shopify, a CRM export, ... |
 | `define-my-content-pillars` | `safe` | Find the three to five subjects someone can post about repeatedly, from what ... |
+| `design-master-global` | `safe` | Use when the user wants a marketing image GENERATED or an image prompt writte... |
+| `design-review-global` | `safe` | Use when a finished DESIGN needs scoring and feedback — brand consistency, hi... |
+| `design-tool-brief-global` | `safe` | Use when a designer needs hands-on production direction inside a tool — Canva... |
 | `developer-advocacy` | `critical` | When the user wants to do developer advocacy activities including conference ... |
 | `developer-audience-context` | `critical` | When the user wants to establish or update their developer audience context. ... |
 | `developer-churn` | `critical` | When the user wants to understand, reduce, or recover from developer churn. T... |
@@ -2912,7 +2835,10 @@ Tổng hợp **3,576** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `developer-signup-flow` | `critical` | Design frictionless signup experiences for developers including GitHub OAuth,... |
 | `docs-as-marketing` | `critical` | Transform documentation into a powerful marketing channel that attracts, conv... |
 | `draft-my-comments` | `safe` | Write a LinkedIn comment that adds something the post did not have, not agree... |
+| `dropshipping-mastery-global` | `safe` | Use when the user is launching or running a DROPSHIPPING business end to end ... |
+| `email-marketing` | `safe` | Dùng khi cần xay chuoi email hoac Zalo OA gui theo kich ban — welcome series,... |
 | `email-marketing-bible` | `critical` | Data-backed email marketing for AI agents: automation flows, deliverability t... |
+| `email-marketing-global` | `safe` | Use when the user needs email or lifecycle automation — welcome series, nurtu... |
 | `email-sequence` | `none` | You are an expert in email marketing and automation. Your goal is to create e... |
 | `email-systems` | `critical` | Design transactional and marketing email delivery, queues, templates, authent... |
 | `form-cro` | `critical` | Optimize any form that is NOT signup or account registration — including lead... |
@@ -2920,16 +2846,32 @@ Tổng hợp **3,576** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `free-tool-strategy` | `none` | You are an expert in engineering-as-marketing strategy. Your goal is to help ... |
 | `geo-fundamentals` | `critical` | Generative Engine Optimization for AI search engines (ChatGPT, Claude, Perple... |
 | `get-seen-in-replies` | `safe` | Write a reply to someone else's tweet that is worth reading on its own. Use w... |
+| `giu-chan-khach-hang` | `safe` | Xay he thong giu chan khach hang cho SME VN — phan nhanh theo mo hinh kinh do... |
+| `go-to-market` | `safe` | Dùng khi sap ra mat san pham, dich vu hoac khoa hoc MOI va can duong di ra th... |
+| `go-to-market-global` | `safe` | Use when a NEW product, offer, or course is going to market — beachhead segme... |
 | `growth-engine` | `none` | Motor de crescimento para produtos digitais -- growth hacking, SEO, ASO, vira... |
 | `headline-psychologist` | `safe` | Draft and compare audience-aware headlines when copy needs clearer relevance ... |
+| `hoi-dong-marketing` | `safe` | Mo phong hoi dong co van marketing bang nam archetype an danh de chong kieu t... |
+| `hop-tac-koc-affiliate` | `safe` | Dùng khi thiet ke CHUONG TRINH hop tac voi KOC / creator o cap chuong trinh —... |
+| `html-email-template` | `safe` | Dùng khi cần FILE HTML email chay duoc tren moi email client — cau truc table... |
+| `html-email-template-global` | `safe` | Use when responsive HTML email has to render correctly in every client — tabl... |
 | `identity-mirror` | `safe` | Map an audience's current and aspirational identity into credible messaging w... |
+| `image-brief-global` | `safe` | Use when ONE static image needs a full brief for a designer or photographer —... |
+| `insight-khach-hang` | `safe` | Dùng khi cần hieu khach hang du sau de viet duoc content va chon duoc tep — p... |
 | `instagram` | `critical` | Integracao completa com Instagram via Graph API. Publicacao, analytics, comen... |
 | `instagram-automation` | `critical` | Automate Instagram tasks via Rube MCP (Composio): create posts, carousels, ma... |
 | `jobs-to-be-done-analyst` | `safe` | Uncover the functional, emotional and social jobs a customer hires a product ... |
+| `ke-hoach-mkt` | `safe` | Dùng khi cần kế hoạch marketing tổng thể cho một kỳ — muc tieu, phan khuc, ke... |
 | `keyword-extractor` | `safe` | Extracts up to 50 highly relevant SEO keywords from text. Use when user wants... |
+| `kich-ban-sale-chatbot` | `safe` | Dùng khi cần bien thong tin shop, danh muc san pham, chinh sach va hoi thoai ... |
 | `klaviyo-automation` | `safe` | Automate Klaviyo tasks via Rube MCP (Composio): manage email/SMS campaigns, i... |
+| `landing-page-brief-global` | `safe` | Use when a NEW landing page, sales page, or single-product page has to be bui... |
+| `launch-playbook` | `safe` | Dùng khi da co huong launch va can QUY TRINH chay cho khong vo tran — timelin... |
+| `launch-playbook-global` | `safe` | Use when a launch needs a repeatable EXECUTION playbook — a T-30 to D+7 timel... |
 | `launch-strategy` | `critical` | You are an expert in SaaS product launches and feature announcements. Your go... |
+| `lead-magnet` | `safe` | Thiet ke thu mien phi de doi lay thong tin lien he — ma tran loai lead magnet... |
 | `lead-magnets` | `safe` | Plan and optimize lead magnets for email capture and lead generation. Use whe... |
+| `lich-noi-dung` | `safe` | Dùng khi cần lịch đăng bài cho cả tháng — chot content pillar va ti le, xep b... |
 | `linkedin-automation` | `critical` | Automate LinkedIn tasks via Rube MCP (Composio): create posts, manage profile... |
 | `linkedin-cli` | `safe` | Use when automating LinkedIn via CLI: fetch profiles, search people/companies... |
 | `linkedin-content-generator` | `critical` | AI-powered LinkedIn content suite: generate posts, carousels, newsletters, an... |
@@ -2940,8 +2882,22 @@ Tổng hợp **3,576** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `marketing-ideas` | `safe` | Provide proven marketing strategies and growth ideas for SaaS and software pr... |
 | `marketing-mindset` | `safe` | Use when a user asks how to win first customers, whether doing X will produce... |
 | `marketing-plan` | `critical` | When the user needs a comprehensive marketing plan for a client, a company th... |
+| `marketing-plan-global` | `safe` | Use when the user needs an overall marketing plan for a period — objectives, ... |
 | `marketing-psychology` | `none` | Apply behavioral science and mental models to marketing decisions, prioritize... |
+| `marketing-psychology-global` | `safe` | Use when persuasion principles have to be applied to a specific asset — recip... |
+| `marketing-report-global` | `safe` | Use when the user needs to WRITE a marketing report someone else will read — ... |
+| `marketing-review` | `safe` | Dùng khi leader phai DUYET output CHU cua team truoc khi trien khai — content... |
+| `marketing-review-global` | `safe` | Use when a leader must review or approve TEXT-based team output before it shi... |
+| `media-plan` | `safe` | Dùng khi cần lap ke hoach chi tieu quang cao cho mot ky — tinh nguoc tu doanh... |
+| `media-plan-global` | `safe` | Use when a PAID MEDIA plan is needed — work backward from revenue to max CPA ... |
+| `next-ads-plan` | `safe` | Dùng khi ket thuc mot ky va can lap plan quang cao ky sau tu data that — giu ... |
+| `next-ads-plan-global` | `safe` | Use when the next period ADS plan must be built from last period results — re... |
+| `next-content-plan` | `safe` | Dùng khi da co ket qua audit va can lap plan content ky sau TU DATA chu khong... |
+| `next-content-plan-global` | `safe` | Use when the next period content plan must be built from last period DATA — k... |
+| `nghien-cuu-doi-thu` | `safe` | Dùng khi cần biet doi thu dang lam gi va minh dang dung o dau — phan tich 3 t... |
 | `objection-preemptor` | `safe` | Map customer objections and address them with evidence and choice-preserving ... |
+| `offer-design` | `safe` | Dùng khi goi ban chua du hap dan va can dong goi lai — value stack, bonus, ba... |
+| `offer-design-global` | `safe` | Use when the WHAT being sold needs work, not the price and not the copy — cor... |
 | `offers` | `safe` | When the user wants to design, construct, or improve an offer — the thing the... |
 | `omentir-linkedin-outreach` | `critical` | Run LinkedIn prospecting and outreach through the Omentir MCP server: find pe... |
 | `onboarding` | `safe` | When the user wants to optimize post-signup onboarding, user activation, firs... |
@@ -2952,42 +2908,86 @@ Tổng hợp **3,576** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `page-cro` | `none` | Analyze and optimize individual pages for conversion performance. |
 | `paid-ads` | `critical` | You are an expert performance marketer who verifies available authorized acco... |
 | `paywall-upgrade-cro` | `critical` | You are an expert in in-app paywalls and upgrade flows. Your goal is to conve... |
+| `performance-eval-global` | `safe` | Use when marketing numbers look bad and the user needs to know WHY — layered ... |
+| `personal-brand-context` | `safe` | Dùng khi bat dau xay thuong hieu CA NHAN cho mot con nguoi cu the — founder, ... |
+| `personal-brand-context-global` | `safe` | Use when starting work on a PERSONAL brand — a founder, coach, or creator, no... |
+| `personal-brand-monetize` | `safe` | Dùng khi mot CA NHAN da co nguoi theo doi va muon RA TIEN — 3 phien ban funne... |
+| `personal-brand-monetize-global` | `safe` | Use when a PERSONAL brand needs to make money — three funnel versions for fou... |
+| `personal-brand-strategy` | `safe` | Dùng khi mot CA NHAN — founder, coach, creator — can chien luoc thuong hieu c... |
+| `personal-brand-strategy-global` | `safe` | Use when a PERSONAL brand — founder, coach, or creator — needs a 12-month str... |
+| `phan-tich-du-lieu` | `safe` | Dùng khi co data tho tu Meta, TikTok, GA4, CRM hay Google Sheet va can bien t... |
 | `pitch-psychologist` | `safe` | Structure pitches, decks, and talk tracks around audience beliefs, proof, and... |
 | `popup-cro` | `none` | Create and optimize popups, modals, overlays, slide-ins, and banners to incre... |
+| `positioning` | `safe` | Dùng khi cần tra loi duoc tai sao khach chon MINH chu khong chon nguoi khac —... |
+| `positioning-global` | `safe` | Use when positioning needs defining or sharpening — a statement built on Prom... |
 | `power-user-cultivation` | `safe` | When the user wants to identify and nurture developer advocates, build champi... |
 | `price-psychology-strategist` | `safe` | Design pricing presentation, anchors, and tiers when an offer needs clearer v... |
 | `pricing` | `safe` | When the user wants help with pricing decisions, packaging, or monetization s... |
+| `pricing-strategy-global` | `safe` | Use when a price has to be set or changed — value-based pricing, anchoring, c... |
 | `product-marketing-context-global` | `safe` | Use when starting work on a new product, client, or market — this skill creat... |
 | `programmatic-seo` | `none` | Design and evaluate programmatic SEO strategies for creating SEO-driven pages... |
 | `public-relations` | `critical` | When the user wants help with public relations, earned media, press coverage,... |
+| `quick-visual-brief` | `safe` | Dùng khi campaign DANG CHAY va can asset moi ngay trong hom nay — creative ch... |
+| `quick-visual-brief-global` | `safe` | Use when a LIVE campaign needs a new asset the same day — creative fatigue, C... |
 | `reddit-automation` | `critical` | Automate Reddit tasks via Rube MCP (Composio): search subreddits, create post... |
 | `referral-program` | `critical` | You are an expert in viral growth and referral marketing using only referral ... |
+| `referral-program-global` | `safe` | Use when customers should bring other customers — one-way versus two-way ince... |
 | `repurpose-into-a-post` | `critical` | Turn an article, newsletter, transcript or video into a Twitter/X or LinkedIn... |
+| `retargeting-plan` | `safe` | Dùng khi cần chay lai vao nguoi da tuong tac — phan tang warm theo hanh vi va... |
+| `retargeting-plan-global` | `safe` | Use when warm audiences need a plan — retargeting tiers by intent and recency... |
+| `reverse-kpi-global` | `safe` | Use when the user needs to work backward from a revenue goal to the numbers t... |
 | `same-idea-both-platforms` | `critical` | Write one idea as a Twitter/X post and a LinkedIn post that read as written s... |
+| `scaling-ads` | `safe` | Dùng khi da co winner va muon tang quy mo ma khong lam hong — 7 dieu kien du ... |
+| `scaling-ads-global` | `safe` | Use when a WINNING ad has to be scaled without breaking it — readiness checks... |
 | `scarcity-urgency-psychologist` | `safe` | Design honest scarcity and urgency messaging when verified inventory, capacit... |
 | `schema-markup` | `critical` | Design, validate, and optimize schema.org structured data for eligibility, co... |
 | `screenshots` | `critical` | Generate marketing screenshots of your app using Playwright. Use when the use... |
+| `script-video` | `safe` | Dùng khi cần viết kịch bản video ngắn — TikTok, Reels, Shorts — voi hook 3 th... |
+| `script-video-global` | `safe` | Use when the user needs a spoken script for short-form video — TikTok, Reels,... |
+| `seeding-plan` | `safe` | Dùng khi cần hien dien trong group va cong dong cua nguoi khac mot cach minh ... |
 | `seo-drift` | `safe` | Snapshot a site's SEO state and detect ranking, indexation, metadata, canonic... |
+| `seo-growth` | `safe` | Khi nguoi dung muon tang traffic tu SEO, AI SEO, GEO/AEO, Google, ChatGPT, Pe... |
+| `seo-growth-global` | `safe` | Use when the user wants SEO growth, AI SEO, GEO/AEO, Google visibility, ChatG... |
 | `sequence-psychologist` | `safe` | Plan email nurture and multi-touch communication sequences when each message ... |
 | `signup-flow-cro` | `safe` | You are an expert in optimizing signup and registration flows. Your goal is t... |
+| `social-caption-global` | `safe` | Use when the user needs ORGANIC social captions for Instagram, LinkedIn, TikT... |
 | `social-content` | `critical` | Help plan and draft social content; publishing capabilities depend on the act... |
+| `social-listening` | `safe` | Dùng khi cần theo doi lien tuc nguoi ta noi gi ve thuong hieu, doi thu va nga... |
+| `social-listening-global` | `safe` | Use when the user wants to monitor what is being said about the brand, compet... |
 | `social-orchestrator` | `critical` | Orquestrador unificado de canais sociais — coordena Instagram, Telegram e Wha... |
 | `social-proof-architect` | `safe` | Select and place genuine testimonials, case studies, and other proof when an ... |
 | `socialclaw` | `critical` | Agent-first social media publishing skill — schedule and publish posts across... |
 | `subject-line-psychologist` | `safe` | Draft email subject lines and notification copy matched to audience and seque... |
 | `taisly-social-media-posting` | `critical` | Use Taisly Agent Kit to prepare and publish approved short-form video posts a... |
 | `talivia-agent-kit` | `critical` | Set up and verify Talivia revenue analytics through MCP, with explicit confir... |
+| `team-brief` | `safe` | Dùng khi cần GIAO VIEC cho tung nguoi trong team marketing hoac chuan bi hop ... |
+| `team-brief-global` | `safe` | Use when a leader assigns work to a marketing team member or runs a cross-fun... |
+| `team-performance-review` | `safe` | Dùng khi cần danh gia CON NGUOI trong team marketing dua tren du lieu — KPI s... |
+| `team-performance-review-global` | `safe` | Use when a leader evaluates a marketing TEAM MEMBER using data — a KPI scorec... |
 | `telegram-channel-ads` | `safe` | Vet and price ad posts in Telegram channels: reach benchmarks by size, topic ... |
+| `thiet-ke-master` | `safe` | Dùng khi cần TAO RA anh hoac prompt anh bang AI — anh thuong hieu ca nhan, lo... |
+| `thiet-lap-kenh` | `safe` | Dùng khi cần MO va thiet lap kenh marketing tu con so khong — TikTok Brand, Z... |
+| `thought-leadership-content` | `safe` | Dùng khi mot CA NHAN can viet BAI DAI de xay uy tin, khong phai copy ban hang... |
+| `thought-leadership-content-global` | `safe` | Use when a PERSONAL brand needs long-form WRITTEN content that builds authori... |
 | `tiktok-automation` | `critical` | Automate TikTok tasks via Rube MCP (Composio): upload/publish videos, post ph... |
+| `tinh-kpi-nguoc` | `safe` | Dùng khi cần tinh nguoc tu muc tieu doanh thu ra so lead can, CPL toi da va n... |
+| `tracking-setup` | `safe` | Dùng khi phai setup do luong TRUOC khi tieu bat ky dong nao — pixel va CAPI, ... |
+| `tracking-setup-global` | `safe` | Use when conversion TRACKING must be set up or fixed before spending — Meta P... |
 | `trust-calibrator` | `safe` | Diagnose audience trust barriers and calibrate proof, certainty, and credibil... |
 | `turn-this-into-a-thread` | `critical` | Turn a long idea, transcript, article or draft into a Twitter/X thread where ... |
 | `twitter-automation` | `critical` | Automate Twitter/X tasks via Rube MCP (Composio): posts, search, users, bookm... |
+| `ugc-egc-brief-global` | `safe` | Use when someone outside the marketing team has to film — a customer for UGC,... |
+| `van-hanh-san-tmdt` | `safe` | Van hanh gian hang DANG CHAY tren san TMDT (Shopee, TikTok Shop, Lazada) theo... |
+| `video-editor-brief-global` | `safe` | Use when an editor or videographer needs production direction — beat-by-beat ... |
 | `viral-generator-builder` | `critical` | Expert in building shareable generator tools that go viral - name |
+| `voice-clone-podcast` | `safe` | Dùng khi mot CA NHAN can AM THANH bang AI — clone giong noi, lam podcast, aud... |
+| `voice-clone-podcast-global` | `safe` | Use when a PERSONAL brand needs AUDIO — voice cloning with ElevenLabs, Murf, ... |
 | `wechat-official-account-strategist` | `safe` | Grow WeChat Official Accounts (微信公众号) with high-conversion content strategy, ... |
 | `why-did-this-post-flop` | `safe` | Diagnose why one Twitter/X or LinkedIn post underperformed: not seen, seen an... |
 | `write-in-my-voice` | `critical` | Draft a Twitter/X or LinkedIn post that sounds like the person asking, from p... |
 | `x-article-publisher-skill` | `critical` | Publish articles to X/Twitter |
 | `xiaohongshu-content-strategist` | `safe` | Create viral Xiaohongshu (小红书) content with platform-native strategy, save-ra... |
+| `xuat-khau-b2b` | `safe` | Dùng khi doanh nghiep Viet Nam muon ban ra NUOC NGOAI theo duong B2B — ho so ... |
 | `youtube-automation` | `critical` | Automate YouTube tasks via Rube MCP (Composio): upload videos, manage playlis... |
 | `zhongcao-note-copywriter` | `critical` | Install and use the official Xiaohongshu Copywriter package, pinned by digest... |
 

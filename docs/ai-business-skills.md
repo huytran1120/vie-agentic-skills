@@ -6,16 +6,16 @@
 1 skill có tên trùng với catalog hiện có được phân tách bằng tiền tố namespace `aibiz-` (`aibiz-product-marketing-context`).
 Catalog: **3.576 skill / 119 danh mục**.
 
-Đây là bộ quy trình thực chiến toàn diện về Tiếp thị & Kinh doanh ứng dụng AI (AI Marketing & Business Toolkit) dành cho **Google Antigravity**, **OpenAI Codex**, **Claude Code**, **Cursor**, **Windsurf**, **Cline** và **GitHub Copilot CLI** do tác giả **Nguyễn Văn Minh ([@minhnv0807](https://github.com/minhnv0807))** và **Over Powers Agency** phát triển:
+Đây là bộ quy trình thực chiến toàn diện về Tiếp thị & Kinh doanh ứng dụng AI (AI Marketing & Business Toolkit) dành cho **Google Antigravity**, **OpenAI Codex**, **Claude Code**, **Cursor**, **Windsurf**, **Cline** và **GitHub Copilot CLI** do tác giả **Over Powers Agency ([@minhnv0807](https://github.com/minhnv0807))** và **Over Powers Agency** phát triển:
 biến trợ lý AI lập trình thành dàn chuyên gia Marketing & Kinh doanh thực thụ dành cho solopreneur, nhà sáng lập, agency và doanh nghiệp SME.
 
 Bộ kỹ năng gồm 2 phân hệ chuyên biệt (Cụm Việt Nam và Cụm Toàn Cầu) hỗ trợ toàn bộ vòng đời tiếp thị & bán hàng:
-1. **Chiến lược & Lập kế hoạch**: `00-ke-hoach-mkt`, `00-marketing-plan-global`, `02-brief-chien-dich`, `02-campaign-brief-global`, `10-tinh-kpi-nguoc`, `10-reverse-kpi-global`, `58-positioning`, `58-positioning-global`, `59-go-to-market`, `59-go-to-market-global`, `61-budget-planning`, `61-budget-planning-global`, `aibiz-product-marketing-context`, `product-marketing-context-global`.
-2. **Sản xuất Nội dung & Sáng tạo**: `01-lich-noi-dung`, `01-content-calendar-global`, `04-script-video`, `04-script-video-global`, `05-copy-quang-cao`, `05-ad-copy-global`, `35-brand-voice`, `35-brand-voice-global`, `36-content-brief`, `36-content-brief-global`, `37-caption-social`, `37-social-caption-global`, `74-copy-hai-lop`.
-3. **Thiết kế & Đồ họa**: `30-thiet-ke-master`, `30-design-master-global`, `41-campaign-asset-list`, `42-brief-hinh-anh`, `43-brief-carousel`, `44-brief-video-editor`, `45-brief-canva`, `46-brand-guideline`, `47-design-review`, `48-quick-visual-brief`, `49-html-email-template`, `50-asset-resize`.
-4. **Quảng cáo & Tối ưu chuyển đổi (Performance & Ads)**: `21-audit-ads-performance`, `21-ads-audit-global`, `52-account-structure`, `52-account-structure-global`, `53-tracking-setup`, `53-tracking-setup-global`, `54-media-plan`, `54-media-plan-global`, `55-scaling-ads`, `55-scaling-ads-global`, `56-retargeting-plan`, `56-retargeting-plan-global`, `57-next-ads-plan`, `57-next-ads-plan-global`, `68-cro-audit-trang`.
-5. **Thương hiệu Cá nhân & AI Avatar**: `22-personal-brand-context`, `22-personal-brand-context-global`, `23-personal-brand-strategy`, `23-personal-brand-strategy-global`, `24-ai-avatar-production`, `24-ai-avatar-production-global`, `25-voice-clone-podcast`, `25-voice-clone-podcast-global`, `26-thought-leadership-content`, `26-thought-leadership-content-global`, `27-personal-brand-monetize`, `27-personal-brand-monetize-global`, `28-community-building`, `28-community-building-global`.
-6. **Thương mại điện tử & Vận hành**: `29-dropshipping-mastery-global`, `29-xuat-khau-b2b`, `75-hop-tac-koc-affiliate`, `76-van-hanh-san-tmdt`, `77-kich-ban-sale-chatbot`, `71-sales-enablement`, `70-lead-magnet`, `69-giu-chan-khach-hang`.
+1. **Chiến lược & Lập kế hoạch**: `ke-hoach-mkt`, `marketing-plan-global`, `brief-chien-dich`, `campaign-brief-global`, `tinh-kpi-nguoc`, `reverse-kpi-global`, `positioning`, `positioning-global`, `go-to-market`, `go-to-market-global`, `budget-planning`, `budget-planning-global`, `aibiz-product-marketing-context`, `product-marketing-context-global`.
+2. **Sản xuất Nội dung & Sáng tạo**: `lich-noi-dung`, `content-calendar-global`, `script-video`, `script-video-global`, `copy-quang-cao`, `ad-copy-global`, `brand-voice`, `brand-voice-global`, `content-brief`, `content-brief-global`, `caption-social`, `social-caption-global`, `copy-hai-lop`.
+3. **Thiết kế & Đồ họa**: `thiet-ke-master`, `design-master-global`, `campaign-asset-list`, `brief-hinh-anh`, `brief-carousel`, `brief-video-editor`, `brief-canva`, `brand-guideline`, `aibiz-design-review`, `quick-visual-brief`, `html-email-template`, `asset-resize`.
+4. **Quảng cáo & Tối ưu chuyển đổi (Performance & Ads)**: `audit-ads-performance`, `ads-audit-global`, `account-structure`, `account-structure-global`, `tracking-setup`, `tracking-setup-global`, `media-plan`, `media-plan-global`, `scaling-ads`, `scaling-ads-global`, `retargeting-plan`, `retargeting-plan-global`, `next-ads-plan`, `next-ads-plan-global`, `cro-audit-trang`.
+5. **Thương hiệu Cá nhân & AI Avatar**: `personal-brand-context`, `personal-brand-context-global`, `personal-brand-strategy`, `personal-brand-strategy-global`, `ai-avatar-production`, `ai-avatar-production-global`, `voice-clone-podcast`, `voice-clone-podcast-global`, `thought-leadership-content`, `thought-leadership-content-global`, `personal-brand-monetize`, `personal-brand-monetize-global`, `aibiz-community-building`, `aibiz-community-building-global`.
+6. **Thương mại điện tử & Vận hành**: `dropshipping-mastery-global`, `xuat-khau-b2b`, `hop-tac-koc-affiliate`, `van-hanh-san-tmdt`, `kich-ban-sale-chatbot`, `aibiz-sales-enablement`, `lead-magnet`, `giu-chan-khach-hang`.
 
 Mỗi skill được đóng gói độc lập kèm theo đầy đủ hợp đồng trách nhiệm, tài liệu tham chiếu (`references/`), biến thể vùng miền (`variants/`), bộ đánh giá (`evals/`) và biểu mẫu (`templates/`) để có thể cài đặt và sử dụng riêng lẻ.
 
@@ -37,19 +37,19 @@ Từ thư mục checkout VAS:
 ./vas search aibiz
 
 # Xem chi tiết runbook của một skill
-./vas show 00-ke-hoach-mkt
+./vas show ke-hoach-mkt
 
 # Cài đặt một skill vào dự án (chế độ copy độc lập)
-./vas install 00-ke-hoach-mkt --target claude --mode copy --dest "/path/to/project/.claude/skills"
+./vas install ke-hoach-mkt --target claude --mode copy --dest "/path/to/project/.claude/skills"
 
 # Cài đặt bộ kỹ năng vào dự án Antigravity
-./vas install 00-ke-hoach-mkt 04-script-video 05-copy-quang-cao 21-audit-ads-performance --target antigravity --mode link
+./vas install ke-hoach-mkt script-video copy-quang-cao audit-ads-performance --target antigravity --mode link
 
 # Kiểm tra trạng thái cài đặt
 ./vas status --target claude --dest "/path/to/project/.claude/skills"
 
 # Gỡ bỏ skill khi hoàn thành
-./vas uninstall 00-ke-hoach-mkt --target claude --dest "/path/to/project/.claude/skills"
+./vas uninstall ke-hoach-mkt --target claude --dest "/path/to/project/.claude/skills"
 ```
 
 ### Bảng thư mục cài đặt mặc định theo Agent
@@ -79,16 +79,16 @@ Added **147 new skills / 744 files**, zero duplicates skipped.
 1 skill with colliding catalog name uses the `aibiz-` namespace prefix (`aibiz-product-marketing-context`).
 Catalog total: **3,576 skills / 119 categories**.
 
-This is the comprehensive AI Marketing & Business workflow suite for **Google Antigravity**, **OpenAI Codex**, **Claude Code**, **Cursor**, **Windsurf**, **Cline**, and **GitHub Copilot CLI**, authored by **Nguyễn Văn Minh ([@minhnv0807](https://github.com/minhnv0807))** and **Over Powers Agency**:
+This is the comprehensive AI Marketing & Business workflow suite for **Google Antigravity**, **OpenAI Codex**, **Claude Code**, **Cursor**, **Windsurf**, **Cline**, and **GitHub Copilot CLI**, authored by **Over Powers Agency ([@minhnv0807](https://github.com/minhnv0807))** and **Over Powers Agency**:
 transforms general AI coding assistants into an end-to-end Marketing & Business operations squad for solopreneurs, founders, agencies, and SMBs.
 
 Features two specialized clusters (Vietnam Edition and Global Edition) covering the complete business lifecycle:
-1. **Strategy & Planning**: `00-ke-hoach-mkt`, `00-marketing-plan-global`, `02-brief-chien-dich`, `02-campaign-brief-global`, `10-tinh-kpi-nguoc`, `10-reverse-kpi-global`, `58-positioning`, `58-positioning-global`, `59-go-to-market`, `59-go-to-market-global`, `61-budget-planning`, `61-budget-planning-global`, `aibiz-product-marketing-context`, `product-marketing-context-global`.
-2. **Content Production & Copywriting**: `01-lich-noi-dung`, `01-content-calendar-global`, `04-script-video`, `04-script-video-global`, `05-copy-quang-cao`, `05-ad-copy-global`, `35-brand-voice`, `35-brand-voice-global`, `36-content-brief`, `36-content-brief-global`, `37-caption-social`, `37-social-caption-global`, `74-copy-hai-lop`.
-3. **Design & Visual Direction**: `30-thiet-ke-master`, `30-design-master-global`, `41-campaign-asset-list`, `42-brief-hinh-anh`, `43-brief-carousel`, `44-brief-video-editor`, `45-brief-canva`, `46-brand-guideline`, `47-design-review`, `48-quick-visual-brief`, `49-html-email-template`, `50-asset-resize`.
-4. **Performance Marketing & CRO**: `21-audit-ads-performance`, `21-ads-audit-global`, `52-account-structure`, `52-account-structure-global`, `53-tracking-setup`, `53-tracking-setup-global`, `54-media-plan`, `54-media-plan-global`, `55-scaling-ads`, `55-scaling-ads-global`, `56-retargeting-plan`, `56-retargeting-plan-global`, `57-next-ads-plan`, `57-next-ads-plan-global`, `68-cro-audit-trang`.
-5. **Personal Branding & AI Avatars**: `22-personal-brand-context`, `22-personal-brand-context-global`, `23-personal-brand-strategy`, `23-personal-brand-strategy-global`, `24-ai-avatar-production`, `24-ai-avatar-production-global`, `25-voice-clone-podcast`, `25-voice-clone-podcast-global`, `26-thought-leadership-content`, `26-thought-leadership-content-global`, `27-personal-brand-monetize`, `27-personal-brand-monetize-global`, `28-community-building`, `28-community-building-global`.
-6. **E-Commerce & Operations**: `29-dropshipping-mastery-global`, `29-xuat-khau-b2b`, `75-hop-tac-koc-affiliate`, `76-van-hanh-san-tmdt`, `77-kich-ban-sale-chatbot`, `71-sales-enablement`, `70-lead-magnet`, `69-giu-chan-khach-hang`.
+1. **Strategy & Planning**: `ke-hoach-mkt`, `marketing-plan-global`, `brief-chien-dich`, `campaign-brief-global`, `tinh-kpi-nguoc`, `reverse-kpi-global`, `positioning`, `positioning-global`, `go-to-market`, `go-to-market-global`, `budget-planning`, `budget-planning-global`, `aibiz-product-marketing-context`, `product-marketing-context-global`.
+2. **Content Production & Copywriting**: `lich-noi-dung`, `content-calendar-global`, `script-video`, `script-video-global`, `copy-quang-cao`, `ad-copy-global`, `brand-voice`, `brand-voice-global`, `content-brief`, `content-brief-global`, `caption-social`, `social-caption-global`, `copy-hai-lop`.
+3. **Design & Visual Direction**: `thiet-ke-master`, `design-master-global`, `campaign-asset-list`, `brief-hinh-anh`, `brief-carousel`, `brief-video-editor`, `brief-canva`, `brand-guideline`, `aibiz-design-review`, `quick-visual-brief`, `html-email-template`, `asset-resize`.
+4. **Performance Marketing & CRO**: `audit-ads-performance`, `ads-audit-global`, `account-structure`, `account-structure-global`, `tracking-setup`, `tracking-setup-global`, `media-plan`, `media-plan-global`, `scaling-ads`, `scaling-ads-global`, `retargeting-plan`, `retargeting-plan-global`, `next-ads-plan`, `next-ads-plan-global`, `cro-audit-trang`.
+5. **Personal Branding & AI Avatars**: `personal-brand-context`, `personal-brand-context-global`, `personal-brand-strategy`, `personal-brand-strategy-global`, `ai-avatar-production`, `ai-avatar-production-global`, `voice-clone-podcast`, `voice-clone-podcast-global`, `thought-leadership-content`, `thought-leadership-content-global`, `personal-brand-monetize`, `personal-brand-monetize-global`, `aibiz-community-building`, `aibiz-community-building-global`.
+6. **E-Commerce & Operations**: `dropshipping-mastery-global`, `xuat-khau-b2b`, `hop-tac-koc-affiliate`, `van-hanh-san-tmdt`, `kich-ban-sale-chatbot`, `aibiz-sales-enablement`, `lead-magnet`, `giu-chan-khach-hang`.
 
 Every skill is self-contained with its own contracts, references (`references/`), regional variants (`variants/`), evaluations (`evals/`), and templates (`templates/`).
 
@@ -108,19 +108,19 @@ From your local VAS repository checkout:
 ./vas search aibiz
 
 # Inspect skill runbook
-./vas show 00-marketing-plan-global
+./vas show marketing-plan-global
 
 # Install skill to project (copy mode)
-./vas install 00-marketing-plan-global --target claude --mode copy --dest "/path/to/project/.claude/skills"
+./vas install marketing-plan-global --target claude --mode copy --dest "/path/to/project/.claude/skills"
 
 # Install multiple skills to Antigravity (link mode)
-./vas install 00-marketing-plan-global 04-script-video-global 05-ad-copy-global --target antigravity --mode link
+./vas install marketing-plan-global script-video-global ad-copy-global --target antigravity --mode link
 
 # Check status
 ./vas status --target claude --dest "/path/to/project/.claude/skills"
 
 # Uninstall
-./vas uninstall 00-marketing-plan-global --target claude --dest "/path/to/project/.claude/skills"
+./vas uninstall marketing-plan-global --target claude --dest "/path/to/project/.claude/skills"
 ```
 
 ### Default Project Folders by Agent

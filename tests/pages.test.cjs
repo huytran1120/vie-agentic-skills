@@ -1242,13 +1242,13 @@ test('aibusiness retains exact source filtering, MIT license and agent prompts',
   assert.equal(catalog.filterSkills(skills, { query: 'minhnv0807/ai-business-skills' }).length, 147);
   for (const skill of aiBizSkills) {
     assert.equal(skill.source_repo, 'minhnv0807/ai-business-skills');
-    assert.equal(skill.author, 'Nguyễn Văn Minh');
+    assert.equal(skill.author, 'AI Business Skills');
     assert.ok(skill.license.includes('MIT'));
     assert.equal(skill.category, 'marketing');
     assert.equal(skill.risk, 'safe');
   }
 
-  const sample = aiBizSkills.find(s => s.id === '00-ke-hoach-mkt') || aiBizSkills[0];
+  const sample = aiBizSkills.find(s => s.id === 'ke-hoach-mkt') || aiBizSkills[0];
   for (const language of ['vi', 'en']) {
     assert.ok(i18n.translate('collections.aibusiness', language).startsWith('147 '));
     for (const [agent] of catalog.agents.filter(([key]) => key !== 'all')) {
