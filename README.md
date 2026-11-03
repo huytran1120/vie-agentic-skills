@@ -2,7 +2,7 @@
 
 **Thư viện kỹ năng cho trợ lý AI lập trình, có hướng dẫn sử dụng bằng tiếng Việt.**
 
-VAS tập hợp **3.429 skill** thuộc **119 danh mục**, do [Huy Tran](https://github.com/huytran1120) tuyển chọn và duy trì. Bạn có thể tìm quy trình phù hợp với công việc, đọc nội dung rồi cài vào dự án đang dùng với Antigravity, Codex, Claude Code, Cursor, Windsurf, Cline hoặc GitHub Copilot CLI.
+VAS tập hợp **3.576 skill** thuộc **119 danh mục**, do [Huy Tran](https://github.com/huytran1120) tuyển chọn và duy trì. Bạn có thể tìm quy trình phù hợp với công việc, đọc nội dung rồi cài vào dự án đang dùng với Antigravity, Codex, Claude Code, Cursor, Windsurf, Cline hoặc GitHub Copilot CLI.
 
 **[Mở thư viện skill](https://huytran1120.github.io/vie-agentic-skills/?lang=vi)** · [Xem toàn bộ danh mục](CATALOG.md) · [Báo lỗi hoặc đề xuất](https://github.com/huytran1120/vie-agentic-skills/issues)
 
@@ -206,6 +206,7 @@ Các hướng dẫn chi tiết được tách riêng để bạn chỉ mở ph�
 | Stageshow | 1 | Minh họa giao diện sản phẩm, mockup tương tác và hoạt họa con trỏ; xem [hướng dẫn Stageshow](docs/stageshow.md) |
 | Stack Diagram | 1 | Sơ đồ kiến trúc hệ thống, đám mây và hạ tầng công nghệ với logo chính thức; xem [hướng dẫn Stack Diagram](docs/stack-diagram.md) |
 | Claude Code Game Studios | 74 | Quy trình studio phát triển game chuyên nghiệp (Godot, Unity, Unreal Engine); xem [hướng dẫn Game Studios](docs/game-studios.md) |
+| AI Business Skills | 147 | Tiếp thị, quảng cáo, thương hiệu cá nhân, TMĐT và kinh doanh số; xem [hướng dẫn AI Business Skills](docs/ai-business-skills.md) |
 
 Các tài liệu kiểm tra kỹ thuật dùng chung nằm trong [references/](references/), gồm kiểm thử, bảo mật, hiệu năng, khả năng tiếp cận, vận hành và điều phối agent.
 
