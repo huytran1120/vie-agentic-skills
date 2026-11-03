@@ -505,7 +505,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
   const youtube = catalog.filterSkills(skills, { sources: ['youtube'] });
   assert.equal(youtube.length, 11);
   assert.equal(catalog.filterSkills(skills, { query: 'youtube-agent-skill' }).length, 11);
-  assert.equal(skills.length, 3576);
+  assert.equal(skills.length, 3859);
   for (const skill of youtube) {
     assert.ok(skill.id.startsWith('youtube-agent-skill/'));
     assert.equal(skill.source_repo, 'Jakeschincariol/youtube-agent-skill');
@@ -520,7 +520,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
     assert.deepEqual(state.sources, ['youtube']);
     assert.equal(state.selected, youtube[0].id);
     assert.ok(i18n.translate('collections.youtube', language).startsWith('11 '));
-    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '3.576' : '3,576'));
+    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '3.859' : '3,859'));
   }
   assert.equal(catalog.filterSkills(skills, { sources: ['youtube'], category: 'security' }).length, 0);
   const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
@@ -1264,4 +1264,34 @@ test('aibusiness retains exact source filtering, MIT license and agent prompts',
   assert.ok(html.includes('name="source" value="aibusiness"'));
   assert.ok(html.includes('data-source-count="aibusiness">147<'));
   assert.ok(html.includes('id="aibusiness-collection"'));
+});
+
+test('agency retains exact source filtering, MIT license and agent prompts', () => {
+  const agencySkills = catalog.filterSkills(skills, { sources: ['agency'] });
+  assert.equal(agencySkills.length, 283);
+  assert.equal(catalog.filterSkills(skills, { query: 'msitarzewski/agency-agents' }).length, 283);
+  for (const skill of agencySkills) {
+    assert.equal(skill.source_repo, 'msitarzewski/agency-agents');
+    assert.equal(skill.author, 'AgentLand Contributors');
+    assert.ok(skill.license.includes('MIT'));
+    assert.equal(skill.risk, 'safe');
+    assert.ok(skill.id.startsWith('agency-'));
+  }
+
+  const sample = agencySkills.find(s => s.id === 'agency-software-architect') || agencySkills[0];
+  for (const language of ['vi', 'en']) {
+    assert.ok(i18n.translate('collections.agency', language).startsWith('283 '));
+    for (const [agent] of catalog.agents.filter(([key]) => key !== 'all')) {
+      const prompt = catalog.agentInstallPrompt(sample, agent, language);
+      assert.ok(prompt.includes(`/install-manifests/${sample.id}.json`));
+      assert.ok(prompt.includes(catalog.targetFolders[agent]));
+      assert.ok(prompt.includes('SHA-256'));
+      assert.ok(prompt.includes('.vas-manifest.json'));
+    }
+  }
+
+  const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
+  assert.ok(html.includes('name="source" value="agency"'));
+  assert.ok(html.includes('data-source-count="agency">283<'));
+  assert.ok(html.includes('id="agency-collection"'));
 });

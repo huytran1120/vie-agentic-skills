@@ -1,13 +1,13 @@
 # Vie Agentic Skill (VAS) - Catalog
 
-Tổng hợp **3,576** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
+Tổng hợp **3,859** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
 
 | Danh mục | Số lượng | Lệnh cài đặt nhanh |
 | :--- | :---: | :--- |
 | **agent-behavior** | 5 skills | `./vas install --category agent-behavior --target codex` |
 | **agent-evaluation** | 2 skills | `./vas install --category agent-evaluation --target codex` |
 | **agent-orchestration** | 37 skills | `./vas install --category agent-orchestration --target codex` |
-| **agent-persona** | 5 skills | `./vas install --category agent-persona --target codex` |
+| **agent-persona** | 64 skills | `./vas install --category agent-persona --target codex` |
 | **agent-squad** | 8 skills | `./vas install --category agent-squad --target codex` |
 | **agent-tooling** | 3 skills | `./vas install --category agent-tooling --target codex` |
 | **ai** | 1 skills | `./vas install --category ai --target codex` |
@@ -26,7 +26,7 @@ Tổng hợp **3,576** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **blender** | 94 skills | `./vas install --category blender --target codex` |
 | **blockchain** | 13 skills | `./vas install --category blockchain --target codex` |
 | **browser-automation** | 8 skills | `./vas install --category browser-automation --target codex` |
-| **business** | 179 skills | `./vas install --category business --target codex` |
+| **business** | 188 skills | `./vas install --category business --target codex` |
 | **business-strategy** | 3 skills | `./vas install --category business-strategy --target codex` |
 | **career-jobs** | 2 skills | `./vas install --category career-jobs --target codex` |
 | **cloud** | 170 skills | `./vas install --category cloud --target codex` |
@@ -40,7 +40,7 @@ Tổng hợp **3,576** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **content-writing** | 1 skills | `./vas install --category content-writing --target codex` |
 | **context-optimization** | 1 skills | `./vas install --category context-optimization --target codex` |
 | **core-dev** | 1 skills | `./vas install --category core-dev --target codex` |
-| **creative** | 4 skills | `./vas install --category creative --target codex` |
+| **creative** | 10 skills | `./vas install --category creative --target codex` |
 | **data** | 56 skills | `./vas install --category data --target codex` |
 | **data-ai** | 14 skills | `./vas install --category data-ai --target codex` |
 | **data-engineering** | 1 skills | `./vas install --category data-engineering --target codex` |
@@ -49,7 +49,7 @@ Tổng hợp **3,576** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **database-processing** | 6 skills | `./vas install --category database-processing --target codex` |
 | **databases** | 3 skills | `./vas install --category databases --target codex` |
 | **debugging** | 4 skills | `./vas install --category debugging --target codex` |
-| **design** | 49 skills | `./vas install --category design --target codex` |
+| **design** | 59 skills | `./vas install --category design --target codex` |
 | **design-it** | 48 skills | `./vas install --category design-it --target codex` |
 | **developer-tools** | 9 skills | `./vas install --category developer-tools --target codex` |
 | **development** | 230 skills | `./vas install --category development --target codex` |
@@ -59,24 +59,24 @@ Tổng hợp **3,576** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **document-processing** | 4 skills | `./vas install --category document-processing --target codex` |
 | **document-verification** | 7 skills | `./vas install --category document-verification --target codex` |
 | **ecommerce** | 4 skills | `./vas install --category ecommerce --target codex` |
-| **education** | 6 skills | `./vas install --category education --target codex` |
-| **engineering** | 21 skills | `./vas install --category engineering --target codex` |
-| **finance** | 33 skills | `./vas install --category finance --target codex` |
+| **education** | 12 skills | `./vas install --category education --target codex` |
+| **engineering** | 100 skills | `./vas install --category engineering --target codex` |
+| **finance** | 38 skills | `./vas install --category finance --target codex` |
 | **framework** | 13 skills | `./vas install --category framework --target codex` |
 | **front-end** | 16 skills | `./vas install --category front-end --target codex` |
 | **frontend** | 48 skills | `./vas install --category frontend --target codex` |
 | **fullstack** | 1 skills | `./vas install --category fullstack --target codex` |
-| **game-development** | 263 skills | `./vas install --category game-development --target codex` |
+| **game-development** | 284 skills | `./vas install --category game-development --target codex` |
 | **general** | 65 skills | `./vas install --category general --target codex` |
 | **granular-workflow-bundle** | 16 skills | `./vas install --category granular-workflow-bundle --target codex` |
 | **graphics-processing** | 10 skills | `./vas install --category graphics-processing --target codex` |
 | **growth** | 3 skills | `./vas install --category growth --target codex` |
-| **health** | 18 skills | `./vas install --category health --target codex` |
+| **health** | 21 skills | `./vas install --category health --target codex` |
 | **knowledge-management** | 2 skills | `./vas install --category knowledge-management --target codex` |
 | **legal** | 9 skills | `./vas install --category legal --target codex` |
 | **leiloeiro** | 6 skills | `./vas install --category leiloeiro --target codex` |
 | **lifestyle** | 1 skills | `./vas install --category lifestyle --target codex` |
-| **marketing** | 262 skills | `./vas install --category marketing --target codex` |
+| **marketing** | 306 skills | `./vas install --category marketing --target codex` |
 | **mcp** | 8 skills | `./vas install --category mcp --target codex` |
 | **media** | 145 skills | `./vas install --category media --target codex` |
 | **media-processing** | 1 skills | `./vas install --category media-processing --target codex` |
@@ -86,31 +86,31 @@ Tổng hợp **3,576** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **mobile** | 73 skills | `./vas install --category mobile --target codex` |
 | **monopoly** | 4 skills | `./vas install --category monopoly --target codex` |
 | **office-productivity** | 1 skills | `./vas install --category office-productivity --target codex` |
-| **operations** | 8 skills | `./vas install --category operations --target codex` |
+| **operations** | 14 skills | `./vas install --category operations --target codex` |
 | **orchestration** | 1 skills | `./vas install --category orchestration --target codex` |
 | **pentest-tools** | 1 skills | `./vas install --category pentest-tools --target codex` |
 | **personal-development** | 2 skills | `./vas install --category personal-development --target codex` |
 | **planning** | 12 skills | `./vas install --category planning --target codex` |
 | **presentation-processing** | 4 skills | `./vas install --category presentation-processing --target codex` |
-| **product** | 5 skills | `./vas install --category product --target codex` |
+| **product** | 11 skills | `./vas install --category product --target codex` |
 | **product-management** | 1 skills | `./vas install --category product-management --target codex` |
 | **productivity** | 65 skills | `./vas install --category productivity --target codex` |
-| **project-management** | 35 skills | `./vas install --category project-management --target codex` |
+| **project-management** | 42 skills | `./vas install --category project-management --target codex` |
 | **prompt-engineering** | 1 skills | `./vas install --category prompt-engineering --target codex` |
 | **quality** | 2 skills | `./vas install --category quality --target codex` |
 | **reasoning** | 2 skills | `./vas install --category reasoning --target codex` |
 | **reliability** | 18 skills | `./vas install --category reliability --target codex` |
-| **research** | 25 skills | `./vas install --category research --target codex` |
+| **research** | 26 skills | `./vas install --category research --target codex` |
 | **reverse-engineering** | 1 skills | `./vas install --category reverse-engineering --target codex` |
 | **science** | 53 skills | `./vas install --category science --target codex` |
-| **security** | 267 skills | `./vas install --category security --target codex` |
+| **security** | 279 skills | `./vas install --category security --target codex` |
 | **seo** | 34 skills | `./vas install --category seo --target codex` |
 | **shopping** | 5 skills | `./vas install --category shopping --target codex` |
 | **skill-authoring** | 3 skills | `./vas install --category skill-authoring --target codex` |
 | **spreadsheet-processing** | 3 skills | `./vas install --category spreadsheet-processing --target codex` |
 | **super-code** | 16 skills | `./vas install --category super-code --target codex` |
 | **test-automation** | 9 skills | `./vas install --category test-automation --target codex` |
-| **testing** | 51 skills | `./vas install --category testing --target codex` |
+| **testing** | 60 skills | `./vas install --category testing --target codex` |
 | **tool-quality** | 1 skills | `./vas install --category tool-quality --target codex` |
 | **tools** | 1 skills | `./vas install --category tools --target codex` |
 | **travel** | 1 skills | `./vas install --category travel --target codex` |
@@ -187,10 +187,69 @@ Tổng hợp **3,576** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `warp-delegate` | `critical` | Delegate coding tasks to the Warp Agent CLI (`oz`) only when the user |
 | `zcode-delegate` | `critical` | Delegate coding tasks to the Z.AI ZCode CLI only when the user explicitly |
 
-### AGENT-PERSONA (5 skills)
+### AGENT-PERSONA (64 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
+| `agency-accounts-payable-agent` | `safe` | Autonomous payment processing specialist that executes vendor payments, contr... |
+| `agency-agentic-identity-trust-architect` | `safe` | Designs identity, authentication, and trust verification systems for autonomo... |
+| `agency-agents-orchestrator` | `safe` | Autonomous pipeline manager that orchestrates the entire development workflow... |
+| `agency-aging-parent-care-companion` | `safe` | Compassionate, HIPAA-aligned care coordination and decision-support agent for... |
+| `agency-automation-governance-architect` | `safe` | Governance-first architect for business automations (n8n-first) who audits va... |
+| `agency-business-strategist` | `safe` | Senior management consulting specialist for competitive analysis, market entr... |
+| `agency-change-management-consultant` | `safe` | Expert change management specialist using ADKAR, Kotter, and Prosci framework... |
+| `agency-chief-financial-officer` | `safe` | Strategic finance executive who governs capital allocation, treasury operatio... |
+| `agency-chief-of-staff` | `safe` | Master coordinator for founders and executives — filters noise, owns processe... |
+| `agency-civil-engineer` | `safe` | Expert civil and structural engineer with global standards coverage — Eurocod... |
+| `agency-codebase-archaeologist` | `safe` | Multi-session, multi-tool drift detection specialist who audits codebases tou... |
+| `agency-corporate-training-designer` | `safe` | Expert in enterprise training system design and curriculum development — prof... |
+| `agency-cultural-intelligence-strategist` | `safe` | CQ specialist that detects invisible exclusion, researches global context, an... |
+| `agency-customer-service` | `safe` | Friendly, professional customer service specialist for any industry — handlin... |
+| `agency-customer-success-manager` | `safe` | Strategic customer success specialist for onboarding, health scoring, QBR fac... |
+| `agency-data-consolidation-agent` | `safe` | AI agent that consolidates extracted sales data into live reporting dashboard... |
+| `agency-data-privacy-officer` | `safe` | Corporate data privacy specialist and DPO who builds GDPR, CCPA, and global p... |
+| `agency-developer-advocate` | `safe` | Expert developer advocate specializing in building developer communities, cre... |
+| `agency-document-generator` | `safe` | Expert document creation specialist who generates professional PDF, PPTX, DOC... |
+| `agency-esg-sustainability-officer` | `safe` | Corporate sustainability strategist and ESG reporting specialist who builds e... |
+| `agency-fedramp-rmf-compliance-engineer` | `safe` | Expert FedRAMP and NIST Risk Management Framework compliance engineer special... |
+| `agency-focus-music-architect` | `safe` | Instrumental focus music specialist and neuroacoustic prompt engineer — craft... |
+| `agency-french-consulting-market-navigator` | `safe` | Navigate the French ESN/SI freelance ecosystem — margin models, platform mech... |
+| `agency-government-digital-presales-consultant` | `safe` | Presales expert for China''s government digital transformation market (ToG), ... |
+| `agency-grant-writer` | `safe` | Expert grant writing specialist for nonprofits, research institutions, and so... |
+| `agency-healthcare-customer-service` | `safe` | Empathetic healthcare customer service specialist for patient support, billin... |
+| `agency-healthcare-marketing-compliance-specialist` | `safe` | Expert in healthcare marketing compliance in China, proficient in the Adverti... |
+| `agency-hospitality-guest-services` | `safe` | Comprehensive hospitality guest services specialist for hotels, resorts, rest... |
+| `agency-hr-onboarding` | `safe` | Comprehensive HR onboarding specialist for employee orientation, documentatio... |
+| `agency-identity-graph-operator` | `safe` | Operates a shared identity graph that multiple AI agents resolve against. Ens... |
+| `agency-korean-business-navigator` | `safe` | Korean business culture for foreign professionals — 품의 decision process, nunc... |
+| `agency-language-translator` | `safe` | Real-time Spanish ↔ English translation specialist with cultural context, reg... |
+| `agency-legal-billing-time-tracking` | `safe` | Comprehensive legal billing and time tracking specialist for accurate time ca... |
+| `agency-legal-client-intake` | `safe` | Comprehensive legal client intake specialist for qualifying prospects, collec... |
+| `agency-legal-document-review` | `safe` | Comprehensive legal document review specialist for contracts, litigation docu... |
+| `agency-loan-officer-assistant` | `safe` | Comprehensive loan officer assistant for mortgage and lending professionals —... |
+| `agency-lsp-index-engineer` | `safe` | Language Server Protocol specialist building unified code intelligence system... |
+| `agency-m-a-integration-manager` | `safe` | Mergers and acquisitions integration specialist who designs and executes post... |
+| `agency-master-plan-architect` | `safe` | Master planning architect, technical educator, and ruthless plan critic who s... |
+| `agency-mcp-builder` | `safe` | Expert Model Context Protocol developer who designs, builds, and tests MCP se... |
+| `agency-medical-billing-coding-specialist` | `safe` | Expert medical billing and coding specialist for ICD-10-CM/PCS, CPT, and HCPC... |
+| `agency-model-qa-specialist` | `safe` | Independent model QA expert who audits ML and statistical models end-to-end -... |
+| `agency-operations-manager` | `safe` | Business operations specialist who applies Lean, Six Sigma, and systems think... |
+| `agency-organizational-psychologist` | `safe` | Applied organizational psychologist who diagnoses team dynamics, psychologica... |
+| `agency-personal-growth-mentor` | `safe` | Cross-domain personal development mentor for goal clarity, habit design, stra... |
+| `agency-pricing-analyst` | `safe` | Specialized pricing analyst who develops optimal pricing models through marke... |
+| `agency-real-estate-buyer-seller` | `safe` | Comprehensive real estate agent assistant for buyer representation, seller re... |
+| `agency-recruitment-specialist` | `safe` | Expert recruitment operations and talent acquisition specialist — skilled in ... |
+| `agency-report-distribution-agent` | `safe` | AI agent that automates distribution of consolidated sales reports to represe... |
+| `agency-resume-tailor` | `safe` | Candidate-side resume optimization specialist who analyzes job descriptions, ... |
+| `agency-retail-customer-returns` | `safe` | Comprehensive retail customer returns specialist for processing returns, exch... |
+| `agency-sales-data-extraction-agent` | `safe` | AI agent specialized in monitoring Excel files and extracting key sales metri... |
+| `agency-sales-outreach` | `safe` | Consultative B2B sales outreach specialist for cold prospecting, lead follow-... |
+| `agency-salesforce-architect` | `safe` | Solution architecture for Salesforce platform — multi-cloud design, integrati... |
+| `agency-strategy-duel-agent` | `safe` | Conducts live strategy duels using game theory and the 36 Chinese stratagems |
+| `agency-study-abroad-advisor` | `safe` | Full-spectrum study abroad planning expert covering the US, UK, Canada, Austr... |
+| `agency-supply-chain-strategist` | `safe` | Expert supply chain management and procurement strategy specialist — skilled ... |
+| `agency-workflow-architect` | `safe` | Workflow design specialist who maps complete workflow trees for every system,... |
+| `agency-zk-steward` | `safe` | Knowledge-base steward in the spirit of Niklas Luhmann''s Zettelkasten. Defau... |
 | `bill-gates` | `safe` | Simulacao educativa de analise estrategica inspirada em temas publicos de Bil... |
 | `elon-musk` | `safe` | Simulacao ficticia e explicitamente rotulada de estilo comunicacional associa... |
 | `idea-evaluator/idea-evaluator-con` | `safe` | The Con Agent persona for idea evaluation. Critiques an idea by identifying p... |
@@ -784,7 +843,7 @@ Tổng hợp **3,576** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `reverse-browser-automation` | `offensive` | Automate browsers (Playwright) and Windows desktop applications (UI automatio... |
 | `skyvern-browser-automation` | `safe` | AI-powered browser automation — navigate sites, fill forms, extract structure... |
 
-### BUSINESS (179 skills)
+### BUSINESS (188 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
@@ -794,6 +853,15 @@ Tổng hợp **3,576** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `accounting-software-selection` | `safe` | Scores shortlisted accounting packages against 57 evidence-backed fields, emi... |
 | `admin-access-register` | `safe` | Admin account register: system, main and backup admin, seats, plan, 2FA, shar... |
 | `advanced-analytics-dashboard` | `safe` | Dashboard metric register: metric, source module, formula, period, value, tar... |
+| `agency-account-strategist` | `safe` | Expert post-sale account strategist specializing in land-and-expand execution... |
+| `agency-deal-strategist` | `safe` | Senior deal strategist specializing in MEDDPICC qualification, competitive po... |
+| `agency-discovery-coach` | `safe` | Coaches sales teams on elite discovery methodology — question design, current... |
+| `agency-offer-lead-gen-strategist` | `safe` | Top-of-funnel architect who designs irresistible offers and lead magnets that... |
+| `agency-outbound-strategist` | `safe` | Signal-based outbound specialist who designs multi-channel prospecting sequen... |
+| `agency-pipeline-analyst` | `safe` | Revenue operations analyst specializing in pipeline health diagnostics, deal ... |
+| `agency-proposal-strategist` | `safe` | Strategic proposal architect who transforms RFPs and sales opportunities into... |
+| `agency-sales-coach` | `safe` | Expert sales coaching specialist focused on rep development, pipeline review ... |
+| `agency-sales-engineer` | `safe` | Senior pre-sales engineer specializing in technical discovery, demo engineeri... |
 | `alumni-re-hire-tracker` | `safe` | Alumni and re-hire register: former role, last working day, re-hire eligibili... |
 | `announcement-board` | `safe` | Announcement board: author, category, department, priority, audience, publish... |
 | `asset-it-management` | `safe` | Asset and IT register: serial, model, condition, assignee, location, purchase... |
@@ -1367,10 +1435,16 @@ Tổng hợp **3,576** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | :--- | :---: | :--- |
 | `vscode-extension-guide-en` | `safe` | Guide for VS Code extension development from scaffolding to Marketplace publi... |
 
-### CREATIVE (4 skills)
+### CREATIVE (10 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
+| `agency-macos-spatial-metal-engineer` | `safe` | Native Swift and Metal specialist building high-performance 3D rendering syst... |
+| `agency-terminal-integration-specialist` | `safe` | Terminal emulation, text rendering optimization, and SwiftTerm integration fo... |
+| `agency-visionos-spatial-engineer` | `safe` | Native visionOS spatial computing, SwiftUI volumetric interfaces, and Liquid ... |
+| `agency-xr-cockpit-interaction-specialist` | `safe` | Specialist in designing and developing immersive cockpit-based control system... |
+| `agency-xr-immersive-developer` | `safe` | Expert WebXR and immersive technology developer with specialization in browse... |
+| `agency-xr-interface-architect` | `safe` | Spatial interaction designer and interface strategist for immersive AR/VR/XR ... |
 | `article-illustrations` | `safe` | Generate hand-drawn 16:9 article illustrations with the Grav character IP, sp... |
 | `liuguang-banlan-ui` | `critical` | Builds two parameterized UI modes—流光溢彩白 (iridescent white) and 五彩斑斓黑 (colorfu... |
 | `modellix` | `critical` | Integrate the Modellix API/CLI for async AI image, video, and speech generati... |
@@ -1526,7 +1600,7 @@ Tổng hợp **3,576** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `logic-locate` | `safe` | Locate the root cause of a CONFIRMED failure via backward-then-forward semi-f... |
 | `phase-gated-debugging` | `safe` | Use when debugging any bug. Enforces a 5-phase protocol where code edits are ... |
 
-### DESIGN (49 skills)
+### DESIGN (59 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
@@ -1534,6 +1608,16 @@ Tổng hợp **3,576** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `accessibility-compliance-accessibility-audit` | `safe` | Audit pages and user journeys against a declared WCAG scope. Use when identif... |
 | `accesslint-diff` | `safe` | Diff a live page's accessibility violations against a baseline — by default c... |
 | `accesslint-scan` | `critical` | Audit a live page for accessibility issues, locate each WCAG violation precis... |
+| `agency-brand-guardian` | `safe` | Expert brand strategist and guardian specializing in brand identity developme... |
+| `agency-image-prompt-engineer` | `safe` | Expert photography prompt engineer specializing in crafting detailed, evocati... |
+| `agency-inclusive-visuals-specialist` | `safe` | Representation expert who defeats systemic AI biases to generate culturally a... |
+| `agency-persona-walkthrough-specialist` | `safe` | Simulate cognitive walkthroughs of web pages from a defined persona''s psycho... |
+| `agency-ui-designer` | `safe` | Expert UI designer specializing in visual design systems, component libraries... |
+| `agency-ui-finish-gate-reviewer` | `safe` | Product-interface reviewer who catches generic, interchangeable UI before it ... |
+| `agency-ux-architect` | `safe` | Technical architecture and UX specialist who provides developers with solid f... |
+| `agency-ux-researcher` | `safe` | Expert user experience researcher specializing in user behavior analysis, usa... |
+| `agency-visual-storyteller` | `safe` | Expert visual communication specialist focused on creating compelling visual ... |
+| `agency-whimsy-injector` | `safe` | Expert creative specialist focused on adding personality, delight, and playfu... |
 | `agent-reels` | `critical` | Find animation and video references on 1human, consult a human-agent shared l... |
 | `antigravity-design-expert` | `safe` | Core UI/UX engineering skill for building highly interactive, spatial, weight... |
 | `baseline-ui` | `critical` | Quickly deslop UI code by fixing spacing, hierarchy, typography, and small la... |
@@ -2108,10 +2192,16 @@ Tổng hợp **3,576** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `etsy-shop-sales-history` | `critical` | Read Etsy shop sales counters, deltas, and breakout flags from Apify Actor pu... |
 | `woo-guard` | `critical` | Review generated or changed WooCommerce extensions, payment and shipping inte... |
 
-### EDUCATION (6 skills)
+### EDUCATION (12 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
+| `agency-anthropologist` | `safe` | Expert in cultural systems, rituals, kinship, belief systems, and ethnographi... |
+| `agency-geographer` | `safe` | Expert in physical and human geography, climate systems, cartography, and spa... |
+| `agency-historian` | `safe` | Expert in historical analysis, periodization, material culture, and historiog... |
+| `agency-narratologist` | `safe` | Expert in narrative theory, story structure, character arcs, and literary ana... |
+| `agency-psychologist` | `safe` | Expert in human behavior, personality theory, motivation, and cognitive patte... |
+| `agency-statistician` | `safe` | Expert in quantitative research methodology, experimental design, and statist... |
 | `examprep-ai` | `safe` | Exam preparation assistant that converts syllabi, past papers, or notes into ... |
 | `learn` | `safe` | Help a user learn a topic through adaptive tutoring, lesson planning, practic... |
 | `lesson-generator` | `safe` | Build compact, standalone multi-lesson course artifacts with lesson navigatio... |
@@ -2119,10 +2209,89 @@ Tổng hợp **3,576** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `scaffold-exercises` | `safe` | Create exercise directory structures with sections, problems, solutions, and ... |
 | `teach` | `safe` | Teach the user a new skill or concept, within this workspace. |
 
-### ENGINEERING (21 skills)
+### ENGINEERING (100 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
+| `agency-3d-scene-developer` | `safe` | Web 3D visualization specialist who creates immersive 3D scenes, terrain mode... |
+| `agency-ai-data-remediation-engineer` | `safe` | Specialist in self-healing data pipelines — uses air-gapped local SLMs and se... |
+| `agency-ai-engineer` | `safe` | Expert AI/ML engineer specializing in machine learning model development, dep... |
+| `agency-api-platform-engineer` | `safe` | Expert API platform engineer for public and partner APIs — contract-first des... |
+| `agency-ats-validator-architect` | `safe` | Architect and validator for Applicant Tracking Systems (ATS) and resume parse... |
+| `agency-autonomous-optimization-architect` | `safe` | Intelligent system governor that continuously shadow-tests APIs for performan... |
+| `agency-backend-architect` | `safe` | Senior backend architect specializing in scalable system design, database arc... |
+| `agency-bim-gis-specialist` | `safe` | Integration specialist who bridges Building Information Modeling and Geograph... |
+| `agency-cartography-designer` | `safe` | Map aesthetics specialist who designs beautiful, readable, and effective maps... |
+| `agency-china-network-engineer` | `safe` | Expert in mainland China''s mainstream enterprise networking stacks — Huawei ... |
+| `agency-cms-developer` | `safe` | Drupal and WordPress specialist for theme development, custom plugins/modules... |
+| `agency-code-reviewer` | `safe` | Expert code reviewer who provides constructive, actionable feedback focused o... |
+| `agency-codebase-onboarding-engineer` | `safe` | Expert developer onboarding specialist who helps new engineers understand unf... |
+| `agency-data-engineer` | `safe` | Expert data engineer specializing in building reliable data pipelines, lakeho... |
+| `agency-data-visualization-engineer` | `safe` | Expert data visualization engineer — chart-type selection by data and questio... |
+| `agency-database-optimizer` | `safe` | Expert database specialist focusing on schema design, query optimization, ind... |
+| `agency-database-reliability-engineer` | `safe` | Expert database reliability engineer (DBRE) — high availability and replicati... |
+| `agency-desktop-app-engineer` | `safe` | Expert desktop application engineer for Electron and Tauri — secure IPC and p... |
+| `agency-developer-tooling-engineer` | `safe` | Expert developer-tooling and CLI engineer — building command-line tools and i... |
+| `agency-devops-automator` | `safe` | Expert DevOps engineer specializing in infrastructure automation, CI/CD pipel... |
+| `agency-drone-reality-mapping-specialist` | `safe` | Photogrammetry and reality capture expert who processes drone imagery into or... |
+| `agency-drupal-performance-engineer` | `safe` | Expert Drupal 10/11 performance engineer specializing in Core Web Vitals, ren... |
+| `agency-drupal-shopping-cart-engineer` | `safe` | Expert Drupal e-commerce engineer specializing in Drupal Commerce for product... |
+| `agency-electrical-engineer` | `safe` | Power systems engineer for telecom sites, buildings and infrastructure projec... |
+| `agency-email-intelligence-engineer` | `safe` | Expert in extracting structured, reasoning-ready data from raw email threads ... |
+| `agency-embedded-firmware-engineer` | `safe` | Specialist in bare-metal and RTOS firmware - ESP32/ESP-IDF, PlatformIO, Ardui... |
+| `agency-feishu-integration-developer` | `safe` | Full-stack integration expert specializing in the Feishu (Lark) Open Platform... |
+| `agency-filament-optimization-specialist` | `safe` | Expert in restructuring and optimizing Filament PHP admin interfaces for maxi... |
+| `agency-finops-engineer` | `safe` | Expert cloud cost engineer for AWS/GCP/Azure — cost allocation and tagging, r... |
+| `agency-frontend-developer` | `safe` | Expert frontend developer specializing in modern web technologies, React/Vue/... |
+| `agency-gaussdb-expert-engineer` | `safe` | Expert database specialist focusing on GaussDB OLTP — Huawei''s self-develope... |
+| `agency-geoai-ml-engineer` | `safe` | Geospatial machine learning specialist who builds models for feature extracti... |
+| `agency-geoprocessing-specialist` | `safe` | ArcPy and Python toolbox expert who automates spatial workflows — builds .pyt... |
+| `agency-gis-analyst` | `safe` | Day-to-day GIS operator who creates maps, manages layers, performs spatial qu... |
+| `agency-gis-qa-engineer` | `safe` | Quality assurance specialist who validates geospatial data integrity — topolo... |
+| `agency-git-workflow-master` | `safe` | Expert in Git workflows, branching strategies, and version control best pract... |
+| `agency-identity-access-engineer` | `safe` | Expert identity engineer for OAuth 2.0/OIDC flows, enterprise SSO (SAML/OIDC)... |
+| `agency-incident-response-commander` | `safe` | Expert incident commander specializing in production incident management, str... |
+| `agency-internationalization-engineer` | `safe` | Expert i18n engineer for ICU MessageFormat, CLDR plural rules, RTL and bidire... |
+| `agency-iot-fleet-engineer` | `safe` | Expert IoT and edge fleet engineer — device provisioning and identity, MQTT/t... |
+| `agency-it-service-manager` | `safe` | Expert IT service management specialist using ITIL 4 framework for service ca... |
+| `agency-knowledge-graph-engineer` | `safe` | Structures information and capabilities into interconnected nodes (entities) ... |
+| `agency-llm-post-training-engineer` | `safe` | Evidence-driven owner for SFT, preference optimization, RLHF/RLVR, MoE post-t... |
+| `agency-minimal-change-engineer` | `safe` | Engineering specialist focused on minimum-viable diffs — fixes only what was ... |
+| `agency-mobile-app-builder` | `safe` | Specialized mobile application developer with expertise in native iOS/Android... |
+| `agency-mobile-release-engineer` | `safe` | Expert mobile release and distribution engineer for iOS and Android — code si... |
+| `agency-multi-agent-systems-architect` | `safe` | Systems architect specializing in the design, coordination, and governance of... |
+| `agency-network-engineer` | `safe` | Expert network engineer for Cisco IOS/IOS-XE, Cisco ASA/FTD, Juniper Junos, a... |
+| `agency-orgscript-engineer` | `safe` | Expert in designing, parsing, and implementing OrgScript grammar, AST validat... |
+| `agency-payments-billing-engineer` | `safe` | Expert payments engineer for PSP integrations (Stripe, Adyen, Braintree, PayP... |
+| `agency-pdf-engine-architect` | `safe` | Architect and specialist in deterministic HTML-to-PDF document compilation, P... |
+| `agency-platform-engineer` | `safe` | Expert internal developer platform (IDP) engineer specializing in golden path... |
+| `agency-privacy-engineer` | `safe` | Expert privacy engineer who implements privacy in code — PII discovery and cl... |
+| `agency-prompt-engineer` | `safe` | Specialist in crafting, testing, and systematically optimizing prompts for LL... |
+| `agency-rag-pipeline-engineer` | `safe` | Production RAG specialist focused on chunking strategy, retrieval quality, hy... |
+| `agency-rapid-prototyper` | `safe` | Specialized in ultra-fast proof-of-concept development and MVP creation using... |
+| `agency-realtime-collaboration-engineer` | `safe` | Expert realtime systems engineer for WebSocket/SSE infrastructure, presence, ... |
+| `agency-rust-refactoring-specialist` | `safe` | Expert Rust engineer for repository-scale refactoring, safe renames, module r... |
+| `agency-search-relevance-engineer` | `safe` | Expert search engineer for Elasticsearch and OpenSearch — index and analyzer ... |
+| `agency-section-508-accessibility-specialist` | `safe` | Expert U.S. federal Section 508 accessibility engineer (the 508 legal baselin... |
+| `agency-senior-developer` | `safe` | Premium implementation specialist - Masters Laravel/Livewire/FluxUI, advanced... |
+| `agency-servicenow-developer-mentor` | `safe` | ServiceNow platform developer and step-by-step troubleshooter — Business Rule... |
+| `agency-software-architect` | `safe` | Expert software architect specializing in system design, domain-driven design... |
+| `agency-solidity-smart-contract-engineer` | `safe` | Expert Solidity developer specializing in EVM smart contract architecture, ga... |
+| `agency-solution-engineer` | `safe` | Hands-on GIS prototype builder who takes strategy from Technical Consultant a... |
+| `agency-spatial-data-engineer` | `safe` | ETL specialist who transforms messy geospatial data from any source into clea... |
+| `agency-spatial-data-scientist` | `safe` | Advanced spatial analytics specialist who applies statistical modeling, spati... |
+| `agency-sre-site-reliability-engineer` | `safe` | Expert site reliability engineer specializing in SLOs, error budgets, observa... |
+| `agency-technical-consultant` | `safe` | Strategic GIS advisor who translates business problems into geospatial soluti... |
+| `agency-technical-writer` | `safe` | Expert technical writer specializing in developer documentation, API referenc... |
+| `agency-universal-document-compiler` | `safe` | Architect of schema-agnostic document ASTs, algorithmic data-shape layout inf... |
+| `agency-uswds-developer` | `safe` | Expert U.S. Web Design System frontend developer specializing in USWDS compon... |
+| `agency-video-streaming-engineer` | `safe` | Expert video streaming engineer for adaptive bitrate delivery — HLS/DASH pack... |
+| `agency-voice-ai-integration-engineer` | `safe` | Expert in building end-to-end speech transcription pipelines using Whisper-st... |
+| `agency-web-gis-developer` | `safe` | Full-stack web GIS engineer who builds interactive mapping applications — Map... |
+| `agency-webassembly-engineer` | `safe` | Expert WebAssembly engineer — compiling Rust/C++/Go to Wasm, JS interop and t... |
+| `agency-wechat-mini-program-developer` | `safe` | Expert WeChat Mini Program developer specializing in 小程序 development with WXM... |
+| `agency-wordpress-performance-engineer` | `safe` | Expert WordPress performance engineer specializing in Core Web Vitals, object... |
+| `agency-wordpress-shopping-cart-engineer` | `safe` | Expert WordPress e-commerce engineer specializing in WooCommerce for product ... |
 | `ai-agent-evaluation-benchmarking` | `safe` | Autonomous AI agent benchmark evaluation register: task completion rates, pla... |
 | `ai-agent-tool-routing` | `safe` | Use when designing or reviewing an AI agent tool registry or MCP router: docu... |
 | `ai-code-generation-guardrails` | `safe` | Use when reviewing AI-generated code before merge or execution: plan AST/secu... |
@@ -2145,10 +2314,15 @@ Tổng hợp **3,576** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `web3-transaction-relayer-pool` | `safe` | Gasless transaction relayer node pool register: fee sponsorship limits, nonce... |
 | `zk-proof-verification-pipeline` | `safe` | Zero-knowledge cryptographic verification pipeline register: proving system, ... |
 
-### FINANCE (33 skills)
+### FINANCE (38 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
+| `agency-bookkeeper-controller` | `safe` | Expert bookkeeper and controller specializing in day-to-day accounting operat... |
+| `agency-financial-analyst` | `safe` | Expert financial analyst specializing in financial modeling, forecasting, sce... |
+| `agency-fp-a-analyst` | `safe` | Expert Financial Planning & Analysis (FP&A) analyst specializing in budgeting... |
+| `agency-investment-researcher` | `safe` | Expert investment researcher specializing in market research, due diligence, ... |
+| `agency-tax-strategist` | `safe` | Expert tax strategist specializing in tax optimization, multi-jurisdictional ... |
 | `axonx` | `critical` | Develop AxonX research plugins and operate quantitative research tasks throug... |
 | `calibrate-first` | `critical` | Measure a dataset's detection floor before reading any trading-signal result,... |
 | `day-trader-skill` | `safe` | Suite of 11 modular day trading skills for US equities — scan thousands of ch... |
@@ -2281,11 +2455,32 @@ Tổng hợp **3,576** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | :--- | :---: | :--- |
 | `vibe-code-cleanup` | `safe` | Safe production cleanup and hardening for vibe-coded fullstack apps (Next.js,... |
 
-### GAME-DEVELOPMENT (263 skills)
+### GAME-DEVELOPMENT (284 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
 | `adopt` | `safe` | Brownfield audit — do existing artifacts actually work? Numbered migration pl... |
+| `agency-blender-add-on-engineer` | `safe` | Blender tooling specialist - Builds Python add-ons, asset validators, exporte... |
+| `agency-economy-designer` | `safe` | Virtual economy architect - Masters currency systems, sources and sinks, mone... |
+| `agency-game-audio-engineer` | `safe` | Interactive audio specialist - Masters FMOD/Wwise integration, adaptive music... |
+| `agency-game-designer` | `safe` | Systems and mechanics architect - Masters GDD authorship, player psychology, ... |
+| `agency-godot-gameplay-scripter` | `safe` | Composition and signal integrity specialist - Masters GDScript 2.0, C# integr... |
+| `agency-godot-multiplayer-engineer` | `safe` | Godot 4 networking specialist - Masters the MultiplayerAPI, scene replication... |
+| `agency-godot-shader-developer` | `safe` | Godot 4 visual effects specialist - Masters the Godot Shading Language (GLSL-... |
+| `agency-level-designer` | `safe` | Spatial storytelling and flow specialist - Masters layout theory, pacing arch... |
+| `agency-narrative-designer` | `safe` | Story systems and dialogue architect - Masters GDD-aligned narrative design, ... |
+| `agency-roblox-avatar-creator` | `safe` | Roblox UGC and avatar pipeline specialist - Masters Roblox''s avatar system, ... |
+| `agency-roblox-experience-designer` | `safe` | Roblox platform UX and monetization specialist - Masters engagement loop desi... |
+| `agency-roblox-systems-scripter` | `safe` | Roblox platform engineering specialist - Masters Luau, the client-server secu... |
+| `agency-technical-artist` | `safe` | Art-to-engine pipeline specialist - Masters shaders, VFX systems, LOD pipelin... |
+| `agency-unity-architect` | `safe` | Data-driven modularity specialist - Masters ScriptableObjects, decoupled syst... |
+| `agency-unity-editor-tool-developer` | `safe` | Unity editor automation specialist - Masters custom EditorWindows, PropertyDr... |
+| `agency-unity-multiplayer-engineer` | `safe` | Networked gameplay specialist - Masters Netcode for GameObjects, Unity Gaming... |
+| `agency-unity-shader-graph-artist` | `safe` | Visual effects and material specialist - Masters Unity Shader Graph, HLSL, UR... |
+| `agency-unreal-multiplayer-architect` | `safe` | Unreal Engine networking specialist - Masters Actor replication, GameMode/Gam... |
+| `agency-unreal-systems-engineer` | `safe` | Performance and hybrid architecture specialist - Masters C++/Blueprint contin... |
+| `agency-unreal-technical-artist` | `safe` | Unreal Engine visual pipeline specialist - Masters the Material Editor, Niaga... |
+| `agency-unreal-world-builder` | `safe` | Open-world and environment specialist - Masters UE5 World Partition, Landscap... |
 | `ai-behavior-trees-utility-ai` | `unknown` | Build a production behavior-tree runtime (Blackboard, action/condition leaves... |
 | `architecture-decision` | `safe` | Create an ADR documenting a technical decision: context, alternatives conside... |
 | `art-bible` | `safe` | Author the Art Bible — visual identity gating asset production. Run before /m... |
@@ -2663,10 +2858,13 @@ Tổng hợp **3,576** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `linkedin-profile-optimizer` | `safe` | High-intent expert for LinkedIn profile checks and SEO optimization. Silently... |
 | `social-post-writer-seo` | `safe` | Social Media Strategist and Content Writer. Creates clear, engaging social me... |
 
-### HEALTH (18 skills)
+### HEALTH (21 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
+| `agency-clinical-evidence-agent` | `safe` | Evidence standards and clinical credibility framework for AI agents operating... |
+| `agency-healthcare-innovation-strategist` | `safe` | Strategic narrative architect for healthcare founders operating at the inters... |
+| `agency-sovereign-health-systems-agent` | `safe` | Government health mandate engagement framework for AI agents operating at the... |
 | `emergency-card` | `critical` | 生成紧急情况下快速访问的医疗信息摘要卡片。当用户需要旅行、就诊准备、紧急情况或询问"紧急信息"、"医疗卡片"、"急救信息"时使用此技能。提取关键信息（过敏... |
 | `family-health-analyzer` | `critical` | 整理家族病史和已知健康记录，识别需要医生或遗传咨询师评估的线索，不计算未经验证的个体发病概率 |
 | `fitness-analyzer` | `critical` | 分析运动数据、识别运动模式、评估健身进展，并提供个性化训练建议。支持与慢性病数据的关联分析。 |
@@ -2724,7 +2922,7 @@ Tổng hợp **3,576** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | :--- | :---: | :--- |
 | `party-planning` | `safe` | Estimate party food and drink quantities, select games, and draft hosting tim... |
 
-### MARKETING (262 skills)
+### MARKETING (306 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
@@ -2737,8 +2935,52 @@ Tổng hợp **3,576** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `ad-copy-global` | `safe` | Use when the user needs PAID ad copy for Meta, Google, or TikTok — six varian... |
 | `ad-creative` | `critical` | Create, iterate, and scale paid ad creative for Google Ads, Meta, LinkedIn, T... |
 | `ads-audit-global` | `safe` | Use when an ad account needs a systematic CONFIGURATION audit — 84 checkpoint... |
+| `agency-ad-creative-strategist` | `safe` | Paid media creative specialist focused on ad copywriting, RSA optimization, a... |
+| `agency-aeo-foundations-architect` | `safe` | Expert in AI Engine Optimization infrastructure — implements llms.txt, AI-awa... |
+| `agency-agentic-search-optimizer` | `safe` | Expert in WebMCP readiness and agentic task completion — audits whether AI ag... |
+| `agency-ai-citation-strategist` | `safe` | Expert in AI recommendation engine optimization (AEO/GEO) — audits brand visi... |
+| `agency-app-store-optimizer` | `safe` | Expert app store marketing specialist focused on App Store Optimization (ASO)... |
+| `agency-baidu-seo-specialist` | `safe` | Expert Baidu search optimization specialist focused on Chinese search engine ... |
+| `agency-bilibili-content-strategist` | `safe` | Expert Bilibili marketing specialist focused on UP主 growth, danmaku culture m... |
+| `agency-book-co-author` | `safe` | Strategic thought-leadership book collaborator for founders, experts, and ope... |
+| `agency-carousel-growth-engine` | `safe` | Autonomous TikTok and Instagram carousel generation specialist. Analyzes any ... |
+| `agency-china-e-commerce-operator` | `safe` | Expert China e-commerce operations specialist covering Taobao, Tmall, Pinduod... |
+| `agency-china-market-localization-strategist` | `safe` | Full-stack China market localization expert who transforms real-time trend si... |
+| `agency-content-creator` | `safe` | Expert content strategist and creator for multi-platform campaigns. Develops ... |
+| `agency-cross-border-e-commerce-specialist` | `safe` | Full-funnel cross-border e-commerce strategist covering Amazon, Shopee, Lazad... |
+| `agency-developer-community-builder` | `safe` | Grows and sustains developer communities — Discord servers, GitHub discussion... |
+| `agency-douyin-strategist` | `safe` | Short-video marketing expert specializing in the Douyin platform, with deep e... |
+| `agency-email-marketing-strategist` | `safe` | Expert email marketing strategist for CRM-driven campaigns, lifecycle automat... |
+| `agency-global-podcast-strategist` | `safe` | Expert podcast growth specialist focused on show positioning, audience develo... |
+| `agency-growth-hacker` | `safe` | Expert growth strategist specializing in rapid user acquisition through data-... |
+| `agency-instagram-curator` | `safe` | Expert Instagram marketing specialist focused on visual storytelling, communi... |
+| `agency-kuaishou-strategist` | `safe` | Expert Kuaishou marketing strategist specializing in short-video content for ... |
+| `agency-linkedin-content-creator` | `safe` | Expert LinkedIn content strategist focused on thought leadership, personal br... |
+| `agency-livestream-commerce-coach` | `safe` | Veteran livestream e-commerce coach specializing in host training and live ro... |
+| `agency-multi-platform-publisher` | `safe` | Expert orchestrator for one-click Chinese blog publishing. Routes a single ar... |
+| `agency-paid-media-auditor` | `safe` | Comprehensive paid media auditor who systematically evaluates Google Ads, Mic... |
+| `agency-paid-social-strategist` | `safe` | Cross-platform paid social advertising specialist covering Meta (Facebook/Ins... |
+| `agency-podcast-strategist` | `safe` | Content strategy and operations expert for the Chinese podcast market, with d... |
+| `agency-ppc-campaign-strategist` | `safe` | Senior paid media strategist specializing in large-scale search, shopping, an... |
+| `agency-pr-communications-manager` | `safe` | Strategic public relations and communications specialist for media relations,... |
+| `agency-private-domain-operator` | `safe` | Expert in building enterprise WeChat (WeCom) private domain ecosystems, with ... |
+| `agency-programmatic-display-buyer` | `safe` | Display advertising and programmatic media buying specialist covering managed... |
+| `agency-reddit-community-builder` | `safe` | Expert Reddit marketing specialist focused on authentic community engagement,... |
+| `agency-search-query-analyst` | `safe` | Specialist in search term analysis, negative keyword architecture, and query-... |
+| `agency-seo-specialist` | `safe` | Expert search engine optimization strategist specializing in technical SEO, c... |
+| `agency-short-video-editing-coach` | `safe` | Hands-on short-video editing coach covering the full post-production pipeline... |
+| `agency-social-media-strategist` | `safe` | Expert social media strategist for LinkedIn, Twitter, and professional platfo... |
+| `agency-tiktok-strategist` | `safe` | Expert TikTok marketing specialist focused on viral content creation, algorit... |
+| `agency-tracking-measurement-specialist` | `safe` | Expert in conversion tracking architecture, tag management, and attribution m... |
+| `agency-twitter-engager` | `safe` | Expert Twitter marketing specialist focused on real-time engagement, thought ... |
 | `agency-vendor-brief` | `safe` | Dùng khi thue NGUOI NGOAI lam — agency, freelancer, production house, vendor:... |
 | `agency-vendor-brief-global` | `safe` | Use when briefing or managing an EXTERNAL agency, freelancer, or production v... |
+| `agency-video-optimization-specialist` | `safe` | Video marketing strategist specializing in YouTube algorithm optimization, au... |
+| `agency-wechat-official-account-manager` | `safe` | Expert WeChat Official Account (OA) strategist specializing in content market... |
+| `agency-weibo-strategist` | `safe` | Full-spectrum operations expert for Sina Weibo, with deep expertise in trendi... |
+| `agency-x-twitter-intelligence-analyst` | `safe` | Social intelligence specialist for X/Twitter research, trend detection, accou... |
+| `agency-xiaohongshu-specialist` | `safe` | Expert Xiaohongshu marketing specialist focused on lifestyle content, trend-d... |
+| `agency-zhihu-strategist` | `safe` | Expert Zhihu marketing specialist focused on thought leadership, community cr... |
 | `ai-avatar-production` | `safe` | Dùng khi mot CA NHAN muon len hinh bang AI thay vi tu quay — pipeline avatar ... |
 | `ai-avatar-production-global` | `safe` | Use when a PERSONAL brand needs AI avatar video at scale — three tool tiers, ... |
 | `ai-marketing-os` | `safe` | Dùng khi muon bien cach team dung AI thanh mot he thong van hanh — Brand Hub ... |
@@ -3314,10 +3556,16 @@ Tổng hợp **3,576** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | :--- | :---: | :--- |
 | `pptx-deck-creation` | `critical` | Create editable, production-ready PPTX decks with narrative planning, explici... |
 
-### OPERATIONS (8 skills)
+### OPERATIONS (14 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
+| `agency-analytics-reporter` | `safe` | Expert data analyst transforming raw data into actionable business insights. ... |
+| `agency-executive-summary-generator` | `safe` | Consultant-grade AI specialist trained to think and communicate like a senior... |
+| `agency-finance-tracker` | `safe` | Expert financial analyst and controller specializing in financial planning, b... |
+| `agency-infrastructure-maintainer` | `safe` | Expert infrastructure specialist focused on system reliability, performance o... |
+| `agency-legal-compliance-checker` | `safe` | Expert legal and compliance specialist ensuring business operations, data han... |
+| `agency-support-responder` | `safe` | Expert customer support specialist delivering exceptional customer service, i... |
 | `anti-sleep` | `critical` | Keep a Mac awake with caffeinate during long builds, downloads, or supervised... |
 | `it-manager-hospital` | `safe` | World-class Hospital IT Management Advisor specializing in clinical safety, d... |
 | `itil-expert` | `safe` | Expert advisor for ITIL 4 and ITIL 5 (2026 digital product paradigm), special... |
@@ -3372,10 +3620,16 @@ Tổng hợp **3,576** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `libreoffice/impress` | `safe` | Presentation creation, format conversion (ODP/PPTX/PDF), slide automation wit... |
 | `nanobanana-ppt-skills` | `critical` | AI-powered PPT generation with document analysis and styled images |
 
-### PRODUCT (5 skills)
+### PRODUCT (11 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
+| `agency-behavioral-nudge-engine` | `safe` | Behavioral psychology specialist that adapts software interaction cadences an... |
+| `agency-dx-engineer` | `safe` | Removes every unnecessary step between a developer and their first success — ... |
+| `agency-feedback-synthesizer` | `safe` | Expert in collecting, analyzing, and synthesizing user feedback from multiple... |
+| `agency-product-manager` | `safe` | Holistic product leader who owns the full product lifecycle — from discovery ... |
+| `agency-sprint-prioritizer` | `safe` | Expert product manager specializing in agile sprint planning, feature priorit... |
+| `agency-trend-researcher` | `safe` | Expert market intelligence analyst specializing in identifying emerging trend... |
 | `before-you-build` | `safe` | Review product risk before coding by checking demand, alternatives, channels,... |
 | `idea-autopsy` | `critical` | Autopsy a business idea before you build it: kill-list check, five hard filte... |
 | `product-decision-agent` | `safe` | 中文产品决策 Agent。用于需求优先级、Roadmap、增长、留存、运营、数据异常、A/B Test、项目延期和跨团队协作；先判断事实、阶段、核心阻塞与... |
@@ -3458,11 +3712,18 @@ Tổng hợp **3,576** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `wait-what` | `safe` | Stop. That last message did not land: re-pitch it. |
 | `workorai` | `critical` | WorkorAI talent-marketplace skill: candidates search jobs and manage applicat... |
 
-### PROJECT-MANAGEMENT (35 skills)
+### PROJECT-MANAGEMENT (42 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
 | `accint-commitments` | `critical` | Triage acc's open promises and close them with honest real-world verdicts via... |
+| `agency-experiment-tracker` | `safe` | Expert project manager specializing in experiment design, execution tracking,... |
+| `agency-jira-workflow-steward` | `safe` | Expert delivery operations specialist who enforces Jira-linked Git workflows,... |
+| `agency-meeting-notes-specialist` | `safe` | Extract structured decisions, action items, and open questions from meeting t... |
+| `agency-project-shepherd` | `safe` | Expert project manager specializing in cross-functional project coordination,... |
+| `agency-senior-project-manager` | `safe` | Converts specs to tasks and remembers previous projects. Focused on realistic... |
+| `agency-studio-operations` | `safe` | Expert operations manager specializing in day-to-day studio efficiency, proce... |
+| `agency-studio-producer` | `safe` | Senior strategic leader specializing in high-level creative and technical pro... |
 | `artifact-yylo` | `safe` | Capture and retrieve durable YYLO Ledger artifact Records with intentional |
 | `asana-automation` | `critical` | Automate Asana tasks via Rube MCP (Composio): tasks, projects, sections, team... |
 | `basecamp-automation` | `critical` | Automate Basecamp project management, to-dos, messages, people, and to-do lis... |
@@ -3541,10 +3802,11 @@ Tổng hợp **3,576** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `tune-monitor` | `critical` | Analyze a Monte Carlo monitor and recommend config changes to reduce alert no... |
 | `windows-shell-reliability` | `safe` | Reliable command execution on Windows: paths, encoding, and common binary pit... |
 
-### RESEARCH (25 skills)
+### RESEARCH (26 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
+| `agency-research-synthesist` | `safe` | Expert in literature review, source evaluation, and evidence synthesis — turn... |
 | `arcmira-find-quotes` | `safe` | Search indexed YouTube and podcast transcripts for quotes, speakers and clip ... |
 | `ask-human-expert` | `critical` | Ask real executives and domain experts a question through Instant Expert for ... |
 | `deep-research-framework` | `safe` | Framework for deep research reports: define the question and tier sources fir... |
@@ -3635,13 +3897,25 @@ Tổng hợp **3,576** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `uv` | `safe` | Checks whether the uv Python package manager is installed and installs it if ... |
 | `workflow-skill-creator` | `safe` | Distills a completed user workflow or interaction into a reusable agent skill... |
 
-### SECURITY (267 skills)
+### SECURITY (279 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
 | `007` | `critical` | Security audit, hardening, threat modeling (STRIDE/PASTA), Red/Blue Team, OWA... |
 | `access-review` | `critical` | Conduct periodic access reviews and certifications. Implement access |
 | `active-directory-attacks` | `offensive` | Assess Active Directory attack paths using scoped configuration review and co... |
+| `agency-ai-generated-code-security-auditor` | `safe` | Security reviewer for AI-generated and vibe-coded apps — hunts the hardcoded ... |
+| `agency-application-security-engineer` | `safe` | AppSec specialist who secures the software development lifecycle through thre... |
+| `agency-blockchain-security-auditor` | `safe` | Expert smart contract security auditor specializing in vulnerability detectio... |
+| `agency-cloud-security-architect` | `safe` | Cloud-native security specialist designing zero trust architectures, implemen... |
+| `agency-compliance-auditor` | `safe` | Expert technical compliance auditor specializing in SOC 2, ISO 27001, HIPAA, ... |
+| `agency-incident-responder` | `safe` | Digital forensics and incident response specialist who leads breach investiga... |
+| `agency-penetration-tester` | `safe` | Offensive security specialist conducting authorized penetration tests, red te... |
+| `agency-secrets-credential-hygiene-engineer` | `safe` | Owns the full lifecycle of secrets and credentials — detection, prevention, v... |
+| `agency-security-architect` | `safe` | Expert security architect specializing in threat modeling, secure-by-design a... |
+| `agency-senior-secops-engineer` | `safe` | Defensive application security specialist who scans every code submission for... |
+| `agency-threat-detection-engineer` | `safe` | Expert detection engineer specializing in SIEM rule development, MITRE ATT&CK... |
+| `agency-threat-intelligence-analyst` | `safe` | Cyber threat intelligence specialist who tracks adversary groups, maps attack... |
 | `agy-auto` | `critical` | Configure agy-auto PreToolUse security gate to run Antigravity CLI (agy) unat... |
 | `ai-agent-security` | `safe` | Secure AI agents against prompt injection, tool abuse, and data exfiltration |
 | `ai-coding-agent-guardrails` | `critical` | Secure AI coding agents (Claude Code, Cursor, Codex, Copilot) with permission |
@@ -4007,11 +4281,20 @@ Tổng hợp **3,576** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `test-automator` | `critical` | Master AI-powered test automation with modern frameworks, self-healing tests,... |
 | `webapp-testing` | `critical` | Toolkit for interacting with and testing local web applications using Playwri... |
 
-### TESTING (51 skills)
+### TESTING (60 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
 | `ab-testing` | `critical` | When the user wants to plan, design, or implement an A/B test or experiment, ... |
+| `agency-accessibility-auditor` | `safe` | Expert accessibility specialist who audits interfaces against WCAG standards,... |
+| `agency-api-tester` | `safe` | Expert API testing specialist focused on comprehensive API validation, perfor... |
+| `agency-evidence-collector` | `safe` | Screenshot-obsessed, fantasy-allergic QA specialist - Reports reproducible is... |
+| `agency-performance-benchmarker` | `safe` | Expert performance testing and optimization specialist focused on measuring, ... |
+| `agency-reality-checker` | `safe` | Stops fantasy approvals, evidence-based certification - Default to "NEEDS WOR... |
+| `agency-test-automation-engineer` | `safe` | Expert end-to-end test automation engineer for Playwright and Cypress — resil... |
+| `agency-test-results-analyzer` | `safe` | Expert test analysis specialist focused on comprehensive test result evaluati... |
+| `agency-tool-evaluator` | `safe` | Expert technology assessment specialist focused on evaluating, testing, and r... |
+| `agency-workflow-optimizer` | `safe` | Expert process improvement specialist focused on analyzing, optimizing, and a... |
 | `agent-qa-authoring` | `critical` | Create, edit, validate, and run Agent QA tests, suites, and hooks through MCP... |
 | `agent-qa-debug-fix` | `critical` | Debug, patch, and verify failed Agent QA runs from MCP evidence, artifacts, l... |
 | `agent-qa-result-triage` | `safe` | Triage failed Agent QA runs with MCP evidence, artifacts, logs, fixed failure... |
