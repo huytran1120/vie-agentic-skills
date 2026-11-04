@@ -576,6 +576,32 @@
     "source": "https://github.com/coreyhaines31/marketingskills"
   },
   {
+    "id": "ad-library-teardown",
+    "canonical_id": "ad-library-teardown",
+    "name": "ad-library-teardown",
+    "path": "skills/ad-library-teardown",
+    "description": "Use when the user wants to analyze active ads from Meta/Facebook, Google, or LinkedIn ad libraries; tear down a competitor's messaging; extract hooks, offers, CTAs, video transcripts, landing page claims, and test ideas from public ads.",
+    "category": "marketing",
+    "tags": [
+      "social-media",
+      "marketing",
+      "ad-library",
+      "facebook-ads",
+      "meta-ads",
+      "google-ads",
+      "advertising",
+      "scrapecreators"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/ScrapeCreators/social-media-research-skills/tree/64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2/skills/ad-library-teardown",
+    "source_repo": "ScrapeCreators/social-media-research-skills",
+    "author": "ScrapeCreators",
+    "license": "MIT",
+    "license_source": "https://github.com/ScrapeCreators/social-media-research-skills/blob/64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2/LICENSE",
+    "source_revision": "64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2",
+    "source_path": "skills/ad-library-teardown"
+  },
+  {
     "id": "adaptive",
     "canonical_id": "adaptive",
     "name": "adaptive",
@@ -21735,6 +21761,31 @@
     "license_source": "https://github.com/amElnagdy/delegate-skills/blob/master/LICENSE"
   },
   {
+    "id": "comment-mining",
+    "canonical_id": "comment-mining",
+    "name": "comment-mining",
+    "path": "skills/comment-mining",
+    "description": "Use when the user wants to mine comments and replies for audience reactions, customer language, questions, objections, complaints, product ideas, buying intent, sentiment, or voice-of-customer insights from public social posts and videos.",
+    "category": "research",
+    "tags": [
+      "social-media",
+      "research",
+      "comment-mining",
+      "voice-of-customer",
+      "sentiment",
+      "customer-feedback",
+      "scrapecreators"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/ScrapeCreators/social-media-research-skills/tree/64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2/skills/comment-mining",
+    "source_repo": "ScrapeCreators/social-media-research-skills",
+    "author": "ScrapeCreators",
+    "license": "MIT",
+    "license_source": "https://github.com/ScrapeCreators/social-media-research-skills/blob/64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2/LICENSE",
+    "source_revision": "64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2",
+    "source_path": "skills/comment-mining"
+  },
+  {
     "id": "commit",
     "canonical_id": "commit",
     "name": "commit",
@@ -21962,6 +22013,30 @@
     "license_source": "https://github.com/minhnv0807/ai-business-skills/blob/fe33cb1a47e6140d3693651acbb743e2b1b5b26f/LICENSE",
     "source_revision": "fe33cb1a47e6140d3693651acbb743e2b1b5b26f",
     "source_path": "skills/en/08-competitor-research-global/SKILL.md"
+  },
+  {
+    "id": "competitor-social-research",
+    "canonical_id": "competitor-social-research",
+    "name": "competitor-social-research",
+    "path": "skills/competitor-social-research",
+    "description": "Use when the user wants to research competitors' social media strategy, compare brands or creators, find what content is working in a niche, identify content gaps, or produce a practical social strategy brief from public social data.",
+    "category": "research",
+    "tags": [
+      "social-media",
+      "research",
+      "competitor-analysis",
+      "social-strategy",
+      "content-gaps",
+      "scrapecreators"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/ScrapeCreators/social-media-research-skills/tree/64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2/skills/competitor-social-research",
+    "source_repo": "ScrapeCreators/social-media-research-skills",
+    "author": "ScrapeCreators",
+    "license": "MIT",
+    "license_source": "https://github.com/ScrapeCreators/social-media-research-skills/blob/64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2/LICENSE",
+    "source_revision": "64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2",
+    "source_path": "skills/competitor-social-research"
   },
   {
     "id": "competitor-tracking",
@@ -22499,6 +22574,32 @@
     ],
     "risk": "critical",
     "source": "community"
+  },
+  {
+    "id": "content-repurposing",
+    "canonical_id": "content-repurposing",
+    "name": "content-repurposing",
+    "path": "skills/content-repurposing",
+    "description": "Use when the user wants to turn public social videos, transcripts, posts, or creator research into reusable content assets such as LinkedIn posts, X threads, short-form scripts, newsletters, blog outlines, carousels, or content calendars.",
+    "category": "content",
+    "tags": [
+      "social-media",
+      "content",
+      "content-repurposing",
+      "transcripts",
+      "linkedin",
+      "x-threads",
+      "short-form",
+      "scrapecreators"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/ScrapeCreators/social-media-research-skills/tree/64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2/skills/content-repurposing",
+    "source_repo": "ScrapeCreators/social-media-research-skills",
+    "author": "ScrapeCreators",
+    "license": "MIT",
+    "license_source": "https://github.com/ScrapeCreators/social-media-research-skills/blob/64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2/LICENSE",
+    "source_revision": "64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2",
+    "source_path": "skills/content-repurposing"
   },
   {
     "id": "content-strategy",
@@ -23204,6 +23305,30 @@
     "license_source": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
     "source_revision": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
     "source_path": ".claude/skills/create-stories/SKILL.md"
+  },
+  {
+    "id": "creator-profile-teardown",
+    "canonical_id": "creator-profile-teardown",
+    "name": "creator-profile-teardown",
+    "path": "skills/creator-profile-teardown",
+    "description": "Use when the user wants to analyze a creator, influencer, founder, or brand social account and understand positioning, content pillars, outlier posts, hooks, format choices, audience reaction, and what can be copied or tested.",
+    "category": "marketing",
+    "tags": [
+      "social-media",
+      "marketing",
+      "creator-profile",
+      "influencer-analysis",
+      "content-pillars",
+      "scrapecreators"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/ScrapeCreators/social-media-research-skills/tree/64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2/skills/creator-profile-teardown",
+    "source_repo": "ScrapeCreators/social-media-research-skills",
+    "author": "ScrapeCreators",
+    "license": "MIT",
+    "license_source": "https://github.com/ScrapeCreators/social-media-research-skills/blob/64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2/LICENSE",
+    "source_revision": "64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2",
+    "source_path": "skills/creator-profile-teardown"
   },
   {
     "id": "cred-omega",
@@ -37069,6 +37194,31 @@
     "source": "community"
   },
   {
+    "id": "influencer-prospecting",
+    "canonical_id": "influencer-prospecting",
+    "name": "influencer-prospecting",
+    "path": "skills/influencer-prospecting",
+    "description": "Use when the user wants to find creators, influencers, affiliates, or social accounts in a niche for outreach, partnerships, sponsorships, UGC, seeding, or competitive research. Produces scored prospect lists from public social data.",
+    "category": "marketing",
+    "tags": [
+      "social-media",
+      "marketing",
+      "influencer-prospecting",
+      "partnerships",
+      "ugc",
+      "creator-outreach",
+      "scrapecreators"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/ScrapeCreators/social-media-research-skills/tree/64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2/skills/influencer-prospecting",
+    "source_repo": "ScrapeCreators/social-media-research-skills",
+    "author": "ScrapeCreators",
+    "license": "MIT",
+    "license_source": "https://github.com/ScrapeCreators/social-media-research-skills/blob/64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2/LICENSE",
+    "source_revision": "64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2",
+    "source_path": "skills/influencer-prospecting"
+  },
+  {
     "id": "ingest-youtube",
     "canonical_id": "ingest-youtube",
     "name": "ingest-youtube",
@@ -46364,6 +46514,31 @@
     "license_source": "https://github.com/zhaoxuya520/reverse-skill/blob/main/LICENSE"
   },
   {
+    "id": "outlier-post-finder",
+    "canonical_id": "outlier-post-finder",
+    "name": "outlier-post-finder",
+    "path": "skills/outlier-post-finder",
+    "description": "Use when the user wants to find posts, videos, reels, shorts, tweets, or social content that overperformed versus a creator, brand, or competitor baseline. Finds outliers, explains why they worked, extracts hooks and formats, and produces a practical swipe file.",
+    "category": "marketing",
+    "tags": [
+      "social-media",
+      "marketing",
+      "outlier-posts",
+      "viral-content",
+      "hooks",
+      "swipe-file",
+      "scrapecreators"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/ScrapeCreators/social-media-research-skills/tree/64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2/skills/outlier-post-finder",
+    "source_repo": "ScrapeCreators/social-media-research-skills",
+    "author": "ScrapeCreators",
+    "license": "MIT",
+    "license_source": "https://github.com/ScrapeCreators/social-media-research-skills/blob/64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2/LICENSE",
+    "source_revision": "64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2",
+    "source_path": "skills/outlier-post-finder"
+  },
+  {
     "id": "outlook-automation",
     "canonical_id": "outlook-automation",
     "name": "outlook-automation",
@@ -49141,6 +49316,31 @@
     "license": "MIT",
     "license_source": "https://github.com/atdy/maoxuan-product-agent/blob/main/LICENSE",
     "author": "atdy"
+  },
+  {
+    "id": "product-demand-research",
+    "canonical_id": "product-demand-research",
+    "name": "product-demand-research",
+    "path": "skills/product-demand-research",
+    "description": "Use when the user wants to validate a product idea, find pain points, mine demand signals, discover objections, or gather voice-of-customer language from Reddit, social posts, video transcripts, and comments. Produces evidence-backed product research.",
+    "category": "research",
+    "tags": [
+      "social-media",
+      "research",
+      "product-demand",
+      "validation",
+      "pain-points",
+      "reddit",
+      "scrapecreators"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/ScrapeCreators/social-media-research-skills/tree/64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2/skills/product-demand-research",
+    "source_repo": "ScrapeCreators/social-media-research-skills",
+    "author": "ScrapeCreators",
+    "license": "MIT",
+    "license_source": "https://github.com/ScrapeCreators/social-media-research-skills/blob/64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2/LICENSE",
+    "source_revision": "64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2",
+    "source_path": "skills/product-demand-research"
   },
   {
     "id": "product-design",
@@ -57344,6 +57544,55 @@
     "source_repo": "neondatabase/agent-skills"
   },
   {
+    "id": "scrapecreators-api",
+    "canonical_id": "scrapecreators-api",
+    "name": "scrapecreators-api",
+    "path": "skills/scrapecreators-api",
+    "description": "Scrape and extract public data from 27+ social media platforms using the ScrapeCreators REST API. Covers TikTok, Instagram, YouTube, LinkedIn, Facebook, Twitter/X, Reddit, Threads, Bluesky, Pinterest, Snapchat, Twitch, Kick, Truth Social, TikTok Shop, Google, and link-in-bio services (Linktree, Komi, Pillar, Linkbio, Linkme, Amazon Shop). Use when the user asks to scrape, fetch, extract, search, or look up social media profiles, posts, videos, reels, comments, transcripts, followers, ads, hashtags, trending content, or engagement metrics from any social platform. Also use when user mentions ScrapeCreators, social media API, ad library, or creator data.",
+    "category": "api-integration",
+    "tags": [
+      "social-media",
+      "api-integration",
+      "scrapecreators-api",
+      "rest-api",
+      "data-extraction",
+      "scrapecreators"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/ScrapeCreators/social-media-research-skills/tree/64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2/skills/scrapecreators-api",
+    "source_repo": "ScrapeCreators/social-media-research-skills",
+    "author": "ScrapeCreators",
+    "license": "MIT",
+    "license_source": "https://github.com/ScrapeCreators/social-media-research-skills/blob/64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2/LICENSE",
+    "source_revision": "64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2",
+    "source_path": "skills/scrapecreators-api"
+  },
+  {
+    "id": "scrapecreators-audience-research",
+    "canonical_id": "scrapecreators-audience-research",
+    "name": "scrapecreators-audience-research",
+    "path": "skills/scrapecreators-audience-research",
+    "description": "Use when the user wants to evaluate a creator, influencer, or brand audience using public profile signals, TikTok audience demographics, follower/following data, comments, geography, language, and content fit. Helps judge sponsorship and market fit.",
+    "category": "marketing",
+    "tags": [
+      "social-media",
+      "marketing",
+      "audience-research",
+      "demographics",
+      "tiktok",
+      "influencer",
+      "scrapecreators"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/ScrapeCreators/social-media-research-skills/tree/64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2/skills/audience-research",
+    "source_repo": "ScrapeCreators/social-media-research-skills",
+    "author": "ScrapeCreators",
+    "license": "MIT",
+    "license_source": "https://github.com/ScrapeCreators/social-media-research-skills/blob/64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2/LICENSE",
+    "source_revision": "64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2",
+    "source_path": "skills/audience-research"
+  },
+  {
     "id": "screen-adverse-media",
     "canonical_id": "screen-adverse-media",
     "name": "screen-adverse-media",
@@ -60059,6 +60308,31 @@
     "license_source": "https://github.com/minhnv0807/ai-business-skills/blob/fe33cb1a47e6140d3693651acbb743e2b1b5b26f/LICENSE",
     "source_revision": "fe33cb1a47e6140d3693651acbb743e2b1b5b26f",
     "source_path": "skills/vi/15-social-listening/SKILL.md"
+  },
+  {
+    "id": "social-listening-brief",
+    "canonical_id": "social-listening-brief",
+    "name": "social-listening-brief",
+    "path": "skills/social-listening-brief",
+    "description": "Use when the user wants a social listening report about what people are saying about a brand, person, product, topic, category, or niche across public social platforms. Produces cited themes, sentiment caveats, notable posts, and recommended actions.",
+    "category": "marketing",
+    "tags": [
+      "social-media",
+      "marketing",
+      "social-listening",
+      "brand-monitoring",
+      "sentiment",
+      "executive-brief",
+      "scrapecreators"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/ScrapeCreators/social-media-research-skills/tree/64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2/skills/social-listening-brief",
+    "source_repo": "ScrapeCreators/social-media-research-skills",
+    "author": "ScrapeCreators",
+    "license": "MIT",
+    "license_source": "https://github.com/ScrapeCreators/social-media-research-skills/blob/64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2/LICENSE",
+    "source_revision": "64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2",
+    "source_path": "skills/social-listening-brief"
   },
   {
     "id": "social-listening-global",
@@ -64496,6 +64770,31 @@
     "license_source": "https://github.com/huggingface/skills/blob/main/LICENSE"
   },
   {
+    "id": "transcript-intelligence",
+    "canonical_id": "transcript-intelligence",
+    "name": "transcript-intelligence",
+    "path": "skills/transcript-intelligence",
+    "description": "Use when the user wants to summarize, analyze, or repurpose transcripts from TikTok, Instagram, YouTube, Facebook, X/Twitter, LinkedIn, Rumble, or Reddit video posts. Extracts hooks, claims, quotes, content atoms, themes, and reusable scripts.",
+    "category": "media-processing",
+    "tags": [
+      "social-media",
+      "media-processing",
+      "transcript-intelligence",
+      "video-transcripts",
+      "youtube",
+      "tiktok",
+      "scrapecreators"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/ScrapeCreators/social-media-research-skills/tree/64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2/skills/transcript-intelligence",
+    "source_repo": "ScrapeCreators/social-media-research-skills",
+    "author": "ScrapeCreators",
+    "license": "MIT",
+    "license_source": "https://github.com/ScrapeCreators/social-media-research-skills/blob/64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2/LICENSE",
+    "source_revision": "64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2",
+    "source_path": "skills/transcript-intelligence"
+  },
+  {
     "id": "transformers-js",
     "canonical_id": "transformers-js",
     "name": "transformers-js",
@@ -64583,6 +64882,31 @@
     ],
     "risk": "critical",
     "source": "community"
+  },
+  {
+    "id": "trend-discovery",
+    "canonical_id": "trend-discovery",
+    "name": "trend-discovery",
+    "path": "skills/trend-discovery",
+    "description": "Use when the user wants to discover trending social topics, hashtags, sounds, posts, reels, shorts, creators, or formats in a niche. Searches public trend and discovery endpoints, ranks evidence, and turns trends into practical content angles.",
+    "category": "research",
+    "tags": [
+      "social-media",
+      "research",
+      "trend-discovery",
+      "trending-topics",
+      "hashtags",
+      "viral-trends",
+      "scrapecreators"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/ScrapeCreators/social-media-research-skills/tree/64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2/skills/trend-discovery",
+    "source_repo": "ScrapeCreators/social-media-research-skills",
+    "author": "ScrapeCreators",
+    "license": "MIT",
+    "license_source": "https://github.com/ScrapeCreators/social-media-research-skills/blob/64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2/LICENSE",
+    "source_revision": "64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2",
+    "source_path": "skills/trend-discovery"
   },
   {
     "id": "triage",

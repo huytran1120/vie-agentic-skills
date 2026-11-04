@@ -1,6 +1,6 @@
 # Vie Agentic Skill (VAS) - Catalog
 
-Tổng hợp **3,859** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
+Tổng hợp **3,872** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
 
 | Danh mục | Số lượng | Lệnh cài đặt nhanh |
 | :--- | :---: | :--- |
@@ -18,7 +18,7 @@ Tổng hợp **3,859** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **analysis** | 3 skills | `./vas install --category analysis --target codex` |
 | **andruia** | 3 skills | `./vas install --category andruia --target codex` |
 | **antigravity** | 9 skills | `./vas install --category antigravity --target codex` |
-| **api-integration** | 44 skills | `./vas install --category api-integration --target codex` |
+| **api-integration** | 45 skills | `./vas install --category api-integration --target codex` |
 | **app-builder** | 4 skills | `./vas install --category app-builder --target codex` |
 | **architecture** | 35 skills | `./vas install --category architecture --target codex` |
 | **automation** | 64 skills | `./vas install --category automation --target codex` |
@@ -36,7 +36,7 @@ Tổng hợp **3,859** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **collaboration** | 1 skills | `./vas install --category collaboration --target codex` |
 | **communication** | 2 skills | `./vas install --category communication --target codex` |
 | **consulting** | 1 skills | `./vas install --category consulting --target codex` |
-| **content** | 88 skills | `./vas install --category content --target codex` |
+| **content** | 89 skills | `./vas install --category content --target codex` |
 | **content-writing** | 1 skills | `./vas install --category content-writing --target codex` |
 | **context-optimization** | 1 skills | `./vas install --category context-optimization --target codex` |
 | **core-dev** | 1 skills | `./vas install --category core-dev --target codex` |
@@ -76,10 +76,10 @@ Tổng hợp **3,859** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **legal** | 9 skills | `./vas install --category legal --target codex` |
 | **leiloeiro** | 6 skills | `./vas install --category leiloeiro --target codex` |
 | **lifestyle** | 1 skills | `./vas install --category lifestyle --target codex` |
-| **marketing** | 306 skills | `./vas install --category marketing --target codex` |
+| **marketing** | 312 skills | `./vas install --category marketing --target codex` |
 | **mcp** | 8 skills | `./vas install --category mcp --target codex` |
 | **media** | 145 skills | `./vas install --category media --target codex` |
-| **media-processing** | 1 skills | `./vas install --category media-processing --target codex` |
+| **media-processing** | 2 skills | `./vas install --category media-processing --target codex` |
 | **memory** | 7 skills | `./vas install --category memory --target codex` |
 | **meta** | 38 skills | `./vas install --category meta --target codex` |
 | **ml-ops** | 1 skills | `./vas install --category ml-ops --target codex` |
@@ -100,7 +100,7 @@ Tổng hợp **3,859** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **quality** | 2 skills | `./vas install --category quality --target codex` |
 | **reasoning** | 2 skills | `./vas install --category reasoning --target codex` |
 | **reliability** | 18 skills | `./vas install --category reliability --target codex` |
-| **research** | 26 skills | `./vas install --category research --target codex` |
+| **research** | 30 skills | `./vas install --category research --target codex` |
 | **reverse-engineering** | 1 skills | `./vas install --category reverse-engineering --target codex` |
 | **science** | 53 skills | `./vas install --category science --target codex` |
 | **security** | 279 skills | `./vas install --category security --target codex` |
@@ -495,7 +495,7 @@ Tổng hợp **3,859** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `run-workflow` | `safe` | How to write and run a dynamic workflow script with the `run_workflow` tool: ... |
 | `ui-plugin-navigation` | `safe` | Discover UI plugin panels relevant to the current task and surface a one-clic... |
 
-### API-INTEGRATION (44 skills)
+### API-INTEGRATION (45 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
@@ -527,6 +527,7 @@ Tổng hợp **3,859** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `riffkit` | `critical` | Create short videos with Riffkit: Adapt a source formula, Swap approved foota... |
 | `salesforce-automation` | `critical` | Automate Salesforce tasks via Rube MCP (Composio): leads, contacts, accounts,... |
 | `salesforce-development` | `critical` | Expert patterns for Salesforce platform development including |
+| `scrapecreators-api` | `safe` | Scrape and extract public data from 27+ social media platforms using the Scra... |
 | `sdk-dx` | `critical` | Design SDKs that developers love to use—APIs that feel native, error messages... |
 | `sendblue/sendblue-api` | `critical` | Send and receive iMessage, SMS, and RCS from application code via the Sendblu... |
 | `sendblue/sendblue-cli` | `critical` | Send iMessage and SMS from the shell via the @sendblue/cli npm package — outb... |
@@ -1324,7 +1325,7 @@ Tổng hợp **3,859** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | :--- | :---: | :--- |
 | `web-project-brainstorming` | `safe` | Masterclass framework for brainstorming web development projects and page des... |
 
-### CONTENT (88 skills)
+### CONTENT (89 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
@@ -1334,6 +1335,7 @@ Tổng hợp **3,859** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `changelog-updates` | `critical` | Create release notes and product updates that developers actually read and ca... |
 | `citation-management` | `critical` | Manage citations systematically throughout the research and writing process. |
 | `content-marketer` | `critical` | Elite content marketing strategist specializing in AI-powered content creatio... |
+| `content-repurposing` | `safe` | Use when the user wants to turn public social videos, transcripts, posts, or ... |
 | `copywriting-psychologist` | `safe` | Write or revise conversion copy using audience awareness, motivations, and cr... |
 | `crossframe-casebook` | `safe` | Use when CrossFrame Suite routes explicit Chinese casebook work: turning mate... |
 | `crossframe-critical` | `safe` | Use only when the user explicitly names crossframe-critical for a Chinese str... |
@@ -2922,7 +2924,7 @@ Tổng hợp **3,859** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | :--- | :---: | :--- |
 | `party-planning` | `safe` | Estimate party food and drink quantities, select games, and draft hosting tim... |
 
-### MARKETING (306 skills)
+### MARKETING (312 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
@@ -2934,6 +2936,7 @@ Tổng hợp **3,859** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `ad-campaign-analyzer` | `critical` | Analyze cross-channel campaign data, quantify uncertainty, and propose eviden... |
 | `ad-copy-global` | `safe` | Use when the user needs PAID ad copy for Meta, Google, or TikTok — six varian... |
 | `ad-creative` | `critical` | Create, iterate, and scale paid ad creative for Google Ads, Meta, LinkedIn, T... |
+| `ad-library-teardown` | `safe` | Use when the user wants to analyze active ads from Meta/Facebook, Google, or ... |
 | `ads-audit-global` | `safe` | Use when an ad account needs a systematic CONFIGURATION audit — 84 checkpoint... |
 | `agency-ad-creative-strategist` | `safe` | Paid media creative specialist focused on ad copywriting, RSA optimization, a... |
 | `agency-aeo-foundations-architect` | `safe` | Expert in AI Engine Optimization infrastructure — implements llms.txt, AI-awa... |
@@ -3055,6 +3058,7 @@ Tổng hợp **3,859** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `copy-hai-lop` | `safe` | Dùng khi cần viet slogan, headline poster hoac cau ngan co HAI LOP NGHIA — ma... |
 | `copy-quang-cao` | `safe` | Dùng khi cần viết copy quảng cáo TRA TIEN cho Meta, TikTok hoac Google — 6 bi... |
 | `copywriting` | `none` | Write rigorous, conversion-focused marketing copy for landing pages and email... |
+| `creator-profile-teardown` | `safe` | Use when the user wants to analyze a creator, influencer, founder, or brand s... |
 | `crisis-playbook` | `safe` | Dùng khi thuong hieu DANG bi tan cong hoac campaign gay phan ung xau — phan l... |
 | `crisis-playbook-global` | `safe` | Use when a brand faces a communications CRISIS or a campaign is failing in pu... |
 | `cro` | `safe` | When the user wants to optimize, improve, or increase conversions on any mark... |
@@ -3099,6 +3103,7 @@ Tổng hợp **3,859** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `html-email-template-global` | `safe` | Use when responsive HTML email has to render correctly in every client — tabl... |
 | `identity-mirror` | `safe` | Map an audience's current and aspirational identity into credible messaging w... |
 | `image-brief-global` | `safe` | Use when ONE static image needs a full brief for a designer or photographer —... |
+| `influencer-prospecting` | `safe` | Use when the user wants to find creators, influencers, affiliates, or social ... |
 | `insight-khach-hang` | `safe` | Dùng khi cần hieu khach hang du sau de viet duoc content va chon duoc tep — p... |
 | `instagram` | `critical` | Integracao completa com Instagram via Graph API. Publicacao, analytics, comen... |
 | `instagram-automation` | `critical` | Automate Instagram tasks via Rube MCP (Composio): create posts, carousels, ma... |
@@ -3146,6 +3151,7 @@ Tổng hợp **3,859** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `onboarding-cro` | `critical` | You are an expert in user onboarding and activation. Your goal is to help use... |
 | `onboarding-psychologist` | `safe` | Design first-use and onboarding experiences that bring an early win, cut setu... |
 | `open-source-marketing` | `critical` | When the user wants to market an open source project authentically. Trigger p... |
+| `outlier-post-finder` | `safe` | Use when the user wants to find posts, videos, reels, shorts, tweets, or soci... |
 | `outreachagent` | `critical` | Operate reply-aware cold outbound email workflows for AI agents with inboxes,... |
 | `page-cro` | `none` | Analyze and optimize individual pages for conversion performance. |
 | `paid-ads` | `critical` | You are an expert performance marketer who verifies available authorized acco... |
@@ -3183,6 +3189,7 @@ Tổng hợp **3,859** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `scaling-ads-global` | `safe` | Use when a WINNING ad has to be scaled without breaking it — readiness checks... |
 | `scarcity-urgency-psychologist` | `safe` | Design honest scarcity and urgency messaging when verified inventory, capacit... |
 | `schema-markup` | `critical` | Design, validate, and optimize schema.org structured data for eligibility, co... |
+| `scrapecreators-audience-research` | `safe` | Use when the user wants to evaluate a creator, influencer, or brand audience ... |
 | `screenshots` | `critical` | Generate marketing screenshots of your app using Playwright. Use when the use... |
 | `script-video` | `safe` | Dùng khi cần viết kịch bản video ngắn — TikTok, Reels, Shorts — voi hook 3 th... |
 | `script-video-global` | `safe` | Use when the user needs a spoken script for short-form video — TikTok, Reels,... |
@@ -3195,6 +3202,7 @@ Tổng hợp **3,859** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `social-caption-global` | `safe` | Use when the user needs ORGANIC social captions for Instagram, LinkedIn, TikT... |
 | `social-content` | `critical` | Help plan and draft social content; publishing capabilities depend on the act... |
 | `social-listening` | `safe` | Dùng khi cần theo doi lien tuc nguoi ta noi gi ve thuong hieu, doi thu va nga... |
+| `social-listening-brief` | `safe` | Use when the user wants a social listening report about what people are sayin... |
 | `social-listening-global` | `safe` | Use when the user wants to monitor what is being said about the brand, compet... |
 | `social-orchestrator` | `critical` | Orquestrador unificado de canais sociais — coordena Instagram, Telegram e Wha... |
 | `social-proof-architect` | `safe` | Select and place genuine testimonials, case studies, and other proof when an ... |
@@ -3396,10 +3404,11 @@ Tổng hợp **3,859** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `youtube-export` | `safe` | DaVinci Resolve Deliver settings for great YouTube quality without 25 GB file... |
 | `zhongcao-cover-maker` | `critical` | Install and use the official Xiaohongshu Cover Maker package, pinned by diges... |
 
-### MEDIA-PROCESSING (1 skills)
+### MEDIA-PROCESSING (2 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
+| `transcript-intelligence` | `safe` | Use when the user wants to summarize, analyze, or repurpose transcripts from ... |
 | `video-content-extractor` | `safe` | Extract key frames from MP4 videos at configurable intervals, run Tesseract O... |
 
 ### MEMORY (7 skills)
@@ -3802,13 +3811,15 @@ Tổng hợp **3,859** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `tune-monitor` | `critical` | Analyze a Monte Carlo monitor and recommend config changes to reduce alert no... |
 | `windows-shell-reliability` | `safe` | Reliable command execution on Windows: paths, encoding, and common binary pit... |
 
-### RESEARCH (26 skills)
+### RESEARCH (30 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
 | `agency-research-synthesist` | `safe` | Expert in literature review, source evaluation, and evidence synthesis — turn... |
 | `arcmira-find-quotes` | `safe` | Search indexed YouTube and podcast transcripts for quotes, speakers and clip ... |
 | `ask-human-expert` | `critical` | Ask real executives and domain experts a question through Instant Expert for ... |
+| `comment-mining` | `safe` | Use when the user wants to mine comments and replies for audience reactions, ... |
+| `competitor-social-research` | `safe` | Use when the user wants to research competitors' social media strategy, compa... |
 | `deep-research-framework` | `safe` | Framework for deep research reports: define the question and tier sources fir... |
 | `deepapi` | `critical` | Use DeepAPI for supported scraping, research, and email workflows with explic... |
 | `dsh-deepread` | `safe` | Use for evidence-first reading of articles, books, PDFs, web pages, or docume... |
@@ -3828,9 +3839,11 @@ Tổng hợp **3,859** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `papers-skill` | `safe` | Skill for academic research workflows: search Semantic Scholar (200M+ papers)... |
 | `people-data` | `safe` | Research LinkedIn professional profiles and public business-contact data, inc... |
 | `pi-web-search` | `safe` | Give Pi Agents a safe web-search and fetch workflow using the installed pi-we... |
+| `product-demand-research` | `safe` | Use when the user wants to validate a product idea, find pain points, mine de... |
 | `research-prompt` | `safe` | Turn vague research needs into one precise deep-research prompt with context ... |
 | `survey-generator` | `critical` | Generate source-backed AI/ML survey paper artifacts with curated bibliographi... |
 | `system-prompt-lookup` | `safe` | Checks what a shipped AI product's system prompt and tool schema actually say... |
+| `trend-discovery` | `safe` | Use when the user wants to discover trending social topics, hashtags, sounds,... |
 | `youtube-transcript` | `safe` | Fetch YouTube transcripts through DeepAPI or local fallback tooling and save ... |
 
 ### REVERSE-ENGINEERING (1 skills)

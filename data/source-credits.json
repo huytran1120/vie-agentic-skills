@@ -488,6 +488,13 @@
       "- Covers 18 specialized divisions: engineering (architects, fullstack, backend, DevOps, performance, QA), design (UI/UX, design systems, visual, 3D), marketing & paid media (growth, PPC, SEO, copywriters), product & project management (PO, scrum, release, agile), security & compliance (pentest, appsec, cloud security), research, sales, finance, health, and education.",
       "- Standalone payloads preserve upstream Antigravity standard SKILL.md with full role prompts, memory guidelines, and operational playbooks.",
       "- Installation runs no code, installs no dependencies or MCP servers, and connects no external accounts."
+    ],
+    "scrapecreators": [
+      "- **[ScrapeCreators/social-media-research-skills](https://github.com/ScrapeCreators/social-media-research-skills/tree/64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2)**: 13 social media research and intelligence skills by ScrapeCreators ([@ScrapeCreators](https://github.com/ScrapeCreators)) at revision `64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2` under the MIT License.",
+      "- Covers 13 specialized social intelligence workflows: ad library teardown (Meta, Google, LinkedIn), creator demographics & audience research, comment mining, competitor research, content repurposing, creator profile teardowns, influencer prospecting, outlier post finding, product demand validation, ScrapeCreators REST API integration, social listening briefs, video transcript intelligence, and trend discovery.",
+      "- Standalone payloads preserve upstream Agent Skills specification SKILL.md with full prompts, parameter extraction, and structured research playbooks.",
+      "- Optional live API features require user-provided SCRAPECREATORS_API_KEY; offline prompt generation and analysis run safely with zero external dependencies.",
+      "- Installation via `./vas install` only links or copies static files and writes `.vas-manifest.json`. No runtime/dependency is installed, and no external accounts are connected."
     ]
   }
 }

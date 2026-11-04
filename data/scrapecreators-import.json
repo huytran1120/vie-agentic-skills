@@ -1,0 +1,306 @@
+{
+  "source_repo": "ScrapeCreators/social-media-research-skills",
+  "revision": "64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2",
+  "skill_count": 13,
+  "skipped": [],
+  "namespaces": {
+    "audience-research": "scrapecreators-audience-research"
+  },
+  "duplicate_check": {
+    "catalog_count_before": 3859,
+    "upstream_is_fork": false,
+    "methods": [
+      "canonical-id/name",
+      "source-repo/path",
+      "raw-sha256",
+      "normalized-body",
+      "renamed-body",
+      "body-containment",
+      "7-word-shingles"
+    ],
+    "collision_rationale": "Exact and high-similarity shingle comparison against all 3,859 catalog skills identified zero content duplicates. The upstream audience-research collided in name with an existing ad targeting skill (minhnv0807/ai-business-skills), so it was namespaced to scrapecreators-audience-research per Golden Rule 4. All other 12 skills have unique IDs and distinct content."
+  },
+  "adaptations": [
+    "Preserve upstream payload structure: SKILL.md under Open Agent Skills format.",
+    "Append reversible VAS installation, attribution, prerequisites, role, and safety notes to SKILL.md.",
+    "Namespace audience-research to scrapecreators-audience-research to avoid colliding with existing ad targeting skill.",
+    "Map upstream skills into existing VAS taxonomy (marketing, research, content, api-integration, media-processing) to preserve exactly 119 catalog categories.",
+    "Include upstream MIT LICENSE and add NOTICE.md acknowledging social intelligence workflows, optional API keys, and safe offline execution.",
+    "No runtime/dependency or MCP service is executed during installation."
+  ],
+  "files": [
+    {
+      "source_path": "skills/ad-library-teardown (via upstream LICENSE)",
+      "path": "skills/ad-library-teardown/LICENSE",
+      "source_sha256": "37a2301a00eef329530cc65ddb9f1c1085a2fbfb1bb748adb9eb6fa05bde4f9b",
+      "sha256": "37a2301a00eef329530cc65ddb9f1c1085a2fbfb1bb748adb9eb6fa05bde4f9b",
+      "executable": false
+    },
+    {
+      "source_path": "skills/ad-library-teardown (via NOTICE.md)",
+      "path": "skills/ad-library-teardown/NOTICE.md",
+      "source_sha256": "944e6f038a5ee234b8b16940a99186c552f114f31f684430aeab75c8c0d9f506",
+      "sha256": "944e6f038a5ee234b8b16940a99186c552f114f31f684430aeab75c8c0d9f506",
+      "executable": false
+    },
+    {
+      "source_path": "skills/ad-library-teardown/SKILL.md",
+      "path": "skills/ad-library-teardown/SKILL.md",
+      "source_sha256": "93b67284b21ad9b5a1310a7d03c5c89dc79995165a277a3769698223232d5b0f",
+      "sha256": "e75f0c2a5669792a9274672c96be63f9ea7a8fb23ebe48b260128b69784a0340",
+      "executable": false
+    },
+    {
+      "source_path": "skills/comment-mining (via upstream LICENSE)",
+      "path": "skills/comment-mining/LICENSE",
+      "source_sha256": "37a2301a00eef329530cc65ddb9f1c1085a2fbfb1bb748adb9eb6fa05bde4f9b",
+      "sha256": "37a2301a00eef329530cc65ddb9f1c1085a2fbfb1bb748adb9eb6fa05bde4f9b",
+      "executable": false
+    },
+    {
+      "source_path": "skills/comment-mining (via NOTICE.md)",
+      "path": "skills/comment-mining/NOTICE.md",
+      "source_sha256": "944e6f038a5ee234b8b16940a99186c552f114f31f684430aeab75c8c0d9f506",
+      "sha256": "944e6f038a5ee234b8b16940a99186c552f114f31f684430aeab75c8c0d9f506",
+      "executable": false
+    },
+    {
+      "source_path": "skills/comment-mining/SKILL.md",
+      "path": "skills/comment-mining/SKILL.md",
+      "source_sha256": "8fb6527e7e73c2db34c85d83161c39fe04d5dd6b860d8c88f2a654af87e14db2",
+      "sha256": "074adbc6e1ac67be031de26012b3e0162d2016696b4dd3b88375eda27ef7e039",
+      "executable": false
+    },
+    {
+      "source_path": "skills/competitor-social-research (via upstream LICENSE)",
+      "path": "skills/competitor-social-research/LICENSE",
+      "source_sha256": "37a2301a00eef329530cc65ddb9f1c1085a2fbfb1bb748adb9eb6fa05bde4f9b",
+      "sha256": "37a2301a00eef329530cc65ddb9f1c1085a2fbfb1bb748adb9eb6fa05bde4f9b",
+      "executable": false
+    },
+    {
+      "source_path": "skills/competitor-social-research (via NOTICE.md)",
+      "path": "skills/competitor-social-research/NOTICE.md",
+      "source_sha256": "944e6f038a5ee234b8b16940a99186c552f114f31f684430aeab75c8c0d9f506",
+      "sha256": "944e6f038a5ee234b8b16940a99186c552f114f31f684430aeab75c8c0d9f506",
+      "executable": false
+    },
+    {
+      "source_path": "skills/competitor-social-research/SKILL.md",
+      "path": "skills/competitor-social-research/SKILL.md",
+      "source_sha256": "3a5179df374d1fd11b244c4a874a75fb1e48cc22f4f91cde2f6fcddbfda60ce7",
+      "sha256": "478214e5697009df77b380848d9f129482aa4216a9c00a11e36b29985ab8a394",
+      "executable": false
+    },
+    {
+      "source_path": "skills/content-repurposing (via upstream LICENSE)",
+      "path": "skills/content-repurposing/LICENSE",
+      "source_sha256": "37a2301a00eef329530cc65ddb9f1c1085a2fbfb1bb748adb9eb6fa05bde4f9b",
+      "sha256": "37a2301a00eef329530cc65ddb9f1c1085a2fbfb1bb748adb9eb6fa05bde4f9b",
+      "executable": false
+    },
+    {
+      "source_path": "skills/content-repurposing (via NOTICE.md)",
+      "path": "skills/content-repurposing/NOTICE.md",
+      "source_sha256": "944e6f038a5ee234b8b16940a99186c552f114f31f684430aeab75c8c0d9f506",
+      "sha256": "944e6f038a5ee234b8b16940a99186c552f114f31f684430aeab75c8c0d9f506",
+      "executable": false
+    },
+    {
+      "source_path": "skills/content-repurposing/SKILL.md",
+      "path": "skills/content-repurposing/SKILL.md",
+      "source_sha256": "894468df8b2491f1d36556a8e9045975c03e37f2c928ce028712ff864a28f3d2",
+      "sha256": "5ca45aa93c244d6777930cf1299fcd0ca6222d3a490d532eaffbcfcdbb6c8d14",
+      "executable": false
+    },
+    {
+      "source_path": "skills/creator-profile-teardown (via upstream LICENSE)",
+      "path": "skills/creator-profile-teardown/LICENSE",
+      "source_sha256": "37a2301a00eef329530cc65ddb9f1c1085a2fbfb1bb748adb9eb6fa05bde4f9b",
+      "sha256": "37a2301a00eef329530cc65ddb9f1c1085a2fbfb1bb748adb9eb6fa05bde4f9b",
+      "executable": false
+    },
+    {
+      "source_path": "skills/creator-profile-teardown (via NOTICE.md)",
+      "path": "skills/creator-profile-teardown/NOTICE.md",
+      "source_sha256": "944e6f038a5ee234b8b16940a99186c552f114f31f684430aeab75c8c0d9f506",
+      "sha256": "944e6f038a5ee234b8b16940a99186c552f114f31f684430aeab75c8c0d9f506",
+      "executable": false
+    },
+    {
+      "source_path": "skills/creator-profile-teardown/SKILL.md",
+      "path": "skills/creator-profile-teardown/SKILL.md",
+      "source_sha256": "8bb24dbb8ae59fd4017a6dd78f399caead9c62a205a343e9b4b4706fb4869914",
+      "sha256": "15e8d08f8eba5b229df0db8491524f5255c70defa5ea3fa77d23fc4d235768c3",
+      "executable": false
+    },
+    {
+      "source_path": "skills/influencer-prospecting (via upstream LICENSE)",
+      "path": "skills/influencer-prospecting/LICENSE",
+      "source_sha256": "37a2301a00eef329530cc65ddb9f1c1085a2fbfb1bb748adb9eb6fa05bde4f9b",
+      "sha256": "37a2301a00eef329530cc65ddb9f1c1085a2fbfb1bb748adb9eb6fa05bde4f9b",
+      "executable": false
+    },
+    {
+      "source_path": "skills/influencer-prospecting (via NOTICE.md)",
+      "path": "skills/influencer-prospecting/NOTICE.md",
+      "source_sha256": "944e6f038a5ee234b8b16940a99186c552f114f31f684430aeab75c8c0d9f506",
+      "sha256": "944e6f038a5ee234b8b16940a99186c552f114f31f684430aeab75c8c0d9f506",
+      "executable": false
+    },
+    {
+      "source_path": "skills/influencer-prospecting/SKILL.md",
+      "path": "skills/influencer-prospecting/SKILL.md",
+      "source_sha256": "670e840f96ef5f13c8b1d479b10fc8bd3c24033f2b2d5bf78924d10f5d60f1b3",
+      "sha256": "b35de1c7b08261d4e14220a8e4fcd57d00ed91ce9b8d8101cd9b483a73b9c488",
+      "executable": false
+    },
+    {
+      "source_path": "skills/outlier-post-finder (via upstream LICENSE)",
+      "path": "skills/outlier-post-finder/LICENSE",
+      "source_sha256": "37a2301a00eef329530cc65ddb9f1c1085a2fbfb1bb748adb9eb6fa05bde4f9b",
+      "sha256": "37a2301a00eef329530cc65ddb9f1c1085a2fbfb1bb748adb9eb6fa05bde4f9b",
+      "executable": false
+    },
+    {
+      "source_path": "skills/outlier-post-finder (via NOTICE.md)",
+      "path": "skills/outlier-post-finder/NOTICE.md",
+      "source_sha256": "944e6f038a5ee234b8b16940a99186c552f114f31f684430aeab75c8c0d9f506",
+      "sha256": "944e6f038a5ee234b8b16940a99186c552f114f31f684430aeab75c8c0d9f506",
+      "executable": false
+    },
+    {
+      "source_path": "skills/outlier-post-finder/SKILL.md",
+      "path": "skills/outlier-post-finder/SKILL.md",
+      "source_sha256": "c648fbe9dda692cc7c034ca8b193e3b129ba4db45f8ff992f463206610d80bfa",
+      "sha256": "5a952db26b091a07411c59167020711454ffdfe9b59c6467ce4d3be64a98e1d6",
+      "executable": false
+    },
+    {
+      "source_path": "skills/product-demand-research (via upstream LICENSE)",
+      "path": "skills/product-demand-research/LICENSE",
+      "source_sha256": "37a2301a00eef329530cc65ddb9f1c1085a2fbfb1bb748adb9eb6fa05bde4f9b",
+      "sha256": "37a2301a00eef329530cc65ddb9f1c1085a2fbfb1bb748adb9eb6fa05bde4f9b",
+      "executable": false
+    },
+    {
+      "source_path": "skills/product-demand-research (via NOTICE.md)",
+      "path": "skills/product-demand-research/NOTICE.md",
+      "source_sha256": "944e6f038a5ee234b8b16940a99186c552f114f31f684430aeab75c8c0d9f506",
+      "sha256": "944e6f038a5ee234b8b16940a99186c552f114f31f684430aeab75c8c0d9f506",
+      "executable": false
+    },
+    {
+      "source_path": "skills/product-demand-research/SKILL.md",
+      "path": "skills/product-demand-research/SKILL.md",
+      "source_sha256": "88d57b03fa5200686bd436d5658847f776d33edc365442d36260f8a8be109eaf",
+      "sha256": "64b2097be8d562085a71c3168af54278c4bcc5d7f7f1dd008369cba9d40b7415",
+      "executable": false
+    },
+    {
+      "source_path": "skills/scrapecreators-api (via upstream LICENSE)",
+      "path": "skills/scrapecreators-api/LICENSE",
+      "source_sha256": "37a2301a00eef329530cc65ddb9f1c1085a2fbfb1bb748adb9eb6fa05bde4f9b",
+      "sha256": "37a2301a00eef329530cc65ddb9f1c1085a2fbfb1bb748adb9eb6fa05bde4f9b",
+      "executable": false
+    },
+    {
+      "source_path": "skills/scrapecreators-api (via NOTICE.md)",
+      "path": "skills/scrapecreators-api/NOTICE.md",
+      "source_sha256": "944e6f038a5ee234b8b16940a99186c552f114f31f684430aeab75c8c0d9f506",
+      "sha256": "944e6f038a5ee234b8b16940a99186c552f114f31f684430aeab75c8c0d9f506",
+      "executable": false
+    },
+    {
+      "source_path": "skills/scrapecreators-api/SKILL.md",
+      "path": "skills/scrapecreators-api/SKILL.md",
+      "source_sha256": "016154fe955fe3a41e83e8e00af82adf2ba34e47eeadf6f121b43f2ccacea418",
+      "sha256": "76c7329a59a6176fe66e30d9875b1c203331a12742ef4d1513d05fe15a020809",
+      "executable": false
+    },
+    {
+      "source_path": "skills/audience-research (via upstream LICENSE)",
+      "path": "skills/scrapecreators-audience-research/LICENSE",
+      "source_sha256": "37a2301a00eef329530cc65ddb9f1c1085a2fbfb1bb748adb9eb6fa05bde4f9b",
+      "sha256": "37a2301a00eef329530cc65ddb9f1c1085a2fbfb1bb748adb9eb6fa05bde4f9b",
+      "executable": false
+    },
+    {
+      "source_path": "skills/audience-research (via NOTICE.md)",
+      "path": "skills/scrapecreators-audience-research/NOTICE.md",
+      "source_sha256": "944e6f038a5ee234b8b16940a99186c552f114f31f684430aeab75c8c0d9f506",
+      "sha256": "944e6f038a5ee234b8b16940a99186c552f114f31f684430aeab75c8c0d9f506",
+      "executable": false
+    },
+    {
+      "source_path": "skills/audience-research/SKILL.md",
+      "path": "skills/scrapecreators-audience-research/SKILL.md",
+      "source_sha256": "3ced7d3268b80ac18073ffc69393635e02acb4bab23314e203dbdbac73d05477",
+      "sha256": "6d6012b5392aaa42ccd0fc30340c973276f34f117acb1d2d949533c390e516a9",
+      "executable": false
+    },
+    {
+      "source_path": "skills/social-listening-brief (via upstream LICENSE)",
+      "path": "skills/social-listening-brief/LICENSE",
+      "source_sha256": "37a2301a00eef329530cc65ddb9f1c1085a2fbfb1bb748adb9eb6fa05bde4f9b",
+      "sha256": "37a2301a00eef329530cc65ddb9f1c1085a2fbfb1bb748adb9eb6fa05bde4f9b",
+      "executable": false
+    },
+    {
+      "source_path": "skills/social-listening-brief (via NOTICE.md)",
+      "path": "skills/social-listening-brief/NOTICE.md",
+      "source_sha256": "944e6f038a5ee234b8b16940a99186c552f114f31f684430aeab75c8c0d9f506",
+      "sha256": "944e6f038a5ee234b8b16940a99186c552f114f31f684430aeab75c8c0d9f506",
+      "executable": false
+    },
+    {
+      "source_path": "skills/social-listening-brief/SKILL.md",
+      "path": "skills/social-listening-brief/SKILL.md",
+      "source_sha256": "c41b897c1b5bf6ac86aee5350e3a833da74d9928a8d31fb62a4f694daf72c64e",
+      "sha256": "a607891f6785bec89fdf408e9c38857fe6573c579b7c90d6f002d76b792dfbed",
+      "executable": false
+    },
+    {
+      "source_path": "skills/transcript-intelligence (via upstream LICENSE)",
+      "path": "skills/transcript-intelligence/LICENSE",
+      "source_sha256": "37a2301a00eef329530cc65ddb9f1c1085a2fbfb1bb748adb9eb6fa05bde4f9b",
+      "sha256": "37a2301a00eef329530cc65ddb9f1c1085a2fbfb1bb748adb9eb6fa05bde4f9b",
+      "executable": false
+    },
+    {
+      "source_path": "skills/transcript-intelligence (via NOTICE.md)",
+      "path": "skills/transcript-intelligence/NOTICE.md",
+      "source_sha256": "944e6f038a5ee234b8b16940a99186c552f114f31f684430aeab75c8c0d9f506",
+      "sha256": "944e6f038a5ee234b8b16940a99186c552f114f31f684430aeab75c8c0d9f506",
+      "executable": false
+    },
+    {
+      "source_path": "skills/transcript-intelligence/SKILL.md",
+      "path": "skills/transcript-intelligence/SKILL.md",
+      "source_sha256": "599e19d53de3496785329626f76486ce751b491ac8cd762ee98afa8c25f0594c",
+      "sha256": "e776a96662f0fb7c1453b4d6e03d3ed38178e3f1bc9c3816346dc989c6fa3134",
+      "executable": false
+    },
+    {
+      "source_path": "skills/trend-discovery (via upstream LICENSE)",
+      "path": "skills/trend-discovery/LICENSE",
+      "source_sha256": "37a2301a00eef329530cc65ddb9f1c1085a2fbfb1bb748adb9eb6fa05bde4f9b",
+      "sha256": "37a2301a00eef329530cc65ddb9f1c1085a2fbfb1bb748adb9eb6fa05bde4f9b",
+      "executable": false
+    },
+    {
+      "source_path": "skills/trend-discovery (via NOTICE.md)",
+      "path": "skills/trend-discovery/NOTICE.md",
+      "source_sha256": "944e6f038a5ee234b8b16940a99186c552f114f31f684430aeab75c8c0d9f506",
+      "sha256": "944e6f038a5ee234b8b16940a99186c552f114f31f684430aeab75c8c0d9f506",
+      "executable": false
+    },
+    {
+      "source_path": "skills/trend-discovery/SKILL.md",
+      "path": "skills/trend-discovery/SKILL.md",
+      "source_sha256": "b22f5d14d01b27a7777c5d1637e8d61d71aceab1294144cc774d18a84eef702a",
+      "sha256": "0d9d5728291fc8e318b66666003cd50714530198b9abd592b0e50a659c069617",
+      "executable": false
+    }
+  ]
+}
