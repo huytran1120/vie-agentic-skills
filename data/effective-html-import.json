@@ -1,0 +1,491 @@
+{
+  "source_repo": "plannotator/effective-html",
+  "revision": "5ce160a3e76dc1c0f9301f8a1903704ec607636a",
+  "skill_count": 8,
+  "skipped": [],
+  "namespaces": {},
+  "duplicate_check": {
+    "catalog_count_before": 3876,
+    "upstream_is_fork": false,
+    "methods": [
+      "canonical-id/name",
+      "source-repo/path",
+      "raw-sha256",
+      "normalized-body",
+      "renamed-body",
+      "body-containment",
+      "7-word-shingles"
+    ],
+    "collision_rationale": "Exact and high-similarity shingle comparison against all 3,876 catalog skills identified zero existing duplicates (max similarity 0.0004). All 8 skills are completely unique, focused visual HTML artifact creation workflows."
+  },
+  "adaptations": [
+    "Preserve upstream payload structure: SKILL.md, references/ and agents/ under Open Agent Skills format.",
+    "Append reversible VAS installation, attribution, prerequisites, role, and safety notes to SKILL.md.",
+    "Include upstream MIT LICENSE and add NOTICE.md clarifying standalone operation and optional Plannotator integration.",
+    "Map upstream skills to existing design category to preserve exactly 119 catalog categories.",
+    "Retain relative cross-references between sibling skills (e.g. ../design-artifact/SKILL.md) for direct standalone and composed resolution.",
+    "No runtime/dependency or MCP service is executed during installation."
+  ],
+  "files": [
+    {
+      "source_path": "skills/big-pics-little-words (via upstream LICENSE)",
+      "path": "skills/big-pics-little-words/LICENSE",
+      "source_sha256": "7ac10b31d49a69e45db579c2cc747d91fc169f560ef968c8068732cfe5f8455d",
+      "sha256": "7ac10b31d49a69e45db579c2cc747d91fc169f560ef968c8068732cfe5f8455d",
+      "executable": false
+    },
+    {
+      "source_path": "skills/big-pics-little-words (via NOTICE.md)",
+      "path": "skills/big-pics-little-words/NOTICE.md",
+      "source_sha256": "ad67261d38424a90eef96d72155078e4e25180f38e7c4829ab1debc2f1b3a555",
+      "sha256": "ad67261d38424a90eef96d72155078e4e25180f38e7c4829ab1debc2f1b3a555",
+      "executable": false
+    },
+    {
+      "source_path": "skills/big-pics-little-words/SKILL.md",
+      "path": "skills/big-pics-little-words/SKILL.md",
+      "source_sha256": "8e5aa7fac0b7aeb0bd8ba9ffbea15d9416f99963ad189491c3576042b3dc2819",
+      "sha256": "c272d80f51ca51671ac0958359eec144d770d8cd6c8b0b07dfc12508c78003f1",
+      "executable": false
+    },
+    {
+      "source_path": "skills/big-pics-little-words/agents/openai.yaml",
+      "path": "skills/big-pics-little-words/agents/openai.yaml",
+      "source_sha256": "d6172e95d6f5e857347f1d9cc3cdb8dc50a44c30b5d2e600d83b39469e805767",
+      "sha256": "d6172e95d6f5e857347f1d9cc3cdb8dc50a44c30b5d2e600d83b39469e805767",
+      "executable": false
+    },
+    {
+      "source_path": "skills/design-artifact (via upstream LICENSE)",
+      "path": "skills/design-artifact/LICENSE",
+      "source_sha256": "7ac10b31d49a69e45db579c2cc747d91fc169f560ef968c8068732cfe5f8455d",
+      "sha256": "7ac10b31d49a69e45db579c2cc747d91fc169f560ef968c8068732cfe5f8455d",
+      "executable": false
+    },
+    {
+      "source_path": "skills/design-artifact (via NOTICE.md)",
+      "path": "skills/design-artifact/NOTICE.md",
+      "source_sha256": "ad67261d38424a90eef96d72155078e4e25180f38e7c4829ab1debc2f1b3a555",
+      "sha256": "ad67261d38424a90eef96d72155078e4e25180f38e7c4829ab1debc2f1b3a555",
+      "executable": false
+    },
+    {
+      "source_path": "skills/design-artifact/SKILL.md",
+      "path": "skills/design-artifact/SKILL.md",
+      "source_sha256": "c8314b66fb907a5acd3aa10efe4b5adb86d352808f5b84824cadfa6e6c9d38bb",
+      "sha256": "da7d331e6fb9a9e3825888ca4b6228788c927c814c1e24c3656dfa7bb1c65780",
+      "executable": false
+    },
+    {
+      "source_path": "skills/design-artifact/agents/openai.yaml",
+      "path": "skills/design-artifact/agents/openai.yaml",
+      "source_sha256": "c174292aa7485778c04f498ce2a6697b65c66dd0bfe014332053eda43e95ff4a",
+      "sha256": "c174292aa7485778c04f498ce2a6697b65c66dd0bfe014332053eda43e95ff4a",
+      "executable": false
+    },
+    {
+      "source_path": "skills/html-diagram (via upstream LICENSE)",
+      "path": "skills/html-diagram/LICENSE",
+      "source_sha256": "7ac10b31d49a69e45db579c2cc747d91fc169f560ef968c8068732cfe5f8455d",
+      "sha256": "7ac10b31d49a69e45db579c2cc747d91fc169f560ef968c8068732cfe5f8455d",
+      "executable": false
+    },
+    {
+      "source_path": "skills/html-diagram (via NOTICE.md)",
+      "path": "skills/html-diagram/NOTICE.md",
+      "source_sha256": "ad67261d38424a90eef96d72155078e4e25180f38e7c4829ab1debc2f1b3a555",
+      "sha256": "ad67261d38424a90eef96d72155078e4e25180f38e7c4829ab1debc2f1b3a555",
+      "executable": false
+    },
+    {
+      "source_path": "skills/html-diagram/SKILL.md",
+      "path": "skills/html-diagram/SKILL.md",
+      "source_sha256": "a3641a37be2f50df620cda273fe4c97295df93e6c6b3c9ba44f566945ed4f532",
+      "sha256": "dc01e5ff8b593eb437464367e730bee08fc0f55219d4f358d91d026e05340211",
+      "executable": false
+    },
+    {
+      "source_path": "skills/html-diagram/agents/openai.yaml",
+      "path": "skills/html-diagram/agents/openai.yaml",
+      "source_sha256": "ff40d59b2ec85ffbd34432672000ad88350e38fe6efc20cf1811be9a1a656ce0",
+      "sha256": "ff40d59b2ec85ffbd34432672000ad88350e38fe6efc20cf1811be9a1a656ce0",
+      "executable": false
+    },
+    {
+      "source_path": "skills/html-plan (via upstream LICENSE)",
+      "path": "skills/html-plan/LICENSE",
+      "source_sha256": "7ac10b31d49a69e45db579c2cc747d91fc169f560ef968c8068732cfe5f8455d",
+      "sha256": "7ac10b31d49a69e45db579c2cc747d91fc169f560ef968c8068732cfe5f8455d",
+      "executable": false
+    },
+    {
+      "source_path": "skills/html-plan (via NOTICE.md)",
+      "path": "skills/html-plan/NOTICE.md",
+      "source_sha256": "ad67261d38424a90eef96d72155078e4e25180f38e7c4829ab1debc2f1b3a555",
+      "sha256": "ad67261d38424a90eef96d72155078e4e25180f38e7c4829ab1debc2f1b3a555",
+      "executable": false
+    },
+    {
+      "source_path": "skills/html-plan/SKILL.md",
+      "path": "skills/html-plan/SKILL.md",
+      "source_sha256": "8e315b5f775d4fe3233cf593b9ba6103845a43c6d6b4b34f56d6bf3535cb9ee2",
+      "sha256": "38ccb069dc84d8fdcb53ebaf76a0b1c11f26253dc2ddbee45d34bbe243bf11d4",
+      "executable": false
+    },
+    {
+      "source_path": "skills/html-plan/agents/openai.yaml",
+      "path": "skills/html-plan/agents/openai.yaml",
+      "source_sha256": "25cff822f6a3c53601914a1b7c2584e7352d4e33f75e5485511b52ccedc82129",
+      "sha256": "25cff822f6a3c53601914a1b7c2584e7352d4e33f75e5485511b52ccedc82129",
+      "executable": false
+    },
+    {
+      "source_path": "skills/html-prototype (via upstream LICENSE)",
+      "path": "skills/html-prototype/LICENSE",
+      "source_sha256": "7ac10b31d49a69e45db579c2cc747d91fc169f560ef968c8068732cfe5f8455d",
+      "sha256": "7ac10b31d49a69e45db579c2cc747d91fc169f560ef968c8068732cfe5f8455d",
+      "executable": false
+    },
+    {
+      "source_path": "skills/html-prototype (via NOTICE.md)",
+      "path": "skills/html-prototype/NOTICE.md",
+      "source_sha256": "ad67261d38424a90eef96d72155078e4e25180f38e7c4829ab1debc2f1b3a555",
+      "sha256": "ad67261d38424a90eef96d72155078e4e25180f38e7c4829ab1debc2f1b3a555",
+      "executable": false
+    },
+    {
+      "source_path": "skills/html-prototype/SKILL.md",
+      "path": "skills/html-prototype/SKILL.md",
+      "source_sha256": "8987dda45224350254af30cafa72e721c6d91e1972e794e8e839406f77814368",
+      "sha256": "2fe29642f245eaf3274a8c6968aa282e12b5357f09da4d8271a5ca0757f5ff52",
+      "executable": false
+    },
+    {
+      "source_path": "skills/html-prototype/agents/openai.yaml",
+      "path": "skills/html-prototype/agents/openai.yaml",
+      "source_sha256": "d102a3bddbde9ec6456f543453f9fcdd3db2ca73997457c8de81af18a3328318",
+      "sha256": "d102a3bddbde9ec6456f543453f9fcdd3db2ca73997457c8de81af18a3328318",
+      "executable": false
+    },
+    {
+      "source_path": "skills/html-wireframe (via upstream LICENSE)",
+      "path": "skills/html-wireframe/LICENSE",
+      "source_sha256": "7ac10b31d49a69e45db579c2cc747d91fc169f560ef968c8068732cfe5f8455d",
+      "sha256": "7ac10b31d49a69e45db579c2cc747d91fc169f560ef968c8068732cfe5f8455d",
+      "executable": false
+    },
+    {
+      "source_path": "skills/html-wireframe (via NOTICE.md)",
+      "path": "skills/html-wireframe/NOTICE.md",
+      "source_sha256": "ad67261d38424a90eef96d72155078e4e25180f38e7c4829ab1debc2f1b3a555",
+      "sha256": "ad67261d38424a90eef96d72155078e4e25180f38e7c4829ab1debc2f1b3a555",
+      "executable": false
+    },
+    {
+      "source_path": "skills/html-wireframe/SKILL.md",
+      "path": "skills/html-wireframe/SKILL.md",
+      "source_sha256": "b1d649ef9052f2ed8baabaf483ed527208a2e481281ed3925ec8b84ba641d4c1",
+      "sha256": "1864b46e4263323ed3cf6809a25cb408602190b6b947f5bfe95061e792bfc16b",
+      "executable": false
+    },
+    {
+      "source_path": "skills/html-wireframe/agents/openai.yaml",
+      "path": "skills/html-wireframe/agents/openai.yaml",
+      "source_sha256": "37e5a68fe60467559528ea8096b698f8be562c7e497813df02883dcc71dd3629",
+      "sha256": "37e5a68fe60467559528ea8096b698f8be562c7e497813df02883dcc71dd3629",
+      "executable": false
+    },
+    {
+      "source_path": "skills/html (via upstream LICENSE)",
+      "path": "skills/html/LICENSE",
+      "source_sha256": "7ac10b31d49a69e45db579c2cc747d91fc169f560ef968c8068732cfe5f8455d",
+      "sha256": "7ac10b31d49a69e45db579c2cc747d91fc169f560ef968c8068732cfe5f8455d",
+      "executable": false
+    },
+    {
+      "source_path": "skills/html (via NOTICE.md)",
+      "path": "skills/html/NOTICE.md",
+      "source_sha256": "ad67261d38424a90eef96d72155078e4e25180f38e7c4829ab1debc2f1b3a555",
+      "sha256": "ad67261d38424a90eef96d72155078e4e25180f38e7c4829ab1debc2f1b3a555",
+      "executable": false
+    },
+    {
+      "source_path": "skills/html/SKILL.md",
+      "path": "skills/html/SKILL.md",
+      "source_sha256": "d99612ae158cd9c18574eb4f3cd11b79475311d27bb3d4c79d68088b1e96d875",
+      "sha256": "acf889cb476d11a121dba637b710f0dfecd80f161753c3a48406cc2df226b471",
+      "executable": false
+    },
+    {
+      "source_path": "skills/html/agents/openai.yaml",
+      "path": "skills/html/agents/openai.yaml",
+      "source_sha256": "2ff14167e222e63017342fb000ef73f6e92121f6467dc6432759cf7a84f28238",
+      "sha256": "2ff14167e222e63017342fb000ef73f6e92121f6467dc6432759cf7a84f28238",
+      "executable": false
+    },
+    {
+      "source_path": "skills/html/references/charts-and-data.md",
+      "path": "skills/html/references/charts-and-data.md",
+      "source_sha256": "c9bc9e002d2fc6f2a31b3698e6d828e755b4673fbf2ab0e036eb6c7ffbd5a4f3",
+      "sha256": "c9bc9e002d2fc6f2a31b3698e6d828e755b4673fbf2ab0e036eb6c7ffbd5a4f3",
+      "executable": false
+    },
+    {
+      "source_path": "skills/html/references/creative-direction.md",
+      "path": "skills/html/references/creative-direction.md",
+      "source_sha256": "47b82ae5ccd58ef685bd69143b29ba1ac35e6b133695749a9e31b3454c773d21",
+      "sha256": "47b82ae5ccd58ef685bd69143b29ba1ac35e6b133695749a9e31b3454c773d21",
+      "executable": false
+    },
+    {
+      "source_path": "skills/html/references/diagrams.md",
+      "path": "skills/html/references/diagrams.md",
+      "source_sha256": "5139d248ec08b7501c6aeeec7586c664dbbf6de4a5f2e6d792dc1c6b452948a3",
+      "sha256": "5139d248ec08b7501c6aeeec7586c664dbbf6de4a5f2e6d792dc1c6b452948a3",
+      "executable": false
+    },
+    {
+      "source_path": "skills/html/references/documents-and-presentations.md",
+      "path": "skills/html/references/documents-and-presentations.md",
+      "source_sha256": "b62a4d6a93ed2abe0b7eb49d93f6cc9a00379512268a186a1927d072926d5a54",
+      "sha256": "b62a4d6a93ed2abe0b7eb49d93f6cc9a00379512268a186a1927d072926d5a54",
+      "executable": false
+    },
+    {
+      "source_path": "skills/html/references/interfaces.md",
+      "path": "skills/html/references/interfaces.md",
+      "source_sha256": "a01ab662dc268442e94cd84310c06e6585e8b2e540ec729b2e99826df6a2733b",
+      "sha256": "a01ab662dc268442e94cd84310c06e6585e8b2e540ec729b2e99826df6a2733b",
+      "executable": false
+    },
+    {
+      "source_path": "skills/one-pager (via upstream LICENSE)",
+      "path": "skills/one-pager/LICENSE",
+      "source_sha256": "7ac10b31d49a69e45db579c2cc747d91fc169f560ef968c8068732cfe5f8455d",
+      "sha256": "7ac10b31d49a69e45db579c2cc747d91fc169f560ef968c8068732cfe5f8455d",
+      "executable": false
+    },
+    {
+      "source_path": "skills/one-pager (via NOTICE.md)",
+      "path": "skills/one-pager/NOTICE.md",
+      "source_sha256": "ad67261d38424a90eef96d72155078e4e25180f38e7c4829ab1debc2f1b3a555",
+      "sha256": "ad67261d38424a90eef96d72155078e4e25180f38e7c4829ab1debc2f1b3a555",
+      "executable": false
+    },
+    {
+      "source_path": "skills/one-pager/SKILL.md",
+      "path": "skills/one-pager/SKILL.md",
+      "source_sha256": "41e4573894542d10c0159bdae912e777ed053b54bdbe769bd3493e681719766b",
+      "sha256": "ee9e557d9529d1624dd03e3a0f888cce895ff36c70427e5a6c92d3df89b64f2d",
+      "executable": false
+    },
+    {
+      "source_path": "skills/one-pager/agents/openai.yaml",
+      "path": "skills/one-pager/agents/openai.yaml",
+      "source_sha256": "6b2821744079bdea48219c720101a10821ef442f0a8ecc9b1d74a63f4591fc7f",
+      "sha256": "6b2821744079bdea48219c720101a10821ef442f0a8ecc9b1d74a63f4591fc7f",
+      "executable": false
+    }
+  ],
+  "skills": [
+    {
+      "id": "big-pics-little-words",
+      "canonical_id": "big-pics-little-words",
+      "name": "big-pics-little-words",
+      "path": "skills/big-pics-little-words",
+      "description": "Explain the current subject in HTML with large visuals and minimal text while preserving key details. Use when the user asks to explain a concept visually with big pictures and little words in self-contained HTML.",
+      "category": "design",
+      "tags": [
+        "design",
+        "html",
+        "visual-explanation",
+        "communication",
+        "one-pager",
+        "effective-html"
+      ],
+      "risk": "safe",
+      "source": "https://github.com/plannotator/effective-html/tree/5ce160a3e76dc1c0f9301f8a1903704ec607636a/skills/big-pics-little-words",
+      "source_repo": "plannotator/effective-html",
+      "source_revision": "5ce160a3e76dc1c0f9301f8a1903704ec607636a",
+      "source_path": "skills/big-pics-little-words",
+      "author": "Plannotator",
+      "license": "MIT",
+      "license_source": "https://github.com/plannotator/effective-html/blob/5ce160a3e76dc1c0f9301f8a1903704ec607636a/LICENSE"
+    },
+    {
+      "id": "design-artifact",
+      "canonical_id": "design-artifact",
+      "name": "design-artifact",
+      "path": "skills/design-artifact",
+      "description": "Design principles and creative direction for building HTML artifacts — pages, reports, plans, landing pages, demos, decks, and small tools. Use when creating or restyling any visual HTML deliverable and deciding its palette, type pairing, layout, theming, or overall register, or when the output must not look generically AI-generated.",
+      "category": "design",
+      "tags": [
+        "design",
+        "html",
+        "creative-direction",
+        "typography",
+        "palette",
+        "effective-html"
+      ],
+      "risk": "safe",
+      "source": "https://github.com/plannotator/effective-html/tree/5ce160a3e76dc1c0f9301f8a1903704ec607636a/skills/design-artifact",
+      "source_repo": "plannotator/effective-html",
+      "source_revision": "5ce160a3e76dc1c0f9301f8a1903704ec607636a",
+      "source_path": "skills/design-artifact",
+      "author": "Plannotator",
+      "license": "MIT",
+      "license_source": "https://github.com/plannotator/effective-html/blob/5ce160a3e76dc1c0f9301f8a1903704ec607636a/LICENSE"
+    },
+    {
+      "id": "html",
+      "canonical_id": "html",
+      "name": "html",
+      "path": "skills/html",
+      "description": "Create or redesign self-contained single-file HTML artifacts with a visual direction shaped by the user's brief, project, and subject. Use when HTML is the deliverable for a report, explainer, landing page, presentation, tool, mixed artifact, or broad request. Routes clear wireframe, prototype, mockup, plan, or diagram requests to the matching direct-invocation specialist.",
+      "category": "design",
+      "tags": [
+        "html",
+        "design",
+        "frontend",
+        "web",
+        "artifacts",
+        "router",
+        "effective-html"
+      ],
+      "risk": "safe",
+      "source": "https://github.com/plannotator/effective-html/tree/5ce160a3e76dc1c0f9301f8a1903704ec607636a/skills/html",
+      "source_repo": "plannotator/effective-html",
+      "source_revision": "5ce160a3e76dc1c0f9301f8a1903704ec607636a",
+      "source_path": "skills/html",
+      "author": "Plannotator",
+      "license": "MIT",
+      "license_source": "https://github.com/plannotator/effective-html/blob/5ce160a3e76dc1c0f9301f8a1903704ec607636a/LICENSE"
+    },
+    {
+      "id": "html-diagram",
+      "canonical_id": "html-diagram",
+      "name": "html-diagram",
+      "path": "skills/html-diagram",
+      "description": "Direct-invocation specialist for self-contained HTML diagrams whose layout, notation, and interaction clarify relationships, sequence, topology, state, hierarchy, or quantitative structure. Use when the user explicitly invokes html-diagram or the broad html skill routes a diagram request here.",
+      "category": "design",
+      "tags": [
+        "diagram",
+        "html",
+        "architecture",
+        "sequence",
+        "topology",
+        "state-machine",
+        "design",
+        "effective-html"
+      ],
+      "risk": "safe",
+      "source": "https://github.com/plannotator/effective-html/tree/5ce160a3e76dc1c0f9301f8a1903704ec607636a/skills/html-diagram",
+      "source_repo": "plannotator/effective-html",
+      "source_revision": "5ce160a3e76dc1c0f9301f8a1903704ec607636a",
+      "source_path": "skills/html-diagram",
+      "author": "Plannotator",
+      "license": "MIT",
+      "license_source": "https://github.com/plannotator/effective-html/blob/5ce160a3e76dc1c0f9301f8a1903704ec607636a/LICENSE"
+    },
+    {
+      "id": "html-plan",
+      "canonical_id": "html-plan",
+      "name": "html-plan",
+      "path": "skills/html-plan",
+      "description": "Direct-invocation specialist for clear, self-contained HTML plans that preserve source material while improving hierarchy, sequence, ownership, dependencies, and reviewability. Use when the user explicitly invokes html-plan or the broad html skill routes a plan request here.",
+      "category": "design",
+      "tags": [
+        "planning",
+        "html",
+        "roadmap",
+        "rollout",
+        "implementation",
+        "design",
+        "effective-html"
+      ],
+      "risk": "safe",
+      "source": "https://github.com/plannotator/effective-html/tree/5ce160a3e76dc1c0f9301f8a1903704ec607636a/skills/html-plan",
+      "source_repo": "plannotator/effective-html",
+      "source_revision": "5ce160a3e76dc1c0f9301f8a1903704ec607636a",
+      "source_path": "skills/html-plan",
+      "author": "Plannotator",
+      "license": "MIT",
+      "license_source": "https://github.com/plannotator/effective-html/blob/5ce160a3e76dc1c0f9301f8a1903704ec607636a/LICENSE"
+    },
+    {
+      "id": "html-prototype",
+      "canonical_id": "html-prototype",
+      "name": "html-prototype",
+      "path": "skills/html-prototype",
+      "description": "Direct-invocation specialist for polished, responsive, self-contained HTML mockups and interactive prototypes grounded in the user's conversation, product context, and design language. Use when the user explicitly invokes html-prototype or the broad html skill routes a mockup or prototype request here.",
+      "category": "design",
+      "tags": [
+        "prototype",
+        "mockup",
+        "html",
+        "interactive",
+        "ui-ux",
+        "design",
+        "effective-html"
+      ],
+      "risk": "safe",
+      "source": "https://github.com/plannotator/effective-html/tree/5ce160a3e76dc1c0f9301f8a1903704ec607636a/skills/html-prototype",
+      "source_repo": "plannotator/effective-html",
+      "source_revision": "5ce160a3e76dc1c0f9301f8a1903704ec607636a",
+      "source_path": "skills/html-prototype",
+      "author": "Plannotator",
+      "license": "MIT",
+      "license_source": "https://github.com/plannotator/effective-html/blob/5ce160a3e76dc1c0f9301f8a1903704ec607636a/LICENSE"
+    },
+    {
+      "id": "html-wireframe",
+      "canonical_id": "html-wireframe",
+      "name": "html-wireframe",
+      "path": "skills/html-wireframe",
+      "description": "Direct-invocation specialist for low-fidelity, self-contained HTML wireframes that test information hierarchy, content, navigation, task flow, and responsive structure before visual design. Use when the user explicitly invokes html-wireframe or the broad html skill routes a wireframe request here.",
+      "category": "design",
+      "tags": [
+        "wireframe",
+        "html",
+        "low-fidelity",
+        "layout",
+        "information-architecture",
+        "design",
+        "effective-html"
+      ],
+      "risk": "safe",
+      "source": "https://github.com/plannotator/effective-html/tree/5ce160a3e76dc1c0f9301f8a1903704ec607636a/skills/html-wireframe",
+      "source_repo": "plannotator/effective-html",
+      "source_revision": "5ce160a3e76dc1c0f9301f8a1903704ec607636a",
+      "source_path": "skills/html-wireframe",
+      "author": "Plannotator",
+      "license": "MIT",
+      "license_source": "https://github.com/plannotator/effective-html/blob/5ce160a3e76dc1c0f9301f8a1903704ec607636a/LICENSE"
+    },
+    {
+      "id": "one-pager",
+      "canonical_id": "one-pager",
+      "name": "one-pager",
+      "path": "skills/one-pager",
+      "description": "Make a one-pager: one HTML page that shares an idea with teammates early, or recaps work for them, with big pictures and little words. Use when the user asks for a one-pager or executive visual summary in HTML.",
+      "category": "design",
+      "tags": [
+        "one-pager",
+        "html",
+        "design",
+        "summary",
+        "communication",
+        "visual-explanation",
+        "effective-html"
+      ],
+      "risk": "safe",
+      "source": "https://github.com/plannotator/effective-html/tree/5ce160a3e76dc1c0f9301f8a1903704ec607636a/skills/one-pager",
+      "source_repo": "plannotator/effective-html",
+      "source_revision": "5ce160a3e76dc1c0f9301f8a1903704ec607636a",
+      "source_path": "skills/one-pager",
+      "author": "Plannotator",
+      "license": "MIT",
+      "license_source": "https://github.com/plannotator/effective-html/blob/5ce160a3e76dc1c0f9301f8a1903704ec607636a/LICENSE"
+    }
+  ]
+}

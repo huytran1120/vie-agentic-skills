@@ -15624,6 +15624,30 @@
     "source": "community"
   },
   {
+    "id": "big-pics-little-words",
+    "canonical_id": "big-pics-little-words",
+    "name": "big-pics-little-words",
+    "path": "skills/big-pics-little-words",
+    "description": "Explain the current subject in HTML with large visuals and minimal text while preserving key details. Use when the user asks to explain a concept visually with big pictures and little words in self-contained HTML.",
+    "category": "design",
+    "tags": [
+      "design",
+      "html",
+      "visual-explanation",
+      "communication",
+      "one-pager",
+      "effective-html"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/plannotator/effective-html/tree/5ce160a3e76dc1c0f9301f8a1903704ec607636a/skills/big-pics-little-words",
+    "source_repo": "plannotator/effective-html",
+    "author": "Plannotator",
+    "license": "MIT",
+    "license_source": "https://github.com/plannotator/effective-html/blob/5ce160a3e76dc1c0f9301f8a1903704ec607636a/LICENSE",
+    "source_revision": "5ce160a3e76dc1c0f9301f8a1903704ec607636a",
+    "source_path": "skills/big-pics-little-words"
+  },
+  {
     "id": "bigquery-data-transfer-service",
     "canonical_id": "bigquery-data-transfer-service",
     "name": "bigquery-data-transfer-service",
@@ -25561,6 +25585,30 @@
     "license": "MIT"
   },
   {
+    "id": "design-artifact",
+    "canonical_id": "design-artifact",
+    "name": "design-artifact",
+    "path": "skills/design-artifact",
+    "description": "Design principles and creative direction for building HTML artifacts — pages, reports, plans, landing pages, demos, decks, and small tools. Use when creating or restyling any visual HTML deliverable and deciding its palette, type pairing, layout, theming, or overall register, or when the output must not look generically AI-generated.",
+    "category": "design",
+    "tags": [
+      "design",
+      "html",
+      "creative-direction",
+      "typography",
+      "palette",
+      "effective-html"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/plannotator/effective-html/tree/5ce160a3e76dc1c0f9301f8a1903704ec607636a/skills/design-artifact",
+    "source_repo": "plannotator/effective-html",
+    "author": "Plannotator",
+    "license": "MIT",
+    "license_source": "https://github.com/plannotator/effective-html/blob/5ce160a3e76dc1c0f9301f8a1903704ec607636a/LICENSE",
+    "source_revision": "5ce160a3e76dc1c0f9301f8a1903704ec607636a",
+    "source_path": "skills/design-artifact"
+  },
+  {
     "id": "design-it",
     "canonical_id": "design-it",
     "name": "design-it",
@@ -35003,6 +35051,57 @@
     "source": "community"
   },
   {
+    "id": "html",
+    "canonical_id": "html",
+    "name": "html",
+    "path": "skills/html",
+    "description": "Create or redesign self-contained single-file HTML artifacts with a visual direction shaped by the user's brief, project, and subject. Use when HTML is the deliverable for a report, explainer, landing page, presentation, tool, mixed artifact, or broad request. Routes clear wireframe, prototype, mockup, plan, or diagram requests to the matching direct-invocation specialist.",
+    "category": "design",
+    "tags": [
+      "html",
+      "design",
+      "frontend",
+      "web",
+      "artifacts",
+      "router",
+      "effective-html"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/plannotator/effective-html/tree/5ce160a3e76dc1c0f9301f8a1903704ec607636a/skills/html",
+    "source_repo": "plannotator/effective-html",
+    "author": "Plannotator",
+    "license": "MIT",
+    "license_source": "https://github.com/plannotator/effective-html/blob/5ce160a3e76dc1c0f9301f8a1903704ec607636a/LICENSE",
+    "source_revision": "5ce160a3e76dc1c0f9301f8a1903704ec607636a",
+    "source_path": "skills/html"
+  },
+  {
+    "id": "html-diagram",
+    "canonical_id": "html-diagram",
+    "name": "html-diagram",
+    "path": "skills/html-diagram",
+    "description": "Direct-invocation specialist for self-contained HTML diagrams whose layout, notation, and interaction clarify relationships, sequence, topology, state, hierarchy, or quantitative structure. Use when the user explicitly invokes html-diagram or the broad html skill routes a diagram request here.",
+    "category": "design",
+    "tags": [
+      "diagram",
+      "html",
+      "architecture",
+      "sequence",
+      "topology",
+      "state-machine",
+      "design",
+      "effective-html"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/plannotator/effective-html/tree/5ce160a3e76dc1c0f9301f8a1903704ec607636a/skills/html-diagram",
+    "source_repo": "plannotator/effective-html",
+    "author": "Plannotator",
+    "license": "MIT",
+    "license_source": "https://github.com/plannotator/effective-html/blob/5ce160a3e76dc1c0f9301f8a1903704ec607636a/LICENSE",
+    "source_revision": "5ce160a3e76dc1c0f9301f8a1903704ec607636a",
+    "source_path": "skills/html-diagram"
+  },
+  {
     "id": "html-email-template",
     "canonical_id": "html-email-template",
     "name": "html-email-template",
@@ -35062,6 +35161,81 @@
     "risk": "offensive",
     "source": "community",
     "author": "zebbern"
+  },
+  {
+    "id": "html-plan",
+    "canonical_id": "html-plan",
+    "name": "html-plan",
+    "path": "skills/html-plan",
+    "description": "Direct-invocation specialist for clear, self-contained HTML plans that preserve source material while improving hierarchy, sequence, ownership, dependencies, and reviewability. Use when the user explicitly invokes html-plan or the broad html skill routes a plan request here.",
+    "category": "design",
+    "tags": [
+      "planning",
+      "html",
+      "roadmap",
+      "rollout",
+      "implementation",
+      "design",
+      "effective-html"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/plannotator/effective-html/tree/5ce160a3e76dc1c0f9301f8a1903704ec607636a/skills/html-plan",
+    "source_repo": "plannotator/effective-html",
+    "author": "Plannotator",
+    "license": "MIT",
+    "license_source": "https://github.com/plannotator/effective-html/blob/5ce160a3e76dc1c0f9301f8a1903704ec607636a/LICENSE",
+    "source_revision": "5ce160a3e76dc1c0f9301f8a1903704ec607636a",
+    "source_path": "skills/html-plan"
+  },
+  {
+    "id": "html-prototype",
+    "canonical_id": "html-prototype",
+    "name": "html-prototype",
+    "path": "skills/html-prototype",
+    "description": "Direct-invocation specialist for polished, responsive, self-contained HTML mockups and interactive prototypes grounded in the user's conversation, product context, and design language. Use when the user explicitly invokes html-prototype or the broad html skill routes a mockup or prototype request here.",
+    "category": "design",
+    "tags": [
+      "prototype",
+      "mockup",
+      "html",
+      "interactive",
+      "ui-ux",
+      "design",
+      "effective-html"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/plannotator/effective-html/tree/5ce160a3e76dc1c0f9301f8a1903704ec607636a/skills/html-prototype",
+    "source_repo": "plannotator/effective-html",
+    "author": "Plannotator",
+    "license": "MIT",
+    "license_source": "https://github.com/plannotator/effective-html/blob/5ce160a3e76dc1c0f9301f8a1903704ec607636a/LICENSE",
+    "source_revision": "5ce160a3e76dc1c0f9301f8a1903704ec607636a",
+    "source_path": "skills/html-prototype"
+  },
+  {
+    "id": "html-wireframe",
+    "canonical_id": "html-wireframe",
+    "name": "html-wireframe",
+    "path": "skills/html-wireframe",
+    "description": "Direct-invocation specialist for low-fidelity, self-contained HTML wireframes that test information hierarchy, content, navigation, task flow, and responsive structure before visual design. Use when the user explicitly invokes html-wireframe or the broad html skill routes a wireframe request here.",
+    "category": "design",
+    "tags": [
+      "wireframe",
+      "html",
+      "low-fidelity",
+      "layout",
+      "information-architecture",
+      "design",
+      "effective-html"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/plannotator/effective-html/tree/5ce160a3e76dc1c0f9301f8a1903704ec607636a/skills/html-wireframe",
+    "source_repo": "plannotator/effective-html",
+    "author": "Plannotator",
+    "license": "MIT",
+    "license_source": "https://github.com/plannotator/effective-html/blob/5ce160a3e76dc1c0f9301f8a1903704ec607636a/LICENSE",
+    "source_revision": "5ce160a3e76dc1c0f9301f8a1903704ec607636a",
+    "source_path": "skills/html-wireframe"
   },
   {
     "id": "hubspot-automation",
@@ -46062,6 +46236,31 @@
     ],
     "risk": "critical",
     "source": "community"
+  },
+  {
+    "id": "one-pager",
+    "canonical_id": "one-pager",
+    "name": "one-pager",
+    "path": "skills/one-pager",
+    "description": "Make a one-pager: one HTML page that shares an idea with teammates early, or recaps work for them, with big pictures and little words. Use when the user asks for a one-pager or executive visual summary in HTML.",
+    "category": "design",
+    "tags": [
+      "one-pager",
+      "html",
+      "design",
+      "summary",
+      "communication",
+      "visual-explanation",
+      "effective-html"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/plannotator/effective-html/tree/5ce160a3e76dc1c0f9301f8a1903704ec607636a/skills/one-pager",
+    "source_repo": "plannotator/effective-html",
+    "author": "Plannotator",
+    "license": "MIT",
+    "license_source": "https://github.com/plannotator/effective-html/blob/5ce160a3e76dc1c0f9301f8a1903704ec607636a/LICENSE",
+    "source_revision": "5ce160a3e76dc1c0f9301f8a1903704ec607636a",
+    "source_path": "skills/one-pager"
   },
   {
     "id": "oneroster-csv-validator",

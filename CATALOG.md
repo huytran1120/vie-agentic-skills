@@ -1,6 +1,6 @@
 # Vie Agentic Skill (VAS) - Catalog
 
-Tổng hợp **3,876** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
+Tổng hợp **3,884** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
 
 | Danh mục | Số lượng | Lệnh cài đặt nhanh |
 | :--- | :---: | :--- |
@@ -49,7 +49,7 @@ Tổng hợp **3,876** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **database-processing** | 6 skills | `./vas install --category database-processing --target codex` |
 | **databases** | 3 skills | `./vas install --category databases --target codex` |
 | **debugging** | 4 skills | `./vas install --category debugging --target codex` |
-| **design** | 60 skills | `./vas install --category design --target codex` |
+| **design** | 68 skills | `./vas install --category design --target codex` |
 | **design-it** | 48 skills | `./vas install --category design-it --target codex` |
 | **developer-tools** | 9 skills | `./vas install --category developer-tools --target codex` |
 | **development** | 230 skills | `./vas install --category development --target codex` |
@@ -1603,7 +1603,7 @@ Tổng hợp **3,876** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `logic-locate` | `safe` | Locate the root cause of a CONFIRMED failure via backward-then-forward semi-f... |
 | `phase-gated-debugging` | `safe` | Use when debugging any bug. Enforces a 5-phase protocol where code edits are ... |
 
-### DESIGN (60 skills)
+### DESIGN (68 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
@@ -1624,8 +1624,10 @@ Tổng hợp **3,876** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `agent-reels` | `critical` | Find animation and video references on 1human, consult a human-agent shared l... |
 | `antigravity-design-expert` | `safe` | Core UI/UX engineering skill for building highly interactive, spatial, weight... |
 | `baseline-ui` | `critical` | Quickly deslop UI code by fixing spacing, hierarchy, typography, and small la... |
+| `big-pics-little-words` | `safe` | Explain the current subject in HTML with large visuals and minimal text while... |
 | `blender-mcp` | `safe` | Connect Blender 3D to any LLM via Model Context Protocol (MCP) for prompt-dri... |
 | `canva-automation` | `critical` | Automate Canva tasks via Rube MCP (Composio): designs, exports, folders, bran... |
+| `design-artifact` | `safe` | Design principles and creative direction for building HTML artifacts — pages,... |
 | `design-md` | `safe` | Analyze Stitch projects and synthesize a semantic design system into DESIGN.m... |
 | `design-orchestration` | `none` | Orchestrates design workflows by routing work through brainstorming, multi-ag... |
 | `design-philosophy` | `none` | Visual philosophy and art-direction for frontend. Use when creating high-conc... |
@@ -1638,11 +1640,17 @@ Tổng hợp **3,876** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `favicon` | `critical` | Generate favicons from a source image |
 | `figma-automation` | `critical` | Automate Figma tasks via Rube MCP (Composio): files, components, design token... |
 | `free-design-resources` | `safe` | Design resource register: resource and provider, licence type, commercial-use... |
+| `html` | `safe` | Create or redesign self-contained single-file HTML artifacts with a visual di... |
+| `html-diagram` | `safe` | Direct-invocation specialist for self-contained HTML diagrams whose layout, n... |
+| `html-plan` | `safe` | Direct-invocation specialist for clear, self-contained HTML plans that preser... |
+| `html-prototype` | `safe` | Direct-invocation specialist for polished, responsive, self-contained HTML mo... |
+| `html-wireframe` | `safe` | Direct-invocation specialist for low-fidelity, self-contained HTML wireframes... |
 | `landing-page-design` | `safe` | Complete system for building high converting landing pages: intake questions,... |
 | `logo-to-stickers` | `safe` | Turn a brand mark or existing IP into consistent, playful paper stickers with... |
 | `lookdev` | `safe` | Human-in-the-loop web studio to tune AI-generated output by eye. Stand up a l... |
 | `lookdev-auto` | `safe` | Automated visual tuning: a vision or video model rates rendered variants in a... |
 | `loss-aversion-designer` | `safe` | Compare gain and loss framing and describe credible costs of inaction when an... |
+| `one-pager` | `safe` | Make a one-pager: one HTML page that shares an idea with teammates early, or ... |
 | `penpot` | `safe` | Integrate Penpot (the open-source Figma alternative) with AI agents via the o... |
 | `penpot-mcp` | `safe` | Integrate Penpot (the open-source Figma alternative) with AI agents via the o... |
 | `qrx` | `critical` | Make branded, print-ready art QR codes to validate before use with QRX (qrx.c... |
