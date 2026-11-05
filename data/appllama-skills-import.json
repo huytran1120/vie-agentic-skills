@@ -1,0 +1,135 @@
+{
+  "source_repo": "Appllama/appllama-skills",
+  "revision": "dd5caaec3d5d50ad7fc0324da238119c6b7c3707",
+  "skill_count": 2,
+  "skipped": [],
+  "namespaces": {},
+  "duplicate_check": {
+    "catalog_count_before": 3873,
+    "upstream_is_fork": false,
+    "methods": [
+      "canonical-id/name",
+      "source-repo/path",
+      "raw-sha256",
+      "normalized-body",
+      "renamed-body",
+      "body-containment",
+      "7-word-shingles"
+    ],
+    "collision_rationale": "Exact and high-similarity shingle comparison against all 3,873 catalog skills identified zero existing duplicates (max similarity 0.0002). Both skills are completely unique mobile app design and research workflows."
+  },
+  "adaptations": [
+    "Preserve upstream payload structure: SKILL.md, references/ and agents/ under Open Agent Skills format.",
+    "Append reversible VAS installation, attribution, prerequisites, role, and safety notes to SKILL.md.",
+    "Include upstream MIT LICENSE and add NOTICE.md acknowledging mobile design standards, optional Appllama MCP, and safe offline execution.",
+    "Map upstream skills to existing mobile category to preserve exactly 119 catalog categories.",
+    "No runtime/dependency or MCP service is executed during installation."
+  ],
+  "files": [
+    {
+      "source_path": "skills/appllama-app-design-skill (via upstream LICENSE)",
+      "path": "skills/appllama-app-design-skill/LICENSE",
+      "source_sha256": "14cffee850f5c761273dfc49798cddc96786b4520c23f3ed1da727c334f07476",
+      "sha256": "14cffee850f5c761273dfc49798cddc96786b4520c23f3ed1da727c334f07476",
+      "executable": false
+    },
+    {
+      "source_path": "skills/appllama-app-design-skill (via NOTICE.md)",
+      "path": "skills/appllama-app-design-skill/NOTICE.md",
+      "source_sha256": "b12bdf8652ea50862a98762a3c2beada8a861f6c194b0603d5d26f4e71152c84",
+      "sha256": "b12bdf8652ea50862a98762a3c2beada8a861f6c194b0603d5d26f4e71152c84",
+      "executable": false
+    },
+    {
+      "source_path": "skills/appllama-app-design-skill/SKILL.md",
+      "path": "skills/appllama-app-design-skill/SKILL.md",
+      "source_sha256": "be47c957ad097be96916a088a803281c933513fd98a71aedca7cef25a967d7a5",
+      "sha256": "aec40d597cb8ef320057cddab0545334ef7adf9d368fe60c21de1889a20f8bc6",
+      "executable": false
+    },
+    {
+      "source_path": "skills/appllama-app-design-skill/references/image-assets.md",
+      "path": "skills/appllama-app-design-skill/references/image-assets.md",
+      "source_sha256": "0ad789823718da7410f42a5c4ed3ff14ad4e0af7014f18181e7d5da0349908b8",
+      "sha256": "0ad789823718da7410f42a5c4ed3ff14ad4e0af7014f18181e7d5da0349908b8",
+      "executable": false
+    },
+    {
+      "source_path": "skills/appllama-app-design-skill/references/motion.md",
+      "path": "skills/appllama-app-design-skill/references/motion.md",
+      "source_sha256": "2b611d67fa3afdf3aa61c259bcb4a604ac099af285eb0057fa9959ca14ab8cc5",
+      "sha256": "2b611d67fa3afdf3aa61c259bcb4a604ac099af285eb0057fa9959ca14ab8cc5",
+      "executable": false
+    },
+    {
+      "source_path": "skills/appllama-app-design-skill/references/native-controls.md",
+      "path": "skills/appllama-app-design-skill/references/native-controls.md",
+      "source_sha256": "9d6fd934738e86aba29411511b8e5b20b0ff928d717e9b67245586c7ba2aa302",
+      "sha256": "9d6fd934738e86aba29411511b8e5b20b0ff928d717e9b67245586c7ba2aa302",
+      "executable": false
+    },
+    {
+      "source_path": "skills/appllama-app-design-skill/references/performance.md",
+      "path": "skills/appllama-app-design-skill/references/performance.md",
+      "source_sha256": "c6591482adb86e059742a595dafab0f2833da89c0f3e7e16d7ae1c17d16a784b",
+      "sha256": "c6591482adb86e059742a595dafab0f2833da89c0f3e7e16d7ae1c17d16a784b",
+      "executable": false
+    },
+    {
+      "source_path": "skills/appllama-app-design-skill/references/simulator-loop.md",
+      "path": "skills/appllama-app-design-skill/references/simulator-loop.md",
+      "source_sha256": "65962c40204c946924137c8c4c7cc41f519cccc333ac9413ea926a21750f8f9c",
+      "sha256": "65962c40204c946924137c8c4c7cc41f519cccc333ac9413ea926a21750f8f9c",
+      "executable": false
+    },
+    {
+      "source_path": "skills/appllama-usage (via upstream LICENSE)",
+      "path": "skills/appllama-usage/LICENSE",
+      "source_sha256": "14cffee850f5c761273dfc49798cddc96786b4520c23f3ed1da727c334f07476",
+      "sha256": "14cffee850f5c761273dfc49798cddc96786b4520c23f3ed1da727c334f07476",
+      "executable": false
+    },
+    {
+      "source_path": "skills/appllama-usage (via NOTICE.md)",
+      "path": "skills/appllama-usage/NOTICE.md",
+      "source_sha256": "b12bdf8652ea50862a98762a3c2beada8a861f6c194b0603d5d26f4e71152c84",
+      "sha256": "b12bdf8652ea50862a98762a3c2beada8a861f6c194b0603d5d26f4e71152c84",
+      "executable": false
+    },
+    {
+      "source_path": "skills/appllama-usage/SKILL.md",
+      "path": "skills/appllama-usage/SKILL.md",
+      "source_sha256": "2d0c706a5c43aba26a6f5e0b833f3aa45f5c0fe05a519e04065a7c0a0b1f492d",
+      "sha256": "54ac71f5846a76e5d048c05af59e5eb23bb22a3dae4cbaada149aac894cf28b0",
+      "executable": false
+    },
+    {
+      "source_path": "skills/appllama-usage/agents/openai.yaml",
+      "path": "skills/appllama-usage/agents/openai.yaml",
+      "source_sha256": "58b6f6bb21d6f37d808fdaf1100ff6933eaa6e350dee160d11a511fcac688efa",
+      "sha256": "58b6f6bb21d6f37d808fdaf1100ff6933eaa6e350dee160d11a511fcac688efa",
+      "executable": false
+    },
+    {
+      "source_path": "skills/appllama-usage/references/build-from-scratch.md",
+      "path": "skills/appllama-usage/references/build-from-scratch.md",
+      "source_sha256": "ec11a7112e1f7988e294a3b90a94820f55f98ee0ad396e0028bb74fd67227983",
+      "sha256": "ec11a7112e1f7988e294a3b90a94820f55f98ee0ad396e0028bb74fd67227983",
+      "executable": false
+    },
+    {
+      "source_path": "skills/appllama-usage/references/improve-a-screen.md",
+      "path": "skills/appllama-usage/references/improve-a-screen.md",
+      "source_sha256": "51e2086b676541893f3a174ac7263f80ca92d1c77ae6b0b65f89e91f6e5f3707",
+      "sha256": "51e2086b676541893f3a174ac7263f80ca92d1c77ae6b0b65f89e91f6e5f3707",
+      "executable": false
+    },
+    {
+      "source_path": "skills/appllama-usage/references/research-methods.md",
+      "path": "skills/appllama-usage/references/research-methods.md",
+      "source_sha256": "a0c4abdce9502d9678b87ddb6f67153ef8e2bf23d73c342261cc7da18a7b54a3",
+      "sha256": "a0c4abdce9502d9678b87ddb6f67153ef8e2bf23d73c342261cc7da18a7b54a3",
+      "executable": false
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # Vie Agentic Skill (VAS) - Catalog
 
-Tổng hợp **3,873** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
+Tổng hợp **3,875** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
 
 | Danh mục | Số lượng | Lệnh cài đặt nhanh |
 | :--- | :---: | :--- |
@@ -83,7 +83,7 @@ Tổng hợp **3,873** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **memory** | 7 skills | `./vas install --category memory --target codex` |
 | **meta** | 38 skills | `./vas install --category meta --target codex` |
 | **ml-ops** | 1 skills | `./vas install --category ml-ops --target codex` |
-| **mobile** | 73 skills | `./vas install --category mobile --target codex` |
+| **mobile** | 75 skills | `./vas install --category mobile --target codex` |
 | **monopoly** | 4 skills | `./vas install --category monopoly --target codex` |
 | **office-productivity** | 1 skills | `./vas install --category office-productivity --target codex` |
 | **operations** | 14 skills | `./vas install --category operations --target codex` |
@@ -3473,7 +3473,7 @@ Tổng hợp **3,873** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | :--- | :---: | :--- |
 | `remote-gpu-trainer` | `critical` | Deploy, monitor, and debug long GPU jobs on RENTED/remote instances (AutoDL, ... |
 
-### MOBILE (73 skills)
+### MOBILE (75 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
@@ -3489,6 +3489,8 @@ Tổng hợp **3,873** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `anr-audit-and-fix` | `unknown` | Audits Android codebases for ANR risks and diagnoses ANR stack dumps. Use thi... |
 | `appfunctions` | `unknown` | Analyzes Android apps to find user workflows to expose as AppFunctions, such ... |
 | `appium-skill` | `critical` | Generates production-grade Appium mobile automation scripts for Android and i... |
+| `appllama-app-design-skill` | `safe` | Build native-feeling, benchmark-quality mobile app screens (Expo / React Nati... |
+| `appllama-usage` | `safe` | Use the Appllama MCP (mcp.appllama.io) well — research real top-grossing mobi... |
 | `building-native-ui` | `critical` | Complete guide for building beautiful apps with Expo Router. Covers fundament... |
 | `camerax` | `unknown` | Provide technical guidance for Android camera development with CameraX. Use w... |
 | `display-glasses-with-jetpack-compose-glimmer` | `unknown` | Provides guidelines for developing projected Android XR apps for display glas... |

@@ -2,7 +2,7 @@
 
 **Thư viện kỹ năng cho trợ lý AI lập trình, có hướng dẫn sử dụng bằng tiếng Việt.**
 
-VAS tập hợp **3.873 skill** thuộc **119 danh mục**, do [Huy Tran](https://github.com/huytran1120) tuyển chọn và duy trì. Bạn có thể tìm quy trình phù hợp với công việc, đọc nội dung rồi cài vào dự án đang dùng với Antigravity, Codex, Claude Code, Cursor, Windsurf, Cline hoặc GitHub Copilot CLI.
+VAS tập hợp **3.875 skill** thuộc **119 danh mục**, do [Huy Tran](https://github.com/huytran1120) tuyển chọn và duy trì. Bạn có thể tìm quy trình phù hợp với công việc, đọc nội dung rồi cài vào dự án đang dùng với Antigravity, Codex, Claude Code, Cursor, Windsurf, Cline hoặc GitHub Copilot CLI.
 
 **[Mở thư viện skill](https://huytran1120.github.io/vie-agentic-skills/?lang=vi)** · [Xem toàn bộ danh mục](CATALOG.md) · [Báo lỗi hoặc đề xuất](https://github.com/huytran1120/vie-agentic-skills/issues)
 
@@ -210,6 +210,7 @@ Các hướng dẫn chi tiết được tách riêng để bạn chỉ mở ph�
 | The Agency | 283 | 283 nhân sự AI chuyên môn hóa (Engineering, Design, Marketing, Product, Security...); xem [hướng dẫn The Agency](docs/agency.md) |
 | Social Media Research | 13 | Nghiên cứu mạng xã hội, bóc tách quảng cáo, transcript video và phân tích đối thủ; xem [hướng dẫn Social Media Research](docs/social-media-research.md) |
 | n8n Self-Hosting | 1 | Triển khai n8n tự host trên Linux VM bằng Docker Compose, Caddy TLS tự động, Single/Queue Mode (Redis + Postgres + Workers); xem [hướng dẫn n8n Self-Hosting](docs/n8n-mcp.md) |
+| Appllama | 2 | Thiết kế ứng dụng di động chuẩn Apple HIG (Expo / React Native) và nghiên cứu UI app top doanh thu; xem [hướng dẫn Appllama](docs/appllama.md) |
 
 Các tài liệu kiểm tra kỹ thuật dùng chung nằm trong [references/](references/), gồm kiểm thử, bảo mật, hiệu năng, khả năng tiếp cận, vận hành và điều phối agent.
 
