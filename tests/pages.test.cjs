@@ -533,7 +533,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
   const youtube = catalog.filterSkills(skills, { sources: ['youtube'] });
   assert.equal(youtube.length, 11);
   assert.equal(catalog.filterSkills(skills, { query: 'youtube-agent-skill' }).length, 11);
-  assert.equal(skills.length, 3875);
+  assert.equal(skills.length, 3876);
   for (const skill of youtube) {
     assert.ok(skill.id.startsWith('youtube-agent-skill/'));
     assert.equal(skill.source_repo, 'Jakeschincariol/youtube-agent-skill');
@@ -548,7 +548,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
     assert.deepEqual(state.sources, ['youtube']);
     assert.equal(state.selected, youtube[0].id);
     assert.ok(i18n.translate('collections.youtube', language).startsWith('11 '));
-    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '3.875' : '3,875'));
+    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '3.876' : '3,876'));
   }
   assert.equal(catalog.filterSkills(skills, { sources: ['youtube'], category: 'security' }).length, 0);
   const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
@@ -1479,4 +1479,32 @@ test('appllama retains exact source filtering, MIT license and agent prompts', (
   assert.ok(html.includes('name="source" value="appllama"'));
   assert.ok(html.includes('data-source-count="appllama">2<'));
   assert.ok(html.includes('id="appllama-collection"'));
+});
+
+test('storescreenshots retains exact source filtering, MIT license and agent prompts', () => {
+  const storeSkills = catalog.filterSkills(skills, { sources: ['storescreenshots'] });
+  assert.equal(storeSkills.length, 1);
+  assert.equal(catalog.filterSkills(skills, { query: 'thearkxd/store-screenshots-skill' }).length, 1);
+  for (const skill of storeSkills) {
+    assert.equal(skill.source_repo, 'thearkxd/store-screenshots-skill');
+    assert.ok(skill.license.includes('MIT'));
+    assert.equal(skill.category, 'design');
+  }
+
+  const sample = storeSkills[0];
+  for (const language of ['vi', 'en']) {
+    assert.ok(i18n.translate('collections.storescreenshots', language).startsWith('1 '));
+    for (const [agent] of catalog.agents.filter(([key]) => key !== 'all')) {
+      const prompt = catalog.agentInstallPrompt(sample, agent, language);
+      assert.ok(prompt.includes(`/install-manifests/${sample.id}.json`));
+      assert.ok(prompt.includes(catalog.targetFolders[agent]));
+      assert.ok(prompt.includes('SHA-256'));
+      assert.ok(prompt.includes('.vas-manifest.json'));
+    }
+  }
+
+  const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
+  assert.ok(html.includes('name="source" value="storescreenshots"'));
+  assert.ok(html.includes('data-source-count="storescreenshots">1<'));
+  assert.ok(html.includes('id="storescreenshots-collection"'));
 });

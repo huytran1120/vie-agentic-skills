@@ -1,6 +1,6 @@
 # Vie Agentic Skill (VAS) - Catalog
 
-Tổng hợp **3,875** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
+Tổng hợp **3,876** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
 
 | Danh mục | Số lượng | Lệnh cài đặt nhanh |
 | :--- | :---: | :--- |
@@ -49,7 +49,7 @@ Tổng hợp **3,875** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **database-processing** | 6 skills | `./vas install --category database-processing --target codex` |
 | **databases** | 3 skills | `./vas install --category databases --target codex` |
 | **debugging** | 4 skills | `./vas install --category debugging --target codex` |
-| **design** | 59 skills | `./vas install --category design --target codex` |
+| **design** | 60 skills | `./vas install --category design --target codex` |
 | **design-it** | 48 skills | `./vas install --category design-it --target codex` |
 | **developer-tools** | 9 skills | `./vas install --category developer-tools --target codex` |
 | **development** | 230 skills | `./vas install --category development --target codex` |
@@ -1603,7 +1603,7 @@ Tổng hợp **3,875** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `logic-locate` | `safe` | Locate the root cause of a CONFIRMED failure via backward-then-forward semi-f... |
 | `phase-gated-debugging` | `safe` | Use when debugging any bug. Enforces a 5-phase protocol where code edits are ... |
 
-### DESIGN (59 skills)
+### DESIGN (60 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
@@ -1648,6 +1648,7 @@ Tổng hợp **3,875** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `qrx` | `critical` | Make branded, print-ready art QR codes to validate before use with QRX (qrx.c... |
 | `rayden-use` | `safe` | Build and maintain Rayden UI components and screens in Figma via Figma MCP wi... |
 | `stitch-ui-design` | `safe` | Expert guidance for crafting effective prompts in Google Stitch, the AI-power... |
+| `store-screenshots` | `low` | Plans, writes and designs App Store and Google Play screenshots that explain ... |
 | `theme-factory` | `critical` | Toolkit for styling artifacts with a theme. These artifacts can be slides, do... |
 | `ui-page` | `critical` | Scaffold a new mobile page/screen using the StyleSeed layout patterns |
 | `ui-pattern` | `critical` | Generate a composed UI pattern (card layout, list, form section, grid, etc.) ... |

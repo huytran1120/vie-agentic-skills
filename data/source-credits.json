@@ -505,6 +505,13 @@
       "- Standalone payloads preserve upstream Agent Skills specification SKILL.md with complete references (image-assets, native-controls, motion, performance, simulator-loop, build-from-scratch, improve-a-screen, research-methods).",
       "- Optional live screen queries use the Appllama MCP (`https://mcp.appllama.io/mcp`); offline design standards and implementation guidelines run safely with zero external dependencies.",
       "- Installation via `./vas install` only links or copies static files and writes `.vas-manifest.json`. No runtime/dependency is installed, and no external accounts are connected."
+    ],
+    "storescreenshots": [
+      "- **[thearkxd/store-screenshots-skill](https://github.com/thearkxd/store-screenshots-skill/tree/c25bf66faa7396818c0f7b267e6add4d441573a8)**: App Store and Google Play screenshot planning, copywriting, and multi-layer scene design skill by thearkxd (Alpiworks) at revision `c25bf66faa7396818c0f7b267e6add4d441573a8` (tag `v2.2.41`) under the MIT License.",
+      "- Plans, writes, and renders conversion-focused App Store and Play Store screenshots from real app screens (visual DNA extraction, 3 app concepts, 3D device perspective, multi-layer scene composition, claim verification, alt text, and store spec checks).",
+      "- Standalone payload preserves upstream Agent Skills specification SKILL.md with complete references (storytelling, copy rules, design process, scene format, layouts, store specs, categories, critique), helper scripts, directions, fonts, templates, and reference library.",
+      "- Preserves upstream NOTICE.md clarifying third-party App Store screenshot reference material in `assets/library/img/` under study and reference terms.",
+      "- Installation via `./vas install` only links or copies static files and writes `.vas-manifest.json`. No runtime/dependency is installed, and no external accounts are connected."
     ]
   }
 }
