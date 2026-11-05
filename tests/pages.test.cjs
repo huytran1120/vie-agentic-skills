@@ -34,6 +34,14 @@ test('multi-token search matches across fields and ignores diacritics', () => {
   assert.equal(catalog.filterSkills(fixtures, { query: 'browser absent' }).length, 0);
 });
 
+test('search discovers the localized summaries displayed on real skill cards', () => {
+  for (const query of ['kiểm thử', 'kiem thu']) {
+    assert.equal(catalog.filterSkills(skills, { query })[0].id, 'webapp-testing');
+  }
+  assert.ok(catalog.filterSkills(skills, { query: 'giao diện' }).some(skill => skill.id === 'frontend-design'));
+  assert.ok(catalog.filterSkills(skills, { query: 'thiết kế' }).some(skill => skill.id === 'ui-ux-pro-max'));
+});
+
 test('group filters use explicit categories and exact category remains available', () => {
   const security = catalog.filterSkills(skills, { group: 'security' });
   assert.equal(security.length, skills.filter(skill => skill.category === 'security').length);
@@ -192,8 +200,8 @@ test('the public page has its own identity and supports both local and Pages bui
   const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
   assert.ok(html.includes('<title>Vie Agentic Skill'));
   assert.ok(html.includes('Nguồn upstream'));
-  assert.ok(html.includes('href="../README.md"'));
-  assert.ok(html.includes('href="../CATALOG.md"'));
+  assert.ok(html.includes('href="https://github.com/huytran1120/vie-agentic-skills/blob/main/README.md"'));
+  assert.ok(html.includes('href="https://github.com/huytran1120/vie-agentic-skills/blob/main/CATALOG.md"'));
   assert.ok(html.includes('https://huytran1120.github.io/vie-agentic-skills/'));
   assert.ok(html.includes('git clone https://github.com/huytran1120/vie-agentic-skills.git'));
   assert.ok(html.includes('data-skill-base=".."'));
@@ -470,6 +478,26 @@ test('search typed while loading is applied once the catalog arrives', async () 
   await new Promise(setImmediate);
   assert.ok(runtime.elements.get('results-status').textContent.includes('35'));
   assert.equal(runtime.elements.get('loading-state').hidden, true);
+});
+
+test('an open mobile filter refreshes after loading without losing its draft selection', async () => {
+  let release;
+  const runtime = browserRuntime(() => new Promise(resolve => { release = resolve; }));
+  const dialog = runtime.elements.get('filters-dialog');
+  dialog.showModal = () => { dialog.open = true; };
+  runtime.elements.get('open-filters').listeners.get('click')();
+  const button = { dataset: { draftGroup: 'testing' }, hasAttribute: () => false };
+  runtime.document.listeners.get('click')({ target: { closest: selector => selector === 'button' ? button : null } });
+  const before = runtime.elements.get('mobile-filter-content').innerHTML;
+  assert.ok(before.includes('<span>0</span>'));
+  release({ ok: true, json: async () => skills });
+  await new Promise(setImmediate);
+  const after = runtime.elements.get('mobile-filter-content').innerHTML;
+  assert.equal(dialog.open, true);
+  assert.notEqual(after, before);
+  assert.ok(after.includes(`data-draft-group="testing" aria-pressed="true"`));
+  assert.ok(after.includes(`<span>${skills.length.toLocaleString('vi-VN')}</span>`));
+  assert.ok(after.includes('<option value="front-end">'));
 });
 
 test('malformed catalog data never turns into a success-shaped empty state', async () => {
@@ -794,6 +822,25 @@ test('untrusted Markdown cannot inject HTML or executable link protocols', () =>
   assert.ok(result.html.includes('href="https://example.com/skills/example/references/guide.md"'));
 });
 
+test('real runbooks retain bold links and reference-style links', () => {
+  const content = catalog.renderMarkdown(fs.readFileSync(path.join(root, 'skills/content-strategy/SKILL.md'), 'utf8'), 'https://example.com/skills/content-strategy/SKILL.md');
+  assert.match(content.html, /<strong><a href="https:\/\/example.com\/skills\/content-strategy\/references\/headless-cms.md"[^>]*>Headless CMS Guide<\/a><\/strong>/);
+  const dataflow = catalog.renderMarkdown(fs.readFileSync(path.join(root, 'skills/gcp-dataflow/SKILL.md'), 'utf8'), 'https://example.com/skills/gcp-dataflow/SKILL.md');
+  assert.ok(dataflow.html.includes('href="https://example.com/skills/gcp-dataflow/references/python_flex_template_reference.md"'));
+  assert.ok(!dataflow.html.includes('[py-flex-ref]:'));
+});
+
+test('nested formatting and references retain protocol filtering and literal code', () => {
+  const md = '**[Unsafe][bad]** __[Guide][]__ [Guide] [Missing][unknown]\n\n[bad]: javascript:alert\n[guide]: <references/guide.md> "Guide"\n\n```md\n[inside]: references/hidden.md\n```\n\n[inside]';
+  const result = catalog.renderMarkdown(md, 'https://example.com/skills/test/SKILL.md');
+  assert.ok(!result.html.includes('href="javascript:'));
+  assert.ok(result.html.includes('<strong>[Unsafe][bad]</strong>'));
+  assert.equal((result.html.match(/href="https:\/\/example.com\/skills\/test\/references\/guide.md"/g) || []).length, 2);
+  assert.ok(result.html.includes('[Missing][unknown]'));
+  assert.ok(result.html.includes('[inside]: references/hidden.md'));
+  assert.ok(!result.html.includes('href="https://example.com/skills/test/references/hidden.md"'));
+});
+
 test('runbook headings have stable unique anchors and tables remain structured', () => {
   const result = catalog.renderMarkdown('## Cài đặt\n\nFirst\n\n## Cài đặt\n\n| Tool | Required |\n| --- | --- |\n| Python | Yes |');
   assert.equal(new Set(result.headings.map(h => h.id)).size, 2);
@@ -966,6 +1013,39 @@ test('runbook fragment history leaves native anchor scrolling and the current re
   assert.equal(runtime.elements.get('skill-detail').innerHTML, content);
 });
 
+test('header navigation makes one history entry and saves the outgoing reader scroll', async () => {
+  for (const fragment of ['#catalog', '#showcase', '#quickstart']) {
+    const window = languageWindow('?skill=code-review');
+    const runtime = browserRuntime(async url => url === './skills.min.json'
+      ? { ok: true, json: async () => skills } : { ok: true, text: async () => '# Runbook' }, window);
+    await new Promise(setImmediate);
+    window.scrollY = 2800;
+    Object.defineProperty(runtime.elements.get('detail-view'), 'hidden', {
+      set(value) { if (value) window.scrollY = 0; }, get() { return false; }, configurable: true
+    });
+    let previous, pushes = 0, prevented = false;
+    const push = window.history.pushState.bind(window.history);
+    window.history.pushState = (state, title, url) => {
+      pushes++; previous = { state: window.history.state, href: window.location.href };
+      push(state, title, url);
+    };
+    const link = { getAttribute: () => fragment };
+    runtime.document.listeners.get('click')({
+      target: { closest: selector => selector === '[data-library-link]' ? link : null },
+      preventDefault() { prevented = true; }
+    });
+    assert.equal(prevented, true);
+    assert.equal(pushes, 1);
+    assert.equal(window.location.hash, fragment);
+    assert.equal(window.location.search.includes('skill='), false);
+    assert.equal(previous.state.vas.scroll, 2800);
+    window.location.href = previous.href;
+    window.listeners.get('popstate')({ state: previous.state });
+    assert.equal(window.scrollY, 2800);
+    assert.equal(runtime.elements.get('library-view').hidden, true);
+  }
+});
+
 test('language switching works during loading and preserves query, agent and privacy', async () => {
   let release;
   const window = languageWindow('?q=docker&agent=codex&sources=blender');
@@ -988,10 +1068,10 @@ test('both interface languages link to the same Vietnamese guide without changin
     const runtime = browserRuntime(async () => ({ ok: true, json: async () => skills }), window);
     await new Promise(setImmediate);
     assert.equal(runtime.document.documentElement.lang, language);
-    assert.equal(runtime.elements.get('readme-link').attributes.get('href'), '../README.md');
+    assert.equal(runtime.elements.get('readme-link').attributes.get('href'), 'https://github.com/huytran1120/vie-agentic-skills/blob/main/README.md');
     runtime.elements.get('language-toggle').listeners.get('click')();
     assert.equal(runtime.document.documentElement.lang, language === 'vi' ? 'en' : 'vi');
-    assert.equal(runtime.elements.get('readme-link').attributes.get('href'), '../README.md');
+    assert.equal(runtime.elements.get('readme-link').attributes.get('href'), 'https://github.com/huytran1120/vie-agentic-skills/blob/main/README.md');
   }
 });
 

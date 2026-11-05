@@ -44,7 +44,7 @@
     for (const locale of ['vi', 'en']) {
       language(locale);
       check(d.documentElement.lang === locale, `${locale}: document language must update`);
-      check(d.getElementById('readme-link').getAttribute('href').endsWith('/README.md'), `${locale}: guide link must use the shared Vietnamese README`);
+      check(d.getElementById('readme-link').href === 'https://github.com/huytran1120/vie-agentic-skills/blob/main/README.md', `${locale}: guide link must open the rendered Vietnamese README with working repository links`);
       for (const node of d.querySelectorAll('[data-i18n]')) {
         if (node.id !== 'results-title') check(node.textContent === w.VASI18n.translate(node.dataset.i18n, locale), `${locale}: stale translation ${node.dataset.i18n}`);
       }
@@ -118,6 +118,27 @@
     await waitFor(() => !d.getElementById('detail-view').hidden, 'Back from the library must restore the previous detail');
     await wait(80);
     check(Math.abs(w.scrollY - detailScroll) < 3, `Back must retain the outgoing detail scroll position (expected ${detailScroll}, got ${w.scrollY})`);
+    for (const fragment of ['#catalog', '#showcase', '#quickstart']) {
+      const readerScroll = w.scrollY;
+      d.querySelector(`.desktop-nav a[href="${fragment}"]`).click();
+      check(d.getElementById('detail-view').hidden, `${fragment}: header navigation must show the library`);
+      check(w.location.hash === fragment, `${fragment}: header navigation must set the requested section`);
+      w.history.back();
+      await waitFor(() => !d.getElementById('detail-view').hidden, `${fragment}: one Back must restore the runbook`);
+      await wait(80);
+      check(Math.abs(w.scrollY - readerScroll) < 3, `${fragment}: Back must retain reader scroll (expected ${readerScroll}, got ${w.scrollY})`);
+    }
+    d.querySelector('[data-back-library]').click();
+    d.getElementById('clear-search').click();
+    readerSearch.value = 'kiểm thử';
+    readerSearch.dispatchEvent(new w.Event('input', { bubbles: true }));
+    check(Boolean(d.querySelector('#skills-results [data-open-skill="webapp-testing"]')), 'Vietnamese search must find the visible testing summary');
+    readerSearch.value = 'content-strategy';
+    readerSearch.dispatchEvent(new w.Event('input', { bubbles: true }));
+    d.querySelector('#skills-results [data-open-skill="content-strategy"]').click();
+    await waitFor(() => d.getElementById('runbook-content').getAttribute('aria-busy') === 'false', 'Content strategy must load for reference links');
+    const reference = d.querySelector('#runbook-content strong a[href$="/content-strategy/references/headless-cms.md"]');
+    check(Boolean(reference), 'Bold references must remain clickable links in the real reader');
     d.querySelector('[data-back-library]').click();
     d.getElementById('clear-search').click();
     w.scrollTo({ top: 0, behavior: 'instant' });

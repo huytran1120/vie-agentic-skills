@@ -36,7 +36,8 @@
     const matches = skills.filter(skill => {
       if (!matchesGroup(skill, group) || (category !== 'all' && skill.category !== category)) return false;
       if (sources.length && !sources.some(source => matchesSource(skill, source))) return false;
-      const text = normalize([skill.id, skill.name, skill.description, skill.category, skill.source, skill.source_repo, skill.author, ...(skill.tags || [])].join(' '));
+      const summaries = i18n.messages[`summary.${skill.id}`] || [];
+      const text = normalize([skill.id, skill.name, skill.description, ...summaries, skill.category, skill.source, skill.source_repo, skill.author, ...(skill.tags || [])].join(' '));
       return words.every(word => text.includes(word));
     });
     return matches.sort((a, b) => {
@@ -213,12 +214,36 @@
   function renderMarkdown(markdown, baseUrl = 'https://example.invalid/skills/', language = 'vi') {
     const lines = String(markdown).replace(/^\uFEFF/, '').replace(/^---\s*\r?\n[\s\S]*?\r?\n---\s*(?:\r?\n|$)/, '').replace(/\r\n?/g, '\n').split('\n');
     const headings = [], ids = new Map(), aliases = new Map(), sourceIds = new Map(), fragments = [];
-    function inline(value) {
-      const tokens = String(value).split(/(`[^`]+`|!?\[[^\]]*\]\([^\s)]+\)|\*\*[^*]+\*\*|__[^_]+__)/g);
+    const references = new Map();
+    const referenceKey = label => label.trim().replace(/\s+/g, ' ').toLowerCase();
+    let referenceFence = null;
+    for (let i = 0; i < lines.length; i++) {
+      const fence = lines[i].match(/^\s*(`{3,}|~{3,})/);
+      if (fence) {
+        if (!referenceFence) referenceFence = fence[1];
+        else if (fence[1][0] === referenceFence[0] && fence[1].length >= referenceFence.length) referenceFence = null;
+        continue;
+      }
+      if (referenceFence) continue;
+      const definition = lines[i].match(/^ {0,3}\[([^\]]+)\]:\s*(?:<([^<>]+)>|(\S+))(?:\s+(?:"[^"]*"|'[^']*'|\([^)]*\)))?\s*$/);
+      if (definition) {
+        const key = referenceKey(definition[1]);
+        if (!references.has(key)) references.set(key, definition[2] || definition[3]);
+        lines[i] = '';
+      }
+    }
+    function inline(value, depth = 0) {
+      if (depth > 16) return escapeHtml(value);
+      const tokens = String(value).split(/(`[^`]+`|!?\[[^\]]*\]\([^\s)]+\)|\*\*[^*]+\*\*|__[^_]+__|!?\[[^\]]+\](?:\[[^\]]*\])?)/g);
       return tokens.map(token => {
         if (token.startsWith('`') && token.endsWith('`')) return `<code>${escapeHtml(token.slice(1, -1))}</code>`;
-        if ((token.startsWith('**') && token.endsWith('**')) || (token.startsWith('__') && token.endsWith('__'))) return `<strong>${escapeHtml(token.slice(2, -2))}</strong>`;
-        const link = token.match(/^!?\[([^\]]*)\]\(([^\s)]+)\)$/);
+        if ((token.startsWith('**') && token.endsWith('**')) || (token.startsWith('__') && token.endsWith('__'))) return `<strong>${inline(token.slice(2, -2), depth + 1)}</strong>`;
+        let link = token.match(/^!?\[([^\]]*)\]\(([^\s)]+)\)$/);
+        if (!link) {
+          const reference = token.match(/^!?\[([^\]]+)\](?:\[([^\]]*)\])?$/);
+          const destination = reference && references.get(referenceKey(reference[2] || reference[1]));
+          if (destination) link = [token, reference[1], destination];
+        }
         if (link) {
           try {
             if (link[2].startsWith('#')) {
@@ -408,7 +433,7 @@
     toggle.setAttribute('title', state.language === 'vi' ? 'English' : 'Tiếng Việt');
     byId('theme-toggle').setAttribute('aria-label', t(document.documentElement.dataset.theme === 'dark' ? 'theme.light' : 'theme.dark'));
     byId('home-link').setAttribute('href', `./?lang=${state.language}`);
-    byId('readme-link').setAttribute('href', `${skillBase}/README.md`);
+    byId('readme-link').setAttribute('href', 'https://github.com/huytran1120/vie-agentic-skills/blob/main/README.md');
     if (state.loaded) {
       renderNavigation(); renderCategories(); renderResults();
       if (afterInstallationOpen && byId('installation-after')) byId('installation-after').open = true;
@@ -445,9 +470,9 @@
     state.skills.forEach(skill => counts.set(skill.category || 'general', (counts.get(skill.category || 'general') || 0) + 1));
     byId('category-select').innerHTML = `<option value="all">${t('filters.categories', { count: count(counts.size) })}</option>` + [...counts].sort(([a], [b]) => a.localeCompare(b)).map(([category, total]) => `<option value="${escapeHtml(category)}">${escapeHtml(category)} (${count(total)})</option>`).join('');
   }
-  function syncUrl(push = false, beforeLoad = false) {
+  function syncUrl(push = false, beforeLoad = false, fragment) {
     if (typeof window === 'undefined' || (!state.loaded && !beforeLoad)) return;
-    const params = catalogParams(state), url = window.location.pathname + (params ? '?' + params : '') + window.location.hash;
+    const params = catalogParams(state), url = window.location.pathname + (params ? '?' + params : '') + (fragment === undefined ? window.location.hash : fragment);
     // Keep list navigation context in this tab's history, never in shared URLs.
     const context = { page: state.page, scroll: Number.isFinite(window.scrollY) ? window.scrollY : 0, libraryScroll };
     const history = { ...window.history.state, vas: context };
@@ -620,6 +645,7 @@
         if (!Array.isArray(data) || !data.length || data.some(skill => !skill || typeof skill.id !== 'string' || !skill.id || typeof skill.category !== 'string' || (skill.tags && (!Array.isArray(skill.tags) || skill.tags.some(tag => typeof tag !== 'string'))))) throw new Error(t('catalog.invalid'));
         data.forEach(skill => skillUrl(skill, skillBase)); state.skills = data; state.loaded = true;
         renderNavigation(); renderCategories();
+        if (byId('filters-dialog').open) renderMobileFilters();
         validateState(); byId('search-input').value = state.query; renderResults();
         return true;
       } catch (error) { console.error('Cannot load the VAS catalog:', error); byId('error-state').hidden = false; byId('results-status').textContent = t('catalog.error'); return false; }
@@ -700,7 +726,15 @@
   document.addEventListener('click', event => {
     if (event.target.closest('a[href="#quickstart"]')) byId('cli-setup').open = true;
     const link = event.target.closest('[data-library-link]');
-    if (link && state.selected) { state.selected = null; renderResults(); syncUrl(true); }
+    if (link && state.selected) {
+      event.preventDefault();
+      syncUrl();
+      state.selected = null;
+      const fragment = link.getAttribute('href');
+      syncUrl(true, false, fragment); renderResults();
+      document.querySelector(fragment)?.scrollIntoView({ block: 'start', behavior: 'instant' });
+      syncUrl();
+    }
     const button = event.target.closest('button'); if (!button || button.disabled) return;
     if (button.hasAttribute('data-back-library')) closeDetail();
     else if (button.hasAttribute('data-query')) { state.query = button.dataset.query; state.group = 'all'; state.category = 'all'; state.sources = []; byId('search-input').value = state.query; applyFilters(); focusSearch(); }
