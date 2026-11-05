@@ -64,6 +64,7 @@ class PagesLayoutTests(unittest.TestCase):
         with tempfile.TemporaryDirectory(prefix="vas-browser-layout-") as temp:
             command = [
                 CHROME, "--headless", "--no-first-run", "--no-default-browser-check",
+                "--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu",
                 f"--user-data-dir={temp}", "--dump-dom", "--window-size=1600,1100",
                 "--virtual-time-budget=25000",
             ]
@@ -74,7 +75,7 @@ class PagesLayoutTests(unittest.TestCase):
                 + ("?artifact" if reduced_motion else "")
             )
             result = subprocess.run(
-                command, capture_output=True, text=True, timeout=60,
+                command, capture_output=True, text=True, timeout=120,
             )
             self.assertEqual(result.returncode, 0, result.stderr[-3000:])
             match = re.search(
