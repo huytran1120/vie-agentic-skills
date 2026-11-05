@@ -182,7 +182,7 @@
   function escapeHtml(value) {
     return String(value == null ? '' : value).replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
   }
-  const sourceNames = { mattpocock: 'Matt Pocock', addy: 'Addy Osmani', blender: 'Blender Skills', youtube: 'YouTube Skills', hallmark: 'Hallmark', typesafe: 'TypeSafe AI', android: 'Android Skills', gamedev: 'GameDev Skills', heydamir: 'UI Unslop · Damir Sokolovsky', videoeditor: 'Video Editor · DaVinci Resolve', editonny: 'editonny · Matheus Gomes', teardown: 'Teardown · 3D Simulator', scenario: 'Scenario · Creative AI & DCC', stageshow: 'Stageshow · Benji Taylor', stackdiagram: 'Stack Diagram · caru-ini', gamestudios: 'Claude Code Game Studios · Donchitos', aibusiness: 'AI Business Skills', agency: 'The Agency · AI Specialists', scrapecreators: 'Social Media Research · ScrapeCreators' };
+  const sourceNames = { mattpocock: 'Matt Pocock', addy: 'Addy Osmani', blender: 'Blender Skills', youtube: 'YouTube Skills', hallmark: 'Hallmark', typesafe: 'TypeSafe AI', android: 'Android Skills', gamedev: 'GameDev Skills', heydamir: 'UI Unslop · Damir Sokolovsky', videoeditor: 'Video Editor · DaVinci Resolve', editonny: 'editonny · Matheus Gomes', teardown: 'Teardown · 3D Simulator', scenario: 'Scenario · Creative AI & DCC', stageshow: 'Stageshow · Benji Taylor', stackdiagram: 'Stack Diagram · caru-ini', gamestudios: 'Claude Code Game Studios · Donchitos', aibusiness: 'AI Business Skills', agency: 'The Agency · AI Specialists', scrapecreators: 'Social Media Research · ScrapeCreators', n8nmcp: 'n8n Self-Hosting · n8n-mcp' };
   function matchesSource(skill, source) {
     if (source === 'mattpocock') return skill.source_repo === 'mattpocock/skills';
     if (source === 'addy') return normalize(skill.author).includes('addy osmani');
@@ -203,6 +203,7 @@
     if (source === 'aibusiness') return skill.source_repo === 'minhnv0807/ai-business-skills';
     if (source === 'agency') return skill.source_repo === 'msitarzewski/agency-agents';
     if (source === 'scrapecreators') return skill.source_repo === 'ScrapeCreators/social-media-research-skills';
+    if (source === 'n8nmcp') return skill.source_repo === 'czlonkowski/n8n-mcp';
     return false;
   }
 
@@ -670,6 +671,7 @@
   byId('aibusiness-collection').addEventListener('click', () => selectSource('aibusiness'));
   byId('agency-collection').addEventListener('click', () => selectSource('agency'));
   byId('scrapecreators-collection').addEventListener('click', () => selectSource('scrapecreators'));
+  byId('n8nmcp-collection').addEventListener('click', () => selectSource('n8nmcp'));
   byId('menu-toggle').addEventListener('click', () => { const menu = byId('mobile-menu'); menu.hidden = !menu.hidden; byId('menu-toggle').setAttribute('aria-expanded', String(!menu.hidden)); });
   byId('mobile-menu').addEventListener('click', event => { if (event.target.closest('a')) { byId('mobile-menu').hidden = true; byId('menu-toggle').setAttribute('aria-expanded', 'false'); } });
   byId('theme-toggle').addEventListener('click', event => {

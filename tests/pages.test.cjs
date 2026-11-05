@@ -505,7 +505,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
   const youtube = catalog.filterSkills(skills, { sources: ['youtube'] });
   assert.equal(youtube.length, 11);
   assert.equal(catalog.filterSkills(skills, { query: 'youtube-agent-skill' }).length, 11);
-  assert.equal(skills.length, 3872);
+  assert.equal(skills.length, 3873);
   for (const skill of youtube) {
     assert.ok(skill.id.startsWith('youtube-agent-skill/'));
     assert.equal(skill.source_repo, 'Jakeschincariol/youtube-agent-skill');
@@ -520,7 +520,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
     assert.deepEqual(state.sources, ['youtube']);
     assert.equal(state.selected, youtube[0].id);
     assert.ok(i18n.translate('collections.youtube', language).startsWith('11 '));
-    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '3.872' : '3,872'));
+    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '3.873' : '3,873'));
   }
   assert.equal(catalog.filterSkills(skills, { sources: ['youtube'], category: 'security' }).length, 0);
   const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
@@ -1323,4 +1323,33 @@ test('scrapecreators retains exact source filtering, MIT license and agent promp
   assert.ok(html.includes('name="source" value="scrapecreators"'));
   assert.ok(html.includes('data-source-count="scrapecreators">13<'));
   assert.ok(html.includes('id="scrapecreators-collection"'));
+});
+
+test('n8nmcp retains exact source filtering, MIT license and agent prompts', () => {
+  const n8nSkills = catalog.filterSkills(skills, { sources: ['n8nmcp'] });
+  assert.equal(n8nSkills.length, 1);
+  assert.equal(catalog.filterSkills(skills, { query: 'czlonkowski/n8n-mcp' }).length, 1);
+  const [sample] = n8nSkills;
+  assert.equal(sample.id, 'n8n-self-hosting');
+  assert.equal(sample.source_repo, 'czlonkowski/n8n-mcp');
+  assert.equal(sample.author, 'Romuald Czlonkowski');
+  assert.equal(sample.license, 'MIT');
+  assert.equal(sample.category, 'automation');
+  assert.equal(sample.risk, 'safe');
+
+  for (const language of ['vi', 'en']) {
+    assert.ok(i18n.translate('collections.n8nmcp', language).startsWith('1 '));
+    for (const [agent] of catalog.agents.filter(([key]) => key !== 'all')) {
+      const prompt = catalog.agentInstallPrompt(sample, agent, language);
+      assert.ok(prompt.includes(`/install-manifests/${sample.id}.json`));
+      assert.ok(prompt.includes(catalog.targetFolders[agent]));
+      assert.ok(prompt.includes('SHA-256'));
+      assert.ok(prompt.includes('.vas-manifest.json'));
+    }
+  }
+
+  const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
+  assert.ok(html.includes('name="source" value="n8nmcp"'));
+  assert.ok(html.includes('data-source-count="n8nmcp">1<'));
+  assert.ok(html.includes('id="n8nmcp-collection"'));
 });

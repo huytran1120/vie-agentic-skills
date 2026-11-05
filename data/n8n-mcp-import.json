@@ -1,0 +1,234 @@
+{
+  "source_repo": "czlonkowski/n8n-mcp",
+  "source_url": "https://github.com/czlonkowski/n8n-mcp",
+  "revision": "1c755c5c8d99eb71faade17753a7f24138f4212c",
+  "author": "Romuald Czlonkowski",
+  "author_url": "https://github.com/czlonkowski",
+  "license": "MIT",
+  "license_source": "https://github.com/czlonkowski/n8n-mcp/blob/1c755c5c8d99eb71faade17753a7f24138f4212c/LICENSE",
+  "skill_count": 1,
+  "skipped": [
+    {
+      "id": "n8n-agents",
+      "source_path": "data/skills/n8n-agents",
+      "reason": "already_exists_in_catalog"
+    },
+    {
+      "id": "n8n-binary-and-data",
+      "source_path": "data/skills/n8n-binary-and-data",
+      "reason": "already_exists_in_catalog"
+    },
+    {
+      "id": "n8n-code-javascript",
+      "source_path": "data/skills/n8n-code-javascript",
+      "reason": "already_exists_in_catalog"
+    },
+    {
+      "id": "n8n-code-python",
+      "source_path": "data/skills/n8n-code-python",
+      "reason": "already_exists_in_catalog"
+    },
+    {
+      "id": "n8n-code-tool",
+      "source_path": "data/skills/n8n-code-tool",
+      "reason": "already_exists_in_catalog"
+    },
+    {
+      "id": "n8n-error-handling",
+      "source_path": "data/skills/n8n-error-handling",
+      "reason": "already_exists_in_catalog"
+    },
+    {
+      "id": "n8n-expression-syntax",
+      "source_path": "data/skills/n8n-expression-syntax",
+      "reason": "already_exists_in_catalog"
+    },
+    {
+      "id": "n8n-mcp-tools-expert",
+      "source_path": "data/skills/n8n-mcp-tools-expert",
+      "reason": "already_exists_in_catalog"
+    },
+    {
+      "id": "n8n-multi-instance",
+      "source_path": "data/skills/n8n-multi-instance",
+      "reason": "already_exists_in_catalog"
+    },
+    {
+      "id": "n8n-node-configuration",
+      "source_path": "data/skills/n8n-node-configuration",
+      "reason": "already_exists_in_catalog"
+    },
+    {
+      "id": "n8n-subworkflows",
+      "source_path": "data/skills/n8n-subworkflows",
+      "reason": "already_exists_in_catalog"
+    },
+    {
+      "id": "n8n-validation-expert",
+      "source_path": "data/skills/n8n-validation-expert",
+      "reason": "already_exists_in_catalog"
+    },
+    {
+      "id": "n8n-workflow-patterns",
+      "source_path": "data/skills/n8n-workflow-patterns",
+      "reason": "already_exists_in_catalog"
+    },
+    {
+      "id": "using-n8n-mcp-skills",
+      "source_path": "data/skills/using-n8n-mcp-skills",
+      "reason": "already_exists_in_catalog"
+    }
+  ],
+  "namespaces": {},
+  "duplicate_check": {
+    "catalog_count_before": 3872,
+    "upstream_is_fork": false,
+    "skipped_existing_count": 14,
+    "collision_rationale": "14 of the 15 upstream skills in data/skills/* already exist in the VAS catalog (n8n-agents, n8n-binary-and-data, n8n-code-javascript, n8n-code-python, n8n-code-tool, n8n-error-handling, n8n-expression-syntax, n8n-mcp-tools-expert, n8n-multi-instance, n8n-node-configuration, n8n-subworkflows, n8n-validation-expert, n8n-workflow-patterns, using-n8n-mcp-skills) and were skipped without modification. `n8n-self-hosting` has zero canonical ID or content shingle overlap with existing catalog skills."
+  },
+  "adaptations": [
+    "Added standardized VAS YAML frontmatter fields (category, tags, risk, author, license, source_repo, source_revision, source_path) to SKILL.md.",
+    "Preserved all 6 reference markdown guides (README.md, SINGLE_MODE.md, QUEUE_MODE.md, SECURITY.md, CREDENTIAL_OVERWRITES.md, DAY2.md) and all 6 production Docker/Caddy/Postgres assets in assets/.",
+    "Added LICENSE and NOTICE.md to skills/n8n-self-hosting/ and appended VAS installation notes to SKILL.md.",
+    "Set executable bit (0755) on assets/init-data.sh so the Postgres entrypoint script is ready when mounted."
+  ],
+  "skills": [
+    {
+      "id": "n8n-self-hosting",
+      "canonical_id": "n8n-self-hosting",
+      "name": "n8n-self-hosting",
+      "path": "skills/n8n-self-hosting",
+      "description": "Deploy a production self-hosted n8n end-to-end to a fresh Linux VM over SSH, using Docker Compose behind a Caddy reverse proxy with automatic HTTPS. Use whenever the user wants to self-host, install, set up, provision, or deploy n8n on their own server/VPS/box (Hetzner, DigitalOcean, AWS EC2, bare metal, etc.) — in either single/regular mode or queue mode with workers — or to update, back up, restore, or harden such an instance. This is for SELF-HOSTED n8n (Docker), not n8n Cloud and not building workflows. The skill makes the agent ask single-vs-queue first, collect the domain/SSH/timezone inputs, generate fresh secrets on the box, and bring the stack up with TLS. Trigger on 'deploy n8n', 'self-host n8n', 'install n8n on my server', 'n8n docker compose', 'n8n queue mode / workers / scaling', 'n8n reverse proxy / SSL', 'back up / update my n8n', or 'we don't want to give every user the OAuth client secret' / 'enable the Sign in with Google button' (credential overwrites).",
+      "category": "automation",
+      "tags": [
+        "n8n",
+        "self-hosting",
+        "docker",
+        "docker-compose",
+        "postgres",
+        "redis",
+        "caddy",
+        "queue-mode",
+        "devops",
+        "automation",
+        "n8n-mcp"
+      ],
+      "risk": "safe",
+      "author": "Romuald Czlonkowski",
+      "author_url": "https://github.com/czlonkowski",
+      "source": "https://github.com/czlonkowski/n8n-mcp/tree/1c755c5c8d99eb71faade17753a7f24138f4212c/data/skills/n8n-self-hosting",
+      "source_repo": "czlonkowski/n8n-mcp",
+      "source_revision": "1c755c5c8d99eb71faade17753a7f24138f4212c",
+      "source_path": "data/skills/n8n-self-hosting/SKILL.md",
+      "license": "MIT",
+      "license_source": "https://github.com/czlonkowski/n8n-mcp/blob/1c755c5c8d99eb71faade17753a7f24138f4212c/LICENSE"
+    }
+  ],
+  "files": [
+    {
+      "source_path": "LICENSE",
+      "path": "skills/n8n-self-hosting/LICENSE",
+      "source_sha256": "8292ff05257b8f1ceae44382f0585abb0df9dc007d2ee2254c5a835c01920b35",
+      "sha256": "8292ff05257b8f1ceae44382f0585abb0df9dc007d2ee2254c5a835c01920b35",
+      "executable": false
+    },
+    {
+      "source_path": "data/skills/n8n-self-hosting/NOTICE.md",
+      "path": "skills/n8n-self-hosting/NOTICE.md",
+      "source_sha256": "03ddea529c7a199833937c55e4c0be95c92b7eb87ca11c99c3522f0f5d09d4b0",
+      "sha256": "03ddea529c7a199833937c55e4c0be95c92b7eb87ca11c99c3522f0f5d09d4b0",
+      "executable": false
+    },
+    {
+      "source_path": "data/skills/n8n-self-hosting/SKILL.md",
+      "path": "skills/n8n-self-hosting/SKILL.md",
+      "source_sha256": "78fe6b10d383d8e5a3dacb0316bbd5ebe86435c740db153f3a1c7ef9736deb73",
+      "sha256": "a3fc134a647a0fb40952357c395d61be067c313a528e6e5de06c1a9627aa76ba",
+      "executable": false
+    },
+    {
+      "source_path": "data/skills/n8n-self-hosting/README.md",
+      "path": "skills/n8n-self-hosting/README.md",
+      "source_sha256": "6e69f55cce9d4b07f1601129d27944e94e63acb02c3542a9dbd16c9f51ac7416",
+      "sha256": "6e69f55cce9d4b07f1601129d27944e94e63acb02c3542a9dbd16c9f51ac7416",
+      "executable": false
+    },
+    {
+      "source_path": "data/skills/n8n-self-hosting/CREDENTIAL_OVERWRITES.md",
+      "path": "skills/n8n-self-hosting/CREDENTIAL_OVERWRITES.md",
+      "source_sha256": "2d925f2efcdd4acc2a74bcb039c28d3f38f5b63e8c139acd266c91af91590a6c",
+      "sha256": "2d925f2efcdd4acc2a74bcb039c28d3f38f5b63e8c139acd266c91af91590a6c",
+      "executable": false
+    },
+    {
+      "source_path": "data/skills/n8n-self-hosting/DAY2.md",
+      "path": "skills/n8n-self-hosting/DAY2.md",
+      "source_sha256": "9c38b7e56930c6b2dcfeb479ca0e920e7362fc0732769f2eac1aa340aabb6e00",
+      "sha256": "9c38b7e56930c6b2dcfeb479ca0e920e7362fc0732769f2eac1aa340aabb6e00",
+      "executable": false
+    },
+    {
+      "source_path": "data/skills/n8n-self-hosting/QUEUE_MODE.md",
+      "path": "skills/n8n-self-hosting/QUEUE_MODE.md",
+      "source_sha256": "eb335517dd7e64044888b1ecd03d5b546d3a89f4ec96d1c9329980e5939d6232",
+      "sha256": "eb335517dd7e64044888b1ecd03d5b546d3a89f4ec96d1c9329980e5939d6232",
+      "executable": false
+    },
+    {
+      "source_path": "data/skills/n8n-self-hosting/SECURITY.md",
+      "path": "skills/n8n-self-hosting/SECURITY.md",
+      "source_sha256": "7b481a47b2c3ca4408bb55f7339d7a5b928914bb3f3cac5deb374e072864920e",
+      "sha256": "7b481a47b2c3ca4408bb55f7339d7a5b928914bb3f3cac5deb374e072864920e",
+      "executable": false
+    },
+    {
+      "source_path": "data/skills/n8n-self-hosting/SINGLE_MODE.md",
+      "path": "skills/n8n-self-hosting/SINGLE_MODE.md",
+      "source_sha256": "9cfae91215c521e17d6df4db4ad126815dc55cc4218cfe9b485852c99a6a1055",
+      "sha256": "9cfae91215c521e17d6df4db4ad126815dc55cc4218cfe9b485852c99a6a1055",
+      "executable": false
+    },
+    {
+      "source_path": "data/skills/n8n-self-hosting/assets/.env.queue.example",
+      "path": "skills/n8n-self-hosting/assets/.env.queue.example",
+      "source_sha256": "767fad61d4aa1e8714f769be54306511a003e712a4615ac788ee23423fe5a778",
+      "sha256": "767fad61d4aa1e8714f769be54306511a003e712a4615ac788ee23423fe5a778",
+      "executable": false
+    },
+    {
+      "source_path": "data/skills/n8n-self-hosting/assets/.env.single.example",
+      "path": "skills/n8n-self-hosting/assets/.env.single.example",
+      "source_sha256": "f444f64e5e9665e17d56be8daf952c51e63febfe139f4a00e0f97f0347da4a9e",
+      "sha256": "f444f64e5e9665e17d56be8daf952c51e63febfe139f4a00e0f97f0347da4a9e",
+      "executable": false
+    },
+    {
+      "source_path": "data/skills/n8n-self-hosting/assets/Caddyfile",
+      "path": "skills/n8n-self-hosting/assets/Caddyfile",
+      "source_sha256": "33347a170064b94237b30309ba59b91d1c80fa933bf65f7bda1d654b55ca8fd4",
+      "sha256": "33347a170064b94237b30309ba59b91d1c80fa933bf65f7bda1d654b55ca8fd4",
+      "executable": false
+    },
+    {
+      "source_path": "data/skills/n8n-self-hosting/assets/docker-compose.queue.yml",
+      "path": "skills/n8n-self-hosting/assets/docker-compose.queue.yml",
+      "source_sha256": "d0739ad17bd3b3e28d301445f7f6ad1a3ab2e91bdcb71ac8bc2e5a3ad0edbc82",
+      "sha256": "d0739ad17bd3b3e28d301445f7f6ad1a3ab2e91bdcb71ac8bc2e5a3ad0edbc82",
+      "executable": false
+    },
+    {
+      "source_path": "data/skills/n8n-self-hosting/assets/docker-compose.single.yml",
+      "path": "skills/n8n-self-hosting/assets/docker-compose.single.yml",
+      "source_sha256": "cdc9e9c7d389cfcda76c5e419af316a450c9daa12f101e0e962f92b4a9dd422e",
+      "sha256": "cdc9e9c7d389cfcda76c5e419af316a450c9daa12f101e0e962f92b4a9dd422e",
+      "executable": false
+    },
+    {
+      "source_path": "data/skills/n8n-self-hosting/assets/init-data.sh",
+      "path": "skills/n8n-self-hosting/assets/init-data.sh",
+      "source_sha256": "f0a71d0edb738de8c6aceed109291678885f3312bca0beb18413995db10f652a",
+      "sha256": "f0a71d0edb738de8c6aceed109291678885f3312bca0beb18413995db10f652a",
+      "executable": true
+    }
+  ]
+}

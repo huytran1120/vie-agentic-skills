@@ -1,6 +1,6 @@
 # Vie Agentic Skill (VAS) - Catalog
 
-Tổng hợp **3,872** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
+Tổng hợp **3,873** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
 
 | Danh mục | Số lượng | Lệnh cài đặt nhanh |
 | :--- | :---: | :--- |
@@ -21,7 +21,7 @@ Tổng hợp **3,872** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **api-integration** | 45 skills | `./vas install --category api-integration --target codex` |
 | **app-builder** | 4 skills | `./vas install --category app-builder --target codex` |
 | **architecture** | 35 skills | `./vas install --category architecture --target codex` |
-| **automation** | 64 skills | `./vas install --category automation --target codex` |
+| **automation** | 65 skills | `./vas install --category automation --target codex` |
 | **backend** | 46 skills | `./vas install --category backend --target codex` |
 | **blender** | 94 skills | `./vas install --category blender --target codex` |
 | **blockchain** | 13 skills | `./vas install --category blockchain --target codex` |
@@ -594,7 +594,7 @@ Tổng hợp **3,872** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `software-architecture` | `critical` | Guide for quality focused software architecture. This skill should be used wh... |
 | `stack-diagram` | `safe` | Create cloud-architecture-style diagrams of tech stacks, system architectures... |
 
-### AUTOMATION (64 skills)
+### AUTOMATION (65 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
@@ -642,6 +642,7 @@ Tổng hợp **3,872** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `n8n-mcp-tools-expert` | `critical` | Expert guide for using n8n-mcp MCP tools effectively. Use when searching for ... |
 | `n8n-multi-instance` | `critical` | Select, verify, and safely switch n8n MCP instances across production, stagin... |
 | `n8n-node-configuration` | `critical` | Operation-aware node configuration guidance. Use when configuring nodes, unde... |
+| `n8n-self-hosting` | `safe` | Deploy a production self-hosted n8n end-to-end to a fresh Linux VM over SSH, ... |
 | `n8n-subworkflows` | `critical` | Build reusable n8n sub-workflows with typed inputs, all-vs-each execution, di... |
 | `n8n-validation-expert` | `critical` | Expert guide for interpreting and fixing n8n validation errors. |
 | `n8n-workflow-patterns` | `critical` | Proven architectural patterns for building n8n workflows. |

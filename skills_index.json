@@ -43994,6 +43994,35 @@
     "source": "community"
   },
   {
+    "id": "n8n-self-hosting",
+    "canonical_id": "n8n-self-hosting",
+    "name": "n8n-self-hosting",
+    "path": "skills/n8n-self-hosting",
+    "description": "Deploy a production self-hosted n8n end-to-end to a fresh Linux VM over SSH, using Docker Compose behind a Caddy reverse proxy with automatic HTTPS. Use whenever the user wants to self-host, install, set up, provision, or deploy n8n on their own server/VPS/box (Hetzner, DigitalOcean, AWS EC2, bare metal, etc.) — in either single/regular mode or queue mode with workers — or to update, back up, restore, or harden such an instance. This is for SELF-HOSTED n8n (Docker), not n8n Cloud and not building workflows. The skill makes the agent ask single-vs-queue first, collect the domain/SSH/timezone inputs, generate fresh secrets on the box, and bring the stack up with TLS. Trigger on 'deploy n8n', 'self-host n8n', 'install n8n on my server', 'n8n docker compose', 'n8n queue mode / workers / scaling', 'n8n reverse proxy / SSL', 'back up / update my n8n', or 'we don't want to give every user the OAuth client secret' / 'enable the Sign in with Google button' (credential overwrites).",
+    "category": "automation",
+    "tags": [
+      "n8n",
+      "self-hosting",
+      "docker",
+      "docker-compose",
+      "postgres",
+      "redis",
+      "caddy",
+      "queue-mode",
+      "devops",
+      "automation",
+      "n8n-mcp"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/czlonkowski/n8n-mcp/tree/1c755c5c8d99eb71faade17753a7f24138f4212c/data/skills/n8n-self-hosting",
+    "source_repo": "czlonkowski/n8n-mcp",
+    "author": "Romuald Czlonkowski",
+    "license": "MIT",
+    "license_source": "https://github.com/czlonkowski/n8n-mcp/blob/1c755c5c8d99eb71faade17753a7f24138f4212c/LICENSE",
+    "source_revision": "1c755c5c8d99eb71faade17753a7f24138f4212c",
+    "source_path": "data/skills/n8n-self-hosting/SKILL.md"
+  },
+  {
     "id": "n8n-subworkflows",
     "canonical_id": "n8n-subworkflows",
     "name": "n8n-subworkflows",
