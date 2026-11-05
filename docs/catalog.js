@@ -726,7 +726,7 @@
   document.addEventListener('click', event => {
     if (event.target.closest('a[href="#quickstart"]')) byId('cli-setup').open = true;
     const link = event.target.closest('[data-library-link]');
-    if (link && state.selected) {
+    if (link && state.selected && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey && (event.button ?? 0) === 0) {
       event.preventDefault();
       syncUrl();
       state.selected = null;

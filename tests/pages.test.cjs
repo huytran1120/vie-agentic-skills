@@ -1046,6 +1046,23 @@ test('header navigation makes one history entry and saves the outgoing reader sc
   }
 });
 
+test('modified header clicks retain the browser new-tab behavior and the current reader', async () => {
+  const window = languageWindow('?skill=code-review');
+  const runtime = browserRuntime(async url => url === './skills.min.json'
+    ? { ok: true, json: async () => skills } : { ok: true, text: async () => '# Runbook' }, window);
+  await new Promise(setImmediate);
+  const link = { getAttribute: () => '#catalog' };
+  for (const modifier of [{ metaKey: true }, { ctrlKey: true }, { shiftKey: true }, { button: 1 }]) {
+    runtime.document.listeners.get('click')({
+      ...modifier,
+      target: { closest: selector => selector === '[data-library-link]' ? link : null },
+      preventDefault() { assert.fail('A modified link click must retain native browser behavior'); }
+    });
+    assert.equal(window.location.search.includes('skill=code-review'), true);
+    assert.equal(runtime.elements.get('library-view').hidden, true);
+  }
+});
+
 test('language switching works during loading and preserves query, agent and privacy', async () => {
   let release;
   const window = languageWindow('?q=docker&agent=codex&sources=blender');
