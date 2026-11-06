@@ -296,6 +296,8 @@ Trước khi cập nhật giao diện Vercel, chạy `python3 scripts/verify_ver
 
 Bản dựng website nằm tại `_site/`. **Vercel là nơi phát triển và xuất bản website chính:** [thư viện skill](https://vie-agentic-skills.vercel.app/) và [Blog / Hướng dẫn](https://vie-agentic-skills.vercel.app/blog/). Khi push lên `main`, kết nối GitHub–Vercel sẽ build theo [vercel.json](vercel.json).
 
+**Thống kê truy cập:** xem Visitors và Page Views trong [Vercel Web Analytics](https://vercel.com/huytran1120/vie-agentic-skills/analytics). Build trên Vercel (`VERCEL=1`) tự chèn mã đo vào trang chủ, trang Blog và từng bài viết; dùng endpoint do Vercel cung cấp khi có. Bản xem trước local không chèn mã đo. URL gửi đi bỏ query và fragment, nên các màn hình skill dạng `?skill=...` được gom về `/`; mỗi bài Blog vẫn được thống kê theo đường dẫn riêng. Dữ liệu bắt đầu từ khi mã đo được triển khai, không phải toàn bộ lịch sử truy cập trước đó.
+
 **GitHub Pages giữ nguyên bản đã xuất bản.** Dự án đã bỏ workflow triển khai Pages; các thay đổi mới không cập nhật website cũ, không thay nó bằng trang chuyển hướng và không gỡ website đang chạy.
 
 **Budget dung lượng cho Vercel:** [vercel-budget.json](vercel-budget.json) đặt cảnh báo ở **1 GB** và dừng build khi vượt **1,5 GB** (1 GB = 1.000.000.000 byte). Đây là ngân sách do dự án đặt để kiểm soát tăng trưởng, không phải giới hạn cứng của nhà cung cấp. CI kiểm tra budget này; log báo tổng dung lượng cùng 5 thư mục lớn nhất.

@@ -2,6 +2,7 @@
 """Stage the Vercel website with content-versioned CSS and script URLs."""
 
 from hashlib import sha256
+from html import escape
 import json
 import os
 from pathlib import Path, PurePosixPath
@@ -15,6 +16,39 @@ ROOT = Path(__file__).resolve().parents[1]
 REPOSITORY = "huytran1120/vie-agentic-skills"
 EXCLUDED = {"__pycache__", ".DS_Store"}
 PAGES_LIMIT_BYTES = 1_000_000_000
+
+
+def web_analytics_snippet(root):
+    """Use Vercel's client routes without adding tracking to local previews."""
+    if os.environ.get("VERCEL") != "1":
+        return ""
+    config = json.loads(os.environ.get("VERCEL_OBSERVABILITY_CLIENT_CONFIG") or "{}")
+    analytics = config.get("analytics", {}) if isinstance(config, dict) else None
+    if not isinstance(analytics, dict):
+        raise ValueError("Invalid Vercel Web Analytics client configuration")
+    attributes = {"src": analytics.get("scriptSrc", "/_vercel/insights/script.js")}
+    for key, attribute in (("viewEndpoint", "data-view-endpoint"),
+                           ("eventEndpoint", "data-event-endpoint"),
+                           ("sessionEndpoint", "data-session-endpoint")):
+        if key in analytics:
+            attributes[attribute] = analytics[key]
+    for value in attributes.values():
+        if not isinstance(value, str) or not re.fullmatch(r'/[^/\s"\'<>?#\\][^\s"\'<>?#\\]*', value):
+            raise ValueError("Vercel Web Analytics routes must be root-relative paths")
+    version = sha256((root / "docs/analytics.js").read_bytes()).hexdigest()[:12]
+    routes = " ".join(f'{key}="{escape(value, quote=True)}"' for key, value in attributes.items())
+    return (f'<script id="vas-analytics-bootstrap" defer src="/analytics.js?v={version}"></script>\n'
+            f'<script id="vas-web-analytics" defer {routes}></script>')
+
+
+def inject_web_analytics(source, snippet):
+    if not snippet:
+        return source
+    if 'id="vas-web-analytics"' in source or 'id="vas-analytics-bootstrap"' in source:
+        raise ValueError("Web Analytics must be injected once by the Vercel build")
+    if len(re.findall(r"</head\s*>", source, flags=re.I)) != 1:
+        raise ValueError("Web Analytics requires one closing head element")
+    return re.sub(r"</head\s*>", lambda match: snippet + "\n" + match.group(0), source, count=1, flags=re.I)
 
 
 def load_size_budget(root, target="vercel"):
@@ -175,6 +209,7 @@ def installation_manifests(root, revision=None):
 
 def build(root=ROOT, revision=None, report=False):
     budget = load_size_budget(root)
+    analytics = web_analytics_snippet(root)
     output = root / "_site"
     sources = (root / "docs", root / "skills")
     for source in sources:
@@ -212,7 +247,7 @@ def build(root=ROOT, revision=None, report=False):
     )
     for name in documents:
         shutil.copy2(root / name, output / name)
-    (output / "index.html").write_text(html)
+    (output / "index.html").write_text(inject_web_analytics(html, analytics))
     # Static guides share catalog assets; version them just like the homepage.
     for page in (output / "blog").rglob("*.html"):
         def version_guide_asset(match):
@@ -228,8 +263,8 @@ def build(root=ROOT, revision=None, report=False):
                         lambda match: match.group(1) +
                         (f"{len(manifests):,}".replace(",", ".") if match.group(2) == "vi"
                          else f"{len(manifests):,}") + match.group(3), page.read_text())
-        page.write_text(re.sub(r'(href|src)="([^"?#]+\.(?:css|js))"',
-                               version_guide_asset, source))
+        source = re.sub(r'(href|src)="([^"?#]+\.(?:css|js))"', version_guide_asset, source)
+        page.write_text(inject_web_analytics(source, analytics))
 
     for skill_id, manifest in manifests.items():
         destination = output / "install-manifests" / f"{skill_id}.json"
