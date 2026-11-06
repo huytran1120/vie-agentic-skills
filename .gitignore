@@ -54,3 +54,4 @@ env/
 .agents/skills/*
 !.agents/skills/.gitkeep
 !.agents/skills/vie-agentic-skill
+.vercel

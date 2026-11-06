@@ -671,7 +671,12 @@
       const destination = window.location.href;
       // Browsers restore their own persisted scroll after popstate has finished.
       // Reapply this SPA entry's context afterward without intercepting fragment-only history.
-      setTimeout(() => { if (window.location.href === destination) restoreScroll(); }, 0);
+      setTimeout(() => {
+        if (window.location.href !== destination) return;
+        // Native fragment restoration can move focus after popstate has returned.
+        if (previous && !state.selected) focusLibrarySkill(previous);
+        restoreScroll();
+      }, 0);
     }
   }
   async function loadCatalog() {
@@ -686,7 +691,7 @@
         data.forEach(skill => skillUrl(skill, skillBase)); state.skills = data; state.loaded = true;
         renderNavigation(); renderCategories();
         if (byId('filters-dialog').open) renderMobileFilters();
-        validateState(); byId('search-input').value = state.query; renderResults();
+        validateState(); byId('search-input').value = state.query; renderResults(); revealLibraryFragment();
         return true;
       } catch (error) { console.error('Cannot load the VAS catalog:', error); byId('error-state').hidden = false; byId('results-status').textContent = t('catalog.error'); return false; }
       finally { byId('loading-state').hidden = true; byId('skills-results').setAttribute('aria-busy', 'false'); loadingPromise = null; }
@@ -720,7 +725,7 @@
   });
   document.addEventListener('input', event => { if (event.target.id === 'project-path') { state.projectPath = event.target.value; syncInstallation(); } });
   if (typeof window !== 'undefined') window.addEventListener('popstate', restoreLocation);
-  if (typeof window !== 'undefined') window.addEventListener('hashchange', syncWebsiteNotice);
+  if (typeof window !== 'undefined') window.addEventListener('hashchange', () => { syncWebsiteNotice(); revealLibraryFragment(); });
   byId('load-more').addEventListener('click', () => { const firstNew = state.page * pageSize; state.page++; renderResults(); syncUrl(); const next = byId('skills-results').querySelectorAll('.skill-name')[firstNew]; if (next) next.focus({ preventScroll: true }); });
   function selectSource(source) { state.query = ''; state.group = 'all'; state.category = 'all'; state.sources = [source]; byId('search-input').value = ''; applyFilters(); focusSearch(); }
   byId('addy-collection').addEventListener('click', () => selectSource('addy')); byId('matt-collection').addEventListener('click', () => selectSource('mattpocock'));
@@ -768,7 +773,11 @@
     }
   });
   document.addEventListener('click', event => {
-    if (event.target.closest('a[href="#quickstart"]')) byId('cli-setup').open = true;
+    if (event.target.closest('[data-open-cli]')) byId('cli-setup').open = true;
+    const workflow = event.target.closest('[data-workflow-group], [data-workflow-category]');
+    if (workflow && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey && (event.button ?? 0) === 0) {
+      event.preventDefault(); selectWorkflow(workflow); return;
+    }
     const link = event.target.closest('[data-library-link]');
     if (link && state.selected && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey && (event.button ?? 0) === 0) {
       event.preventDefault();
@@ -776,6 +785,7 @@
       state.selected = null;
       const fragment = link.getAttribute('href');
       syncUrl(true, false, fragment); renderResults();
+      revealLibraryFragment();
       document.querySelector(fragment)?.scrollIntoView({ block: 'start', behavior: 'instant' });
       syncUrl();
     }
@@ -801,7 +811,39 @@
       applyFilters();
     }
   });
+  function syncDiscoveryLinks() {
+    const context = `lang=${state.language}&agent=${state.target}`;
+    document.querySelectorAll('[data-guide-link]').forEach(link => {
+      const base = link.getAttribute('href').split('?')[0];
+      link.setAttribute('href', `${base}?${context}`);
+    });
+    document.querySelectorAll('[data-workflow-group], [data-workflow-category]').forEach(link => {
+      const filter = link.dataset.workflowGroup ? `group=${link.dataset.workflowGroup}` : `category=${link.dataset.workflowCategory}`;
+      link.setAttribute('href', `?${context}&${filter}#catalog`);
+    });
+  }
+  function revealLibraryFragment() {
+    if (typeof window === 'undefined' || state.selected) return;
+    let id;
+    try { id = decodeURIComponent(window.location.hash.slice(1)); } catch { return; }
+    if (!id) return;
+    const target = document.getElementById(id);
+    if (!target) return;
+    let detail = target.closest('details'), found = false;
+    while (detail) { detail.open = true; found = true; detail = detail.parentElement?.closest('details'); }
+    if (found) target.scrollIntoView({ block: 'start', behavior: 'instant' });
+  }
+  async function selectWorkflow(link) {
+    if (!state.loaded && !(await loadCatalog())) return;
+    syncUrl();
+    state.query = ''; state.sources = []; state.page = 1; state.selected = null;
+    state.group = link.dataset.workflowGroup || 'all';
+    state.category = link.dataset.workflowCategory || 'all';
+    byId('search-input').value = '';
+    syncUrl(true, false, '#catalog'); renderResults(); focusSearch(); syncUrl();
+  }
   function syncHeroAgent() {
+    syncDiscoveryLinks();
     const agent = agents.find(agent => agent[0] === state.target);
     const label = agent ? agentLabel(agent) : 'Antigravity';
     if (typeof window !== 'undefined' && window.VASMotion) window.VASMotion.setAgent(label, agents.map(agentLabel));
@@ -821,6 +863,6 @@
   });
   byId('hero-explore').addEventListener('click', focusSearch);
   byId('language-toggle').addEventListener('click', changeLanguage);
-  applyLanguage();
+  applyLanguage(); revealLibraryFragment();
   byId('search-input').value = state.query; loadCatalog();
 })();

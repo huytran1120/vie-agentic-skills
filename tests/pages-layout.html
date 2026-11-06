@@ -31,6 +31,7 @@
     for (let attempt = 0; attempt < 200 && !d.querySelector('[data-skill]'); attempt++) await wait(25);
     check(Boolean(d.querySelector('[data-skill]')), 'Catalog must load real results');
     check(Boolean(w.VASMotion), 'Motion layer must initialize');
+    check(!d.getElementById('source-collections').open, 'Source collections must stay secondary on a fresh homepage');
     const agent = d.getElementById('hero-agent');
     const heading = d.getElementById('intro-title');
     const cta = d.getElementById('hero-explore');
@@ -93,6 +94,73 @@
     }
     frame.style.width = '390px';
     await wait(80);
+    // Keep independent task/guide scenarios in their own document. Chromium limits
+    // rapid history IPC writes per frame; the lifecycle flow below already exercises
+    // many installs and should not share that synthetic throughput with these cases.
+    const workflowFrame = document.createElement('iframe');
+    workflowFrame.style.cssText = 'display:block;border:0;height:1000px;width:390px';
+    const workflowReady = new Promise(resolve => { workflowFrame.onload = resolve; });
+    workflowFrame.src = `${page}?lang=vi&workflow-check=${Date.now()}`;
+    document.body.append(workflowFrame);
+    try {
+      await workflowReady;
+      const w = workflowFrame.contentWindow, d = workflowFrame.contentDocument;
+      await waitFor(() => d.querySelector('#skills-results [data-skill]'), 'Workflow catalog must load');
+      w.addEventListener('error', event => errors.push(`Workflow browser error: ${event.message}`));
+      const selected = () => new URL(w.location.href).searchParams.get('agent') || 'antigravity';
+      const language = value => { if (d.documentElement.lang !== value) d.getElementById('language-toggle').click(); };
+      const workflowAgent = selected();
+      const workflowChange = (id, value) => {
+        const field = d.getElementById(id);
+        field.value = value;
+        field.dispatchEvent(new w.Event('change', { bubbles: true }));
+      };
+      workflowChange('quick-agent-select', 'claude');
+      for (const locale of ['vi', 'en']) {
+        language(locale);
+        for (const [attribute, value] of [['group', 'web'], ['group', 'testing'], ['group', 'devops'], ['group', 'security'], ['category', 'media']]) {
+          // Begin with incompatible filters so a task cannot accidentally reuse an empty intersection.
+          d.getElementById('youtube-collection').click();
+          workflowChange('category-select', 'security');
+          const search = d.getElementById('search-input');
+          search.value = 'nonexistent-workflow-regression';
+          search.dispatchEvent(new w.Event('input', { bubbles: true }));
+          const task = d.querySelector(`[data-workflow-${attribute}="${value}"]`);
+          check(task?.tagName === 'A' && task.hasAttribute('href'), `${locale}: task ${value} must have a native link fallback`);
+          task.click();
+          const params = new URL(w.location.href).searchParams;
+          check(params.get(attribute) === value, `${locale}: task ${value} must select the requested catalog filter`);
+          check(!params.has('q') && !params.has('sources') && !params.has(attribute === 'group' ? 'category' : 'group'), `${locale}: task ${value} must clear unrelated filters`);
+          check(params.get('agent') === 'claude' && params.get('lang') === locale, `${locale}: task ${value} must preserve agent and language`);
+          check(search.value === '' && d.activeElement === search, `${locale}: task ${value} must expose and focus the search field`);
+          check(d.querySelectorAll('#skills-results [data-skill]').length > 0, `${locale}: task ${value} must show real results`);
+        }
+        for (const region of ['.desktop-nav', '#mobile-menu', '.site-footer']) {
+          const blog = d.querySelector(`${region} [data-guide-link]`);
+          check(Boolean(blog), `${locale}: ${region} must link to the separate Blog page`);
+          const destination = new URL(blog.href);
+          check(destination.pathname.endsWith('/blog/') && !destination.hash, `${locale}: ${region} must leave the catalog for Blog`);
+          check(destination.searchParams.get('agent') === 'claude' && destination.searchParams.get('lang') === locale, `${locale}: ${region} Blog link must carry agent and language`);
+          check(!blog.hasAttribute('data-library-link') && !blog.hasAttribute('data-open-cli'), `${locale}: ${region} Blog link must not trigger SPA section navigation or CLI setup`);
+        }
+        const guides = [...d.querySelectorAll('#applications [data-guide-link]')];
+        for (const slug of ['agent-skills-la-gi', 'kiem-thu-web-voi-playwright', 'tao-video-voi-claude-code-remotion']) {
+          const guide = guides.find(link => new URL(link.href).pathname.endsWith(`/blog/${slug}/`));
+          check(Boolean(guide), `${locale}: ${slug} must link to a real article`);
+          const destination = new URL(guide.href);
+          check(destination.searchParams.get('agent') === 'claude' && destination.searchParams.get('lang') === locale, `${locale}: ${slug} must carry the current reader context`);
+          check(!destination.searchParams.has('q') && !destination.searchParams.has('category'), `${locale}: guide links must not inherit unrelated catalog filters`);
+          const response = await w.fetch(guide.href);
+          check(response.ok && (await response.text()).includes('<h1'), `${locale}: ${slug} must load an actual article`);
+        }
+      }
+      d.getElementById('reset-filters').click();
+      workflowChange('quick-agent-select', workflowAgent);
+    } finally { workflowFrame.remove(); }
+    // Retain a catalog fragment in the main history flow: Back must restore the
+    // opened result's focus even after native fragment restoration finishes.
+    d.querySelector('[data-workflow-group="web"]').click();
+    d.getElementById('reset-filters').click();
     const chosenAgent = selected();
     d.getElementById('load-more').click();
     const laterResult = d.querySelectorAll('#skills-results .skill-name')[8];
@@ -242,8 +310,11 @@
     check(!d.getElementById('library-view').hidden, 'Library must be restored after closing detail');
     check(heading.getBoundingClientRect().height < 200, 'Returning to library must not expand the reel');
     check(agent.getBoundingClientRect().width > 20, 'Returning to library must restore the reel width');
-    d.querySelector('a[href="#quickstart"]').click();
-    check(d.getElementById('cli-setup').open, 'CLI help links must reveal setup instructions');
+    d.getElementById('cli-setup').open = false;
+    d.querySelector('a[href="#quickstart"]:not([data-open-cli])').click();
+    check(!d.getElementById('cli-setup').open, 'General getting-started navigation must keep advanced CLI instructions collapsed');
+    d.querySelector('[data-open-cli]').click();
+    check(d.getElementById('cli-setup').open, 'Explicit CLI help must reveal setup instructions');
     d.querySelector('[data-install-skill]').click();
     check(d.activeElement.id === 'agent-select', 'Getting started must reach the actual installation controls');
     check(d.getElementById('cli-installation').open, 'CLI setup links must reveal the CLI controls');
@@ -516,6 +587,14 @@
         return probe.contentDocument;
       };
       localStorage.setItem('vas-language', 'vi');
+      const blenderLanding = await loadProbe('lang=vi#blender');
+      check(blenderLanding.getElementById('source-collections').open, 'Direct Blender fragment must reveal its collapsed source collection');
+      check(blenderLanding.getElementById('blender').getBoundingClientRect().height > 0, 'Direct Blender fragment must expose visible content');
+      blenderLanding.getElementById('source-collections').open = false;
+      probe.contentWindow.location.hash = '#catalog';
+      await wait(30);
+      probe.contentWindow.location.hash = '#blender';
+      await waitFor(() => blenderLanding.getElementById('source-collections').open, 'Hash navigation must reveal collapsed source ancestors');
       const english = await loadProbe('lang=en&skill=blender-skills%2Fblender-director&agent=codex');
       check(english.documentElement.lang === 'en', 'Explicit English deep link must override the saved Vietnamese preference');
       check(english.getElementById('home-link').getAttribute('href') === './?lang=en', 'Home navigation must retain the active language');

@@ -30,6 +30,31 @@ SPEC.loader.exec_module(PAGES)
 
 
 class PagesBuildTests(unittest.TestCase):
+    def test_static_guides_keep_routes_and_refresh_shared_asset_versions(self):
+        with tempfile.TemporaryDirectory(prefix="vie-guide-build-") as temp:
+            root = Path(temp)
+            self.fixture(root)
+            guide = root / "docs/blog/example/index.html"
+            guide.parent.mkdir(parents=True)
+            (root / "docs/blog/blog.css").write_text(".guide { color: inherit; }")
+            guide.write_text('<link href="../../catalog.css"><link href="../blog.css">'
+                             '<script src="https://example.invalid/external.js"></script>'
+                             '<a href="../../?skill=example">Read skill</a>'
+                             '<span data-catalog-count="vi">999</span>'
+                             '<span data-catalog-count="en">999</span>')
+            output = PAGES.build(root, revision=REVISION)
+            first = (output / "blog/example/index.html").read_text()
+            self.assertRegex(first, r'href="../../catalog.css\?v=[0-9a-f]{12}"')
+            self.assertRegex(first, r'href="../blog.css\?v=[0-9a-f]{12}"')
+            self.assertIn('src="https://example.invalid/external.js"', first)
+            self.assertIn('href="../../?skill=example"', first)
+            self.assertIn('<span data-catalog-count="vi">2</span>', first)
+            self.assertIn('<span data-catalog-count="en">2</span>', first)
+            with (root / "docs/catalog.css").open("a") as shared:
+                shared.write("body { line-height: 1.7; }")
+            PAGES.build(root, revision=REVISION)
+            self.assertNotEqual(first, (output / "blog/example/index.html").read_text())
+
     def test_size_budget_boundaries_and_actionable_reports(self):
         with tempfile.TemporaryDirectory(prefix="vie-size-budget-") as temp:
             output = Path(temp)
@@ -159,7 +184,7 @@ class PagesBuildTests(unittest.TestCase):
         self.assertIn("Sitemap: " + primary + "sitemap.xml", (ROOT / "docs/robots.txt").read_text())
         sitemap = ET.parse(ROOT / "docs/sitemap.xml")
         locations = [node.text for node in sitemap.findall(".//{http://www.sitemaps.org/schemas/sitemap/0.9}loc")]
-        self.assertEqual(locations, [primary])
+        self.assertEqual(set(locations), {primary, *(primary + path for path in ("blog/", "blog/agent-skills-la-gi/", "blog/kiem-thu-web-voi-playwright/", "blog/tao-video-voi-claude-code-remotion/", "blog/thiet-ke-anh-app-store/", "blog/quy-trinh-marketing-voi-ai/"))})
         self.assertEqual(metadata["og:image:secure_url"], metadata["og:image"])
         self.assertEqual(metadata["twitter:image"], metadata["og:image"])
         self.assertEqual(metadata["og:image:type"], "image/png")

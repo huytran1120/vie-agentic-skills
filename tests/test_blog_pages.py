@@ -1,0 +1,200 @@
+"""Validate the static guides and their routes into the real VAS catalog.
+
+These checks inspect the delivered HTML. They do not claim browser rendering,
+English prerendering or search-engine indexing has been verified.
+"""
+
+from html.parser import HTMLParser
+import json
+import re
+from pathlib import Path
+import unittest
+from urllib.parse import parse_qs, unquote, urlsplit
+
+
+ROOT = Path(__file__).resolve().parents[1]
+DOCS = ROOT / "docs"
+PRIMARY = "https://vie-agentic-skills.vercel.app/"
+SLUGS = (
+    "agent-skills-la-gi",
+    "kiem-thu-web-voi-playwright",
+    "tao-video-voi-claude-code-remotion",
+    "thiet-ke-anh-app-store",
+    "quy-trinh-marketing-voi-ai",
+)
+LINKED_SKILLS = {"webapp-testing", "claude-awesome-video-creation", "store-screenshots", "content-strategy", "copywriting"}
+VOID_ELEMENTS = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"}
+
+
+class GuideHTML(HTMLParser):
+    def __init__(self, source):
+        super().__init__()
+        self.nodes = []
+        self.metadata = {}
+        self.ids = []
+        self.stack = []
+        self.text = {"vi": [], "en": []}
+        self.title = []
+        self.h1_count = 0
+        self.h1_text = []
+        self.unlinked_mentions = []
+        self.structured = []
+        self.json_parts = None
+        self.feed(source)
+
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
+        self.nodes.append((tag, attrs))
+        if "id" in attrs:
+            self.ids.append(attrs["id"])
+        if tag == "meta":
+            self.metadata[attrs.get("name", attrs.get("property"))] = attrs.get("content", "")
+        if tag == "h1":
+            self.h1_count += 1
+        if tag == "script" and attrs.get("type") == "application/ld+json":
+            self.json_parts = []
+        if tag not in VOID_ELEMENTS:
+            language = attrs.get("data-language", self.stack[-1][1] if self.stack else None)
+            self.stack.append((tag, language))
+
+    def handle_data(self, value):
+        tags = [tag for tag, _ in self.stack]
+        if not {"a", "script", "style", "pre", "title"}.intersection(tags):
+            self.unlinked_mentions.extend(skill for skill in LINKED_SKILLS
+                                          if re.search(r"(?<![\w/-])" + re.escape(skill) + r"(?![\w/-])", value))
+        if self.json_parts is not None:
+            self.json_parts.append(value)
+        if "title" in tags:
+            self.title.append(value)
+        if "h1" in tags:
+            self.h1_text.append(value)
+        if self.stack and "script" not in tags and "style" not in tags:
+            language = self.stack[-1][1]
+            if language in self.text:
+                self.text[language].append(value)
+
+    def handle_endtag(self, tag):
+        if tag == "script" and self.json_parts is not None:
+            self.structured.append(json.loads("".join(self.json_parts)))
+            self.json_parts = None
+        for index in range(len(self.stack) - 1, -1, -1):
+            if self.stack[index][0] == tag:
+                del self.stack[index:]
+                break
+
+
+class BlogPagesTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.pages = [(DOCS / "blog/index.html", "blog/", False)]
+        cls.pages.extend((DOCS / "blog" / slug / "index.html", f"blog/{slug}/", True) for slug in SLUGS)
+        cls.catalog_ids = {skill["id"] for skill in json.loads((DOCS / "skills.min.json").read_text())}
+
+    def test_static_pages_have_unique_titles_and_canonical_metadata(self):
+        titles = set()
+        for page, route, article in self.pages:
+            with self.subTest(page=route):
+                document = GuideHTML(page.read_text())
+                canonical = PRIMARY + route
+                self.assertEqual(document.h1_count, 1)
+                self.assertTrue("".join(document.h1_text).strip())
+                title = "".join(document.title).strip()
+                self.assertTrue(title)
+                self.assertNotIn(title, titles)
+                titles.add(title)
+                self.assertEqual([attrs["href"] for tag, attrs in document.nodes if tag == "link" and attrs.get("rel") == "canonical"], [canonical])
+                self.assertTrue(document.metadata["description"].strip())
+                self.assertEqual(document.metadata["og:url"], canonical)
+                self.assertEqual(document.metadata["og:type"], "article" if article else "website")
+                for key in ("og:title", "og:description", "twitter:title", "twitter:description"):
+                    self.assertTrue(document.metadata[key].strip(), key)
+                self.assertEqual(document.metadata["twitter:card"], "summary_large_image")
+                self.assertEqual(document.metadata["og:image"], document.metadata["twitter:image"])
+                self.assertTrue(document.metadata["og:image"].startswith(PRIMARY))
+
+    def test_articles_have_valid_blogposting_schema(self):
+        count = 0
+        for page, route, article in self.pages:
+            document = GuideHTML(page.read_text())
+            with self.subTest(page=route):
+                self.assertEqual(len(document.structured), 1)
+                schema = document.structured[0]
+                self.assertEqual(schema["@context"], "https://schema.org")
+                self.assertEqual(schema["url"], PRIMARY + route)
+                self.assertEqual(schema["@type"], "BlogPosting" if article else "CollectionPage")
+                if article:
+                    count += 1
+                    self.assertEqual(schema["mainEntityOfPage"], PRIMARY + route)
+                    self.assertTrue(schema["headline"].strip())
+                    self.assertTrue(schema["author"]["name"].strip())
+                    self.assertTrue(schema["publisher"]["name"].strip())
+        self.assertEqual(count, len(SLUGS))
+
+    def test_every_blog_page_has_a_native_return_and_linked_skill_mentions(self):
+        for page, route, _ in self.pages:
+            document = GuideHTML(page.read_text())
+            with self.subTest(page=route):
+                returns = [attrs for tag, attrs in document.nodes if tag == "a" and "data-library-return" in attrs]
+                self.assertEqual(len(returns), 1)
+                link = urlsplit(returns[0]["href"])
+                self.assertEqual((page.parent / link.path).resolve(), DOCS.resolve())
+                self.assertEqual(link.fragment, "catalog")
+                self.assertEqual(document.unlinked_mentions, [])
+                self.assertTrue(any(tag == "span" and attrs.get("data-catalog-count") == "vi"
+                                    for tag, attrs in document.nodes))
+
+    def test_native_catalog_links_use_real_skill_ids(self):
+        for page, route, article in self.pages:
+            document = GuideHTML(page.read_text())
+            links = [attrs for tag, attrs in document.nodes if tag == "a" and "data-catalog-skill" in attrs]
+            with self.subTest(page=route):
+                if article:
+                    self.assertTrue(links, "Every article must offer a native link to its relevant skill")
+                for attrs in links:
+                    skill_id = attrs["data-catalog-skill"]
+                    self.assertIn(skill_id, self.catalog_ids)
+                    url = urlsplit(attrs["href"])
+                    self.assertFalse(url.scheme)
+                    self.assertEqual((page.parent / unquote(url.path)).resolve(), DOCS.resolve())
+                    query = parse_qs(url.query)
+                    self.assertEqual(query["skill"], [skill_id])
+                    self.assertIn(query["lang"][0], ("vi", "en"))
+                    self.assertTrue(query["agent"][0])
+
+    def test_local_routes_assets_and_ids_resolve(self):
+        for page, route, _ in self.pages:
+            document = GuideHTML(page.read_text())
+            with self.subTest(page=route):
+                self.assertEqual(len(document.ids), len(set(document.ids)), "Duplicate IDs break fragment navigation")
+                for tag, attrs in document.nodes:
+                    for name in ("href", "src"):
+                        if name not in attrs:
+                            continue
+                        raw = attrs[name]
+                        url = urlsplit(raw)
+                        if url.scheme or url.netloc:
+                            self.assertIn(url.scheme, ("https", "http"), raw)
+                            continue
+                        target = (page.parent / unquote(url.path)).resolve() if url.path else page.resolve()
+                        self.assertTrue(target.is_relative_to(DOCS.resolve()), f"Route escapes published docs: {raw}")
+                        self.assertTrue(target.exists(), f"Missing {tag} {name}: {raw}")
+                        if target.is_dir():
+                            self.assertTrue((target / "index.html").is_file(), f"Missing index page: {raw}")
+                        if url.fragment and target == page.resolve():
+                            self.assertIn(unquote(url.fragment), document.ids, raw)
+
+    def test_vietnamese_content_is_static_and_english_reading_is_available(self):
+        for page, route, article in self.pages:
+            document = GuideHTML(page.read_text())
+            with self.subTest(page=route):
+                root = next(attrs for tag, attrs in document.nodes if tag == "html")
+                self.assertEqual(root["lang"], "vi")
+                minimum = 150 if article else 50
+                for language in ("vi", "en"):
+                    self.assertGreater(len(" ".join(document.text[language]).split()), minimum, language)
+                self.assertTrue(any(tag == "button" and attrs.get("id") == "blog-language" for tag, attrs in document.nodes))
+                self.assertTrue(any(tag == "a" and attrs.get("href") == "#guide-main" for tag, attrs in document.nodes))
+
+
+if __name__ == "__main__":
+    unittest.main()

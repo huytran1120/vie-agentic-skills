@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://vie-agentic-skills.vercel.app/</loc></url>
+  <url><loc>https://vie-agentic-skills.vercel.app/blog/</loc></url>
+  <url><loc>https://vie-agentic-skills.vercel.app/blog/agent-skills-la-gi/</loc></url>
+  <url><loc>https://vie-agentic-skills.vercel.app/blog/kiem-thu-web-voi-playwright/</loc></url>
+  <url><loc>https://vie-agentic-skills.vercel.app/blog/tao-video-voi-claude-code-remotion/</loc></url>
+  <url><loc>https://vie-agentic-skills.vercel.app/blog/thiet-ke-anh-app-store/</loc></url>
+  <url><loc>https://vie-agentic-skills.vercel.app/blog/quy-trinh-marketing-voi-ai/</loc></url>
 </urlset>

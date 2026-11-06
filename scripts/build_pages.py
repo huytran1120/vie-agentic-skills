@@ -207,6 +207,24 @@ def build(root=ROOT, revision=None, report=False):
     for name in documents:
         shutil.copy2(root / name, output / name)
     (output / "index.html").write_text(html)
+    # Static guides share catalog assets; version them just like the homepage.
+    for page in (output / "blog").rglob("*.html"):
+        def version_guide_asset(match):
+            value = match.group(2)
+            if re.match(r"^[a-zA-Z][\w+.-]*:|^//", value):
+                return match.group(0)
+            asset = (page.parent / value).resolve()
+            if not asset.is_relative_to(output.resolve()) or not asset.is_file():
+                raise ValueError(f"Missing or invalid guide asset: {page}: {value}")
+            version = sha256(asset.read_bytes()).hexdigest()[:12]
+            return f'{match.group(1)}="{value}?v={version}"'
+        source = re.sub(r'(<span data-catalog-count="(vi|en)">)[^<]*(</span>)',
+                        lambda match: match.group(1) +
+                        (f"{len(manifests):,}".replace(",", ".") if match.group(2) == "vi"
+                         else f"{len(manifests):,}") + match.group(3), page.read_text())
+        page.write_text(re.sub(r'(href|src)="([^"?#]+\.(?:css|js))"',
+                               version_guide_asset, source))
+
     for skill_id, manifest in manifests.items():
         destination = output / "install-manifests" / f"{skill_id}.json"
         destination.parent.mkdir(parents=True, exist_ok=True)

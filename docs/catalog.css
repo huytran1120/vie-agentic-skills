@@ -462,3 +462,50 @@ button.filter-chip { min-height: 32px; }
 .filters-dialog[open] { display: flex; flex-direction: column; overflow: hidden; }
 .filters-dialog .dialog-heading, .filters-dialog .dialog-actions { flex-shrink: 0; }
 #mobile-filter-content { min-height: 0; }
+
+/* Discovery follows the same palette and typography as the original hero. */
+.workflow-list { border-top: 1px solid var(--line); }
+.workflow-row { display: grid; grid-template-columns: 24px minmax(0, 1fr) minmax(180px, .6fr) 20px; align-items: center; gap: 24px; min-height: 110px; padding: 22px 8px; border-bottom: 1px solid var(--line); text-decoration: none; }
+.workflow-row:hover { background: var(--soft); }
+.workflow-row > .icon, .workflow-row > span:last-child { color: var(--accent); }
+.workflow-row h3 { font-size: 20px; font-weight: 600; }
+.workflow-row p { margin-top: 8px; font-size: 14px; color: var(--muted); max-width: 55ch; }
+.workflow-examples { font: 11px/1.8 var(--mono); color: var(--muted); overflow-wrap: anywhere; }
+.applications { padding-block: 64px; }
+.application-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+.application-story { display: flex; align-items: start; flex-direction: column; padding-top: 24px; border-top: 1px solid var(--line); min-width: 0; }
+.application-story h3 { font-size: 22px; font-weight: 600; line-height: 1.35; margin-bottom: 16px; }
+.application-story h3 a { display: block; text-decoration: none; }
+.application-story h3 a:hover { text-decoration: underline; }
+.application-story > p:not(.eyebrow) { color: var(--muted); font-size: 14px; }
+.application-story .story-skills { font: 11px/1.8 var(--mono); overflow-wrap: anywhere; margin-block: 20px; }
+.application-story > .text-link { margin-top: auto; display: inline-flex; align-items: center; min-height: 44px; gap: 8px; }
+.quickstart { border-top: 1px solid var(--line); }
+.website-faq { margin-top: 0; padding-top: 48px; padding-bottom: 64px; border-top: 1px solid var(--line); }
+.website-faq .library-stats { margin-top: 32px; }
+.source-disclosure { margin-block: 24px; border-block: 1px solid var(--line); }
+.source-disclosure > summary, .source-collections > summary { min-height: 48px; padding-block: 12px; font-size: 14px; color: var(--accent); }
+.source-disclosure .source-filters { margin-top: 12px; }
+.source-collections .collection-sources { padding-bottom: 24px; }
+.source-collections .blender-note { margin-top: 0; padding-bottom: 24px; }
+@media (min-width: 901px) and (max-width: 1100px) { .desktop-nav { gap: 16px; } .header-inner { gap: 20px; } }
+@media (max-width: 900px) {
+  .desktop-nav { display: none; }
+  .menu-button { display: inline-flex; }
+  .mobile-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); padding-block: 12px; border-bottom: 1px solid var(--line); }
+  .mobile-nav a { padding-block: 12px; font-size: 14px; text-decoration: none; color: var(--accent); }
+  .workflow-row { grid-template-columns: 24px minmax(0, 1fr) 20px; gap: 18px; }
+  .workflow-examples { display: none; }
+  .application-grid { gap: 24px; }
+  .application-story h3 { font-size: 19px; }
+}
+@media (max-width: 650px) {
+  .support-section { margin-top: 56px; padding-block: 40px; }
+  .workflow-row { padding-block: 22px; }
+  .workflow-row h3 { font-size: 18px; }
+  .application-grid { grid-template-columns: 1fr; gap: 32px; }
+  .application-story h3 { font-size: 23px; max-width: 28ch; }
+  .applications { padding-block: 48px; }
+  .applications .section-heading { align-items: start; flex-direction: column; gap: 12px; }
+  .source-collections .blender-note { flex-direction: column; align-items: start; gap: 16px; }
+}

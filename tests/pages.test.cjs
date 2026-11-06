@@ -162,6 +162,46 @@ test('getting started has usable CLI examples before a skill is selected', () =>
   assert.ok(!/data-copy-element="quickstart-command"[^>]*disabled/.test(html));
 });
 
+test('homepage keeps discovery before guides and offers native links to complete articles', () => {
+  const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
+  const order = ['class="intro"', 'id="catalog"', 'id="showcase"', 'id="applications"', 'id="quickstart"', 'id="faq"'];
+  let previous = -1;
+  for (const marker of order) {
+    const position = html.indexOf(marker);
+    assert.ok(position > previous, `${marker} must follow the previous homepage step`);
+    previous = position;
+  }
+  for (const [name, region, expected] of [
+    ['header', html.match(/<header\b[\s\S]*?<\/header>/)?.[0], 2],
+    ['footer', html.match(/<footer\b[\s\S]*?<\/footer>/)?.[0], 1]
+  ]) {
+    assert.ok(region, `${name} must exist`);
+    const links = [...region.matchAll(/<a\b[^>]*>/g)].map(match => match[0])
+      .filter(tag => /href="\.\/blog\/(?:\?[^"]*)?"/.test(tag));
+    assert.equal(links.length, expected, `${name}: Blog must be a separate page in each navigation surface`);
+    for (const link of links) {
+      assert.ok(link.includes('data-guide-link'), `${name}: Blog must inherit language and agent`);
+      assert.ok(!link.includes('data-library-link') && !link.includes('data-open-cli'), `${name}: Blog navigation must keep native page behavior`);
+    }
+    assert.ok(!region.includes('href="#applications"'), `${name}: Blog navigation must not jump within the catalog`);
+  }
+  assert.match(html, /<details\b[^>]*id="source-collections"/);
+  for (const group of ['web', 'testing', 'devops', 'security']) {
+    assert.match(html, new RegExp(`<a\\b[^>]*data-workflow-group="${group}"[^>]*>`));
+  }
+  assert.match(html, /<a\b[^>]*data-workflow-category="media"[^>]*>/);
+  for (const slug of ['agent-skills-la-gi', 'kiem-thu-web-voi-playwright', 'tao-video-voi-claude-code-remotion']) {
+    const anchor = [...html.matchAll(/<a\b[^>]*>/g)].map(match => match[0])
+      .find(tag => tag.includes('data-guide-link') && tag.includes(`./blog/${slug}/`));
+    assert.ok(anchor, `${slug}: homepage needs a crawlable article link`);
+    const article = fs.readFileSync(path.join(root, 'docs/blog', slug, 'index.html'), 'utf8');
+    assert.match(article, /<h1\b/);
+    assert.match(article, /<meta\b[^>]*name="description"[^>]*content="[^"]+"/);
+    assert.match(article, /<link\b[^>]*rel="canonical"[^>]*href="https:\/\/vie-agentic-skills\.vercel\.app\/blog\//);
+    assert.ok(!article.includes('npx '), `${slug}: guides must retain the repository zero-NPX rule`);
+  }
+});
+
 test('search ranks exact names, name prefixes and tags before description matches', () => {
   const fixtures = [
     { id: 'a-description', category: 'general', description: 'docker frontend' },
@@ -304,6 +344,7 @@ function browserRuntime(fetch, window) {
           focus() { this.focused = true; },
           select() { this.selected = true; },
           scrollIntoView() {},
+          closest() { return null; },
           querySelectorAll() { return []; },
           classList: {
             toggle(name, enabled) { if (enabled) classes.add(name); else classes.delete(name); }
@@ -1109,6 +1150,25 @@ test('returning to the library restores keyboard focus with a search fallback', 
   }
 });
 
+test('Back reapplies the opened result focus after native fragment restoration', async () => {
+  const window = languageWindow('?lang=en&skill=code-review#catalog');
+  const runtime = browserRuntime(async url => url === './skills.min.json'
+    ? { ok: true, json: async () => skills } : { ok: true, text: async () => '# Runbook' }, window);
+  await new Promise(setImmediate);
+  const result = { dataset: { openSkill: 'code-review' }, focused: false,
+    focus(options) { this.focused = true; assert.equal(options.preventScroll, true); } };
+  runtime.elements.get('skills-results').querySelectorAll = () => [result];
+  const destination = new URL(window.location.href);
+  destination.searchParams.delete('skill');
+  window.location.href = destination.href;
+  window.listeners.get('popstate')({ state: { vas: { page: 1, scroll: 900, libraryScroll: 900 } } });
+  assert.equal(result.focused, true, 'Focus must return immediately while restoring the catalog');
+  result.focused = false; // Model native fragment focus moving away after popstate.
+  await new Promise(resolve => setTimeout(resolve, 5));
+  assert.equal(result.focused, true, 'Native fragment focus must not leave keyboard users on BODY');
+  assert.equal(window.scrollY, 900);
+});
+
 test('Back restores the loaded result pages and list scroll without sharing installation settings', async () => {
   const window = languageWindow('?lang=en&agent=codex');
   window.scrollY = 1800;
@@ -1187,6 +1247,23 @@ test('header navigation makes one history entry and saves the outgoing reader sc
     assert.equal(window.scrollY, 2800);
     assert.equal(runtime.elements.get('library-view').hidden, true);
   }
+});
+
+test('separate Blog links leave navigation to the browser without opening CLI or changing the reader', async () => {
+  const window = languageWindow('?lang=en&agent=claude&skill=code-review');
+  const runtime = browserRuntime(async url => url === './skills.min.json'
+    ? { ok: true, json: async () => skills } : { ok: true, text: async () => '# Runbook' }, window);
+  await new Promise(setImmediate);
+  runtime.document.getElementById('cli-setup').open = false;
+  const initial = window.location.href;
+  const blog = { getAttribute: () => './blog/?lang=en&agent=claude', dataset: { guideLink: '' } };
+  runtime.document.listeners.get('click')({
+    target: { closest: selector => selector === '[data-guide-link]' ? blog : null },
+    preventDefault() { assert.fail('Blog must use native navigation to its separate page'); }
+  });
+  assert.equal(runtime.elements.get('cli-setup').open, false);
+  assert.equal(runtime.elements.get('library-view').hidden, true);
+  assert.equal(window.location.href, initial, 'Catalog code must not rewrite the outgoing reader URL');
 });
 
 test('modified header clicks retain the browser new-tab behavior and the current reader', async () => {
