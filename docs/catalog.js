@@ -183,7 +183,7 @@
   function escapeHtml(value) {
     return String(value == null ? '' : value).replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
   }
-  const sourceNames = { mattpocock: 'Matt Pocock', addy: 'Addy Osmani', blender: 'Blender Skills', youtube: 'YouTube Skills', hallmark: 'Hallmark', typesafe: 'TypeSafe AI', android: 'Android Skills', gamedev: 'GameDev Skills', heydamir: 'UI Unslop · Damir Sokolovsky', videoeditor: 'Video Editor · DaVinci Resolve', editonny: 'editonny · Matheus Gomes', teardown: 'Teardown · 3D Simulator', scenario: 'Scenario · Creative AI & DCC', stageshow: 'Stageshow · Benji Taylor', stackdiagram: 'Stack Diagram · caru-ini', gamestudios: 'Claude Code Game Studios · Donchitos', aibusiness: 'AI Business Skills', agency: 'The Agency · AI Specialists', scrapecreators: 'Social Media Research · ScrapeCreators', n8nmcp: 'n8n Self-Hosting · n8n-mcp', appllama: 'Appllama Mobile Design · Appllama', storescreenshots: 'Store Screenshots · thearkxd', effectivehtml: 'Effective HTML · Plannotator', videocreation: 'Video Creation · Haochen SHI' };
+  const sourceNames = { mattpocock: 'Matt Pocock', addy: 'Addy Osmani', blender: 'Blender Skills', youtube: 'YouTube Skills', hallmark: 'Hallmark', typesafe: 'TypeSafe AI', android: 'Android Skills', gamedev: 'GameDev Skills', heydamir: 'UI Unslop · Damir Sokolovsky', videoeditor: 'Video Editor · DaVinci Resolve', editonny: 'editonny · Matheus Gomes', teardown: 'Teardown · 3D Simulator', scenario: 'Scenario · Creative AI & DCC', stageshow: 'Stageshow · Benji Taylor', stackdiagram: 'Stack Diagram · caru-ini', gamestudios: 'Claude Code Game Studios · Donchitos', aibusiness: 'AI Business Skills', agency: 'The Agency · AI Specialists', scrapecreators: 'Social Media Research · ScrapeCreators', n8nmcp: 'n8n Self-Hosting · n8n-mcp', appllama: 'Appllama Mobile Design · Appllama', storescreenshots: 'Store Screenshots · thearkxd', effectivehtml: 'Effective HTML · Plannotator', videocreation: 'Video Creation · Haochen SHI', researchexplainer: 'Research Explainer & Manim · sepi2p' };
   function matchesSource(skill, source) {
     if (source === 'mattpocock') return skill.source_repo === 'mattpocock/skills';
     if (source === 'addy') return normalize(skill.author).includes('addy osmani');
@@ -209,6 +209,7 @@
     if (source === 'storescreenshots') return skill.source_repo === 'thearkxd/store-screenshots-skill';
     if (source === 'effectivehtml') return skill.source_repo === 'plannotator/effective-html';
     if (source === 'videocreation') return skill.source_repo === 'HaochenSHI66/claude-awesome-video-creation';
+    if (source === 'researchexplainer') return skill.source_repo === 'sepi2p/research-explainer-skill';
     return false;
   }
 
@@ -749,6 +750,7 @@
   byId('storescreenshots-collection').addEventListener('click', () => selectSource('storescreenshots'));
   byId('effectivehtml-collection').addEventListener('click', () => selectSource('effectivehtml'));
   byId('videocreation-collection').addEventListener('click', () => selectSource('videocreation'));
+  byId('researchexplainer-collection').addEventListener('click', () => selectSource('researchexplainer'));
   byId('menu-toggle').addEventListener('click', () => { const menu = byId('mobile-menu'); menu.hidden = !menu.hidden; byId('menu-toggle').setAttribute('aria-expanded', String(!menu.hidden)); });
   byId('mobile-menu').addEventListener('click', event => { if (event.target.closest('a')) { byId('mobile-menu').hidden = true; byId('menu-toggle').setAttribute('aria-expanded', 'false'); } });
   byId('theme-toggle').addEventListener('click', event => {

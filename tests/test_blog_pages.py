@@ -34,6 +34,7 @@ SLUGS = (
     "trien-khai-n8n-docker-compose",
     "tu-readme-den-video-demo",
     "ghi-json-an-toan-nhieu-tien-trinh-python",
+    "tao-video-khoa-hoc-manim-3b1b",
 )
 LINKED_SKILLS = {
     "webapp-testing",
@@ -48,6 +49,9 @@ LINKED_SKILLS = {
     "code-review",
     "systematic-debugging",
     "n8n-self-hosting",
+    "research-explainer",
+    "manim-composer",
+    "manimce-best-practices",
     "pdf",
     "docx",
 }

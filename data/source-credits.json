@@ -525,6 +525,13 @@
       "- Provides complete follow-along tutorial/explainer video production from code with Remotion (React): voiceover pipeline, beat-locked timeline, macOS-style glass terminals, animated mascot presenter with lip-sync, segmented rendering, and measured QA.",
       "- Standalone payload preserves upstream Agent Skills specification SKILL.md with complete references (craft rules, finishing, voiceover, mascot, look-tutorial, render-qa, technique library), helper scripts, starters, and the full worked example 'Teach It Once'.",
       "- Installation via `./vas install` only links or copies static files and writes `.vas-manifest.json`. No runtime/dependency is installed, and no external accounts are connected."
+    ],
+    "researchexplainer": [
+      "- **[sepi2p/research-explainer-skill](https://github.com/sepi2p/research-explainer-skill/tree/374ecd10fdf60bd08269ff7f51464f754a504ce7)**: Research-to-video explainer pipeline and Manim animation collection by sepi2p (with companion Manim skills by Adithya S Kolavi and Grant Sanderson) at revision `374ecd10fdf60bd08269ff7f51464f754a504ce7`.",
+      "- Provides 4 modular skills for creating scientifically accurate, 3Blue1Brown-style explainer videos and animations: `research-explainer` (paper-to-video orchestrator, paper diorama, and vertical shorts), `manim-composer` (scene planning and storyboard specifications), `manimce-best-practices` (Manim Community Edition animation rules), and `manimgl-best-practices` (ManimGL interactive OpenGL rules).",
+      "- Standalone payloads preserve upstream Agent Skills specification SKILL.md, 45+ rule files, 80+ example scenes, templates, audio synthesis scripts, and full worked examples (`averaging-noise` and `how-a-network-sees`).",
+      "- Licensing: Root is MIT; `manimgl-best-practices` is licensed under CC BY-NC-SA 4.0; bundled fonts under SIL Open Font License 1.1; sound effects under CC0 1.0; see individual LICENSE and NOTICE.md files.",
+      "- Installation via `./vas install` only links or copies static files and writes `.vas-manifest.json`. No runtime/dependency is installed, and no external accounts are connected."
     ]
   }
 }

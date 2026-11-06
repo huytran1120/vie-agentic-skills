@@ -1,6 +1,6 @@
 # Vie Agentic Skill (VAS) - Catalog
 
-Tổng hợp **3,885** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
+Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
 
 | Danh mục | Số lượng | Lệnh cài đặt nhanh |
 | :--- | :---: | :--- |
@@ -78,7 +78,7 @@ Tổng hợp **3,885** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **lifestyle** | 1 skills | `./vas install --category lifestyle --target codex` |
 | **marketing** | 312 skills | `./vas install --category marketing --target codex` |
 | **mcp** | 8 skills | `./vas install --category mcp --target codex` |
-| **media** | 146 skills | `./vas install --category media --target codex` |
+| **media** | 150 skills | `./vas install --category media --target codex` |
 | **media-processing** | 2 skills | `./vas install --category media-processing --target codex` |
 | **memory** | 7 skills | `./vas install --category memory --target codex` |
 | **meta** | 38 skills | `./vas install --category meta --target codex` |
@@ -3264,7 +3264,7 @@ Tổng hợp **3,885** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `protect-mcp-governance` | `critical` | Agent governance skill for MCP tool calls — Cedar policy authoring, shadow-to... |
 | `serply-search-mcp` | `safe` | Search Google, Bing, Google News and Google Scholar, and read public pages, w... |
 
-### MEDIA (146 skills)
+### MEDIA (150 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
@@ -3296,6 +3296,9 @@ Tổng hợp **3,885** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `lanshu-create-ai-presenter-video` | `critical` | Turn a topic or script into a publish-ready explainer video, led by an AI pre... |
 | `macos-screen-recorder` | `critical` | macOS screen recorder that captures the main display PLUS system audio via Sc... |
 | `magic-animator` | `safe` | AI-powered animation tool for creating motion in logos, UI, icons, and social... |
+| `manim-composer` | `safe` | Trigger when: (1) User wants to create an educational/explainer video, (2) Us... |
+| `manimce-best-practices` | `safe` | Trigger when: (1) User mentions 'manim' or 'Manim Community' or 'ManimCE', (2... |
+| `manimgl-best-practices` | `safe` | Trigger when: (1) User mentions 'manimgl' or 'ManimGL' or '3b1b manim', (2) C... |
 | `md2video-audio` | `critical` | Convert Markdown documents into narrated MP4 videos with synchronized visuals... |
 | `motion-overlays` | `safe` | Brand motion graphics for creator videos - a Remotion component kit (key phra... |
 | `muapi-media` | `critical` | Generate images and videos with MuAPI's schema-driven asynchronous media API ... |
@@ -3313,6 +3316,7 @@ Tổng hợp **3,885** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `remotion-docs` | `unknown` | Search Remotion documentation |
 | `remotion-interactivity` | `unknown` | Structure Remotion markup for interactivity |
 | `remotion-render` | `unknown` | Export a Remotion video |
+| `research-explainer` | `safe` | Make a scientifically accurate, 3Blue1Brown-style explainer video (and option... |
 | `resolve-scripting` | `safe` | Practical DaVinci Resolve Studio scripting knowledge for building edits from ... |
 | `rough-cut` | `safe` | Editorial rules for choosing what to keep in talking-head footage (retakes, f... |
 | `scenario` | `safe` | Use when connecting an AI agent to Scenario (scenario.com) through MCP, or wh... |

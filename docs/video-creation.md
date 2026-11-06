@@ -4,7 +4,7 @@
 
 Đã thêm **1 skill mới (`claude-awesome-video-creation`) / 194 tệp**, không có bản trùng phải bỏ qua.
 Upstream: [`HaochenSHI66/claude-awesome-video-creation`](https://github.com/HaochenSHI66/claude-awesome-video-creation) tại revision `4b0f8d89d50046ac13003e95bcde081e328c2373`.
-Catalog: **3.885 skill / 119 danh mục**.
+Catalog: **3.889 skill / 119 danh mục**.
 
 Kỹ năng **`claude-awesome-video-creation`** do **SHI Haochen ([@HaochenSHI66](https://github.com/HaochenSHI66))** phát triển (dựa trên nền tảng **cinetic** của **Leonxlnx**) dành cho **Google Antigravity**, **OpenAI Codex**, **Claude Code**, **Cursor**, **Windsurf**, **Cline** và **GitHub Copilot CLI**:
 hướng dẫn AI coding agents xây dựng trọn gói video hướng dẫn (tutorial) và video giải thích sản phẩm (explainer) trực tiếp từ code với Remotion (React):
@@ -91,7 +91,7 @@ Từ thư mục checkout VAS:
 
 Added **1 new skill (`claude-awesome-video-creation`) / 194 files**, zero duplicates skipped.
 Upstream: [`HaochenSHI66/claude-awesome-video-creation`](https://github.com/HaochenSHI66/claude-awesome-video-creation) at revision `4b0f8d89d50046ac13003e95bcde081e328c2373`.
-Catalog: **3,885 skills / 119 categories**.
+Catalog: **3,889 skills / 119 categories**.
 
 The **`claude-awesome-video-creation`** skill, authored by **SHI Haochen ([@HaochenSHI66](https://github.com/HaochenSHI66))** and built on **cinetic** by **Leonxlnx** for **Google Antigravity**, **OpenAI Codex**, **Claude Code**, **Cursor**, **Windsurf**, **Cline**, and **GitHub Copilot CLI**, provides an end-to-end engineering playbook for producing follow-along coding tutorials and explainer videos from code using Remotion (React):
 script & voiceover (draft TTS or cloned voice with word-level cues), a beat-locked timeline, macOS-style glass terminals with syntax highlights, an animated mascot presenter with 19 sprites and viseme lip-sync, segmented rendering to bypass headless Chrome GPU freezes, and rigorous automated QA (frozen frame detection, contact sheets, -14 LUFS loudness normalization).

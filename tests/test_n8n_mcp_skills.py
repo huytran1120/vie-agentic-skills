@@ -66,7 +66,7 @@ class N8nMcpSkillsTests(unittest.TestCase):
         # Verify total count and category taxonomy
         categories = {s.get("category", "general") for s in self.index}
         self.assertEqual(len(categories), 119)
-        self.assertEqual(len(self.index), 3885)
+        self.assertEqual(len(self.index), 3889)
 
         self.assertIn("n8n-self-hosting", self.skills_by_id)
         skill = self.skills_by_id["n8n-self-hosting"]

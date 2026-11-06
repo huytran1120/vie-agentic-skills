@@ -640,7 +640,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
   const youtube = catalog.filterSkills(skills, { sources: ['youtube'] });
   assert.equal(youtube.length, 11);
   assert.equal(catalog.filterSkills(skills, { query: 'youtube-agent-skill' }).length, 11);
-  assert.equal(skills.length, 3885);
+  assert.equal(skills.length, 3889);
   for (const skill of youtube) {
     assert.ok(skill.id.startsWith('youtube-agent-skill/'));
     assert.equal(skill.source_repo, 'Jakeschincariol/youtube-agent-skill');
@@ -655,7 +655,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
     assert.deepEqual(state.sources, ['youtube']);
     assert.equal(state.selected, youtube[0].id);
     assert.ok(i18n.translate('collections.youtube', language).startsWith('11 '));
-    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '3.885' : '3,885'));
+    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '3.889' : '3,889'));
   }
   assert.equal(catalog.filterSkills(skills, { sources: ['youtube'], category: 'security' }).length, 0);
   const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
@@ -1784,5 +1784,34 @@ test('videocreation retains exact source filtering, MIT license and agent prompt
   assert.ok(html.includes('name="source" value="videocreation"'));
   assert.ok(html.includes('data-source-count="videocreation">1<'));
   assert.ok(html.includes('id="videocreation-collection"'));
+});
+
+test('researchexplainer retains exact source filtering, MIT / CC licenses and agent prompts', () => {
+  const reSkills = catalog.filterSkills(skills, { sources: ['researchexplainer'] });
+  assert.equal(reSkills.length, 4);
+  assert.equal(catalog.filterSkills(skills, { query: 'sepi2p/research-explainer-skill' }).length, 4);
+  const reSkill = reSkills.find(s => s.id === 'research-explainer');
+  assert.ok(reSkill);
+  assert.equal(reSkill.source_repo, 'sepi2p/research-explainer-skill');
+  assert.equal(reSkill.author, 'sepi2p');
+  assert.ok(reSkill.license.includes('MIT'));
+  assert.equal(reSkill.category, 'media');
+  assert.equal(reSkill.risk, 'safe');
+
+  for (const language of ['vi', 'en']) {
+    assert.ok(i18n.translate('collections.researchexplainer', language).startsWith('4 '));
+    for (const [agent] of catalog.agents.filter(([key]) => key !== 'all')) {
+      const prompt = catalog.agentInstallPrompt(reSkill, agent, language);
+      assert.ok(prompt.includes(`/install-manifests/${reSkill.id}.json`));
+      assert.ok(prompt.includes(catalog.targetFolders[agent]));
+      assert.ok(prompt.includes('SHA-256'));
+      assert.ok(prompt.includes('.vas-manifest.json'));
+    }
+  }
+
+  const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
+  assert.ok(html.includes('name="source" value="researchexplainer"'));
+  assert.ok(html.includes('data-source-count="researchexplainer">4<'));
+  assert.ok(html.includes('id="researchexplainer-collection"'));
 });
 

@@ -40,7 +40,7 @@ class StoreScreenshotsSkillsTests(unittest.TestCase):
         # Verify category taxonomy remains exactly 119
         categories = {s.get("category", "general") for s in self.index}
         self.assertEqual(len(categories), 119)
-        self.assertEqual(len(self.index), 3885)
+        self.assertEqual(len(self.index), 3889)
 
         sid = "store-screenshots"
         self.assertIn(sid, self.skills_by_id)
