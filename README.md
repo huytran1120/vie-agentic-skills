@@ -4,7 +4,7 @@
 
 VAS tập hợp **3.885 skill** thuộc **119 danh mục**, do [Huy Tran](https://github.com/huytran1120) tuyển chọn và duy trì. Bạn có thể tìm quy trình phù hợp với công việc, đọc nội dung rồi cài vào dự án đang dùng với Antigravity, Codex, Claude Code, Cursor, Windsurf, Cline hoặc GitHub Copilot CLI.
 
-**[Mở thư viện skill](https://huytran1120.github.io/vie-agentic-skills/?lang=vi)** · [Xem toàn bộ danh mục](CATALOG.md) · [Báo lỗi hoặc đề xuất](https://github.com/huytran1120/vie-agentic-skills/issues)
+**[Mở thư viện skill trên Vercel](https://vie-agentic-skills.vercel.app/)** · [GitHub Pages](https://huytran1120.github.io/vie-agentic-skills/?lang=vi) · [Xem toàn bộ danh mục](CATALOG.md) · [Báo lỗi hoặc đề xuất](https://github.com/huytran1120/vie-agentic-skills/issues)
 
 Một **skill** là bộ hướng dẫn nghiệp vụ dành cho agent: khi nào áp dụng, cần thông tin gì, các bước thực hiện và cách kiểm tra kết quả. Nội dung chính nằm trong `SKILL.md`; một số skill có thêm mã hỗ trợ, biểu mẫu và tài liệu tham khảo. Cài skill giúp agent tiếp cận quy trình đó; các công cụ, tài khoản hoặc dịch vụ mà quy trình yêu cầu vẫn cần được thiết lập riêng.
 
@@ -25,7 +25,7 @@ Một **skill** là bộ hướng dẫn nghiệp vụ dành cho agent: khi nào 
 
 Đây là cách sử dụng khi bạn muốn cài một skill vào dự án mà không tải toàn bộ kho VAS.
 
-1. Mở [thư viện tiếng Việt](https://huytran1120.github.io/vie-agentic-skills/?lang=vi).
+1. Mở [thư viện tiếng Việt](https://vie-agentic-skills.vercel.app/?lang=vi).
 2. Tìm theo tác vụ, công nghệ, tác giả hoặc nguồn; dùng bộ lọc danh mục để thu hẹp kết quả.
 3. Mở một skill, đọc mô tả và yêu cầu sử dụng, rồi chọn agent đang dùng.
 4. Bấm **Copy prompt** ở kết quả hoặc **Copy Agent Prompt** trong trang chi tiết.
