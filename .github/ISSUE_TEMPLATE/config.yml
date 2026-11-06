@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: "Báo lỗ hổng bảo mật riêng"
+    url: "https://github.com/huytran1120/vie-agentic-skills/security/policy"
+    about: "Xem kênh báo cáo riêng; không đăng chi tiết khai thác trong issue công khai."
+  - name: "Hướng dẫn sử dụng VAS"
+    url: "https://github.com/huytran1120/vie-agentic-skills/blob/main/README.md"
+    about: "Cách tìm skill, chọn agent và cài vào dự án."

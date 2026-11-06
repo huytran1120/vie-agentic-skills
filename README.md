@@ -255,6 +255,8 @@ README này là hướng dẫn sử dụng thống nhất bằng tiếng Việt.
 <a id="dong-gop"></a>
 ## Đóng góp và chạy thử dự án
 
+Xem [hướng dẫn đóng góp](CONTRIBUTING.md) để chọn mẫu issue/PR và các bước kiểm tra. Khi tham gia, tuân thủ [quy tắc ứng xử](CODE_OF_CONDUCT.md). Lỗ hổng cần báo riêng theo [chính sách bảo mật](SECURITY.md); các hỗ trợ và giới hạn về khả năng tiếp cận được ghi trong [ACCESSIBILITY.md](ACCESSIBILITY.md).
+
 Để báo lỗi, mở [GitHub Issues](https://github.com/huytran1120/vie-agentic-skills/issues) và ghi rõ ID skill, agent, lệnh đã chạy, hệ điều hành cùng kết quả mong đợi. Khi đề xuất skill mới, kèm nguồn và giấy phép.
 
 Cấu trúc một skill:
