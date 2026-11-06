@@ -16,6 +16,7 @@ import tempfile
 import threading
 import time
 import unittest
+import xml.etree.ElementTree as ET
 from unittest.mock import patch
 from urllib.parse import urlparse
 from urllib.request import urlopen
@@ -119,20 +120,46 @@ class PagesBuildTests(unittest.TestCase):
             def __init__(self):
                 super().__init__()
                 self.metadata = {}
+                self.links = []
+                self.structured = []
+                self.json_parts = None
 
             def handle_starttag(self, tag, attrs):
+                attrs = dict(attrs)
                 if tag == "meta":
-                    attrs = dict(attrs)
                     key = attrs.get("property", attrs.get("name"))
                     self.metadata[key] = attrs.get("content")
+                elif tag == "link":
+                    self.links.append(attrs)
+                elif tag == "script" and attrs.get("type") == "application/ld+json":
+                    self.json_parts = []
+
+            def handle_data(self, data):
+                if self.json_parts is not None:
+                    self.json_parts.append(data)
+
+            def handle_endtag(self, tag):
+                if tag == "script" and self.json_parts is not None:
+                    self.structured.append(json.loads("".join(self.json_parts)))
+                    self.json_parts = None
 
         parser = MetadataParser()
         parser.feed((ROOT / "docs/index.html").read_text())
         metadata = parser.metadata
         image = urlparse(metadata["og:image"])
         self.assertEqual(image.scheme, "https")
-        self.assertEqual(image.netloc, "huytran1120.github.io")
-        self.assertEqual(image.path, "/vie-agentic-skills/assets/social-preview.png")
+        self.assertEqual(image.netloc, "vie-agentic-skills.vercel.app")
+        self.assertEqual(image.path, "/assets/social-preview.png")
+        primary = "https://vie-agentic-skills.vercel.app/"
+        self.assertEqual([link["href"] for link in parser.links if link.get("rel") == "canonical"], [primary])
+        self.assertEqual(metadata["og:url"], primary)
+        self.assertTrue(all(link["href"].startswith(primary) for link in parser.links if link.get("hreflang")))
+        websites = [entry for document in parser.structured for entry in document.get("@graph", []) if entry.get("@type") == "WebSite"]
+        self.assertEqual([entry["url"] for entry in websites], [primary])
+        self.assertIn("Sitemap: " + primary + "sitemap.xml", (ROOT / "docs/robots.txt").read_text())
+        sitemap = ET.parse(ROOT / "docs/sitemap.xml")
+        locations = [node.text for node in sitemap.findall(".//{http://www.sitemaps.org/schemas/sitemap/0.9}loc")]
+        self.assertEqual(locations, [primary])
         self.assertEqual(metadata["og:image:secure_url"], metadata["og:image"])
         self.assertEqual(metadata["twitter:image"], metadata["og:image"])
         self.assertEqual(metadata["og:image:type"], "image/png")

@@ -8,6 +8,16 @@ const i18n = require('../docs/i18n.js');
 const skills = require('../docs/skills.min.json');
 const root = path.resolve(__dirname, '..');
 
+test('agent installation prompts use the main Vercel website for manifests', () => {
+  const skill = skills.find(row => row.id === 'webapp-testing');
+  assert.equal(catalog.installManifestUrl(skill), 'https://vie-agentic-skills.vercel.app/install-manifests/webapp-testing.json');
+  for (const language of ['vi', 'en']) {
+    const prompt = catalog.agentInstallPrompt(skill, 'codex', language);
+    assert.ok(prompt.includes('https://vie-agentic-skills.vercel.app/install-manifests/webapp-testing.json'));
+    assert.ok(!prompt.includes('huytran1120.github.io'));
+  }
+});
+
 test('GitHub Pages migration links preserve catalog state and runbook fragments on Vercel', () => {
   for (const suffix of ['', '?lang=en&q=docker&agent=codex', '?lang=vi&skill=pdf#runbook-verify-and-report']) {
     const location = new URL('https://huytran1120.github.io/vie-agentic-skills/' + suffix);
@@ -212,7 +222,7 @@ test('the public page has its own identity and supports both local and Pages bui
   assert.ok(html.includes('Nguồn upstream'));
   assert.ok(html.includes('href="https://github.com/huytran1120/vie-agentic-skills/blob/main/README.md"'));
   assert.ok(html.includes('href="https://github.com/huytran1120/vie-agentic-skills/blob/main/CATALOG.md"'));
-  assert.ok(html.includes('https://huytran1120.github.io/vie-agentic-skills/'));
+  assert.ok(html.includes('https://vie-agentic-skills.vercel.app/'));
   assert.ok(html.includes('git clone https://github.com/huytran1120/vie-agentic-skills.git'));
   assert.ok(html.includes('data-skill-base=".."'));
   assert.ok(html.includes('data-theme="light"'));

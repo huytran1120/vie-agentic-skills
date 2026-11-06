@@ -48,6 +48,10 @@
       for (const node of d.querySelectorAll('[data-i18n]')) {
         if (node.id !== 'results-title') check(node.textContent === w.VASI18n.translate(node.dataset.i18n, locale), `${locale}: stale translation ${node.dataset.i18n}`);
       }
+      // A previously hovered/focused desktop link must not leave offscreen ink on mobile.
+      const githubNavigation = d.querySelector('.desktop-nav a[href="https://github.com/huytran1120/vie-agentic-skills"]');
+      githubNavigation.focus({ preventScroll: true });
+      githubNavigation.blur();
       for (const width of [1440, 1024, 768, 390, 320]) {
         frame.style.width = `${width}px`;
         await wait(80);

@@ -12,8 +12,11 @@ or their scripts/assets. Old full-text distribution dumps were not imported.
 Preview from the project root using `python3 -m http.server 8765 --bind 127.0.0.1`
 and open `http://127.0.0.1:8765/docs/`. Local runbook links require serving the
 project root, not just `docs/`. The project repository is
-https://github.com/huytran1120/vie-agentic-skills. The public website is
-https://huytran1120.github.io/vie-agentic-skills/, deployed by `.github/workflows/deploy-pages.yml`.
+https://github.com/huytran1120/vie-agentic-skills. The primary public website is
+https://vie-agentic-skills.vercel.app/, built with `vercel.json`. UX, UI, content,
+and SEO improvements target this primary website. GitHub Pages remains available
+at https://huytran1120.github.io/vie-agentic-skills/ with a notice linking visitors
+to Vercel, deployed by `.github/workflows/deploy-pages.yml`.
 
 ## GitHub Pages publication budget
 

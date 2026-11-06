@@ -69,7 +69,7 @@
   }
   const targetFolders = { antigravity: '.agents/skills', codex: '.codex/skills', claude: '.claude/skills', cursor: '.cursor/skills', windsurf: '.windsurf/skills', cline: '.cline/skills', copilot: '.github/skills' };
   const globalFolders = { antigravity: '~/.gemini/antigravity/skills', codex: '~/.codex/skills', claude: '~/.claude/skills', cursor: '~/.cursor/skills', windsurf: '~/.codeium/windsurf/skills', cline: '~/.cline/skills', copilot: '~/.copilot/skills' };
-  const publishedSite = 'https://huytran1120.github.io/vie-agentic-skills';
+  const publishedSite = 'https://vie-agentic-skills.vercel.app';
   const encodePath = path => path.split('/').map(part => encodeURIComponent(part).replace(/[!'()*]/g, char => '%' + char.charCodeAt(0).toString(16).toUpperCase())).join('/');
   function installManifestUrl(skill, base = publishedSite) {
     if (typeof skill.id !== 'string' || /[\\\x00-\x20\x7f]/.test(skill.id) || skill.id.split('/').some(part => !part || part === '.' || part === '..')) {

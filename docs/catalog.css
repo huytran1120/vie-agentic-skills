@@ -46,8 +46,8 @@ code, kbd, pre { font-family: var(--mono); }
 .brand-name { font-size: 12px; color: var(--muted); }
 .desktop-nav { position: relative; display: flex; align-items: center; gap: 26px; margin-right: auto; }
 .desktop-nav a { position: relative; z-index: 1; color: var(--muted); text-decoration: none; font-size: 13px; padding-block: 14px; }
-.nav-ink { position: absolute; top: 0; left: 0; background: var(--soft); border-radius: 8px; opacity: 0; pointer-events: none; transition: transform .45s cubic-bezier(.2,.85,.25,1.12), width .45s cubic-bezier(.2,.85,.25,1.12), opacity .2s; }
-.nav-ink.is-visible { opacity: 1; }
+.nav-ink { display: none; position: absolute; top: 0; left: 0; background: var(--soft); border-radius: 8px; opacity: 0; pointer-events: none; transition: transform .45s cubic-bezier(.2,.85,.25,1.12), width .45s cubic-bezier(.2,.85,.25,1.12), opacity .2s; }
+.nav-ink.is-visible { display: block; opacity: 1; }
 .desktop-nav a:hover, .text-link:hover { color: var(--ink); }
 .header-actions { display: flex; margin-left: auto; gap: 2px; }
 .button, .icon-button { display: inline-flex; justify-content: center; align-items: center; gap: 10px; min-height: 44px; border: 1px solid transparent; border-radius: 10px; padding: 9px 16px; background: transparent; font-size: 13px; font-weight: 600; text-decoration: none; transition: background-color .2s, transform .2s, border-color .2s; }
@@ -213,6 +213,9 @@ button.filter-chip { min-height: 32px; }
 .quickstart-commands { padding: 12px 0 24px; display: grid; gap: 24px; }
 .quickstart-commands h3 { font-size: 14px; margin-bottom: 12px; }
 .quickstart-commands > p { color: var(--muted); font-size: 12px; }
+.website-faq { margin-top: 48px; display: grid; gap: 12px; }
+.website-faq h2 { margin-bottom: 10px; font-size: 26px; text-wrap: balance; }
+.website-faq details > p { padding-bottom: 20px; max-width: 85ch; color: var(--muted); font-size: 14px; }
 .command-box { display: flex; align-items: center; gap: 16px; padding: 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); min-width: 0; }
 .command-box code { flex: 1; min-width: 0; white-space: pre-wrap; font-size: 12px; overflow-wrap: anywhere; }
 .site-footer { border-top: 1px solid var(--line); padding-block: 32px; }
