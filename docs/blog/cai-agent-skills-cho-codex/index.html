@@ -58,12 +58,12 @@
     <div data-language="vi">
       <p>Theo <a href="https://developers.openai.com/codex/skills">tài liệu Codex</a>, skill trong repository nằm ở <code>.agents/skills</code>; skill cá nhân dùng chung nằm ở <code>~/.agents/skills</code>. Codex tìm các thư mục trong chuỗi từ thư mục làm việc tới gốc repository. Hãy mở đúng dự án trước khi kiểm tra.</p>
       <p>Ở phiên bản VAS được dùng cho bài này, <code>--target codex</code> vẫn ánh xạ tới <code>.codex/skills</code>. Các lệnh bên dưới chủ đích dùng <code>--target workspace</code> và đích <code>.agents/skills</code> theo tài liệu Codex hiện tại. Đây là lựa chọn thư mục cài, không phải đổi ứng dụng đang dùng. Khi dùng Copy Agent Prompt trên website, cũng cần đọc lại đường dẫn đích; đừng mặc định hai thư mục tương đương trên mọi phiên bản.</p>
-      <p>Chuẩn bị Python 3 cho CLI VAS, Git nếu cần clone và một bản Codex có hỗ trợ skills. Cài skill chỉ đưa hướng dẫn và tệp phụ trợ vào máy; công cụ mà runbook sử dụng, chẳng hạn trình duyệt hoặc Playwright, vẫn là yêu cầu riêng.</p>
+      <p>Chuẩn bị Python 3.9+ cho CLI VAS, Git nếu cần clone và một bản Codex có hỗ trợ skills. Cài skill chỉ đưa hướng dẫn và tệp phụ trợ vào máy; công cụ mà runbook sử dụng, chẳng hạn trình duyệt hoặc Playwright, vẫn là yêu cầu riêng.</p>
     </div>
     <div data-language="en" hidden>
       <p>The <a href="https://developers.openai.com/codex/skills">Codex documentation</a> places repository skills in <code>.agents/skills</code> and personal skills in <code>~/.agents/skills</code>. Codex scans locations between the working directory and repository root, so open the intended project when checking discovery.</p>
       <p>In the VAS version used here, <code>--target codex</code> still maps to <code>.codex/skills</code>. These examples deliberately use <code>--target workspace</code> with an explicit <code>.agents/skills</code> destination to match current Codex documentation. This selects an installation folder, not a different application. If you use Copy Agent Prompt on the website, inspect its destination too; the two paths are not interchangeable across every version.</p>
-      <p>Prepare Python 3 for the VAS CLI, Git if cloning is necessary, and a Codex version with skill support. Installing a skill provides instructions and supporting files. Runtime tools used by the runbook, including browsers or Playwright, remain separate prerequisites.</p>
+      <p>Prepare Python 3.9+ for the VAS CLI, Git if cloning is necessary, and a Codex version with skill support. Installing a skill provides instructions and supporting files. Runtime tools used by the runbook, including browsers or Playwright, remain separate prerequisites.</p>
     </div>
     <h2 id="install"><span data-language="vi">2. Cài một skill vào dự án đích</span><span data-language="en" hidden>2. Install into the target project</span></h2>
     <div data-language="vi">

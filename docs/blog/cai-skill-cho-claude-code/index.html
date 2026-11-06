@@ -45,8 +45,8 @@
 <p>The <a href="https://code.claude.com/docs/en/skills">Claude Code documentation</a> uses <code>.claude/skills/skill-name/SKILL.md</code>. Do not flatten multiple runbooks into <code>.claude/skills/SKILL.md</code>. Working directories and nested scopes also matter in monorepos.</p>
 </div>
 <h2 id="install"><span data-language="vi">2. Cài đủ tệp bằng CLI VAS</span><span data-language="en" hidden>2. Install the complete skill with VAS</span></h2>
-<p data-language="vi">Chuẩn bị Python 3 và bản clone VAS. Chạy các lệnh sau từ gốc kho VAS, thay đường dẫn bằng dự án thật. Ví dụ dùng <a data-catalog-skill="webapp-testing" href="../../?lang=vi&amp;skill=webapp-testing&amp;agent=claude">webapp-testing</a> để có một tác vụ kiểm tra nhỏ sau khi cài.</p>
-<p data-language="en" hidden>Prepare Python 3 and a VAS clone. Run these commands from the VAS root and replace the destination with your project. The example uses <a data-catalog-skill="webapp-testing" href="../../?lang=en&amp;skill=webapp-testing&amp;agent=claude">webapp-testing</a> for a small verification task.</p>
+<p data-language="vi">Chuẩn bị Python 3.9+ và bản clone VAS. Chạy các lệnh sau từ gốc kho VAS, thay đường dẫn bằng dự án thật. Ví dụ dùng <a data-catalog-skill="webapp-testing" href="../../?lang=vi&amp;skill=webapp-testing&amp;agent=claude">webapp-testing</a> để có một tác vụ kiểm tra nhỏ sau khi cài.</p>
+<p data-language="en" hidden>Prepare Python 3.9+ and a VAS clone. Run these commands from the VAS root and replace the destination with your project. The example uses <a data-catalog-skill="webapp-testing" href="../../?lang=en&amp;skill=webapp-testing&amp;agent=claude">webapp-testing</a> for a small verification task.</p>
 <pre><code>./vas show webapp-testing
 ./vas install webapp-testing --target claude --mode copy --dest "/absolute/path/to/project/.claude/skills"
 ./vas status --target claude --dest "/absolute/path/to/project/.claude/skills"</code></pre>

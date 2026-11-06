@@ -7,6 +7,7 @@ English prerendering or search-engine indexing has been verified.
 from html.parser import HTMLParser
 import json
 import re
+import shlex
 from pathlib import Path
 import unittest
 from urllib.parse import parse_qs, unquote, urlsplit
@@ -145,6 +146,17 @@ class BlogPagesTests(unittest.TestCase):
         with self.assertRaises(AssertionError):
             exec(compile(before, "blog-debug-before", "exec"), {})
         exec(compile(after, "blog-debug-after", "exec"), {})
+
+    def test_intro_codex_examples_use_current_discovery_for_the_whole_install_lifecycle(self):
+        document = GuideHTML((DOCS / "blog/agent-skills-la-gi/index.html").read_text())
+        for language in ("vi", "en"):
+            commands = [shlex.split(line.strip()) for line in "\n".join(document.text[language]).splitlines()
+                        if line.strip().startswith(("./vas install ", "./vas status ", "./vas uninstall "))]
+            with self.subTest(language=language):
+                self.assertEqual([command[1] for command in commands], ["install", "status", "uninstall"])
+                for command in commands:
+                    self.assertEqual(command[command.index("--target") + 1], "workspace")
+                    self.assertTrue(command[command.index("--dest") + 1].endswith("/.agents/skills"))
 
     def test_static_pages_have_unique_titles_and_canonical_metadata(self):
         titles = set()
