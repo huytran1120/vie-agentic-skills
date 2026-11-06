@@ -155,7 +155,7 @@ class LocalProjectTests(unittest.TestCase):
                     json.loads((destination / ".vas-manifest.json").read_text()), {}
                 )
                 self.assertEqual(
-                    sorted(p.name for p in destination.iterdir()), [".vas-manifest.json"]
+                    sorted(p.name for p in destination.iterdir()), [".vas-manifest.json", ".vas.lock"]
                 )
 
     def test_default_install_still_uses_link_mode(self):

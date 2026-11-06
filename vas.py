@@ -16,6 +16,9 @@ import argparse
 import re
 import stat
 import tempfile
+import errno
+import time
+from contextlib import contextmanager
 from pathlib import Path
 
 # ANSI colors
@@ -50,6 +53,7 @@ REPO_ROOT = Path(__file__).resolve().parent
 SKILLS_DIR = REPO_ROOT / "skills"
 INDEX_FILE = REPO_ROOT / "skills_index.json"
 MANIFEST_NAME = ".vas-manifest.json"
+LOCK_NAME = ".vas.lock"
 
 HOME = Path.home()
 
@@ -348,7 +352,8 @@ def resolve_target_dir(target_type, custom_path=None, is_global=False):
 
 def validate_target_name(name):
     """A receipt may address one immediate child, never a traversable path."""
-    if (not isinstance(name, str) or not name or name in (".", "..", MANIFEST_NAME)
+    if (not isinstance(name, str) or not name or name in (".", "..")
+            or name.rstrip(" .").casefold() in (MANIFEST_NAME, LOCK_NAME)
             or "/" in name or "\\" in name or ":" in name
             or any(ord(char) < 32 or ord(char) == 127 for char in name)):
         raise ValueError(f"Invalid manifest target name: {name!r}")
@@ -413,6 +418,32 @@ def save_manifest(dest_dir, manifest_data):
     finally:
         if temporary is not None:
             temporary.unlink(missing_ok=True)
+
+
+@contextmanager
+def destination_lock(dest_dir):
+    path = dest_dir / LOCK_NAME
+    if path.is_symlink() or (path.exists() and not path.is_file()):
+        raise ValueError(f"Refusing non-regular or symlinked VAS lock: {path}")
+    descriptor = os.open(path, os.O_RDWR | os.O_CREAT | getattr(os, "O_NOFOLLOW", 0), 0o600)
+    with os.fdopen(descriptor, "r+b", buffering=0) as stream:
+        if not stat.S_ISREG(os.fstat(stream.fileno()).st_mode):
+            raise ValueError(f"Refusing non-regular VAS lock: {path}")
+        if os.name == "nt":
+            import msvcrt
+            stream.seek(0)
+            while True:
+                try:
+                    msvcrt.locking(stream.fileno(), msvcrt.LK_NBLCK, 1)
+                    break
+                except OSError as error:
+                    if error.errno not in (errno.EACCES, errno.EAGAIN, errno.EDEADLK):
+                        raise
+                    time.sleep(0.05)
+        else:
+            import fcntl
+            fcntl.flock(stream.fileno(), fcntl.LOCK_EX)
+        yield
 
 
 def target_owners(manifest, target_name):
@@ -689,124 +720,125 @@ def cmd_install(args):
     for dest_dir in dest_dirs:
         dest_dir = dest_dir.resolve()
         dest_dir.mkdir(parents=True, exist_ok=True)
-        manifest = load_manifest(dest_dir)
-        print(f"\n{Colors.BOLD}Installing {len(targets_to_install)} skill(s) for target:{Colors.RESET}")
-        print(f"  Destination: {Colors.CYAN}{dest_dir}{Colors.RESET}")
-        print(f"  Mode:        {Colors.YELLOW}{args.mode}{Colors.RESET}\n")
+        with destination_lock(dest_dir):
+            manifest = load_manifest(dest_dir)
+            print(f"\n{Colors.BOLD}Installing {len(targets_to_install)} skill(s) for target:{Colors.RESET}")
+            print(f"  Destination: {Colors.CYAN}{dest_dir}{Colors.RESET}")
+            print(f"  Mode:        {Colors.YELLOW}{args.mode}{Colors.RESET}\n")
 
-        installed_count = 0
-        for raw_id in targets_to_install:
-            raw_id = raw_id.strip()
-            s_id = resolve_skill_id(raw_id, skills_by_id, aliases)
+            installed_count = 0
+            for raw_id in targets_to_install:
+                raw_id = raw_id.strip()
+                s_id = resolve_skill_id(raw_id, skills_by_id, aliases)
 
-            # Locate source skill directory
-            source_dir = None
-            if s_id in skills_by_id:
-                rel_path = skills_by_id[s_id].get("path", f"skills/{s_id}")
-                candidate = REPO_ROOT / rel_path
-                if candidate.is_dir():
-                    source_dir = candidate
+                # Locate source skill directory
+                source_dir = None
+                if s_id in skills_by_id:
+                    rel_path = skills_by_id[s_id].get("path", f"skills/{s_id}")
+                    candidate = REPO_ROOT / rel_path
+                    if candidate.is_dir():
+                        source_dir = candidate
 
-            if not source_dir:
-                for cand in [SKILLS_DIR / s_id, SKILLS_DIR / raw_id]:
-                    if cand.is_dir() and (cand / "SKILL.md").exists():
-                        source_dir = cand
-                        break
+                if not source_dir:
+                    for cand in [SKILLS_DIR / s_id, SKILLS_DIR / raw_id]:
+                        if cand.is_dir() and (cand / "SKILL.md").exists():
+                            source_dir = cand
+                            break
 
-            if not source_dir or not (source_dir / "SKILL.md").exists():
-                print(f"  {Colors.RED}✗{Colors.RESET} Skill '{raw_id}' not found or missing SKILL.md. Skipped.")
-                total_failed += 1
-                continue
-
-            target_name = validate_target_name(source_dir.name)
-            target_skill_dir = dest_dir / target_name
-            owners = target_owners(manifest, target_name)
-            if any(owner != s_id for owner in owners):
-                print(f"  {Colors.RED}✗{Colors.RESET} Conflict: '{target_name}' belongs to another skill: {', '.join(owners)}. Skipped.")
-                total_failed += 1
-                continue
-            if s_id in manifest and manifest_target(s_id, manifest[s_id]) != target_name:
-                print(f"  {Colors.RED}✗{Colors.RESET} Conflict: {s_id} is recorded at a different destination. Skipped.")
-                total_failed += 1
-                continue
-            if (target_skill_dir.exists() or target_skill_dir.is_symlink()) and s_id not in manifest:
-                print(f"  {Colors.RED}✗{Colors.RESET} Conflict: '{target_name}' is not managed by VAS. Existing contents preserved.")
-                total_failed += 1
-                continue
-
-            # Staging below the source would recursively copy its own output.
-            source_resolved = source_dir.resolve()
-            if dest_dir.is_relative_to(source_resolved):
-                print(f"  {Colors.RED}✗{Colors.RESET} Destination overlaps source directory in catalog. Skipped.")
-                total_failed += 1
-                continue
-            if target_skill_dir.exists() and not target_skill_dir.is_symlink():
-                existing = target_skill_dir.resolve()
-                if existing == source_resolved or source_resolved.is_relative_to(existing):
-                    print(f"  {Colors.RED}✗{Colors.RESET} Destination overlaps or matches source directory in catalog. Skipped.")
+                if not source_dir or not (source_dir / "SKILL.md").exists():
+                    print(f"  {Colors.RED}✗{Colors.RESET} Skill '{raw_id}' not found or missing SKILL.md. Skipped.")
                     total_failed += 1
                     continue
 
-            staging_dir = temporary_slot(dest_dir, target_name, "tmp")
-            backup_dir = None
-            replacement_ready = False
-            try:
-                if args.mode == "link":
+                target_name = validate_target_name(source_dir.name)
+                target_skill_dir = dest_dir / target_name
+                owners = target_owners(manifest, target_name)
+                if any(owner != s_id for owner in owners):
+                    print(f"  {Colors.RED}✗{Colors.RESET} Conflict: '{target_name}' belongs to another skill: {', '.join(owners)}. Skipped.")
+                    total_failed += 1
+                    continue
+                if s_id in manifest and manifest_target(s_id, manifest[s_id]) != target_name:
+                    print(f"  {Colors.RED}✗{Colors.RESET} Conflict: {s_id} is recorded at a different destination. Skipped.")
+                    total_failed += 1
+                    continue
+                if (target_skill_dir.exists() or target_skill_dir.is_symlink()) and s_id not in manifest:
+                    print(f"  {Colors.RED}✗{Colors.RESET} Conflict: '{target_name}' is not managed by VAS. Existing contents preserved.")
+                    total_failed += 1
+                    continue
+
+                # Staging below the source would recursively copy its own output.
+                source_resolved = source_dir.resolve()
+                if dest_dir.is_relative_to(source_resolved):
+                    print(f"  {Colors.RED}✗{Colors.RESET} Destination overlaps source directory in catalog. Skipped.")
+                    total_failed += 1
+                    continue
+                if target_skill_dir.exists() and not target_skill_dir.is_symlink():
+                    existing = target_skill_dir.resolve()
+                    if existing == source_resolved or source_resolved.is_relative_to(existing):
+                        print(f"  {Colors.RED}✗{Colors.RESET} Destination overlaps or matches source directory in catalog. Skipped.")
+                        total_failed += 1
+                        continue
+
+                staging_dir = temporary_slot(dest_dir, target_name, "tmp")
+                backup_dir = None
+                replacement_ready = False
+                try:
+                    if args.mode == "link":
+                        try:
+                            rel_target = os.path.relpath(source_resolved, dest_dir)
+                            os.symlink(rel_target, staging_dir)
+                        except ValueError:
+                            os.symlink(source_resolved, staging_dir)
+                        mode_label = "linked"
+                    else:
+                        shutil.copytree(source_resolved, staging_dir)
+                        mode_label = "copied"
+
+                    if target_skill_dir.exists() or target_skill_dir.is_symlink():
+                        backup_dir = temporary_slot(dest_dir, target_name, "bak")
+                        target_skill_dir.rename(backup_dir)
+
+                    staging_dir.rename(target_skill_dir)
+                    replacement_ready = True
+
+                    updated = dict(manifest)
+                    updated[s_id] = {
+                        "installed_at": target_skill_dir.stat().st_mtime,
+                        "mode": args.mode,
+                        "source": str(source_resolved),
+                        "target_name": target_name,
+                        "category": skills_by_id.get(s_id, {}).get("category", "general")
+                    }
+                    # Keep the old payload until its replacement receipt is durable.
+                    save_manifest(dest_dir, updated)
+                except Exception as e:
+                    total_failed += 1
+                    recovery_error = None
                     try:
-                        rel_target = os.path.relpath(source_resolved, dest_dir)
-                        os.symlink(rel_target, staging_dir)
-                    except ValueError:
-                        os.symlink(source_resolved, staging_dir)
-                    mode_label = "linked"
-                else:
-                    shutil.copytree(source_resolved, staging_dir)
-                    mode_label = "copied"
+                        remove_installation(staging_dir)
+                        if replacement_ready:
+                            remove_installation(target_skill_dir)
+                        if backup_dir and (backup_dir.exists() or backup_dir.is_symlink()):
+                            backup_dir.rename(target_skill_dir)
+                    except OSError as error:
+                        recovery_error = error
+                    # Recovery must not depend on an available/Unicode-capable terminal.
+                    print(f"  {Colors.RED}✗{Colors.RESET} Failed to install {s_id}: {e}")
+                    if recovery_error is not None:
+                        print(f"  Recovery needs attention; original backup: {backup_dir}. {recovery_error}", file=sys.stderr)
+                    continue
 
-                if target_skill_dir.exists() or target_skill_dir.is_symlink():
-                    backup_dir = temporary_slot(dest_dir, target_name, "bak")
-                    target_skill_dir.rename(backup_dir)
+                manifest = updated
+                installed_count += 1
+                total_installed += 1
+                if backup_dir:
+                    try:
+                        remove_installation(backup_dir)
+                    except OSError as cleanup_error:
+                        print(f"  Warning: installation saved; old backup retained at {backup_dir}: {cleanup_error}", file=sys.stderr)
+                print(f"  {Colors.GREEN}✓{Colors.RESET} {s_id} ({mode_label})")
 
-                staging_dir.rename(target_skill_dir)
-                replacement_ready = True
-
-                updated = dict(manifest)
-                updated[s_id] = {
-                    "installed_at": target_skill_dir.stat().st_mtime,
-                    "mode": args.mode,
-                    "source": str(source_resolved),
-                    "target_name": target_name,
-                    "category": skills_by_id.get(s_id, {}).get("category", "general")
-                }
-                # Keep the old payload until its replacement receipt is durable.
-                save_manifest(dest_dir, updated)
-            except Exception as e:
-                total_failed += 1
-                recovery_error = None
-                try:
-                    remove_installation(staging_dir)
-                    if replacement_ready:
-                        remove_installation(target_skill_dir)
-                    if backup_dir and (backup_dir.exists() or backup_dir.is_symlink()):
-                        backup_dir.rename(target_skill_dir)
-                except OSError as error:
-                    recovery_error = error
-                # Recovery must not depend on an available/Unicode-capable terminal.
-                print(f"  {Colors.RED}✗{Colors.RESET} Failed to install {s_id}: {e}")
-                if recovery_error is not None:
-                    print(f"  Recovery needs attention; original backup: {backup_dir}. {recovery_error}", file=sys.stderr)
-                continue
-
-            manifest = updated
-            installed_count += 1
-            total_installed += 1
-            if backup_dir:
-                try:
-                    remove_installation(backup_dir)
-                except OSError as cleanup_error:
-                    print(f"  Warning: installation saved; old backup retained at {backup_dir}: {cleanup_error}", file=sys.stderr)
-            print(f"  {Colors.GREEN}✓{Colors.RESET} {s_id} ({mode_label})")
-
-        print(f"\n{Colors.GREEN}{Colors.BOLD}✓ Successfully installed {installed_count} skill(s) into {dest_dir}.{Colors.RESET}")
+            print(f"\n{Colors.GREEN}{Colors.BOLD}✓ Successfully installed {installed_count} skill(s) into {dest_dir}.{Colors.RESET}")
 
     if total_installed == 0 or total_failed > 0:
         sys.exit(1)
@@ -829,70 +861,71 @@ def cmd_uninstall(args):
 
     for dest_dir in dest_dirs:
         dest_dir = dest_dir.resolve()
-        manifest = load_manifest(dest_dir)
-        print(f"\n{Colors.BOLD}Uninstalling from {dest_dir}:{Colors.RESET}\n")
-        removed_count = 0
-        for raw_id in to_remove:
-            clean_id = raw_id.strip()
-            s_id = resolve_skill_id(clean_id, skills_by_id, aliases)
+        with destination_lock(dest_dir):
+            manifest = load_manifest(dest_dir)
+            print(f"\n{Colors.BOLD}Uninstalling from {dest_dir}:{Colors.RESET}\n")
+            removed_count = 0
+            for raw_id in to_remove:
+                clean_id = raw_id.strip()
+                s_id = resolve_skill_id(clean_id, skills_by_id, aliases)
 
-            receipt_key = None
-            if s_id in manifest:
-                receipt_key = s_id
-            elif clean_id in manifest:
-                receipt_key = clean_id
-            elif s_id not in skills_by_id and clean_id not in skills_by_id:
-                # Legacy/removed catalog IDs may be addressed by a unique basename.
-                matches = [key for key, entry in manifest.items()
-                           if manifest_target(key, entry) == clean_id or key.rsplit("/", 1)[-1] == clean_id]
-                if len(matches) == 1:
-                    receipt_key = matches[0]
+                receipt_key = None
+                if s_id in manifest:
+                    receipt_key = s_id
+                elif clean_id in manifest:
+                    receipt_key = clean_id
+                elif s_id not in skills_by_id and clean_id not in skills_by_id:
+                    # Legacy/removed catalog IDs may be addressed by a unique basename.
+                    matches = [key for key, entry in manifest.items()
+                               if manifest_target(key, entry) == clean_id or key.rsplit("/", 1)[-1] == clean_id]
+                    if len(matches) == 1:
+                        receipt_key = matches[0]
 
-            if receipt_key is None:
-                print(f"  {Colors.RED}✗{Colors.RESET} {clean_id} has no matching VAS receipt; existing contents preserved.")
-                total_failed += 1
-                continue
-
-            target_name = manifest_target(receipt_key, manifest[receipt_key])
-            owners = target_owners(manifest, target_name)
-            if owners != [receipt_key]:
-                print(f"  {Colors.RED}✗{Colors.RESET} Conflict: '{target_name}' has multiple recorded owners; nothing removed.")
-                total_failed += 1
-                continue
-            target_skill_dir = dest_dir / target_name
-            updated = {key: entry for key, entry in manifest.items() if key != receipt_key}
-
-            if target_skill_dir.exists() or target_skill_dir.is_symlink():
-                backup_dir = temporary_slot(dest_dir, target_name, "remove")
-                moved = False
-                try:
-                    # With a validated single-component name, only the last child
-                    # can be a symlink. Rename/unlink never follow that link.
-                    target_skill_dir.rename(backup_dir)
-                    moved = True
-                    save_manifest(dest_dir, updated)
-                except Exception as e:
-                    if moved:
-                        backup_dir.rename(target_skill_dir)
-                    print(f"  {Colors.RED}✗{Colors.RESET} Error removing {clean_id}: {e}")
+                if receipt_key is None:
+                    print(f"  {Colors.RED}✗{Colors.RESET} {clean_id} has no matching VAS receipt; existing contents preserved.")
                     total_failed += 1
                     continue
-                manifest = updated
-                removed_count += 1
-                total_removed += 1
-                try:
-                    remove_installation(backup_dir)
-                except OSError as cleanup_error:
-                    print(f"  Warning: removed receipt; retained payload at {backup_dir}: {cleanup_error}", file=sys.stderr)
-                    total_failed += 1
-                print(f"  {Colors.GREEN}✓{Colors.RESET} Removed {clean_id}")
-            else:
-                save_manifest(dest_dir, updated)
-                manifest = updated
-                print(f"  {Colors.YELLOW}-{Colors.RESET} {clean_id} is not installed in {dest_dir}")
-                total_failed += 1
 
-        print(f"\n{Colors.GREEN}Removed {removed_count} skill(s) from {dest_dir}.{Colors.RESET}\n")
+                target_name = manifest_target(receipt_key, manifest[receipt_key])
+                owners = target_owners(manifest, target_name)
+                if owners != [receipt_key]:
+                    print(f"  {Colors.RED}✗{Colors.RESET} Conflict: '{target_name}' has multiple recorded owners; nothing removed.")
+                    total_failed += 1
+                    continue
+                target_skill_dir = dest_dir / target_name
+                updated = {key: entry for key, entry in manifest.items() if key != receipt_key}
+
+                if target_skill_dir.exists() or target_skill_dir.is_symlink():
+                    backup_dir = temporary_slot(dest_dir, target_name, "remove")
+                    moved = False
+                    try:
+                        # With a validated single-component name, only the last child
+                        # can be a symlink. Rename/unlink never follow that link.
+                        target_skill_dir.rename(backup_dir)
+                        moved = True
+                        save_manifest(dest_dir, updated)
+                    except Exception as e:
+                        if moved:
+                            backup_dir.rename(target_skill_dir)
+                        print(f"  {Colors.RED}✗{Colors.RESET} Error removing {clean_id}: {e}")
+                        total_failed += 1
+                        continue
+                    manifest = updated
+                    removed_count += 1
+                    total_removed += 1
+                    try:
+                        remove_installation(backup_dir)
+                    except OSError as cleanup_error:
+                        print(f"  Warning: removed receipt; retained payload at {backup_dir}: {cleanup_error}", file=sys.stderr)
+                        total_failed += 1
+                    print(f"  {Colors.GREEN}✓{Colors.RESET} Removed {clean_id}")
+                else:
+                    save_manifest(dest_dir, updated)
+                    manifest = updated
+                    print(f"  {Colors.YELLOW}-{Colors.RESET} {clean_id} is not installed in {dest_dir}")
+                    total_failed += 1
+
+            print(f"\n{Colors.GREEN}Removed {removed_count} skill(s) from {dest_dir}.{Colors.RESET}\n")
 
     if total_removed == 0 or total_failed > 0:
         sys.exit(1)

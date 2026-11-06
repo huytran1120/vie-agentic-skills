@@ -125,7 +125,7 @@ class TypeSafeSkillsTests(unittest.TestCase):
                     removed = cli("uninstall", "typesafe-ai", "--target", target, cwd=project)
                     self.assertEqual(removed.returncode, 0, removed.stdout + removed.stderr)
                     self.assertEqual(json.loads(receipt_path.read_text()), {})
-                    self.assertEqual(list(destination.iterdir()), [receipt_path])
+                    self.assertEqual(set(destination.iterdir()), {receipt_path, destination / ".vas.lock"})
 
     def test_complete_manifest_and_quick_install_receipt_work_with_the_cli(self):
         manifest = PAGES.installation_manifests(ROOT)["typesafe-ai"]

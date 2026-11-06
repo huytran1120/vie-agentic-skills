@@ -8,6 +8,8 @@ Only `n8n-self-hosting` is genuinely new and imported at commit 1c755c5c8d99eb71
 import hashlib
 import json
 import shutil
+import sys
+import tempfile
 import urllib.request
 from pathlib import Path
 
@@ -18,6 +20,12 @@ AUTHOR = "Romuald Czlonkowski"
 AUTHOR_URL = "https://github.com/czlonkowski"
 LICENSE_NAME = "MIT"
 LICENSE_URL = f"https://github.com/{UPSTREAM_REPO_SLUG}/blob/{UPSTREAM_REV}/LICENSE"
+IMPORT_PATHS = (
+    "skills/n8n-self-hosting",
+    "data/n8n-mcp-import.json",
+    "data/source-credits.json",
+    "data/catalog.json",
+)
 
 SKIPPED_SKILLS = [
     "n8n-agents",
@@ -112,18 +120,19 @@ def parse_frontmatter(text: str):
     return fm, parts[2].lstrip("\r\n")
 
 
-def main():
+def stage_import(staging_root):
     canonical_id = "n8n-self-hosting"
     category = "automation"
-    dest_dir = REPO_ROOT / "skills" / canonical_id
-    if dest_dir.exists():
-        shutil.rmtree(dest_dir)
+    dest_dir = staging_root / "skills" / canonical_id
     dest_dir.mkdir(parents=True, exist_ok=True)
+    (staging_root / "data").mkdir()
 
     file_records = []
 
     # 1. Fetch and write LICENSE
     license_bytes = fetch_bytes("LICENSE")
+    if not license_bytes.strip():
+        raise ValueError("Empty upstream LICENSE")
     lic_file = dest_dir / "LICENSE"
     lic_file.write_bytes(license_bytes)
     lic_file.chmod(0o644)
@@ -152,6 +161,8 @@ def main():
     for rel in UPSTREAM_FILES:
         upstream_rel = f"data/skills/{canonical_id}/{rel}"
         raw_bytes = fetch_bytes(upstream_rel)
+        if not raw_bytes.strip():
+            raise ValueError(f"Empty upstream file: {upstream_rel}")
         source_hash = sha256_bytes(raw_bytes)
         out_path = dest_dir / rel
         out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -159,10 +170,9 @@ def main():
         if rel == "SKILL.md":
             raw_text = raw_bytes.decode("utf-8")
             fm, body = parse_frontmatter(raw_text)
-            description = fm.get(
-                "description",
-                "Self-host n8n in Docker across single-container and queue mode with Redis, Postgres, workers, Caddy TLS, security hardening, and Day-2 operations.",
-            ).replace('"', "'")
+            if not fm.get("name") or not fm.get("description") or not body.strip():
+                raise ValueError(f"Invalid upstream runbook: {upstream_rel}")
+            description = fm["description"].replace('"', "'")
             tags_str = json.dumps(TAGS)
             new_fm = (
                 f"---\n"
@@ -263,16 +273,15 @@ def main():
         "skills": [skill_entry],
         "files": file_records,
     }
-    manifest_file = REPO_ROOT / "data" / "n8n-mcp-import.json"
+    manifest_file = staging_root / "data" / "n8n-mcp-import.json"
     manifest_file.write_text(
         json.dumps(import_manifest, indent=2, ensure_ascii=False) + "\n",
         encoding="utf-8",
     )
-    print(f"Wrote {manifest_file} with {len(file_records)} file records.")
 
     # 5. Update data/source-credits.json
-    credits_file = REPO_ROOT / "data" / "source-credits.json"
-    credits_data = json.loads(credits_file.read_text(encoding="utf-8"))
+    credits_file = staging_root / "data" / "source-credits.json"
+    credits_data = json.loads((REPO_ROOT / "data/source-credits.json").read_text(encoding="utf-8"))
     credits_data["sections"]["n8nmcp"] = [
         f"- **n8n Self-Hosting (`n8n-self-hosting`)**: 1 production self-hosting runbook with Docker Compose templates (single-mode and Redis/Postgres queue-mode), Caddy auto-TLS, credential overwrites, security hardening, and Day-2 operations from [`{UPSTREAM_REPO_SLUG}`](https://github.com/{UPSTREAM_REPO_SLUG}) at `{UPSTREAM_REV}`, authored by [{AUTHOR}]({AUTHOR_URL}), licensed under [MIT]({LICENSE_URL}). (14 existing n8n workflow skills in the upstream repository were skipped as already present in the catalog.)"
     ]
@@ -280,11 +289,10 @@ def main():
         json.dumps(credits_data, indent=2, ensure_ascii=False) + "\n",
         encoding="utf-8",
     )
-    print("Updated data/source-credits.json")
 
     # 6. Update data/catalog.json
-    catalog_file = REPO_ROOT / "data" / "catalog.json"
-    catalog_data = json.loads(catalog_file.read_text(encoding="utf-8"))
+    catalog_file = staging_root / "data" / "catalog.json"
+    catalog_data = json.loads((REPO_ROOT / "data/catalog.json").read_text(encoding="utf-8"))
     existing = [
         s
         for s in catalog_data.get("skills", [])
@@ -298,7 +306,67 @@ def main():
         json.dumps(catalog_data, indent=2, ensure_ascii=False) + "\n",
         encoding="utf-8",
     )
-    print(f"Updated data/catalog.json (total: {len(existing)})")
+    return len(file_records), len(existing)
+
+
+def validate_import(staging_root):
+    manifest = json.loads((staging_root / "data/n8n-mcp-import.json").read_text(encoding="utf-8"))
+    expected = {f"skills/n8n-self-hosting/{name}" for name in (*UPSTREAM_FILES, "LICENSE", "NOTICE.md")}
+    records = manifest["files"]
+    if len(records) != len(expected) or {record["path"] for record in records} != expected:
+        raise ValueError("Incomplete n8n import inventory")
+    for record in records:
+        path = staging_root / record["path"]
+        if path.is_symlink() or not path.is_file() or sha256_file(path) != record["sha256"]:
+            raise ValueError(f"Invalid staged import file: {record['path']}")
+
+
+def publish_import(staging_root):
+    for relative in IMPORT_PATHS:
+        destination = REPO_ROOT / relative
+        staged = staging_root / relative
+        compatible = destination.is_dir() if staged.is_dir() else destination.is_file()
+        if (destination.is_symlink() or destination.parent.is_symlink()
+                or (destination.exists() and not compatible)):
+            raise ValueError(f"Refusing incompatible import destination: {destination}")
+    replacements = []
+    try:
+        for relative in IMPORT_PATHS:
+            staged = staging_root / relative
+            destination = REPO_ROOT / relative
+            backup = staging_root / "backup" / relative
+            backup.parent.mkdir(parents=True, exist_ok=True)
+            replacements.append((staged, destination, backup))
+            if destination.exists():
+                destination.rename(backup)
+            staged.rename(destination)
+    except BaseException:
+        for staged, destination, backup in reversed(replacements):
+            if not staged.exists() and destination.exists():
+                destination.rename(staged)
+            if backup.exists():
+                backup.rename(destination)
+        raise
+
+
+def main():
+    staging_root = Path(tempfile.mkdtemp(prefix=".n8n-import-", dir=REPO_ROOT))
+    keep_backup = False
+    try:
+        file_count, catalog_count = stage_import(staging_root)
+        validate_import(staging_root)
+        publish_import(staging_root)
+    except BaseException:
+        keep_backup = any((staging_root / "backup" / path).exists() for path in IMPORT_PATHS)
+        if keep_backup:
+            print(f"Import recovery needs attention; backups retained at {staging_root}", file=sys.stderr)
+        raise
+    finally:
+        if not keep_backup:
+            shutil.rmtree(staging_root)
+    print(f"Wrote {REPO_ROOT / 'data/n8n-mcp-import.json'} with {file_count} file records.")
+    print("Updated data/source-credits.json")
+    print(f"Updated data/catalog.json (total: {catalog_count})")
 
 
 if __name__ == "__main__":

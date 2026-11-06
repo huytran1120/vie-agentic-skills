@@ -74,7 +74,7 @@ class CliTransactionTests(unittest.TestCase):
                 self.assertEqual(result.exception.code, 1)
                 self.assertEqual(marker.read_text(), "Keep original installation")
                 self.assertEqual(ledger.read_bytes(), before)
-                self.assertEqual({path.name for path in destination.iterdir()}, {"pdf", VAS.MANIFEST_NAME})
+                self.assertEqual({path.name for path in destination.iterdir()}, {"pdf", VAS.MANIFEST_NAME, VAS.LOCK_NAME})
 
     def test_uninstall_restores_payload_when_save_fails(self):
         for mode in ("link", "copy"):
@@ -91,7 +91,7 @@ class CliTransactionTests(unittest.TestCase):
                 self.assertEqual((destination / "pdf/SKILL.md").read_bytes(), payload)
                 self.assertEqual((destination / "pdf").is_symlink(), mode == "link")
                 self.assertEqual(ledger.read_bytes(), before)
-                self.assertEqual({path.name for path in destination.iterdir()}, {"pdf", VAS.MANIFEST_NAME})
+                self.assertEqual({path.name for path in destination.iterdir()}, {"pdf", VAS.MANIFEST_NAME, VAS.LOCK_NAME})
 
 
 if __name__ == "__main__":

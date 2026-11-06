@@ -114,6 +114,8 @@ Không kết hợp `--target all` với `--global`. `--target all` chọn bảy 
 
 CLI ghi thông tin quản lý vào `.vas-manifest.json`. Thư mục có sẵn chưa do VAS quản lý, bản kê hỏng hoặc tên thư mục đang thuộc skill khác sẽ bị từ chối và giữ nguyên. Xem phần [xử lý xung đột](#xu-ly-xung-dot) trước khi thay đổi các thư mục đó.
 
+Các lệnh cài/gỡ cùng thư mục đích được tuần tự hóa bằng tệp `.vas.lock`; các thư mục đích khác nhau vẫn có thể xử lý đồng thời. Khóa được hệ điều hành giải phóng khi tiến trình kết thúc, nhưng tệp khóa được giữ lại để các tiến trình cùng dùng một khóa. Không xóa hoặc thay thế tệp này khi CLI đang chạy.
+
 <a id="chon-agent"></a>
 ## Chọn agent và thư mục cài
 

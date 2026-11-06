@@ -80,7 +80,7 @@ class BlenderSkillsTests(unittest.TestCase):
                             self.assertEqual((target / path.relative_to(source)).read_bytes(), path.read_bytes())
                 removed = cli("uninstall", *ids, "--dest", str(destination))
                 self.assertEqual(removed.returncode, 0, removed.stdout + removed.stderr)
-                self.assertEqual(list(destination.iterdir()), [destination / ".vas-manifest.json"])
+                self.assertEqual({path.name for path in destination.iterdir()}, {".vas-manifest.json", ".vas.lock"})
 
 
 if __name__ == "__main__":

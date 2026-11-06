@@ -132,7 +132,7 @@ class HallmarkSkillsTests(unittest.TestCase):
                     self.assertIn("Total installed: 1", status.stdout)
                     removed = cli("uninstall", "hallmark", "--target", target, cwd=project)
                     self.assertEqual(removed.returncode, 0, removed.stdout + removed.stderr)
-                    self.assertEqual(list(destination.iterdir()), [destination / ".vas-manifest.json"])
+                    self.assertEqual({path.name for path in destination.iterdir()}, {".vas-manifest.json", ".vas.lock"})
 
     def test_complete_install_manifest_and_remote_receipt_work_with_the_cli(self):
         manifest = PAGES.installation_manifests(ROOT)["hallmark"]

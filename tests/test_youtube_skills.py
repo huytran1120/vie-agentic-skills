@@ -183,7 +183,7 @@ class YouTubeSkillsTests(unittest.TestCase):
                     self.assertIn("Total installed: 1", status.stdout)
                     removed = cli("uninstall", skill["id"], "--dest", str(destination))
                     self.assertEqual(removed.returncode, 0, removed.stdout + removed.stderr)
-                    self.assertEqual(list(destination.iterdir()), [destination / ".vas-manifest.json"])
+                    self.assertEqual({path.name for path in destination.iterdir()}, {".vas-manifest.json", ".vas.lock"})
 
 
 if __name__ == "__main__":
