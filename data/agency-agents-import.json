@@ -163,14 +163,14 @@
       "source_path": "specialized/agentic-identity-trust.md (via NOTICE.md)",
       "path": "skills/agency-agentic-identity-trust-architect/NOTICE.md",
       "source_sha256": "53f258f899e1ae12f4ad7b2f16dfd1e1d3362dfd3575aaa14d33b808564f0687",
-      "sha256": "53f258f899e1ae12f4ad7b2f16dfd1e1d3362dfd3575aaa14d33b808564f0687",
+      "sha256": "b3fd0c6a3018581db980de4ac0ce1affc45ac8380fe3093605aeabc673c10f0a",
       "executable": false
     },
     {
       "source_path": "specialized/agentic-identity-trust.md",
       "path": "skills/agency-agentic-identity-trust-architect/SKILL.md",
       "source_sha256": "af78a193949cd49889295ec9331944634b8e322fcf7547ffac913c9acae8c017",
-      "sha256": "a5308c9f1e30fd2aa03e71d4f47e4d93f674af0da4d20630d193b6dc350041b7",
+      "sha256": "ca68d000c7b06a2e813be74a2349efdb389ee0bdaac24a63af3c2ab723a74b3b",
       "executable": false
     },
     {

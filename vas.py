@@ -64,8 +64,8 @@ AGENT_TARGET_MAP = {
     "claude": (Path(".claude/skills"), HOME / ".claude" / "skills", "Claude Code"),
     "cursor": (Path(".cursor/skills"), HOME / ".cursor" / "skills", "Cursor IDE"),
     "windsurf": (Path(".windsurf/skills"), HOME / ".codeium" / "windsurf" / "skills", "Windsurf (Codeium)"),
-    "codex": (Path(".codex/skills"), HOME / ".codex" / "skills", "OpenAI Codex / OpenCode"),
-    "cline": (Path(".cline/skills"), HOME / ".cline" / "skills", "Cline / Roo Code"),
+    "codex": (Path(".codex/skills"), HOME / ".codex" / "skills", "OpenAI Codex"),
+    "cline": (Path(".cline/skills"), HOME / ".cline" / "skills", "Cline"),
     "copilot": (Path(".github/skills"), HOME / ".copilot" / "skills", "GitHub Copilot CLI"),
     "gemini": (Path(".gemini/skills"), HOME / ".gemini" / "skills", "Google Gemini CLI"),
     "global": (None, HOME / ".gemini" / "antigravity" / "skills", "Antigravity Global"),
@@ -199,6 +199,56 @@ def scan_skills_locally():
     return skills
 
 
+def quoted_description(lines, start, value):
+    """Read a YAML flow-quoted description without adding a YAML dependency."""
+    quote, raw, index = value[0], [], start
+    line, position = value[1:], 0
+    while True:
+        join_next = False
+        while position < len(line):
+            char = line[position]
+            if char == quote:
+                if quote == "'" and line[position:position + 2] == "''":
+                    raw.append("''")
+                    position += 2
+                    continue
+                text = re.sub(r"[ \t]*\n(?:[ \t]*\n)*[ \t]*",
+                              lambda match: " " if match[0].count("\n") == 1 else "\n" * (match[0].count("\n") - 1),
+                              "".join(raw))
+                if quote == "'":
+                    return text.replace("''", "'").strip(), index
+                escapes = {"0": "\0", "a": "\a", "b": "\b", "t": "\t", "n": "\n", "v": "\v",
+                           "f": "\f", "r": "\r", "e": "\x1b", " ": " ", '"': '"', "/": "/",
+                           "\\": "\\", "N": "\x85", "_": "\xa0", "L": "\u2028", "P": "\u2029"}
+
+                def unescape(match):
+                    code = match[0][1:]
+                    if code[0] in "xuU":
+                        return chr(int(code[1:], 16))
+                    if code not in escapes:
+                        raise ValueError(f"Invalid quoted description escape: {match[0]}")
+                    return escapes[code]
+
+                return re.sub(r'\\(?:x[0-9a-fA-F]{2}|u[0-9a-fA-F]{4}|U[0-9a-fA-F]{8}|.)',
+                              unescape, text).strip(), index
+            if quote == '"' and char == "\\":
+                if position + 1 == len(line):
+                    join_next = True
+                    position += 1
+                else:
+                    raw.append(line[position:position + 2])
+                    position += 2
+            else:
+                raw.append(char)
+                position += 1
+        index += 1
+        if index >= len(lines) or (lines[index] and not lines[index][0].isspace() and not lines[index].startswith(quote)):
+            raise ValueError("Unterminated quoted description")
+        if not join_next:
+            raw.append("\n")
+        line, position = lines[index].strip(), 0
+
+
 def extract_skill_metadata(skill_md_path, skill_id, catalog_by_key=None, overrides=None):
     """Extract YAML frontmatter name and description harmonized with catalog sources."""
     if overrides is None:
@@ -270,6 +320,11 @@ def extract_skill_metadata(skill_md_path, skill_id, catalog_by_key=None, overrid
                             i += 1
                         description = " ".join(desc_lines)
                         continue
+                    elif val.startswith(("'", '"')):
+                        parsed, last = quoted_description(lines, i, val)
+                        # Preserve existing single-line metadata while fixing flow folding.
+                        description = parsed if last > i else val.strip('"\'')
+                        i = last
                     else:
                         description = val.strip('"\'')
                 elif line.startswith("tags:"):
@@ -940,31 +995,35 @@ def cmd_status(args):
         manifest = load_manifest(dest_dir)
         print(f"\n{Colors.BOLD}Skills Status in:{Colors.RESET} {Colors.CYAN}{dest_dir}{Colors.RESET}\n")
 
-        skills_on_disk = []
+        entries = [(key, manifest_target(key, entry), entry) for key, entry in manifest.items()]
+        managed_names = {name for key, name, entry in entries}
         if dest_dir.exists():
             for item in sorted(dest_dir.iterdir()):
                 if item.name.startswith("."):
                     continue
-                if item.is_dir() or item.is_symlink():
-                    if (item / "SKILL.md").exists() or item.name in manifest:
-                        is_link = item.is_symlink()
-                        skills_on_disk.append((item.name, is_link))
+                if item.name not in managed_names and (item / "SKILL.md").is_file():
+                    entries.append((item.name, item.name, {}))
 
-        if not skills_on_disk:
+        if not entries:
             print(f"  {Colors.YELLOW}No skills currently installed.{Colors.RESET}")
             print(f"  Install some with: ./vas install <skill_id> --target {args.target}")
         else:
-            print(f"  Total installed: {Colors.GREEN}{len(skills_on_disk)}{Colors.RESET}\n")
-            for name, is_link in skills_on_disk:
-                tag = f"{Colors.BLUE}[symlink]{Colors.RESET}" if is_link else f"{Colors.YELLOW}[copied]{Colors.RESET}"
-                cat = manifest.get(name, {}).get("category", "")
-                if not cat:
-                    for k, v in manifest.items():
-                        if v.get("target_name") == name or Path(k).name == name:
-                            cat = v.get("category", "")
-                            break
+            rows, counts = [], {"installed": 0, "missing": 0, "broken-link": 0}
+            for skill_id, name, entry in sorted(entries, key=lambda row: (row[0], row[1])):
+                target = dest_dir / name
+                state = ("broken-link" if target.is_symlink() and not target.exists()
+                         else "installed" if (target / "SKILL.md").is_file() else "missing")
+                counts[state] += 1
+                rows.append((skill_id, name, entry, target.is_symlink(), state))
+            print(f"  Total installed: {Colors.GREEN}{counts['installed']}{Colors.RESET}; "
+                  f"missing: {counts['missing']}; broken-link: {counts['broken-link']}\n")
+            for skill_id, name, entry, is_link, state in rows:
+                mode = "symlink" if is_link or entry.get("mode") == "link" else "copied"
+                tag = f"[{state}] [{mode}]"
+                cat = entry.get("category", "")
                 cat_label = f"[{cat}]" if cat else ""
-                print(f"  - {Colors.BOLD}{name:<32}{Colors.RESET} {tag} {Colors.DIM}{cat_label}{Colors.RESET}")
+                print(f"  - {Colors.BOLD}{skill_id:<32}{Colors.RESET} {tag} "
+                      f"{Colors.DIM}{cat_label} ({name}){Colors.RESET}")
         print()
 
 
@@ -1128,8 +1187,10 @@ def cmd_antigravity_guide(args):
      {Colors.CYAN}./vas install ui-ux-pro-max --target cursor --mode link{Colors.RESET}
    - Install for Windsurf:
      {Colors.CYAN}./vas install ui-ux-pro-max --target windsurf --mode link{Colors.RESET}
-   - Install for Cline / Roo Code:
+   - Install for Cline:
      {Colors.CYAN}./vas install ui-ux-pro-max --target cline --mode link{Colors.RESET}
+   - Install for OpenCode or Roo Code using the shared .agents/skills folder:
+     {Colors.CYAN}./vas install ui-ux-pro-max --target workspace --mode link{Colors.RESET}
    - Install for GitHub Copilot CLI:
      {Colors.CYAN}./vas install ui-ux-pro-max --target copilot --mode link{Colors.RESET}
    - Install for ALL AI agents at once:

@@ -15140,7 +15140,7 @@
     "canonical_id": "babysit-pr",
     "name": "babysit-pr",
     "path": "skills/babysit-pr",
-    "description": "Babysit a pull request through its bot review rounds: verify, fix, reply,",
+    "description": "Babysit a pull request through its bot review rounds: verify, fix, reply, resolve. Use for any babysit or watch-the-PR ask.",
     "category": "code-quality",
     "tags": [
       "babysit",
@@ -15372,7 +15372,7 @@
     "canonical_id": "bash-pro",
     "name": "bash-pro",
     "path": "skills/bash-pro",
-    "description": "Master of defensive Bash scripting for production automation, CI/CD",
+    "description": "Master of defensive Bash scripting for production automation, CI/CD\npipelines, and system utilities. Expert in safe, portable, and testable shell\nscripts.",
     "category": "development",
     "tags": [
       "bash"
@@ -19856,7 +19856,7 @@
     "canonical_id": "career-ops",
     "name": "career-ops",
     "path": "skills/career-ops",
-    "description": "Multi-CLI job-search command center: evaluate offers, scan portals,",
+    "description": "Multi-CLI job-search command center: evaluate offers, scan portals, tailor CVs, track applications, prep interviews. Invoke per mode.",
     "category": "productivity",
     "tags": [
       "career",
@@ -22349,7 +22349,7 @@
     "canonical_id": "conductor-validator",
     "name": "conductor-validator",
     "path": "skills/conductor-validator",
-    "description": "Validates Conductor project artifacts for completeness,",
+    "description": "Validates Conductor project artifacts for completeness,\nconsistency, and correctness. Use after setup, when diagnosing issues, or\nbefore implementation to verify project context.",
     "category": "workflow",
     "tags": [
       "conductor",
@@ -25096,7 +25096,7 @@
     "canonical_id": "debugger",
     "name": "debugger",
     "path": "skills/debugger",
-    "description": "Debugging specialist for errors, test failures, and unexpected",
+    "description": "Debugging specialist for errors, test failures, and unexpected\nbehavior. Use proactively when encountering any issues.",
     "category": "development-and-testing",
     "tags": [
       "debugger"
@@ -28594,7 +28594,7 @@
     "canonical_id": "enforcing-resource-attribution",
     "name": "enforcing-resource-attribution",
     "path": "skills/enforcing-resource-attribution",
-    "description": "Enforces resource attribution for CLI commands. Use this skill whenever",
+    "description": "Enforces resource attribution for CLI commands. Use this skill whenever you are running `bq` or `gcloud` commands via `run_command`. It ensures mandatory labeling for supported `bq` operations while avoiding invalid flags on read-only commands.",
     "category": "cloud",
     "tags": [],
     "risk": "safe",
@@ -32056,7 +32056,7 @@
     "canonical_id": "gcp-data-pipelines",
     "name": "gcp-data-pipelines",
     "path": "skills/gcp-data-pipelines",
-    "description": "Primary entry point for building, managing, and orchestrating data pipelines",
+    "description": "Primary entry point for building, managing, and orchestrating data pipelines on Google Cloud. Guides users to the appropriate skill for dbt, Dataflow (Apache Beam), Dataform, Spark (Dataproc Serverless), BigQuery Data Transfer Service (DTS) or orchestration pipeline using Cloud Composer. Clarify requirements and resolve ambiguity for creating, updating and running data pipelines.",
     "category": "cloud",
     "tags": [],
     "risk": "safe",
@@ -36791,7 +36791,7 @@
     "canonical_id": "i-have-adhd",
     "name": "i-have-adhd",
     "path": "skills/i-have-adhd",
-    "description": "Shape output for ADHD readers: next action first, numbered steps, restated",
+    "description": "Shape output for ADHD readers: next action first, numbered steps, restated state, no tangents, time estimates, visible wins. Toggle with /i-have-adhd.",
     "category": "productivity",
     "tags": [
       "adhd",
@@ -39395,7 +39395,7 @@
     "canonical_id": "ledger-tasks-yylo",
     "name": "ledger-tasks-yylo",
     "path": "skills/ledger-tasks-yylo",
-    "description": "Use YYLO Ledger task management: create, list, search, get, mark, update,",
+    "description": "Use YYLO Ledger task management: create, list, search, get, mark, update, archive, deps, ready, order and merge with dependencies.",
     "category": "project-management",
     "tags": [
       "ledger",
@@ -48156,7 +48156,7 @@
     "canonical_id": "php-pro",
     "name": "php-pro",
     "path": "skills/php-pro",
-    "description": "Write idiomatic PHP code with generators, iterators, SPL data",
+    "description": "Write idiomatic PHP code with generators, iterators, SPL data\nstructures, and modern OOP features. Use PROACTIVELY for high-performance PHP\napplications.",
     "category": "code",
     "tags": [
       "php"
@@ -58294,7 +58294,7 @@
     "canonical_id": "security-scanning-security-sast",
     "name": "security-scanning-security-sast",
     "path": "skills/security-scanning-security-sast",
-    "description": "Static Application Security Testing (SAST) for code vulnerability",
+    "description": "Static Application Security Testing (SAST) for code vulnerability\nanalysis across multiple languages and frameworks",
     "category": "security",
     "tags": [
       "security",
@@ -58770,7 +58770,7 @@
     "canonical_id": "seo-authority-builder",
     "name": "seo-authority-builder",
     "path": "skills/seo-authority-builder",
-    "description": "Analyzes content for E-E-A-T signals and suggests improvements to",
+    "description": "Analyzes content for E-E-A-T signals and suggests improvements to\nbuild authority and trust. Identifies missing credibility elements. Use\nPROACTIVELY for YMYL topics.",
     "category": "content",
     "tags": [
       "seo",
@@ -58844,7 +58844,7 @@
     "canonical_id": "seo-content-planner",
     "name": "seo-content-planner",
     "path": "skills/seo-content-planner",
-    "description": "Creates comprehensive content outlines and topic clusters for SEO.",
+    "description": "Creates comprehensive content outlines and topic clusters for SEO.\nPlans content calendars and identifies topic gaps. Use PROACTIVELY for content\nstrategy and planning.",
     "category": "content",
     "tags": [
       "seo",
@@ -61536,7 +61536,7 @@
     "canonical_id": "startup-business-analyst-business-case",
     "name": "startup-business-analyst-business-case",
     "path": "skills/startup-business-analyst-business-case",
-    "description": "Generate comprehensive investor-ready business case document with",
+    "description": "Generate comprehensive investor-ready business case document with\nmarket, solution, financials, and strategy",
     "category": "business",
     "tags": [
       "startup",
@@ -61552,7 +61552,7 @@
     "canonical_id": "startup-business-analyst-financial-projections",
     "name": "startup-business-analyst-financial-projections",
     "path": "skills/startup-business-analyst-financial-projections",
-    "description": "Create detailed 3-5 year financial model with revenue, costs, cash",
+    "description": "Create detailed 3-5 year financial model with revenue, costs, cash\nflow, and scenarios",
     "category": "business",
     "tags": [
       "startup",
@@ -61569,7 +61569,7 @@
     "canonical_id": "startup-business-analyst-market-opportunity",
     "name": "startup-business-analyst-market-opportunity",
     "path": "skills/startup-business-analyst-market-opportunity",
-    "description": "Generate comprehensive market opportunity analysis with TAM/SAM/SOM",
+    "description": "Generate comprehensive market opportunity analysis with TAM/SAM/SOM\ncalculations",
     "category": "business",
     "tags": [
       "startup",
@@ -65435,7 +65435,7 @@
     "canonical_id": "twilio-communications",
     "name": "twilio-communications",
     "path": "skills/twilio-communications",
-    "description": "Build communication features with Twilio: SMS messaging, voice",
+    "description": "Build communication features with Twilio: SMS messaging, voice calls, WhatsApp Business API, and user verification (2FA). Covers the full spectrum from simple notifications to complex IVR systems and multi-channel authentication.",
     "category": "api-integration",
     "tags": [
       "twilio",

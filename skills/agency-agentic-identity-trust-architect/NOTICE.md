@@ -11,3 +11,7 @@ This skill defines an AI Agent persona with structured role identity, core compe
 Installation via `./vas install` only links or copies static files and writes `.vas-manifest.json`.
 No unapproved scripts are executed, no external dependencies or MCP servers are installed, and
 no background processes or accounts are connected during installation.
+
+## VAS link adaptation
+
+The related Identity Graph Operator link points to the imported skill's `SKILL.md` in this catalog.

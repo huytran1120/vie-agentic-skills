@@ -451,6 +451,52 @@ test('WebKit clipboard writes begin in the click gesture and wait for validated 
   assert.equal(runtime.errors.length, 0);
 });
 
+test('a pending copy retains the agent and language chosen at click time', async () => {
+  const skill = skills.find(skill => skill.id === 'code-review');
+  const window = languageWindow('?lang=en&agent=codex');
+  let release, copied;
+  window.navigator = { clipboard: { writeText: async text => { copied = text; } } };
+  const runtime = browserRuntime(url => url === './skills.min.json'
+    ? Promise.resolve({ ok: true, json: async () => skills })
+    : new Promise(resolve => { release = resolve; }), window);
+  await new Promise(setImmediate);
+  clickInstallPrompt(runtime, skill);
+  runtime.document.listeners.get('change')({ target: { id: 'quick-agent-select', value: 'claude' } });
+  runtime.elements.get('language-toggle').listeners.get('click')();
+  release({ ok: true, json: async () => manifestFixture(skill) });
+  await new Promise(setImmediate);
+  assert.equal(copied, catalog.agentInstallPrompt(skill, 'codex', 'en'));
+  assert.match(runtime.elements.get('toast').textContent, /Install prompt copied/);
+  clickInstallPrompt(runtime, skill);
+  await new Promise(setImmediate);
+  assert.equal(copied, catalog.agentInstallPrompt(skill, 'claude', 'vi'));
+});
+
+test('complete Bash metadata is searchable on the website', () => {
+  assert.ok(catalog.filterSkills(skills, { query: 'safe portable testable shell scripts' }).some(skill => skill.id === 'bash-pro'));
+});
+
+function renderedLocalLinks(markdown, source) {
+  const base = new URL(source, 'https://catalog.invalid/');
+  return [...catalog.renderMarkdown(markdown, base.href).html.matchAll(/<a href="([^"]+)"/g)]
+    .map(match => new URL(match[1].replaceAll('&amp;', '&'), base))
+    .filter(url => url.origin === base.origin && url.pathname !== base.pathname);
+}
+
+test('internal references in the two repaired runbooks point to real files', () => {
+  for (const id of ['opentargets-database', 'agency-agentic-identity-trust-architect']) {
+    const source = `skills/${id}/SKILL.md`;
+    const links = renderedLocalLinks(fs.readFileSync(path.join(root, source), 'utf8'), source);
+    assert.ok(links.length, `${id} must expose references`);
+    for (const url of links) assert.ok(fs.existsSync(path.join(root, decodeURIComponent(url.pathname))), `${source}: missing ${url.pathname}`);
+  }
+});
+
+test('internal reference checks ignore Markdown examples in code blocks and inline code', () => {
+  const markdown = '[Real](references/guide.md)\n\n```md\n[Example](missing.md)\n```\n\n~~~md\n[Example](also-missing.md)\n~~~\n\n`[Example](inline-missing.md)`';
+  assert.deepEqual(renderedLocalLinks(markdown, 'skills/example/SKILL.md').map(url => url.pathname), ['/skills/example/references/guide.md']);
+});
+
 test('an initial HTTP failure shows an explicit error and retry recovers', async () => {
   let requests = 0;
   const runtime = browserRuntime(async () => {
@@ -967,6 +1013,59 @@ function languageWindow(search = '', saved = null, blocked = false) {
   };
 }
 
+test('direct links and reloads scroll to a runbook heading after delayed Markdown arrives', async () => {
+  for (const fragment of ['#runbook-verify-and-report', '#runbook-%76erify-and-report', '#unknown', '#%invalid']) {
+    for (let reload = 0; reload < 2; reload++) {
+      const window = languageWindow(`?lang=vi&skill=pdf${fragment}`);
+      let release, scrolled = 0;
+      const runtime = browserRuntime(url => url === './skills.min.json'
+        ? Promise.resolve({ ok: true, json: async () => skills })
+        : new Promise(resolve => { release = resolve; }), window);
+      await new Promise(setImmediate);
+      runtime.document.getElementById('runbook-verify-and-report').scrollIntoView = () => { scrolled++; };
+      assert.equal(scrolled, 0);
+      release({ ok: true, text: async () => '# PDF\n\n## Verify and report\n\nDone.' });
+      await new Promise(setImmediate);
+      assert.equal(scrolled, fragment.includes('verify') || fragment.includes('%76erify') ? 1 : 0);
+      assert.equal(runtime.errors.length, 0);
+    }
+  }
+});
+
+test('cached reader history restores saved scroll or the destination fragment', async () => {
+  const window = languageWindow('?skill=pdf');
+  const runtime = browserRuntime(async url => url === './skills.min.json'
+    ? { ok: true, json: async () => skills }
+    : { ok: true, text: async () => '# PDF\n\n## Verify and report\n\nDone.' }, window);
+  await new Promise(setImmediate);
+  let headingScrolls = 0, headerScrolls = 0;
+  runtime.document.getElementById('runbook-verify-and-report').scrollIntoView = () => { headingScrolls++; };
+  runtime.document.getElementById('detail-view').scrollIntoView = () => { headerScrolls++; };
+  for (const scroll of [null, 1850]) {
+    window.location.search = '?lang=en';
+    window.listeners.get('popstate')({ state: null });
+    window.location.href = 'https://example.com/docs/?skill=pdf#runbook-verify-and-report';
+    window.listeners.get('popstate')({ state: scroll === null ? null : { vas: { scroll } } });
+    assert.equal(headerScrolls, 0, 'Cached fragment restoration must not be overwritten by a jump to the reader header');
+    if (scroll !== null) assert.equal(window.scrollY, scroll);
+  }
+  assert.equal(headingScrolls, 1);
+});
+
+test('returning to the library restores keyboard focus with a search fallback', async () => {
+  for (const visible of [true, false]) {
+    const window = languageWindow('?skill=code-review');
+    const runtime = browserRuntime(async url => url === './skills.min.json'
+      ? { ok: true, json: async () => skills } : { ok: true, text: async () => '# Runbook' }, window);
+    await new Promise(setImmediate);
+    const result = { dataset: { openSkill: 'code-review' }, focus(options) { this.focused = true; assert.equal(options.preventScroll, true); } };
+    runtime.elements.get('skills-results').querySelectorAll = () => visible ? [result] : [];
+    const button = { dataset: {}, disabled: false, hasAttribute: name => name === 'data-back-library' };
+    runtime.document.listeners.get('click')({ target: { closest: selector => selector === 'button' ? button : null } });
+    assert.equal(visible ? result.focused : runtime.elements.get('search-input').focused, true);
+  }
+});
+
 test('Back restores the loaded result pages and list scroll without sharing installation settings', async () => {
   const window = languageWindow('?lang=en&agent=codex');
   window.scrollY = 1800;
@@ -997,6 +1096,7 @@ test('Back restores the loaded result pages and list scroll without sharing inst
   assert.ok(runtime.elements.get('skills-results').innerHTML.includes(`data-skill="${result.id}"`));
   assert.equal(window.scrollY, 1800);
   assert.equal(runtime.elements.get('library-view').hidden, false);
+  assert.equal(runtime.elements.get('search-input').focused, true, 'Back must focus search if the original result is unavailable');
 });
 
 test('runbook fragment history leaves native anchor scrolling and the current reader intact', async () => {

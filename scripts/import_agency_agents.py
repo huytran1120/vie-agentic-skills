@@ -162,12 +162,15 @@ def main():
 
         # 2. NOTICE.md
         not_file = dest_dir / "NOTICE.md"
-        not_file.write_text(NOTICE_TEMPLATE.strip() + "\n", encoding="utf-8")
+        notice = NOTICE_TEMPLATE.strip() + "\n"
+        if canonical_id == "agency-agentic-identity-trust-architect":
+            notice += "\n## VAS link adaptation\n\nThe related Identity Graph Operator link points to the imported skill's `SKILL.md` in this catalog.\n"
+        not_file.write_text(notice, encoding="utf-8")
         not_file.chmod(0o644)
         file_records.append({
             "source_path": f"{source_path} (via NOTICE.md)",
             "path": f"skills/{canonical_id}/NOTICE.md",
-            "source_sha256": sha256_file(not_file),
+            "source_sha256": hashlib.sha256((NOTICE_TEMPLATE.strip() + "\n").encode("utf-8")).hexdigest(),
             "sha256": sha256_file(not_file),
             "executable": False,
         })
@@ -175,6 +178,10 @@ def main():
         # 3. SKILL.md
         conv_smd = c_dir / "SKILL.md"
         smd_text = conv_smd.read_text(encoding="utf-8")
+        if canonical_id == "agency-agentic-identity-trust-architect":
+            smd_text = smd_text.replace(
+                "](identity-graph-operator.md)", "](../agency-identity-graph-operator/SKILL.md)"
+            )
         fm = extract_frontmatter(smd_text)
 
         vas_notes = f"""

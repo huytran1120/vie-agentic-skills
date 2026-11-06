@@ -1,7 +1,7 @@
 # Vie Agentic Skill (VAS) - Instructions for AI Agents
 
 This is **Vie Agentic Skill (VAS)**, a local adaptation of the upstream catalog curated by **Huy Tran** (`huytran1120`).
-It serves as a comprehensive catalog of 3,045+ modular, agentic skills designed for **Google Antigravity, Claude Code, Cursor, Windsurf (Codeium), OpenAI Codex / OpenCode, Cline / Roo Code, and GitHub Copilot CLI**.
+It serves as a comprehensive catalog of 3,045+ modular, agentic skills designed for **Google Antigravity, Claude Code, Cursor, Windsurf (Codeium), OpenAI Codex, Cline, and GitHub Copilot CLI**. OpenCode and Roo Code can use the shared `.agents/skills/` directory via `--target workspace`; their native discovery directories differ from Codex and Cline.
 
 The upstream snapshot is `8dd77cd14fea84ad3a9f51573461a227ae06082e` from
 https://github.com/huytran1120/vietnam-agentic-skills. Keep individual skill
@@ -54,7 +54,8 @@ https://huytran1120.github.io/vie-agentic-skills/, deployed by `.github/workflow
   - Claude Code: `./vas install <skill_id> --target claude --mode link`
   - Cursor: `./vas install <skill_id> --target cursor --mode link`
   - Windsurf: `./vas install <skill_id> --target windsurf --mode link`
-  - Cline / Roo Code: `./vas install <skill_id> --target cline --mode link`
+  - Cline: `./vas install <skill_id> --target cline --mode link`
+  - OpenCode / Roo Code (universal directory): `./vas install <skill_id> --target workspace --mode link`
   - GitHub Copilot CLI: `./vas install <skill_id> --target copilot --mode link`
   - All Agents: `./vas install <skill_id> --target all`
 - **To view status**:

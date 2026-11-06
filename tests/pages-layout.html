@@ -94,6 +94,7 @@
     await wait(80);
     check(d.querySelectorAll('#skills-results [data-skill]').length === 12, 'Back must preserve loaded result pages');
     check(Boolean(d.querySelector(`#skills-results [data-open-skill="${laterId}"]`)), 'The opened result must still be available after Back');
+    check(d.activeElement.dataset.openSkill === laterId, 'Back must restore keyboard focus to the opened skill');
     check(Math.abs(w.scrollY - listScroll) < 3, `Back must restore the previous list scroll position (expected ${listScroll}, got ${w.scrollY})`);
     const readerSearch = d.getElementById('search-input');
     readerSearch.value = 'senior-frontend';
@@ -114,6 +115,7 @@
     } finally { d.documentElement.style.scrollBehavior = scrollBehavior; }
     const detailScroll = w.scrollY;
     d.querySelector('[data-back-library]').click();
+    check(d.activeElement.dataset.openSkill === 'senior-frontend', 'Return to library must focus the previously opened result');
     w.history.back();
     await waitFor(() => !d.getElementById('detail-view').hidden, 'Back from the library must restore the previous detail');
     await wait(80);
@@ -493,7 +495,9 @@
     try {
       const loadProbe = async query => {
         const loaded = new Promise(resolve => { probe.onload = resolve; });
-        probe.src = `${page}?${query}&language-check=${Date.now()}`;
+        const destination = new URL(`${page}?${query}`, location.href);
+        destination.searchParams.set('language-check', Date.now());
+        probe.src = destination.href;
         await loaded;
         await waitFor(() => probe.contentDocument.querySelector('[data-skill], #agent-select'), 'Language preference probe must load');
         return probe.contentDocument;
@@ -508,6 +512,22 @@
       localStorage.setItem('vas-language', 'en');
       check((await loadProbe('lang=vi')).documentElement.lang === 'vi', 'Explicit Vietnamese link must override saved English');
       check((await loadProbe('')).documentElement.lang === 'en', 'A fresh visit must restore the saved language');
+      for (let reload = 0; reload < 2; reload++) {
+        let pdf;
+        if (reload === 0) pdf = await loadProbe('lang=vi&skill=pdf#runbook-verify-and-report');
+        else {
+          const loaded = new Promise(resolve => { probe.onload = resolve; });
+          probe.contentWindow.location.reload();
+          await loaded;
+          pdf = probe.contentDocument;
+        }
+        await waitFor(() => pdf.getElementById('runbook-content')?.getAttribute('aria-busy') === 'false', 'Direct PDF link must finish loading');
+        const section = pdf.getElementById('runbook-verify-and-report');
+        check(Boolean(section), 'The PDF section must exist after rendering');
+        // Near the document end, native scrolling clamps before a heading reaches the top.
+        check(probe.contentWindow.scrollY > 0 && section.getBoundingClientRect().top >= pdf.querySelector('.site-header').getBoundingClientRect().bottom && section.getBoundingClientRect().bottom < probe.contentWindow.innerHeight,
+          `Direct PDF link / reload ${reload}: requested section must be visible after async render (top ${section.getBoundingClientRect().top}, scroll ${probe.contentWindow.scrollY})`);
+      }
     } finally { probe.remove(); }
   } catch (error) {
     errors.push(error.stack || String(error));

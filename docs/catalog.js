@@ -376,6 +376,7 @@
   const agentLabel = ([id, label]) => id === 'all' ? t('all') : label;
   const runbookNoun = total => total === 1 ? 'runbook' : 'runbooks';
   let toastTimer, copyReturnFocus, loadingPromise, detailRendered = null, runbookRequest = 0, libraryScroll = 0, filterDraft;
+  let pendingReaderRestore = state.selected ? { id: state.selected, fragment: window.location.hash } : null;
   const runbookCache = new Map();
   const manifestCache = new Map();
   const skillIcon = skill => skill.id.includes('review') ? 'branch' : /security|pentest/.test(skill.category) ? 'shield' : /test/.test(skill.category) ? 'flask' : /design|front/.test(skill.category) ? (skill.id === 'ui-ux-pro-max' ? 'pen' : 'layout') : 'terminal';
@@ -401,6 +402,7 @@
     }
   }
   async function copyInstallPrompt(skill, button) {
+    const target = state.target, language = state.language;
     button.disabled = true; button.setAttribute('aria-busy', 'true');
     try {
       if (!manifestCache.has(skill.id)) {
@@ -413,14 +415,14 @@
       }
       const text = manifestCache.get(skill.id).then(() => {
         if (button.isConnected === false) throw new Error('Installation prompt selection changed');
-        return agentInstallPrompt(skill, state.target, state.language);
+        return agentInstallPrompt(skill, target, language);
       });
-      await copy(text, button, t('quick.copied'));
+      await copy(text, button, i18n.translate('quick.copied', language));
     } catch (error) {
       if (button.isConnected === false) return;
       manifestCache.delete(skill.id);
       console.error('Cannot prepare the VAS installation prompt:', error);
-      toast(t(skillBase === '..' ? 'quick.localError' : 'quick.error'));
+      toast(i18n.translate(skillBase === '..' ? 'quick.localError' : 'quick.error', language));
     } finally { button.disabled = false; button.setAttribute('aria-busy', 'false'); }
   }
   function closeManualCopy() { byId('manual-copy').hidden = true; if (copyReturnFocus?.isConnected) copyReturnFocus.focus(); }
@@ -579,6 +581,16 @@
       const parsed = renderMarkdown(text, new URL(skillUrl(skill, skillBase), window.location.href).href, state.language);
       byId('runbook-content').innerHTML = parsed.html;
       byId('runbook-toc-links').innerHTML = parsed.headings.slice(0, 8).map(heading => `<a href="#${heading.id}">${escapeHtml(heading.text)}</a>`).join('') || `<a href="#detail-title">${t('runbook.content')}</a>`;
+      if (pendingReaderRestore?.id === skill.id) {
+        const position = pendingReaderRestore;
+        pendingReaderRestore = null;
+        if (Number.isFinite(position.scroll)) window.scrollTo({ top: position.scroll, behavior: 'instant' });
+        else {
+          let fragment = (position.fragment || '').slice(1);
+          try { fragment = decodeURIComponent(fragment); } catch (_) { /* Ignore invalid fragment encoding. */ }
+          if (parsed.headings.some(heading => heading.id === fragment)) byId(fragment)?.scrollIntoView({ block: 'start', behavior: 'instant' });
+        }
+      }
     } catch (error) {
       if (request !== runbookRequest || state.selected !== skill.id) return;
       console.error('Cannot load the VAS runbook:', error);
@@ -594,6 +606,7 @@
   }
   function openSkill(id) {
     if (!state.skills.some(skill => skill.id === id)) return;
+    pendingReaderRestore = null;
     libraryScroll = typeof window !== 'undefined' ? window.scrollY : 0;
     syncUrl();
     // Leave the outgoing entry before hiding its content can clamp the browser's saved scroll.
@@ -602,9 +615,16 @@
     syncUrl();
   }
   function closeDetail() {
+    const previous = state.selected;
+    pendingReaderRestore = null;
     syncUrl();
     state.selected = null; syncUrl(true); renderResults();
-    window.scrollTo({ top: libraryScroll, behavior: 'instant' }); syncUrl();
+    window.scrollTo({ top: libraryScroll, behavior: 'instant' });
+    focusLibrarySkill(previous); syncUrl();
+  }
+  function focusLibrarySkill(id) {
+    const button = [...byId('skills-results').querySelectorAll('[data-open-skill]')].find(node => node.dataset.openSkill === id);
+    (button || byId('search-input')).focus({ preventScroll: true });
   }
   function validateState() {
     if (!state.skills.some(skill => skill.category === state.category)) state.category = 'all';
@@ -615,6 +635,7 @@
     if (window.location.search === locationSearch) return;
     locationSearch = window.location.search;
     clearTimeout(toastTimer); byId('toast').hidden = true;
+    const previous = state.selected;
     Object.assign(state, readCatalogState(window.location.search, preferredLanguage()));
     if (state.loaded) validateState();
     byId('search-input').value = state.query; byId('sort-select').value = state.sort;
@@ -622,11 +643,13 @@
     const pages = Math.max(1, Math.ceil(filterSkills(state.skills, state).length / pageSize));
     state.page = Number.isSafeInteger(context?.page) && context.page > 0 ? Math.min(context.page, pages) : 1;
     if (Number.isFinite(context?.libraryScroll) && context.libraryScroll >= 0) libraryScroll = context.libraryScroll;
-    applyLanguage();
     const scroll = Number.isFinite(context?.scroll) && context.scroll >= 0 ? context.scroll : null;
+    pendingReaderRestore = state.selected ? { id: state.selected, scroll, fragment: window.location.hash } : null;
+    applyLanguage();
+    if (previous && !state.selected) focusLibrarySkill(previous);
     const restoreScroll = () => {
       if (scroll !== null) window.scrollTo({ top: scroll, behavior: 'instant' });
-      else if (state.selected && state.loaded) byId('detail-view').scrollIntoView({ block: 'start', behavior: 'instant' });
+      else if (state.selected && state.loaded && pendingReaderRestore) byId('detail-view').scrollIntoView({ block: 'start', behavior: 'instant' });
     };
     restoreScroll();
     if (scroll !== null) {

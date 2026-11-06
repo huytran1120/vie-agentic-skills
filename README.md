@@ -128,10 +128,14 @@ Bảng sau là đường dẫn mà CLI VAS sử dụng. Thay giá trị của `-
 | Claude Code | `claude` | `.claude/skills/` | `~/.claude/skills/` |
 | Cursor | `cursor` | `.cursor/skills/` | `~/.cursor/skills/` |
 | Windsurf | `windsurf` | `.windsurf/skills/` | `~/.codeium/windsurf/skills/` |
-| Cline / Roo Code | `cline` | `.cline/skills/` | `~/.cline/skills/` |
+| Cline | `cline` | `.cline/skills/` | `~/.cline/skills/` |
+| OpenCode — thư mục universal | `workspace` | `.agents/skills/` | `~/.agents/skills/` |
+| Roo Code — thư mục universal | `workspace` | `.agents/skills/` | `~/.agents/skills/` |
 | GitHub Copilot CLI | `copilot` | `.github/skills/` | `~/.copilot/skills/` |
 
 CLI còn có `--target workspace` cho `.agents/skills/` và `--target gemini` cho `.gemini/skills/`. Cách ứng dụng phát hiện và kích hoạt skill phụ thuộc agent, phiên bản và cấu hình đang dùng; nếu chưa thấy skill, kiểm tra đường dẫn rồi nạp lại ứng dụng.
+
+OpenCode có thư mục riêng `.opencode/skills/`, Roo Code có `.roo/skills/`; hai ứng dụng cũng đọc thư mục universal `.agents/skills/` theo [tài liệu OpenCode](https://opencode.ai/docs/skills) và [tài liệu Roo Code](https://roocodeinc.github.io/Roo-Code/features/skills/). Trong VAS, dùng `--target workspace` cho lựa chọn universal, hoặc chỉ định thư mục riêng bằng `--dest`. `--target codex` và `--target cline` dành cho Codex và Cline. Các đường dẫn này được kiểm tra ở mức CLI; việc nạp skill cần xác nhận trong phiên bản ứng dụng bạn sử dụng.
 
 Để cài cùng một skill cho cả bảy agent, chạy từ **thư mục dự án đích**, thay đường dẫn đến kho VAS bằng đường dẫn thật:
 

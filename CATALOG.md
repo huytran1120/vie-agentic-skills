@@ -538,7 +538,7 @@ Tổng hợp **3,884** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `stripe-integration` | `critical` | Implement and verify Stripe checkout, subscriptions, webhooks and refunds wit... |
 | `telegram-automation` | `critical` | Automate Telegram tasks via Rube MCP (Composio): send messages, manage chats,... |
 | `telegram-bot-builder` | `critical` | Expert in building Telegram bots that solve real problems - from |
-| `twilio-communications` | `critical` | Build communication features with Twilio: SMS messaging, voice |
+| `twilio-communications` | `critical` | Build communication features with Twilio: SMS messaging, voice calls, WhatsAp... |
 | `unsplash-integration` | `safe` | Integration skill for searching and fetching high-quality, free-to-use profes... |
 | `us-property-data` | `safe` | Use when a task needs real U.S. residential property data: valuation, listing... |
 | `whatsapp-automation` | `critical` | Automate WhatsApp Business tasks via Rube MCP (Composio): send messages, mana... |
@@ -1023,9 +1023,9 @@ Tổng hợp **3,884** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `spreadsheet-manual-build` | `safe` | Spreadsheet Manual Build: an empty Excel workbook or CSV from a confirmed fie... |
 | `stakeholder-investor-reports` | `safe` | Stakeholder report register: stakeholder, period, key metrics, preparer, appr... |
 | `startup-analyst` | `critical` | Expert startup business analyst specializing in market sizing, financial mode... |
-| `startup-business-analyst-business-case` | `critical` | Generate comprehensive investor-ready business case document with |
-| `startup-business-analyst-financial-projections` | `critical` | Create detailed 3-5 year financial model with revenue, costs, cash |
-| `startup-business-analyst-market-opportunity` | `critical` | Generate comprehensive market opportunity analysis with TAM/SAM/SOM |
+| `startup-business-analyst-business-case` | `critical` | Generate comprehensive investor-ready business case document with market, sol... |
+| `startup-business-analyst-financial-projections` | `critical` | Create detailed 3-5 year financial model with revenue, costs, cash flow, and ... |
+| `startup-business-analyst-market-opportunity` | `critical` | Generate comprehensive market opportunity analysis with TAM/SAM/SOM calculations |
 | `startup-financial-modeling` | `none` | Build comprehensive 3-5 year financial models with revenue projections, cost ... |
 | `startup-metrics-framework` | `safe` | Comprehensive guide to tracking, calculating, and optimizing key performance ... |
 | `tax-register` | `safe` | Tax register: sales and purchase tax, withholding deducted and received, net ... |
@@ -1203,10 +1203,10 @@ Tổng hợp **3,884** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `dataform-bigquery` | `safe` | Expertise in generating clean, correct, and efficient Dataform pipeline |
 | `dbt-bigquery` | `safe` | Expert guidance for creating, modifying, and optimizing dbt pipelines |
 | `discovering-gcp-data-assets` | `safe` | Finds and inspects data assets within Google Cloud. Relevant when any of the ... |
-| `enforcing-resource-attribution` | `safe` | Enforces resource attribution for CLI commands. Use this skill whenever |
+| `enforcing-resource-attribution` | `safe` | Enforces resource attribution for CLI commands. Use this skill whenever you a... |
 | `firebase` | `critical` | Firebase gives you a complete backend in minutes - auth, database, |
 | `gcp-cloud-run` | `critical` | Specialized skill for building production-ready serverless |
-| `gcp-data-pipelines` | `safe` | Primary entry point for building, managing, and orchestrating data pipelines |
+| `gcp-data-pipelines` | `safe` | Primary entry point for building, managing, and orchestrating data pipelines ... |
 | `gcp-dataflow` | `safe` | Guides writing, packaging, executing, and troubleshooting Apache Beam pipelin... |
 | `gcp-pipeline-orchestration` | `safe` | This skill helps the agent generate or update orchestration pipeline |
 | `gcp-pipeline-resource-provisioning` | `safe` | Automates declarative resource creation and provisioning for data pipelines, ... |
@@ -1241,7 +1241,7 @@ Tổng hợp **3,884** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `java-pro` | `critical` | Master Java 21+ with modern features like virtual threads, pattern matching, ... |
 | `javascript-pro` | `safe` | Master modern JavaScript with ES6+, async patterns, and Node.js APIs. Handles... |
 | `julia-pro` | `critical` | Master Julia 1.10+ with modern features, performance optimization, multiple d... |
-| `php-pro` | `critical` | Write idiomatic PHP code with generators, iterators, SPL data |
+| `php-pro` | `critical` | Write idiomatic PHP code with generators, iterators, SPL data structures, and... |
 | `python-pro` | `critical` | Master Python 3.12+ with modern features, async programming, performance opti... |
 | `ruby-pro` | `critical` | Write idiomatic Ruby code with metaprogramming, Rails patterns, and performan... |
 | `rust-pro` | `critical` | Master Rust 1.75+ with modern async patterns, advanced type system features, ... |
@@ -1257,7 +1257,7 @@ Tổng hợp **3,884** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | :--- | :---: | :--- |
 | `andrej-karpathy` | `safe` | Behavioral guidelines to reduce common LLM coding mistakes. Use when writing,... |
 | `audit-agent-run-evidence` | `safe` | Use when an agent, harness, gateway, MCP workflow, or multi-step automation c... |
-| `babysit-pr` | `critical` | Babysit a pull request through its bot review rounds: verify, fix, reply, |
+| `babysit-pr` | `critical` | Babysit a pull request through its bot review rounds: verify, fix, reply, res... |
 | `break-ai-fix-loops` | `critical` | Stop ineffective AI coding repair loops with stable failure fingerprints, a t... |
 | `brooks-debt` | `safe` | Tech debt assessment that identifies, classifies, and prioritizes maintainabi... |
 | `brooks-harness` | `critical` | Maintenance orchestrator for the brooks-lint plugin itself. |
@@ -1377,11 +1377,11 @@ Tổng hợp **3,884** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `seo-aeo-content-quality-auditor` | `safe` | Audits a website, codebase, page, or content set for technical SEO, search in... |
 | `seo-aeo-keyword-research` | `safe` | Researches and prioritises keywords from the site context and live search int... |
 | `seo-audit` | `safe` | Diagnose and audit SEO issues affecting crawlability, indexation, rankings, a... |
-| `seo-authority-builder` | `none` | Analyzes content for E-E-A-T signals and suggests improvements to |
+| `seo-authority-builder` | `none` | Analyzes content for E-E-A-T signals and suggests improvements to build autho... |
 | `seo-cannibalization-detector` | `safe` | Analyzes multiple provided pages to identify keyword overlap and potential ca... |
 | `seo-content` | `critical` | Content quality and E-E-A-T analysis with AI citation readiness assessment. U... |
 | `seo-content-auditor` | `safe` | Analyzes provided content for quality, E-E-A-T signals, and SEO best practice... |
-| `seo-content-planner` | `none` | Creates comprehensive content outlines and topic clusters for SEO. |
+| `seo-content-planner` | `none` | Creates comprehensive content outlines and topic clusters for SEO. Plans cont... |
 | `seo-content-refresher` | `safe` | Identifies outdated elements in provided content and suggests updates to main... |
 | `seo-content-writer` | `none` | Writes SEO-optimized content based on provided keywords and topic briefs. Cre... |
 | `seo-forensic-incident-response` | `safe` | Investigate sudden drops in organic traffic or rankings and run a structured ... |
@@ -1763,7 +1763,7 @@ Tổng hợp **3,884** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `ax-extract-workflow` | `safe` | Reconstruct workflow behind a past coding-agent artifact using local ax sessi... |
 | `bash-defensive-patterns` | `safe` | Master defensive Bash programming techniques for production-grade scripts. Us... |
 | `bash-linux` | `critical` | Bash/Linux terminal patterns. Critical commands, piping, error handling, scri... |
-| `bash-pro` | `critical` | Master of defensive Bash scripting for production automation, CI/CD |
+| `bash-pro` | `critical` | Master of defensive Bash scripting for production automation, CI/CD pipelines... |
 | `bazel-build-optimization` | `critical` | Optimize Bazel builds for large-scale monorepos. Use when configuring Bazel, ... |
 | `boost-asio-pro` | `safe` | Use when writing asynchronous C++ networking code with Boost.Asio or standalo... |
 | `brooks-lint` | `safe` | AI code reviewer grounded in classic software engineering books for catching ... |
@@ -1983,7 +1983,7 @@ Tổng hợp **3,884** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
 | `bug-hunter` | `safe` | Systematically finds and fixes bugs using proven debugging techniques. Traces... |
-| `debugger` | `safe` | Debugging specialist for errors, test failures, and unexpected |
+| `debugger` | `safe` | Debugging specialist for errors, test failures, and unexpected behavior. Use ... |
 | `debugging-strategies` | `critical` | Transform debugging from frustrating guesswork into systematic problem-solvin... |
 | `openclaw-github-repo-commander` | `safe` | 7-stage super workflow for GitHub repo audit, cleanup, PR review, and competi... |
 | `systematic-debugging` | `critical` | Use when encountering any bug, test failure, or unexpected behavior, before p... |
@@ -3676,7 +3676,7 @@ Tổng hợp **3,884** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `byagent` | `critical` | Publish agent-written Markdown or HTML as a shareable link with the byagent C... |
 | `cal-com-automation` | `critical` | Automate Cal.com tasks via Rube MCP (Composio): manage bookings, check availa... |
 | `calendly-automation` | `critical` | Automate Calendly scheduling, event management, invitee tracking, availabilit... |
-| `career-ops` | `safe` | Multi-CLI job-search command center: evaluate offers, scan portals, |
+| `career-ops` | `safe` | Multi-CLI job-search command center: evaluate offers, scan portals, tailor CV... |
 | `codex-profiles` | `critical` | Use codex-profiles to run Codex CLI or Codex Desktop with isolated CODEX_HOME... |
 | `compile-knowledge` | `safe` | Compile durable, non-obvious findings into an interlinked markdown knowledge ... |
 | `context-kit` | `critical` | Evaluate, adapt, and safely install Context Kit personal context artifacts fo... |
@@ -3696,7 +3696,7 @@ Tổng hợp **3,884** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `gsheets` | `safe` | Read, write, format, and manage Google Sheets. Use when the user shares a she... |
 | `gslides` | `safe` | Read, create, and edit Google Slides presentations. Use when creating present... |
 | `handoff` | `safe` | Compact the current conversation into a handoff document for another agent to... |
-| `i-have-adhd` | `safe` | Shape output for ADHD readers: next action first, numbered steps, restated |
+| `i-have-adhd` | `safe` | Shape output for ADHD readers: next action first, numbered steps, restated st... |
 | `interview-coach` | `safe` | Full job search coaching system — JD decoding, resume, storybank, mock interv... |
 | `interview-me` | `safe` | Extracts what the user actually wants instead of what they think they should ... |
 | `interview-style-doc-building` | `critical` | Build structured strategy documents by asking one question at a time and patc... |
@@ -3753,7 +3753,7 @@ Tổng hợp **3,884** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `freshservice-automation` | `critical` | Automate Freshservice ITSM tasks via Rube MCP (Composio): create/update ticke... |
 | `github-issue-creator` | `critical` | Turn error logs, screenshots, voice notes, and rough bug reports into crisp, ... |
 | `jira-automation` | `critical` | Automate Jira tasks via Rube MCP (Composio): issues, projects, sprints, board... |
-| `ledger-tasks-yylo` | `critical` | Use YYLO Ledger task management: create, list, search, get, mark, update, |
+| `ledger-tasks-yylo` | `critical` | Use YYLO Ledger task management: create, list, search, get, mark, update, arc... |
 | `linear-automation` | `critical` | Automate Linear tasks via Rube MCP (Composio): issues, projects, cycles, team... |
 | `linear-claude-skill` | `safe` | Manage Linear issues, projects, and teams |
 | `miro-automation` | `critical` | Automate Miro tasks via Rube MCP (Composio): boards, items, sticky notes, fra... |
@@ -4153,7 +4153,7 @@ Tổng hợp **3,884** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `security-requirement-extraction` | `safe` | Derive security requirements from threat models and business context. Use whe... |
 | `security-scanning-security-dependencies` | `critical` | You are a security expert specializing in dependency vulnerability analysis, ... |
 | `security-scanning-security-hardening` | `critical` | Coordinate multi-layer security scanning and hardening across application, in... |
-| `security-scanning-security-sast` | `critical` | Static Application Security Testing (SAST) for code vulnerability |
+| `security-scanning-security-sast` | `critical` | Static Application Security Testing (SAST) for code vulnerability analysis ac... |
 | `security/aws-compliance-checker` | `critical` | Automated compliance checking against CIS, PCI-DSS, HIPAA, and SOC 2 benchmarks |
 | `security/aws-iam-best-practices` | `critical` | IAM policy review, hardening, and least privilege implementation |
 | `security/aws-secrets-rotation` | `critical` | Automate AWS secrets rotation for RDS, API keys, and credentials |
@@ -4524,7 +4524,7 @@ Tổng hợp **3,884** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `conductor-revert` | `critical` | Git-aware undo by logical work unit (track, phase, or task) |
 | `conductor-setup` | `critical` | Configure a Rails project to work with Conductor (parallel coding agents) |
 | `conductor-status` | `safe` | Display project status, active tracks, and next actions |
-| `conductor-validator` | `safe` | Validates Conductor project artifacts for completeness, |
+| `conductor-validator` | `safe` | Validates Conductor project artifacts for completeness, consistency, and corr... |
 | `create-branch` | `critical` | Create a git branch following Sentry naming conventions. Use when asked to "c... |
 | `create-issue-gate` | `critical` | Use when starting a new implementation task and an issue must be created with... |
 | `create-pr` | `critical` | Alias for pr-writer. Use when users explicitly ask for "create-pr" or referen... |
