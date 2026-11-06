@@ -3,6 +3,7 @@
 
 from hashlib import sha256
 import json
+import os
 from pathlib import Path, PurePosixPath
 import re
 import shutil
@@ -13,6 +14,53 @@ from urllib.parse import quote
 ROOT = Path(__file__).resolve().parents[1]
 REPOSITORY = "huytran1120/vie-agentic-skills"
 EXCLUDED = {"__pycache__", ".DS_Store"}
+PAGES_LIMIT_BYTES = 1_000_000_000
+
+
+def load_size_budget(root):
+    budget = json.loads((root / "pages-budget.json").read_text())
+    if (not isinstance(budget, dict)
+            or set(budget) != {"warning_bytes", "max_bytes"}
+            or any(type(budget[key]) is not int for key in budget)
+            or not 0 < budget["warning_bytes"] < budget["max_bytes"] < PAGES_LIMIT_BYTES):
+        raise ValueError("Invalid pages-budget.json: require integer bytes with "
+                         "0 < warning_bytes < max_bytes < 1,000,000,000")
+    return budget
+
+
+def enforce_size_budget(output, budget, report=False):
+    total, directories = 0, {}
+    for path in output.rglob("*"):
+        if path.is_symlink():
+            raise ValueError(f"Pages artifact must not contain symlinks: {path}")
+        if not path.is_file():
+            continue
+        size = path.stat().st_size
+        total += size
+        parts = path.relative_to(output).parts
+        if parts[0] == "skills" and len(parts) > 2:
+            directory = "/".join(parts[:2])
+        else:
+            directory = parts[0] if len(parts) > 1 else "(root files)"
+        directories[directory] = directories.get(directory, 0) + size
+    largest = sorted(directories.items(), key=lambda item: (-item[1], item[0]))[:5]
+    details = (f"Pages size: {total:,} bytes ({total / 1_000_000:.1f} MB; "
+               f"{total / 2**20:.1f} MiB)\n"
+               f"Warning: {budget['warning_bytes']:,} bytes; "
+               f"limit: {budget['max_bytes']:,} bytes\n"
+               "Largest directories:\n" + "\n".join(
+                   f"  {name}: {size:,} bytes ({size / 1_000_000:.1f} MB)"
+                   for name, size in largest))
+    if total > budget["max_bytes"]:
+        raise ValueError(f"Pages size budget exceeded by {total - budget['max_bytes']:,} bytes.\n"
+                         f"{details}\nReduce the publication payload before deploying.")
+    if report or total >= budget["warning_bytes"]:
+        print(details)
+    if total >= budget["warning_bytes"]:
+        prefix = "::warning::" if os.environ.get("GITHUB_ACTIONS") == "true" else "WARNING: "
+        print(f"{prefix}Pages is approaching its size budget: "
+              f"{total:,} / {budget['max_bytes']:,} bytes.")
+    return total
 
 
 def relative_path(value):
@@ -119,7 +167,8 @@ def installation_manifests(root, revision=None):
     return manifests
 
 
-def build(root=ROOT, revision=None):
+def build(root=ROOT, revision=None, report=False):
+    budget = load_size_budget(root)
     output = root / "_site"
     sources = (root / "docs", root / "skills")
     for source in sources:
@@ -163,8 +212,12 @@ def build(root=ROOT, revision=None):
         destination.parent.mkdir(parents=True, exist_ok=True)
         destination.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n")
     (output / ".nojekyll").touch()
+    enforce_size_budget(output, budget, report=report)
     return output
 
 
 if __name__ == "__main__":
-    print(f"GitHub Pages artifact: {build()}")
+    try:
+        print(f"GitHub Pages artifact: {build(report=True)}")
+    except ValueError as error:
+        raise SystemExit(str(error))

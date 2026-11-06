@@ -58,3 +58,6 @@ jobs:
         run: |
           ./vas sync
           git diff --exit-code skills_index.json docs/skills.min.json CATALOG.md
+
+      - name: Build Pages and enforce publication size budget
+        run: python3 scripts/build_pages.py

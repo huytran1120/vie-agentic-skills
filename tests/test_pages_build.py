@@ -1,4 +1,6 @@
 import functools
+import contextlib
+import io
 from hashlib import sha256
 from html.parser import HTMLParser
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
@@ -9,10 +11,12 @@ from pathlib import Path
 import shutil
 import struct
 import subprocess
+import sys
 import tempfile
 import threading
 import time
 import unittest
+from unittest.mock import patch
 from urllib.parse import urlparse
 from urllib.request import urlopen
 
@@ -25,6 +29,91 @@ SPEC.loader.exec_module(PAGES)
 
 
 class PagesBuildTests(unittest.TestCase):
+    def test_size_budget_boundaries_and_actionable_reports(self):
+        with tempfile.TemporaryDirectory(prefix="vie-size-budget-") as temp:
+            output = Path(temp)
+            (output / "skills/example").mkdir(parents=True)
+            payload = output / "skills/example/data.bin"
+            budget = {"warning_bytes": 100, "max_bytes": 200}
+            for size in (99, 100, 200):
+                payload.write_bytes(b"x" * size)
+                log = io.StringIO()
+                with contextlib.redirect_stdout(log), patch.dict(os.environ, {"GITHUB_ACTIONS": "true"}):
+                    self.assertEqual(PAGES.enforce_size_budget(output, budget), size)
+                self.assertEqual("::warning::" in log.getvalue(), size >= 100)
+            payload.write_bytes(b"x" * 201)
+            with self.assertRaisesRegex(ValueError, "exceeded by 1 bytes") as error:
+                PAGES.enforce_size_budget(output, budget)
+            self.assertIn("skills/example: 201 bytes", str(error.exception))
+
+    def test_size_budget_counts_nested_assets_root_files_and_manifests(self):
+        with tempfile.TemporaryDirectory(prefix="vie-size-budget-") as temp:
+            output = Path(temp)
+            for name, size in (("index.html", 10), ("assets/demo.png", 20),
+                               ("skills/editonny/engine/data.bin", 40),
+                               ("install-manifests/collection/skill.json", 30)):
+                path = output / name
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_bytes(b"x" * size)
+            log = io.StringIO()
+            with contextlib.redirect_stdout(log):
+                total = PAGES.enforce_size_budget(output, {"warning_bytes": 200, "max_bytes": 300}, report=True)
+            self.assertEqual(total, 100)
+            self.assertIn("skills/editonny: 40 bytes", log.getvalue())
+            self.assertIn("install-manifests: 30 bytes", log.getvalue())
+            self.assertIn("assets: 20 bytes", log.getvalue())
+            self.assertIn("(root files): 10 bytes", log.getvalue())
+
+    def test_size_budget_is_required_and_cannot_exceed_the_host_limit(self):
+        with tempfile.TemporaryDirectory(prefix="vie-size-config-") as temp:
+            root = Path(temp)
+            self.fixture(root)
+            PAGES.build(root, revision=REVISION)
+            config = root / "pages-budget.json"
+            valid = json.loads(config.read_text())
+            for budget in ([], {}, {**valid, "max_bytes": 1_000_000_000},
+                           {**valid, "warning_bytes": True},
+                           {**valid, "max_bytes": "900000000"},
+                           {**valid, "warning_bytes": valid["max_bytes"]},
+                           {**valid, "warning_bytes": 0}):
+                config.write_text(json.dumps(budget))
+                with self.assertRaisesRegex(ValueError, "Invalid pages-budget.json"):
+                    PAGES.build(root, revision=REVISION)
+                self.assertTrue((root / "_site/index.html").is_file())
+            config.unlink()
+            with self.assertRaises(FileNotFoundError):
+                PAGES.build(root, revision=REVISION)
+
+    def test_build_enforces_budget_after_writing_the_complete_artifact(self):
+        with tempfile.TemporaryDirectory(prefix="vie-size-build-") as temp:
+            root = Path(temp)
+            self.fixture(root)
+            (root / "pages-budget.json").write_text(json.dumps({"warning_bytes": 500, "max_bytes": 1000}))
+            with self.assertRaisesRegex(ValueError, "Pages size budget exceeded"):
+                PAGES.build(root, revision=REVISION)
+            self.assertTrue((root / "_site/install-manifests/youtube-agent-skill/yt-chapters.json").is_file())
+
+    def test_build_command_exits_nonzero_when_over_budget(self):
+        with tempfile.TemporaryDirectory(prefix="vie-size-command-") as temp:
+            root = Path(temp)
+            self.fixture(root)
+            (root / "pages-budget.json").write_text(json.dumps({"warning_bytes": 500, "max_bytes": 1000}))
+            (root / "scripts").mkdir()
+            shutil.copy2(ROOT / "scripts/build_pages.py", root / "scripts/build_pages.py")
+            for command in (
+                ["git", "-c", "init.defaultBranch=main", "init", "-q"],
+                ["git", "add", "."],
+                ["git", "-c", "user.name=VAS Fixture", "-c", "user.email=fixture@example.invalid",
+                 "-c", "commit.gpgsign=false", "commit", "-qm", "Size budget fixture"],
+            ):
+                subprocess.run(command, cwd=root, check=True, capture_output=True)
+            result = subprocess.run([sys.executable, "-B", "scripts/build_pages.py"],
+                                    cwd=root, text=True, capture_output=True)
+            self.assertEqual(result.returncode, 1)
+            self.assertIn("Pages size budget exceeded", result.stderr)
+            self.assertIn("Largest directories:", result.stderr)
+            self.assertNotIn("GitHub Pages artifact:", result.stdout)
+
     def test_social_preview_has_complete_metadata_and_an_uploadable_png(self):
         class MetadataParser(HTMLParser):
             def __init__(self):
@@ -63,6 +152,7 @@ class PagesBuildTests(unittest.TestCase):
         self.assertLess(len(data), 1024 * 1024)
 
     def fixture(self, root):
+        (root / "pages-budget.json").write_bytes((ROOT / "pages-budget.json").read_bytes())
         (root / "docs/assets").mkdir(parents=True)
         (root / "docs/index.html").write_text(
             '<html data-skill-base=".."><link rel="stylesheet" href="./catalog.css">'

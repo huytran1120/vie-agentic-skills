@@ -7,6 +7,7 @@ on:
       - 'docs/**'
       - 'skills/**'
       - 'scripts/build_pages.py'
+      - 'pages-budget.json'
       - 'skills_index.json'
       - '.github/workflows/deploy-pages.yml'
       - 'README*.md'
@@ -54,7 +55,7 @@ jobs:
           python3 -B -m unittest discover -s tests -p 'test_*.py'
           node --test tests/*.test.cjs
 
-      - name: Build complete static site
+      - name: Build static site and enforce publication size budget
         run: python3 scripts/build_pages.py
 
       - name: Upload GitHub Pages artifact

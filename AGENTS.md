@@ -12,7 +12,16 @@ or their scripts/assets. Old full-text distribution dumps were not imported.
 Preview from the project root using `python3 -m http.server 8765 --bind 127.0.0.1`
 and open `http://127.0.0.1:8765/docs/`. Local runbook links require serving the
 project root, not just `docs/`. The project repository is
-https://github.com/huytran1120/vie-agentic-skills. No public website deployment is configured.
+https://github.com/huytran1120/vie-agentic-skills. The public website is
+https://huytran1120.github.io/vie-agentic-skills/, deployed by `.github/workflows/deploy-pages.yml`.
+
+## GitHub Pages publication budget
+
+- After adding assets or importing skills, run `python3 scripts/build_pages.py`.
+- `pages-budget.json` warns at 850,000,000 bytes and fails the build above 900,000,000 bytes.
+- The budget counts all published files in `_site/`, including runbooks, assets, and generated manifests. It does not measure first-page transfer size.
+- Keep `0 < warning_bytes < max_bytes < 1,000,000,000`. Build logs identify the five largest directories to guide size reductions.
+- CI checks the budget on pull requests and pushes to the main branches; Pages upload runs only after a successful build.
 
 ## Golden Rules for Agents
 

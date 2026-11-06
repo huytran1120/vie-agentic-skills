@@ -287,6 +287,10 @@ python3 scripts/build_pages.py
 
 Bản dựng website nằm tại `_site/`. [Quy trình GitHub Pages](.github/workflows/deploy-pages.yml) triển khai website từ nhánh `main` sau các bước kiểm tra.
 
+**Giới hạn dung lượng Pages:** [pages-budget.json](pages-budget.json) đặt ngưỡng cảnh báo **850 MB** và ngưỡng dừng build **900 MB** (1 MB = 1.000.000 byte). Khi vượt 900 MB, lệnh build trả lỗi và CI chặn xuất bản; log báo tổng dung lượng cùng 5 thư mục lớn nhất. Cấu hình phải giữ `max_bytes` dưới 1.000.000.000 byte.
+
+Giới hạn tính toàn bộ tệp trong `_site/`, gồm runbook, tài nguyên và manifest; đây là dung lượng xuất bản, khác với dữ liệu tải khi mở trang đầu. Chạy lại lệnh build sau khi thêm tài nguyên hoặc nhập bộ skill mới.
+
 <a id="nguon-va-giay-phep"></a>
 ## Nguồn và giấy phép
 
