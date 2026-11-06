@@ -519,6 +519,12 @@
       "- Preserves upstream Agent Skills specification SKILL.md with complete references (creative direction, charts & data, diagrams, documents & presentations, interfaces) and agent configurations.",
       "- Supports both standalone installation per skill and rich inter-skill composition (e.g., `design-artifact` with `html-prototype` or `html-diagram`).",
       "- Installation via `./vas install` only links or copies static files and writes `.vas-manifest.json`. No runtime/dependency is installed, and no external accounts are connected."
+    ],
+    "videocreation": [
+      "- **[HaochenSHI66/claude-awesome-video-creation](https://github.com/HaochenSHI66/claude-awesome-video-creation/tree/4b0f8d89d50046ac13003e95bcde081e328c2373)**: Code-to-tutorial explainer video creation skill by SHI Haochen (HaochenSHI66) (built on cinetic by Leonxlnx) at revision `4b0f8d89d50046ac13003e95bcde081e328c2373` under the MIT License.",
+      "- Provides complete follow-along tutorial/explainer video production from code with Remotion (React): voiceover pipeline, beat-locked timeline, macOS-style glass terminals, animated mascot presenter with lip-sync, segmented rendering, and measured QA.",
+      "- Standalone payload preserves upstream Agent Skills specification SKILL.md with complete references (craft rules, finishing, voiceover, mascot, look-tutorial, render-qa, technique library), helper scripts, starters, and the full worked example 'Teach It Once'.",
+      "- Installation via `./vas install` only links or copies static files and writes `.vas-manifest.json`. No runtime/dependency is installed, and no external accounts are connected."
     ]
   }
 }

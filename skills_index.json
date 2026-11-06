@@ -20558,6 +20558,32 @@
     "license": "Complete terms in LICENSE.txt"
   },
   {
+    "id": "claude-awesome-video-creation",
+    "canonical_id": "claude-awesome-video-creation",
+    "name": "claude-awesome-video-creation",
+    "path": "skills/claude-awesome-video-creation",
+    "description": "Make a complete, follow-along tutorial or explainer video from code with Claude Code. Use it whenever someone wants a demo video, tool walkthrough, course or assignment video, 'how to use X' explainer, launch film or feature showcase built with Remotion (React). The skill covers script and voiceover (draft TTS or a cloned voice, with word timings), a beat-locked timeline that drives picture, captions and an original code-made soundtrack, macOS-style glass terminals with syntax colour, an animated mascot presenter with lip-sync, segmented rendering that avoids headless-Chrome hangs, and measured QA (frozen-frame scan, contact sheets, loudness).",
+    "category": "media",
+    "tags": [
+      "video",
+      "remotion",
+      "react",
+      "tutorial",
+      "video-creation",
+      "voiceover",
+      "motion-graphics",
+      "claude-code"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/HaochenSHI66/claude-awesome-video-creation/tree/4b0f8d89d50046ac13003e95bcde081e328c2373/skills/claude-awesome-video-creation",
+    "source_repo": "HaochenSHI66/claude-awesome-video-creation",
+    "author": "SHI Haochen (HaochenSHI66)",
+    "license": "MIT",
+    "license_source": "https://github.com/HaochenSHI66/claude-awesome-video-creation/blob/4b0f8d89d50046ac13003e95bcde081e328c2373/LICENSE",
+    "source_revision": "4b0f8d89d50046ac13003e95bcde081e328c2373",
+    "source_path": "skills/claude-awesome-video-creation/SKILL.md"
+  },
+  {
     "id": "claude-code-expert",
     "canonical_id": "claude-code-expert",
     "name": "claude-code-expert",

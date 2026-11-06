@@ -1,0 +1,95 @@
+VOICEOVER v2: "Teach It Once", follow-along edition (Claude Code / Agent Skills)
+Goal: a viewer can install Claude Code, add a skill and write their own, using only this video.
+Length 1:56 (116 s). The drop is at 1:16. Read briskly: about 160 wpm. S08 and S09 are one sentence: keep the pause across the drop short. About 260 words, roughly 170 wpm while speaking.
+Tone: calm, low, confident. Steps are read clearly. Every command appears on screen at the same time it is spoken.
+Format: [SCENE] (window) line   |  word count
+Previous cinematic version: voiceover_v1_cinematic.txt
+
+[S01] (0:00.8-0:03.6)  This whole video came from one prompt and one Agent Skill.   | 11
+[S02] (0:06.3-0:12.0)  This is Claude Code, Anthropic's AI agent in your terminal. The feature: Agent Skills.   | 14
+[S03] (0:13.3-0:21.4)  Every week, you repeat the same workflows. Lab reports. Slides. Reference lists. And every time, you explain them from zero.   | 20
+[S04] (0:22.2-0:33.2)  A skill is just a folder with one instruction file: a name and description on top, your steps below, scripts beside it. Keep it in your home folder for every project, or in one project to share it.   | 38
+[S05] (0:33.8-0:45.7)  Claude only keeps the descriptions in context. When a request matches one, it loads that skill's instructions, and opens extra files only when a step needs them. Install dozens. Context stays lean.   | 32
+[S06] (0:46.3-0:55.1)  Try it yourself. Step one: install Claude Code with one line, then run claude in your project and log in. Step two: add a skill. I'm using my own: claude-awesome-video-creation.   | 29
+[S07] (0:58.3-1:09.6)  Step three: just ask. I asked for a launch video. Claude spotted the matching skill, loaded it, and followed it: storyboard, React scenes, captions, original music, all as code.   | 29
+[S08] (1:10.7-1:15.1)  Then it renders every frame and sound into one file. And the result…   | 13
+[S09] (1:16.2-1:17.6)  …is the video you're watching right now.   | 7
+[S10] (1:21.2-1:32.9)  Writing your own takes a minute. Make the folder, give it a name, and write a description that says when to use it. That's the trigger. Then list your steps. Type slash skills to see it, or slash its name to run it.   | 43
+[S11] (1:33.8-1:39.0)  Commit the folder, and your whole group has it. It's an open standard, so other agents can read it too.   | 20
+[S12] (1:39.8-1:51.6)  Everything is on screen. Pause, copy, try it. This is just the basics; skills go much deeper. Questions? Email me any time. Stop repeating yourself. Teach it once. If this helped you, give it a vote!   | 34
+
+TOTAL: about 266 words. S12: cheat sheet → "just the basics" + email (24130819d@connect.polyu.hk) → tagline → vote card so viewers can pause.
+
+
+ON-SCREEN TEXT (shown in sync with the voiceover; the viewer can copy it from the screen)
+All commands and paths checked against the official docs on 2026-11-05:
+code.claude.com/docs/en/setup, code.claude.com/docs/en/skills, agentskills.io, github.com/vercel-labs/skills.
+
+S02  Title: Claude Code · Agent Skills
+     Subtitle: Anthropic's coding agent: runs in your terminal, reads and writes your files
+
+S04  Folder tree (labelled line by line):
+       ~/.claude/skills/lab-report/SKILL.md    ← personal: every project on this machine
+       .claude/skills/lab-report/SKILL.md      ← project: commit it, the team gets it
+       lab-report/
+       ├── SKILL.md        required: name + description + steps
+       ├── scripts/        optional: code it runs
+       └── template.md     optional: files it reads
+
+S05  Three stages (each lights up as it is spoken):
+       1 Discovery    always in context: name + description of every skill
+       2 Activation   request matches → full SKILL.md is loaded
+       3 Execution    reference files opened only if needed · scripts run, not read
+     Context meter: 40 skills installed, only one body loaded
+
+S06  STEP 1/3  Install
+       macOS / Linux / WSL   curl -fsSL https://claude.ai/install.sh | bash
+       Windows PowerShell    irm https://claude.ai/install.ps1 | iex
+       then                  cd my-project && claude      (log in in the browser)
+       small print           needs Claude Pro / Max / Team / Enterprise or an API (Console) account; the free plan has no Claude Code
+     STEP 2/3  Add a skill
+       npx skills add Leonxlnx/cinetic        → .claude/skills/cinetic/
+       ls .claude/skills
+
+S07  STEP 3/3  Just ask
+       The prompt (typed, then sped up 16×)
+       Callout on the freeze frame: "skill loaded: cinetic"   ← matched by its description
+       Chip: or call it directly: /cinetic
+
+S08  Timer: real render time → time on screen (the measured value from footage.ts)
+
+S10  Write your own (the editor types the whole file, readable on screen for 4 s or more):
+       mkdir -p .claude/skills/lab-report
+       ---
+       name: lab-report
+       description: Writes lab reports from my results.
+         Use when I ask for a lab report.
+       ---
+       1. Read results/*.csv and notes.md
+       2. Follow template.md: Aim, Method, Results, Discussion
+       3. One figure per table (run scripts/plot.py)
+       4. Under 1,500 words, APA citations
+     (exactly as built: SKILL_MD in film/src/timeline.ts)
+     Labels: "name → becomes /lab-report"   "description → the trigger (say WHEN)"   "steps → what you always repeat"
+     Then:   /skills          ✓ lab-report
+             /lab-report      or just: "write up my lab report"
+
+S11  git add .claude/skills && git commit -m "add lab-report skill"
+     Open standard: agentskills.io (other agents read the same SKILL.md)
+
+S12  CHEAT SHEET (held 6 s):
+       1  curl -fsSL https://claude.ai/install.sh | bash        (Windows: irm https://claude.ai/install.ps1 | iex)
+       2  cd my-project && claude
+       3  npx skills add <owner/repo>
+       4  .claude/skills/<name>/SKILL.md   ·   name + description + steps
+       5  /skills  to list   ·   /<name>  to run
+       Docs: code.claude.com/docs/en/skills
+     Then: Teach it once.  ·  Credit line
+
+
+Recording notes:
+- Record in your own voice (all content must be your own). Use a quiet room and a phone close to your mouth. Export WAV at 48 kHz.
+- Record each line as a separate take with 1 s of silence on each side. Name the files vo_S01.wav ... vo_S12.wav.
+- Read commands as words: "slash skills", "slash its name". Say "SKILL dot M D" as "skill M D".
+- S08 and S09 form one sentence split across the drop. Stop after "And the result…" and pause.
+- Stress these words: "one prompt" (S01), "zero" (S03), "folder" (S04), "matches" (S05), "just ask" (S07), "right now" (S09), "the trigger" (S10), "once" (S12).

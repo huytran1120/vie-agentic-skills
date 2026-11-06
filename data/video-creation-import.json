@@ -1,0 +1,1423 @@
+{
+  "source_repo": "HaochenSHI66/claude-awesome-video-creation",
+  "source_url": "https://github.com/HaochenSHI66/claude-awesome-video-creation",
+  "revision": "4b0f8d89d50046ac13003e95bcde081e328c2373",
+  "author": "SHI Haochen (HaochenSHI66)",
+  "author_url": "https://github.com/HaochenSHI66",
+  "license": "MIT",
+  "license_source": "https://github.com/HaochenSHI66/claude-awesome-video-creation/blob/4b0f8d89d50046ac13003e95bcde081e328c2373/LICENSE",
+  "skill_count": 1,
+  "skipped": [],
+  "namespaces": {},
+  "duplicate_check": {
+    "catalog_count_before": 3884,
+    "upstream_is_fork": false,
+    "methods": [
+      "canonical-id/name",
+      "source-repo/path",
+      "raw-sha256",
+      "normalized-body",
+      "renamed-body",
+      "body-containment",
+      "7-word-shingles"
+    ],
+    "collision_rationale": "Exact and high-similarity shingle comparison against all 3,884 catalog skills identified zero existing duplicates (max similarity 0.000). claude-awesome-video-creation is a completely unique, follow-along code-to-tutorial-video creation skill."
+  },
+  "adaptations": [
+    "Preserve upstream payload structure: SKILL.md, references/, scripts/, and assets/ under Open Agent Skills format.",
+    "Append reversible VAS installation, attribution, prerequisites, and safety notes to SKILL.md.",
+    "Include upstream MIT LICENSE and add NOTICE.md clarifying standalone operation, third-party attribution (cinetic by Leonxlnx), and prerequisites.",
+    "Preserve executable bits (0755) on shell and Python execution scripts.",
+    "Map skill to media category (119 existing categories preserved).",
+    "No runtime/dependency or MCP service is executed during installation."
+  ],
+  "skills": [
+    {
+      "id": "claude-awesome-video-creation",
+      "canonical_id": "claude-awesome-video-creation",
+      "name": "claude-awesome-video-creation",
+      "path": "skills/claude-awesome-video-creation",
+      "description": "Make a complete, follow-along tutorial or explainer video from code with Claude Code. Use it whenever someone wants a demo video, tool walkthrough, course or assignment video, 'how to use X' explainer, launch film or feature showcase built with Remotion (React). The skill covers script and voiceover (draft TTS or a cloned voice, with word timings), a beat-locked timeline that drives picture, captions and an original code-made soundtrack, macOS-style glass terminals with syntax colour, an animated mascot presenter with lip-sync, segmented rendering that avoids headless-Chrome hangs, and measured QA (frozen-frame scan, contact sheets, loudness).",
+      "category": "media",
+      "tags": [
+        "video",
+        "remotion",
+        "react",
+        "tutorial",
+        "video-creation",
+        "voiceover",
+        "motion-graphics",
+        "claude-code"
+      ],
+      "risk": "safe",
+      "author": "SHI Haochen (HaochenSHI66)",
+      "author_url": "https://github.com/HaochenSHI66",
+      "source": "https://github.com/HaochenSHI66/claude-awesome-video-creation/tree/4b0f8d89d50046ac13003e95bcde081e328c2373/skills/claude-awesome-video-creation",
+      "source_repo": "HaochenSHI66/claude-awesome-video-creation",
+      "source_revision": "4b0f8d89d50046ac13003e95bcde081e328c2373",
+      "source_path": "skills/claude-awesome-video-creation/SKILL.md",
+      "license": "MIT",
+      "license_source": "https://github.com/HaochenSHI66/claude-awesome-video-creation/blob/4b0f8d89d50046ac13003e95bcde081e328c2373/LICENSE"
+    }
+  ],
+  "files": [
+    {
+      "source_path": "LICENSE",
+      "path": "skills/claude-awesome-video-creation/LICENSE",
+      "source_sha256": "72c19bb4f37c33bf3fa641db51ef6a7dc1d2251469c07b0419b3acb238e68941",
+      "sha256": "72c19bb4f37c33bf3fa641db51ef6a7dc1d2251469c07b0419b3acb238e68941",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/NOTICE.md",
+      "path": "skills/claude-awesome-video-creation/NOTICE.md",
+      "source_sha256": "ce7a77dfde6b0942bba72c2d19e3cb0e89c4fecf6fd909e0a6df60b6a15880e3",
+      "sha256": "ce7a77dfde6b0942bba72c2d19e3cb0e89c4fecf6fd909e0a6df60b6a15880e3",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/LICENSE.txt",
+      "path": "skills/claude-awesome-video-creation/LICENSE.txt",
+      "source_sha256": "72c19bb4f37c33bf3fa641db51ef6a7dc1d2251469c07b0419b3acb238e68941",
+      "sha256": "72c19bb4f37c33bf3fa641db51ef6a7dc1d2251469c07b0419b3acb238e68941",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/SKILL.md",
+      "path": "skills/claude-awesome-video-creation/SKILL.md",
+      "source_sha256": "801096449436c3e635e79d676ac63f5252f96f1e755b52371fe083b399f8889d",
+      "sha256": "1f6dbc85ca4b28f03c404e9e0c18dc8a37b42e8fcfd4fd5b2233bf782792921c",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/TREATMENT.md",
+      "path": "skills/claude-awesome-video-creation/assets/TREATMENT.md",
+      "source_sha256": "3b85663d826c0087143269cacb043d74bb29fc2db48767f728e2a52efaa28008",
+      "sha256": "3b85663d826c0087143269cacb043d74bb29fc2db48767f728e2a52efaa28008",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/critics/art-copy-ui.md",
+      "path": "skills/claude-awesome-video-creation/assets/critics/art-copy-ui.md",
+      "source_sha256": "b1d1eeaa25aea57bf5e635c60ee55977131d154c45fafde2863f879df06d74b2",
+      "sha256": "b1d1eeaa25aea57bf5e635c60ee55977131d154c45fafde2863f879df06d74b2",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/critics/director.md",
+      "path": "skills/claude-awesome-video-creation/assets/critics/director.md",
+      "source_sha256": "7140db932c30518134854748a5a8cff9f67cf08e6da3d1b44e6d9def72d4d8d2",
+      "sha256": "7140db932c30518134854748a5a8cff9f67cf08e6da3d1b44e6d9def72d4d8d2",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/critics/forensics.md",
+      "path": "skills/claude-awesome-video-creation/assets/critics/forensics.md",
+      "source_sha256": "a379b1a0a4bed6edbf17dd806411c2d2cb76b88b3e473830bb7ee0580684e0d6",
+      "sha256": "a379b1a0a4bed6edbf17dd806411c2d2cb76b88b3e473830bb7ee0580684e0d6",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/critics/sound-sync.md",
+      "path": "skills/claude-awesome-video-creation/assets/critics/sound-sync.md",
+      "source_sha256": "96570bd14d6a44b8cbecdb6f60d27b2b15fd3be7c24bd56aa2ff269875f23447",
+      "sha256": "96570bd14d6a44b8cbecdb6f60d27b2b15fd3be7c24bd56aa2ff269875f23447",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/critics/verifier.md",
+      "path": "skills/claude-awesome-video-creation/assets/critics/verifier.md",
+      "source_sha256": "b8f67039439bd3bc4122626d45b0edcd49cd2009318101360b7039605bb97e14",
+      "sha256": "b8f67039439bd3bc4122626d45b0edcd49cd2009318101360b7039605bb97e14",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/Captions.tsx",
+      "path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/Captions.tsx",
+      "source_sha256": "f34d48cc848d7c7fe03481911faa0aba9beaca38de298ef44aa7f51c5e8c90b2",
+      "sha256": "f34d48cc848d7c7fe03481911faa0aba9beaca38de298ef44aa7f51c5e8c90b2",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/Film.tsx",
+      "path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/Film.tsx",
+      "source_sha256": "7febb0fbbaa10f5ee141e0697187f693460138abe3732512fb9f9247513cf5e4",
+      "sha256": "7febb0fbbaa10f5ee141e0697187f693460138abe3732512fb9f9247513cf5e4",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/Mascot.tsx",
+      "path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/Mascot.tsx",
+      "source_sha256": "970b1a9aeeece74a054fb607714c8d2692304919b236dfc2c3b1c477aaad578b",
+      "sha256": "970b1a9aeeece74a054fb607714c8d2692304919b236dfc2c3b1c477aaad578b",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/events.ts",
+      "path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/events.ts",
+      "source_sha256": "d0d9bd90a944a719f296637e8b0c9444f100da119a0b1984eb76d306234ab16a",
+      "sha256": "d0d9bd90a944a719f296637e8b0c9444f100da119a0b1984eb76d306234ab16a",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/footage.ts",
+      "path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/footage.ts",
+      "source_sha256": "8695e959cef25d85e1a10fc6ad8b09d236104ae72e01a084194ae46da664cd42",
+      "sha256": "8695e959cef25d85e1a10fc6ad8b09d236104ae72e01a084194ae46da664cd42",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/key_magenta.py",
+      "path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/key_magenta.py",
+      "source_sha256": "70405fae5512a25aaf1c2f1419bdc80b42f18b578989a9d37c18c53fce45773e",
+      "sha256": "70405fae5512a25aaf1c2f1419bdc80b42f18b578989a9d37c18c53fce45773e",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/blink.png",
+      "path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/blink.png",
+      "source_sha256": "e72d882b94f6d09a401b7e230f6bf9b961fd6a744b8721cce9148d64f119e30d",
+      "sha256": "e72d882b94f6d09a401b7e230f6bf9b961fd6a744b8721cce9148d64f119e30d",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/blink_half.png",
+      "path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/blink_half.png",
+      "source_sha256": "6fece4c2ea6fb135803339a9e1aeed62162e0550adc897409492f77163915810",
+      "sha256": "6fece4c2ea6fb135803339a9e1aeed62162e0550adc897409492f77163915810",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/cheer.png",
+      "path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/cheer.png",
+      "source_sha256": "7bb26c3a8889c21f172b5d69818fe9d5259649e597adad5c54b144bd61448018",
+      "sha256": "7bb26c3a8889c21f172b5d69818fe9d5259649e597adad5c54b144bd61448018",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/cheer_half.png",
+      "path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/cheer_half.png",
+      "source_sha256": "e07a115dcc09bc8cedf606d953e9cc92494515184d1c0a87b45b475f9b3eadc7",
+      "sha256": "e07a115dcc09bc8cedf606d953e9cc92494515184d1c0a87b45b475f9b3eadc7",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/closed.png",
+      "path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/closed.png",
+      "source_sha256": "e184885fa8b3b12b940451726f5f62cf3e77305269710fdead2174b79ca79ae1",
+      "sha256": "e184885fa8b3b12b940451726f5f62cf3e77305269710fdead2174b79ca79ae1",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/ee.png",
+      "path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/ee.png",
+      "source_sha256": "8deed988f92028b59b6e2eaf58d22890d1e6f6b783fcea6b8b276bff56118451",
+      "sha256": "8deed988f92028b59b6e2eaf58d22890d1e6f6b783fcea6b8b276bff56118451",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/fv.png",
+      "path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/fv.png",
+      "source_sha256": "8e17e0325d691b9e76c9aa2b2ef4993a191f34ca030e68afda6138bf43644025",
+      "sha256": "8e17e0325d691b9e76c9aa2b2ef4993a191f34ca030e68afda6138bf43644025",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/half.png",
+      "path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/half.png",
+      "source_sha256": "eafe6b6ce071d0131fd7feab36ead599f1cde70fbf476f0be8c047c916038246",
+      "sha256": "eafe6b6ce071d0131fd7feab36ead599f1cde70fbf476f0be8c047c916038246",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/oo.png",
+      "path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/oo.png",
+      "source_sha256": "d86aecc9f66db9c64af3c07636b44326b39928da6bf3e171fd5d0f257ccea573",
+      "sha256": "d86aecc9f66db9c64af3c07636b44326b39928da6bf3e171fd5d0f257ccea573",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/open.png",
+      "path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/open.png",
+      "source_sha256": "51928ee079ec06ae891eb9965f58c74c712fc179dac66a601414acc0a17e5e0a",
+      "sha256": "51928ee079ec06ae891eb9965f58c74c712fc179dac66a601414acc0a17e5e0a",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/point.png",
+      "path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/point.png",
+      "source_sha256": "ca46cba8cd34e586726ce733801141f358432444e53a86900f4a0d4470dc7be7",
+      "sha256": "ca46cba8cd34e586726ce733801141f358432444e53a86900f4a0d4470dc7be7",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/point_half.png",
+      "path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/point_half.png",
+      "source_sha256": "1411931ce4f110a2b24c0dd5e177235c619736337efba0d7fd7ba279b738be24",
+      "sha256": "1411931ce4f110a2b24c0dd5e177235c619736337efba0d7fd7ba279b738be24",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/type_a.png",
+      "path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/type_a.png",
+      "source_sha256": "3c438a891f232bd14e683a8909f88a33a9b8423f6234a2d8005df7fea2aa1ede",
+      "sha256": "3c438a891f232bd14e683a8909f88a33a9b8423f6234a2d8005df7fea2aa1ede",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/type_b.png",
+      "path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/type_b.png",
+      "source_sha256": "6a21fae445f0bb6911d4f0c3552521518a29dda843edcedebad56ccadf8fe4d2",
+      "sha256": "6a21fae445f0bb6911d4f0c3552521518a29dda843edcedebad56ccadf8fe4d2",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/wave.png",
+      "path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/wave.png",
+      "source_sha256": "ade1cf227e25b30963c5035d7f2ca1b22b5630760a212da274ed0ef8b3e26ee6",
+      "sha256": "ade1cf227e25b30963c5035d7f2ca1b22b5630760a212da274ed0ef8b3e26ee6",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/wave_a.png",
+      "path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/wave_a.png",
+      "source_sha256": "8ebd3edb7bb8f2a59b75704a83504bdaccfacec023d3f912f983108684b70a04",
+      "sha256": "8ebd3edb7bb8f2a59b75704a83504bdaccfacec023d3f912f983108684b70a04",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/wave_b.png",
+      "path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/wave_b.png",
+      "source_sha256": "e683681dd868f6642cb4b57165ff6c530919e84398bbdda32609af6ffb779cf4",
+      "sha256": "e683681dd868f6642cb4b57165ff6c530919e84398bbdda32609af6ffb779cf4",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/wave_c.png",
+      "path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/wave_c.png",
+      "source_sha256": "81411e960b302108d1779e7e37d1a57b76fe8b36e5c344c6d31ab958fbe15c09",
+      "sha256": "81411e960b302108d1779e7e37d1a57b76fe8b36e5c344c6d31ab958fbe15c09",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/wide.png",
+      "path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/mascot/wide.png",
+      "source_sha256": "fa3633176d5bc48134c85fb2231fbf0f7aa9539c231017dbaaeb6b2eecf933fe",
+      "sha256": "fa3633176d5bc48134c85fb2231fbf0f7aa9539c231017dbaaeb6b2eecf933fe",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/scenes/Close.tsx",
+      "path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/scenes/Close.tsx",
+      "source_sha256": "4f3667e9b2ef0e8319788d4084857971b4f42d88ffab22c5656d50c1bbaa3709",
+      "sha256": "4f3667e9b2ef0e8319788d4084857971b4f42d88ffab22c5656d50c1bbaa3709",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/scenes/Demo.tsx",
+      "path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/scenes/Demo.tsx",
+      "source_sha256": "2f5aea1999f4e411177c7c1b1a0a0188266ff97e229ccf8fb1b2b869a2763254",
+      "sha256": "2f5aea1999f4e411177c7c1b1a0a0188266ff97e229ccf8fb1b2b869a2763254",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/scenes/Explain.tsx",
+      "path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/scenes/Explain.tsx",
+      "source_sha256": "61d6a62fec20ba6a0097787ac50e129b6b25689174159eaa4f8333878c81cafd",
+      "sha256": "61d6a62fec20ba6a0097787ac50e129b6b25689174159eaa4f8333878c81cafd",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/scenes/Open.tsx",
+      "path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/scenes/Open.tsx",
+      "source_sha256": "6bf13459843f3d9857b9ec2ecf0f3512e0e76c6b37c77a4161fd754d53e70be5",
+      "sha256": "6bf13459843f3d9857b9ec2ecf0f3512e0e76c6b37c77a4161fd754d53e70be5",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/schedule.ts",
+      "path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/schedule.ts",
+      "source_sha256": "da7a6442c7ec5116bae948f55588030ed198edb7ada6d2ec4944f5325e2f85b5",
+      "sha256": "da7a6442c7ec5116bae948f55588030ed198edb7ada6d2ec4944f5325e2f85b5",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/soundtrack.py",
+      "path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/soundtrack.py",
+      "source_sha256": "8d53bd6b1157b05475ed74341f0c5cc1beab6cf21d5de3be076db05ed0660b3d",
+      "sha256": "8d53bd6b1157b05475ed74341f0c5cc1beab6cf21d5de3be076db05ed0660b3d",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/timeline.ts",
+      "path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/timeline.ts",
+      "source_sha256": "033a835e7eb208155194aa0f58c5d32148773703ae7cf59c8fda2893580594cf",
+      "sha256": "033a835e7eb208155194aa0f58c5d32148773703ae7cf59c8fda2893580594cf",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/tokens.ts",
+      "path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/tokens.ts",
+      "source_sha256": "e847ef05fed2163bdfb3bf59731463c61bb0571f0cc39cf4bbffc348d93ba470",
+      "sha256": "e847ef05fed2163bdfb3bf59731463c61bb0571f0cc39cf4bbffc348d93ba470",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/ui.tsx",
+      "path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/ui.tsx",
+      "source_sha256": "3adeab55a8398af211315343168ca8c1c5fcc265977d94d7afd96e556161bf43",
+      "sha256": "3adeab55a8398af211315343168ca8c1c5fcc265977d94d7afd96e556161bf43",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/vo.py",
+      "path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/vo.py",
+      "source_sha256": "bbba9ef56131b594a838034f78943d0566b87e34297e7e3b8e593f2197016894",
+      "sha256": "bbba9ef56131b594a838034f78943d0566b87e34297e7e3b8e593f2197016894",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/voiceover.txt",
+      "path": "skills/claude-awesome-video-creation/assets/examples/teach-it-once/voiceover.txt",
+      "source_sha256": "0f8e461a57cf6f8161f6f5261c8c10765b2df8bf21b0a68751190d4eab033644",
+      "sha256": "0f8e461a57cf6f8161f6f5261c8c10765b2df8bf21b0a68751190d4eab033644",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/hyperframes-starter/audio/kit.json",
+      "path": "skills/claude-awesome-video-creation/assets/hyperframes-starter/audio/kit.json",
+      "source_sha256": "34906ee08f76387f05d34c638cecf568beb40d4a268e4a882779fe93b9912dff",
+      "sha256": "34906ee08f76387f05d34c638cecf568beb40d4a268e4a882779fe93b9912dff",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/hyperframes-starter/audio/score.json",
+      "path": "skills/claude-awesome-video-creation/assets/hyperframes-starter/audio/score.json",
+      "source_sha256": "719935bc769de93b8b501ff2917638978fb914f662a3ffba85d324f8783fbb28",
+      "sha256": "719935bc769de93b8b501ff2917638978fb914f662a3ffba85d324f8783fbb28",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/hyperframes-starter/fonts/README.md",
+      "path": "skills/claude-awesome-video-creation/assets/hyperframes-starter/fonts/README.md",
+      "source_sha256": "fae2b209f1e7075d68053a1fc3589bed13a851ddb56b240b91fcbe073125e4be",
+      "sha256": "fae2b209f1e7075d68053a1fc3589bed13a851ddb56b240b91fcbe073125e4be",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/hyperframes-starter/index.html",
+      "path": "skills/claude-awesome-video-creation/assets/hyperframes-starter/index.html",
+      "source_sha256": "5693da9a8821cc2977832c6ac16f19ad7dbed9f104bdf77ca32f75543d50640e",
+      "sha256": "5693da9a8821cc2977832c6ac16f19ad7dbed9f104bdf77ca32f75543d50640e",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/hyperframes-starter/motion.js",
+      "path": "skills/claude-awesome-video-creation/assets/hyperframes-starter/motion.js",
+      "source_sha256": "24029ffa3411b24c9dddf31ccd99f4485855bb932efab8cc67c4637d5aa55012",
+      "sha256": "24029ffa3411b24c9dddf31ccd99f4485855bb932efab8cc67c4637d5aa55012",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/hyperframes-starter/package.json",
+      "path": "skills/claude-awesome-video-creation/assets/hyperframes-starter/package.json",
+      "source_sha256": "3cc7878a9623509a8080d620dcba7f1d42ade939737ed7eba2c792b232af1984",
+      "sha256": "3cc7878a9623509a8080d620dcba7f1d42ade939737ed7eba2c792b232af1984",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/hyperframes-starter/setup.mjs",
+      "path": "skills/claude-awesome-video-creation/assets/hyperframes-starter/setup.mjs",
+      "source_sha256": "8bb7ae4094ad9f202572e9c93f425cb8f6410d4803ecbb3aab04241aaac70816",
+      "sha256": "8bb7ae4094ad9f202572e9c93f425cb8f6410d4803ecbb3aab04241aaac70816",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/hyperframes-starter/timeline.js",
+      "path": "skills/claude-awesome-video-creation/assets/hyperframes-starter/timeline.js",
+      "source_sha256": "a6d2d96597f369f4e6feb6bfefe2440d6fecf170220d6bfc5e727a808d7095fc",
+      "sha256": "a6d2d96597f369f4e6feb6bfefe2440d6fecf170220d6bfc5e727a808d7095fc",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/library/techniques.json",
+      "path": "skills/claude-awesome-video-creation/assets/library/techniques.json",
+      "source_sha256": "d8d936571cfcbf884002130004f02845f514d6d2d36cfa5676114afc6fc0992b",
+      "sha256": "d8d936571cfcbf884002130004f02845f514d6d2d36cfa5676114afc6fc0992b",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/.gitignore",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/.gitignore",
+      "source_sha256": "a190623e97acb5cdf9825681a0df3d091e3b32aae4ed9ee32f0528d8b128a602",
+      "sha256": "a190623e97acb5cdf9825681a0df3d091e3b32aae4ed9ee32f0528d8b128a602",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/audio/kit.json",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/audio/kit.json",
+      "source_sha256": "34906ee08f76387f05d34c638cecf568beb40d4a268e4a882779fe93b9912dff",
+      "sha256": "34906ee08f76387f05d34c638cecf568beb40d4a268e4a882779fe93b9912dff",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/audio/score.json",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/audio/score.json",
+      "source_sha256": "475d0216afd7ad11fd167f33f7d8c005a8b2ffd77f852048e72e10f809d93f05",
+      "sha256": "475d0216afd7ad11fd167f33f7d8c005a8b2ffd77f852048e72e10f809d93f05",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/package.json",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/package.json",
+      "source_sha256": "b538afe3c43403d1ce266fdfca597835e328c844f293e098add9e18ac52822bf",
+      "sha256": "b538afe3c43403d1ce266fdfca597835e328c844f293e098add9e18ac52822bf",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/public/audio/.gitkeep",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/public/audio/.gitkeep",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/remotion.config.ts",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/remotion.config.ts",
+      "source_sha256": "e83cd51d19c7dad314f2a998e22dabbca72907d6168c7f360711cce77bc2001c",
+      "sha256": "e83cd51d19c7dad314f2a998e22dabbca72907d6168c7f360711cce77bc2001c",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/Film.tsx",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/Film.tsx",
+      "source_sha256": "dcb63f4409c2a938138771c5c9dab27171b5d52d34973f68c0626b71e1694c15",
+      "sha256": "dcb63f4409c2a938138771c5c9dab27171b5d52d34973f68c0626b71e1694c15",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/FilmSub.tsx",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/FilmSub.tsx",
+      "source_sha256": "9577052b61dbfda8bfd6865c3d2c26c26148da7fa490ed93f34f9ba8698f497b",
+      "sha256": "9577052b61dbfda8bfd6865c3d2c26c26148da7fa490ed93f34f9ba8698f497b",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/Root.tsx",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/Root.tsx",
+      "source_sha256": "7cccd3580c3bff9ddb6934f780c88a39c1226bee3ed5de0d1a2b300b109af006",
+      "sha256": "7cccd3580c3bff9ddb6934f780c88a39c1226bee3ed5de0d1a2b300b109af006",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/Stills.tsx",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/Stills.tsx",
+      "source_sha256": "7bb87478ffe4a3895ae3a14e74c97715bff1267731fda28260001b2cda64d276",
+      "sha256": "7bb87478ffe4a3895ae3a14e74c97715bff1267731fda28260001b2cda64d276",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/acts/Act1.tsx",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/acts/Act1.tsx",
+      "source_sha256": "e5f4cd74eabaad668e8f07a03b1ebd324ab31b4f63fa4ee5f6f39b33efeb3e3b",
+      "sha256": "e5f4cd74eabaad668e8f07a03b1ebd324ab31b4f63fa4ee5f6f39b33efeb3e3b",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/acts/Act2.tsx",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/acts/Act2.tsx",
+      "source_sha256": "64c8c26d476a74796ac2061a3f03fc1070e80e54ef463306d8278c16e369b0d2",
+      "sha256": "64c8c26d476a74796ac2061a3f03fc1070e80e54ef463306d8278c16e369b0d2",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/blur.ts",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/blur.ts",
+      "source_sha256": "6760976b0a54aec8a1e47a317f3617d1b0e71905dbd7f7b434f83a8c70a7b750",
+      "sha256": "6760976b0a54aec8a1e47a317f3617d1b0e71905dbd7f7b434f83a8c70a7b750",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/brand/Mark.tsx",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/brand/Mark.tsx",
+      "source_sha256": "639aa98482171c6a6e10231f5f5fdc00c06bcedfdb1364ee0c15daeeb68d0590",
+      "sha256": "639aa98482171c6a6e10231f5f5fdc00c06bcedfdb1364ee0c15daeeb68d0590",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/brand/fonts.ts",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/brand/fonts.ts",
+      "source_sha256": "5c896d31f117ca16cbebb3412f2102e4ac5a305483006cac49f5e5214276d5f9",
+      "sha256": "5c896d31f117ca16cbebb3412f2102e4ac5a305483006cac49f5e5214276d5f9",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/brand/tokens.ts",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/brand/tokens.ts",
+      "source_sha256": "5b1a1b370ead0e4152905733e67fcf82f9b18ad4faf55e68106c824c3bdde5a9",
+      "sha256": "5b1a1b370ead0e4152905733e67fcf82f9b18ad4faf55e68106c824c3bdde5a9",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/fx/Chain.tsx",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/fx/Chain.tsx",
+      "source_sha256": "9169b7ae4c36c135f455a19af31af5e41533b3c0ec24afb7490ba33e04358a01",
+      "sha256": "9169b7ae4c36c135f455a19af31af5e41533b3c0ec24afb7490ba33e04358a01",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/fx/Cursor.tsx",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/fx/Cursor.tsx",
+      "source_sha256": "5280ea14b624d97c6694f374e16e02e9787a53e5849e5b870886bb7a4d5be3a1",
+      "sha256": "5280ea14b624d97c6694f374e16e02e9787a53e5849e5b870886bb7a4d5be3a1",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/fx/Iris.tsx",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/fx/Iris.tsx",
+      "source_sha256": "62709ecdb130a45298c253eb49c6a9e219e18c33552c8bd57c7363e2824a5592",
+      "sha256": "62709ecdb130a45298c253eb49c6a9e219e18c33552c8bd57c7363e2824a5592",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/fx/MaskRise.tsx",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/fx/MaskRise.tsx",
+      "source_sha256": "4217dc31e1490fa4978b48bcfe93d0a21cba74e3516b44c4bec7c6a8656c8b97",
+      "sha256": "4217dc31e1490fa4978b48bcfe93d0a21cba74e3516b44c4bec7c6a8656c8b97",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/fx/Morph.tsx",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/fx/Morph.tsx",
+      "source_sha256": "5c6a26f4d0eb10c1af1320e7b6615b9284b75d9215d0d5868569306b8a157e58",
+      "sha256": "5c6a26f4d0eb10c1af1320e7b6615b9284b75d9215d0d5868569306b8a157e58",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/fx/RackFocus.tsx",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/fx/RackFocus.tsx",
+      "source_sha256": "a87e12816ecb107c156b042e67f1317cb4f91c39b43ed7570ebe9f0dbbf21606",
+      "sha256": "a87e12816ecb107c156b042e67f1317cb4f91c39b43ed7570ebe9f0dbbf21606",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/fx/Roll.tsx",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/fx/Roll.tsx",
+      "source_sha256": "70b4b3735234f54ed563fc6ba473ee3ac15313e246821a69b5985bf52957cbe8",
+      "sha256": "70b4b3735234f54ed563fc6ba473ee3ac15313e246821a69b5985bf52957cbe8",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/fx/Scramble.tsx",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/fx/Scramble.tsx",
+      "source_sha256": "367962ebfdb095e431ab331312596d35ea169f0010b77dad0823295dde5457d7",
+      "sha256": "367962ebfdb095e431ab331312596d35ea169f0010b77dad0823295dde5457d7",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/fx/TypeOn.tsx",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/fx/TypeOn.tsx",
+      "source_sha256": "3c8f52811fc707b80b045a3edacda989329380d33768f07b679abb088732915a",
+      "sha256": "3c8f52811fc707b80b045a3edacda989329380d33768f07b679abb088732915a",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/fx/Words.tsx",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/fx/Words.tsx",
+      "source_sha256": "b0e6169e97864613b0ca3a72b139e96281a79be7027959dd9579a720dce695f0",
+      "sha256": "b0e6169e97864613b0ca3a72b139e96281a79be7027959dd9579a720dce695f0",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/index.ts",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/index.ts",
+      "source_sha256": "8ad7cfb50e32546485a1a2ef5e468e5b6bdee2bc5c9b92d08882f96e3750b4a3",
+      "sha256": "8ad7cfb50e32546485a1a2ef5e468e5b6bdee2bc5c9b92d08882f96e3750b4a3",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/lib/Audit.tsx",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/lib/Audit.tsx",
+      "source_sha256": "e25bfd8697befe6fa8954c1fef3e1e120d8c777e4c04f93f18d46b751d79ef81",
+      "sha256": "e25bfd8697befe6fa8954c1fef3e1e120d8c777e4c04f93f18d46b751d79ef81",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/lib/FontGate.tsx",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/lib/FontGate.tsx",
+      "source_sha256": "672ff63e523adc04dabbc61750d517bd1813a4b615d5461e3815892268d1ed06",
+      "sha256": "672ff63e523adc04dabbc61750d517bd1813a4b615d5461e3815892268d1ed06",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/lib/anim.ts",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/lib/anim.ts",
+      "source_sha256": "f34a1e0c04319f8ffa4aca0ae72e498aabcd3cff6110f9a2e5f0803e30d5de94",
+      "sha256": "f34a1e0c04319f8ffa4aca0ae72e498aabcd3cff6110f9a2e5f0803e30d5de94",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/lib/camera.ts",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/lib/camera.ts",
+      "source_sha256": "ddc0bb6273ef058ffad4a9fff1325a242331deafcbbeaa0fc82a2b3b60deb39a",
+      "sha256": "ddc0bb6273ef058ffad4a9fff1325a242331deafcbbeaa0fc82a2b3b60deb39a",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/lib/color.ts",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/lib/color.ts",
+      "source_sha256": "de0c2305c3ac3338b6ae80e5eae8f3c93a71ffffeb9fe4c05c3ef9916b8acb0c",
+      "sha256": "de0c2305c3ac3338b6ae80e5eae8f3c93a71ffffeb9fe4c05c3ef9916b8acb0c",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/lib/measure.ts",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/lib/measure.ts",
+      "source_sha256": "b060a7b06fe673160c3cb4127af8ab9b2829df6ca97ac090173dc890af3dc2ea",
+      "sha256": "b060a7b06fe673160c3cb4127af8ab9b2829df6ca97ac090173dc890af3dc2ea",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/lib/pace.ts",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/lib/pace.ts",
+      "source_sha256": "2651f49770c0ed408ce037ce6dced41a7619d59c0c15719545ed1a36dff368c5",
+      "sha256": "2651f49770c0ed408ce037ce6dced41a7619d59c0c15719545ed1a36dff368c5",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/lib/safe.ts",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/lib/safe.ts",
+      "source_sha256": "4bff8e4ef7d207bd37aac5bed164dfaa56e3b0b28373971ce38cb9fad1e55f26",
+      "sha256": "4bff8e4ef7d207bd37aac5bed164dfaa56e3b0b28373971ce38cb9fad1e55f26",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/lib/sync.ts",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/lib/sync.ts",
+      "source_sha256": "01df082be0b0e4d9eeb081e159c70dad1378346ca057bbafce71a2a117ef163c",
+      "sha256": "01df082be0b0e4d9eeb081e159c70dad1378346ca057bbafce71a2a117ef163c",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/sync.ts",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/sync.ts",
+      "source_sha256": "8746c159da3f8d826e62a557eeab09c1c9e1050813dd0c483ca6991c6fb299cb",
+      "sha256": "8746c159da3f8d826e62a557eeab09c1c9e1050813dd0c483ca6991c6fb299cb",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/timeline.ts",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/src/timeline.ts",
+      "source_sha256": "d2dfbdd967eb61d605c82937d79d26da54c644fb100efdf382ed3afae6e8da95",
+      "sha256": "d2dfbdd967eb61d605c82937d79d26da54c644fb100efdf382ed3afae6e8da95",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/assets/remotion-starter/tsconfig.json",
+      "path": "skills/claude-awesome-video-creation/assets/remotion-starter/tsconfig.json",
+      "source_sha256": "859343141cd4a962364919d9e1192f716b54430dc8f05ea6b5cdfac8d9fb4fff",
+      "sha256": "859343141cd4a962364919d9e1192f716b54430dc8f05ea6b5cdfac8d9fb4fff",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/references/brand-and-color.md",
+      "path": "skills/claude-awesome-video-creation/references/brand-and-color.md",
+      "source_sha256": "211a2830ae710644c4ac7b8e2511324adacb6d60a2e4e1a227355a960de6061d",
+      "sha256": "211a2830ae710644c4ac7b8e2511324adacb6d60a2e4e1a227355a960de6061d",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/references/camera.md",
+      "path": "skills/claude-awesome-video-creation/references/camera.md",
+      "source_sha256": "7d372dca69c5847b3ac3f25c34e7fc5675e5f258c0270ee5cdbddae371de0fea",
+      "sha256": "7d372dca69c5847b3ac3f25c34e7fc5675e5f258c0270ee5cdbddae371de0fea",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/references/chromium-rendering.md",
+      "path": "skills/claude-awesome-video-creation/references/chromium-rendering.md",
+      "source_sha256": "1c4e1686e7890bb3e0bd52bbcb3a2303ff46fe97a6aa71755cac92bd0537a6ce",
+      "sha256": "1c4e1686e7890bb3e0bd52bbcb3a2303ff46fe97a6aa71755cac92bd0537a6ce",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/references/cinetic-core.md",
+      "path": "skills/claude-awesome-video-creation/references/cinetic-core.md",
+      "source_sha256": "4dadf39b147c8ec9a91899f2e0be6ea8c175c2095edea960ecab3af696e8370b",
+      "sha256": "4dadf39b147c8ec9a91899f2e0be6ea8c175c2095edea960ecab3af696e8370b",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/references/concept-and-story.md",
+      "path": "skills/claude-awesome-video-creation/references/concept-and-story.md",
+      "source_sha256": "216e90a20ca61b0106e45b4ba172309a35de147f2990281b231d23fd2b688839",
+      "sha256": "216e90a20ca61b0106e45b4ba172309a35de147f2990281b231d23fd2b688839",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/references/copy-and-type.md",
+      "path": "skills/claude-awesome-video-creation/references/copy-and-type.md",
+      "source_sha256": "219e5b507295328e9b27e0e17089e59fba99dd8e1d8c9bddfc1feaf98c8c1124",
+      "sha256": "219e5b507295328e9b27e0e17089e59fba99dd8e1d8c9bddfc1feaf98c8c1124",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/references/craft-rules.md",
+      "path": "skills/claude-awesome-video-creation/references/craft-rules.md",
+      "source_sha256": "8d2891ebc615e0044425c244700d4f12aeead44de84eb559e7c74513bc99b4df",
+      "sha256": "8d2891ebc615e0044425c244700d4f12aeead44de84eb559e7c74513bc99b4df",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/references/finishing.md",
+      "path": "skills/claude-awesome-video-creation/references/finishing.md",
+      "source_sha256": "d7a2c5f01baa6dd37c89f955952945bd694fe2b4faa17ebe54b73b2541657940",
+      "sha256": "d7a2c5f01baa6dd37c89f955952945bd694fe2b4faa17ebe54b73b2541657940",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/references/formats.md",
+      "path": "skills/claude-awesome-video-creation/references/formats.md",
+      "source_sha256": "ca0e23469fc912999b2db01ea3e0e38774edb7914dc67f7c6f79029f158cfb71",
+      "sha256": "ca0e23469fc912999b2db01ea3e0e38774edb7914dc67f7c6f79029f158cfb71",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/references/hyperframes-engine.md",
+      "path": "skills/claude-awesome-video-creation/references/hyperframes-engine.md",
+      "source_sha256": "0cc17d790ed12c10d193a57edfb2feb2003b5d803832a0d4be328f562d67788e",
+      "sha256": "0cc17d790ed12c10d193a57edfb2feb2003b5d803832a0d4be328f562d67788e",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/references/lessons.md",
+      "path": "skills/claude-awesome-video-creation/references/lessons.md",
+      "source_sha256": "5fdba7ebf86cd0aa04a717c121804ccc3b9378051888595465c8f4a186082299",
+      "sha256": "5fdba7ebf86cd0aa04a717c121804ccc3b9378051888595465c8f4a186082299",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/references/look-tutorial.md",
+      "path": "skills/claude-awesome-video-creation/references/look-tutorial.md",
+      "source_sha256": "0cc1dd2beb718b464dcc45b3c913f92588f170b5e70f822be188a2627976ce31",
+      "sha256": "0cc1dd2beb718b464dcc45b3c913f92588f170b5e70f822be188a2627976ce31",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/references/mascot.md",
+      "path": "skills/claude-awesome-video-creation/references/mascot.md",
+      "source_sha256": "645cb9f15690a5ebdc4b020364e474ef98fbbb3a6e1bd70b37e6995228345495",
+      "sha256": "645cb9f15690a5ebdc4b020364e474ef98fbbb3a6e1bd70b37e6995228345495",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/references/motion-tokens.md",
+      "path": "skills/claude-awesome-video-creation/references/motion-tokens.md",
+      "source_sha256": "cf73794c4bc5ed662d421379dbfcb9e070324d371d518b2a643858942b695164",
+      "sha256": "cf73794c4bc5ed662d421379dbfcb9e070324d371d518b2a643858942b695164",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/references/product-ui.md",
+      "path": "skills/claude-awesome-video-creation/references/product-ui.md",
+      "source_sha256": "51069c8515dc5c58b9b98e60a3d6a4fcd23cf37dfa9c9d685b489d77c9238567",
+      "sha256": "51069c8515dc5c58b9b98e60a3d6a4fcd23cf37dfa9c9d685b489d77c9238567",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/references/remotion-engine.md",
+      "path": "skills/claude-awesome-video-creation/references/remotion-engine.md",
+      "source_sha256": "e5721e9abfd483b5c67af7d4f93ceecd69ba25663b7b211fecf78d90224d32e7",
+      "sha256": "e5721e9abfd483b5c67af7d4f93ceecd69ba25663b7b211fecf78d90224d32e7",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/references/render-qa.md",
+      "path": "skills/claude-awesome-video-creation/references/render-qa.md",
+      "source_sha256": "012e7416d5f92e53c09a82544daa53b598f1de9b2bf8b32a3046477368150eae",
+      "sha256": "012e7416d5f92e53c09a82544daa53b598f1de9b2bf8b32a3046477368150eae",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/references/review-loop.md",
+      "path": "skills/claude-awesome-video-creation/references/review-loop.md",
+      "source_sha256": "7d3b755b0c601f924a410d3ec6dd39c4678022d66c119431957757d242c930c3",
+      "sha256": "7d3b755b0c601f924a410d3ec6dd39c4678022d66c119431957757d242c930c3",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/references/sound.md",
+      "path": "skills/claude-awesome-video-creation/references/sound.md",
+      "source_sha256": "012b90f747f92f27731244ed151b3a55e9407e2f08d06f1b9fde7b9a61f1b8ec",
+      "sha256": "012b90f747f92f27731244ed151b3a55e9407e2f08d06f1b9fde7b9a61f1b8ec",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/references/taste-and-slop.md",
+      "path": "skills/claude-awesome-video-creation/references/taste-and-slop.md",
+      "source_sha256": "1e3ae3f85b8f823b0dca79a3958de0d2b5c7398b65168ce57224dddc2441e957",
+      "sha256": "1e3ae3f85b8f823b0dca79a3958de0d2b5c7398b65168ce57224dddc2441e957",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/references/technique-library.md",
+      "path": "skills/claude-awesome-video-creation/references/technique-library.md",
+      "source_sha256": "c96523bb0f9f8a83074b81a0ef039708f06eda9682b7e26fea422c2d9588a04c",
+      "sha256": "c96523bb0f9f8a83074b81a0ef039708f06eda9682b7e26fea422c2d9588a04c",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/references/timing-grid.md",
+      "path": "skills/claude-awesome-video-creation/references/timing-grid.md",
+      "source_sha256": "8ae2de5d76ae656e43b96dbc1c15c3180817e2da925504b26ca1e1fb8272ed9c",
+      "sha256": "8ae2de5d76ae656e43b96dbc1c15c3180817e2da925504b26ca1e1fb8272ed9c",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/references/transitions.md",
+      "path": "skills/claude-awesome-video-creation/references/transitions.md",
+      "source_sha256": "e576629286aa9e173154bc6060d8a3f97b2164054655c4430c32e28ee51d512b",
+      "sha256": "e576629286aa9e173154bc6060d8a3f97b2164054655c4430c32e28ee51d512b",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/references/voiceover.md",
+      "path": "skills/claude-awesome-video-creation/references/voiceover.md",
+      "source_sha256": "c6d061b84c7e16a75582e0a28b849b7fb077b8c6e1e52cdda3afbe64e2988f2c",
+      "sha256": "c6d061b84c7e16a75582e0a28b849b7fb077b8c6e1e52cdda3afbe64e2988f2c",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/references/worked-example.md",
+      "path": "skills/claude-awesome-video-creation/references/worked-example.md",
+      "source_sha256": "63a6edfdf8f2416a952eac62f0d2e6c6820772f78e2645ff14d09914a3ed0832",
+      "sha256": "63a6edfdf8f2416a952eac62f0d2e6c6820772f78e2645ff14d09914a3ed0832",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/accumulate.py",
+      "path": "skills/claude-awesome-video-creation/scripts/accumulate.py",
+      "source_sha256": "b5ab988b568ffab2563a517831b853600bd77d56f55e0a8042df7f84ea5925e6",
+      "sha256": "b5ab988b568ffab2563a517831b853600bd77d56f55e0a8042df7f84ea5925e6",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/add-font.mjs",
+      "path": "skills/claude-awesome-video-creation/scripts/add-font.mjs",
+      "source_sha256": "965d7a0bee8ca117416bd67dc92c934d789ccca7bc6fc838132a7cab5fe99e86",
+      "sha256": "965d7a0bee8ca117416bd67dc92c934d789ccca7bc6fc838132a7cab5fe99e86",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/audio/kit.py",
+      "path": "skills/claude-awesome-video-creation/scripts/audio/kit.py",
+      "source_sha256": "573414240ffecdcfc5e0e1a75978c8d0b7ba1ca03eb7c64650857b9865308c20",
+      "sha256": "573414240ffecdcfc5e0e1a75978c8d0b7ba1ca03eb7c64650857b9865308c20",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/audio/listen.py",
+      "path": "skills/claude-awesome-video-creation/scripts/audio/listen.py",
+      "source_sha256": "7efbe006d58a3fae7b9af36226d8d4292f06db526948d5a7819361907805a93b",
+      "sha256": "7efbe006d58a3fae7b9af36226d8d4292f06db526948d5a7819361907805a93b",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/audio/master.py",
+      "path": "skills/claude-awesome-video-creation/scripts/audio/master.py",
+      "source_sha256": "77a1f133ecc372c5166399ec3849826130c5be82faffd2236708522caaa28798",
+      "sha256": "77a1f133ecc372c5166399ec3849826130c5be82faffd2236708522caaa28798",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/audio/score.py",
+      "path": "skills/claude-awesome-video-creation/scripts/audio/score.py",
+      "source_sha256": "e8a55a66efa5f045123371da039456b127ec8036e8658485ce41a1b55a8feed7",
+      "sha256": "e8a55a66efa5f045123371da039456b127ec8036e8658485ce41a1b55a8feed7",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/audio/synth.py",
+      "path": "skills/claude-awesome-video-creation/scripts/audio/synth.py",
+      "source_sha256": "f3c81a1588b3be169bc4a30772526bf46b3914bef59f487b299e7047f5066fdc",
+      "sha256": "f3c81a1588b3be169bc4a30772526bf46b3914bef59f487b299e7047f5066fdc",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/av-audit.py",
+      "path": "skills/claude-awesome-video-creation/scripts/av-audit.py",
+      "source_sha256": "47a4bed5eefc671e3a2ccdca64a1851b45134a66d06c43731f700fae5bd796f9",
+      "sha256": "47a4bed5eefc671e3a2ccdca64a1851b45134a66d06c43731f700fae5bd796f9",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/brand-kit.sh",
+      "path": "skills/claude-awesome-video-creation/scripts/brand-kit.sh",
+      "source_sha256": "75e9f7e24ec18fd74162af14cc95c363731182526e7d25a511e4b56ef7a7e54f",
+      "sha256": "75e9f7e24ec18fd74162af14cc95c363731182526e7d25a511e4b56ef7a7e54f",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/brand-svg.ts",
+      "path": "skills/claude-awesome-video-creation/scripts/brand-svg.ts",
+      "source_sha256": "47eb94cbd7f64517be4870cd0236d1161610da3b66b2f1d6682ec9b6709f76fe",
+      "sha256": "47eb94cbd7f64517be4870cd0236d1161610da3b66b2f1d6682ec9b6709f76fe",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/check-sync.py",
+      "path": "skills/claude-awesome-video-creation/scripts/check-sync.py",
+      "source_sha256": "b8929038f87d20e672e684ab9fc67d01ff5f1bb7b7c9140deec79ccc021b254c",
+      "sha256": "b8929038f87d20e672e684ab9fc67d01ff5f1bb7b7c9140deec79ccc021b254c",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/check_static.py",
+      "path": "skills/claude-awesome-video-creation/scripts/check_static.py",
+      "source_sha256": "774146d60604b74f5729329bfa82bbb74a35ab131906e7efaff559c71c37b351",
+      "sha256": "774146d60604b74f5729329bfa82bbb74a35ab131906e7efaff559c71c37b351",
+      "executable": true
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/deliver.sh",
+      "path": "skills/claude-awesome-video-creation/scripts/deliver.sh",
+      "source_sha256": "24f82c30c1a584f70ba02f92b2173d29ec1a9cc2a2c2ae3f7974f00e4b93c7e7",
+      "sha256": "24f82c30c1a584f70ba02f92b2173d29ec1a9cc2a2c2ae3f7974f00e4b93c7e7",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/dither-gradient.py",
+      "path": "skills/claude-awesome-video-creation/scripts/dither-gradient.py",
+      "source_sha256": "dbcda1be4206dd11db49910cf1400164aec53e1a02349b56543136483131b00f",
+      "sha256": "dbcda1be4206dd11db49910cf1400164aec53e1a02349b56543136483131b00f",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/export-cues.ts",
+      "path": "skills/claude-awesome-video-creation/scripts/export-cues.ts",
+      "source_sha256": "0f19a69199f869e71ae9e7394f395c41506426c65520174ff1bddfe35e3efc57",
+      "sha256": "0f19a69199f869e71ae9e7394f395c41506426c65520174ff1bddfe35e3efc57",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/forensics.py",
+      "path": "skills/claude-awesome-video-creation/scripts/forensics.py",
+      "source_sha256": "d5c199eb1072b75e2c34c5363a7b1c6e1823e15e98867c6b1b7aebe7b3776b76",
+      "sha256": "d5c199eb1072b75e2c34c5363a7b1c6e1823e15e98867c6b1b7aebe7b3776b76",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/grab.sh",
+      "path": "skills/claude-awesome-video-creation/scripts/grab.sh",
+      "source_sha256": "bcb4c59938ca7a6633a7d9b0b680c1e862e42bbcde548c1d76ee52b0d79b557d",
+      "sha256": "bcb4c59938ca7a6633a7d9b0b680c1e862e42bbcde548c1d76ee52b0d79b557d",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/grid-check.ts",
+      "path": "skills/claude-awesome-video-creation/scripts/grid-check.ts",
+      "source_sha256": "e11dd70ee2ea173b2871c4f320bd613140c75bd9146ee988ef1174b141d4711f",
+      "sha256": "e11dd70ee2ea173b2871c4f320bd613140c75bd9146ee988ef1174b141d4711f",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/hf-finish.sh",
+      "path": "skills/claude-awesome-video-creation/scripts/hf-finish.sh",
+      "source_sha256": "1f3324a4ea7961145ead903133ec1ea0acf176c251b576783a28484781240c4e",
+      "sha256": "1f3324a4ea7961145ead903133ec1ea0acf176c251b576783a28484781240c4e",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/hf-preflight.cjs",
+      "path": "skills/claude-awesome-video-creation/scripts/hf-preflight.cjs",
+      "source_sha256": "db5592914ff9f3078f436d00a8ecbfc0205f0d6e428972839f39dcfa0d93a557",
+      "sha256": "db5592914ff9f3078f436d00a8ecbfc0205f0d6e428972839f39dcfa0d93a557",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/key_magenta.py",
+      "path": "skills/claude-awesome-video-creation/scripts/key_magenta.py",
+      "source_sha256": "70405fae5512a25aaf1c2f1419bdc80b42f18b578989a9d37c18c53fce45773e",
+      "sha256": "70405fae5512a25aaf1c2f1419bdc80b42f18b578989a9d37c18c53fce45773e",
+      "executable": true
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/layout-audit.sh",
+      "path": "skills/claude-awesome-video-creation/scripts/layout-audit.sh",
+      "source_sha256": "e2704470bfd587593947f04dfa5ac44753b99b64f1e44e8e8590939dd46f6310",
+      "sha256": "e2704470bfd587593947f04dfa5ac44753b99b64f1e44e8e8590939dd46f6310",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/lint-film.mjs",
+      "path": "skills/claude-awesome-video-creation/scripts/lint-film.mjs",
+      "source_sha256": "8e92ae8b970f44b4af7ce00ea088438532bdf0352a317319d3f9675cb07091c0",
+      "sha256": "8e92ae8b970f44b4af7ce00ea088438532bdf0352a317319d3f9675cb07091c0",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/measure-speed.py",
+      "path": "skills/claude-awesome-video-creation/scripts/measure-speed.py",
+      "source_sha256": "9e5bb7fa4385d7ddf2f4efd9a046f24f54686da2f80b186a7d0af9fa12bdab6c",
+      "sha256": "9e5bb7fa4385d7ddf2f4efd9a046f24f54686da2f80b186a7d0af9fa12bdab6c",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/new-film.sh",
+      "path": "skills/claude-awesome-video-creation/scripts/new-film.sh",
+      "source_sha256": "abc20d103515e0d39d733d55288f65c9a03c4febac9ce2a8806906c4e9c8d7d2",
+      "sha256": "abc20d103515e0d39d733d55288f65c9a03c4febac9ce2a8806906c4e9c8d7d2",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/outline-text.py",
+      "path": "skills/claude-awesome-video-creation/scripts/outline-text.py",
+      "source_sha256": "fcaab966ccfc743e81a5ce0e8044abd65cd3f7f038f8e7710abe3f0af0738a67",
+      "sha256": "fcaab966ccfc743e81a5ce0e8044abd65cd3f7f038f8e7710abe3f0af0738a67",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/palette.py",
+      "path": "skills/claude-awesome-video-creation/scripts/palette.py",
+      "source_sha256": "92953451a472c91a41966b4c02bd61c2119c7ef2903658f1b61b6309301ced9f",
+      "sha256": "92953451a472c91a41966b4c02bd61c2119c7ef2903658f1b61b6309301ced9f",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/pick.py",
+      "path": "skills/claude-awesome-video-creation/scripts/pick.py",
+      "source_sha256": "f54b9ed3469b48ab896987e2730a7554a5e75423c02b4d3e944cadbb212e430e",
+      "sha256": "f54b9ed3469b48ab896987e2730a7554a5e75423c02b4d3e944cadbb212e430e",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/probe.py",
+      "path": "skills/claude-awesome-video-creation/scripts/probe.py",
+      "source_sha256": "a42cb29053ee402b58eff0491779161b77862c4dbd05e36dafcab2a923966dc9",
+      "sha256": "a42cb29053ee402b58eff0491779161b77862c4dbd05e36dafcab2a923966dc9",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/render-chunks.sh",
+      "path": "skills/claude-awesome-video-creation/scripts/render-chunks.sh",
+      "source_sha256": "16fc0886879ab0f510dff7eb7d39224a00ef471affad62c5e0e7a66deef6e44f",
+      "sha256": "16fc0886879ab0f510dff7eb7d39224a00ef471affad62c5e0e7a66deef6e44f",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/render.sh",
+      "path": "skills/claude-awesome-video-creation/scripts/render.sh",
+      "source_sha256": "dca57d4fb6cf20eea3da96e1365bbda136e8e5a9c9cf2c5ff7d2890dee0ae9a5",
+      "sha256": "dca57d4fb6cf20eea3da96e1365bbda136e8e5a9c9cf2c5ff7d2890dee0ae9a5",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/render_segments.sh",
+      "path": "skills/claude-awesome-video-creation/scripts/render_segments.sh",
+      "source_sha256": "f0956708a73036fcc24e59afb66f6f28cfb8eb6dc4acece32385640050780fd4",
+      "sha256": "f0956708a73036fcc24e59afb66f6f28cfb8eb6dc4acece32385640050780fd4",
+      "executable": true
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/sheet.py",
+      "path": "skills/claude-awesome-video-creation/scripts/sheet.py",
+      "source_sha256": "e50c9dc5ee8ca7ca6d1bacd6f7d1c6b505a09db137e1f95270e0f1722f2fbe14",
+      "sha256": "e50c9dc5ee8ca7ca6d1bacd6f7d1c6b505a09db137e1f95270e0f1722f2fbe14",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/sheet.sh",
+      "path": "skills/claude-awesome-video-creation/scripts/sheet.sh",
+      "source_sha256": "38347ec74b88f860640e10a56648f492b51e99f52a7d7f365d8456f545ea34cd",
+      "sha256": "38347ec74b88f860640e10a56648f492b51e99f52a7d7f365d8456f545ea34cd",
+      "executable": true
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/bash32.test.py",
+      "path": "skills/claude-awesome-video-creation/scripts/test/bash32.test.py",
+      "source_sha256": "a2fc1c9f8eb05db620313eafb00f34be419be0bc9a4b887be665b65fa3cef392",
+      "sha256": "a2fc1c9f8eb05db620313eafb00f34be419be0bc9a4b887be665b65fa3cef392",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/encode-tags.test.py",
+      "path": "skills/claude-awesome-video-creation/scripts/test/encode-tags.test.py",
+      "source_sha256": "d159eccbf8b2cbf0443c337f53be922fd14e13289ba9c6fe9936227ed8502d41",
+      "sha256": "d159eccbf8b2cbf0443c337f53be922fd14e13289ba9c6fe9936227ed8502d41",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/grid-check.test.mjs",
+      "path": "skills/claude-awesome-video-creation/scripts/test/grid-check.test.mjs",
+      "source_sha256": "0646c0037f61b142a84780cdd9cd64be3f4ca5ccae71267716443ddb57a0b7c4",
+      "sha256": "0646c0037f61b142a84780cdd9cd64be3f4ca5ccae71267716443ddb57a0b7c4",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/grid-fixtures/calm-chains.ts",
+      "path": "skills/claude-awesome-video-creation/scripts/test/grid-fixtures/calm-chains.ts",
+      "source_sha256": "dacab74e444099df50080788e66f17e532c77f5eac3826480733caaa6c3808b1",
+      "sha256": "dacab74e444099df50080788e66f17e532c77f5eac3826480733caaa6c3808b1",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/grid-fixtures/chain-beat.ts",
+      "path": "skills/claude-awesome-video-creation/scripts/test/grid-fixtures/chain-beat.ts",
+      "source_sha256": "21517edb9c55b5f61bcfa9c392c36c7b6df73627023b1cae8204eac02dfa47a3",
+      "sha256": "21517edb9c55b5f61bcfa9c392c36c7b6df73627023b1cae8204eac02dfa47a3",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/grid-fixtures/chain-gaps.ts",
+      "path": "skills/claude-awesome-video-creation/scripts/test/grid-fixtures/chain-gaps.ts",
+      "source_sha256": "a6df7ebf72b69d873ae2cce0d0d256df6321cb47e3e427abf87b3430d5faf17d",
+      "sha256": "a6df7ebf72b69d873ae2cce0d0d256df6321cb47e3e427abf87b3430d5faf17d",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/grid-fixtures/crisp-legacy.ts",
+      "path": "skills/claude-awesome-video-creation/scripts/test/grid-fixtures/crisp-legacy.ts",
+      "source_sha256": "3ba1177b13369794e22d916c8a9162cda08eb28b029d16672c591dba47fd50cd",
+      "sha256": "3ba1177b13369794e22d916c8a9162cda08eb28b029d16672c591dba47fd50cd",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/grid-fixtures/crisp-soft.ts",
+      "path": "skills/claude-awesome-video-creation/scripts/test/grid-fixtures/crisp-soft.ts",
+      "source_sha256": "8a490ec613ee773c49d25e7f64ffe1adbfae52e787790ab5c414d35612b36838",
+      "sha256": "8a490ec613ee773c49d25e7f64ffe1adbfae52e787790ab5c414d35612b36838",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/grid-fixtures/lines-together.ts",
+      "path": "skills/claude-awesome-video-creation/scripts/test/grid-fixtures/lines-together.ts",
+      "source_sha256": "c451d1e2d42cb675ff7054b389d719c7c3ecbbcd57d56712a0d45f20d655e1c3",
+      "sha256": "c451d1e2d42cb675ff7054b389d719c7c3ecbbcd57d56712a0d45f20d655e1c3",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/grid-fixtures/read-quiet.ts",
+      "path": "skills/claude-awesome-video-creation/scripts/test/grid-fixtures/read-quiet.ts",
+      "source_sha256": "5a12159b5d87ee4f3392b5ed3f8383f99d415f30144c37b536e4bd351f4f994a",
+      "sha256": "5a12159b5d87ee4f3392b5ed3f8383f99d415f30144c37b536e4bd351f4f994a",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/grid-fixtures/reads-and-gaps.ts",
+      "path": "skills/claude-awesome-video-creation/scripts/test/grid-fixtures/reads-and-gaps.ts",
+      "source_sha256": "0e82a73a45dd4f8ab7f09f23287851a00271884114282692ed82f77fb3c7a44e",
+      "sha256": "0e82a73a45dd4f8ab7f09f23287851a00271884114282692ed82f77fb3c7a44e",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/grid-fixtures/replace-exit.ts",
+      "path": "skills/claude-awesome-video-creation/scripts/test/grid-fixtures/replace-exit.ts",
+      "source_sha256": "ed19898ba02673f4d5b5483e400aa4770d90a5a9f329f24d664f4ed5bbf94266",
+      "sha256": "ed19898ba02673f4d5b5483e400aa4770d90a5a9f329f24d664f4ed5bbf94266",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/grid-fixtures/sentence-dump.ts",
+      "path": "skills/claude-awesome-video-creation/scripts/test/grid-fixtures/sentence-dump.ts",
+      "source_sha256": "695dcc4df245a422ac35745457f1e0d86e68ecb3978a9f8c9971a941674e9007",
+      "sha256": "695dcc4df245a422ac35745457f1e0d86e68ecb3978a9f8c9971a941674e9007",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/lint-film.test.mjs",
+      "path": "skills/claude-awesome-video-creation/scripts/test/lint-film.test.mjs",
+      "source_sha256": "8c4490358fec4983cb99b312c9aa4e8f0051215fc2d334e93c9fb1054992a8ab",
+      "sha256": "8c4490358fec4983cb99b312c9aa4e8f0051215fc2d334e93c9fb1054992a8ab",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/act-copy-literal.tsx",
+      "path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/act-copy-literal.tsx",
+      "source_sha256": "bb4e4bd7073ba5ebebf4f06340425d6ffba8d35ee4de182e8b4389e04720e3a9",
+      "sha256": "bb4e4bd7073ba5ebebf4f06340425d6ffba8d35ee4de182e8b4389e04720e3a9",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/act-sibling-words.tsx",
+      "path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/act-sibling-words.tsx",
+      "source_sha256": "db4263d84249af1e2cedd65c8e2d0f3027698eab55adb592dcf378ac2335f9a0",
+      "sha256": "db4263d84249af1e2cedd65c8e2d0f3027698eab55adb592dcf378ac2335f9a0",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/banned-color.ts",
+      "path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/banned-color.ts",
+      "source_sha256": "fb53700d20c462bf4ec0093bb45f305736af44f268584a9579c4cb9c4b462a4d",
+      "sha256": "fb53700d20c462bf4ec0093bb45f305736af44f268584a9579c4cb9c4b462a4d",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/banned-named.tsx",
+      "path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/banned-named.tsx",
+      "source_sha256": "1cabb5cd2a0eac5972cf1e2663cdd5cd2df3b0ba7bb02871373a03e68c2a41de",
+      "sha256": "1cabb5cd2a0eac5972cf1e2663cdd5cd2df3b0ba7bb02871373a03e68c2a41de",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/brand-file.tsx",
+      "path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/brand-file.tsx",
+      "source_sha256": "36f5552096b90b5a72a4498e7e4e2f2e8ae697a86c191d77a34dc2f7f5fde739",
+      "sha256": "36f5552096b90b5a72a4498e7e4e2f2e8ae697a86c191d77a34dc2f7f5fde739",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/brand-line.tsx",
+      "path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/brand-line.tsx",
+      "source_sha256": "d39127c939085a7f15493fd1b6857a3b885fd9b5be6c681dce085470eab17651",
+      "sha256": "d39127c939085a7f15493fd1b6857a3b885fd9b5be6c681dce085470eab17651",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/emoji-decoration.tsx",
+      "path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/emoji-decoration.tsx",
+      "source_sha256": "c4f2cb1386262292feffdbd38806531b79f162200092f146e774c79df4722116",
+      "sha256": "c4f2cb1386262292feffdbd38806531b79f162200092f146e774c79df4722116",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/glass-glow.tsx",
+      "path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/glass-glow.tsx",
+      "source_sha256": "b86847f086e8df106f51cec4d37d6ebdd167a977f5c4d26504f56f57b19732c3",
+      "sha256": "b86847f086e8df106f51cec4d37d6ebdd167a977f5c4d26504f56f57b19732c3",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/gradient.tsx",
+      "path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/gradient.tsx",
+      "source_sha256": "47b42afec054e178fd986ee136a58b9e03a6fa0570459c8a99beee352aab963f",
+      "sha256": "47b42afec054e178fd986ee136a58b9e03a6fa0570459c8a99beee352aab963f",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/hyperframes-brand.html",
+      "path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/hyperframes-brand.html",
+      "source_sha256": "882926e23b676efca9c9cddd9fd027870cd50b68dee48990b003940c6c270b3d",
+      "sha256": "882926e23b676efca9c9cddd9fd027870cd50b68dee48990b003940c6c270b3d",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/hyperframes.html",
+      "path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/hyperframes.html",
+      "source_sha256": "0c09453dac7bf7017f7942aeafd7c65b074353ae39a825c927e2294ecf9ee7f4",
+      "sha256": "0c09453dac7bf7017f7942aeafd7c65b074353ae39a825c927e2294ecf9ee7f4",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/italic.tsx",
+      "path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/italic.tsx",
+      "source_sha256": "25a2a15d94bab87d7fc75163f522a45a7fb8b60cb119d730bde4339eca9ee5df",
+      "sha256": "25a2a15d94bab87d7fc75163f522a45a7fb8b60cb119d730bde4339eca9ee5df",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/number-labels.tsx",
+      "path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/number-labels.tsx",
+      "source_sha256": "2fd7492ab09c889abb35900044b6350a49c0639130529f4c5b653c26a5b8bce1",
+      "sha256": "2fd7492ab09c889abb35900044b6350a49c0639130529f4c5b653c26a5b8bce1",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/per-letter-arrays.tsx",
+      "path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/per-letter-arrays.tsx",
+      "source_sha256": "58e3f2e0773672724ab53e5c3f0fc11c3168daa2a5a60a5733b0d945c2a1b470",
+      "sha256": "58e3f2e0773672724ab53e5c3f0fc11c3168daa2a5a60a5733b0d945c2a1b470",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/per-letter.tsx",
+      "path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/per-letter.tsx",
+      "source_sha256": "94d907bc7ef7ad9c232ab890cf759b38da405e54690764c2d40822d405cb29a2",
+      "sha256": "94d907bc7ef7ad9c232ab890cf759b38da405e54690764c2d40822d405cb29a2",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/serif.tsx",
+      "path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/serif.tsx",
+      "source_sha256": "c61400b9c2aea8b7fa418f56241a759a37b6e87cc5692ecc1c4d9fa4ffd8bbac",
+      "sha256": "c61400b9c2aea8b7fa418f56241a759a37b6e87cc5692ecc1c4d9fa4ffd8bbac",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/text-pace.tsx",
+      "path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/text-pace.tsx",
+      "source_sha256": "495b999753f286e3f5ec3d9922b13ec893764ad2f832d0aa52618f568abded11",
+      "sha256": "495b999753f286e3f5ec3d9922b13ec893764ad2f832d0aa52618f568abded11",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/text-spring-keys.tsx",
+      "path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/text-spring-keys.tsx",
+      "source_sha256": "00b74685de30462da4e7a005c3f625d365a181dcd4f5360e3827250da71793ba",
+      "sha256": "00b74685de30462da4e7a005c3f625d365a181dcd4f5360e3827250da71793ba",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/text-spring-wrapper.tsx",
+      "path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/text-spring-wrapper.tsx",
+      "source_sha256": "61d87041c3194a6c0707a30672020c56ec77cd127e7700e52a559e6dbcb205c9",
+      "sha256": "61d87041c3194a6c0707a30672020c56ec77cd127e7700e52a559e6dbcb205c9",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/text-spring.tsx",
+      "path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/text-spring.tsx",
+      "source_sha256": "8382d6c765661cb5b25af278b380ceceb9bb9ef48522f1af9950e7382a731436",
+      "sha256": "8382d6c765661cb5b25af278b380ceceb9bb9ef48522f1af9950e7382a731436",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/timeline.ts",
+      "path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/timeline.ts",
+      "source_sha256": "d9bcf08cb22e798b4d15dc2c0c49a3e9bb97bd5aa70c669284fae0f5e505cb90",
+      "sha256": "d9bcf08cb22e798b4d15dc2c0c49a3e9bb97bd5aa70c669284fae0f5e505cb90",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/typing-follow.tsx",
+      "path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/typing-follow.tsx",
+      "source_sha256": "5182a6daba961a5ce341528db54e160382f3ff8db36817bbce5f76f37ce833e4",
+      "sha256": "5182a6daba961a5ce341528db54e160382f3ff8db36817bbce5f76f37ce833e4",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/typing-rate.tsx",
+      "path": "skills/claude-awesome-video-creation/scripts/test/lint-fixtures/typing-rate.tsx",
+      "source_sha256": "d297dc6e8b49eb0422c065570d1b70a2ee37c13b56c0cffd392fc8d4cb88a96c",
+      "sha256": "d297dc6e8b49eb0422c065570d1b70a2ee37c13b56c0cffd392fc8d4cb88a96c",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/pick-fixtures/library.json",
+      "path": "skills/claude-awesome-video-creation/scripts/test/pick-fixtures/library.json",
+      "source_sha256": "f334eabaf317c602e28f6e7a5f4a6008a6cb0182920827e1c21ac27eb31aadd3",
+      "sha256": "f334eabaf317c602e28f6e7a5f4a6008a6cb0182920827e1c21ac27eb31aadd3",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/pick.test.py",
+      "path": "skills/claude-awesome-video-creation/scripts/test/pick.test.py",
+      "source_sha256": "dec7aff7aa43ef213d3e3ceef8814f698a201320cf2e71ebda46074afb1f0c03",
+      "sha256": "dec7aff7aa43ef213d3e3ceef8814f698a201320cf2e71ebda46074afb1f0c03",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/score.test.py",
+      "path": "skills/claude-awesome-video-creation/scripts/test/score.test.py",
+      "source_sha256": "dee1b84ff121ee41a72188d63068005a72e59937526778d392662bc75686cf10",
+      "sha256": "dee1b84ff121ee41a72188d63068005a72e59937526778d392662bc75686cf10",
+      "executable": false
+    },
+    {
+      "source_path": "skills/claude-awesome-video-creation/scripts/test/scripts-docs.test.mjs",
+      "path": "skills/claude-awesome-video-creation/scripts/test/scripts-docs.test.mjs",
+      "source_sha256": "e280c4852eee2d15d7822f03294ffd929b214ad4d670f9d27729b708d4c5bb09",
+      "sha256": "e280c4852eee2d15d7822f03294ffd929b214ad4d670f9d27729b708d4c5bb09",
+      "executable": false
+    }
+  ]
+}

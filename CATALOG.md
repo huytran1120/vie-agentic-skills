@@ -1,6 +1,6 @@
 # Vie Agentic Skill (VAS) - Catalog
 
-Tổng hợp **3,884** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
+Tổng hợp **3,885** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
 
 | Danh mục | Số lượng | Lệnh cài đặt nhanh |
 | :--- | :---: | :--- |
@@ -78,7 +78,7 @@ Tổng hợp **3,884** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **lifestyle** | 1 skills | `./vas install --category lifestyle --target codex` |
 | **marketing** | 312 skills | `./vas install --category marketing --target codex` |
 | **mcp** | 8 skills | `./vas install --category mcp --target codex` |
-| **media** | 145 skills | `./vas install --category media --target codex` |
+| **media** | 146 skills | `./vas install --category media --target codex` |
 | **media-processing** | 2 skills | `./vas install --category media-processing --target codex` |
 | **memory** | 7 skills | `./vas install --category memory --target codex` |
 | **meta** | 38 skills | `./vas install --category meta --target codex` |
@@ -3264,7 +3264,7 @@ Tổng hợp **3,884** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `protect-mcp-governance` | `critical` | Agent governance skill for MCP tool calls — Cedar policy authoring, shadow-to... |
 | `serply-search-mcp` | `safe` | Search Google, Bing, Google News and Google Scholar, and read public pages, w... |
 
-### MEDIA (145 skills)
+### MEDIA (146 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
@@ -3282,6 +3282,7 @@ Tổng hợp **3,884** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `beatra-ai-video-studio` | `critical` | Install and use the official Beatra AI Video Studio package, pinned by digest... |
 | `broll` | `safe` | How to find, watch and cut B-roll in a vlog - clips with no speech placed by ... |
 | `captions` | `safe` | Clean, readable burned-in style subtitles from the verbatim transcript - stut... |
+| `claude-awesome-video-creation` | `safe` | Make a complete, follow-along tutorial or explainer video from code with Clau... |
 | `ecommerce-listing-image-set` | `critical` | Install and use the official Ecommerce Product Images package, pinned by dige... |
 | `edit-video` | `safe` | The one-command first-pass edit. Takes footage from raw video/, transcribes i... |
 | `editonny` | `safe` | Use when installing, preparing, diagnosing, or updating editonny, or editing ... |

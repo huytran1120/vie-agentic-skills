@@ -579,7 +579,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
   const youtube = catalog.filterSkills(skills, { sources: ['youtube'] });
   assert.equal(youtube.length, 11);
   assert.equal(catalog.filterSkills(skills, { query: 'youtube-agent-skill' }).length, 11);
-  assert.equal(skills.length, 3884);
+  assert.equal(skills.length, 3885);
   for (const skill of youtube) {
     assert.ok(skill.id.startsWith('youtube-agent-skill/'));
     assert.equal(skill.source_repo, 'Jakeschincariol/youtube-agent-skill');
@@ -594,7 +594,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
     assert.deepEqual(state.sources, ['youtube']);
     assert.equal(state.selected, youtube[0].id);
     assert.ok(i18n.translate('collections.youtube', language).startsWith('11 '));
-    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '3.884' : '3,884'));
+    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '3.885' : '3,885'));
   }
   assert.equal(catalog.filterSkills(skills, { sources: ['youtube'], category: 'security' }).length, 0);
   const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
@@ -1635,5 +1635,34 @@ test('effectivehtml retains exact source filtering, MIT license and agent prompt
   assert.ok(html.includes('name="source" value="effectivehtml"'));
   assert.ok(html.includes('data-source-count="effectivehtml">8<'));
   assert.ok(html.includes('id="effectivehtml-collection"'));
+});
+
+test('videocreation retains exact source filtering, MIT license and agent prompts', () => {
+  const videoSkills = catalog.filterSkills(skills, { sources: ['videocreation'] });
+  assert.equal(videoSkills.length, 1);
+  assert.equal(catalog.filterSkills(skills, { query: 'HaochenSHI66/claude-awesome-video-creation' }).length, 1);
+  const [sample] = videoSkills;
+  assert.equal(sample.id, 'claude-awesome-video-creation');
+  assert.equal(sample.source_repo, 'HaochenSHI66/claude-awesome-video-creation');
+  assert.equal(sample.author, 'SHI Haochen (HaochenSHI66)');
+  assert.ok(sample.license.includes('MIT'));
+  assert.equal(sample.category, 'media');
+  assert.equal(sample.risk, 'safe');
+
+  for (const language of ['vi', 'en']) {
+    assert.ok(i18n.translate('collections.videocreation', language).startsWith('1 '));
+    for (const [agent] of catalog.agents.filter(([key]) => key !== 'all')) {
+      const prompt = catalog.agentInstallPrompt(sample, agent, language);
+      assert.ok(prompt.includes(`/install-manifests/${sample.id}.json`));
+      assert.ok(prompt.includes(catalog.targetFolders[agent]));
+      assert.ok(prompt.includes('SHA-256'));
+      assert.ok(prompt.includes('.vas-manifest.json'));
+    }
+  }
+
+  const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
+  assert.ok(html.includes('name="source" value="videocreation"'));
+  assert.ok(html.includes('data-source-count="videocreation">1<'));
+  assert.ok(html.includes('id="videocreation-collection"'));
 });
 
