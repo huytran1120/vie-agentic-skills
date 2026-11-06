@@ -30,6 +30,87 @@ SPEC.loader.exec_module(PAGES)
 
 
 class PagesBuildTests(unittest.TestCase):
+    def test_web_analytics_covers_homepage_and_every_blog_page_only_on_vercel(self):
+        with tempfile.TemporaryDirectory(prefix="vie-analytics-build-") as temp:
+            root = Path(temp)
+            self.fixture(root)
+            routes = ("blog/index.html", "blog/example/index.html", "blog/new-article/index.html")
+            for route in routes:
+                page = root / "docs" / route
+                page.parent.mkdir(parents=True, exist_ok=True)
+                page.write_text('<html><head><title>Guide</title></head><body><h1>Guide</h1></body></html>')
+            originals = {name: (root / "docs" / name).read_bytes() for name in ("index.html", *routes)}
+            with patch.dict(os.environ, {"VERCEL": "0"}):
+                output = PAGES.build(root, revision=REVISION)
+                for route in originals:
+                    self.assertNotIn('id="vas-web-analytics"', (output / route).read_text())
+            with patch.dict(os.environ, {"VERCEL": "1", "VERCEL_OBSERVABILITY_CLIENT_CONFIG": "{}"}):
+                for _ in range(2):
+                    output = PAGES.build(root, revision=REVISION)
+                    for route in originals:
+                        content = (output / route).read_text()
+                        self.assertEqual(content.count('id="vas-web-analytics"'), 1, route)
+                        self.assertEqual(content.count('id="vas-analytics-bootstrap"'), 1, route)
+                        self.assertIn('defer src="/_vercel/insights/script.js"', content)
+                        self.assertLess(content.index('id="vas-analytics-bootstrap"'), content.index('id="vas-web-analytics"'))
+                        self.assertLess(content.index('id="vas-web-analytics"'), content.index('</head>'))
+                        version = sha256((root / "docs/analytics.js").read_bytes()).hexdigest()[:12]
+                        self.assertIn(f'src="/analytics.js?v={version}"', content)
+            for route, content in originals.items():
+                self.assertEqual((root / "docs" / route).read_bytes(), content)
+
+    def test_web_analytics_uses_vercel_dynamic_routes_and_rejects_invalid_configuration(self):
+        with tempfile.TemporaryDirectory(prefix="vie-analytics-routes-") as temp:
+            root = Path(temp)
+            self.fixture(root)
+            dynamic = {"analytics": {"scriptSrc": "/project-intake/script.js",
+                                     "viewEndpoint": "/project-intake/view",
+                                     "eventEndpoint": "/project-intake/event",
+                                     "sessionEndpoint": "/project-intake/session"}}
+            with patch.dict(os.environ, {"VERCEL": "1", "VERCEL_OBSERVABILITY_CLIENT_CONFIG": json.dumps(dynamic)}):
+                html = (PAGES.build(root, revision=REVISION) / "index.html").read_text()
+                self.assertIn('src="/project-intake/script.js"', html)
+                for name in ("view", "event", "session"):
+                    self.assertIn(f'data-{name}-endpoint="/project-intake/{name}"', html)
+                for config in ([], {"analytics": None}, {"analytics": {"scriptSrc": "//outside.invalid/script.js"}},
+                               {"analytics": {"scriptSrc": 'javascript:alert(1)'}},
+                               {"analytics": {"scriptSrc": 'https://user:secret@example.invalid/script.js'}},
+                               {"analytics": {"viewEndpoint": '/bad" onload="bad'}}):
+                    with patch.dict(os.environ, {"VERCEL_OBSERVABILITY_CLIENT_CONFIG": json.dumps(config)}):
+                        with self.assertRaises(ValueError):
+                            PAGES.build(root, revision=REVISION)
+
+    def test_web_analytics_matches_sdk_path_absolute_url_and_optional_value_handling(self):
+        with tempfile.TemporaryDirectory(prefix="vie-analytics-config-") as temp:
+            root = Path(temp)
+            self.fixture(root)
+            for script, view, expected_script, expected_view in (
+                ("project-intake/script.js", "project-intake/view", "/project-intake/script.js", "/project-intake/view"),
+                ("https://va.vercel-scripts.com/v1/script.js", "https://vitals.vercel-insights.com/v1/view",
+                 "https://va.vercel-scripts.com/v1/script.js", "https://vitals.vercel-insights.com/v1/view"),
+                (None, None, "/_vercel/insights/script.js", None),
+                ("", "", "/_vercel/insights/script.js", None),
+                ("/intake/script.js?version=2&scope=web", "/intake/view?scope=web",
+                 "/intake/script.js?version=2&amp;scope=web", "/intake/view?scope=web"),
+            ):
+                config = {"analytics": {"scriptSrc": script, "viewEndpoint": view,
+                                         "eventEndpoint": None, "sessionEndpoint": ""}}
+                with patch.dict(os.environ, {"VERCEL": "1", "VERCEL_OBSERVABILITY_CLIENT_CONFIG": json.dumps(config)}):
+                    html = (PAGES.build(root, revision=REVISION) / "index.html").read_text()
+                    self.assertIn(f'src="{expected_script}"', html)
+                    if expected_view:
+                        self.assertIn(f'data-view-endpoint="{expected_view}"', html)
+                    else:
+                        self.assertNotIn('data-view-endpoint=', html)
+                    self.assertNotIn('data-event-endpoint=', html)
+                    self.assertNotIn('data-session-endpoint=', html)
+
+    def test_web_analytics_rejects_duplicate_injection_and_missing_head(self):
+        with self.assertRaisesRegex(ValueError, "once"):
+            PAGES.inject_web_analytics('<head><script id="vas-web-analytics"></script></head>', "<script></script>")
+        with self.assertRaisesRegex(ValueError, "closing head"):
+            PAGES.inject_web_analytics("<html></html>", "<script></script>")
+
     def test_static_guides_keep_routes_and_refresh_shared_asset_versions(self):
         with tempfile.TemporaryDirectory(prefix="vie-guide-build-") as temp:
             root = Path(temp)
@@ -235,15 +316,16 @@ class PagesBuildTests(unittest.TestCase):
             (root / filename).write_bytes((ROOT / filename).read_bytes())
         (root / "docs/assets").mkdir(parents=True)
         (root / "docs/index.html").write_text(
-            '<html data-skill-base=".."><link rel="stylesheet" href="./catalog.css">'
+            '<html data-skill-base=".."><head><link rel="stylesheet" href="./catalog.css">'
             '<script src="./i18n.js" defer></script>'
             '<script src="./motion.js" defer></script><script src="catalog.js" defer></script>'
-            '<a href="../README.md">Read</a></html>'
+            '</head><body><a href="../README.md">Read</a></body></html>'
         )
         (root / "docs/catalog.css").write_text("body { margin: 0; }")
         (root / "docs/i18n.js").write_text("window.VASI18n = {};")
         (root / "docs/motion.js").write_text("window.motionReady = true;")
         (root / "docs/catalog.js").write_text("window.catalogReady = true;")
+        (root / "docs/analytics.js").write_bytes((ROOT / "docs/analytics.js").read_bytes())
         (root / "docs/assets/test.svg").write_text("<svg/>")
         for name in ("README.md", "README_EN.md", "CATALOG.md", "LICENSE"):
             (root / name).write_text(name)

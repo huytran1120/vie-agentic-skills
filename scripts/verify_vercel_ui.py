@@ -17,7 +17,7 @@ def main():
         print("Node.js is required for the Vercel UI preflight.", file=sys.stderr)
         return 1
     commands = [
-        [node, "--test", "tests/pages.test.cjs", "tests/ui-contract.test.cjs"],
+        [node, "--test", "tests/pages.test.cjs", "tests/ui-contract.test.cjs", "tests/analytics.test.cjs"],
         *([
             sys.executable, "-B", "-m", "unittest", "discover", "-s", "tests", "-p", pattern,
         ] for pattern in ("test_pages_build.py", "test_blog_pages.py", "test_pages_layout.py")),

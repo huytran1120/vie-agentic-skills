@@ -43,6 +43,7 @@ All ongoing website development and deployment target Vercel.
 - Review the intended staged/committed snapshot and preserve unrelated work. After publishing, verify the exact commit, deployment status, public catalog/Blog/runbook and install manifest; report any unverified part.
 - Vercel's build runs the fast catalog/design-contract tests before building. Full browser checks run locally and in GitHub CI; the Git integration does not wait for GitHub CI automatically. Do not claim that a green deployment proves all UI checks passed.
 - Keep GitHub Pages frozen and retain the Vercel publication budget above. Do not restore Pages deployment or weaken the budget/tests to publish a failing change.
+- Keep Web Analytics centralized in the Vercel build (`VERCEL=1`), after asset versioning. Preserve the `beforeSend` URL redaction in `docs/analytics.js`, Vercel's dynamic intake routes and automatic pageviews; do not add duplicate snippets to individual articles or collect form values/custom installation paths.
 
 ## Golden Rules for Agents
 
