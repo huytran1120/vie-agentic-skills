@@ -35,6 +35,7 @@ SLUGS = (
     "tu-readme-den-video-demo",
     "ghi-json-an-toan-nhieu-tien-trinh-python",
     "tao-video-khoa-hoc-manim-3b1b",
+    "kien-truc-agentic-ai-agent-skills",
 )
 LINKED_SKILLS = {
     "webapp-testing",
@@ -54,6 +55,7 @@ LINKED_SKILLS = {
     "manimce-best-practices",
     "pdf",
     "docx",
+    "ui-ux-pro-max",
 }
 VOID_ELEMENTS = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"}
 
@@ -73,6 +75,7 @@ class GuideHTML(HTMLParser):
         self.structured = []
         self.json_parts = None
         self.examples = {}
+        self.example_languages = {}
         self.example_id = None
         self.feed(source)
 
@@ -87,9 +90,14 @@ class GuideHTML(HTMLParser):
             self.h1_count += 1
         if tag == "script" and attrs.get("type") == "application/ld+json":
             self.json_parts = []
-        if tag == "code" and attrs.get("id") in ("debug-before", "debug-after"):
+        if tag == "code" and attrs.get("id") in (
+            "debug-before", "debug-after", "skill-architecture-example", "cost-accounting-example",
+        ):
             self.example_id = attrs["id"]
             self.examples[self.example_id] = []
+            self.example_languages[self.example_id] = attrs.get(
+                "data-language", self.stack[-1][1] if self.stack else None,
+            )
         if tag not in VOID_ELEMENTS:
             language = attrs.get("data-language", self.stack[-1][1] if self.stack else None)
             self.stack.append((tag, language))
@@ -161,6 +169,34 @@ class BlogPagesTests(unittest.TestCase):
                 for command in commands:
                     self.assertEqual(command[command.index("--target") + 1], "workspace")
                     self.assertTrue(command[command.index("--dest") + 1].endswith("/.agents/skills"))
+
+    def test_architecture_article_has_navigable_sections_without_draft_artifacts(self):
+        source = (DOCS / "blog/kien-truc-agentic-ai-agent-skills/index.html").read_text()
+        document = GuideHTML(source)
+        headings = {attrs.get("id") for tag, attrs in document.nodes if tag == "h2"}
+        fragments = {attrs.get("href") for tag, attrs in document.nodes if tag == "a"}
+        for anchor in ("architecture", "boundaries", "disclosure", "cost", "controls", "practice"):
+            with self.subTest(anchor=anchor):
+                self.assertIn(anchor, headings)
+                self.assertIn("#" + anchor, fragments)
+        self.assertNotRegex(source, r"(?i)\[\s*cite\s*:|\[image\d+\]|data:image/")
+
+    def test_architecture_examples_are_shared_text_and_skill_metadata_is_well_formed(self):
+        document = GuideHTML((DOCS / "blog/kien-truc-agentic-ai-agent-skills/index.html").read_text())
+        for example_id in ("skill-architecture-example", "cost-accounting-example"):
+            with self.subTest(example=example_id):
+                self.assertTrue("".join(document.examples[example_id]).strip())
+                self.assertIsNone(document.example_languages[example_id], "Examples must remain available in both languages")
+        skill = "".join(document.examples["skill-architecture-example"]).strip()
+        frontmatter = re.fullmatch(r"---\n(.*?)\n---\n(.+)", skill, re.DOTALL)
+        self.assertIsNotNone(frontmatter, "The illustrative SKILL.md needs frontmatter and a Markdown body")
+        fields = dict(line.split(":", 1) for line in frontmatter[1].splitlines() if ":" in line)
+        name = fields.get("name", "").strip().strip("\"'")
+        description = fields.get("description", "").strip().strip("\"'")
+        self.assertRegex(name, r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+        self.assertLessEqual(len(name), 64)
+        self.assertTrue(description)
+        self.assertLessEqual(len(description), 1024)
 
     def test_static_pages_have_unique_titles_and_canonical_metadata(self):
         titles = set()
