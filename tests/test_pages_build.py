@@ -184,7 +184,7 @@ class PagesBuildTests(unittest.TestCase):
         self.assertIn("Sitemap: " + primary + "sitemap.xml", (ROOT / "docs/robots.txt").read_text())
         sitemap = ET.parse(ROOT / "docs/sitemap.xml")
         locations = [node.text for node in sitemap.findall(".//{http://www.sitemaps.org/schemas/sitemap/0.9}loc")]
-        self.assertEqual(set(locations), {primary, *(primary + path for path in ("blog/", "blog/agent-skills-la-gi/", "blog/kiem-thu-web-voi-playwright/", "blog/tao-video-voi-claude-code-remotion/", "blog/thiet-ke-anh-app-store/", "blog/quy-trinh-marketing-voi-ai/"))})
+        self.assertEqual(set(locations), {primary, *(primary + path for path in ("blog/", "blog/agent-skills-la-gi/", "blog/kiem-thu-web-voi-playwright/", "blog/tao-video-voi-claude-code-remotion/", "blog/thiet-ke-anh-app-store/", "blog/quy-trinh-marketing-voi-ai/", "blog/toi-uu-seo-va-ai-search/", "blog/trang-so-sanh-va-landing-page-seo/"))})
         self.assertEqual(metadata["og:image:secure_url"], metadata["og:image"])
         self.assertEqual(metadata["twitter:image"], metadata["og:image"])
         self.assertEqual(metadata["og:image:type"], "image/png")

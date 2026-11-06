@@ -21,8 +21,20 @@ SLUGS = (
     "tao-video-voi-claude-code-remotion",
     "thiet-ke-anh-app-store",
     "quy-trinh-marketing-voi-ai",
+    "toi-uu-seo-va-ai-search",
+    "trang-so-sanh-va-landing-page-seo",
 )
-LINKED_SKILLS = {"webapp-testing", "claude-awesome-video-creation", "store-screenshots", "content-strategy", "copywriting"}
+LINKED_SKILLS = {
+    "webapp-testing",
+    "claude-awesome-video-creation",
+    "store-screenshots",
+    "content-strategy",
+    "copywriting",
+    "seo",
+    "seo-geo",
+    "seo-competitor-pages",
+    "seo-aeo-landing-page-writer",
+}
 VOID_ELEMENTS = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"}
 
 
