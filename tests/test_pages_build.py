@@ -73,11 +73,37 @@ class PagesBuildTests(unittest.TestCase):
                 for name in ("view", "event", "session"):
                     self.assertIn(f'data-{name}-endpoint="/project-intake/{name}"', html)
                 for config in ([], {"analytics": None}, {"analytics": {"scriptSrc": "//outside.invalid/script.js"}},
-                               {"analytics": {"scriptSrc": 'https://outside.invalid/script.js'}},
+                               {"analytics": {"scriptSrc": 'javascript:alert(1)'}},
+                               {"analytics": {"scriptSrc": 'https://user:secret@example.invalid/script.js'}},
                                {"analytics": {"viewEndpoint": '/bad" onload="bad'}}):
                     with patch.dict(os.environ, {"VERCEL_OBSERVABILITY_CLIENT_CONFIG": json.dumps(config)}):
                         with self.assertRaises(ValueError):
                             PAGES.build(root, revision=REVISION)
+
+    def test_web_analytics_matches_sdk_path_absolute_url_and_optional_value_handling(self):
+        with tempfile.TemporaryDirectory(prefix="vie-analytics-config-") as temp:
+            root = Path(temp)
+            self.fixture(root)
+            for script, view, expected_script, expected_view in (
+                ("project-intake/script.js", "project-intake/view", "/project-intake/script.js", "/project-intake/view"),
+                ("https://va.vercel-scripts.com/v1/script.js", "https://vitals.vercel-insights.com/v1/view",
+                 "https://va.vercel-scripts.com/v1/script.js", "https://vitals.vercel-insights.com/v1/view"),
+                (None, None, "/_vercel/insights/script.js", None),
+                ("", "", "/_vercel/insights/script.js", None),
+                ("/intake/script.js?version=2&scope=web", "/intake/view?scope=web",
+                 "/intake/script.js?version=2&amp;scope=web", "/intake/view?scope=web"),
+            ):
+                config = {"analytics": {"scriptSrc": script, "viewEndpoint": view,
+                                         "eventEndpoint": None, "sessionEndpoint": ""}}
+                with patch.dict(os.environ, {"VERCEL": "1", "VERCEL_OBSERVABILITY_CLIENT_CONFIG": json.dumps(config)}):
+                    html = (PAGES.build(root, revision=REVISION) / "index.html").read_text()
+                    self.assertIn(f'src="{expected_script}"', html)
+                    if expected_view:
+                        self.assertIn(f'data-view-endpoint="{expected_view}"', html)
+                    else:
+                        self.assertNotIn('data-view-endpoint=', html)
+                    self.assertNotIn('data-event-endpoint=', html)
+                    self.assertNotIn('data-session-endpoint=', html)
 
     def test_web_analytics_rejects_duplicate_injection_and_missing_head(self):
         with self.assertRaisesRegex(ValueError, "once"):

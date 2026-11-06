@@ -9,7 +9,7 @@ from pathlib import Path, PurePosixPath
 import re
 import shutil
 import subprocess
-from urllib.parse import quote
+from urllib.parse import quote, urlsplit
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -26,15 +26,25 @@ def web_analytics_snippet(root):
     analytics = config.get("analytics", {}) if isinstance(config, dict) else None
     if not isinstance(analytics, dict):
         raise ValueError("Invalid Vercel Web Analytics client configuration")
-    attributes = {"src": analytics.get("scriptSrc", "/_vercel/insights/script.js")}
+    attributes = {"src": analytics.get("scriptSrc") or "/_vercel/insights/script.js"}
     for key, attribute in (("viewEndpoint", "data-view-endpoint"),
                            ("eventEndpoint", "data-event-endpoint"),
                            ("sessionEndpoint", "data-session-endpoint")):
-        if key in analytics:
+        if analytics.get(key):
             attributes[attribute] = analytics[key]
-    for value in attributes.values():
-        if not isinstance(value, str) or not re.fullmatch(r'/[^/\s"\'<>?#\\][^\s"\'<>?#\\]*', value):
-            raise ValueError("Vercel Web Analytics routes must be root-relative paths")
+    for key, value in attributes.items():
+        if (not isinstance(value, str) or value.startswith("//")
+                or any(char.isspace() or ord(char) < 32 or ord(char) == 127 for char in value)
+                or any(char in value for char in '\\"\'<>')):
+            raise ValueError(f"Invalid Vercel Web Analytics route: {key}")
+        url = urlsplit(value)
+        if url.scheme:
+            if url.scheme not in ("http", "https") or not url.netloc or url.username or url.password:
+                raise ValueError(f"Invalid Vercel Web Analytics URL: {key}")
+        else:
+            # Match the official SDK's makeAbsolute(): Vercel may provide paths
+            # without a leading slash, as well as fully qualified intake URLs.
+            attributes[key] = value if value.startswith("/") else "/" + value
     version = sha256((root / "docs/analytics.js").read_bytes()).hexdigest()[:12]
     routes = " ".join(f'{key}="{escape(value, quote=True)}"' for key, value in attributes.items())
     return (f'<script id="vas-analytics-bootstrap" defer src="/analytics.js?v={version}"></script>\n'
