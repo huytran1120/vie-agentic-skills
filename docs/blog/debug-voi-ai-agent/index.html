@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="vi" data-theme="light">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Debug với AI agent: tái hiện lỗi, tìm nguyên nhân, kiểm thử — VAS</title>
+<meta name="description" content="Dùng systematic-debugging với Codex hoặc Claude Code: tạo ca lỗi tối thiểu, kiểm tra giả thuyết, sửa đúng nguyên nhân và giữ regression test.">
+<meta name="robots" content="index, follow"><meta name="theme-color" content="#f3efea">
+<link rel="canonical" href="https://vie-agentic-skills.vercel.app/blog/debug-voi-ai-agent/">
+<link rel="icon" href="../../assets/brand/vas-icon.png"><link rel="stylesheet" href="../../catalog.css"><link rel="stylesheet" href="../blog.css">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Vie Agentic Skill"><meta property="og:title" content="Debug với AI agent: tái hiện lỗi, tìm nguyên nhân, kiểm thử"><meta property="og:description" content="Một ví dụ Python nhỏ cho thấy cách đi từ assertion thất bại đến bản sửa có bằng chứng."><meta property="og:url" content="https://vie-agentic-skills.vercel.app/blog/debug-voi-ai-agent/"><meta property="og:image" content="https://vie-agentic-skills.vercel.app/assets/social-preview.png"><meta property="og:image:width" content="1280"><meta property="og:image:height" content="640">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Debug với AI agent: tái hiện lỗi, tìm nguyên nhân, kiểm thử"><meta name="twitter:description" content="Giữ một giả thuyết có thể kiểm chứng và một ca lỗi trước khi sửa mã."><meta name="twitter:image" content="https://vie-agentic-skills.vercel.app/assets/social-preview.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Debug với AI agent: tái hiện lỗi, tìm nguyên nhân, kiểm thử","description":"Tái hiện lỗi, kiểm tra giả thuyết và xác minh bản sửa bằng một ví dụ Python có regression checks.","url":"https://vie-agentic-skills.vercel.app/blog/debug-voi-ai-agent/","mainEntityOfPage":"https://vie-agentic-skills.vercel.app/blog/debug-voi-ai-agent/","inLanguage":"vi-VN","datePublished":"2026-11-06","dateModified":"2026-11-06","author":{"@type":"Organization","name":"Vie Agentic Skill"},"publisher":{"@type":"Organization","name":"Vie Agentic Skill","url":"https://vie-agentic-skills.vercel.app/"},"image":"https://vie-agentic-skills.vercel.app/assets/social-preview.png"}</script>
+<script src="../blog.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#guide-main"><span data-language="vi">Đến nội dung chính</span><span data-language="en" hidden>Skip to content</span></a>
+<header class="site-header guide-header"><div class="shell header-inner"><a class="brand" href="../../" data-home><span class="brand-mark" aria-hidden="true">&gt;_</span><span class="brand-short">VAS</span></a><nav class="guide-nav" aria-label="Điều hướng"><a class="guide-library-return" href="../../#catalog" data-home data-library-return><span data-language="vi">← Về thư viện <span data-catalog-count="vi">3.885</span> skill</span><span data-language="en" hidden>← Back to <span data-catalog-count="en">3,885</span> skills</span></a><a href="../" data-blog><span data-language="vi">Blog / Hướng dẫn</span><span data-language="en" hidden>Blog / Guides</span></a></nav><div class="header-actions"><button id="blog-language" class="icon-button" type="button" aria-label="Switch to English" lang="en">EN</button><button id="blog-theme" class="icon-button" type="button" aria-label="Bật giao diện tối" aria-pressed="false">◐</button></div></div></header>
+<main id="guide-main" class="shell guide-main" tabindex="-1" data-page-titles='{"vi":"Debug với AI agent: tái hiện lỗi, tìm nguyên nhân, kiểm thử — VAS","en":"Debug with an AI agent: reproduce, explain and verify — VAS"}' data-page-descriptions='{"vi":"Dùng systematic-debugging với Codex hoặc Claude Code: tạo ca lỗi tối thiểu, kiểm tra giả thuyết, sửa đúng nguyên nhân và giữ regression test.","en":"Use systematic debugging with Codex or Claude Code: create a minimal failing case, test a hypothesis, fix the cause and retain a regression test."}'>
+<nav class="guide-breadcrumb" aria-label="Breadcrumb"><a href="../../" data-home>VAS</a><span>/</span><a href="../" data-blog><span data-language="vi">Blog / Hướng dẫn</span><span data-language="en" hidden>Blog / Guides</span></a></nav>
+<header class="guide-heading"><p class="guide-eyebrow"><span data-language="vi">Phát triển / Debug</span><span data-language="en" hidden>Development / Debugging</span></p><h1><span data-language="vi">Debug với AI agent: tái hiện lỗi, tìm nguyên nhân, kiểm thử</span><span data-language="en" hidden>Debug with an AI agent: reproduce, explain and verify</span></h1><p class="guide-byline"><span data-language="vi">Biên soạn bởi Vie Agentic Skill · Cập nhật </span><span data-language="en" hidden>By Vie Agentic Skill · Updated </span><time datetime="2026-11-06">2026-11-06</time></p></header>
+<div class="guide-layout"><article class="guide-prose">
+<p class="guide-lead" data-language="vi">Một bản sửa đáng tin cần giải thích được vì sao lỗi xảy ra và có cách kiểm tra lại. Với AI agent, hãy giữ vòng lặp ngắn: tái hiện, đặt giả thuyết, kiểm chứng rồi mới sửa.</p>
+<p class="guide-lead" data-language="en" hidden>A reliable fix explains why the failure occurred and provides a way to verify it. Keep the AI-assisted loop short: reproduce, form a hypothesis, test it, then fix.</p>
+<details><summary><span data-language="vi">Trong bài này</span><span data-language="en" hidden>On this page</span></summary><ul><li><a href="#capture"><span data-language="vi">Ghi trạng thái ban đầu</span><span data-language="en" hidden>Capture the initial state</span></a></li><li><a href="#reproduce"><span data-language="vi">Tạo ca lỗi tối thiểu</span><span data-language="en" hidden>Create a minimal failure</span></a></li><li><a href="#hypothesis"><span data-language="vi">Kiểm tra giả thuyết</span><span data-language="en" hidden>Test the hypothesis</span></a></li><li><a href="#fix"><span data-language="vi">Sửa và giữ regression test</span><span data-language="en" hidden>Fix and retain regression checks</span></a></li><li><a href="#report"><span data-language="vi">Bàn giao kết quả</span><span data-language="en" hidden>Report the result</span></a></li></ul></details>
+<h2 id="capture"><span data-language="vi">1. Ghi trạng thái trước khi thử sửa</span><span data-language="en" hidden>1. Capture the state before editing</span></h2>
+<div data-language="vi">
+<p>Ghi phiên bản mã, môi trường, đầu vào, kết quả mong đợi và lỗi nguyên văn. Xác định lỗi luôn xảy ra hay phụ thuộc thời điểm, tài khoản hoặc dữ liệu. Nếu không tái hiện được, thu thập thêm bằng chứng trước khi thay nhiều thành phần.</p>
+<p><a data-catalog-skill="systematic-debugging" href="../../?lang=vi&amp;skill=systematic-debugging&amp;agent=codex">systematic-debugging</a> giúp giữ thứ tự này. Cài và đọc runbook trước; sau đó giao cho agent một phạm vi hẹp:</p>
+</div>
+<div data-language="en" hidden>
+<p>Record the source revision, environment, inputs, expected outcome and exact error. Determine whether it is consistent or depends on timing, account or data. If reproduction is missing, gather evidence before changing several components.</p>
+<p><a data-catalog-skill="systematic-debugging" href="../../?lang=en&amp;skill=systematic-debugging&amp;agent=codex">systematic-debugging</a> helps preserve this order. Install and read the runbook, then give the agent a narrow scope:</p>
+</div>
+<pre data-language="vi"><code>Điều tra lỗi tổng giỏ hàng bỏ qua số lượng sản phẩm.
+Trước tiên tạo ca tái hiện nhỏ nhất và ghi expected/actual.
+Đưa ra một giả thuyết kèm bằng chứng trước khi sửa.
+Không đổi dependency hoặc refactor phần ngoài phạm vi.
+Sau bản sửa, chạy lại ca lỗi và kiểm tra các trường hợp liên quan.</code></pre>
+<pre data-language="en" hidden><code>Investigate a cart total that ignores item quantity.
+First create the smallest failing case and record expected/actual.
+State one evidence-backed hypothesis before editing.
+Do not change dependencies or refactor unrelated code.
+After the fix, repeat the failing case and relevant boundary checks.</code></pre>
+<h2 id="reproduce"><span data-language="vi">2. Tạo ca lỗi tối thiểu</span><span data-language="en" hidden>2. Create a minimal failing case</span></h2>
+<p data-language="vi">Đây là ví dụ Python minh họa, dùng giá nguyên theo đơn vị xu và số lượng nguyên không âm. Nó chỉ tính tiền hàng, chưa bao gồm thuế, giảm giá hay kiểm tra dữ liệu đầu vào. Lưu đoạn sau vào tệp thử riêng và chạy bằng Python 3 thông thường; assertion phải thất bại.</p>
+<p data-language="en" hidden>This illustrative Python example uses integer cents and nonnegative integer quantities. It covers a subtotal, without tax, discounts or input validation. Save it in a separate scratch file and run normal Python 3; the assertion is expected to fail.</p>
+<pre><code id="debug-before">def cart_total(items):
+    return sum(item["price_cents"] for item in items)
+
+
+items = [{"price_cents": 1250, "quantity": 2}]
+assert cart_total(items) == 2500</code></pre>
+<p data-language="vi">Actual là 1.250; expected là 2.500. Ca lỗi không cần database, API hay UI nên có thể kiểm tra nhanh. Trong dự án thật, giữ ca tối thiểu đủ thể hiện lỗi và lưu fixture theo quy ước test hiện có.</p>
+<p data-language="en" hidden>The actual subtotal is 1,250; the expected subtotal is 2,500. No database, API or UI is needed to demonstrate it. In a real project, keep the minimal inputs that preserve the failure and use the existing fixture conventions.</p>
+<h2 id="hypothesis"><span data-language="vi">3. Kiểm tra một giả thuyết tại một thời điểm</span><span data-language="en" hidden>3. Test one hypothesis at a time</span></h2>
+<div data-language="vi">
+<p>Giả thuyết cụ thể: hàm chỉ cộng <code>price_cents</code>, không đọc <code>quantity</code>. Thay số lượng 2 bằng 3 mà kết quả không đổi sẽ củng cố giả thuyết. Đọc luồng dữ liệu để xác nhận giá truyền vào là đơn giá, chưa phải thành tiền của dòng.</p>
+<p>Nếu upstream đã nhân số lượng, thêm phép nhân ở đây có thể tạo lỗi mới. Vì vậy, cần đối chiếu hợp đồng dữ liệu hoặc test của nơi gọi. Với lỗi nhiều tầng, theo dấu một đầu vào qua từng ranh giới và tránh ghi token, thông tin đăng nhập hoặc dữ liệu riêng vào log.</p>
+</div>
+<div data-language="en" hidden>
+<p>A specific hypothesis is that the function sums <code>price_cents</code> without reading <code>quantity</code>. Changing quantity from 2 to 3 while the total stays constant supports that explanation. Follow the input path to establish that the price is a unit price rather than an already computed line total.</p>
+<p>If upstream code already multiplies quantity, doing it again would introduce a defect. Check the data contract or caller tests. For failures crossing several layers, trace one input across boundaries without logging tokens, credentials or private data.</p>
+</div>
+<h2 id="fix"><span data-language="vi">4. Sửa đúng nguyên nhân và giữ kiểm tra hồi quy</span><span data-language="en" hidden>4. Fix the cause and retain regression checks</span></h2>
+<p data-language="vi">Với hợp đồng dữ liệu đã nêu, bản sửa nhỏ là nhân đơn giá với số lượng cho từng dòng. Đoạn sau có cả ca ban đầu và kiểm tra giỏ trống, nhiều dòng:</p>
+<p data-language="en" hidden>Under the stated input contract, the small fix multiplies unit price by quantity for each row. This version includes the original case, an empty cart and multiple rows:</p>
+<pre><code id="debug-after">def cart_total(items):
+    return sum(
+        item["price_cents"] * item["quantity"]
+        for item in items
+    )
+
+
+assert cart_total([{"price_cents": 1250, "quantity": 2}]) == 2500
+assert cart_total([]) == 0
+assert cart_total([
+    {"price_cents": 1250, "quantity": 2},
+    {"price_cents": 300, "quantity": 3},
+]) == 3400</code></pre>
+<p data-language="vi">Đưa assertion vào bộ test hiện có của dự án để nó chạy trong CI. Tránh thêm một framework chỉ để kiểm tra phép tính này. Với sửa đổi ảnh hưởng hợp đồng API hoặc nhiều tầng, chạy thêm các test tương ứng; ghi rõ nếu chưa có môi trường thực hiện.</p>
+<p data-language="en" hidden>Move the assertions into the existing test suite so CI exercises them. A new framework is unnecessary for this arithmetic. If the fix affects an API contract or multiple layers, run the corresponding checks and identify any unavailable environment.</p>
+<h2 id="report"><span data-language="vi">5. Bàn giao cả bằng chứng và giới hạn</span><span data-language="en" hidden>5. Report evidence and limits</span></h2>
+<div data-language="vi">
+<p>Báo cáo nên nêu ca lỗi trước sửa, nguyên nhân, phần mã thay đổi và các kiểm tra đã chạy sau sửa. Nếu chỉ kiểm tra hàm thuần, đừng mô tả rằng toàn bộ checkout hoặc thanh toán đã được xác minh.</p>
+<p>Review diff cuối để loại thay đổi thừa và xác nhận không bỏ mất logging hoặc test tạm cần chuyển thành regression test. Một ví dụ thực phức tạp hơn là <a href="../ghi-json-an-toan-nhieu-tien-trinh-python/" data-guide-link>race condition khi VAS cập nhật manifest JSON</a>; ở đó, kiểm tra phải điều khiển thời điểm giữa các tiến trình.</p>
+</div>
+<div data-language="en" hidden>
+<p>Report the pre-fix failure, cause, changed code and post-fix checks. If only a pure function was exercised, do not claim the entire checkout or payment flow was verified.</p>
+<p>Review the final diff for unrelated edits and make sure useful temporary checks become maintained regression tests. A more complex real example is the <a href="../ghi-json-an-toan-nhieu-tien-trinh-python/" data-guide-link>race condition in VAS manifest updates</a>, where testing must control timing between processes.</p>
+</div>
+<h2 id="sources"><span data-language="vi">Đọc thêm</span><span data-language="en" hidden>Further reading</span></h2>
+<ul><li><a href="https://docs.python.org/3/library/unittest.html">Python unittest</a></li><li><a href="../review-pull-request-bang-ai/" data-guide-link><span data-language="vi">Review pull request bằng AI</span><span data-language="en" hidden>Review pull requests with AI</span></a></li></ul>
+</article><aside class="guide-companion" aria-label="Skill liên quan"><p class="guide-eyebrow"><span data-language="vi">Quy trình tìm nguyên nhân</span><span data-language="en" hidden>A root-cause workflow</span></p><h2><a data-catalog-skill="systematic-debugging" href="../../?lang=vi&amp;skill=systematic-debugging&amp;agent=codex">systematic-debugging</a></h2><p><span data-language="vi">Giữ giả thuyết, bằng chứng và bản sửa gắn với cùng một ca lỗi.</span><span data-language="en" hidden>Connect the hypothesis, evidence and fix to the same failing case.</span></p><a class="button primary" data-catalog-skill="systematic-debugging" href="../../?lang=vi&amp;skill=systematic-debugging&amp;agent=codex"><span data-language="vi">Xem skill và cài đặt →</span><span data-language="en" hidden>Read skill and install →</span></a></aside></div>
+<section class="guide-related" aria-labelledby="related-title"><h2 id="related-title"><span data-language="vi">Đọc tiếp</span><span data-language="en" hidden>Read next</span></h2><div class="guide-related-links"><a href="../agent-khong-nhan-skill/" data-guide-link><span data-language="vi">Agent không nhận skill</span><span data-language="en" hidden>When an agent cannot find a skill</span></a><a href="../kiem-thu-dang-nhap-playwright/" data-guide-link><span data-language="vi">Kiểm thử đăng nhập bằng Playwright</span><span data-language="en" hidden>Test login with Playwright</span></a></div></section>
+</main><footer class="site-footer"><div class="shell footer-inner"><strong>VAS / Vie Agentic Skill</strong><p><span data-language="vi">Đọc hướng dẫn. Chọn skill. Áp dụng vào dự án.</span><span data-language="en" hidden>Read a guide. Choose a skill. Apply it to your project.</span></p><div><a href="../../#catalog" data-home><span data-language="vi">Thư viện</span><span data-language="en" hidden>Library</span></a><a href="https://github.com/huytran1120/vie-agentic-skills">GitHub ↗</a></div></div></footer>
+</body></html>

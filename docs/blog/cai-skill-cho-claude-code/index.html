@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="vi" data-theme="light">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cài skill cho Claude Code: phạm vi dự án và cá nhân — VAS</title>
+<meta name="description" content="Hướng dẫn cài skill cho Claude Code vào .claude/skills hoặc ~/.claude/skills, gọi bằng slash command và kiểm tra tệp, quyền, dependency trước khi dùng.">
+<meta name="robots" content="index, follow"><meta name="theme-color" content="#f3efea">
+<link rel="canonical" href="https://vie-agentic-skills.vercel.app/blog/cai-skill-cho-claude-code/">
+<link rel="icon" href="../../assets/brand/vas-icon.png"><link rel="stylesheet" href="../../catalog.css"><link rel="stylesheet" href="../blog.css">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Vie Agentic Skill">
+<meta property="og:title" content="Cài skill cho Claude Code: phạm vi dự án và cá nhân">
+<meta property="og:description" content="Chọn phạm vi cài, giữ đủ scripts và references, gọi skill rõ ràng rồi kiểm tra một tác vụ nhỏ trong Claude Code.">
+<meta property="og:url" content="https://vie-agentic-skills.vercel.app/blog/cai-skill-cho-claude-code/">
+<meta property="og:image" content="https://vie-agentic-skills.vercel.app/assets/social-preview.png"><meta property="og:image:width" content="1280"><meta property="og:image:height" content="640">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Cài skill cho Claude Code: phạm vi dự án và cá nhân"><meta name="twitter:description" content="Cài, gọi và quản lý skill Claude Code với CLI VAS."><meta name="twitter:image" content="https://vie-agentic-skills.vercel.app/assets/social-preview.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Cài skill cho Claude Code: phạm vi dự án và cá nhân","description":"Chọn thư mục skill Claude Code, cài đủ tệp và kiểm tra một tác vụ nhỏ với CLI VAS.","url":"https://vie-agentic-skills.vercel.app/blog/cai-skill-cho-claude-code/","mainEntityOfPage":"https://vie-agentic-skills.vercel.app/blog/cai-skill-cho-claude-code/","inLanguage":"vi-VN","datePublished":"2026-11-06","dateModified":"2026-11-06","author":{"@type":"Organization","name":"Vie Agentic Skill"},"publisher":{"@type":"Organization","name":"Vie Agentic Skill","url":"https://vie-agentic-skills.vercel.app/"},"image":"https://vie-agentic-skills.vercel.app/assets/social-preview.png"}</script>
+<script src="../blog.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#guide-main"><span data-language="vi">Đến nội dung chính</span><span data-language="en" hidden>Skip to content</span></a>
+<header class="site-header guide-header"><div class="shell header-inner">
+<a class="brand" href="../../" data-home><span class="brand-mark" aria-hidden="true">&gt;_</span><span class="brand-short">VAS</span></a>
+<nav class="guide-nav" aria-label="Điều hướng"><a class="guide-library-return" href="../../#catalog" data-home data-library-return><span data-language="vi">← Về thư viện <span data-catalog-count="vi">3.885</span> skill</span><span data-language="en" hidden>← Back to <span data-catalog-count="en">3,885</span> skills</span></a><a href="../" data-blog><span data-language="vi">Blog / Hướng dẫn</span><span data-language="en" hidden>Blog / Guides</span></a></nav>
+<div class="header-actions"><button id="blog-language" class="icon-button" type="button" aria-label="Switch to English" lang="en">EN</button><button id="blog-theme" class="icon-button" type="button" aria-label="Bật giao diện tối" aria-pressed="false">◐</button></div>
+</div></header>
+<main id="guide-main" class="shell guide-main" tabindex="-1" data-page-titles='{"vi":"Cài skill cho Claude Code: phạm vi dự án và cá nhân — VAS","en":"Install Claude Code skills: project and personal scope — VAS"}' data-page-descriptions='{"vi":"Hướng dẫn cài skill cho Claude Code vào .claude/skills hoặc ~/.claude/skills, gọi bằng slash command và kiểm tra tệp, quyền, dependency trước khi dùng.","en":"Install Claude Code skills in project or personal directories, invoke a slash command and verify supporting files, permissions and runtime prerequisites."}'>
+<nav class="guide-breadcrumb" aria-label="Breadcrumb"><a href="../../" data-home>VAS</a><span>/</span><a href="../" data-blog><span data-language="vi">Blog / Hướng dẫn</span><span data-language="en" hidden>Blog / Guides</span></a></nav>
+<header class="guide-heading"><p class="guide-eyebrow"><span data-language="vi">Cài đặt / Claude Code</span><span data-language="en" hidden>Installation / Claude Code</span></p><h1><span data-language="vi">Cài skill cho Claude Code: phạm vi dự án và cá nhân</span><span data-language="en" hidden>Install Claude Code skills: project and personal scope</span></h1><p class="guide-byline"><span data-language="vi">Biên soạn bởi Vie Agentic Skill · Cập nhật </span><span data-language="en" hidden>By Vie Agentic Skill · Updated </span><time datetime="2026-11-06">2026-11-06</time></p></header>
+<div class="guide-layout"><article class="guide-prose">
+<p class="guide-lead" data-language="vi">Claude Code đọc skill trong <code>.claude/skills</code> của dự án hoặc <code>~/.claude/skills</code> của người dùng. Chọn đúng phạm vi giúp tránh việc một hướng dẫn riêng của dự án vô tình được áp dụng ở nơi khác.</p>
+<p class="guide-lead" data-language="en" hidden>Claude Code reads project skills from <code>.claude/skills</code> and personal skills from <code>~/.claude/skills</code>. Choosing the right scope keeps project-specific workflows from appearing in unrelated work.</p>
+<details><summary><span data-language="vi">Trong bài này</span><span data-language="en" hidden>On this page</span></summary><ul>
+<li><a href="#scope"><span data-language="vi">Dự án hay cá nhân?</span><span data-language="en" hidden>Project or personal?</span></a></li>
+<li><a href="#install"><span data-language="vi">Cài qua VAS</span><span data-language="en" hidden>Install with VAS</span></a></li>
+<li><a href="#invoke"><span data-language="vi">Gọi và kiểm tra skill</span><span data-language="en" hidden>Invoke and verify</span></a></li>
+<li><a href="#maintain"><span data-language="vi">Cập nhật và gỡ</span><span data-language="en" hidden>Update and remove</span></a></li>
+</ul></details>
+<h2 id="scope"><span data-language="vi">1. Chọn nơi skill được sử dụng</span><span data-language="en" hidden>1. Choose where the skill applies</span></h2>
+<div data-language="vi">
+<p>Dùng phạm vi <strong>dự án</strong> cho quy trình gắn với cấu trúc kho, lệnh test hoặc tiêu chuẩn của nhóm. Dùng phạm vi <strong>cá nhân</strong> cho kỹ năng bạn cần ở nhiều repository. Tệp trên máy không tự đồng bộ tới mọi phiên cloud hoặc ứng dụng Claude khác; kiểm tra môi trường thực sự chạy tác vụ.</p>
+<p>Theo <a href="https://code.claude.com/docs/en/skills">tài liệu Claude Code</a>, cấu trúc là <code>.claude/skills/ten-skill/SKILL.md</code>. Đừng đặt trực tiếp mọi runbook vào <code>.claude/skills/SKILL.md</code>. Với monorepo, thư mục làm việc và phạm vi thư mục con cũng ảnh hưởng việc nạp skill.</p>
+</div>
+<div data-language="en" hidden>
+<p>Use <strong>project scope</strong> for repository-specific layouts, test commands and team standards. Use <strong>personal scope</strong> for workflows needed across repositories. Local files do not automatically reach every cloud session or other Claude application; check where the task actually runs.</p>
+<p>The <a href="https://code.claude.com/docs/en/skills">Claude Code documentation</a> uses <code>.claude/skills/skill-name/SKILL.md</code>. Do not flatten multiple runbooks into <code>.claude/skills/SKILL.md</code>. Working directories and nested scopes also matter in monorepos.</p>
+</div>
+<h2 id="install"><span data-language="vi">2. Cài đủ tệp bằng CLI VAS</span><span data-language="en" hidden>2. Install the complete skill with VAS</span></h2>
+<p data-language="vi">Chuẩn bị Python 3 và bản clone VAS. Chạy các lệnh sau từ gốc kho VAS, thay đường dẫn bằng dự án thật. Ví dụ dùng <a data-catalog-skill="webapp-testing" href="../../?lang=vi&amp;skill=webapp-testing&amp;agent=claude">webapp-testing</a> để có một tác vụ kiểm tra nhỏ sau khi cài.</p>
+<p data-language="en" hidden>Prepare Python 3 and a VAS clone. Run these commands from the VAS root and replace the destination with your project. The example uses <a data-catalog-skill="webapp-testing" href="../../?lang=en&amp;skill=webapp-testing&amp;agent=claude">webapp-testing</a> for a small verification task.</p>
+<pre><code>./vas show webapp-testing
+./vas install webapp-testing --target claude --mode copy --dest "/absolute/path/to/project/.claude/skills"
+./vas status --target claude --dest "/absolute/path/to/project/.claude/skills"</code></pre>
+<p data-language="vi">Đích cài là thư mục chứa các skill. CLI đặt runbook vào thư mục con đúng ID, giữ các tệp phụ trợ và receipt quản lý. Để cài cá nhân trong Bash/Zsh, chọn đích khác:</p>
+<p data-language="en" hidden>The destination contains skill folders. The CLI creates the individual skill directory, retains supporting files and records the installation. For personal scope in Bash/Zsh, choose a different destination:</p>
+<pre><code>./vas install webapp-testing --target claude --mode copy --dest "$HOME/.claude/skills"
+./vas status --target claude --dest "$HOME/.claude/skills"</code></pre>
+<div data-language="vi">
+<p>Chỉ chọn phạm vi cần dùng; hai nhóm lệnh trên là hai lựa chọn. <code>copy</code> phù hợp khi muốn bản cài độc lập. <code>link</code> tiện cho chỉnh sửa nguồn nhưng cần giữ clone tại chỗ. Trên Windows, có thể thay <code>./vas</code> bằng <code>python3 vas.py</code> và dùng đường dẫn tuyệt đối phù hợp.</p>
+<p>Nếu dùng website, mở skill, chọn <strong>Claude</strong> rồi xem prompt trước khi sao chép. Xác nhận thư mục đích và yêu cầu agent tải đủ inventory. Hướng dẫn cài tệp không đồng nghĩa với cho phép chạy scripts, cài runtime hoặc kết nối MCP.</p>
+</div>
+<div data-language="en" hidden>
+<p>Choose the required scope; the two command groups are alternatives. <code>copy</code> provides an independent installation. <code>link</code> helps when editing the source but requires that clone to remain in place. On Windows, use <code>python3 vas.py</code> and the appropriate absolute path.</p>
+<p>For the website flow, open the skill, select <strong>Claude</strong> and inspect the prompt before copying it. Confirm its destination and ask the agent to fetch the complete inventory. Installing files does not authorize script execution, runtime installation or MCP connections.</p>
+</div>
+<h2 id="invoke"><span data-language="vi">3. Gọi skill rõ ràng trước khi dựa vào tự nhận diện</span><span data-language="en" hidden>3. Invoke explicitly before relying on automatic matching</span></h2>
+<div data-language="vi">
+<p>Mở Claude Code trong đúng repository. Nếu skill mới chưa xuất hiện, mở phiên mới theo cách ứng dụng hỗ trợ. Với skill cho phép người dùng gọi, nhập <code>/webapp-testing</code> và yêu cầu lập kế hoạch trước. Tên lệnh lấy từ tên skill, không phải tiêu đề bài blog.</p>
+<p>Claude cũng có thể chọn skill khi tác vụ khớp <code>description</code>. Các trường riêng của Claude như <code>disable-model-invocation</code> hoặc <code>user-invocable</code> có thể thay đổi cách gọi. Kiểm tra frontmatter nếu một skill có tệp đầy đủ nhưng không xuất hiện như mong đợi.</p>
+</div>
+<div data-language="en" hidden>
+<p>Open Claude Code in the intended repository. Start a new session using the supported application flow if a newly installed skill is absent. For a user-invocable skill, enter <code>/webapp-testing</code> and request a plan first. The command name comes from the skill, not the blog title.</p>
+<p>Claude can also match a task against the skill description. Claude-specific frontmatter such as <code>disable-model-invocation</code> or <code>user-invocable</code> changes invocation behavior. Inspect these fields when the files exist but discovery does not match your expectations.</p>
+</div>
+<pre data-language="vi"><code>/webapp-testing
+Lập kế hoạch kiểm tra trang chủ tại http://127.0.0.1:3000.
+Đọc runbook và báo các công cụ còn thiếu.
+Chưa sửa mã nguồn hoặc cài thêm dependency.
+Sau khi thống nhất phạm vi, kiểm tra điều hướng và lưu bằng chứng lỗi.</code></pre>
+<pre data-language="en" hidden><code>/webapp-testing
+Plan checks for the homepage at http://127.0.0.1:3000.
+Read the runbook and report missing tools.
+Do not modify source or install dependencies yet.
+Once scope is agreed, check navigation and record evidence of failures.</code></pre>
+<p data-language="vi">Kiểm tra ba kết quả riêng: đúng thư mục, đúng runbook được đọc và tác vụ chạy được trong môi trường thực. Nếu Playwright chưa có, agent nên báo thiếu công cụ thay vì kết luận website đã được kiểm thử.</p>
+<p data-language="en" hidden>Check three separate outcomes: the correct folder, the intended runbook being read and a task that runs in the actual environment. If Playwright is absent, the agent should report that prerequisite instead of claiming the website was tested.</p>
+<h2 id="maintain"><span data-language="vi">4. Giữ bản cài có thể quản lý</span><span data-language="en" hidden>4. Keep the installation manageable</span></h2>
+<p data-language="vi">Trước khi cập nhật, xem thay đổi nguồn và giữ lại chỉnh sửa cục bộ. Không xóa receipt để bỏ qua xung đột. Khi gỡ bản do CLI quản lý, dùng cùng target và đích ban đầu:</p>
+<p data-language="en" hidden>Review source changes and preserve local edits before updating. Do not delete receipts to bypass conflicts. Remove a CLI-managed copy using its original target and destination:</p>
+<pre><code>./vas uninstall webapp-testing --target claude --dest "/absolute/path/to/project/.claude/skills"</code></pre>
+<p data-language="vi">Nếu vẫn không thấy skill, dùng <a href="../agent-khong-nhan-skill/" data-guide-link>checklist kiểm tra discovery</a>. Quy tắc dự án lâu dài của Claude Code nên nằm trong cơ chế <a href="https://code.claude.com/docs/en/claude-directory">CLAUDE.md và cấu hình Claude</a>; xem thêm <a href="../agent-skills-mcp-agents-md/" data-guide-link>cách phân biệt hướng dẫn dự án, skill và MCP</a>.</p>
+<p data-language="en" hidden>If discovery still fails, use the <a href="../agent-khong-nhan-skill/" data-guide-link>troubleshooting checklist</a>. Persistent Claude Code project instructions belong in its <a href="https://code.claude.com/docs/en/claude-directory">CLAUDE.md and configuration mechanisms</a>; compare <a href="../agent-skills-mcp-agents-md/" data-guide-link>project instructions, skills and MCP</a>.</p>
+</article><aside class="guide-companion" aria-label="Skill liên quan">
+<p class="guide-eyebrow"><span data-language="vi">Bắt đầu với một tác vụ nhỏ</span><span data-language="en" hidden>Start with a small task</span></p>
+<h2><a data-catalog-skill="webapp-testing" href="../../?lang=vi&amp;skill=webapp-testing&amp;agent=claude">webapp-testing</a></h2>
+<p><span data-language="vi">Chọn Claude trước khi sao chép prompt; kiểm tra thư mục cài và yêu cầu chạy.</span><span data-language="en" hidden>Select Claude before copying a prompt; check its destination and runtime requirements.</span></p>
+<a class="button primary" data-catalog-skill="webapp-testing" href="../../?lang=vi&amp;skill=webapp-testing&amp;agent=claude"><span data-language="vi">Xem skill và cài đặt →</span><span data-language="en" hidden>Read skill and install →</span></a>
+</aside></div>
+<section class="guide-related" aria-labelledby="related-title"><h2 id="related-title"><span data-language="vi">Đọc tiếp</span><span data-language="en" hidden>Read next</span></h2><div class="guide-related-links"><a href="../agent-skills-la-gi/" data-guide-link><span data-language="vi">Agent Skills là gì?</span><span data-language="en" hidden>What are agent skills?</span></a><a href="../cai-agent-skills-cho-codex/" data-guide-link><span data-language="vi">Cài Agent Skills cho Codex</span><span data-language="en" hidden>Install Agent Skills in Codex</span></a></div></section>
+</main>
+<footer class="site-footer"><div class="shell footer-inner"><strong>VAS / Vie Agentic Skill</strong><p><span data-language="vi">Đọc hướng dẫn. Chọn skill. Áp dụng vào dự án.</span><span data-language="en" hidden>Read a guide. Choose a skill. Apply it to your project.</span></p><div><a href="../../#catalog" data-home><span data-language="vi">Thư viện</span><span data-language="en" hidden>Library</span></a><a href="https://github.com/huytran1120/vie-agentic-skills">GitHub ↗</a></div></div></footer>
+</body></html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="vi" data-theme="light">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Triển khai n8n bằng Docker Compose với AI agent — VAS</title>
+<meta name="description" content="Dùng skill n8n-self-hosting để chuẩn bị VPS, chọn single hoặc queue, kiểm tra Docker Compose, HTTPS, encryption key và phương án backup trước khi vận hành.">
+<meta name="robots" content="index, follow"><meta name="theme-color" content="#f3efea">
+<link rel="canonical" href="https://vie-agentic-skills.vercel.app/blog/trien-khai-n8n-docker-compose/">
+<link rel="icon" href="../../assets/brand/vas-icon.png"><link rel="stylesheet" href="../../catalog.css"><link rel="stylesheet" href="../blog.css">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Vie Agentic Skill"><meta property="og:title" content="Triển khai n8n bằng Docker Compose với AI agent"><meta property="og:description" content="Quy trình cho một máy Linux mới: DNS, template, secrets, HTTPS, kiểm tra trạng thái và phục hồi dữ liệu."><meta property="og:url" content="https://vie-agentic-skills.vercel.app/blog/trien-khai-n8n-docker-compose/"><meta property="og:image" content="https://vie-agentic-skills.vercel.app/assets/social-preview.png"><meta property="og:image:width" content="1280"><meta property="og:image:height" content="640">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Triển khai n8n bằng Docker Compose với AI agent"><meta name="twitter:description" content="Từ preflight đến HTTPS và backup cho một bản n8n self-hosted có phạm vi rõ."><meta name="twitter:image" content="https://vie-agentic-skills.vercel.app/assets/social-preview.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Triển khai n8n bằng Docker Compose với AI agent","description":"Chuẩn bị VPS, cấu hình Docker Compose và xác minh một bản n8n self-hosted với HTTPS và kế hoạch phục hồi.","url":"https://vie-agentic-skills.vercel.app/blog/trien-khai-n8n-docker-compose/","mainEntityOfPage":"https://vie-agentic-skills.vercel.app/blog/trien-khai-n8n-docker-compose/","inLanguage":"vi-VN","datePublished":"2026-11-06","dateModified":"2026-11-06","author":{"@type":"Organization","name":"Vie Agentic Skill"},"publisher":{"@type":"Organization","name":"Vie Agentic Skill","url":"https://vie-agentic-skills.vercel.app/"},"image":"https://vie-agentic-skills.vercel.app/assets/social-preview.png"}</script>
+<script src="../blog.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#guide-main"><span data-language="vi">Đến nội dung chính</span><span data-language="en" hidden>Skip to content</span></a>
+<header class="site-header guide-header"><div class="shell header-inner"><a class="brand" href="../../" data-home><span class="brand-mark" aria-hidden="true">&gt;_</span><span class="brand-short">VAS</span></a><nav class="guide-nav" aria-label="Điều hướng"><a class="guide-library-return" href="../../#catalog" data-home data-library-return><span data-language="vi">← Về thư viện <span data-catalog-count="vi">3.885</span> skill</span><span data-language="en" hidden>← Back to <span data-catalog-count="en">3,885</span> skills</span></a><a href="../" data-blog><span data-language="vi">Blog / Hướng dẫn</span><span data-language="en" hidden>Blog / Guides</span></a></nav><div class="header-actions"><button id="blog-language" class="icon-button" type="button" aria-label="Switch to English" lang="en">EN</button><button id="blog-theme" class="icon-button" type="button" aria-label="Bật giao diện tối" aria-pressed="false">◐</button></div></div></header>
+<main id="guide-main" class="shell guide-main" tabindex="-1" data-page-titles='{"vi":"Triển khai n8n bằng Docker Compose với AI agent — VAS","en":"Deploy n8n with Docker Compose and an AI agent — VAS"}' data-page-descriptions='{"vi":"Dùng skill n8n-self-hosting để chuẩn bị VPS, chọn single hoặc queue, kiểm tra Docker Compose, HTTPS, encryption key và phương án backup trước khi vận hành.","en":"Use the n8n self-hosting skill to prepare a VPS, choose single or queue mode, verify Compose and HTTPS, and plan encryption-key storage and backups."}'>
+<nav class="guide-breadcrumb" aria-label="Breadcrumb"><a href="../../" data-home>VAS</a><span>/</span><a href="../" data-blog><span data-language="vi">Blog / Hướng dẫn</span><span data-language="en" hidden>Blog / Guides</span></a></nav>
+<header class="guide-heading"><p class="guide-eyebrow"><span data-language="vi">DevOps / Tự động hóa</span><span data-language="en" hidden>DevOps / Automation</span></p><h1><span data-language="vi">Triển khai n8n bằng Docker Compose với AI agent</span><span data-language="en" hidden>Deploy n8n with Docker Compose and an AI agent</span></h1><p class="guide-byline"><span data-language="vi">Biên soạn bởi Vie Agentic Skill · Cập nhật </span><span data-language="en" hidden>By Vie Agentic Skill · Updated </span><time datetime="2026-11-06">2026-11-06</time></p></header>
+<div class="guide-layout"><article class="guide-prose">
+<p class="guide-lead" data-language="vi">AI agent có thể hỗ trợ đọc template, soạn cấu hình và kiểm tra triển khai n8n. Trước khi khởi chạy, cần chốt máy đích, kiến trúc, tên miền và cách phục hồi dữ liệu. Bài này tập trung vào single mode trên một máy Linux mới, có HTTPS qua Caddy.</p>
+<p class="guide-lead" data-language="en" hidden>An AI agent can inspect templates, prepare configuration and verify an n8n deployment. Establish the target machine, architecture, domain and recovery plan first. This guide focuses on single mode on a fresh Linux host with HTTPS through Caddy.</p>
+<details><summary><span data-language="vi">Trong bài này</span><span data-language="en" hidden>On this page</span></summary><ul><li><a href="#preflight"><span data-language="vi">Chọn kiến trúc và kiểm tra đầu vào</span><span data-language="en" hidden>Architecture and preflight</span></a></li><li><a href="#templates"><span data-language="vi">Chuẩn bị template</span><span data-language="en" hidden>Prepare templates</span></a></li><li><a href="#secrets"><span data-language="vi">Secrets và phiên bản image</span><span data-language="en" hidden>Secrets and image versions</span></a></li><li><a href="#launch"><span data-language="vi">Khởi chạy và xác minh</span><span data-language="en" hidden>Launch and verify</span></a></li><li><a href="#recovery"><span data-language="vi">Backup và vận hành</span><span data-language="en" hidden>Backups and operation</span></a></li></ul></details>
+<h2 id="preflight"><span data-language="vi">1. Chọn kiến trúc và kiểm tra máy đích</span><span data-language="en" hidden>1. Choose the architecture and inspect the host</span></h2>
+<div data-language="vi">
+<p><strong>Single mode</strong> dùng một tiến trình n8n, thường bắt đầu với SQLite. <strong>Queue mode</strong> bổ sung PostgreSQL, Redis và worker cho nhu cầu xử lý khác. Chọn theo tải dự kiến và khả năng vận hành; chuyển chế độ sau này cần kế hoạch dữ liệu, không chỉ thêm một biến môi trường.</p>
+<p>Chuẩn bị quyền quản trị máy Linux, Docker Engine và Compose v2, tên miền do bạn kiểm soát, DNS đúng, email TLS và timezone. Kiểm tra cổng 80/443 ở cả firewall máy và nhà cung cấp cloud. Giữ cổng quản trị cần thiết trước khi sửa firewall. Không tự xóa dịch vụ đang dùng các cổng đó.</p>
+<p>Cài và đọc <a data-catalog-skill="n8n-self-hosting" href="../../?lang=vi&amp;skill=n8n-self-hosting&amp;agent=codex">n8n-self-hosting</a>. Skill hướng dẫn triển khai hạ tầng; nó không phải một bộ workflow n8n đã hoàn chỉnh. Các tính năng Assistant hoặc sandbox của phiên bản mới có yêu cầu riêng, ngoài cấu hình single cơ bản ở đây.</p>
+</div>
+<div data-language="en" hidden>
+<p><strong>Single mode</strong> uses one n8n process, commonly starting with SQLite. <strong>Queue mode</strong> adds PostgreSQL, Redis and workers for different processing needs. Choose according to expected load and operating capacity. Switching later requires a data plan, not merely another environment variable.</p>
+<p>Prepare Linux administration access, Docker Engine and Compose v2, a domain you control, correct DNS, a TLS email and timezone. Check ports 80/443 in both host and cloud firewalls. Preserve required administrative access when changing firewall rules, and do not remove existing services occupying those ports.</p>
+<p>Install and read <a data-catalog-skill="n8n-self-hosting" href="../../?lang=en&amp;skill=n8n-self-hosting&amp;agent=codex">n8n-self-hosting</a>. It covers deployment infrastructure, not a finished set of n8n workflows. Newer Assistant or sandbox features have additional requirements beyond the basic single setup here.</p>
+</div>
+<pre data-language="vi"><code>Chuẩn bị kế hoạch triển khai n8n single mode trên máy Linux đã chỉ định.
+Đọc skill và template; kiểm tra OS, Docker, DNS, cổng và dung lượng.
+Cho tôi xem cấu hình, phiên bản image và kế hoạch backup trước khi khởi chạy.
+Không đổi dịch vụ hiện có, tạo tài nguyên cloud hoặc bật module ngoài phạm vi.
+Không đưa secret vào chat, Git hoặc log cấu hình.</code></pre>
+<pre data-language="en" hidden><code>Prepare an n8n single-mode deployment plan for the specified Linux host.
+Read the skill and templates; check OS, Docker, DNS, ports and storage.
+Show the configuration, image versions and backup plan before starting it.
+Do not alter existing services, provision cloud resources or enable extra modules.
+Keep secrets out of chat, Git and configuration logs.</code></pre>
+<h2 id="templates"><span data-language="vi">2. Đặt đúng tệp và đường dẫn</span><span data-language="en" hidden>2. Place the correct files and paths</span></h2>
+<div data-language="vi">
+<p>Trong thư mục skill đã cài, đọc <code>SINGLE_MODE.md</code>, <code>SECURITY.md</code> và <code>DAY2.md</code>. Chuyển các template trong <code>assets/</code> vào thư mục triển khai đã thống nhất trên máy đích:</p>
+<ul><li><code>docker-compose.single.yml</code> → <code>docker-compose.yml</code></li><li><code>Caddyfile</code> → <code>caddy_config/Caddyfile</code></li><li><code>.env.single.example</code> → <code>.env</code></li><li>Tạo thư mục <code>local_files/</code> cho các tệp workflow được phép dùng.</li></ul>
+<p><code>DATA_FOLDER</code> trong <code>.env</code> phải trùng đường dẫn tuyệt đối thật. Đặt <code>DOMAIN_NAME</code>, <code>SUBDOMAIN</code>, <code>SSL_EMAIL</code> và <code>GENERIC_TIMEZONE</code> theo môi trường. Đây là hướng dẫn cho máy mới; nếu đã có n8n, kiểm kê volume và backup trước khi thay cấu hình.</p>
+</div>
+<div data-language="en" hidden>
+<p>Read <code>SINGLE_MODE.md</code>, <code>SECURITY.md</code> and <code>DAY2.md</code> in the installed skill. Transfer these templates from <code>assets/</code> into the agreed deployment directory on the target host:</p>
+<ul><li><code>docker-compose.single.yml</code> → <code>docker-compose.yml</code></li><li><code>Caddyfile</code> → <code>caddy_config/Caddyfile</code></li><li><code>.env.single.example</code> → <code>.env</code></li><li>Create <code>local_files/</code> for approved workflow files.</li></ul>
+<p><code>DATA_FOLDER</code> in <code>.env</code> must match the actual absolute directory. Set <code>DOMAIN_NAME</code>, <code>SUBDOMAIN</code>, <code>SSL_EMAIL</code> and <code>GENERIC_TIMEZONE</code> for the environment. This procedure assumes a fresh host; inventory and back up an existing installation before changing it.</p>
+</div>
+<h2 id="secrets"><span data-language="vi">3. Kiểm tra secrets và phiên bản trước khi chạy</span><span data-language="en" hidden>3. Verify secrets and versions before launch</span></h2>
+<div data-language="vi">
+<p>Tạo encryption key mới trên máy đích theo <code>SECURITY.md</code>, lưu vào <code>.env</code> với quyền phù hợp và sao lưu qua kênh bảo mật. <code>N8N_ENCRYPTION_KEY</code> cần được giữ ổn định để giải mã credentials đã lưu. Không lấy key từ bài mẫu hoặc một hệ thống khác.</p>
+<p>Đặt <code>N8N_IMAGE_TAG</code> thành phiên bản cụ thể đã xem release notes; template mặc định <code>stable</code> có thể thay đổi giữa các lần pull. Kiểm tra cả phiên bản Caddy và tên biến cấu hình theo release n8n đã chọn. Chẳng hạn, tài liệu hiện nêu <code>N8N_WEBHOOK_URL</code> từ n8n 2.30.0, trong khi snapshot template dùng <code>WEBHOOK_URL</code>; đối chiếu hướng dẫn của phiên bản trước khi áp dụng.</p>
+<p>Template giữ n8n trong mạng Docker riêng; chỉ proxy công khai 80/443. Không thêm mapping 5678 ra Internet để né lỗi proxy. Các volume trong snapshot có tên cố định: nếu máy đã có volume trùng tên, dừng lại và xác định quyền sở hữu trước.</p>
+</div>
+<div data-language="en" hidden>
+<p>Generate a fresh encryption key on the target host following <code>SECURITY.md</code>, store it in the protected <code>.env</code> and back it up through a secure channel. Keep <code>N8N_ENCRYPTION_KEY</code> stable so stored credentials remain decryptable. Do not reuse a tutorial value or another deployment’s key.</p>
+<p>Set <code>N8N_IMAGE_TAG</code> to a specific release after reviewing its notes; the default <code>stable</code> tag can change between pulls. Review Caddy versions and configuration names for the selected n8n release too. Current documentation introduces <code>N8N_WEBHOOK_URL</code> in n8n 2.30.0, while the template snapshot uses <code>WEBHOOK_URL</code>; reconcile the selected version’s guidance before applying it.</p>
+<p>The template keeps n8n on a private Docker network, exposing only proxy ports 80/443. Do not publish 5678 to bypass proxy failures. Snapshot volume names are fixed: stop and establish ownership if the host already has volumes with those names.</p>
+</div>
+<h2 id="launch"><span data-language="vi">4. Khởi chạy và kiểm tra từng tầng</span><span data-language="en" hidden>4. Launch and verify each layer</span></h2>
+<p data-language="vi">Chạy từ thư mục triển khai trên máy đích sau khi cấu hình và phạm vi đã được chốt. Dùng <code>config --quiet</code> để kiểm tra cú pháp mà không in cấu hình đã nội suy secrets.</p>
+<p data-language="en" hidden>Run from the target deployment directory after the configuration and scope are agreed. <code>config --quiet</code> validates syntax without printing the secret-expanded configuration.</p>
+<pre><code>docker compose version
+docker compose config --quiet
+docker compose pull
+docker compose up -d
+docker compose ps
+docker compose exec -T n8n wget -qO- http://localhost:5678/healthz
+docker compose exec -T n8n wget -qO- http://localhost:5678/healthz/readiness</code></pre>
+<div data-language="vi">
+<p>Kiểm tra tiếp HTTPS từ bên ngoài bằng tên miền thật, đăng nhập và tạo một workflow thử không gọi hệ thống sản xuất. Health check chỉ xác nhận một phần trạng thái; cần kiểm tra owner account, lưu workflow và chạy một thao tác thử. Hoàn tất thiết lập owner trước khi chia sẻ URL.</p>
+<p>Nếu nội bộ khỏe nhưng HTTPS lỗi, xem DNS, chứng chỉ, Caddy và firewall. Nếu readiness lỗi, xem kết nối dữ liệu và migration của phiên bản đang chạy. Chỉ đọc log cần thiết và loại dữ liệu riêng trước khi chia sẻ.</p>
+</div>
+<div data-language="en" hidden>
+<p>Check external HTTPS using the actual domain, sign in and create a harmless test workflow that does not call production systems. Health endpoints prove only part of the setup; verify owner access, workflow persistence and a test execution. Complete owner setup before sharing the URL.</p>
+<p>If internal health succeeds but HTTPS fails, inspect DNS, certificates, Caddy and firewalls. If readiness fails, inspect data connectivity and migrations for the running version. Read only necessary logs and remove private data before sharing them.</p>
+</div>
+<h2 id="recovery"><span data-language="vi">5. Bàn giao khả năng phục hồi</span><span data-language="en" hidden>5. Hand over a recoverable deployment</span></h2>
+<div data-language="vi">
+<p>Ghi vị trí compose, image đã pin, tên volume, lịch backup và nơi giữ encryption key. Theo <a href="https://docs.n8n.io/deploy/host-n8n/keep-n8n-running/backup-and-restore">tài liệu backup n8n</a>, cần bảo vệ thư mục người dùng <code>.n8n</code> và database ngoài nếu dùng PostgreSQL. Sao chép tùy tiện database SQLite đang ghi không thay thế một quy trình backup nhất quán.</p>
+<p>Thử restore vào môi trường tách biệt và kiểm tra credentials vẫn giải mã được. Trước nâng cấp, đọc hướng dẫn migration và tạo backup có thể phục hồi; đổi image cũ không tự đảo ngược migration database. Không dùng thao tác xóa volume như một bước cập nhật thông thường.</p>
+</div>
+<div data-language="en" hidden>
+<p>Record compose location, pinned images, volume names, backup schedule and protected key storage. The <a href="https://docs.n8n.io/deploy/host-n8n/keep-n8n-running/backup-and-restore">n8n backup guide</a> covers the <code>.n8n</code> user folder and the external database when using PostgreSQL. Copying a live SQLite file arbitrarily is not a consistent backup procedure.</p>
+<p>Test restoration in an isolated environment and verify credentials remain decryptable. Review migrations and create a recoverable backup before upgrading; reverting an image does not automatically reverse database migrations. Volume removal is not a routine update step.</p>
+</div>
+<h2 id="sources"><span data-language="vi">Nguồn đối chiếu</span><span data-language="en" hidden>References</span></h2>
+<ul><li><a href="https://docs.n8n.io/deploy/host-n8n/install-options/install-using-docker-compose">n8n: Docker Compose installation</a></li><li><a href="https://docs.n8n.io/deploy/host-n8n/install-options/use-a-cloud-provider/use-docker-compose">n8n: HTTPS deployment and version-specific variables</a></li><li><a href="https://github.com/czlonkowski/n8n-mcp">Source skill: Romuald Czlonkowski / n8n-mcp</a></li></ul>
+</article><aside class="guide-companion" aria-label="Skill liên quan"><p class="guide-eyebrow"><span data-language="vi">Template và vận hành</span><span data-language="en" hidden>Templates and operations</span></p><h2><a data-catalog-skill="n8n-self-hosting" href="../../?lang=vi&amp;skill=n8n-self-hosting&amp;agent=codex">n8n-self-hosting</a></h2><p><span data-language="vi">Đọc chế độ triển khai, security và day-2 trước khi dùng template trên máy thật.</span><span data-language="en" hidden>Read the deployment mode, security and day-2 guidance before applying templates.</span></p><a class="button primary" data-catalog-skill="n8n-self-hosting" href="../../?lang=vi&amp;skill=n8n-self-hosting&amp;agent=codex"><span data-language="vi">Xem skill và cài đặt →</span><span data-language="en" hidden>Read skill and install →</span></a></aside></div>
+<section class="guide-related" aria-labelledby="related-title"><h2 id="related-title"><span data-language="vi">Đọc tiếp</span><span data-language="en" hidden>Read next</span></h2><div class="guide-related-links"><a href="../agent-skills-mcp-agents-md/" data-guide-link><span data-language="vi">Skills, MCP và hướng dẫn dự án</span><span data-language="en" hidden>Skills, MCP and project instructions</span></a><a href="../debug-voi-ai-agent/" data-guide-link><span data-language="vi">Chẩn đoán lỗi cùng AI agent</span><span data-language="en" hidden>Diagnose failures with an AI agent</span></a></div></section>
+</main><footer class="site-footer"><div class="shell footer-inner"><strong>VAS / Vie Agentic Skill</strong><p><span data-language="vi">Đọc hướng dẫn. Chọn skill. Áp dụng vào dự án.</span><span data-language="en" hidden>Read a guide. Choose a skill. Apply it to your project.</span></p><div><a href="../../#catalog" data-home><span data-language="vi">Thư viện</span><span data-language="en" hidden>Library</span></a><a href="https://github.com/huytran1120/vie-agentic-skills">GitHub ↗</a></div></div></footer>
+</body></html>

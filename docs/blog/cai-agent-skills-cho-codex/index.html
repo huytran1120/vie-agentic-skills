@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="vi" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cài Agent Skills cho Codex: đúng thư mục, kiểm tra hoạt động — VAS</title>
+  <meta name="description" content="Cài Agent Skills cho Codex vào .agents/skills bằng VAS; phân biệt phạm vi dự án và cá nhân, kiểm tra discovery, tệp phụ thuộc và cách gỡ.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#f3efea">
+  <link rel="canonical" href="https://vie-agentic-skills.vercel.app/blog/cai-agent-skills-cho-codex/">
+  <link rel="icon" href="../../assets/brand/vas-icon.png">
+  <link rel="stylesheet" href="../../catalog.css">
+  <link rel="stylesheet" href="../blog.css">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Vie Agentic Skill">
+  <meta property="og:title" content="Cài Agent Skills cho Codex: đúng thư mục, kiểm tra hoạt động">
+  <meta property="og:description" content="Cài skill vào .agents/skills, xác minh Codex nhận diện và giữ đủ scripts, references cùng thông tin quản lý bản cài.">
+  <meta property="og:url" content="https://vie-agentic-skills.vercel.app/blog/cai-agent-skills-cho-codex/">
+  <meta property="og:image" content="https://vie-agentic-skills.vercel.app/assets/social-preview.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cài Agent Skills cho Codex: đúng thư mục, kiểm tra hoạt động">
+  <meta name="twitter:description" content="Chọn phạm vi, cài đủ tệp và kiểm tra một skill trong Codex bằng CLI VAS.">
+  <meta name="twitter:image" content="https://vie-agentic-skills.vercel.app/assets/social-preview.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Cài Agent Skills cho Codex: đúng thư mục, kiểm tra hoạt động","description":"Cài Agent Skills cho Codex vào .agents/skills bằng VAS; phân biệt phạm vi dự án và cá nhân, kiểm tra discovery, tệp phụ thuộc và cách gỡ.","url":"https://vie-agentic-skills.vercel.app/blog/cai-agent-skills-cho-codex/","mainEntityOfPage":"https://vie-agentic-skills.vercel.app/blog/cai-agent-skills-cho-codex/","inLanguage":"vi-VN","datePublished":"2026-11-06","dateModified":"2026-11-06","author":{"@type":"Organization","name":"Vie Agentic Skill"},"publisher":{"@type":"Organization","name":"Vie Agentic Skill","url":"https://vie-agentic-skills.vercel.app/"},"image":"https://vie-agentic-skills.vercel.app/assets/social-preview.png"}</script>
+  <script src="../blog.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#guide-main"><span data-language="vi">Đến nội dung chính</span><span data-language="en" hidden>Skip to content</span></a>
+<header class="site-header guide-header"><div class="shell header-inner">
+  <a class="brand" href="../../" data-home><span class="brand-mark" aria-hidden="true">&gt;_</span><span class="brand-short">VAS</span></a>
+  <nav class="guide-nav" aria-label="Điều hướng">
+    <a class="guide-library-return" href="../../#catalog" data-home data-library-return><span data-language="vi">← Về thư viện <span data-catalog-count="vi">3.885</span> skill</span><span data-language="en" hidden>← Back to <span data-catalog-count="en">3,885</span> skills</span></a>
+    <a href="../" data-blog><span data-language="vi">Blog / Hướng dẫn</span><span data-language="en" hidden>Blog / Guides</span></a>
+  </nav>
+  <div class="header-actions"><button id="blog-language" class="icon-button" type="button" aria-label="Switch to English" lang="en">EN</button><button id="blog-theme" class="icon-button" type="button" aria-label="Bật giao diện tối" aria-pressed="false">◐</button></div>
+</div></header>
+<main id="guide-main" class="shell guide-main" tabindex="-1"
+  data-page-titles='{"vi":"Cài Agent Skills cho Codex: đúng thư mục, kiểm tra hoạt động — VAS","en":"Install Agent Skills in Codex: paths, discovery and verification — VAS"}'
+  data-page-descriptions='{"vi":"Cài Agent Skills cho Codex vào .agents/skills bằng VAS; phân biệt phạm vi dự án và cá nhân, kiểm tra discovery, tệp phụ thuộc và cách gỡ.","en":"Install Codex skills in .agents/skills with VAS. Choose project or personal scope, verify discovery and supporting files, and manage removal."}'>
+  <nav class="guide-breadcrumb" aria-label="Breadcrumb"><a href="../../" data-home>VAS</a><span>/</span><a href="../" data-blog><span data-language="vi">Blog / Hướng dẫn</span><span data-language="en" hidden>Blog / Guides</span></a></nav>
+  <header class="guide-heading">
+    <p class="guide-eyebrow"><span data-language="vi">Cài đặt / Codex</span><span data-language="en" hidden>Installation / Codex</span></p>
+    <h1><span data-language="vi">Cài Agent Skills cho Codex: đúng thư mục, kiểm tra hoạt động</span><span data-language="en" hidden>Install Agent Skills in Codex: paths, discovery and verification</span></h1>
+    <p class="guide-byline"><span data-language="vi">Biên soạn bởi Vie Agentic Skill · Cập nhật </span><span data-language="en" hidden>By Vie Agentic Skill · Updated </span><time datetime="2026-11-06">2026-11-06</time></p>
+  </header>
+  <div class="guide-layout"><article class="guide-prose">
+    <p class="guide-lead" data-language="vi">Để Codex nhận một skill, cần đặt cả thư mục skill vào nơi Codex đọc, rồi kiểm tra việc nhận diện trong phiên làm việc. Bài này dùng CLI VAS để cài vào <code>.agents/skills</code> và giữ thông tin quản lý bản cài.</p>
+    <p class="guide-lead" data-language="en" hidden>Codex needs the complete skill folder in a location it scans. This guide uses the VAS CLI to install into <code>.agents/skills</code>, retain installation records and verify discovery in a working session.</p>
+    <details><summary><span data-language="vi">Trong bài này</span><span data-language="en" hidden>On this page</span></summary><ul>
+      <li><a href="#scope"><span data-language="vi">Chọn phạm vi và đường dẫn</span><span data-language="en" hidden>Choose scope and location</span></a></li>
+      <li><a href="#install"><span data-language="vi">Cài một skill vào dự án</span><span data-language="en" hidden>Install a project skill</span></a></li>
+      <li><a href="#verify"><span data-language="vi">Kiểm tra Codex nhận skill</span><span data-language="en" hidden>Verify Codex discovery</span></a></li>
+      <li><a href="#manage"><span data-language="vi">Cập nhật, gỡ và xử lý lỗi</span><span data-language="en" hidden>Manage and troubleshoot</span></a></li>
+    </ul></details>
+    <h2 id="scope"><span data-language="vi">1. Chọn phạm vi trước khi cài</span><span data-language="en" hidden>1. Choose the scope first</span></h2>
+    <div data-language="vi">
+      <p>Theo <a href="https://developers.openai.com/codex/skills">tài liệu Codex</a>, skill trong repository nằm ở <code>.agents/skills</code>; skill cá nhân dùng chung nằm ở <code>~/.agents/skills</code>. Codex tìm các thư mục trong chuỗi từ thư mục làm việc tới gốc repository. Hãy mở đúng dự án trước khi kiểm tra.</p>
+      <p>Ở phiên bản VAS được dùng cho bài này, <code>--target codex</code> vẫn ánh xạ tới <code>.codex/skills</code>. Các lệnh bên dưới chủ đích dùng <code>--target workspace</code> và đích <code>.agents/skills</code> theo tài liệu Codex hiện tại. Đây là lựa chọn thư mục cài, không phải đổi ứng dụng đang dùng. Khi dùng Copy Agent Prompt trên website, cũng cần đọc lại đường dẫn đích; đừng mặc định hai thư mục tương đương trên mọi phiên bản.</p>
+      <p>Chuẩn bị Python 3 cho CLI VAS, Git nếu cần clone và một bản Codex có hỗ trợ skills. Cài skill chỉ đưa hướng dẫn và tệp phụ trợ vào máy; công cụ mà runbook sử dụng, chẳng hạn trình duyệt hoặc Playwright, vẫn là yêu cầu riêng.</p>
+    </div>
+    <div data-language="en" hidden>
+      <p>The <a href="https://developers.openai.com/codex/skills">Codex documentation</a> places repository skills in <code>.agents/skills</code> and personal skills in <code>~/.agents/skills</code>. Codex scans locations between the working directory and repository root, so open the intended project when checking discovery.</p>
+      <p>In the VAS version used here, <code>--target codex</code> still maps to <code>.codex/skills</code>. These examples deliberately use <code>--target workspace</code> with an explicit <code>.agents/skills</code> destination to match current Codex documentation. This selects an installation folder, not a different application. If you use Copy Agent Prompt on the website, inspect its destination too; the two paths are not interchangeable across every version.</p>
+      <p>Prepare Python 3 for the VAS CLI, Git if cloning is necessary, and a Codex version with skill support. Installing a skill provides instructions and supporting files. Runtime tools used by the runbook, including browsers or Playwright, remain separate prerequisites.</p>
+    </div>
+    <h2 id="install"><span data-language="vi">2. Cài một skill vào dự án đích</span><span data-language="en" hidden>2. Install into the target project</span></h2>
+    <div data-language="vi">
+      <p>Nếu đã có VAS, dùng bản clone hiện tại. Nếu chưa, clone một lần rồi chạy CLI từ gốc kho. Ví dụ dùng <a data-catalog-skill="webapp-testing" href="../../?lang=vi&amp;skill=webapp-testing&amp;agent=codex">webapp-testing</a>; đọc runbook, giấy phép và các scripts trước khi cho phép thực thi.</p>
+    </div>
+    <div data-language="en" hidden>
+      <p>Use an existing VAS clone when available. Otherwise, clone once and run the CLI from its root. The example uses <a data-catalog-skill="webapp-testing" href="../../?lang=en&amp;skill=webapp-testing&amp;agent=codex">webapp-testing</a>; inspect its runbook, license and scripts before permitting execution.</p>
+    </div>
+    <pre><code>git clone https://github.com/huytran1120/vie-agentic-skills.git
+cd vie-agentic-skills
+./vas show webapp-testing
+./vas install webapp-testing --target workspace --mode copy --dest "/absolute/path/to/project/.agents/skills"
+./vas status --target workspace --dest "/absolute/path/to/project/.agents/skills"</code></pre>
+    <p data-language="vi">Thay đường dẫn tuyệt đối bằng dự án thật. <code>--dest</code> phải là thư mục chứa các skill, không phải thư mục con của riêng skill. Kết quả cần có cấu trúc như dưới đây; nội dung phụ trợ tùy inventory của skill.</p>
+    <p data-language="en" hidden>Replace the absolute path with your project. <code>--dest</code> names the directory containing skills, not the individual skill folder. Expect this layout; supporting contents depend on the inventory.</p>
+    <pre><code>project/
+  .agents/
+    skills/
+      .vas-manifest.json
+      webapp-testing/
+        SKILL.md
+        scripts/
+        examples/</code></pre>
+    <p data-language="vi"><code>copy</code> tạo bản độc lập. Nếu chọn <code>link</code>, phải giữ nguyên thư mục nguồn; di chuyển hoặc xóa clone VAS có thể làm hỏng liên kết. Trên Windows, có thể dùng <code>python3 vas.py</code> thay cho <code>./vas</code> trong một shell đã cấu hình Python.</p>
+    <p data-language="en" hidden><code>copy</code> creates a standalone installation. With <code>link</code>, the source must remain available; moving or deleting the VAS clone can break discovery. On Windows, use <code>python3 vas.py</code> instead of <code>./vas</code> in a shell configured for Python.</p>
+    <h2 id="verify"><span data-language="vi">3. Kiểm tra nhận diện và một tác vụ nhỏ</span><span data-language="en" hidden>3. Verify discovery and a small task</span></h2>
+    <div data-language="vi">
+      <ol>
+        <li>Mở <code>SKILL.md</code> tại đích, kiểm tra frontmatter có <code>name</code>, <code>description</code> và các tệp được tham chiếu tồn tại.</li>
+        <li>Mở hoặc khởi động lại phiên Codex trong đúng dự án nếu skill mới chưa xuất hiện. Với CLI/IDE hỗ trợ, dùng <code>/skills</code> hoặc gõ <code>$</code> để tìm skill.</li>
+        <li>Gọi skill rõ ràng trong một tác vụ nhỏ và yêu cầu agent báo những công cụ còn thiếu trước khi chạy.</li>
+      </ol>
+    </div>
+    <div data-language="en" hidden>
+      <ol>
+        <li>Open the installed <code>SKILL.md</code>. Check its <code>name</code>, <code>description</code> and referenced files.</li>
+        <li>Open or restart a Codex session in the intended project if the new skill is absent. In supported CLI/IDE interfaces, use <code>/skills</code> or type <code>$</code> to find it.</li>
+        <li>Request the skill explicitly for a small task and ask the agent to report missing tools before execution.</li>
+      </ol>
+    </div>
+    <pre data-language="vi"><code>Áp dụng $webapp-testing để lập kế hoạch kiểm tra trang đăng nhập local.
+Trước tiên xác nhận URL, tài khoản thử và công cụ đã có.
+Chưa cài thêm dependency, gửi dữ liệu hoặc đổi mã nguồn.
+Nêu các bước kiểm tra và phần chưa thể thực hiện.</code></pre>
+    <pre data-language="en" hidden><code>Use $webapp-testing to plan checks for the local login page.
+First confirm the URL, test account and available tools.
+Do not install dependencies, send data or change source code yet.
+Report the planned checks and anything currently blocked.</code></pre>
+    <p data-language="vi">Có tệp trên đĩa, có skill trong danh sách và thực thi thành công là ba mốc khác nhau. Báo cáo nên phân biệt chúng. Một runbook được nhận diện vẫn có thể chưa chạy được vì thiếu trình duyệt, dữ liệu thử hoặc quyền truy cập.</p>
+    <p data-language="en" hidden>Files on disk, a discoverable skill and a successful task are three different milestones. Report them separately. A discovered runbook can still be blocked by missing browsers, test data or permissions.</p>
+    <h2 id="manage"><span data-language="vi">4. Phạm vi cá nhân, cập nhật và gỡ</span><span data-language="en" hidden>4. Personal scope, updates and removal</span></h2>
+    <div data-language="vi">
+      <p>Để dùng chung trên máy, chọn <code>--dest "$HOME/.agents/skills"</code> trong Bash/Zsh và dùng cùng đích cho <code>status</code>, <code>uninstall</code>. Tránh cài trùng tên ở cả phạm vi cá nhân và dự án khi chưa hiểu phiên bản Codex sẽ hiển thị những bản nào.</p>
+      <p>Khi cập nhật, xem thay đổi nguồn và sao lưu chỉnh sửa cục bộ trước. Nếu CLI báo xung đột, kiểm tra quyền sở hữu và khác biệt thay vì xóa receipt hoặc ghi đè thủ công. Gỡ bản do CLI quản lý bằng đúng target và đích đã cài:</p>
+    </div>
+    <div data-language="en" hidden>
+      <p>For personal use across projects, choose <code>--dest "$HOME/.agents/skills"</code> in Bash/Zsh and keep that destination for <code>status</code> and <code>uninstall</code>. Avoid duplicate skill names across personal and repository locations until you understand how your Codex version presents them.</p>
+      <p>Before updating, review upstream changes and preserve local edits. Investigate ownership and differences when the CLI reports conflicts instead of deleting receipts or overwriting files manually. Remove a CLI-managed installation using its original target and destination:</p>
+    </div>
+    <pre><code>./vas uninstall webapp-testing --target workspace --dest "/absolute/path/to/project/.agents/skills"</code></pre>
+    <p data-language="vi">Nếu chưa nhận skill, dùng <a href="../agent-khong-nhan-skill/" data-guide-link>quy trình kiểm tra discovery</a>. Để hiểu vai trò của từng lớp cấu hình, đọc <a href="../agent-skills-mcp-agents-md/" data-guide-link>Skills, MCP và AGENTS.md</a>.</p>
+    <p data-language="en" hidden>If discovery fails, follow the <a href="../agent-khong-nhan-skill/" data-guide-link>skill troubleshooting guide</a>. For configuration boundaries, read <a href="../agent-skills-mcp-agents-md/" data-guide-link>Skills, MCP and AGENTS.md</a>.</p>
+    <h2 id="sources"><span data-language="vi">Nguồn đối chiếu</span><span data-language="en" hidden>References</span></h2>
+    <ul><li><a href="https://developers.openai.com/codex/skills">OpenAI: Agent Skills</a></li><li><a href="https://developers.openai.com/codex/concepts/customization">OpenAI: Codex customization</a></li><li><a href="https://github.com/huytran1120/vie-agentic-skills/blob/main/vas.py">VAS: target configuration and CLI implementation</a></li></ul>
+  </article><aside class="guide-companion" aria-label="Skill liên quan">
+    <p class="guide-eyebrow"><span data-language="vi">Skill để bắt đầu</span><span data-language="en" hidden>A starting skill</span></p>
+    <h2><a data-catalog-skill="webapp-testing" href="../../?lang=vi&amp;skill=webapp-testing&amp;agent=codex">webapp-testing</a></h2>
+    <p><span data-language="vi">Đọc runbook trước, kiểm tra đường dẫn cài rồi chọn một luồng thử nhỏ.</span><span data-language="en" hidden>Read the runbook, verify the installation path and choose a small test flow.</span></p>
+    <a class="button primary" data-catalog-skill="webapp-testing" href="../../?lang=vi&amp;skill=webapp-testing&amp;agent=codex"><span data-language="vi">Xem skill và cách cài →</span><span data-language="en" hidden>Read skill and installation →</span></a>
+  </aside></div>
+  <section class="guide-related" aria-labelledby="related-title"><h2 id="related-title"><span data-language="vi">Đọc tiếp</span><span data-language="en" hidden>Read next</span></h2><div class="guide-related-links">
+    <a href="../agent-skills-la-gi/" data-guide-link><span data-language="vi">Agent Skills là gì?</span><span data-language="en" hidden>What are agent skills?</span></a>
+    <a href="../cai-skill-cho-claude-code/" data-guide-link><span data-language="vi">Cài skill cho Claude Code</span><span data-language="en" hidden>Install skills in Claude Code</span></a>
+  </div></section>
+</main>
+<footer class="site-footer"><div class="shell footer-inner"><strong>VAS / Vie Agentic Skill</strong><p><span data-language="vi">Đọc hướng dẫn. Chọn skill. Áp dụng vào dự án.</span><span data-language="en" hidden>Read a guide. Choose a skill. Apply it to your project.</span></p><div><a href="../../#catalog" data-home><span data-language="vi">Thư viện</span><span data-language="en" hidden>Library</span></a><a href="https://github.com/huytran1120/vie-agentic-skills">GitHub ↗</a></div></div></footer>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="vi" data-theme="light">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent Skills, MCP và AGENTS.md khác nhau thế nào? — VAS</title>
+<meta name="description" content="Phân biệt Agent Skills, MCP và AGENTS.md qua một quy trình review code: nơi đặt quy tắc dự án, đóng gói workflow và kết nối công cụ bên ngoài.">
+<meta name="robots" content="index, follow"><meta name="theme-color" content="#f3efea">
+<link rel="canonical" href="https://vie-agentic-skills.vercel.app/blog/agent-skills-mcp-agents-md/">
+<link rel="icon" href="../../assets/brand/vas-icon.png"><link rel="stylesheet" href="../../catalog.css"><link rel="stylesheet" href="../blog.css">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Vie Agentic Skill"><meta property="og:title" content="Agent Skills, MCP và AGENTS.md khác nhau thế nào?"><meta property="og:description" content="Ba lớp hỗ trợ AI agent: quy tắc dự án, quy trình tái sử dụng và kết nối công cụ. Chọn đúng lớp cho một nhu cầu cụ thể."><meta property="og:url" content="https://vie-agentic-skills.vercel.app/blog/agent-skills-mcp-agents-md/"><meta property="og:image" content="https://vie-agentic-skills.vercel.app/assets/social-preview.png"><meta property="og:image:width" content="1280"><meta property="og:image:height" content="640">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Agent Skills, MCP và AGENTS.md khác nhau thế nào?"><meta name="twitter:description" content="Chọn đúng nơi cho hướng dẫn dự án, workflow và tích hợp công cụ của AI agent."><meta name="twitter:image" content="https://vie-agentic-skills.vercel.app/assets/social-preview.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Agent Skills, MCP và AGENTS.md khác nhau thế nào?","description":"Phân biệt quy tắc dự án, workflow đóng gói và kết nối công cụ bên ngoài qua một tình huống review code.","url":"https://vie-agentic-skills.vercel.app/blog/agent-skills-mcp-agents-md/","mainEntityOfPage":"https://vie-agentic-skills.vercel.app/blog/agent-skills-mcp-agents-md/","inLanguage":"vi-VN","datePublished":"2026-11-06","dateModified":"2026-11-06","author":{"@type":"Organization","name":"Vie Agentic Skill"},"publisher":{"@type":"Organization","name":"Vie Agentic Skill","url":"https://vie-agentic-skills.vercel.app/"},"image":"https://vie-agentic-skills.vercel.app/assets/social-preview.png"}</script>
+<script src="../blog.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#guide-main"><span data-language="vi">Đến nội dung chính</span><span data-language="en" hidden>Skip to content</span></a>
+<header class="site-header guide-header"><div class="shell header-inner"><a class="brand" href="../../" data-home><span class="brand-mark" aria-hidden="true">&gt;_</span><span class="brand-short">VAS</span></a><nav class="guide-nav" aria-label="Điều hướng"><a class="guide-library-return" href="../../#catalog" data-home data-library-return><span data-language="vi">← Về thư viện <span data-catalog-count="vi">3.885</span> skill</span><span data-language="en" hidden>← Back to <span data-catalog-count="en">3,885</span> skills</span></a><a href="../" data-blog><span data-language="vi">Blog / Hướng dẫn</span><span data-language="en" hidden>Blog / Guides</span></a></nav><div class="header-actions"><button id="blog-language" class="icon-button" type="button" aria-label="Switch to English" lang="en">EN</button><button id="blog-theme" class="icon-button" type="button" aria-label="Bật giao diện tối" aria-pressed="false">◐</button></div></div></header>
+<main id="guide-main" class="shell guide-main" tabindex="-1" data-page-titles='{"vi":"Agent Skills, MCP và AGENTS.md khác nhau thế nào? — VAS","en":"Agent Skills, MCP and AGENTS.md: what belongs where? — VAS"}' data-page-descriptions='{"vi":"Phân biệt Agent Skills, MCP và AGENTS.md qua một quy trình review code: nơi đặt quy tắc dự án, đóng gói workflow và kết nối công cụ bên ngoài.","en":"Compare Agent Skills, MCP and AGENTS.md through a code review workflow. Choose where project rules, reusable procedures and external tool connections belong."}'>
+<nav class="guide-breadcrumb" aria-label="Breadcrumb"><a href="../../" data-home>VAS</a><span>/</span><a href="../" data-blog><span data-language="vi">Blog / Hướng dẫn</span><span data-language="en" hidden>Blog / Guides</span></a></nav>
+<header class="guide-heading"><p class="guide-eyebrow"><span data-language="vi">Khái niệm / Cấu hình agent</span><span data-language="en" hidden>Concepts / Agent configuration</span></p><h1><span data-language="vi">Agent Skills, MCP và AGENTS.md khác nhau thế nào?</span><span data-language="en" hidden>Agent Skills, MCP and AGENTS.md: what belongs where?</span></h1><p class="guide-byline"><span data-language="vi">Biên soạn bởi Vie Agentic Skill · Cập nhật </span><span data-language="en" hidden>By Vie Agentic Skill · Updated </span><time datetime="2026-11-06">2026-11-06</time></p></header>
+<div class="guide-layout"><article class="guide-prose">
+<p class="guide-lead" data-language="vi">AGENTS.md mô tả quy tắc làm việc trong dự án; Agent Skills đóng gói quy trình có thể tái sử dụng; MCP là giao thức kết nối ứng dụng AI với công cụ và tài nguyên. Một tác vụ có thể cần cả ba, nhưng mỗi lớp giải quyết một nhu cầu riêng.</p>
+<p class="guide-lead" data-language="en" hidden>AGENTS.md carries project instructions, Agent Skills package reusable workflows, and MCP connects AI applications to tools and resources. A task can use all three, with each layer serving a different need.</p>
+<details><summary><span data-language="vi">Trong bài này</span><span data-language="en" hidden>On this page</span></summary><ul><li><a href="#instructions">AGENTS.md / CLAUDE.md</a></li><li><a href="#skills">Agent Skills</a></li><li><a href="#mcp">MCP</a></li><li><a href="#example"><span data-language="vi">Kết hợp trong một tác vụ</span><span data-language="en" hidden>Combine them in one task</span></a></li><li><a href="#choose"><span data-language="vi">Chọn lớp cần bổ sung</span><span data-language="en" hidden>Choose the missing layer</span></a></li></ul></details>
+<h2 id="instructions"><span data-language="vi">AGENTS.md: quy tắc gắn với repository</span><span data-language="en" hidden>AGENTS.md: repository instructions</span></h2>
+<div data-language="vi">
+<p>Đặt ở đây những điều agent cần biết khi làm việc trong kho: lệnh test, cấu trúc thư mục, quy ước sửa mã và thao tác cần người dùng cho phép. Ví dụ sau là nội dung minh họa cho một repository dùng Python:</p>
+</div>
+<div data-language="en" hidden>
+<p>Use this layer for repository context: test commands, directory structure, coding conventions and operations requiring user authorization. This illustrative file describes a Python repository:</p>
+</div>
+<pre><code># Project instructions
+
+- Run focused tests with the project Python environment.
+- Keep generated artifacts out of source changes.
+- Preserve public API behavior unless the task changes its contract.
+- Report validation results before requesting a merge.
+- Push or publish only when explicitly requested.</code></pre>
+<div data-language="vi">
+<p>Codex có quy tắc khám phá <code>AGENTS.md</code> theo phạm vi và thư mục, được mô tả trong <a href="https://developers.openai.com/codex/guides/agents-md">tài liệu OpenAI</a>. Claude Code có cơ chế <code>CLAUDE.md</code> và cấu hình riêng. Không nên giả định mọi agent tự đọc cùng một tên tệp hoặc áp dụng cùng thứ tự ưu tiên.</p>
+<p>Giữ hướng dẫn chung ngắn và cụ thể. Quy trình nhiều bước chỉ dùng cho một loại công việc có thể nằm trong skill để tránh đưa quá nhiều chi tiết vào mọi tác vụ.</p>
+</div>
+<div data-language="en" hidden>
+<p>Codex discovers <code>AGENTS.md</code> by scope and directory, as described in the <a href="https://developers.openai.com/codex/guides/agents-md">OpenAI guide</a>. Claude Code has its own <code>CLAUDE.md</code> and configuration mechanisms. Do not assume every agent automatically reads the same filename or applies identical precedence.</p>
+<p>Keep shared instructions short and concrete. A detailed procedure used only for a particular task can live in a skill instead of adding that detail to every request.</p>
+</div>
+<h2 id="skills"><span data-language="vi">Agent Skills: một quy trình có điều kiện sử dụng</span><span data-language="en" hidden>Agent Skills: a workflow with a defined use case</span></h2>
+<div data-language="vi">
+<p>Một skill có <code>SKILL.md</code> với tên, mô tả và hướng dẫn; có thể kèm scripts, references và assets. Agent dùng metadata để xác định mức phù hợp rồi đọc nội dung khi cần. Cách nhận diện và các trường mở rộng phụ thuộc ứng dụng.</p>
+<p>Ví dụ, <a data-catalog-skill="code-review" href="../../?lang=vi&amp;skill=code-review&amp;agent=codex">code-review</a> hướng dẫn cách đối chiếu thay đổi với tiêu chuẩn và yêu cầu. Runbook giúp tổ chức quá trình review; nó không tự cấp quyền vào kho private hoặc chứng minh các test đã chạy.</p>
+</div>
+<div data-language="en" hidden>
+<p>A skill includes a <code>SKILL.md</code> with a name, description and instructions, optionally accompanied by scripts, references and assets. Agents use metadata to assess relevance and read the full procedure when needed. Discovery and extension fields depend on the application.</p>
+<p>For example, <a data-catalog-skill="code-review" href="../../?lang=en&amp;skill=code-review&amp;agent=codex">code-review</a> describes how to compare changes with standards and requirements. It organizes a review; it does not grant access to a private repository or establish that tests have run.</p>
+</div>
+<h2 id="mcp"><span data-language="vi">MCP: kết nối tới công cụ và tài nguyên</span><span data-language="en" hidden>MCP: connect to tools and resources</span></h2>
+<div data-language="vi">
+<p>MCP chuẩn hóa giao tiếp giữa ứng dụng AI và các server cung cấp công cụ, tài nguyên hoặc prompt. Chẳng hạn, một tích hợp đã được cấu hình có thể cho phép đọc issue hoặc truy vấn dữ liệu phục vụ tác vụ. Khả năng thực tế còn phụ thuộc server, tài khoản, quyền và cách ứng dụng AI sử dụng giao thức.</p>
+<p>Một skill nhắc đến công cụ MCP không tự cài hoặc xác thực công cụ đó. Ngược lại, có kết nối MCP chưa có nghĩa agent đã biết quy trình phù hợp để dùng nó. Nếu tác vụ chỉ cần đọc diff và chạy test local, các công cụ tích hợp sẵn có thể đã đủ.</p>
+</div>
+<div data-language="en" hidden>
+<p>MCP standardizes communication between an AI application and servers exposing tools, resources or prompts. A configured integration might allow reading an issue or querying task-relevant data. Actual capabilities depend on the server, account permissions and application support.</p>
+<p>A skill mentioning an MCP tool does not install or authenticate that tool. A working MCP connection likewise does not provide a task-specific procedure by itself. Reading a local diff and running local tests may already be possible with built-in tools.</p>
+</div>
+<h2 id="example"><span data-language="vi">Ví dụ: review một thay đổi checkout</span><span data-language="en" hidden>Example: review a checkout change</span></h2>
+<div data-language="vi">
+<ol><li><strong>Hướng dẫn dự án</strong> xác định cách chạy test, phạm vi sửa và quy tắc không đẩy mã khi chưa được yêu cầu.</li><li><strong>Skill review</strong> yêu cầu đọc diff, đối chiếu đặc tả và ghi phát hiện có bằng chứng.</li><li><strong>Kết nối công cụ</strong>, nếu đã được phép, cung cấp issue chứa tiêu chí nghiệm thu hoặc dữ liệu kiểm tra cần thiết.</li><li><strong>Agent</strong> thực hiện các bước trong quyền được cấp và báo rõ phần đã kiểm chứng, phần còn thiếu.</li></ol>
+<p>Nếu issue không truy cập được, có thể dùng bản đặc tả do người dùng cung cấp. Nếu test chưa chạy được, báo nguyên nhân; không suy diễn rằng có skill và MCP là mọi bước đã hoàn thành.</p>
+</div>
+<div data-language="en" hidden>
+<ol><li><strong>Project instructions</strong> define test commands, change scope and the rule against unrequested pushes.</li><li><strong>The review skill</strong> asks for diff inspection, specification comparison and evidence-backed findings.</li><li><strong>A tool connection</strong>, when authorized, provides an issue containing acceptance criteria or necessary test data.</li><li><strong>The agent</strong> follows the workflow within its permissions and distinguishes verified results from missing evidence.</li></ol>
+<p>If the issue is inaccessible, use a specification supplied by the user. If tests cannot run, explain why. Having a skill and an MCP connection does not establish that the workflow has completed.</p>
+</div>
+<h2 id="choose"><span data-language="vi">Chọn thứ cần bổ sung từ vấn đề đang gặp</span><span data-language="en" hidden>Choose the layer based on the problem</span></h2>
+<div data-language="vi">
+<ul><li>Agent liên tục dùng sai lệnh test hoặc sửa nhầm thư mục: làm rõ hướng dẫn dự án.</li><li>Cùng một tác vụ phải giải thích lại nhiều bước: đóng gói thành skill có phạm vi cụ thể.</li><li>Agent thiếu dữ liệu hoặc thao tác từ hệ thống bên ngoài: kiểm tra tích hợp và quyền, trong đó MCP có thể là một lựa chọn.</li><li>Skill đã cài nhưng không được nhận diện: kiểm tra <a href="../agent-khong-nhan-skill/" data-guide-link>đường dẫn và cơ chế discovery</a> trước khi thêm tích hợp mới.</li></ul>
+<p>Bắt đầu từ một tình huống thật, giữ cấu hình nhỏ và kiểm tra kết quả từng lớp. Xem <a href="../agent-skills-la-gi/" data-guide-link>bài nền về Agent Skills</a> và <a href="../review-pull-request-bang-ai/" data-guide-link>quy trình review PR</a> để thực hành.</p>
+</div>
+<div data-language="en" hidden>
+<ul><li>The agent repeatedly chooses the wrong test command or directory: clarify project instructions.</li><li>The same task requires repeatedly explaining a long procedure: package a focused skill.</li><li>The agent lacks data or operations from an external system: check integrations and permissions; MCP may be one option.</li><li>An installed skill is undiscoverable: investigate <a href="../agent-khong-nhan-skill/" data-guide-link>paths and discovery</a> before adding another integration.</li></ul>
+<p>Start with a real task, keep configuration small and verify each layer. Continue with the <a href="../agent-skills-la-gi/" data-guide-link>Agent Skills introduction</a> and the <a href="../review-pull-request-bang-ai/" data-guide-link>PR review workflow</a>.</p>
+</div>
+<h2 id="sources"><span data-language="vi">Nguồn đối chiếu</span><span data-language="en" hidden>References</span></h2>
+<ul><li><a href="https://agentskills.io/specification">Agent Skills specification</a></li><li><a href="https://developers.openai.com/codex/guides/agents-md">OpenAI: custom instructions with AGENTS.md</a></li><li><a href="https://code.claude.com/docs/en/claude-directory">Claude Code directory and configuration</a></li><li><a href="https://modelcontextprotocol.io/docs/learn/architecture">MCP architecture</a></li></ul>
+</article><aside class="guide-companion" aria-label="Skill liên quan"><p class="guide-eyebrow"><span data-language="vi">Một workflow cụ thể</span><span data-language="en" hidden>A concrete workflow</span></p><h2><a data-catalog-skill="code-review" href="../../?lang=vi&amp;skill=code-review&amp;agent=codex">code-review</a></h2><p><span data-language="vi">Đọc cách đối chiếu thay đổi với tiêu chuẩn dự án và yêu cầu tác vụ.</span><span data-language="en" hidden>Compare changes with repository standards and task requirements.</span></p><a class="button primary" data-catalog-skill="code-review" href="../../?lang=vi&amp;skill=code-review&amp;agent=codex"><span data-language="vi">Xem runbook review →</span><span data-language="en" hidden>Read the review runbook →</span></a></aside></div>
+<section class="guide-related" aria-labelledby="related-title"><h2 id="related-title"><span data-language="vi">Đọc tiếp</span><span data-language="en" hidden>Read next</span></h2><div class="guide-related-links"><a href="../cai-agent-skills-cho-codex/" data-guide-link><span data-language="vi">Cài skill cho Codex</span><span data-language="en" hidden>Install Codex skills</span></a><a href="../cai-skill-cho-claude-code/" data-guide-link><span data-language="vi">Cài skill cho Claude Code</span><span data-language="en" hidden>Install Claude Code skills</span></a></div></section>
+</main><footer class="site-footer"><div class="shell footer-inner"><strong>VAS / Vie Agentic Skill</strong><p><span data-language="vi">Đọc hướng dẫn. Chọn skill. Áp dụng vào dự án.</span><span data-language="en" hidden>Read a guide. Choose a skill. Apply it to your project.</span></p><div><a href="../../#catalog" data-home><span data-language="vi">Thư viện</span><span data-language="en" hidden>Library</span></a><a href="https://github.com/huytran1120/vie-agentic-skills">GitHub ↗</a></div></div></footer>
+</body></html>

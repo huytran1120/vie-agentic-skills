@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="vi" data-theme="light">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ghi JSON khi nhiều tiến trình Python chạy đồng thời — VAS</title>
+<meta name="description" content="Case study VAS: vì sao os.replace vẫn làm mất cập nhật JSON khi cài skill đồng thời, cách khóa theo thư mục đích và regression test cho install/uninstall.">
+<meta name="robots" content="index, follow"><meta name="theme-color" content="#f3efea">
+<link rel="canonical" href="https://vie-agentic-skills.vercel.app/blog/ghi-json-an-toan-nhieu-tien-trinh-python/">
+<link rel="icon" href="../../assets/brand/vas-icon.png"><link rel="stylesheet" href="../../catalog.css"><link rel="stylesheet" href="../blog.css">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Vie Agentic Skill"><meta property="og:title" content="Ghi JSON khi nhiều tiến trình Python chạy đồng thời"><meta property="og:description" content="Từ lỗi mất receipt trong VAS đến khóa toàn bộ chu trình đọc, sửa và ghi; kiểm chứng bằng test nhiều tiến trình."><meta property="og:url" content="https://vie-agentic-skills.vercel.app/blog/ghi-json-an-toan-nhieu-tien-trinh-python/"><meta property="og:image" content="https://vie-agentic-skills.vercel.app/assets/social-preview.png"><meta property="og:image:width" content="1280"><meta property="og:image:height" content="640">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Ghi JSON khi nhiều tiến trình Python chạy đồng thời"><meta name="twitter:description" content="Atomic replace và khóa liên tiến trình giải quyết hai vấn đề khác nhau khi cập nhật JSON."><meta name="twitter:image" content="https://vie-agentic-skills.vercel.app/assets/social-preview.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Ghi JSON khi nhiều tiến trình Python chạy đồng thời","description":"Case study về mất cập nhật manifest trong VAS, khóa theo thư mục đích và regression test cho thao tác đồng thời.","url":"https://vie-agentic-skills.vercel.app/blog/ghi-json-an-toan-nhieu-tien-trinh-python/","mainEntityOfPage":"https://vie-agentic-skills.vercel.app/blog/ghi-json-an-toan-nhieu-tien-trinh-python/","inLanguage":"vi-VN","datePublished":"2026-11-06","dateModified":"2026-11-06","author":{"@type":"Organization","name":"Vie Agentic Skill"},"publisher":{"@type":"Organization","name":"Vie Agentic Skill","url":"https://vie-agentic-skills.vercel.app/"},"image":"https://vie-agentic-skills.vercel.app/assets/social-preview.png"}</script>
+<script src="../blog.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#guide-main"><span data-language="vi">Đến nội dung chính</span><span data-language="en" hidden>Skip to content</span></a>
+<header class="site-header guide-header"><div class="shell header-inner"><a class="brand" href="../../" data-home><span class="brand-mark" aria-hidden="true">&gt;_</span><span class="brand-short">VAS</span></a><nav class="guide-nav" aria-label="Điều hướng"><a class="guide-library-return" href="../../#catalog" data-home data-library-return><span data-language="vi">← Về thư viện <span data-catalog-count="vi">3.885</span> skill</span><span data-language="en" hidden>← Back to <span data-catalog-count="en">3,885</span> skills</span></a><a href="../" data-blog><span data-language="vi">Blog / Hướng dẫn</span><span data-language="en" hidden>Blog / Guides</span></a></nav><div class="header-actions"><button id="blog-language" class="icon-button" type="button" aria-label="Switch to English" lang="en">EN</button><button id="blog-theme" class="icon-button" type="button" aria-label="Bật giao diện tối" aria-pressed="false">◐</button></div></div></header>
+<main id="guide-main" class="shell guide-main" tabindex="-1" data-page-titles='{"vi":"Ghi JSON khi nhiều tiến trình Python chạy đồng thời — VAS","en":"Concurrent JSON writes in Python: lessons from VAS — VAS"}' data-page-descriptions='{"vi":"Case study VAS: vì sao os.replace vẫn làm mất cập nhật JSON khi cài skill đồng thời, cách khóa theo thư mục đích và regression test cho install/uninstall.","en":"A VAS case study: why atomic replacement alone loses concurrent JSON updates, how destination locks protect transactions, and how regression tests verify it."}'>
+<nav class="guide-breadcrumb" aria-label="Breadcrumb"><a href="../../" data-home>VAS</a><span>/</span><a href="../" data-blog><span data-language="vi">Blog / Hướng dẫn</span><span data-language="en" hidden>Blog / Guides</span></a></nav>
+<header class="guide-heading"><p class="guide-eyebrow"><span data-language="vi">Case study / Python</span><span data-language="en" hidden>Case study / Python</span></p><h1><span data-language="vi">Ghi JSON khi nhiều tiến trình Python chạy đồng thời</span><span data-language="en" hidden>Concurrent JSON writes in Python: lessons from VAS</span></h1><p class="guide-byline"><span data-language="vi">Biên soạn bởi Vie Agentic Skill · Cập nhật </span><span data-language="en" hidden>By Vie Agentic Skill · Updated </span><time datetime="2026-11-06">2026-11-06</time></p></header>
+<div class="guide-layout"><article class="guide-prose">
+<p class="guide-lead" data-language="vi">Ghi JSON qua tệp tạm rồi dùng <code>os.replace</code> giúp tránh công bố một tệp đang ghi dở. Tuy nhiên, hai tiến trình vẫn có thể ghi đè kết quả của nhau nếu cùng đọc trạng thái cũ. VAS đã gặp đúng tình huống này khi cài nhiều skill đồng thời.</p>
+<p class="guide-lead" data-language="en" hidden>Writing JSON to a temporary file and using <code>os.replace</code> avoids publishing a partially written file. Two processes can still overwrite each other’s updates when both read an old state. VAS encountered this during concurrent skill installations.</p>
+<details><summary><span data-language="vi">Trong bài này</span><span data-language="en" hidden>On this page</span></summary><ul><li><a href="#failure"><span data-language="vi">Lỗi mất receipt</span><span data-language="en" hidden>The lost receipt</span></a></li><li><a href="#atomic"><span data-language="vi">Giới hạn của atomic replace</span><span data-language="en" hidden>Atomic replacement limits</span></a></li><li><a href="#lock"><span data-language="vi">Khóa theo thư mục đích</span><span data-language="en" hidden>Lock by destination</span></a></li><li><a href="#tests"><span data-language="vi">Regression test nhiều tiến trình</span><span data-language="en" hidden>Multiprocess regression tests</span></a></li><li><a href="#limits"><span data-language="vi">Giới hạn và bài học</span><span data-language="en" hidden>Limits and takeaways</span></a></li></ul></details>
+<h2 id="failure"><span data-language="vi">1. Hai lượt cài thành công nhưng thiếu một bản ghi</span><span data-language="en" hidden>1. Two successful installs, one missing record</span></h2>
+<div data-language="vi">
+<p>VAS lưu thông tin quản lý skill trong <code>.vas-manifest.json</code> tại thư mục đích. Bản ghi giúp CLI đối chiếu bản cài và thực hiện thao tác quản lý tiếp theo. Trong lỗi đã được tái hiện, hai lượt cài <a data-catalog-skill="pdf" href="../../?lang=vi&amp;skill=pdf&amp;agent=codex">pdf</a> và <a data-catalog-skill="docx" href="../../?lang=vi&amp;skill=docx&amp;agent=codex">docx</a> đều có thư mục và báo thành công, nhưng manifest chỉ còn một skill.</p>
+<p>JSON vẫn hợp lệ. Vì vậy, kiểm tra “parse được JSON” hoặc “thư mục tồn tại” đều chưa đủ để phát hiện lỗi. Gỡ skill mất receipt bị từ chối vì CLI không có bản ghi quản lý tương ứng.</p>
+</div>
+<div data-language="en" hidden>
+<p>VAS stores installation records in <code>.vas-manifest.json</code> inside the destination directory. The CLI uses these records to manage installations. In the reproduced failure, concurrent installs of <a data-catalog-skill="pdf" href="../../?lang=en&amp;skill=pdf&amp;agent=codex">pdf</a> and <a data-catalog-skill="docx" href="../../?lang=en&amp;skill=docx&amp;agent=codex">docx</a> both produced directories and reported success, but the manifest retained only one entry.</p>
+<p>The JSON remained valid. Parsing it successfully or checking that directories exist was insufficient. Uninstalling the skill whose receipt disappeared was refused because the corresponding management record was missing.</p>
+</div>
+<h2 id="atomic"><span data-language="vi">2. Atomic replace không bảo vệ toàn bộ phép cập nhật</span><span data-language="en" hidden>2. Atomic replacement does not protect the whole update</span></h2>
+<p data-language="vi">Lịch chạy minh họa dưới đây bắt đầu từ manifest rỗng. Hai writer đều đọc trước khi writer kia ghi:</p>
+<p data-language="en" hidden>This illustrative schedule starts with an empty manifest. Both writers read before the other commits:</p>
+<pre><code>A: read {}                         B: read {}
+A: add pdf                         B: add docx
+A: replace file with {"pdf": ...}
+                                   B: replace file with {"docx": ...}
+Final JSON: {"docx": ...}</code></pre>
+<div data-language="vi">
+<p>Mỗi lần thay tệp đều có thể nguyên vẹn, nhưng writer B dùng snapshot cũ nên làm mất cập nhật của A. Chỉ khóa quanh <code>save_manifest</code> vẫn chưa đủ nếu cả hai đã đọc trước khi lấy khóa. Phạm vi cần bảo vệ là <strong>đọc → quyết định → sửa → ghi</strong>.</p>
+<p>Với install/uninstall, phải xét cả trạng thái payload và manifest trong giao dịch. Khóa riêng cho install bỏ sót trường hợp uninstall đồng thời ghi lại snapshot chứa một receipt vừa bị xóa.</p>
+</div>
+<div data-language="en" hidden>
+<p>Each replacement can be complete while writer B still loses A’s update by committing an old snapshot. Locking only <code>save_manifest</code> is insufficient if both readers ran before acquiring the lock. Protect the full <strong>read → decide → modify → write</strong> sequence.</p>
+<p>Install and uninstall must consider payload and manifest state within their transaction. Locking only installation misses an overlapping uninstall that can write back a snapshot containing a receipt another operation removed.</p>
+</div>
+<h2 id="lock"><span data-language="vi">3. Khóa một đích cài cho cả giao dịch</span><span data-language="en" hidden>3. Lock one destination for the transaction</span></h2>
+<div data-language="vi">
+<p>Trong VAS, <code>destination_lock</code> mở tệp <code>.vas.lock</code> ổn định tại đích. Nhánh POSIX dùng <code>fcntl.flock</code>; nhánh Windows dùng <code>msvcrt.locking</code>. Cả install và uninstall lấy khóa trước khi đọc manifest. Các đích khác nhau có khóa riêng nên không phải chờ một khóa toàn catalog.</p>
+<p>Đoạn sau minh họa thứ tự, không phải script độc lập. <code>apply_operation</code> đại diện cho xử lý payload, receipt và lỗi theo logic giao dịch hiện có:</p>
+</div>
+<div data-language="en" hidden>
+<p>VAS opens a stable <code>.vas.lock</code> file through <code>destination_lock</code>. The POSIX branch uses <code>fcntl.flock</code>; the Windows branch uses <code>msvcrt.locking</code>. Both installation and removal acquire the lock before reading the manifest. Separate destinations use separate locks instead of serializing the entire catalog.</p>
+<p>This outline illustrates ordering, not a standalone script. <code>apply_operation</code> represents payload, receipt and error handling in the existing transaction logic:</p>
+</div>
+<pre><code>with destination_lock(destination):
+    manifest = load_manifest(destination)
+    apply_operation(destination, manifest)
+    save_manifest(destination, manifest)</code></pre>
+<div data-language="vi">
+<p>Hàm ghi vẫn tạo tệp tạm cùng thư mục, flush, <code>fsync</code> rồi <code>os.replace</code>. Khóa điều phối các writer; ghi thay thế nguyên vẹn giải quyết việc công bố nội dung tệp. Cần cả hai cơ chế trong luồng này.</p>
+<p>Không xóa <code>.vas.lock</code> sau mỗi lần dùng: writer đang giữ inode cũ và writer mở tệp vừa tạo lại có thể không còn khóa cùng một đối tượng. Khóa được thả khi handle đóng; sự tồn tại của tệp không có nghĩa đang có tiến trình giữ khóa. VAS cũng từ chối lock hoặc manifest là symlink hay tệp không phù hợp.</p>
+</div>
+<div data-language="en" hidden>
+<p>The writer still creates a temporary file in the same directory, flushes and <code>fsync</code>s it, then calls <code>os.replace</code>. The lock coordinates writers; complete replacement handles file publication. This workflow needs both mechanisms.</p>
+<p>Do not delete <code>.vas.lock</code> after every operation: an existing holder and a writer opening a recreated path could lock different underlying objects. Closing the handle releases the lock; the file’s existence does not mean a process holds it. VAS also rejects symlinked or unsuitable lock and manifest files.</p>
+</div>
+<h2 id="tests"><span data-language="vi">4. Kiểm thử bằng các tiến trình thật</span><span data-language="en" hidden>4. Test using real processes</span></h2>
+<div data-language="vi">
+<p>Bộ test <code>tests/test_cli_concurrency.py</code> tạo catalog và đích cài tạm, rồi chạy CLI trong các tiến trình riêng. Worker đầu được giữ tại điểm đã đọc manifest. Worker thứ hai phải chờ; sau khi worker đầu hoàn tất, nó mới được đọc trạng thái mới. Cách này kiểm soát điểm giao nhau thay vì chỉ chạy lặp và hy vọng gặp race.</p>
+<ul><li>Install + install: còn đủ hai receipt và payload.</li><li>Uninstall + uninstall: không làm sống lại receipt đã gỡ.</li><li>Install + uninstall theo cả hai thứ tự: giữ đúng trạng thái cuối.</li><li>Hai thư mục đích khác nhau: không khóa lẫn nhau.</li><li>Tiến trình giữ khóa dừng: tiến trình chờ có thể tiếp tục.</li><li>Tệp khóa được tái sử dụng và không bị skill chiếm tên.</li></ul>
+</div>
+<div data-language="en" hidden>
+<p><code>tests/test_cli_concurrency.py</code> creates a temporary catalog and destinations, then runs the CLI in separate processes. The first worker pauses after reading the manifest. The second must wait until the first finishes before reading the new state. This controls the overlap instead of repeatedly running commands and hoping to observe a race.</p>
+<ul><li>Install + install retains both receipts and payloads.</li><li>Uninstall + uninstall does not restore removed receipts.</li><li>Install + uninstall in both orders preserves the correct final state.</li><li>Independent destinations do not block one another.</li><li>A waiting process can proceed after the lock holder exits.</li><li>The lock file is reused and its name cannot be owned by a skill.</li></ul>
+</div>
+<p data-language="vi">Chạy từ gốc repository VAS bằng Python 3. Các fixture của suite này nằm trong thư mục tạm, không cần cài vào thư mục skill cá nhân:</p>
+<p data-language="en" hidden>Run from the VAS repository root with Python 3. This suite uses temporary fixtures and does not require installing into personal skill directories:</p>
+<pre><code>python3 -B -m unittest discover -s tests -p 'test_cli_concurrency.py'</code></pre>
+<h2 id="limits"><span data-language="vi">5. Giới hạn cần giữ khi áp dụng nơi khác</span><span data-language="en" hidden>5. Keep the limits when adapting the pattern</span></h2>
+<div data-language="vi">
+<p>Mọi writer phải tuân thủ cùng cơ chế khóa; một công cụ tự ghi JSON ngoài giao thức vẫn có thể phá trạng thái. Đây là giải pháp điều phối tiến trình cho đích cài local, không tự trở thành transaction database, khóa phân tán hoặc bảo đảm phục hồi mọi sự cố mất điện. Filesystem mạng và yêu cầu độ bền dữ liệu cần đánh giá riêng.</p>
+<p>Bài học thực hành là kiểm tra tính đúng của <em>toàn bộ trạng thái cuối</em>, không chỉ mã thoát hoặc cú pháp JSON. Dùng <a data-catalog-skill="systematic-debugging" href="../../?lang=vi&amp;skill=systematic-debugging&amp;agent=codex">systematic-debugging</a> để đặt giả thuyết về lịch chạy, rồi giữ ca tái hiện làm regression test.</p>
+</div>
+<div data-language="en" hidden>
+<p>Every writer must follow the same locking protocol; an outside tool writing JSON directly can still corrupt the state. This is local-process coordination for an installation destination, not automatically a database transaction, distributed lock or recovery guarantee for every power failure. Network filesystems and durability requirements need separate evaluation.</p>
+<p>The practical lesson is to verify the <em>complete final state</em>, not just exit codes or JSON syntax. Use <a data-catalog-skill="systematic-debugging" href="../../?lang=en&amp;skill=systematic-debugging&amp;agent=codex">systematic-debugging</a> to form scheduling hypotheses, then retain the reproducer as a regression test.</p>
+</div>
+<h2 id="sources"><span data-language="vi">Mã nguồn và tài liệu</span><span data-language="en" hidden>Source and documentation</span></h2>
+<ul><li><a href="https://github.com/huytran1120/vie-agentic-skills/blob/main/vas.py">VAS: destination_lock, load_manifest and save_manifest</a></li><li><a href="https://github.com/huytran1120/vie-agentic-skills/blob/main/tests/test_cli_concurrency.py">VAS concurrency regression tests</a></li><li><a href="https://docs.python.org/3/library/os.html#os.replace">Python os.replace</a></li><li><a href="https://docs.python.org/3/library/fcntl.html#fcntl.flock">Python fcntl.flock</a></li><li><a href="https://docs.python.org/3/library/msvcrt.html#msvcrt.locking">Python msvcrt.locking</a></li></ul>
+</article><aside class="guide-companion" aria-label="Skill liên quan"><p class="guide-eyebrow"><span data-language="vi">Từ giả thuyết đến kiểm chứng</span><span data-language="en" hidden>From hypothesis to verification</span></p><h2><a data-catalog-skill="systematic-debugging" href="../../?lang=vi&amp;skill=systematic-debugging&amp;agent=codex">systematic-debugging</a></h2><p><span data-language="vi">Tái hiện có kiểm soát trước khi chọn cơ chế sửa race condition.</span><span data-language="en" hidden>Control reproduction before choosing how to fix a race condition.</span></p><a class="button primary" data-catalog-skill="systematic-debugging" href="../../?lang=vi&amp;skill=systematic-debugging&amp;agent=codex"><span data-language="vi">Xem quy trình debug →</span><span data-language="en" hidden>Read the debugging workflow →</span></a></aside></div>
+<section class="guide-related" aria-labelledby="related-title"><h2 id="related-title"><span data-language="vi">Đọc tiếp</span><span data-language="en" hidden>Read next</span></h2><div class="guide-related-links"><a href="../debug-voi-ai-agent/" data-guide-link><span data-language="vi">Debug với AI agent</span><span data-language="en" hidden>Debug with an AI agent</span></a><a href="../review-pull-request-bang-ai/" data-guide-link><span data-language="vi">Review PR bằng bằng chứng</span><span data-language="en" hidden>Review a PR with evidence</span></a></div></section>
+</main><footer class="site-footer"><div class="shell footer-inner"><strong>VAS / Vie Agentic Skill</strong><p><span data-language="vi">Đọc hướng dẫn. Chọn skill. Áp dụng vào dự án.</span><span data-language="en" hidden>Read a guide. Choose a skill. Apply it to your project.</span></p><div><a href="../../#catalog" data-home><span data-language="vi">Thư viện</span><span data-language="en" hidden>Library</span></a><a href="https://github.com/huytran1120/vie-agentic-skills">GitHub ↗</a></div></div></footer>
+</body></html>

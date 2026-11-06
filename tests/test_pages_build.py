@@ -202,7 +202,16 @@ class PagesBuildTests(unittest.TestCase):
         self.assertIn("Sitemap: " + primary + "sitemap.xml", (ROOT / "docs/robots.txt").read_text())
         sitemap = ET.parse(ROOT / "docs/sitemap.xml")
         locations = [node.text for node in sitemap.findall(".//{http://www.sitemaps.org/schemas/sitemap/0.9}loc")]
-        self.assertEqual(set(locations), {primary, *(primary + path for path in ("blog/", "blog/agent-skills-la-gi/", "blog/kiem-thu-web-voi-playwright/", "blog/tao-video-voi-claude-code-remotion/", "blog/thiet-ke-anh-app-store/", "blog/quy-trinh-marketing-voi-ai/", "blog/toi-uu-seo-va-ai-search/", "blog/trang-so-sanh-va-landing-page-seo/"))})
+        tracked = subprocess.run(
+            ["git", "ls-files", "-z", "--", "docs/blog"], cwd=ROOT,
+            capture_output=True, text=True, check=True,
+        ).stdout.split("\0")
+        blog_routes = {
+            Path(name).parent.relative_to("docs").as_posix() + "/"
+            for name in tracked if name and Path(name).name == "index.html"
+        }
+        self.assertEqual(set(locations), {primary, *(primary + route for route in blog_routes)})
+        self.assertEqual(len(locations), len(set(locations)), "Duplicate sitemap routes")
         self.assertEqual(metadata["og:image:secure_url"], metadata["og:image"])
         self.assertEqual(metadata["twitter:image"], metadata["og:image"])
         self.assertEqual(metadata["og:image:type"], "image/png")

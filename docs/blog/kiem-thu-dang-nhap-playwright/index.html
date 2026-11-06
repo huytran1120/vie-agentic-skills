@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="vi" data-theme="light">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kiểm thử đăng nhập bằng Playwright với AI agent — VAS</title>
+<meta name="description" content="Viết test đăng nhập Playwright với AI agent: chuẩn bị tài khoản thử, chọn locator, kiểm tra thành công và thất bại, lưu screenshot và trace để chẩn đoán.">
+<meta name="robots" content="index, follow"><meta name="theme-color" content="#f3efea">
+<link rel="canonical" href="https://vie-agentic-skills.vercel.app/blog/kiem-thu-dang-nhap-playwright/">
+<link rel="icon" href="../../assets/brand/vas-icon.png"><link rel="stylesheet" href="../../catalog.css"><link rel="stylesheet" href="../blog.css">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Vie Agentic Skill"><meta property="og:title" content="Kiểm thử đăng nhập bằng Playwright với AI agent"><meta property="og:description" content="Từ điều kiện thử nghiệm đến test, ảnh chụp và trace; phân biệt lỗi ứng dụng với lỗi môi trường."><meta property="og:url" content="https://vie-agentic-skills.vercel.app/blog/kiem-thu-dang-nhap-playwright/"><meta property="og:image" content="https://vie-agentic-skills.vercel.app/assets/social-preview.png"><meta property="og:image:width" content="1280"><meta property="og:image:height" content="640">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Kiểm thử đăng nhập bằng Playwright với AI agent"><meta name="twitter:description" content="Mẫu test đăng nhập thành công và thất bại, cấu hình lưu bằng chứng và cách đọc kết quả."><meta name="twitter:image" content="https://vie-agentic-skills.vercel.app/assets/social-preview.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Kiểm thử đăng nhập bằng Playwright với AI agent","description":"Chuẩn bị dữ liệu thử, viết test đăng nhập và dùng screenshot, trace để chẩn đoán với Playwright.","url":"https://vie-agentic-skills.vercel.app/blog/kiem-thu-dang-nhap-playwright/","mainEntityOfPage":"https://vie-agentic-skills.vercel.app/blog/kiem-thu-dang-nhap-playwright/","inLanguage":"vi-VN","datePublished":"2026-11-06","dateModified":"2026-11-06","author":{"@type":"Organization","name":"Vie Agentic Skill"},"publisher":{"@type":"Organization","name":"Vie Agentic Skill","url":"https://vie-agentic-skills.vercel.app/"},"image":"https://vie-agentic-skills.vercel.app/assets/social-preview.png"}</script>
+<script src="../blog.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#guide-main"><span data-language="vi">Đến nội dung chính</span><span data-language="en" hidden>Skip to content</span></a>
+<header class="site-header guide-header"><div class="shell header-inner"><a class="brand" href="../../" data-home><span class="brand-mark" aria-hidden="true">&gt;_</span><span class="brand-short">VAS</span></a><nav class="guide-nav" aria-label="Điều hướng"><a class="guide-library-return" href="../../#catalog" data-home data-library-return><span data-language="vi">← Về thư viện <span data-catalog-count="vi">3.885</span> skill</span><span data-language="en" hidden>← Back to <span data-catalog-count="en">3,885</span> skills</span></a><a href="../" data-blog><span data-language="vi">Blog / Hướng dẫn</span><span data-language="en" hidden>Blog / Guides</span></a></nav><div class="header-actions"><button id="blog-language" class="icon-button" type="button" aria-label="Switch to English" lang="en">EN</button><button id="blog-theme" class="icon-button" type="button" aria-label="Bật giao diện tối" aria-pressed="false">◐</button></div></div></header>
+<main id="guide-main" class="shell guide-main" tabindex="-1" data-page-titles='{"vi":"Kiểm thử đăng nhập bằng Playwright với AI agent — VAS","en":"Test login with Playwright and an AI agent — VAS"}' data-page-descriptions='{"vi":"Viết test đăng nhập Playwright với AI agent: chuẩn bị tài khoản thử, chọn locator, kiểm tra thành công và thất bại, lưu screenshot và trace để chẩn đoán.","en":"Write Playwright login tests with an AI agent: prepare test accounts, choose locators, check success and failure, and retain screenshots and traces for diagnosis."}'>
+<nav class="guide-breadcrumb" aria-label="Breadcrumb"><a href="../../" data-home>VAS</a><span>/</span><a href="../" data-blog><span data-language="vi">Blog / Hướng dẫn</span><span data-language="en" hidden>Blog / Guides</span></a></nav>
+<header class="guide-heading"><p class="guide-eyebrow"><span data-language="vi">Kiểm thử / Playwright</span><span data-language="en" hidden>Testing / Playwright</span></p><h1><span data-language="vi">Kiểm thử đăng nhập bằng Playwright với AI agent</span><span data-language="en" hidden>Test login with Playwright and an AI agent</span></h1><p class="guide-byline"><span data-language="vi">Biên soạn bởi Vie Agentic Skill · Cập nhật </span><span data-language="en" hidden>By Vie Agentic Skill · Updated </span><time datetime="2026-11-06">2026-11-06</time></p></header>
+<div class="guide-layout"><article class="guide-prose">
+<p class="guide-lead" data-language="vi">Một test đăng nhập cần xác nhận trạng thái sau thao tác, không chỉ việc nút đã được bấm. Bài này phát triển từ hướng dẫn Playwright tổng quát thành hai ca cụ thể: đăng nhập đúng và từ chối thông tin sai.</p>
+<p class="guide-lead" data-language="en" hidden>A login test must verify the resulting state, not just that a button was clicked. This guide extends the general Playwright workflow into two concrete cases: successful login and rejected credentials.</p>
+<details><summary><span data-language="vi">Trong bài này</span><span data-language="en" hidden>On this page</span></summary><ul><li><a href="#prepare"><span data-language="vi">Chuẩn bị môi trường</span><span data-language="en" hidden>Prepare the environment</span></a></li><li><a href="#configure"><span data-language="vi">Cấu hình bằng chứng</span><span data-language="en" hidden>Configure evidence</span></a></li><li><a href="#tests"><span data-language="vi">Viết hai ca đăng nhập</span><span data-language="en" hidden>Write two login tests</span></a></li><li><a href="#diagnose"><span data-language="vi">Chạy và phân loại lỗi</span><span data-language="en" hidden>Run and diagnose</span></a></li><li><a href="#next"><span data-language="vi">Mở rộng phạm vi</span><span data-language="en" hidden>Extend coverage</span></a></li></ul></details>
+<h2 id="prepare"><span data-language="vi">1. Chuẩn bị trước khi yêu cầu agent viết test</span><span data-language="en" hidden>1. Prepare before asking for tests</span></h2>
+<div data-language="vi">
+<p>Ví dụ dành cho dự án Node.js/TypeScript đã cài <code>@playwright/test</code> và browser runtime phù hợp. Ứng dụng phải chạy ở <code>http://127.0.0.1:3000</code>, có tài khoản thử riêng và database thử có thể phục hồi. Nếu dự án dùng runner khác, giữ quy ước hiện có thay vì chép đè cấu hình.</p>
+<p>Ứng dụng minh họa có nhãn <code>Email</code>, <code>Password</code>, nút <code>Sign in</code>, trang <code>/dashboard</code> và heading <code>Dashboard</code>. Agent phải quan sát DOM thật và thay các locator, URL, thông báo cho đúng ứng dụng. Các tên dưới đây không phải kết quả khám phá website của bạn.</p>
+<p>Dùng <a data-catalog-skill="webapp-testing" href="../../?lang=vi&amp;skill=webapp-testing&amp;agent=codex">webapp-testing</a> để kiểm tra URL, công cụ và dữ liệu trước. Cấp thông tin tài khoản thử qua biến môi trường <code>E2E_EMAIL</code>, <code>E2E_PASSWORD</code> theo cơ chế secret của môi trường; không ghi giá trị vào test hoặc commit.</p>
+</div>
+<div data-language="en" hidden>
+<p>This example targets a Node.js/TypeScript project with <code>@playwright/test</code> and compatible browsers already installed. The application runs at <code>http://127.0.0.1:3000</code>, with a dedicated test account and restorable test database. Preserve existing runner conventions rather than replacing another setup.</p>
+<p>The illustrative application has <code>Email</code> and <code>Password</code> labels, a <code>Sign in</code> button, a <code>/dashboard</code> route and a <code>Dashboard</code> heading. Inspect the actual DOM and adapt locators, URLs and messages. These names are assumptions for the example, not observations of your website.</p>
+<p>Use <a data-catalog-skill="webapp-testing" href="../../?lang=en&amp;skill=webapp-testing&amp;agent=codex">webapp-testing</a> to confirm the URL, tools and data first. Supply <code>E2E_EMAIL</code> and <code>E2E_PASSWORD</code> through the environment secret mechanism; never hard-code or commit their values.</p>
+</div>
+<h2 id="configure"><span data-language="vi">2. Giữ bằng chứng khi thất bại</span><span data-language="en" hidden>2. Retain evidence on failure</span></h2>
+<p data-language="vi">Ghép các tùy chọn phù hợp vào <code>playwright.config.ts</code> hiện có. Ví dụ dùng một worker và không retry để việc điều tra ban đầu dễ theo dõi.</p>
+<p data-language="en" hidden>Merge suitable options into the existing <code>playwright.config.ts</code>. One worker and no retries make the initial investigation easier to follow.</p>
+<pre><code>import {defineConfig} from '@playwright/test';
+
+export default defineConfig({
+  testDir: './tests/e2e',
+  workers: 1,
+  retries: 0,
+  reporter: [['list'], ['html', {open: 'never'}]],
+  use: {
+    baseURL: 'http://127.0.0.1:3000',
+    trace: 'retain-on-failure',
+    screenshot: 'only-on-failure',
+  },
+});</code></pre>
+<p data-language="vi">Thêm script gọi binary đã cài trong <code>package.json</code>; giữ các script khác của dự án:</p>
+<p data-language="en" hidden>Add scripts invoking the installed binary in <code>package.json</code>, preserving other project scripts:</p>
+<pre><code>{
+  "scripts": {
+    "test:e2e": "playwright test",
+    "test:report": "playwright show-report",
+    "test:trace": "playwright show-trace"
+  }
+}</code></pre>
+<h2 id="tests"><span data-language="vi">3. Kiểm tra thành công và từ chối đăng nhập</span><span data-language="en" hidden>3. Test successful and rejected login</span></h2>
+<p data-language="vi">Tạo <code>tests/e2e/login.spec.ts</code> trong dự án thử. Ca thành công kiểm tra cả điều hướng và nội dung sau reload. Ca thất bại dùng email minh họa phải được xác nhận là không tồn tại trong fixture, tránh gây khóa tài khoản người dùng.</p>
+<p data-language="en" hidden>Create <code>tests/e2e/login.spec.ts</code> in the test project. The success case checks navigation and content after reload. Confirm that the illustrative invalid email is absent from the fixture so the negative case cannot lock a real account.</p>
+<pre><code>import {test, expect} from '@playwright/test';
+
+test('valid credentials create a usable session', async ({page}) =&gt; {
+  const email = process.env.E2E_EMAIL;
+  const password = process.env.E2E_PASSWORD;
+  if (!email || !password) {
+    throw new Error('Configure dedicated E2E_EMAIL and E2E_PASSWORD');
+  }
+
+  await page.goto('/login');
+  await page.getByLabel('Email', {exact: true}).fill(email);
+  await page.getByLabel('Password', {exact: true}).fill(password);
+  await page.getByRole('button', {name: 'Sign in', exact: true}).click();
+  await expect(page).toHaveURL(/\/dashboard(?:[/?#]|$)/);
+  await expect(page.getByRole('heading', {name: 'Dashboard', exact: true}))
+    .toBeVisible();
+  await page.reload();
+  await expect(page.getByRole('heading', {name: 'Dashboard', exact: true}))
+    .toBeVisible();
+});
+
+test('invalid credentials remain unauthenticated', async ({page}) =&gt; {
+  await page.goto('/login');
+  await page.getByLabel('Email', {exact: true}).fill('not-a-user@example.test');
+  await page.getByLabel('Password', {exact: true}).fill('deliberately-invalid');
+  await page.getByRole('button', {name: 'Sign in', exact: true}).click();
+  await expect(page.getByRole('alert'))
+    .toContainText('Invalid email or password');
+  await expect(page).toHaveURL(/\/login(?:[/?#]|$)/);
+});</code></pre>
+<p data-language="vi">Mỗi test bắt đầu với browser context riêng. Nếu cấu hình chung đang nạp <code>storageState</code> đã đăng nhập, cần một project test sạch cho các ca này. Không dùng timeout cố định để chờ đăng nhập; assertion của Playwright sẽ chờ điều kiện mong đợi trong giới hạn cấu hình.</p>
+<p data-language="en" hidden>Each test starts with a separate browser context. If shared configuration loads an authenticated <code>storageState</code>, use a clean test project for these cases. Avoid fixed sleeps; Playwright assertions wait for the expected condition within configured limits.</p>
+<h2 id="diagnose"><span data-language="vi">4. Chạy ca nhỏ và đọc đúng loại lỗi</span><span data-language="en" hidden>4. Run the focused checks and classify failures</span></h2>
+<pre><code>npm run test:e2e -- tests/e2e/login.spec.ts
+npm run test:report</code></pre>
+<div data-language="vi">
+<ul><li><strong>Connection refused:</strong> kiểm tra server, cổng và môi trường trước khi sửa test.</li><li><strong>Không tìm thấy locator:</strong> đối chiếu DOM và nhãn accessible thật; đừng chỉ tăng timeout.</li><li><strong>Thông tin hợp lệ vẫn bị từ chối:</strong> kiểm tra dữ liệu seed, trạng thái tài khoản và request trong môi trường thử.</li><li><strong>Đã đổi URL nhưng chưa có nội dung:</strong> kiểm tra lỗi tải trang, session hoặc response tiếp theo.</li></ul>
+<p>Trace và ảnh có thể chứa dữ liệu nhạy cảm, cookie hoặc nội dung request. Lưu cục bộ, loại thông tin riêng trước khi chia sẻ và không commit trạng thái xác thực. Ghi lệnh chạy, phiên bản ứng dụng, bước lỗi và artifact tương ứng trong báo cáo.</p>
+</div>
+<div data-language="en" hidden>
+<ul><li><strong>Connection refused:</strong> check the server, port and environment before editing tests.</li><li><strong>Locator not found:</strong> compare the real DOM and accessible label instead of merely increasing the timeout.</li><li><strong>Valid credentials rejected:</strong> inspect seed data, account state and the test-environment request.</li><li><strong>URL changed but content is absent:</strong> investigate page loading, session state or the next response.</li></ul>
+<p>Traces and screenshots can contain sensitive data, cookies or request contents. Keep them local, remove private information before sharing and never commit authentication state. Report the command, application version, failed step and corresponding artifact.</p>
+</div>
+<h2 id="next"><span data-language="vi">5. Mở rộng sau khi hai ca cơ bản ổn định</span><span data-language="en" hidden>5. Extend coverage after the basics are stable</span></h2>
+<p data-language="vi">Theo yêu cầu sản phẩm, bổ sung logout, truy cập trang được bảo vệ khi chưa đăng nhập, session hết hạn và điều hướng bàn phím. SSO hoặc MFA cần fixture và chính sách riêng; hai test minh họa này không kiểm chứng các luồng đó. Khi chia sẻ tài khoản giữa các test song song, kiểm tra xem chúng có thay đổi cùng trạng thái phía server không.</p>
+<p data-language="en" hidden>Add logout, unauthenticated access to protected pages, session expiry and keyboard navigation according to product requirements. SSO and MFA need their own fixtures and policies; the two examples do not verify them. Before sharing an account across parallel tests, check whether those tests mutate the same server-side state.</p>
+<h2 id="sources"><span data-language="vi">Nguồn đối chiếu</span><span data-language="en" hidden>References</span></h2>
+<ul><li><a href="https://playwright.dev/docs/locators">Playwright locators</a></li><li><a href="https://playwright.dev/docs/test-assertions">Playwright assertions</a></li><li><a href="https://playwright.dev/docs/auth">Authentication and stored state</a></li><li><a href="https://playwright.dev/docs/trace-viewer">Trace viewer</a></li></ul>
+</article><aside class="guide-companion" aria-label="Skill liên quan"><p class="guide-eyebrow"><span data-language="vi">Kiểm tra luồng thật</span><span data-language="en" hidden>Exercise a real flow</span></p><h2><a data-catalog-skill="webapp-testing" href="../../?lang=vi&amp;skill=webapp-testing&amp;agent=codex">webapp-testing</a></h2><p><span data-language="vi">Quan sát DOM, xác định môi trường và lưu bằng chứng cho từng ca.</span><span data-language="en" hidden>Inspect the DOM, establish the environment and retain evidence for each case.</span></p><a class="button primary" data-catalog-skill="webapp-testing" href="../../?lang=vi&amp;skill=webapp-testing&amp;agent=codex"><span data-language="vi">Xem skill và cài đặt →</span><span data-language="en" hidden>Read skill and install →</span></a></aside></div>
+<section class="guide-related" aria-labelledby="related-title"><h2 id="related-title"><span data-language="vi">Đọc tiếp</span><span data-language="en" hidden>Read next</span></h2><div class="guide-related-links"><a href="../kiem-thu-web-voi-playwright/" data-guide-link><span data-language="vi">Bắt đầu kiểm thử web với Playwright</span><span data-language="en" hidden>Start testing web apps with Playwright</span></a><a href="../debug-voi-ai-agent/" data-guide-link><span data-language="vi">Debug với AI agent</span><span data-language="en" hidden>Debug with an AI agent</span></a></div></section>
+</main><footer class="site-footer"><div class="shell footer-inner"><strong>VAS / Vie Agentic Skill</strong><p><span data-language="vi">Đọc hướng dẫn. Chọn skill. Áp dụng vào dự án.</span><span data-language="en" hidden>Read a guide. Choose a skill. Apply it to your project.</span></p><div><a href="../../#catalog" data-home><span data-language="vi">Thư viện</span><span data-language="en" hidden>Library</span></a><a href="https://github.com/huytran1120/vie-agentic-skills">GitHub ↗</a></div></div></footer>
+</body></html>

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="vi" data-theme="light">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Review pull request bằng AI: diff, bằng chứng và kiểm thử — VAS</title>
+<meta name="description" content="Quy trình review PR bằng Codex hoặc Claude Code: chốt phạm vi diff, đối chiếu yêu cầu, tái hiện lỗi, phân loại phát hiện và xác minh bản sửa.">
+<meta name="robots" content="index, follow"><meta name="theme-color" content="#f3efea">
+<link rel="canonical" href="https://vie-agentic-skills.vercel.app/blog/review-pull-request-bang-ai/">
+<link rel="icon" href="../../assets/brand/vas-icon.png"><link rel="stylesheet" href="../../catalog.css"><link rel="stylesheet" href="../blog.css">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Vie Agentic Skill"><meta property="og:title" content="Review pull request bằng AI: diff, bằng chứng và kiểm thử"><meta property="og:description" content="Một quy trình review có phạm vi rõ, phát hiện có bằng chứng và kiểm tra lại sau khi sửa."><meta property="og:url" content="https://vie-agentic-skills.vercel.app/blog/review-pull-request-bang-ai/"><meta property="og:image" content="https://vie-agentic-skills.vercel.app/assets/social-preview.png"><meta property="og:image:width" content="1280"><meta property="og:image:height" content="640">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Review pull request bằng AI: diff, bằng chứng và kiểm thử"><meta name="twitter:description" content="Từ phạm vi diff đến finding có thể tái hiện và regression test phù hợp."><meta name="twitter:image" content="https://vie-agentic-skills.vercel.app/assets/social-preview.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Review pull request bằng AI: diff, bằng chứng và kiểm thử","description":"Chốt phạm vi diff, đối chiếu yêu cầu và tiêu chuẩn, xác minh lỗi và kiểm tra lại bản sửa.","url":"https://vie-agentic-skills.vercel.app/blog/review-pull-request-bang-ai/","mainEntityOfPage":"https://vie-agentic-skills.vercel.app/blog/review-pull-request-bang-ai/","inLanguage":"vi-VN","datePublished":"2026-11-06","dateModified":"2026-11-06","author":{"@type":"Organization","name":"Vie Agentic Skill"},"publisher":{"@type":"Organization","name":"Vie Agentic Skill","url":"https://vie-agentic-skills.vercel.app/"},"image":"https://vie-agentic-skills.vercel.app/assets/social-preview.png"}</script>
+<script src="../blog.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#guide-main"><span data-language="vi">Đến nội dung chính</span><span data-language="en" hidden>Skip to content</span></a>
+<header class="site-header guide-header"><div class="shell header-inner"><a class="brand" href="../../" data-home><span class="brand-mark" aria-hidden="true">&gt;_</span><span class="brand-short">VAS</span></a><nav class="guide-nav" aria-label="Điều hướng"><a class="guide-library-return" href="../../#catalog" data-home data-library-return><span data-language="vi">← Về thư viện <span data-catalog-count="vi">3.885</span> skill</span><span data-language="en" hidden>← Back to <span data-catalog-count="en">3,885</span> skills</span></a><a href="../" data-blog><span data-language="vi">Blog / Hướng dẫn</span><span data-language="en" hidden>Blog / Guides</span></a></nav><div class="header-actions"><button id="blog-language" class="icon-button" type="button" aria-label="Switch to English" lang="en">EN</button><button id="blog-theme" class="icon-button" type="button" aria-label="Bật giao diện tối" aria-pressed="false">◐</button></div></div></header>
+<main id="guide-main" class="shell guide-main" tabindex="-1" data-page-titles='{"vi":"Review pull request bằng AI: diff, bằng chứng và kiểm thử — VAS","en":"Review pull requests with AI: diffs, evidence and verification — VAS"}' data-page-descriptions='{"vi":"Quy trình review PR bằng Codex hoặc Claude Code: chốt phạm vi diff, đối chiếu yêu cầu, tái hiện lỗi, phân loại phát hiện và xác minh bản sửa.","en":"Review a PR with Codex or Claude Code: define the diff, compare requirements, reproduce failures, classify findings and verify the fix."}'>
+<nav class="guide-breadcrumb" aria-label="Breadcrumb"><a href="../../" data-home>VAS</a><span>/</span><a href="../" data-blog><span data-language="vi">Blog / Hướng dẫn</span><span data-language="en" hidden>Blog / Guides</span></a></nav>
+<header class="guide-heading"><p class="guide-eyebrow"><span data-language="vi">Phát triển / Code review</span><span data-language="en" hidden>Development / Code review</span></p><h1><span data-language="vi">Review pull request bằng AI: diff, bằng chứng và kiểm thử</span><span data-language="en" hidden>Review pull requests with AI: diffs, evidence and verification</span></h1><p class="guide-byline"><span data-language="vi">Biên soạn bởi Vie Agentic Skill · Cập nhật </span><span data-language="en" hidden>By Vie Agentic Skill · Updated </span><time datetime="2026-11-06">2026-11-06</time></p></header>
+<div class="guide-layout"><article class="guide-prose">
+<p class="guide-lead" data-language="vi">Một lượt review hữu ích cần chỉ ra thay đổi nào gây vấn đề, điều kiện xảy ra và bằng chứng để người khác kiểm tra lại. Skill giúp giữ quy trình nhất quán; kết luận vẫn phải dựa trên mã nguồn, yêu cầu và kết quả kiểm thử thực tế.</p>
+<p class="guide-lead" data-language="en" hidden>A useful review identifies the change causing a problem, its trigger and evidence another person can verify. A skill keeps the procedure consistent; conclusions still depend on source, requirements and actual validation.</p>
+<details><summary><span data-language="vi">Trong bài này</span><span data-language="en" hidden>On this page</span></summary><ul><li><a href="#scope"><span data-language="vi">Chốt phạm vi diff</span><span data-language="en" hidden>Define the diff</span></a></li><li><a href="#criteria"><span data-language="vi">Đọc tiêu chuẩn và yêu cầu</span><span data-language="en" hidden>Read standards and requirements</span></a></li><li><a href="#verify"><span data-language="vi">Kiểm chứng phát hiện</span><span data-language="en" hidden>Verify findings</span></a></li><li><a href="#report"><span data-language="vi">Báo cáo và kiểm tra bản sửa</span><span data-language="en" hidden>Report and recheck</span></a></li></ul></details>
+<h2 id="scope"><span data-language="vi">1. Chốt phạm vi trước khi đọc mã</span><span data-language="en" hidden>1. Define the scope before reading code</span></h2>
+<div data-language="vi">
+<p>Chuẩn bị checkout của nhánh cần review, base branch, mô tả PR và tiêu chí nghiệm thu. Kiểm tra working tree để phân biệt thay đổi đã commit với chỉnh sửa đang làm. Ví dụ dưới đây giả định base là <code>origin/main</code> và ref đó đã được cập nhật theo quy trình dự án.</p>
+</div>
+<div data-language="en" hidden>
+<p>Prepare the branch checkout, base branch, PR description and acceptance criteria. Inspect the working tree to distinguish committed changes from ongoing edits. This example assumes <code>origin/main</code> is the base and has already been refreshed through the project workflow.</p>
+</div>
+<pre><code>git status --short
+git rev-parse origin/main HEAD
+git log --oneline origin/main..HEAD
+git diff --stat origin/main...HEAD
+git diff --check origin/main...HEAD
+git diff origin/main...HEAD</code></pre>
+<p data-language="vi">Dấu ba chấm lấy thay đổi từ merge base tới HEAD, phù hợp khi xem phần nhánh đóng góp. Ghi lại SHA của hai đầu vì nhánh có thể đổi sau lượt review. Các lệnh này không bao gồm toàn bộ chỉnh sửa chưa commit; nếu cần review chúng, thêm <code>git diff</code> và <code>git diff --cached</code> vào phạm vi đã thống nhất.</p>
+<p data-language="en" hidden>The three-dot diff compares the merge base with HEAD, isolating the branch contribution. Record the endpoint SHAs because branches can move. These commands do not cover all uncommitted edits; include <code>git diff</code> and <code>git diff --cached</code> when those changes are explicitly in scope.</p>
+<h2 id="criteria"><span data-language="vi">2. Đối chiếu cả tiêu chuẩn và yêu cầu</span><span data-language="en" hidden>2. Check standards and requirements</span></h2>
+<div data-language="vi">
+<p>Đọc hướng dẫn repository, mã xung quanh và test liên quan trước khi áp dụng <a data-catalog-skill="code-review" href="../../?lang=vi&amp;skill=code-review&amp;agent=codex">code-review</a>. Tách hai câu hỏi: thay đổi có tuân thủ quy ước đã ghi nhận không, và có thực hiện đúng yêu cầu của tác vụ không?</p>
+<p>Ví dụ, một API có thể đúng style nhưng trả thiếu trường mà đặc tả yêu cầu. Ngược lại, đổi cách đặt tên không nhất thiết là bug nếu dự án không quy định. Ghi riêng lỗi hành vi, vi phạm quy ước và đề xuất mang tính lựa chọn.</p>
+</div>
+<div data-language="en" hidden>
+<p>Read repository instructions, surrounding code and relevant tests before applying <a data-catalog-skill="code-review" href="../../?lang=en&amp;skill=code-review&amp;agent=codex">code-review</a>. Ask two separate questions: does the change follow documented standards, and does it satisfy the task requirements?</p>
+<p>An API can follow the style guide while omitting a required response field. A naming preference is not automatically a bug when no repository standard requires it. Distinguish behavioral defects, documented-rule violations and optional suggestions.</p>
+</div>
+<pre data-language="vi"><code>Review thay đổi từ merge base của origin/main đến HEAD.
+Đọc hướng dẫn repository và tiêu chí nghiệm thu đã cung cấp.
+Với mỗi phát hiện, ghi đường dẫn/dòng, điều kiện kích hoạt,
+hậu quả và bằng chứng hoặc test có thể tái hiện.
+Phân biệt lỗi đã xác nhận với nghi vấn chưa kiểm chứng.
+Chỉ báo cáo tại đây; chưa sửa file, commit, push hoặc đăng comment lên PR.</code></pre>
+<pre data-language="en" hidden><code>Review changes from the merge base of origin/main to HEAD.
+Read repository instructions and the supplied acceptance criteria.
+For each finding, include the path/line, trigger, consequence,
+and evidence or a reproducible test.
+Separate confirmed defects from unverified concerns.
+Report here only; do not edit, commit, push or post PR comments yet.</code></pre>
+<h2 id="verify"><span data-language="vi">3. Biến nghi vấn thành kiểm tra cụ thể</span><span data-language="en" hidden>3. Turn concerns into specific checks</span></h2>
+<div data-language="vi">
+<p>Ưu tiên thay đổi ảnh hưởng dữ liệu, quyền truy cập, giao dịch, đầu vào và điều kiện biên. Theo luồng gọi đến nơi dữ liệu được dùng; một dòng trông bất thường có thể đã được bảo vệ ở tầng trước. Chạy test nhỏ nhất phân biệt được hành vi đúng và sai trong môi trường thử phù hợp.</p>
+<p>Với thay đổi UI, xem DOM và luồng thực qua <a data-catalog-skill="webapp-testing" href="../../?lang=vi&amp;skill=webapp-testing&amp;agent=codex">webapp-testing</a>. Đối chiếu ảnh chụp với thao tác và kích thước màn hình, thay vì chỉ nhận xét từ CSS. Nếu thiếu tài khoản thử hoặc môi trường, ghi rõ phần chưa kiểm chứng.</p>
+<p>Ví dụ minh họa cách viết phát hiện: “Khi giỏ hàng có hai đơn vị cùng một sản phẩm, phép cộng chỉ lấy đơn giá nên tổng thiếu một đơn vị. Ca kiểm tra với đơn giá 1.250 xu và số lượng 2 trả 1.250 thay vì 2.500.” Đây là ví dụ về hình thức bằng chứng, không phải kết quả review một dự án cụ thể.</p>
+</div>
+<div data-language="en" hidden>
+<p>Prioritize changes affecting data, access control, transactions, inputs and boundaries. Follow the call path to the data consumer; suspicious code may already be guarded upstream. Run the smallest check that distinguishes correct and incorrect behavior in an appropriate test environment.</p>
+<p>For UI changes, inspect the rendered DOM and real flow with <a data-catalog-skill="webapp-testing" href="../../?lang=en&amp;skill=webapp-testing&amp;agent=codex">webapp-testing</a>. Connect screenshots to actions and viewport sizes instead of judging CSS alone. Report missing test accounts or environments as verification gaps.</p>
+<p>An illustrative finding could say: “With two units of one item, the sum uses only its unit price. A case with a 1,250-cent price and quantity 2 returns 1,250 instead of 2,500.” This demonstrates evidence format; it is not a finding against a specific repository.</p>
+</div>
+<h2 id="report"><span data-language="vi">4. Báo cáo đủ để quyết định và sửa</span><span data-language="en" hidden>4. Report enough to decide and fix</span></h2>
+<div data-language="vi">
+<p>Sắp xếp phát hiện theo ảnh hưởng và khả năng xảy ra. Mỗi phát hiện cần ngắn nhưng có thể kiểm tra: vị trí, trigger, expected/actual và hướng sửa. Đừng nâng mức ưu tiên chỉ vì tên hàm hoặc công nghệ nghe quan trọng.</p>
+<p>Kết thúc bằng phạm vi đã đọc, test đã chạy và phần còn chưa kiểm chứng. “Không thấy lỗi trong phạm vi này” không có nghĩa mọi đường chạy đều an toàn. Khi bản sửa được yêu cầu, thêm regression test có ý nghĩa, chạy lại ca lỗi và các test liên quan rồi review diff cuối cùng.</p>
+<p>Muốn thực hành cách thu hẹp nguyên nhân, đọc <a href="../debug-voi-ai-agent/" data-guide-link>debug với AI agent</a>. Một ví dụ thực trong VAS là <a href="../ghi-json-an-toan-nhieu-tien-trinh-python/" data-guide-link>lỗi mất receipt khi nhiều tiến trình cập nhật JSON</a>.</p>
+</div>
+<div data-language="en" hidden>
+<p>Order findings by impact and likelihood. Each should include its location, trigger, expected/actual behavior and a useful fix direction. Do not inflate severity merely because a function or technology sounds important.</p>
+<p>Close the report with reviewed scope, executed tests and remaining gaps. Finding no defects in a scope does not establish that every path is safe. When a fix is requested, add a meaningful regression test, repeat the original failure and related checks, then review the final diff.</p>
+<p>Practice narrowing a cause with <a href="../debug-voi-ai-agent/" data-guide-link>AI-assisted debugging</a>. A real VAS example is <a href="../ghi-json-an-toan-nhieu-tien-trinh-python/" data-guide-link>lost receipts during concurrent JSON updates</a>.</p>
+</div>
+<h2 id="sources"><span data-language="vi">Nguồn đối chiếu</span><span data-language="en" hidden>References</span></h2>
+<ul><li><a href="https://git-scm.com/docs/git-diff">Git diff: ranges and three-dot comparisons</a></li><li><a href="https://github.com/huytran1120/vie-agentic-skills/blob/main/skills/code-review/SKILL.md">VAS review runbook and upstream attribution</a></li></ul>
+</article><aside class="guide-companion" aria-label="Skill liên quan"><p class="guide-eyebrow"><span data-language="vi">Review có cấu trúc</span><span data-language="en" hidden>Structure the review</span></p><h2><a data-catalog-skill="code-review" href="../../?lang=vi&amp;skill=code-review&amp;agent=codex">code-review</a></h2><p><span data-language="vi">Đọc yêu cầu và quy ước của kho trước khi áp dụng quy trình.</span><span data-language="en" hidden>Read the task requirements and repository standards before applying the workflow.</span></p><a class="button primary" data-catalog-skill="code-review" href="../../?lang=vi&amp;skill=code-review&amp;agent=codex"><span data-language="vi">Xem skill và cài đặt →</span><span data-language="en" hidden>Read skill and install →</span></a></aside></div>
+<section class="guide-related" aria-labelledby="related-title"><h2 id="related-title"><span data-language="vi">Đọc tiếp</span><span data-language="en" hidden>Read next</span></h2><div class="guide-related-links"><a href="../agent-skills-mcp-agents-md/" data-guide-link><span data-language="vi">Skills, MCP và hướng dẫn dự án</span><span data-language="en" hidden>Skills, MCP and project instructions</span></a><a href="../kiem-thu-web-voi-playwright/" data-guide-link><span data-language="vi">Kiểm thử ứng dụng web với Playwright</span><span data-language="en" hidden>Test web applications with Playwright</span></a></div></section>
+</main><footer class="site-footer"><div class="shell footer-inner"><strong>VAS / Vie Agentic Skill</strong><p><span data-language="vi">Đọc hướng dẫn. Chọn skill. Áp dụng vào dự án.</span><span data-language="en" hidden>Read a guide. Choose a skill. Apply it to your project.</span></p><div><a href="../../#catalog" data-home><span data-language="vi">Thư viện</span><span data-language="en" hidden>Library</span></a><a href="https://github.com/huytran1120/vie-agentic-skills">GitHub ↗</a></div></div></footer>
+</body></html>

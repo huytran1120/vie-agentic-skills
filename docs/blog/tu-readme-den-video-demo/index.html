@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="vi" data-theme="light">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Từ README đến video demo bằng Claude Code và Remotion — VAS</title>
+<meta name="description" content="Chuyển README thành video demo: kiểm tra thông tin nguồn, viết storyboard, chuẩn bị footage và lời thoại, render bằng Remotion rồi đối chiếu kết quả.">
+<meta name="robots" content="index, follow"><meta name="theme-color" content="#f3efea">
+<link rel="canonical" href="https://vie-agentic-skills.vercel.app/blog/tu-readme-den-video-demo/">
+<link rel="icon" href="../../assets/brand/vas-icon.png"><link rel="stylesheet" href="../../catalog.css"><link rel="stylesheet" href="../blog.css">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Vie Agentic Skill"><meta property="og:title" content="Từ README đến video demo bằng Claude Code và Remotion"><meta property="og:description" content="Biến tài liệu dự án thành kịch bản có thể kiểm chứng, kết hợp cảnh quay thật và kiểm tra video sau render."><meta property="og:url" content="https://vie-agentic-skills.vercel.app/blog/tu-readme-den-video-demo/"><meta property="og:image" content="https://vie-agentic-skills.vercel.app/assets/social-preview.png"><meta property="og:image:width" content="1280"><meta property="og:image:height" content="640">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Từ README đến video demo bằng Claude Code và Remotion"><meta name="twitter:description" content="Một quy trình từ sự thật trong README đến storyboard, render và kiểm tra đầu ra."><meta name="twitter:image" content="https://vie-agentic-skills.vercel.app/assets/social-preview.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Từ README đến video demo bằng Claude Code và Remotion","description":"Chuẩn bị kịch bản, footage, timeline và quy trình kiểm tra cho một video demo xuất phát từ README của dự án.","url":"https://vie-agentic-skills.vercel.app/blog/tu-readme-den-video-demo/","mainEntityOfPage":"https://vie-agentic-skills.vercel.app/blog/tu-readme-den-video-demo/","inLanguage":"vi-VN","datePublished":"2026-11-06","dateModified":"2026-11-06","author":{"@type":"Organization","name":"Vie Agentic Skill"},"publisher":{"@type":"Organization","name":"Vie Agentic Skill","url":"https://vie-agentic-skills.vercel.app/"},"image":"https://vie-agentic-skills.vercel.app/assets/social-preview.png"}</script>
+<script src="../blog.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#guide-main"><span data-language="vi">Đến nội dung chính</span><span data-language="en" hidden>Skip to content</span></a>
+<header class="site-header guide-header"><div class="shell header-inner"><a class="brand" href="../../" data-home><span class="brand-mark" aria-hidden="true">&gt;_</span><span class="brand-short">VAS</span></a><nav class="guide-nav" aria-label="Điều hướng"><a class="guide-library-return" href="../../#catalog" data-home data-library-return><span data-language="vi">← Về thư viện <span data-catalog-count="vi">3.885</span> skill</span><span data-language="en" hidden>← Back to <span data-catalog-count="en">3,885</span> skills</span></a><a href="../" data-blog><span data-language="vi">Blog / Hướng dẫn</span><span data-language="en" hidden>Blog / Guides</span></a></nav><div class="header-actions"><button id="blog-language" class="icon-button" type="button" aria-label="Switch to English" lang="en">EN</button><button id="blog-theme" class="icon-button" type="button" aria-label="Bật giao diện tối" aria-pressed="false">◐</button></div></div></header>
+<main id="guide-main" class="shell guide-main" tabindex="-1" data-page-titles='{"vi":"Từ README đến video demo bằng Claude Code và Remotion — VAS","en":"Turn a README into a demo video with Claude Code and Remotion — VAS"}' data-page-descriptions='{"vi":"Chuyển README thành video demo: kiểm tra thông tin nguồn, viết storyboard, chuẩn bị footage và lời thoại, render bằng Remotion rồi đối chiếu kết quả.","en":"Turn a README into a demo: verify source claims, write a storyboard, prepare footage and narration, render with Remotion and inspect the result."}'>
+<nav class="guide-breadcrumb" aria-label="Breadcrumb"><a href="../../" data-home>VAS</a><span>/</span><a href="../" data-blog><span data-language="vi">Blog / Hướng dẫn</span><span data-language="en" hidden>Blog / Guides</span></a></nav>
+<header class="guide-heading"><p class="guide-eyebrow"><span data-language="vi">Sáng tạo nội dung / Video</span><span data-language="en" hidden>Content creation / Video</span></p><h1><span data-language="vi">Từ README đến video demo bằng Claude Code và Remotion</span><span data-language="en" hidden>Turn a README into a demo video with Claude Code and Remotion</span></h1><p class="guide-byline"><span data-language="vi">Biên soạn bởi Vie Agentic Skill · Cập nhật </span><span data-language="en" hidden>By Vie Agentic Skill · Updated </span><time datetime="2026-11-06">2026-11-06</time></p></header>
+<div class="guide-layout"><article class="guide-prose">
+<p class="guide-lead" data-language="vi">README có thể cung cấp nội dung cho video demo, nhưng cần chuyển từ tài liệu sang một chuỗi hành động người xem hiểu được. Chọn một vấn đề, một luồng sử dụng và một kết quả có bằng chứng, rồi mới thiết kế chuyển động.</p>
+<p class="guide-lead" data-language="en" hidden>A README supplies material for a demo video, but documentation needs to become a sequence viewers can follow. Choose one problem, one workflow and one evidenced outcome before designing motion.</p>
+<details><summary><span data-language="vi">Trong bài này</span><span data-language="en" hidden>On this page</span></summary><ul><li><a href="#facts"><span data-language="vi">Trích thông tin có nguồn</span><span data-language="en" hidden>Extract sourced facts</span></a></li><li><a href="#storyboard"><span data-language="vi">Viết storyboard</span><span data-language="en" hidden>Write a storyboard</span></a></li><li><a href="#assets"><span data-language="vi">Chuẩn bị footage và âm thanh</span><span data-language="en" hidden>Prepare footage and audio</span></a></li><li><a href="#render"><span data-language="vi">Render bản thử</span><span data-language="en" hidden>Render a draft</span></a></li><li><a href="#qa"><span data-language="vi">Kiểm tra và bàn giao</span><span data-language="en" hidden>Inspect and hand over</span></a></li></ul></details>
+<h2 id="facts"><span data-language="vi">1. Tách thông tin đã xác nhận khỏi lời hứa</span><span data-language="en" hidden>1. Separate established facts from claims</span></h2>
+<div data-language="vi">
+<p>Chuẩn bị README tại một commit xác định, lệnh chạy đã kiểm tra, dữ liệu demo được phép dùng và tài nguyên hình/âm thanh có quyền sử dụng. Ghi rõ người xem là ai, họ cần làm được gì và dự án còn giới hạn nào. Không tự thêm số liệu tốc độ, khách hàng hoặc lợi ích mà nguồn chưa chứng minh.</p>
+<p>Đọc <a data-catalog-skill="claude-awesome-video-creation" href="../../?lang=vi&amp;skill=claude-awesome-video-creation&amp;agent=claude">claude-awesome-video-creation</a> và các references đi kèm. Skill gồm hướng dẫn và helper; Node.js, React/Remotion, trình duyệt render, FFmpeg hoặc dịch vụ âm thanh vẫn cần được chuẩn bị riêng. Kiểm tra điều kiện sử dụng của Remotion và các dịch vụ đã chọn.</p>
+</div>
+<div data-language="en" hidden>
+<p>Prepare the README at a known commit, verified commands, approved demo data and licensed visual/audio assets. Define the audience, what they should accomplish and the project’s limitations. Do not invent performance figures, customers or benefits that the source does not establish.</p>
+<p>Read <a data-catalog-skill="claude-awesome-video-creation" href="../../?lang=en&amp;skill=claude-awesome-video-creation&amp;agent=claude">claude-awesome-video-creation</a> and its references. The skill supplies instructions and helpers; Node.js, React/Remotion, rendering browsers, FFmpeg or audio services remain separate prerequisites. Check the usage terms of Remotion and selected services.</p>
+</div>
+<pre data-language="vi"><code>Đọc README tại commit đã chỉ định và đề xuất video demo cho developer.
+Chọn một luồng sử dụng có thể chạy lại; dẫn nguồn cho các tuyên bố.
+Viết storyboard và lời thoại trước, chưa gọi dịch vụ trả phí hoặc render dài.
+Phân biệt footage thật, mockup tái dựng và phần còn thiếu.
+Giữ nguyên dữ liệu gốc và không tự đăng video.</code></pre>
+<pre data-language="en" hidden><code>Read the README at the specified commit and propose a developer demo.
+Choose one reproducible workflow and source the claims.
+Write the storyboard and narration first; do not call paid services or render
+a long video yet. Separate real footage, reconstructed mockups and missing assets.
+Preserve original data and do not publish the video automatically.</code></pre>
+<h2 id="storyboard"><span data-language="vi">2. Đổi mục lục README thành một câu chuyện ngắn</span><span data-language="en" hidden>2. Turn documentation into a short narrative</span></h2>
+<div data-language="vi">
+<p>Với bản demo mục tiêu khoảng 60 giây, có thể bắt đầu bằng năm cảnh bên dưới. Đây là ngân sách thời lượng dự kiến; sau khi đo lời thoại và thao tác thật, điều chỉnh timeline cho đủ thời gian đọc.</p>
+<ol><li><strong>Vấn đề:</strong> tác vụ người xem đang mất công thực hiện.</li><li><strong>Đầu vào:</strong> repository, tệp hoặc giao diện sẽ dùng trong demo.</li><li><strong>Thao tác:</strong> một chuỗi bước ngắn, lệnh đầy đủ và nhìn rõ.</li><li><strong>Kết quả:</strong> đầu ra thực và một cách kiểm tra nó.</li><li><strong>Bước tiếp theo:</strong> nơi đọc hướng dẫn hoặc chạy lại ví dụ.</li></ol>
+<p>Không cần đưa mọi mục README lên màn hình. Chọn một trường hợp đại diện và dẫn liên kết tới tài liệu cho các biến thể khác. Nếu lệnh chỉ chạy trên một hệ điều hành, ghi rõ phạm vi ngay trong cảnh liên quan.</p>
+</div>
+<div data-language="en" hidden>
+<p>For a roughly 60-second target, start with the five scenes below. This is an initial duration budget; adjust the timeline after measuring narration and real actions so viewers have time to read.</p>
+<ol><li><strong>Problem:</strong> a task that currently costs the viewer effort.</li><li><strong>Input:</strong> the repository, file or interface used in the demo.</li><li><strong>Action:</strong> a short sequence with complete, readable commands.</li><li><strong>Result:</strong> real output and a way to verify it.</li><li><strong>Next step:</strong> where to read the guide or reproduce the example.</li></ol>
+<p>Every README heading does not need its own scene. Choose one representative case and link to documentation for other variants. Label operating-system requirements in the relevant scene when a command is platform-specific.</p>
+</div>
+<h2 id="assets"><span data-language="vi">3. Chuẩn bị footage và một timeline thống nhất</span><span data-language="en" hidden>3. Prepare footage and a shared timeline</span></h2>
+<div data-language="vi">
+<p>Chạy lại luồng demo với dữ liệu thử trước khi quay màn hình. Ẩn token, thông tin tài khoản và đường dẫn riêng; giữ độ phân giải đủ để chữ rõ sau khi xuất video. Gắn nhãn mockup là bản tái dựng nếu chưa có cảnh quay thật.</p>
+<p>Đo lời thoại trước khi chốt độ dài cảnh. Ghi âm bằng giọng có quyền sử dụng hoặc dùng TTS theo điều kiện dịch vụ; tiếng Việt cần kiểm tra dấu và cách đọc tên kỹ thuật. Giữ lời thoại, phụ đề và chuyển cảnh trên cùng timeline để một lần sửa không làm các phần lệch nhau.</p>
+<p>Nếu component Remotion nhận props, có thể lưu dữ liệu demo trong JSON. Ví dụ cấu trúc sau là một hợp đồng dữ liệu cần được component hỗ trợ, không tự biến thành video khi chỉ lưu tệp:</p>
+</div>
+<div data-language="en" hidden>
+<p>Re-run the workflow with test data before recording. Remove tokens, account details and private paths, and keep enough resolution for readable text after export. Label reconstructed mockups when real footage is unavailable.</p>
+<p>Measure narration before finalizing scene durations. Use a voice you are authorized to record or an appropriately licensed TTS service; check Vietnamese diacritics and technical names. Keep narration, captions and scene transitions on one timeline so edits remain synchronized.</p>
+<p>If the Remotion component accepts props, keep demo data in JSON. This example is a proposed contract the component must implement; saving the file alone does not create a video:</p>
+</div>
+<pre><code>{
+  "title": "A reproducible project demo",
+  "sourceRevision": "replace-with-the-reviewed-commit",
+  "steps": [
+    "Prepare the sample input",
+    "Run the verified command",
+    "Inspect the generated result"
+  ],
+  "footageLabel": "RECONSTRUCTED"
+}</code></pre>
+<h2 id="render"><span data-language="vi">4. Render bản thử trước khi xuất đầy đủ</span><span data-language="en" hidden>4. Render a draft before the final export</span></h2>
+<p data-language="vi">Trong dự án đã có Remotion, entry point <code>src/index.ts</code> và composition <code>Demo</code> tương thích với props, thêm script như sau. Điều chỉnh các tên theo project thật; không chép đè các script đang có.</p>
+<p data-language="en" hidden>In a project with Remotion installed, an entry point at <code>src/index.ts</code> and a <code>Demo</code> composition accepting these props, add a script like this. Adapt the names to the actual project and preserve existing scripts.</p>
+<pre><code>{
+  "scripts": {
+    "video:render": "remotion render src/index.ts Demo out/demo.mp4"
+  }
+}</code></pre>
+<pre><code>npm run video:render -- --props=demo-props.json --scale=0.5 --concurrency=1</code></pre>
+<div data-language="vi">
+<p>Props dạng tệp tránh khác biệt escape JSON giữa các shell. Kiểm tra một bản nhỏ để phát hiện chữ tràn, footage thiếu và lệch tiếng trước khi xuất độ phân giải mục tiêu. Cảnh nặng có thể cần giảm concurrency hoặc render theo đoạn; đọc helper trong skill trước khi dùng, đối chiếu composition ID và số frame.</p>
+<p>Lệnh trên giả định runtime và composition đã được chuẩn bị; nó không cài dependency hoặc dựng toàn bộ ứng dụng Remotion. Khi đã kiểm tra bản nhỏ, xuất bản đầy đủ theo script của dự án và kiểm tra tệp mới tạo.</p>
+</div>
+<div data-language="en" hidden>
+<p>File-based props avoid JSON escaping differences between shells. Inspect a small render for overflowing text, missing footage and timing errors before the target-resolution export. Heavy scenes may need lower concurrency or segmented rendering; read skill helpers first and confirm composition IDs and frame ranges.</p>
+<p>The command assumes the runtime and composition already exist. It does not install dependencies or create a Remotion application. After inspecting the draft, use the project script for the full export and check the newly generated file.</p>
+</div>
+<h2 id="qa"><span data-language="vi">5. Đối chiếu video với nguồn trước khi bàn giao</span><span data-language="en" hidden>5. Compare the video with its sources</span></h2>
+<div data-language="vi">
+<ul><li>Xem đủ mọi cảnh: chữ, phụ đề, dấu tiếng Việt, vị trí con trỏ và đầu/cuối clip.</li><li>Đối chiếu lệnh và kết quả trên màn hình với lần chạy thật tại revision đã ghi.</li><li>Kiểm tra thời lượng, độ phân giải, âm lượng và các đoạn đứng hình ngoài ý muốn.</li><li>Giữ danh sách nguồn, giấy phép, footage thật/tái dựng và các phần chưa hoàn thành.</li></ul>
+<p>Bàn giao video cùng source, props, revision và lệnh render. Chỉ ghi thời gian render hoặc mức cải thiện nếu đã đo. Hướng dẫn này mô tả quy trình và mẫu lệnh, không kèm một video mẫu đã render; xem <a href="../tao-video-voi-claude-code-remotion/" data-guide-link>bài nền về video với Claude Code và Remotion</a> để chuẩn bị workflow rộng hơn.</p>
+</div>
+<div data-language="en" hidden>
+<ul><li>Inspect every scene: text, captions, Vietnamese diacritics, cursor position and clip boundaries.</li><li>Compare onscreen commands and results with an actual run at the recorded revision.</li><li>Check duration, resolution, loudness and unintended frozen frames.</li><li>Retain sources, licenses, footage/mockup labels and unfinished items.</li></ul>
+<p>Hand over the video with source, props, revision and render command. Report rendering time or improvements only when measured. This guide provides a workflow and command examples, not a rendered sample video; see the <a href="../tao-video-voi-claude-code-remotion/" data-guide-link>Claude Code and Remotion introduction</a> for broader preparation.</p>
+</div>
+<h2 id="sources"><span data-language="vi">Nguồn đối chiếu</span><span data-language="en" hidden>References</span></h2>
+<ul><li><a href="https://www.remotion.dev/docs/cli/render">Remotion render CLI</a></li><li><a href="https://www.remotion.dev/docs/passing-props">Remotion input props</a></li><li><a href="https://www.remotion.dev/license">Remotion licensing</a></li><li><a href="https://github.com/HaochenSHI66/claude-awesome-video-creation">Source skill: SHI Haochen / video creation</a></li></ul>
+</article><aside class="guide-companion" aria-label="Skill liên quan"><p class="guide-eyebrow"><span data-language="vi">Kịch bản đến kiểm tra đầu ra</span><span data-language="en" hidden>Script through output verification</span></p><h2><a data-catalog-skill="claude-awesome-video-creation" href="../../?lang=vi&amp;skill=claude-awesome-video-creation&amp;agent=claude">claude-awesome-video-creation</a></h2><p><span data-language="vi">Đọc references, scripts và yêu cầu runtime trước khi chọn pipeline render.</span><span data-language="en" hidden>Read references, scripts and runtime requirements before selecting a rendering pipeline.</span></p><a class="button primary" data-catalog-skill="claude-awesome-video-creation" href="../../?lang=vi&amp;skill=claude-awesome-video-creation&amp;agent=claude"><span data-language="vi">Xem skill và cài đặt →</span><span data-language="en" hidden>Read skill and install →</span></a></aside></div>
+<section class="guide-related" aria-labelledby="related-title"><h2 id="related-title"><span data-language="vi">Đọc tiếp</span><span data-language="en" hidden>Read next</span></h2><div class="guide-related-links"><a href="../cai-skill-cho-claude-code/" data-guide-link><span data-language="vi">Cài skill cho Claude Code</span><span data-language="en" hidden>Install skills in Claude Code</span></a><a href="../quy-trinh-marketing-voi-ai/" data-guide-link><span data-language="vi">Xây dựng quy trình content marketing</span><span data-language="en" hidden>Build a content marketing workflow</span></a></div></section>
+</main><footer class="site-footer"><div class="shell footer-inner"><strong>VAS / Vie Agentic Skill</strong><p><span data-language="vi">Đọc hướng dẫn. Chọn skill. Áp dụng vào dự án.</span><span data-language="en" hidden>Read a guide. Choose a skill. Apply it to your project.</span></p><div><a href="../../#catalog" data-home><span data-language="vi">Thư viện</span><span data-language="en" hidden>Library</span></a><a href="https://github.com/huytran1120/vie-agentic-skills">GitHub ↗</a></div></div></footer>
+</body></html>

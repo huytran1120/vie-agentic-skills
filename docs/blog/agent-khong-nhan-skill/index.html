@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="vi" data-theme="light">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent không nhận skill: kiểm tra đường dẫn, tệp và runtime — VAS</title>
+<meta name="description" content="Chẩn đoán Codex hoặc Claude Code không nhận skill: phạm vi cài, SKILL.md, frontmatter, symlink, cách gọi, helper và runtime; kiểm tra trước khi cài lại.">
+<meta name="robots" content="index, follow"><meta name="theme-color" content="#f3efea">
+<link rel="canonical" href="https://vie-agentic-skills.vercel.app/blog/agent-khong-nhan-skill/">
+<link rel="icon" href="../../assets/brand/vas-icon.png"><link rel="stylesheet" href="../../catalog.css"><link rel="stylesheet" href="../blog.css">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Vie Agentic Skill"><meta property="og:title" content="Agent không nhận skill: kiểm tra đường dẫn, tệp và runtime"><meta property="og:description" content="Phân biệt lỗi discovery và lỗi thực thi; kiểm tra từng giả thuyết trước khi cài lại skill."><meta property="og:url" content="https://vie-agentic-skills.vercel.app/blog/agent-khong-nhan-skill/"><meta property="og:image" content="https://vie-agentic-skills.vercel.app/assets/social-preview.png"><meta property="og:image:width" content="1280"><meta property="og:image:height" content="640">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Agent không nhận skill: kiểm tra đường dẫn, tệp và runtime"><meta name="twitter:description" content="Checklist chẩn đoán skill không được nhận diện hoặc không chạy trong Codex và Claude Code."><meta name="twitter:image" content="https://vie-agentic-skills.vercel.app/assets/social-preview.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Agent không nhận skill: kiểm tra đường dẫn, tệp và runtime","description":"Chẩn đoán đường dẫn, phạm vi, frontmatter, symlink, invocation và runtime của agent skills.","url":"https://vie-agentic-skills.vercel.app/blog/agent-khong-nhan-skill/","mainEntityOfPage":"https://vie-agentic-skills.vercel.app/blog/agent-khong-nhan-skill/","inLanguage":"vi-VN","datePublished":"2026-11-06","dateModified":"2026-11-06","author":{"@type":"Organization","name":"Vie Agentic Skill"},"publisher":{"@type":"Organization","name":"Vie Agentic Skill","url":"https://vie-agentic-skills.vercel.app/"},"image":"https://vie-agentic-skills.vercel.app/assets/social-preview.png"}</script>
+<script src="../blog.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#guide-main"><span data-language="vi">Đến nội dung chính</span><span data-language="en" hidden>Skip to content</span></a>
+<header class="site-header guide-header"><div class="shell header-inner"><a class="brand" href="../../" data-home><span class="brand-mark" aria-hidden="true">&gt;_</span><span class="brand-short">VAS</span></a><nav class="guide-nav" aria-label="Điều hướng"><a class="guide-library-return" href="../../#catalog" data-home data-library-return><span data-language="vi">← Về thư viện <span data-catalog-count="vi">3.885</span> skill</span><span data-language="en" hidden>← Back to <span data-catalog-count="en">3,885</span> skills</span></a><a href="../" data-blog><span data-language="vi">Blog / Hướng dẫn</span><span data-language="en" hidden>Blog / Guides</span></a></nav><div class="header-actions"><button id="blog-language" class="icon-button" type="button" aria-label="Switch to English" lang="en">EN</button><button id="blog-theme" class="icon-button" type="button" aria-label="Bật giao diện tối" aria-pressed="false">◐</button></div></div></header>
+<main id="guide-main" class="shell guide-main" tabindex="-1" data-page-titles='{"vi":"Agent không nhận skill: kiểm tra đường dẫn, tệp và runtime — VAS","en":"Agent cannot find a skill: paths, files and runtime checks — VAS"}' data-page-descriptions='{"vi":"Chẩn đoán Codex hoặc Claude Code không nhận skill: phạm vi cài, SKILL.md, frontmatter, symlink, cách gọi, helper và runtime; kiểm tra trước khi cài lại.","en":"Diagnose missing or failing skills in Codex and Claude Code. Check scope, SKILL.md, frontmatter, symlinks, invocation, helpers and runtime before reinstalling."}'>
+<nav class="guide-breadcrumb" aria-label="Breadcrumb"><a href="../../" data-home>VAS</a><span>/</span><a href="../" data-blog><span data-language="vi">Blog / Hướng dẫn</span><span data-language="en" hidden>Blog / Guides</span></a></nav>
+<header class="guide-heading"><p class="guide-eyebrow"><span data-language="vi">Xử lý lỗi / Skills</span><span data-language="en" hidden>Troubleshooting / Skills</span></p><h1><span data-language="vi">Agent không nhận skill: kiểm tra đường dẫn, tệp và runtime</span><span data-language="en" hidden>Agent cannot find a skill: paths, files and runtime checks</span></h1><p class="guide-byline"><span data-language="vi">Biên soạn bởi Vie Agentic Skill · Cập nhật </span><span data-language="en" hidden>By Vie Agentic Skill · Updated </span><time datetime="2026-11-06">2026-11-06</time></p></header>
+<div class="guide-layout"><article class="guide-prose">
+<p class="guide-lead" data-language="vi">“Đã cài nhưng không dùng được” có thể là lỗi nhận diện, lỗi chọn skill hoặc lỗi khi chạy công cụ. Xác định đang dừng ở bước nào sẽ giúp tránh cài lại nhiều lần mà vẫn giữ nguyên nguyên nhân.</p>
+<p class="guide-lead" data-language="en" hidden>“Installed but not working” can mean failed discovery, failed selection or a runtime failure. Identify the failing stage before repeatedly reinstalling the same files.</p>
+<details><summary><span data-language="vi">Trong bài này</span><span data-language="en" hidden>On this page</span></summary><ul><li><a href="#classify"><span data-language="vi">Phân loại triệu chứng</span><span data-language="en" hidden>Classify the symptom</span></a></li><li><a href="#discovery"><span data-language="vi">Skill không xuất hiện</span><span data-language="en" hidden>Skill is missing</span></a></li><li><a href="#invocation"><span data-language="vi">Có skill nhưng không được dùng</span><span data-language="en" hidden>Skill is visible but unused</span></a></li><li><a href="#runtime"><span data-language="vi">Runbook được đọc nhưng tác vụ lỗi</span><span data-language="en" hidden>Runbook loads but execution fails</span></a></li><li><a href="#report"><span data-language="vi">Ghi bằng chứng và xác minh lại</span><span data-language="en" hidden>Record evidence and verify</span></a></li></ul></details>
+<h2 id="classify"><span data-language="vi">1. Ghi triệu chứng trước khi sửa</span><span data-language="en" hidden>1. Record the symptom before changing anything</span></h2>
+<div data-language="vi">
+<p>Ghi tên và phiên bản agent, thư mục đang mở, ID skill, cách cài, đường dẫn đích và thông báo lỗi nguyên văn. Dùng một skill để thử trước; thay nhiều thư mục hoặc cấu hình cùng lúc khiến khó biết thay đổi nào có tác dụng.</p>
+<ul><li><strong>Không có trong danh sách:</strong> kiểm tra discovery và phạm vi.</li><li><strong>Có trong danh sách nhưng agent bỏ qua:</strong> kiểm tra mô tả, tên gọi và chế độ invocation.</li><li><strong>Agent đọc runbook rồi lỗi:</strong> kiểm tra helper, runtime, đầu vào và quyền.</li></ul>
+</div>
+<div data-language="en" hidden>
+<p>Record the agent and version, open directory, skill ID, installation method, destination and exact error. Start with one skill. Changing several paths or settings at once hides which change affected the outcome.</p>
+<ul><li><strong>Absent from the list:</strong> investigate discovery and scope.</li><li><strong>Listed but ignored:</strong> check its description, name and invocation mode.</li><li><strong>Runbook read, then failure:</strong> inspect helpers, runtime, inputs and permissions.</li></ul>
+</div>
+<h2 id="discovery"><span data-language="vi">2. Nếu skill không xuất hiện</span><span data-language="en" hidden>2. If the skill is missing</span></h2>
+<div data-language="vi">
+<ol>
+<li><strong>Đúng đường dẫn và máy:</strong> Codex hiện dùng <code>.agents/skills</code>; Claude Code dùng <code>.claude/skills</code>. Phạm vi cá nhân nằm dưới home tương ứng. Một skill trên laptop chưa chắc tồn tại trong container, SSH host hoặc phiên cloud.</li>
+<li><strong>Đúng cấu trúc:</strong> cần <code>skills/ten-skill/SKILL.md</code>, không thêm một tầng thư mục giải nén ngoài ý muốn. Kiểm tra cả chữ hoa của <code>SKILL.md</code> trên hệ thống phân biệt hoa thường.</li>
+<li><strong>Frontmatter hợp lệ:</strong> các dấu <code>---</code> phải bao quanh metadata; <code>name</code> và <code>description</code> cần giá trị có nghĩa. Không sao chép cả dấu code fence Markdown vào tệp.</li>
+<li><strong>Phạm vi phiên làm việc:</strong> mở đúng repository và thử một phiên mới nếu ứng dụng chưa cập nhật danh sách. Với monorepo, kiểm tra vị trí thư mục con theo tài liệu agent.</li>
+<li><strong>Symlink còn nguồn:</strong> nếu cài bằng <code>link</code>, xác nhận clone VAS chưa bị di chuyển hoặc xóa. Một liên kết tồn tại vẫn có thể trỏ tới tệp đã mất.</li>
+</ol>
+</div>
+<div data-language="en" hidden>
+<ol>
+<li><strong>Correct path and machine:</strong> current Codex uses <code>.agents/skills</code>; Claude Code uses <code>.claude/skills</code>. Personal locations sit under the corresponding home directory. A laptop installation may not exist in a container, SSH host or cloud session.</li>
+<li><strong>Correct structure:</strong> expect <code>skills/skill-name/SKILL.md</code>, without an accidental extra archive directory. Check filename case on case-sensitive systems.</li>
+<li><strong>Valid frontmatter:</strong> surround metadata with <code>---</code>; provide meaningful <code>name</code> and <code>description</code> values. Do not paste Markdown code fences into the file.</li>
+<li><strong>Session scope:</strong> open the correct repository and try a new session if the list is stale. For monorepos, check nested-directory behavior in the agent documentation.</li>
+<li><strong>Live symlink target:</strong> a <code>link</code> installation needs its source clone. A symlink can exist even when its target has disappeared.</li>
+</ol>
+</div>
+<p data-language="vi">Đoạn Python sau chỉ đọc đường dẫn. Thay ví dụ bằng tệp của bạn; <code>False</code> nghĩa là chưa thấy một tệp thường ở vị trí đó.</p>
+<p data-language="en" hidden>This Python check only reads the path. Replace the example with your file; <code>False</code> means no regular file is available there.</p>
+<pre><code>from pathlib import Path
+
+skill = Path("/absolute/path/to/project/.agents/skills/webapp-testing/SKILL.md")
+print("Resolved path:", skill.resolve())
+print("Runbook exists:", skill.is_file())
+print("Skill folder is a link:", skill.parent.is_symlink())</code></pre>
+<h2 id="invocation"><span data-language="vi">3. Nếu có skill nhưng agent không chọn</span><span data-language="en" hidden>3. If the skill is available but not selected</span></h2>
+<div data-language="vi">
+<p>Thử gọi trực tiếp theo giao diện agent: Codex CLI/IDE hỗ trợ chọn skill bằng <code>$</code> hoặc <code>/skills</code>; Claude Code có <code>/ten-skill</code> cho skill cho phép gọi trực tiếp. Sau đó đối chiếu tên và đường dẫn runbook mà agent đọc.</p>
+<p>Nếu gọi trực tiếp được nhưng tự chọn không ổn, xem lại <code>description</code>: nó có nêu đúng tác vụ đang yêu cầu không? Trong Claude Code, kiểm tra thêm <code>disable-model-invocation</code> và <code>user-invocable</code>. Đừng suy ra quy tắc của một agent áp dụng giống hệt cho agent khác.</p>
+<p>Nếu có nhiều bản trùng tên ở các phạm vi, xác định bản được nạp trước khi cập nhật hoặc gỡ. Tránh cài thêm một bản thứ ba để thử vận may.</p>
+</div>
+<div data-language="en" hidden>
+<p>Try explicit invocation in the supported interface: Codex CLI/IDE offers <code>$</code> selection or <code>/skills</code>; Claude Code supports <code>/skill-name</code> for user-invocable skills. Compare the loaded name and runbook path with the intended installation.</p>
+<p>If explicit invocation works but automatic matching does not, check whether the description covers the requested task. In Claude Code, inspect <code>disable-model-invocation</code> and <code>user-invocable</code> too. Do not assume one application implements another application’s invocation rules.</p>
+<p>When duplicate names exist across scopes, identify the loaded copy before updating or removing anything. Adding another duplicate makes diagnosis harder.</p>
+</div>
+<h2 id="runtime"><span data-language="vi">4. Nếu đọc được runbook nhưng tác vụ lỗi</span><span data-language="en" hidden>4. If the runbook loads but the task fails</span></h2>
+<div data-language="vi">
+<p>Đây thường là vấn đề môi trường thực thi. Một runbook có thể cần <code>scripts/</code>, <code>references/</code> hoặc assets đi kèm. Chỉ copy <code>SKILL.md</code> có thể làm thiếu thành phần; kiểm tra tệp cụ thể được nhắc trong thông báo lỗi và inventory nguồn.</p>
+<p>Phân biệt thiếu tệp với thiếu package, trình duyệt, Docker, tài khoản hay quyền mạng. Ví dụ, <a data-catalog-skill="webapp-testing" href="../../?lang=vi&amp;skill=webapp-testing&amp;agent=codex">webapp-testing</a> được nhận diện không có nghĩa Playwright và browser runtime đã sẵn sàng. Chỉ thiết lập phần còn thiếu sau khi thống nhất phạm vi và quyền.</p>
+<p><code>./vas status</code> phản ánh thông tin mà CLI quản lý, không kiểm tra thay cho discovery của agent. Nếu thiếu receipt hợp lệ, không tự sửa manifest để ép gỡ tệp. Kiểm tra cách cài và quyền sở hữu thư mục trước.</p>
+</div>
+<div data-language="en" hidden>
+<p>This is usually an execution-environment problem. A runbook can depend on bundled scripts, references or assets. Copying only <code>SKILL.md</code> may omit them; inspect the exact missing path and source inventory.</p>
+<p>Distinguish missing files from missing packages, browsers, Docker, accounts or network access. Discovering <a data-catalog-skill="webapp-testing" href="../../?lang=en&amp;skill=webapp-testing&amp;agent=codex">webapp-testing</a> does not establish that Playwright and a browser runtime are ready. Provision only the missing prerequisites within the agreed scope.</p>
+<p><code>./vas status</code> reports CLI-managed information; it does not verify native agent discovery. If a valid receipt is absent, do not fabricate manifest entries to force removal. Check the installation method and directory ownership first.</p>
+</div>
+<h2 id="report"><span data-language="vi">5. Xác minh từng thay đổi</span><span data-language="en" hidden>5. Verify each change</span></h2>
+<p data-language="vi">Sau mỗi sửa đổi, lặp lại đúng thao tác thất bại ban đầu và ghi kết quả. Một báo cáo ngắn nên có mẫu sau; loại thông tin đăng nhập, token và nội dung riêng trước khi chia sẻ.</p>
+<p data-language="en" hidden>After each change, repeat the original failing action and record the result. Use a short report like this, removing credentials, tokens and private content before sharing.</p>
+<pre><code>Agent / version:
+Working directory and execution environment:
+Skill ID and resolved SKILL.md path:
+Installation method and scope:
+Expected behavior:
+Observed error:
+One change attempted:
+Result of repeating the original check:
+Remaining blocker:</code></pre>
+<p data-language="vi">Với lỗi khó tái hiện, áp dụng <a data-catalog-skill="systematic-debugging" href="../../?lang=vi&amp;skill=systematic-debugging&amp;agent=codex">systematic-debugging</a> để giữ từng giả thuyết và bằng chứng. Xem thêm hướng dẫn riêng cho <a href="../cai-agent-skills-cho-codex/" data-guide-link>Codex</a> và <a href="../cai-skill-cho-claude-code/" data-guide-link>Claude Code</a>.</p>
+<p data-language="en" hidden>For harder failures, use <a data-catalog-skill="systematic-debugging" href="../../?lang=en&amp;skill=systematic-debugging&amp;agent=codex">systematic-debugging</a> to track hypotheses and evidence. See the installation guides for <a href="../cai-agent-skills-cho-codex/" data-guide-link>Codex</a> and <a href="../cai-skill-cho-claude-code/" data-guide-link>Claude Code</a>.</p>
+<h2 id="sources"><span data-language="vi">Nguồn đối chiếu</span><span data-language="en" hidden>References</span></h2>
+<ul><li><a href="https://developers.openai.com/codex/skills">Codex skill discovery</a></li><li><a href="https://code.claude.com/docs/en/skills">Claude Code skills and invocation controls</a></li><li><a href="https://agentskills.io/specification">Agent Skills specification</a></li></ul>
+</article><aside class="guide-companion" aria-label="Skill liên quan">
+<p class="guide-eyebrow"><span data-language="vi">Chẩn đoán có bằng chứng</span><span data-language="en" hidden>Diagnose with evidence</span></p><h2><a data-catalog-skill="systematic-debugging" href="../../?lang=vi&amp;skill=systematic-debugging&amp;agent=codex">systematic-debugging</a></h2>
+<p><span data-language="vi">Tách triệu chứng, giả thuyết và kết quả kiểm chứng trước khi sửa.</span><span data-language="en" hidden>Separate symptoms, hypotheses and verification before changing code.</span></p><a class="button primary" data-catalog-skill="systematic-debugging" href="../../?lang=vi&amp;skill=systematic-debugging&amp;agent=codex"><span data-language="vi">Xem quy trình debug →</span><span data-language="en" hidden>Read the debugging workflow →</span></a>
+</aside></div>
+<section class="guide-related" aria-labelledby="related-title"><h2 id="related-title"><span data-language="vi">Đọc tiếp</span><span data-language="en" hidden>Read next</span></h2><div class="guide-related-links"><a href="../agent-skills-la-gi/" data-guide-link><span data-language="vi">Agent Skills là gì?</span><span data-language="en" hidden>What are agent skills?</span></a><a href="../debug-voi-ai-agent/" data-guide-link><span data-language="vi">Debug với AI agent</span><span data-language="en" hidden>Debug with an AI agent</span></a></div></section>
+</main>
+<footer class="site-footer"><div class="shell footer-inner"><strong>VAS / Vie Agentic Skill</strong><p><span data-language="vi">Đọc hướng dẫn. Chọn skill. Áp dụng vào dự án.</span><span data-language="en" hidden>Read a guide. Choose a skill. Apply it to your project.</span></p><div><a href="../../#catalog" data-home><span data-language="vi">Thư viện</span><span data-language="en" hidden>Library</span></a><a href="https://github.com/huytran1120/vie-agentic-skills">GitHub ↗</a></div></div></footer>
+</body></html>

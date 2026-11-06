@@ -23,6 +23,16 @@ SLUGS = (
     "quy-trinh-marketing-voi-ai",
     "toi-uu-seo-va-ai-search",
     "trang-so-sanh-va-landing-page-seo",
+    "cai-agent-skills-cho-codex",
+    "cai-skill-cho-claude-code",
+    "agent-khong-nhan-skill",
+    "agent-skills-mcp-agents-md",
+    "review-pull-request-bang-ai",
+    "debug-voi-ai-agent",
+    "kiem-thu-dang-nhap-playwright",
+    "trien-khai-n8n-docker-compose",
+    "tu-readme-den-video-demo",
+    "ghi-json-an-toan-nhieu-tien-trinh-python",
 )
 LINKED_SKILLS = {
     "webapp-testing",
@@ -34,6 +44,11 @@ LINKED_SKILLS = {
     "seo-geo",
     "seo-competitor-pages",
     "seo-aeo-landing-page-writer",
+    "code-review",
+    "systematic-debugging",
+    "n8n-self-hosting",
+    "pdf",
+    "docx",
 }
 VOID_ELEMENTS = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"}
 
@@ -52,6 +67,8 @@ class GuideHTML(HTMLParser):
         self.unlinked_mentions = []
         self.structured = []
         self.json_parts = None
+        self.examples = {}
+        self.example_id = None
         self.feed(source)
 
     def handle_starttag(self, tag, attrs):
@@ -65,11 +82,16 @@ class GuideHTML(HTMLParser):
             self.h1_count += 1
         if tag == "script" and attrs.get("type") == "application/ld+json":
             self.json_parts = []
+        if tag == "code" and attrs.get("id") in ("debug-before", "debug-after"):
+            self.example_id = attrs["id"]
+            self.examples[self.example_id] = []
         if tag not in VOID_ELEMENTS:
             language = attrs.get("data-language", self.stack[-1][1] if self.stack else None)
             self.stack.append((tag, language))
 
     def handle_data(self, value):
+        if self.example_id is not None:
+            self.examples[self.example_id].append(value)
         tags = [tag for tag, _ in self.stack]
         if not {"a", "script", "style", "pre", "title"}.intersection(tags):
             self.unlinked_mentions.extend(skill for skill in LINKED_SKILLS
@@ -86,6 +108,8 @@ class GuideHTML(HTMLParser):
                 self.text[language].append(value)
 
     def handle_endtag(self, tag):
+        if tag == "code":
+            self.example_id = None
         if tag == "script" and self.json_parts is not None:
             self.structured.append(json.loads("".join(self.json_parts)))
             self.json_parts = None
@@ -101,6 +125,26 @@ class BlogPagesTests(unittest.TestCase):
         cls.pages = [(DOCS / "blog/index.html", "blog/", False)]
         cls.pages.extend((DOCS / "blog" / slug / "index.html", f"blog/{slug}/", True) for slug in SLUGS)
         cls.catalog_ids = {skill["id"] for skill in json.loads((DOCS / "skills.min.json").read_text())}
+
+    def test_index_links_to_each_article_once_as_a_heading(self):
+        document = GuideHTML((DOCS / "blog/index.html").read_text())
+        # Each article has a title link and a separate "Read guide" link.
+        routes = [
+            urlsplit(attrs["href"]).path.strip("./")
+            for tag, attrs in document.nodes
+            if tag == "a" and "data-guide-link" in attrs
+        ]
+        self.assertEqual(set(routes), set(SLUGS))
+        for slug in SLUGS:
+            self.assertEqual(routes.count(slug), 2, slug)
+
+    def test_debugging_example_fails_before_and_passes_after_the_fix(self):
+        document = GuideHTML((DOCS / "blog/debug-voi-ai-agent/index.html").read_text())
+        before = "".join(document.examples["debug-before"])
+        after = "".join(document.examples["debug-after"])
+        with self.assertRaises(AssertionError):
+            exec(compile(before, "blog-debug-before", "exec"), {})
+        exec(compile(after, "blog-debug-after", "exec"), {})
 
     def test_static_pages_have_unique_titles_and_canonical_metadata(self):
         titles = set()
