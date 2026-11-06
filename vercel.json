@@ -2,6 +2,6 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
   "installCommand": "",
-  "buildCommand": "python3 scripts/build_pages.py",
+  "buildCommand": "node --test tests/pages.test.cjs tests/ui-contract.test.cjs && python3 scripts/build_pages.py",
   "outputDirectory": "_site"
 }

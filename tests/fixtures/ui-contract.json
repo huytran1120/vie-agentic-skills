@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "widths": [
+    320,
+    390,
+    768,
+    1024,
+    1440
+  ],
+  "languages": [
+    "vi",
+    "en"
+  ],
+  "homepage_sections": [
+    ".intro",
+    "#catalog",
+    "#showcase",
+    "#applications",
+    "#quickstart",
+    "#faq"
+  ],
+  "max_search_gap_px": 340,
+  "themes": {
+    "light": {
+      "--paper": "#f3efea",
+      "--surface": "#fbf9f6",
+      "--soft": "#e9e3dc",
+      "--ink": "#262122",
+      "--muted": "#71676a",
+      "--line": "#dcd5cf",
+      "--accent": "#6b5059",
+      "--accent-hover": "#533b43",
+      "--on-accent": "#fffaf7",
+      "--selected": "#e5d9da",
+      "--warning": "#956127"
+    },
+    "dark": {
+      "--paper": "#181617",
+      "--surface": "#211e1f",
+      "--soft": "#2b2728",
+      "--ink": "#ebe5e2",
+      "--muted": "#bdb3b2",
+      "--line": "#40383b",
+      "--accent": "#dcc3c8",
+      "--accent-hover": "#eedade",
+      "--on-accent": "#33262a",
+      "--selected": "#3a3033",
+      "--warning": "#d9b093"
+    }
+  },
+  "fonts": {
+    "body": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+    "mono": "ui-monospace, \"SF Mono\", Menlo, Consolas, monospace"
+  }
+}

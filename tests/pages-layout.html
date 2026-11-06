@@ -3,6 +3,7 @@
 <head><meta charset="utf-8"><title>VAS browser layout regression</title></head>
 <body>
 <pre id="layout-result">Running</pre>
+<script src="./ui-contract-browser.js"></script>
 <script>
 (async () => {
   const errors = [];
@@ -13,6 +14,9 @@
     for (let attempt = 0; attempt < 200 && !test(); attempt++) await wait(25);
     if (!test()) throw new Error(typeof message === 'function' ? message() : message);
   };
+  const contractResponse = await fetch('./fixtures/ui-contract.json');
+  if (!contractResponse.ok) throw new Error('Cannot load the approved UI contract');
+  const contract = await contractResponse.json();
   const savedLanguage = localStorage.getItem('vas-language');
   const frame = document.createElement('iframe');
   frame.style.cssText = 'display:block;border:0;height:1000px;width:1440px';
@@ -27,6 +31,7 @@
     await ready;
     const w = frame.contentWindow;
     const d = frame.contentDocument;
+    const audit = label => VASUIContract.violations(d, w, contract).forEach(message => check(false, `${label}: ${message}`));
     w.addEventListener('error', event => errors.push(`Browser error: ${event.message}`));
     for (let attempt = 0; attempt < 200 && !d.querySelector('[data-skill]'); attempt++) await wait(25);
     check(Boolean(d.querySelector('[data-skill]')), 'Catalog must load real results');
@@ -42,7 +47,42 @@
     check(selected() === initialAgent, 'Decorative introduction must not change the installation agent');
     check(agent.getBoundingClientRect().width > 20, 'Agent reel must be visible on first load');
     const language = value => { if (d.documentElement.lang !== value) d.getElementById('language-toggle').click(); };
-    for (const locale of ['vi', 'en']) {
+    // dump-dom virtual time does not advance the native view-transition compositor.
+    // Exercise the production fallback here; verify native transitions in a real tab.
+    const transitionDescriptor = Object.getOwnPropertyDescriptor(d, 'startViewTransition');
+    Object.defineProperty(d, 'startViewTransition', { configurable: true, value: undefined });
+    try {
+      for (const theme of ['dark', 'light']) {
+        if (d.documentElement.dataset.theme !== theme) d.getElementById('theme-toggle').click();
+        await waitFor(() => d.documentElement.dataset.theme === theme, `Theme must become ${theme}`);
+        cta.getAnimations().forEach(animation => animation.finish());
+        await waitFor(() => w.getComputedStyle(cta).backgroundColor === VASUIContract.rgb(contract.themes[theme]['--accent']), () => `Primary color must settle in ${theme}: ${w.getComputedStyle(cta).backgroundColor}`);
+        audit(theme);
+      }
+    } finally {
+      if (transitionDescriptor) Object.defineProperty(d, 'startViewTransition', transitionDescriptor);
+      else delete d.startViewTransition;
+    }
+    // Negative controls: prove the audit catches plausible accidental regressions.
+    const badStyle = d.createElement('style');
+    badStyle.textContent = ':root { --accent: #00ff00 !important; } * { font-family: serif !important; } #catalog { padding-top: 1000px !important; } #showcase { display: none !important; } #intro-title { opacity: 0 !important; } .hero-field { visibility: hidden !important; } .field-capsule { display: none !important; }';
+    d.head.append(badStyle);
+    try {
+      const violations = VASUIContract.violations(d, w, contract);
+      for (const name of ['palette:light:--accent', 'font:body', 'search:gap', 'section:#showcase:hidden', 'hero:#intro-title:hidden', 'hero:field-hidden', 'hero:particles-missing']) {
+        check(violations.includes(name), `The UI guard must detect the injected regression ${name}`);
+      }
+    } finally { badStyle.remove(); }
+    await waitFor(() => VASUIContract.violations(d, w, contract).length === 0, () => `Removing the negative control must restore the design: ${VASUIContract.violations(d, w, contract)}; font=${w.getComputedStyle(d.body).fontFamily}`);
+    const field = d.querySelector('.hero-field');
+    if (w.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const before = [...field.children].map(node => node.style.transform).join('|');
+      await wait(120);
+      check(before === [...field.children].map(node => node.style.transform).join('|'), 'Reduced motion must keep decorative particles still');
+      check(!d.querySelector('[data-reveal="pending"]'), 'Reduced motion must not leave content pending and invisible');
+    }
+
+    for (const locale of contract.languages) {
       language(locale);
       check(d.documentElement.lang === locale, `${locale}: document language must update`);
       check(d.getElementById('readme-link').href === 'https://github.com/huytran1120/vie-agentic-skills/blob/main/README.md', `${locale}: guide link must open the rendered Vietnamese README with working repository links`);
@@ -53,7 +93,7 @@
       const githubNavigation = d.querySelector('.desktop-nav a[href="https://github.com/huytran1120/vie-agentic-skills"]');
       githubNavigation.focus({ preventScroll: true });
       githubNavigation.blur();
-      for (const width of [1440, 1024, 768, 390, 320]) {
+      for (const width of contract.widths) {
         frame.style.width = `${width}px`;
         await wait(80);
         const websiteNotice = d.getElementById('website-notice');
@@ -82,6 +122,7 @@
           check(d.documentElement.scrollWidth <= w.innerWidth, `${width}px: horizontal page overflow`);
           check(cta.getBoundingClientRect().bottom < 760, `${width}px: primary action pushed outside the first viewport`);
         }
+        audit(`${locale} ${width}px`);
         measurements.push({
           language: locale,
           width,
@@ -92,6 +133,44 @@
         });
       }
     }
+    const keyboardFrame = document.createElement('iframe');
+    keyboardFrame.style.cssText = 'display:block;border:0;height:1000px;width:390px';
+    const keyboardReady = new Promise(resolve => { keyboardFrame.onload = resolve; });
+    keyboardFrame.src = `${page}?lang=vi&agent=codex`;
+    document.body.append(keyboardFrame);
+    try {
+      await keyboardReady;
+      const kd = keyboardFrame.contentDocument, kw = keyboardFrame.contentWindow;
+      await waitFor(() => kd.querySelector('[data-skill]'), 'Keyboard probe must load the catalog');
+      const search = kd.getElementById('search-input');
+      for (const shortcut of [{ key: 'k', ctrlKey: true }, { key: 'k', metaKey: true }, { key: '/' }]) {
+        kd.getElementById('language-toggle').focus();
+        const event = new kw.KeyboardEvent('keydown', { ...shortcut, bubbles: true, cancelable: true });
+        kd.activeElement.dispatchEvent(event);
+        check(kd.activeElement === search && event.defaultPrevented, `Search shortcut ${JSON.stringify(shortcut)} must focus search`);
+      }
+      const editing = new kw.KeyboardEvent('keydown', { key: '/', bubbles: true, cancelable: true });
+      search.dispatchEvent(editing);
+      check(!editing.defaultPrevented && kd.activeElement === search, 'Slash while editing must remain ordinary input');
+      const focusForm = search.closest('form');
+      const focusStyle = kw.getComputedStyle(focusForm);
+      check(focusForm.matches(':focus-within') && focusStyle.borderTopColor === VASUIContract.rgb(contract.themes[kd.documentElement.dataset.theme || 'light']['--accent']), 'Focused search must expose its accent border');
+      for (const width of [390, 320]) {
+        keyboardFrame.style.width = `${width}px`;
+        await wait(80);
+        const menu = kd.getElementById('mobile-menu'), toggle = kd.getElementById('menu-toggle');
+        const box = toggle.getBoundingClientRect();
+        const style = kw.getComputedStyle(toggle);
+        check(box.width >= 44 && box.height >= 44 && box.left >= 0 && box.right <= kw.innerWidth && box.top >= 0 && box.bottom <= kw.innerHeight && style.visibility !== 'hidden' && style.opacity !== '0', `${width}px: mobile menu must be a visible 44px target`);
+        toggle.click();
+        check(!menu.hidden && toggle.getAttribute('aria-expanded') === 'true', `${width}px: menu must open with synchronized accessible state`);
+        toggle.focus();
+        toggle.dispatchEvent(new kw.KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true }));
+        check(menu.hidden && toggle.getAttribute('aria-expanded') === 'false' && kd.activeElement === toggle, `${width}px: Escape must close menu and restore focus`);
+        toggle.click(); menu.querySelector('a[href="#catalog"]').click();
+        check(menu.hidden && toggle.getAttribute('aria-expanded') === 'false', `${width}px: choosing a section must close the mobile menu`);
+      }
+    } finally { keyboardFrame.remove(); }
     frame.style.width = '390px';
     await wait(80);
     // Keep independent task/guide scenarios in their own document. Chromium limits

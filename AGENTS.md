@@ -31,6 +31,19 @@ All ongoing website development and deployment target Vercel.
 - `pages-budget.json` is retained only as a legacy reference (850 MB warning / 900 MB maximum); it does not constrain Vercel or trigger Pages publication. GitHub Pages remains frozen.
 - CI validates the full Vercel build and its budget on pull requests and pushes to the main branches. Build logs show the five largest directories.
 
+## Vercel UX/UI regression rules
+
+- Preserve the approved light/dark palette, system font stacks, hero wordmark, agent reel and decorative motion unless the user requests a design change. The baseline is `tests/fixtures/ui-contract.json`; never change it just to make a regression pass.
+- Keep the homepage order: hero → catalog/search → work categories → selected guides → quickstart → FAQ/sources. Search and the skill library remain primary; full articles belong under `/blog/`.
+- Keep working native links, exact canonical skill IDs, language/agent context, browser Back/Forward, reader fragments and return focus. Use the existing agent directory mapping and installation prompt generator.
+- Support 320, 390, 768, 1024 and 1440 px widths in Vietnamese and English. Do not introduce horizontal overflow, overlapping controls, hidden primary actions, or content that stays invisible with reduced motion. Preserve visible keyboard focus and accessible control names.
+- New blog articles need real static HTML, an index entry, sitemap/canonical metadata and valid skill links. Stage the intended article files before the final preflight; untracked drafts from other tasks are not release candidates.
+- Before pushing a website change, run `python3 scripts/verify_vercel_ui.py`. It requires Node.js and Chrome/Chromium, builds the artifact and fails rather than silently skipping the browser checks. Run the full repository checks when CLI, catalog or import data also change.
+- For visible UX/UI changes, compare a local demo or Vercel preview before production, including desktop/mobile screenshots, both themes/languages, keyboard navigation and native theme motion. Follow [the verification checklist](docs/vercel-ui-verification.md); automated geometry checks do not replace visual review.
+- Review the intended staged/committed snapshot and preserve unrelated work. After publishing, verify the exact commit, deployment status, public catalog/Blog/runbook and install manifest; report any unverified part.
+- Vercel's build runs the fast catalog/design-contract tests before building. Full browser checks run locally and in GitHub CI; the Git integration does not wait for GitHub CI automatically. Do not claim that a green deployment proves all UI checks passed.
+- Keep GitHub Pages frozen and retain the Vercel publication budget above. Do not restore Pages deployment or weaken the budget/tests to publish a failing change.
+
 ## Golden Rules for Agents
 
 1. **Zero NPX / Zero External Dependencies**:

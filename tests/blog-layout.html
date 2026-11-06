@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>VAS blog browser regression</title></head>
+<body>
+<pre id="layout-result">Running</pre>
+<script>
+(async () => {
+  const errors = [], measurements = [];
+  const check = (condition, message) => { if (!condition) errors.push(message); };
+  const wait = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds));
+  const waitFor = async (condition, message) => {
+    for (let attempt = 0; attempt < 200 && !condition(); attempt++) await wait(25);
+    if (!condition()) throw new Error(message);
+  };
+  const saved = new Map(['vas-language', 'vas-theme'].map(key => [key, localStorage.getItem(key)]));
+  const base = new URL(new URLSearchParams(location.search).has('artifact') ? '../_site/' : '../docs/', location.href);
+  const index = new URL('blog/', base);
+  const primary = 'https://vie-agentic-skills.vercel.app/';
+  const agent = 'claude';
+  const frames = new Set();
+  let contract;
+  const destination = (url, locale = 'vi') => {
+    const result = new URL(url);
+    result.searchParams.set('lang', locale);
+    result.searchParams.set('agent', agent);
+    return result;
+  };
+  const visible = node => Boolean(node && node.getClientRects().length && !node.hidden);
+  const intersects = (a, b) => Math.min(a.right, b.right) - Math.max(a.left, b.left) > 1
+    && Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top) > 1;
+  const rgb = value => {
+    const numbers = value.match(/[\d.]+/g)?.slice(0, 3).map(Number);
+    if (!numbers || numbers.length !== 3) throw new Error(`Unexpected computed color: ${value}`);
+    return numbers.map(number => number / 255).map(number => number <= .04045 ? number / 12.92 : ((number + .055) / 1.055) ** 2.4);
+  };
+  const contrast = (foreground, background) => {
+    const luminance = value => rgb(value).reduce((total, channel, index) => total + channel * [.2126, .7152, .0722][index], 0);
+    const a = luminance(foreground), b = luminance(background);
+    return (Math.max(a, b) + .05) / (Math.min(a, b) + .05);
+  };
+  async function load(url) {
+    const frame = document.createElement('iframe');
+    frame.style.cssText = 'display:block;border:0;height:1000px;width:1440px';
+    frames.add(frame);
+    let timeout;
+    const loaded = new Promise((resolve, reject) => {
+      timeout = setTimeout(() => reject(new Error(`Timed out loading ${url}`)), 5000);
+      frame.onload = () => { clearTimeout(timeout); resolve(); };
+      frame.onerror = () => { clearTimeout(timeout); reject(new Error(`Cannot load ${url}`)); };
+    });
+    frame.src = String(url);
+    document.body.append(frame);
+    await loaded;
+    frame.contentWindow.addEventListener('error', event => errors.push(`Blog browser error: ${event.message}`));
+    await waitFor(() => frame.contentDocument.getElementById('blog-language')?.textContent.trim()
+      && frame.contentDocument.querySelector('h1')?.innerText.trim(), `Blog must initialize: ${url}`);
+    return frame;
+  }
+  function remove(frame) { frame.remove(); frames.delete(frame); }
+  function contextLinks(doc, locale, label) {
+    for (const link of doc.querySelectorAll('[data-home], [data-catalog-skill], [data-blog], [data-guide-link]')) {
+      const url = new URL(link.href);
+      check(link.tagName === 'A' && link.hasAttribute('href'), `${label}: navigation must be a native anchor`);
+      check(url.origin === base.origin, `${label}: internal navigation must stay on the current deployment`);
+      check(url.searchParams.get('lang') === locale && url.searchParams.get('agent') === agent,
+        `${label}: ${link.getAttribute('href')} must preserve language and agent`);
+      if (link.hasAttribute('data-catalog-skill')) {
+        check(url.searchParams.get('skill') === link.dataset.catalogSkill, `${label}: skill link must retain its canonical identity`);
+        check(url.pathname === base.pathname, `${label}: skill link must reach the catalog root`);
+      }
+    }
+  }
+  function returnControl(doc, win, label) {
+    const link = doc.querySelector('[data-library-return]');
+    check(visible(link), `${label}: primary return to the library must be visible`);
+    const box = link.getBoundingClientRect();
+    check(box.left >= -1 && box.right <= win.innerWidth + 1 && box.top >= -1 && box.bottom <= win.innerHeight + 1,
+      `${label}: library return must stay inside the viewport`);
+    check(link.tagName === 'A' && link.tabIndex >= 0, `${label}: library return must support native keyboard navigation`);
+    const url = new URL(link.href);
+    check(url.pathname === base.pathname && url.hash === '#catalog', `${label}: return must target the catalog, not the blog root`);
+    return link;
+  }
+  async function inspectPage(url, article) {
+    // The served HTML itself must contain the heading and article text before JS runs.
+    const response = await fetch(url);
+    check(response.ok, `${url.pathname}: page must return HTTP success`);
+    const html = new DOMParser().parseFromString(await response.text(), 'text/html');
+    check(Boolean(html.querySelector('h1')?.textContent.trim()), `${url.pathname}: H1 must be present in static HTML`);
+    if (article) check(Boolean(html.querySelector('.guide-prose')?.textContent.trim()), `${url.pathname}: article body must be static HTML`);
+    const frame = await load(destination(url));
+    try {
+      const win = frame.contentWindow, doc = frame.contentDocument;
+      const expectedCanonical = new URL(url.pathname.slice(base.pathname.length), primary).href;
+      check(doc.querySelector('link[rel="canonical"]')?.href === expectedCanonical,
+        `${url.pathname}: canonical must identify the primary Vercel route`);
+      const initialHeading = doc.querySelector('h1').innerText.trim();
+      for (const locale of contract.languages) {
+        if (doc.documentElement.lang !== locale) doc.getElementById('blog-language').click();
+        check(doc.documentElement.lang === locale, `${url.pathname}: language toggle must update the document`);
+        const h1 = doc.querySelector('h1');
+        if (locale === 'en') check(h1.innerText.trim() !== initialHeading, `${url.pathname}: English must update the visible heading`);
+        check(new URL(win.location.href).searchParams.get('lang') === locale, `${url.pathname}: current URL must retain the selected language`);
+        contextLinks(doc, locale, `${url.pathname} ${locale}`);
+        for (const width of contract.widths) {
+          frame.style.width = `${width}px`;
+          win.scrollTo({ top: 0, behavior: 'instant' });
+          await wait(50);
+          const label = `${url.pathname} ${locale} ${width}px`;
+          const overflow = doc.documentElement.scrollWidth > win.innerWidth;
+          check(!overflow, `${label}: page must not overflow horizontally`);
+          const header = doc.querySelector('.guide-header');
+          const controls = [...header.querySelectorAll('.brand, .guide-nav a, .header-actions .icon-button')].filter(visible);
+          const boxes = controls.map(control => control.getBoundingClientRect());
+          let overlap = false;
+          boxes.forEach((box, index) => {
+            check(box.width > 0 && box.height > 0 && box.left >= -1 && box.right <= win.innerWidth + 1,
+              `${label}: header control ${index} must be visible inside the viewport`);
+            if (boxes.slice(index + 1).some(other => intersects(box, other))) overlap = true;
+          });
+          check(!overlap, `${label}: header controls must not overlap`);
+          for (const link of header.querySelectorAll('.guide-nav a')) {
+            check(link.getBoundingClientRect().height >= 40, `${label}: header navigation must keep a usable touch target`);
+          }
+
+          for (const button of header.querySelectorAll('.icon-button')) {
+            const box = button.getBoundingClientRect();
+            check(box.width >= 44 && box.height >= 44, `${label}: icon buttons must provide a 44px touch target`);
+          }
+          const prose = doc.querySelector(article ? '.guide-prose' : '.guide-index-intro');
+          const headingBox = h1.getBoundingClientRect(), proseBox = prose.getBoundingClientRect();
+          check(headingBox.width > 0 && headingBox.height > 0 && h1.innerText.trim(), `${label}: H1 must remain readable`);
+          check(proseBox.width > 0 && proseBox.height > 0 && prose.innerText.trim(), `${label}: prose must remain visible`);
+          check(parseFloat(win.getComputedStyle(prose).fontSize) >= 14, `${label}: prose must keep readable body type`);
+          const light = win.getComputedStyle(doc.body);
+          const lightBackground = light.backgroundColor, lightForeground = light.color;
+          check(contrast(lightForeground, lightBackground) >= 4.5, `${label}: body text needs sufficient light-theme contrast`);
+          const beforeLinks = [...doc.querySelectorAll('[data-home], [data-catalog-skill], [data-blog], [data-guide-link]')].map(link => link.href);
+          doc.getElementById('blog-theme').click();
+          const dark = win.getComputedStyle(doc.body);
+          check(doc.documentElement.dataset.theme === 'dark' && doc.getElementById('blog-theme').getAttribute('aria-pressed') === 'true',
+            `${label}: theme control must expose its dark state`);
+          check(dark.backgroundColor !== lightBackground && dark.color !== lightForeground, `${label}: dark mode must change the actual palette`);
+          check(contrast(dark.color, dark.backgroundColor) >= 4.5, `${label}: body text needs sufficient dark-theme contrast`);
+          check(JSON.stringify(beforeLinks) === JSON.stringify([...doc.querySelectorAll('[data-home], [data-catalog-skill], [data-blog], [data-guide-link]')].map(link => link.href)),
+            `${label}: changing theme must preserve navigation context`);
+          doc.getElementById('blog-theme').click();
+          check(doc.documentElement.dataset.theme === 'light', `${label}: theme toggle must return to light mode`);
+          const library = returnControl(doc, win, label);
+          library.focus({ preventScroll: true });
+          check(doc.activeElement === library, `${label}: keyboard focus must reach the library return anchor`);
+          win.scrollTo({ top: doc.documentElement.scrollHeight, behavior: 'instant' });
+          await wait(25);
+          const stickyReturn = returnControl(doc, win, `${label} scrolled`);
+          check(['sticky', 'fixed'].includes(win.getComputedStyle(header).position), `${label}: library return header must stay attached while reading`);
+          measurements.push({ path: url.pathname.slice(base.pathname.length), article, language: locale, width,
+            overflow, headerOverlap: overlap, returnVisible: visible(stickyReturn),
+            headingHeight: Math.round(headingBox.height), proseWidth: Math.round(proseBox.width) });
+        }
+      }
+    } finally { remove(frame); }
+  }
+  async function navigate(frame, link) {
+    let timeout;
+    const loaded = new Promise((resolve, reject) => {
+      timeout = setTimeout(() => reject(new Error(`Native link did not navigate: ${link.href}`)), 5000);
+      frame.onload = () => { clearTimeout(timeout); resolve(); };
+    });
+    try { link.click(); await loaded; }
+    finally { clearTimeout(timeout); }
+  }
+  try {
+    const contractResponse = await fetch(new URL('./fixtures/ui-contract.json', location.href));
+    if (!contractResponse.ok) throw new Error('The shared UI contract must load');
+    contract = await contractResponse.json();
+    if (!Array.isArray(contract.widths) || !contract.widths.length || !Array.isArray(contract.languages) || !contract.languages.length) {
+      throw new Error('The shared UI contract must define viewport widths and languages');
+    }
+    const discovery = await load(destination(index));
+    let articles;
+    try {
+      articles = [...new Set([...discovery.contentDocument.querySelectorAll('.guide-list [data-guide-link]')]
+        .map(link => {
+          const url = new URL(link.href);
+          url.search = ''; url.hash = '';
+          check(url.origin === base.origin && url.pathname.startsWith(index.pathname) && url.pathname !== index.pathname,
+            'Article discovery must stay under the local blog route');
+          return url.href;
+        }))].map(url => new URL(url));
+      check(articles.length > 0, 'Blog index must expose crawlable article links');
+    } finally { remove(discovery); }
+    await inspectPage(index, false);
+    for (const article of articles) await inspectPage(article, true);
+    // Exercise native page changes separately from the geometry loops. Each locale
+    // gets a fresh document, avoiding history-rate limits from synthetic toggling.
+    for (const locale of contract.languages) {
+      const frame = await load(destination(articles[0], locale));
+      try {
+        const blogLink = frame.contentDocument.querySelector('.guide-header [data-blog]');
+        check(blogLink?.tagName === 'A', `${locale}: article header must offer a native Blog link`);
+        await navigate(frame, blogLink);
+        check(frame.contentWindow.location.pathname === index.pathname, `${locale}: header Blog link must open the separate index`);
+        check(frame.contentDocument.documentElement.lang === locale, `${locale}: Blog navigation must preserve the language`);
+        contextLinks(frame.contentDocument, locale, `${locale} blog index after native navigation`);
+        const library = returnControl(frame.contentDocument, frame.contentWindow, `${locale} blog index`);
+        await navigate(frame, library);
+        await waitFor(() => frame.contentDocument.getElementById('quick-agent-select')?.value === agent,
+          `${locale}: library return must load the selected agent`);
+        const url = new URL(frame.contentWindow.location.href);
+        check(url.pathname === base.pathname && url.hash === '#catalog' && url.searchParams.get('lang') === locale && url.searchParams.get('agent') === agent,
+          `${locale}: library return must keep the complete catalog context`);
+        check(frame.contentDocument.documentElement.lang === locale && !frame.contentDocument.getElementById('library-view').hidden,
+          `${locale}: native return must show the catalog in the selected language`);
+        check(!frame.contentDocument.getElementById('cli-setup').open, `${locale}: returning from Blog must not open advanced CLI instructions`);
+      } finally { remove(frame); }
+    }
+    // Follow one visible article skill anchor natively, including the English
+    // variant whose Vietnamese sibling must remain hidden and unselected.
+    const locale = contract.languages[contract.languages.length - 1];
+    const skillFrame = await load(destination(articles[0], locale));
+    try {
+      const skillLink = [...skillFrame.contentDocument.querySelectorAll('[data-catalog-skill]')].find(visible);
+      check(Boolean(skillLink), 'An article must offer a visible native skill link');
+      const expectedSkill = skillLink.dataset.catalogSkill;
+      await navigate(skillFrame, skillLink);
+      await waitFor(() => skillFrame.contentDocument.getElementById('agent-select')?.value === agent,
+        'Native article skill navigation must load the chosen agent in the reader');
+      const doc = skillFrame.contentDocument, url = new URL(skillFrame.contentWindow.location.href);
+      check(url.pathname === base.pathname && url.searchParams.get('skill') === expectedSkill
+        && url.searchParams.get('lang') === locale && url.searchParams.get('agent') === agent,
+        'Native article skill navigation must retain the exact skill, language and agent');
+      check(doc.documentElement.lang === locale && !doc.getElementById('detail-view').hidden,
+        'Native article skill navigation must show the reader rather than the empty catalog');
+      await waitFor(() => doc.getElementById('runbook-content')?.getAttribute('aria-busy') === 'false',
+        'The article-linked runbook must finish loading');
+    } finally { remove(skillFrame); }
+  } catch (error) {
+    errors.push(error.stack || String(error));
+  } finally {
+    for (const frame of frames) frame.remove();
+    for (const [key, value] of saved) {
+      if (value === null) localStorage.removeItem(key);
+      else localStorage.setItem(key, value);
+    }
+  }
+  document.getElementById('layout-result').textContent = JSON.stringify({ errors, measurements });
+  document.documentElement.dataset.layoutComplete = 'true';
+})();
+</script>
+</body>
+</html>

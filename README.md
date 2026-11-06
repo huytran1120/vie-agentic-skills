@@ -292,6 +292,8 @@ node --test tests/*.test.cjs
 python3 scripts/build_pages.py
 ```
 
+Trước khi cập nhật giao diện Vercel, chạy `python3 scripts/verify_vercel_ui.py` để kiểm tra catalog, màu/font, bố cục desktop/mobile, Blog và điều hướng bằng trình duyệt. Lệnh yêu cầu Node.js và Chrome/Chromium; thiếu trình duyệt sẽ báo lỗi. Xem [quy tắc giữ UX/UI và các bước kiểm tra trực tiếp](docs/vercel-ui-verification.md) trước khi xuất bản thay đổi giao diện.
+
 Bản dựng website nằm tại `_site/`. **Vercel là nơi phát triển và xuất bản website chính:** [thư viện skill](https://vie-agentic-skills.vercel.app/) và [Blog / Hướng dẫn](https://vie-agentic-skills.vercel.app/blog/). Khi push lên `main`, kết nối GitHub–Vercel sẽ build theo [vercel.json](vercel.json).
 
 **GitHub Pages giữ nguyên bản đã xuất bản.** Dự án đã bỏ workflow triển khai Pages; các thay đổi mới không cập nhật website cũ, không thay nó bằng trang chuyển hướng và không gỡ website đang chạy.
