@@ -14,17 +14,22 @@ and open `http://127.0.0.1:8765/docs/`. Local runbook links require serving the
 project root, not just `docs/`. The project repository is
 https://github.com/huytran1120/vie-agentic-skills. The primary public website is
 https://vie-agentic-skills.vercel.app/, built with `vercel.json`. UX, UI, content,
-and SEO improvements target this primary website. GitHub Pages remains available
-at https://huytran1120.github.io/vie-agentic-skills/ with a notice linking visitors
-to Vercel, deployed by `.github/workflows/deploy-pages.yml`.
+and SEO improvements target this primary website. GitHub Pages remains available at
+https://huytran1120.github.io/vie-agentic-skills/ as its last published version.
+It is frozen: the Pages deployment workflow has been removed. Do not update,
+redirect, republish, or unpublish that site unless the user explicitly requests it.
+All ongoing website development and deployment target Vercel.
 
-## GitHub Pages publication budget
+## Vercel publication budget
 
 - After adding assets or importing skills, run `python3 scripts/build_pages.py`.
-- `pages-budget.json` warns at 850,000,000 bytes and fails the build above 900,000,000 bytes.
-- The budget counts all published files in `_site/`, including runbooks, assets, and generated manifests. It does not measure first-page transfer size.
-- Keep `0 < warning_bytes < max_bytes < 1,000,000,000`. Build logs identify the five largest directories to guide size reductions.
-- CI checks the budget on pull requests and pushes to the main branches; Pages upload runs only after a successful build.
+- The normal build and CI use `vercel-budget.json`: warn at 1,000,000,000 bytes and fail above 1,500,000,000 bytes.
+- These are project operating budgets, not Vercel provider limits. Keep `0 < warning_bytes < max_bytes`; do not remove the guard to make a large import pass.
+- The budget counts every published file in `_site/`, including runbooks, assets, and generated manifests. It does not measure first-page transfer size, repository size, build cache, or the team's retained Deployment Storage.
+- Before raising the budget or importing a large asset collection, check the Vercel team's actual Deployment Storage usage and retained deployments. Hobby's published 10 GB allowance applies across retained deployments at team level, not to each website. Recheck the current plan and [official storage guidance](https://vercel.com/docs/deployment-storage).
+- Keep deployments on the configured GitHub-to-Vercel integration. The [CLI upload limit](https://vercel.com/docs/limits#static-file-uploads) is a different limit from generated build output.
+- `pages-budget.json` is retained only as a legacy reference (850 MB warning / 900 MB maximum); it does not constrain Vercel or trigger Pages publication. GitHub Pages remains frozen.
+- CI validates the full Vercel build and its budget on pull requests and pushes to the main branches. Build logs show the five largest directories.
 
 ## Golden Rules for Agents
 

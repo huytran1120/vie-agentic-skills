@@ -4,7 +4,7 @@
 
 VAS tập hợp **3.885 skill** thuộc **119 danh mục**, do [Huy Tran](https://github.com/huytran1120) tuyển chọn và duy trì. Bạn có thể tìm quy trình phù hợp với công việc, đọc nội dung rồi cài vào dự án đang dùng với Antigravity, Codex, Claude Code, Cursor, Windsurf, Cline hoặc GitHub Copilot CLI.
 
-**[Mở thư viện skill trên Vercel](https://vie-agentic-skills.vercel.app/)** · [GitHub Pages](https://huytran1120.github.io/vie-agentic-skills/?lang=vi) · [Xem toàn bộ danh mục](CATALOG.md) · [Báo lỗi hoặc đề xuất](https://github.com/huytran1120/vie-agentic-skills/issues)
+**[Mở thư viện skill trên Vercel](https://vie-agentic-skills.vercel.app/)** · [Blog / Hướng dẫn](https://vie-agentic-skills.vercel.app/blog/) · [GitHub Pages — bản cũ](https://huytran1120.github.io/vie-agentic-skills/?lang=vi) · [Xem toàn bộ danh mục](CATALOG.md) · [Báo lỗi hoặc đề xuất](https://github.com/huytran1120/vie-agentic-skills/issues)
 
 Một **skill** là bộ hướng dẫn nghiệp vụ dành cho agent: khi nào áp dụng, cần thông tin gì, các bước thực hiện và cách kiểm tra kết quả. Nội dung chính nằm trong `SKILL.md`; một số skill có thêm mã hỗ trợ, biểu mẫu và tài liệu tham khảo. Cài skill giúp agent tiếp cận quy trình đó; các công cụ, tài khoản hoặc dịch vụ mà quy trình yêu cầu vẫn cần được thiết lập riêng.
 
@@ -292,11 +292,15 @@ node --test tests/*.test.cjs
 python3 scripts/build_pages.py
 ```
 
-Bản dựng website nằm tại `_site/`. [Quy trình GitHub Pages](.github/workflows/deploy-pages.yml) triển khai website từ nhánh `main` sau các bước kiểm tra.
+Bản dựng website nằm tại `_site/`. **Vercel là nơi phát triển và xuất bản website chính:** [thư viện skill](https://vie-agentic-skills.vercel.app/) và [Blog / Hướng dẫn](https://vie-agentic-skills.vercel.app/blog/). Khi push lên `main`, kết nối GitHub–Vercel sẽ build theo [vercel.json](vercel.json).
 
-**Giới hạn dung lượng Pages:** [pages-budget.json](pages-budget.json) đặt ngưỡng cảnh báo **850 MB** và ngưỡng dừng build **900 MB** (1 MB = 1.000.000 byte). Khi vượt 900 MB, lệnh build trả lỗi và CI chặn xuất bản; log báo tổng dung lượng cùng 5 thư mục lớn nhất. Cấu hình phải giữ `max_bytes` dưới 1.000.000.000 byte.
+**GitHub Pages giữ nguyên bản đã xuất bản.** Dự án đã bỏ workflow triển khai Pages; các thay đổi mới không cập nhật website cũ, không thay nó bằng trang chuyển hướng và không gỡ website đang chạy.
 
-Giới hạn tính toàn bộ tệp trong `_site/`, gồm runbook, tài nguyên và manifest; đây là dung lượng xuất bản, khác với dữ liệu tải khi mở trang đầu. Chạy lại lệnh build sau khi thêm tài nguyên hoặc nhập bộ skill mới.
+**Budget dung lượng cho Vercel:** [vercel-budget.json](vercel-budget.json) đặt cảnh báo ở **1 GB** và dừng build khi vượt **1,5 GB** (1 GB = 1.000.000.000 byte). Đây là ngân sách do dự án đặt để kiểm soát tăng trưởng, không phải giới hạn cứng của nhà cung cấp. CI kiểm tra budget này; log báo tổng dung lượng cùng 5 thư mục lớn nhất.
+
+Budget tính toàn bộ tệp xuất bản trong `_site/`, gồm runbook, tài nguyên và manifest; đây không phải dung lượng tải khi mở trang đầu. Chạy lại lệnh build sau khi thêm tài nguyên hoặc nhập bộ skill mới. [pages-budget.json](pages-budget.json) giữ lại để tham khảo mốc cũ 850/900 MB, không còn chặn build Vercel.
+
+**Phân biệt quota Vercel:** theo [thông báo Hobby ngày 16/09/2026](https://vercel.com/changelog/hobby-projects-now-retain-fewer-deployments-to-free-up-storage), 10 GB Deployment Storage là tổng dung lượng các deployment được giữ lại ở cấp team, không phải 10 GB cho mỗi website. Trước khi nhập bộ tài nguyên lớn hoặc nâng budget, xem **Usage → Deployment Storage** và lịch sử deployment của đúng team. [Hạn mức upload bằng CLI](https://vercel.com/docs/limits#static-file-uploads), build cache và [Deployment Storage](https://vercel.com/docs/deployment-storage) là các loại giới hạn khác nhau; dự án đang triển khai qua GitHub–Vercel.
 
 <a id="nguon-va-giay-phep"></a>
 ## Nguồn và giấy phép

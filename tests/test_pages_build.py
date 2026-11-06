@@ -90,32 +90,50 @@ class PagesBuildTests(unittest.TestCase):
             self.assertIn("assets: 20 bytes", log.getvalue())
             self.assertIn("(root files): 10 bytes", log.getvalue())
 
-    def test_size_budget_is_required_and_cannot_exceed_the_host_limit(self):
+    def test_vercel_size_budget_is_required_and_validates_integer_order(self):
         with tempfile.TemporaryDirectory(prefix="vie-size-config-") as temp:
             root = Path(temp)
             self.fixture(root)
             PAGES.build(root, revision=REVISION)
-            config = root / "pages-budget.json"
+            config = root / "vercel-budget.json"
             valid = json.loads(config.read_text())
-            for budget in ([], {}, {**valid, "max_bytes": 1_000_000_000},
+            for budget in ([], {}, {**valid, "max_bytes": -1},
                            {**valid, "warning_bytes": True},
                            {**valid, "max_bytes": "900000000"},
                            {**valid, "warning_bytes": valid["max_bytes"]},
                            {**valid, "warning_bytes": 0}):
                 config.write_text(json.dumps(budget))
-                with self.assertRaisesRegex(ValueError, "Invalid pages-budget.json"):
+                with self.assertRaisesRegex(ValueError, r"Invalid vercel-budget\.json.*0 < warning_bytes < max_bytes"):
                     PAGES.build(root, revision=REVISION)
                 self.assertTrue((root / "_site/index.html").is_file())
             config.unlink()
             with self.assertRaises(FileNotFoundError):
                 PAGES.build(root, revision=REVISION)
 
+    def test_vercel_budget_above_one_gb_does_not_relax_github_pages_limit(self):
+        with tempfile.TemporaryDirectory(prefix="vie-host-budgets-") as temp:
+            root = Path(temp)
+            self.fixture(root)
+            vercel = {"warning_bytes": 1_000_000_000, "max_bytes": 1_500_000_000}
+            (root / "vercel-budget.json").write_text(json.dumps(vercel))
+            self.assertEqual(PAGES.load_size_budget(root), vercel)
+            # A small Pages-only budget must not accidentally constrain the full Vercel build.
+            (root / "pages-budget.json").write_text(json.dumps({"warning_bytes": 500, "max_bytes": 1000}))
+            output = PAGES.build(root, revision=REVISION)
+            self.assertTrue((output / "install-manifests/youtube-agent-skill/yt-chapters.json").is_file())
+            self.assertGreater(sum(path.stat().st_size for path in output.rglob("*") if path.is_file()), 1000)
+            self.assertEqual(PAGES.load_size_budget(root, target="pages")["max_bytes"], 1000)
+            for maximum in (1_000_000_000, 1_500_000_000):
+                (root / "pages-budget.json").write_text(json.dumps({"warning_bytes": 500, "max_bytes": maximum}))
+                with self.assertRaisesRegex(ValueError, r"Invalid pages-budget\.json.*1,000,000,000"):
+                    PAGES.load_size_budget(root, target="pages")
+
     def test_build_enforces_budget_after_writing_the_complete_artifact(self):
         with tempfile.TemporaryDirectory(prefix="vie-size-build-") as temp:
             root = Path(temp)
             self.fixture(root)
-            (root / "pages-budget.json").write_text(json.dumps({"warning_bytes": 500, "max_bytes": 1000}))
-            with self.assertRaisesRegex(ValueError, "Pages size budget exceeded"):
+            (root / "vercel-budget.json").write_text(json.dumps({"warning_bytes": 500, "max_bytes": 1000}))
+            with self.assertRaisesRegex(ValueError, "Vercel size budget exceeded"):
                 PAGES.build(root, revision=REVISION)
             self.assertTrue((root / "_site/install-manifests/youtube-agent-skill/yt-chapters.json").is_file())
 
@@ -123,7 +141,7 @@ class PagesBuildTests(unittest.TestCase):
         with tempfile.TemporaryDirectory(prefix="vie-size-command-") as temp:
             root = Path(temp)
             self.fixture(root)
-            (root / "pages-budget.json").write_text(json.dumps({"warning_bytes": 500, "max_bytes": 1000}))
+            (root / "vercel-budget.json").write_text(json.dumps({"warning_bytes": 500, "max_bytes": 1000}))
             (root / "scripts").mkdir()
             shutil.copy2(ROOT / "scripts/build_pages.py", root / "scripts/build_pages.py")
             for command in (
@@ -136,9 +154,9 @@ class PagesBuildTests(unittest.TestCase):
             result = subprocess.run([sys.executable, "-B", "scripts/build_pages.py"],
                                     cwd=root, text=True, capture_output=True)
             self.assertEqual(result.returncode, 1)
-            self.assertIn("Pages size budget exceeded", result.stderr)
+            self.assertIn("Vercel size budget exceeded", result.stderr)
             self.assertIn("Largest directories:", result.stderr)
-            self.assertNotIn("GitHub Pages artifact:", result.stdout)
+            self.assertNotIn("Vercel artifact:", result.stdout)
 
     def test_social_preview_has_complete_metadata_and_an_uploadable_png(self):
         class MetadataParser(HTMLParser):
@@ -204,7 +222,8 @@ class PagesBuildTests(unittest.TestCase):
         self.assertLess(len(data), 1024 * 1024)
 
     def fixture(self, root):
-        (root / "pages-budget.json").write_bytes((ROOT / "pages-budget.json").read_bytes())
+        for filename in ("pages-budget.json", "vercel-budget.json"):
+            (root / filename).write_bytes((ROOT / filename).read_bytes())
         (root / "docs/assets").mkdir(parents=True)
         (root / "docs/index.html").write_text(
             '<html data-skill-base=".."><link rel="stylesheet" href="./catalog.css">'

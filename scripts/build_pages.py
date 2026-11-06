@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Stage a complete static site with content-versioned CSS and script URLs."""
+"""Stage the Vercel website with content-versioned CSS and script URLs."""
 
 from hashlib import sha256
 import json
@@ -17,14 +17,20 @@ EXCLUDED = {"__pycache__", ".DS_Store"}
 PAGES_LIMIT_BYTES = 1_000_000_000
 
 
-def load_size_budget(root):
-    budget = json.loads((root / "pages-budget.json").read_text())
+def load_size_budget(root, target="vercel"):
+    if target not in ("vercel", "pages"):
+        raise ValueError(f"Unknown publication target: {target}")
+    filename = f"{target}-budget.json"
+    budget = json.loads((root / filename).read_text())
     if (not isinstance(budget, dict)
             or set(budget) != {"warning_bytes", "max_bytes"}
             or any(type(budget[key]) is not int for key in budget)
-            or not 0 < budget["warning_bytes"] < budget["max_bytes"] < PAGES_LIMIT_BYTES):
-        raise ValueError("Invalid pages-budget.json: require integer bytes with "
-                         "0 < warning_bytes < max_bytes < 1,000,000,000")
+            or not 0 < budget["warning_bytes"] < budget["max_bytes"]):
+        raise ValueError(f"Invalid {filename}: require integer bytes with "
+                         "0 < warning_bytes < max_bytes")
+    # The retained legacy configuration is never used by the Vercel build.
+    if target == "pages" and budget["max_bytes"] >= PAGES_LIMIT_BYTES:
+        raise ValueError("Invalid pages-budget.json: require max_bytes < 1,000,000,000")
     return budget
 
 
@@ -32,7 +38,7 @@ def enforce_size_budget(output, budget, report=False):
     total, directories = 0, {}
     for path in output.rglob("*"):
         if path.is_symlink():
-            raise ValueError(f"Pages artifact must not contain symlinks: {path}")
+            raise ValueError(f"Vercel artifact must not contain symlinks: {path}")
         if not path.is_file():
             continue
         size = path.stat().st_size
@@ -44,7 +50,7 @@ def enforce_size_budget(output, budget, report=False):
             directory = parts[0] if len(parts) > 1 else "(root files)"
         directories[directory] = directories.get(directory, 0) + size
     largest = sorted(directories.items(), key=lambda item: (-item[1], item[0]))[:5]
-    details = (f"Pages size: {total:,} bytes ({total / 1_000_000:.1f} MB; "
+    details = (f"Vercel size: {total:,} bytes ({total / 1_000_000:.1f} MB; "
                f"{total / 2**20:.1f} MiB)\n"
                f"Warning: {budget['warning_bytes']:,} bytes; "
                f"limit: {budget['max_bytes']:,} bytes\n"
@@ -52,13 +58,13 @@ def enforce_size_budget(output, budget, report=False):
                    f"  {name}: {size:,} bytes ({size / 1_000_000:.1f} MB)"
                    for name, size in largest))
     if total > budget["max_bytes"]:
-        raise ValueError(f"Pages size budget exceeded by {total - budget['max_bytes']:,} bytes.\n"
+        raise ValueError(f"Vercel size budget exceeded by {total - budget['max_bytes']:,} bytes.\n"
                          f"{details}\nReduce the publication payload before deploying.")
     if report or total >= budget["warning_bytes"]:
         print(details)
     if total >= budget["warning_bytes"]:
         prefix = "::warning::" if os.environ.get("GITHUB_ACTIONS") == "true" else "WARNING: "
-        print(f"{prefix}Pages is approaching its size budget: "
+        print(f"{prefix}Vercel is approaching its size budget: "
               f"{total:,} / {budget['max_bytes']:,} bytes.")
     return total
 
@@ -173,10 +179,10 @@ def build(root=ROOT, revision=None, report=False):
     sources = (root / "docs", root / "skills")
     for source in sources:
         if source.is_symlink():
-            raise ValueError(f"Pages sources must not contain symlinks: {source}")
+            raise ValueError(f"Website sources must not contain symlinks: {source}")
         for path in source.rglob("*"):
             if path.is_symlink():
-                raise ValueError(f"Pages sources must not contain symlinks: {path}")
+                raise ValueError(f"Website sources must not contain symlinks: {path}")
     manifests = installation_manifests(root, revision)
     html = (root / "docs/index.html").read_text()
     if html.count('data-skill-base=".."') != 1:
@@ -236,6 +242,6 @@ def build(root=ROOT, revision=None, report=False):
 
 if __name__ == "__main__":
     try:
-        print(f"GitHub Pages artifact: {build(report=True)}")
+        print(f"Vercel artifact: {build(report=True)}")
     except ValueError as error:
         raise SystemExit(str(error))
