@@ -356,7 +356,12 @@
     return { html, headings };
   }
 
-  const api = { normalize, matchesGroup, filterSkills, installCommand, installationPlan, skillUrl, sourceUrl, groups, agents, targetFolders, globalFolders, readCatalogState, catalogParams, matchesSource, renderMarkdown, agentInstallPrompt, installManifestUrl, validateInstallManifest };
+  function primaryWebsiteUrl(location) {
+    if (location?.hostname !== 'huytran1120.github.io' || !/^\/vie-agentic-skills(?:\/|$)/.test(location.pathname)) return null;
+    return 'https://vie-agentic-skills.vercel.app/' + (location.search || '') + (location.hash || '');
+  }
+
+  const api = { normalize, matchesGroup, filterSkills, installCommand, installationPlan, skillUrl, sourceUrl, groups, agents, targetFolders, globalFolders, readCatalogState, catalogParams, matchesSource, renderMarkdown, agentInstallPrompt, installManifestUrl, validateInstallManifest, primaryWebsiteUrl };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   if (typeof document === 'undefined') return;
 
@@ -431,6 +436,7 @@
     const afterInstallationOpen = document.querySelector('#installation-after')?.open;
     const cliOpen = document.querySelector('#cli-installation')?.open;
     i18n.apply(document, state.language);
+    syncWebsiteNotice();
     const toggle = byId('language-toggle');
     toggle.textContent = state.language === 'vi' ? 'EN' : 'VI';
     toggle.setAttribute('lang', state.language === 'vi' ? 'en' : 'vi');
@@ -486,6 +492,14 @@
     const changedContext = !previous || previous.page !== context.page || previous.scroll !== context.scroll || previous.libraryScroll !== context.libraryScroll;
     if (changedUrl || (!push && changedContext)) window.history[push ? 'pushState' : 'replaceState'](history, '', url);
     locationSearch = window.location.search;
+    syncWebsiteNotice();
+  }
+  function syncWebsiteNotice() {
+    const notice = byId('website-notice');
+    if (!notice) return;
+    const destination = primaryWebsiteUrl(typeof window === 'undefined' ? null : window.location);
+    notice.hidden = !destination;
+    if (destination) notice.querySelectorAll('[data-primary-website]').forEach(link => { link.href = destination; });
   }
   function commandPreview(id) { try { const plan = installationPlan(id, state.target, state); return { command: plan.install, plan }; } catch (error) { return { error: error.message }; } }
   function syncInstallation() {
@@ -706,6 +720,7 @@
   });
   document.addEventListener('input', event => { if (event.target.id === 'project-path') { state.projectPath = event.target.value; syncInstallation(); } });
   if (typeof window !== 'undefined') window.addEventListener('popstate', restoreLocation);
+  if (typeof window !== 'undefined') window.addEventListener('hashchange', syncWebsiteNotice);
   byId('load-more').addEventListener('click', () => { const firstNew = state.page * pageSize; state.page++; renderResults(); syncUrl(); const next = byId('skills-results').querySelectorAll('.skill-name')[firstNew]; if (next) next.focus({ preventScroll: true }); });
   function selectSource(source) { state.query = ''; state.group = 'all'; state.category = 'all'; state.sources = [source]; byId('search-input').value = ''; applyFilters(); focusSearch(); }
   byId('addy-collection').addEventListener('click', () => selectSource('addy')); byId('matt-collection').addEventListener('click', () => selectSource('mattpocock'));

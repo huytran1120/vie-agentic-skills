@@ -61,6 +61,16 @@ code, kbd, pre { font-family: var(--mono); }
 .quiet { color: var(--muted); }
 .text-button { border: 0; background: none; color: var(--accent); min-height: 44px; padding: 8px 0; font-size: 12px; text-align: left; }
 .text-link { color: var(--accent); font-size: 13px; text-decoration: none; }
+.website-notice { background: var(--soft); border-block: 1px solid var(--line); }
+.website-notice-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-block: 20px; }
+.website-notice-copy { min-width: 0; }
+.website-notice-copy > p + p { margin-top: 4px; color: var(--muted); font-size: 13px; }
+.website-notice-url { display: inline-block; margin-top: 6px; color: var(--accent); overflow-wrap: anywhere; }
+.website-notice .button { flex-shrink: 0; }
+@media (max-width: 650px) {
+  .website-notice-inner { flex-direction: column; align-items: stretch; gap: 14px; }
+  .website-notice .button { width: 100%; }
+}
 .menu-button, .mobile-nav { display: none; }
 .intro { position: relative; overflow: clip; }
 .hero-inner { position: relative; padding-top: 72px; }

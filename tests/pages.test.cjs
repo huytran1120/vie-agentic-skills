@@ -8,6 +8,16 @@ const i18n = require('../docs/i18n.js');
 const skills = require('../docs/skills.min.json');
 const root = path.resolve(__dirname, '..');
 
+test('GitHub Pages migration links preserve catalog state and runbook fragments on Vercel', () => {
+  for (const suffix of ['', '?lang=en&q=docker&agent=codex', '?lang=vi&skill=pdf#runbook-verify-and-report']) {
+    const location = new URL('https://huytran1120.github.io/vie-agentic-skills/' + suffix);
+    assert.equal(catalog.primaryWebsiteUrl(location), 'https://vie-agentic-skills.vercel.app/' + suffix);
+  }
+  for (const source of ['https://vie-agentic-skills.vercel.app/', 'http://127.0.0.1:8765/docs/', 'https://huytran1120.github.io/other-project/', 'https://huytran1120.github.io/vie-agentic-skills-other/']) {
+    assert.equal(catalog.primaryWebsiteUrl(new URL(source)), null, 'Only this project on GitHub Pages should show the migration notice');
+  }
+});
+
 test('all real skills remain discoverable without filters', () => {
   assert.equal(catalog.filterSkills(skills).length, skills.length);
   assert.equal(new Set(catalog.filterSkills(skills).map(skill => skill.id)).size, skills.length);
@@ -1012,6 +1022,29 @@ function languageWindow(search = '', saved = null, blocked = false) {
     addEventListener(name, handler) { listeners.set(name, handler); }
   };
 }
+
+test('the GitHub Pages notice tracks filter, agent, language and fragment changes without redirecting', async () => {
+  const window = languageWindow();
+  window.location.href = 'https://huytran1120.github.io/vie-agentic-skills/?lang=vi&q=docker';
+  const runtime = browserRuntime(async () => ({ ok: true, json: async () => skills }), window);
+  await new Promise(setImmediate);
+  const notice = runtime.elements.get('website-notice'), links = [{}, {}];
+  assert.equal(notice.hidden, false);
+  notice.querySelectorAll = () => links;
+  runtime.document.listeners.get('change')({ target: { id: 'quick-agent-select', value: 'codex' } });
+  runtime.elements.get('language-toggle').listeners.get('click')();
+  window.location.hash = '#catalog';
+  window.listeners.get('hashchange')();
+  for (const link of links) {
+    const destination = new URL(link.href);
+    assert.equal(destination.origin, 'https://vie-agentic-skills.vercel.app');
+    assert.equal(destination.searchParams.get('agent'), 'codex');
+    assert.equal(destination.searchParams.get('lang'), 'en');
+    assert.equal(destination.searchParams.get('q'), 'docker');
+    assert.equal(destination.hash, '#catalog');
+  }
+  assert.equal(window.location.hostname, 'huytran1120.github.io');
+});
 
 test('direct links and reloads scroll to a runbook heading after delayed Markdown arrives', async () => {
   for (const fragment of ['#runbook-verify-and-report', '#runbook-%76erify-and-report', '#unknown', '#%invalid']) {

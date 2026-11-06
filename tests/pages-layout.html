@@ -51,6 +51,15 @@
       for (const width of [1440, 1024, 768, 390, 320]) {
         frame.style.width = `${width}px`;
         await wait(80);
+        const websiteNotice = d.getElementById('website-notice');
+        check(websiteNotice.hidden, 'The GitHub Pages migration notice must stay hidden on other hosts');
+        // Exercise the notice geometry locally; host selection is covered by the Node regression.
+        websiteNotice.hidden = false;
+        check(d.documentElement.scrollWidth <= w.innerWidth, `${locale} ${width}px: migration notice must not cause horizontal overflow`);
+        const websiteAction = websiteNotice.querySelector('.button');
+        check(websiteAction.href === 'https://vie-agentic-skills.vercel.app/', 'Migration CTA must link to the main website');
+        check(websiteAction.getBoundingClientRect().height >= 44, 'Migration CTA must remain touch accessible');
+        websiteNotice.hidden = true;
         const languageBox = d.getElementById('language-toggle').getBoundingClientRect();
         check(languageBox.width >= 44 && languageBox.left >= 0 && languageBox.right <= w.innerWidth, `${locale} ${width}px: language switch must be visible and touch accessible`);
         for (let option = 0; option < 7; option++) {
