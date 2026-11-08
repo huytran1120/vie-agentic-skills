@@ -640,7 +640,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
   const youtube = catalog.filterSkills(skills, { sources: ['youtube'] });
   assert.equal(youtube.length, 11);
   assert.equal(catalog.filterSkills(skills, { query: 'youtube-agent-skill' }).length, 11);
-  assert.equal(skills.length, 3889);
+  assert.equal(skills.length, 4073);
   for (const skill of youtube) {
     assert.ok(skill.id.startsWith('youtube-agent-skill/'));
     assert.equal(skill.source_repo, 'Jakeschincariol/youtube-agent-skill');
@@ -655,7 +655,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
     assert.deepEqual(state.sources, ['youtube']);
     assert.equal(state.selected, youtube[0].id);
     assert.ok(i18n.translate('collections.youtube', language).startsWith('11 '));
-    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '3.889' : '3,889'));
+    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '4.073' : '4,073'));
   }
   assert.equal(catalog.filterSkills(skills, { sources: ['youtube'], category: 'security' }).length, 0);
   const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
@@ -1814,4 +1814,34 @@ test('researchexplainer retains exact source filtering, MIT / CC licenses and ag
   assert.ok(html.includes('data-source-count="researchexplainer">4<'));
   assert.ok(html.includes('id="researchexplainer-collection"'));
 });
+
+test('googleskills retains exact source filtering, Apache-2.0 license and agent prompts', () => {
+  const gSkills = catalog.filterSkills(skills, { sources: ['googleskills'] });
+  assert.equal(gSkills.length, 184);
+  assert.equal(catalog.filterSkills(skills, { query: 'google/skills' }).length, 184);
+  const gcloudSkill = gSkills.find(s => s.id === 'gcloud');
+  assert.ok(gcloudSkill);
+  assert.equal(gcloudSkill.source_repo, 'google/skills');
+  assert.equal(gcloudSkill.author, 'Google');
+  assert.equal(gcloudSkill.license, 'Apache-2.0');
+  assert.equal(gcloudSkill.category, 'cloud');
+  assert.equal(gcloudSkill.risk, 'safe');
+
+  for (const language of ['vi', 'en']) {
+    assert.ok(i18n.translate('collections.googleskills', language).startsWith('184 '));
+    for (const [agent] of catalog.agents.filter(([key]) => key !== 'all')) {
+      const prompt = catalog.agentInstallPrompt(gcloudSkill, agent, language);
+      assert.ok(prompt.includes(`/install-manifests/${gcloudSkill.id}.json`));
+      assert.ok(prompt.includes(catalog.targetFolders[agent]));
+      assert.ok(prompt.includes('SHA-256'));
+      assert.ok(prompt.includes('.vas-manifest.json'));
+    }
+  }
+
+  const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
+  assert.ok(html.includes('name="source" value="googleskills"'));
+  assert.ok(html.includes('data-source-count="googleskills">184<'));
+  assert.ok(html.includes('id="googleskills-collection"'));
+});
+
 

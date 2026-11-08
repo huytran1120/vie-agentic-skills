@@ -2,7 +2,7 @@
 
 **Thư viện kỹ năng cho trợ lý AI lập trình, có hướng dẫn sử dụng bằng tiếng Việt.**
 
-VAS tập hợp **3.889 skill** thuộc **119 danh mục**, do [Huy Tran](https://github.com/huytran1120) tuyển chọn và duy trì. Bạn có thể tìm quy trình phù hợp với công việc, đọc nội dung rồi cài vào dự án đang dùng với Antigravity, Codex, Claude Code, Cursor, Windsurf, Cline hoặc GitHub Copilot CLI.
+VAS tập hợp **4.073 skill** thuộc **119 danh mục**, do [Huy Tran](https://github.com/huytran1120) tuyển chọn và duy trì. Bạn có thể tìm quy trình phù hợp với công việc, đọc nội dung rồi cài vào dự án đang dùng với Antigravity, Codex, Claude Code, Cursor, Windsurf, Cline hoặc GitHub Copilot CLI.
 
 **[Mở thư viện skill trên Vercel](https://vie-agentic-skills.vercel.app/)** · [Blog / Hướng dẫn](https://vie-agentic-skills.vercel.app/blog/) · [GitHub Pages — bản cũ](https://huytran1120.github.io/vie-agentic-skills/?lang=vi) · [Xem toàn bộ danh mục](CATALOG.md) · [Báo lỗi hoặc đề xuất](https://github.com/huytran1120/vie-agentic-skills/issues)
 
@@ -164,11 +164,11 @@ Một số danh mục để tra cứu:
 | Chuyên môn | Mã danh mục | Số skill |
 | --- | --- | ---: |
 | Phát triển phần mềm | `development` | 230 |
-| Bảo mật | `security` | 279 |
-| Vận hành và triển khai | `devops` | 169 |
-| Điện toán đám mây | `cloud` | 170 |
+| Bảo mật | `security` | 302 |
+| Vận hành và triển khai | `devops` | 215 |
+| Điện toán đám mây | `cloud` | 211 |
 | Kiểm thử | `testing` | 60 |
-| Trí tuệ nhân tạo và học máy | `ai-ml` | 136 |
+| Trí tuệ nhân tạo và học máy | `ai-ml` | 164 |
 
 ```bash
 python3 vas.py search security --limit 10
@@ -221,6 +221,7 @@ Các hướng dẫn chi tiết được tách riêng để bạn chỉ mở ph�
 | Effective HTML | 8 | Trực quan hóa tài liệu, wireframe, prototype tương tác, sơ đồ và định hướng sáng tạo HTML; xem [hướng dẫn Effective HTML](docs/effective-html.md) |
 | Video Creation | 1 | Làm video hướng dẫn và explainer hoàn chỉnh từ mã nguồn với Remotion (React), kịch bản voiceover, mascot người dẫn hoạt họa, timeline beat-lock và QA đo lường; xem [hướng dẫn Video Creation](docs/video-creation.md) |
 | Research Explainer & Manim | 4 | Quy trình chuyển bài báo và ý tưởng khoa học thành video hoạt họa toán/lý/tin phong cách 3Blue1Brown (ManimCE, ManimGL, paper diorama); xem [nguồn và bản ghi nhập](data/research-explainer-import.json) |
+| Google Skills | 184 | Bộ kỹ năng chính thức từ Google dành cho Google Cloud (GCP), GKE, BigQuery, Cloud Run, SecOps, Gemini API, Genkit, Google Ads; xem [nguồn và bản ghi nhập](data/google-skills-import.json) |
 
 Các tài liệu kiểm tra kỹ thuật dùng chung nằm trong [references/](references/), gồm kiểm thử, bảo mật, hiệu năng, khả năng tiếp cận, vận hành và điều phối agent.
 

@@ -532,6 +532,13 @@
       "- Standalone payloads preserve upstream Agent Skills specification SKILL.md, 45+ rule files, 80+ example scenes, templates, audio synthesis scripts, and full worked examples (`averaging-noise` and `how-a-network-sees`).",
       "- Licensing: Root is MIT; `manimgl-best-practices` is licensed under CC BY-NC-SA 4.0; bundled fonts under SIL Open Font License 1.1; sound effects under CC0 1.0; see individual LICENSE and NOTICE.md files.",
       "- Installation via `./vas install` only links or copies static files and writes `.vas-manifest.json`. No runtime/dependency is installed, and no external accounts are connected."
+    ],
+    "googleskills": [
+      "- **[google/skills](https://github.com/google/skills/tree/2194d3b8b1f31975fef2f1a0ae6b9ab55bd7ceee)**: Official Agent Skills for Google Cloud, AI, and Developer workflows by Google at revision `2194d3b8b1f31975fef2f1a0ae6b9ab55bd7ceee`.",
+      "- Provides 184 modular skills covering Google Cloud Platform (GCP) infrastructure, Google Kubernetes Engine (GKE), BigQuery, Cloud Run, SecOps, Gemini API, Genkit, Google Ads, and developer tools.",
+      "- Standalone payloads preserve upstream Agent Skills specification SKILL.md, references, diagnostic scripts, rule sets, and templates.",
+      "- Licensing: Apache License 2.0 (Copyright 2026 Google LLC); see individual LICENSE and NOTICE.md files.",
+      "- Installation via `./vas install` only links or copies static files and writes `.vas-manifest.json`. No runtime/dependency is installed, and no cloud accounts or credentials are connected during installation."
     ]
   }
 }

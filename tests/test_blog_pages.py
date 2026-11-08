@@ -36,6 +36,7 @@ SLUGS = (
     "ghi-json-an-toan-nhieu-tien-trinh-python",
     "tao-video-khoa-hoc-manim-3b1b",
     "kien-truc-agentic-ai-agent-skills",
+    "van-hanh-google-cloud-an-toan-gcloud-cli",
 )
 LINKED_SKILLS = {
     "webapp-testing",
@@ -56,6 +57,7 @@ LINKED_SKILLS = {
     "pdf",
     "docx",
     "ui-ux-pro-max",
+    "gcloud",
 }
 VOID_ELEMENTS = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"}
 

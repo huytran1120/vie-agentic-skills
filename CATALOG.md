@@ -1,6 +1,6 @@
 # Vie Agentic Skill (VAS) - Catalog
 
-Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
+Tổng hợp **4,073** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
 
 | Danh mục | Số lượng | Lệnh cài đặt nhanh |
 | :--- | :---: | :--- |
@@ -12,7 +12,7 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **agent-tooling** | 3 skills | `./vas install --category agent-tooling --target codex` |
 | **ai** | 1 skills | `./vas install --category ai --target codex` |
 | **ai-agents** | 24 skills | `./vas install --category ai-agents --target codex` |
-| **ai-ml** | 136 skills | `./vas install --category ai-ml --target codex` |
+| **ai-ml** | 164 skills | `./vas install --category ai-ml --target codex` |
 | **ai-research** | 1 skills | `./vas install --category ai-research --target codex` |
 | **ai-testing** | 1 skills | `./vas install --category ai-testing --target codex` |
 | **analysis** | 3 skills | `./vas install --category analysis --target codex` |
@@ -20,7 +20,7 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **antigravity** | 9 skills | `./vas install --category antigravity --target codex` |
 | **api-integration** | 45 skills | `./vas install --category api-integration --target codex` |
 | **app-builder** | 4 skills | `./vas install --category app-builder --target codex` |
-| **architecture** | 35 skills | `./vas install --category architecture --target codex` |
+| **architecture** | 41 skills | `./vas install --category architecture --target codex` |
 | **automation** | 65 skills | `./vas install --category automation --target codex` |
 | **backend** | 46 skills | `./vas install --category backend --target codex` |
 | **blender** | 94 skills | `./vas install --category blender --target codex` |
@@ -29,7 +29,7 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **business** | 188 skills | `./vas install --category business --target codex` |
 | **business-strategy** | 3 skills | `./vas install --category business-strategy --target codex` |
 | **career-jobs** | 2 skills | `./vas install --category career-jobs --target codex` |
-| **cloud** | 170 skills | `./vas install --category cloud --target codex` |
+| **cloud** | 211 skills | `./vas install --category cloud --target codex` |
 | **code** | 18 skills | `./vas install --category code --target codex` |
 | **code-quality** | 45 skills | `./vas install --category code-quality --target codex` |
 | **coding** | 1 skills | `./vas install --category coding --target codex` |
@@ -41,20 +41,20 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **context-optimization** | 1 skills | `./vas install --category context-optimization --target codex` |
 | **core-dev** | 1 skills | `./vas install --category core-dev --target codex` |
 | **creative** | 10 skills | `./vas install --category creative --target codex` |
-| **data** | 56 skills | `./vas install --category data --target codex` |
+| **data** | 58 skills | `./vas install --category data --target codex` |
 | **data-ai** | 14 skills | `./vas install --category data-ai --target codex` |
-| **data-engineering** | 1 skills | `./vas install --category data-engineering --target codex` |
+| **data-engineering** | 15 skills | `./vas install --category data-engineering --target codex` |
 | **data-science** | 7 skills | `./vas install --category data-science --target codex` |
-| **database** | 19 skills | `./vas install --category database --target codex` |
+| **database** | 24 skills | `./vas install --category database --target codex` |
 | **database-processing** | 6 skills | `./vas install --category database-processing --target codex` |
 | **databases** | 3 skills | `./vas install --category databases --target codex` |
 | **debugging** | 4 skills | `./vas install --category debugging --target codex` |
 | **design** | 68 skills | `./vas install --category design --target codex` |
 | **design-it** | 48 skills | `./vas install --category design-it --target codex` |
-| **developer-tools** | 9 skills | `./vas install --category developer-tools --target codex` |
+| **developer-tools** | 14 skills | `./vas install --category developer-tools --target codex` |
 | **development** | 230 skills | `./vas install --category development --target codex` |
 | **development-and-testing** | 6 skills | `./vas install --category development-and-testing --target codex` |
-| **devops** | 169 skills | `./vas install --category devops --target codex` |
+| **devops** | 215 skills | `./vas install --category devops --target codex` |
 | **devtools** | 6 skills | `./vas install --category devtools --target codex` |
 | **document-processing** | 4 skills | `./vas install --category document-processing --target codex` |
 | **document-verification** | 7 skills | `./vas install --category document-verification --target codex` |
@@ -76,7 +76,7 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **legal** | 9 skills | `./vas install --category legal --target codex` |
 | **leiloeiro** | 6 skills | `./vas install --category leiloeiro --target codex` |
 | **lifestyle** | 1 skills | `./vas install --category lifestyle --target codex` |
-| **marketing** | 312 skills | `./vas install --category marketing --target codex` |
+| **marketing** | 326 skills | `./vas install --category marketing --target codex` |
 | **mcp** | 8 skills | `./vas install --category mcp --target codex` |
 | **media** | 150 skills | `./vas install --category media --target codex` |
 | **media-processing** | 2 skills | `./vas install --category media-processing --target codex` |
@@ -103,7 +103,7 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **research** | 30 skills | `./vas install --category research --target codex` |
 | **reverse-engineering** | 1 skills | `./vas install --category reverse-engineering --target codex` |
 | **science** | 53 skills | `./vas install --category science --target codex` |
-| **security** | 279 skills | `./vas install --category security --target codex` |
+| **security** | 302 skills | `./vas install --category security --target codex` |
 | **seo** | 34 skills | `./vas install --category seo --target codex` |
 | **shopping** | 5 skills | `./vas install --category shopping --target codex` |
 | **skill-authoring** | 3 skills | `./vas install --category skill-authoring --target codex` |
@@ -312,7 +312,7 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `pydantic-ai` | `safe` | Build production-ready AI agents with PydanticAI — type-safe tool use, struct... |
 | `superpowers-lab` | `safe` | Evaluate experimental Claude workflow skills in an isolated lab with reproduc... |
 
-### AI-ML (136 skills)
+### AI-ML (164 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
@@ -324,6 +324,21 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `agent-orchestration-improve-agent` | `critical` | Systematic improvement of existing agents through performance analysis, promp... |
 | `agent-orchestration-multi-agent-optimize` | `critical` | Optimize multi-agent systems with coordinated profiling, workload distributio... |
 | `agent-orchestrator` | `critical` | Meta-skill que orquestra todos os agentes do ecossistema. Scan automatico de ... |
+| `agent-platform-access-audit` | `safe` | Audits AI agent data access, blast radius, and blocked policy operations in G... |
+| `agent-platform-alert-configuration` | `safe` | Configures best-practice alerting policies for AI agents using OpenTelemetry ... |
+| `agent-platform-architecture` | `safe` | Designs, engineers, and validates enterprise Gemini platform architectures. U... |
+| `agent-platform-deploy` | `safe` | Deploy open models or custom weights from Model Garden to Agent Platform endp... |
+| `agent-platform-endpoint-management` | `safe` | Manages Agent Platform serving endpoints. Use when you need to create, list, ... |
+| `agent-platform-eval-flywheel` | `safe` | Measures and improves the quality of AI models and agents on Google Cloud usi... |
+| `agent-platform-inference` | `safe` | Connects to and performs inference with Google Cloud Agent Platform GenAI mod... |
+| `agent-platform-migrate-from-ai-studio` | `safe` | Guides agents and users through migrating from Gemini API in Google AI Studio... |
+| `agent-platform-model-registry` | `safe` | Agent Platform Model Registry Management. Use when you need to upload, list, ... |
+| `agent-platform-prompt-management` | `safe` | Manages and orchestrates prompts in Agent Platform. Use when you need to crea... |
+| `agent-platform-rag-engine-management` | `safe` | Manage and query Agent Platform RAG Engine Corpora and retrieve grounded cont... |
+| `agent-platform-skill-registry` | `safe` | Interact with the Gemini Enterprise Agent Platform Skill Registry to create a... |
+| `agent-platform-troubleshooting` | `safe` | Troubleshoots Google Cloud Gemini Enterprise Agent Platform issues across Age... |
+| `agent-platform-tuning` | `safe` | Agent Platform Model Tuning. Use when you need to fine-tune open models or Ge... |
+| `agent-platform-tuning-management` | `safe` | Manages GenAI tuning jobs in Agent Platform. Use this to list, get, or cancel... |
 | `agent-squad` | `critical` | Main agent orchestrator that coordinates a specialized squad of agents |
 | `agent-tool-builder` | `critical` | Tools are how AI agents interact with the world. A well-designed |
 | `agentfolio` | `safe` | Skill for discovering and researching autonomous AI agents, tools, and ecosys... |
@@ -340,10 +355,13 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `ai-studio-image` | `critical` | Geracao de imagens humanizadas via Google AI Studio (Gemini). Fotos realistas... |
 | `ai-wrapper-product` | `critical` | Expert in building products that wrap AI APIs (OpenAI, Anthropic, |
 | `aomi-transact` | `critical` | Build natural-language crypto/DeFi agents and EVM MCP plugins (Claude Code, C... |
+| `api-gateway-mcp-server` | `safe` | Configures Google Cloud API Gateway to act as a remote Model Context Protocol... |
+| `apigee-agent-gateway-governance` | `safe` | Stands up an Apigee API proxy that a Google Cloud Agent Gateway calls as an e... |
 | `app-builder` | `critical` | Main application building orchestrator. Creates full-stack applications from ... |
 | `autonomous-agent-patterns` | `critical` | Design patterns for building autonomous coding agents, inspired by [Cline](ht... |
 | `autonomous-agents` | `critical` | Autonomous agents are AI systems that can independently decompose |
 | `bdi-mental-states` | `critical` | This skill should be used when the user asks to "model agent mental states", ... |
+| `bigquery-ai-ml` | `safe` | Leverages BigQuery's built-in machine learning and GenAI capabilities for adv... |
 | `brave-man` | `critical` | Runs a structured clarifying interview for new project requests before buildi... |
 | `claude-ally-health` | `critical` | A health assistant skill for medical information analysis, symptom tracking, ... |
 | `claude-api` | `critical` | Reference for the Claude API / Anthropic SDK — model ids, pricing, params, st... |
@@ -370,6 +388,10 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `context-manager` | `safe` | Elite AI context engineering specialist mastering dynamic context management,... |
 | `context-optimization` | `none` | Context optimization extends the effective capacity of limited context window... |
 | `deep-research` | `critical` | Run autonomous research tasks that plan, search, read, and synthesize informa... |
+| `developing-genkit-dart` | `safe` | Generates code and provides documentation for the Genkit Dart SDK. Use when t... |
+| `developing-genkit-go` | `safe` | Develop AI-powered applications using Genkit in Go. Use when the user asks to... |
+| `developing-genkit-js` | `safe` | Develop AI-powered applications using Genkit in Node.js/TypeScript. Use when ... |
+| `developing-genkit-python` | `safe` | Develop AI-powered applications using Genkit in Python. Use when the user ask... |
 | `ejentum-reasoning-harness` | `critical` | MCP server exposing four cognitive harness modes (reasoning, code, anti-decep... |
 | `evaluation` | `safe` | Build evaluation frameworks for agent systems. Use when testing agent perform... |
 | `faf-go` | `critical` | Guided interview to Gold Code (100% AI-Readiness). Use when helping users imp... |
@@ -378,8 +400,13 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `fal-platform` | `critical` | Platform APIs for model management, pricing, and usage tracking |
 | `fal-upscale` | `critical` | Upscale and enhance image and video resolution using AI |
 | `fal-workflow` | `critical` | Generate workflow JSON files for chaining AI models |
+| `gemini-agents-api` | `safe` | Manages custom Agent resources on Gemini Enterprise Agent Platform. Use when ... |
+| `gemini-api` | `safe` | Use when the user asks about using Gemini in an enterprise environment or exp... |
 | `gemini-api-dev` | `critical` | Use this skill when building applications with Gemini API hosted models, incl... |
+| `gemini-live-api` | `safe` | Generates a Gemini LiveAPI client service class in the user's chosen programm... |
 | `geoffrey-hinton` | `safe` | Agente que simula Geoffrey Hinton — Godfather of Deep Learning, Prêmio Turing... |
+| `gke-ai-troubleshooting-tpu-mxla-hang` | `safe` | Diagnose GKE Cloud TPU multi-slice training hangs (Megascale `HANG_DETECTED` ... |
+| `gke-ai-troubleshooting-tpu-performance-degradation` | `safe` | Diagnose GKE Cloud TPU training throughput drops and step-time regressions (1... |
 | `google-antigravity-sdk` | `safe` | Design, implement, and debug autonomous AI agents and multi-agent systems usi... |
 | `hf-cli` | `critical` | Curated upstream guidance for Hf Cli; use when the workflow matches the user ... |
 | `hf-mcp` | `critical` | Use Hugging Face Hub via MCP server tools. Search models, datasets, Spaces, p... |
@@ -430,6 +457,7 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `multi-agent-brainstorming` | `none` | Simulate a structured peer-review process using multiple specialized agents t... |
 | `neon-ai-gateway` | `critical` | One API and one credential for frontier and open-source LLMs, built into your... |
 | `odw` | `critical` | Dynamic multi-agent workflows — plan first, then orchestrate parallel agents ... |
+| `pathways-workload` | `safe` | Debugs failed, crashing or hung Pathways on Cloud workloads (JAX training or ... |
 | `project-development` | `critical` | This skill covers the principles for identifying tasks suited to LLM processi... |
 | `prompt-caching` | `critical` | Caching strategies for LLM prompts including Anthropic prompt |
 | `prompt-engineering` | `safe` | Expert guide on prompt engineering patterns, best practices, and optimization... |
@@ -554,7 +582,7 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `frontend-mobile-development-component-scaffold` | `critical` | Scaffold React and React Native components with TypeScript, accessibility, te... |
 | `javascript-typescript-typescript-scaffold` | `critical` | Scaffold TypeScript projects with build tooling, type checking, testing, and ... |
 
-### ARCHITECTURE (35 skills)
+### ARCHITECTURE (41 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
@@ -584,6 +612,12 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `esl-price-sync` | `critical` | Synchronizes retail prices between ERP/POS systems and Electronic Shelf Label... |
 | `event-sourcing-architect` | `critical` | Expert in event sourcing, CQRS, and event-driven architecture patterns. Maste... |
 | `event-store-design` | `critical` | Design and implement event stores for event-sourced systems. Use when buildin... |
+| `google-cloud-waf-cost-optimization` | `safe` | Evaluates Google Cloud workloads for cost efficiency and FinOps alignment usi... |
+| `google-cloud-waf-operational-excellence` | `safe` | Generates operational guidance for CI/CD deployment pipelines, observability,... |
+| `google-cloud-waf-performance-optimization` | `safe` | Generates performance-focused guidance for Google Cloud workloads based on th... |
+| `google-cloud-waf-reliability` | `safe` | Evaluates, designs, and improves the reliability, resilience, availability, f... |
+| `google-cloud-waf-security` | `safe` | Generates security-focused guidance for Google Cloud workloads based on the d... |
+| `google-cloud-waf-sustainability` | `safe` | Provides recommendations for environmental sustainability, carbon footprint r... |
 | `graphql-architect` | `critical` | Master modern GraphQL with federation, performance optimization, and enterpri... |
 | `microservices-patterns` | `safe` | Master microservices architecture patterns including service boundaries, inte... |
 | `monopoly` | `critical` | MONOPOLY is a Senior System Design Engineer skill for architecting, reviewing... |
@@ -1053,12 +1087,14 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `healthcare-job-search` | `safe` | Find open US healthcare jobs (nursing, CNA, allied health, therapy, imaging, ... |
 | `neverapply` | `critical` | Find matching jobs, tailor resumes, prepare for interviews and apply to jobs ... |
 
-### CLOUD (170 skills)
+### CLOUD (211 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
 | `accidental-data-loss-prevention` | `safe` | **STOP AND VERIFY**: Before running any command or tool that results in irrev... |
 | `amazon-alexa` | `critical` | Integracao completa com Amazon Alexa para criar skills de voz inteligentes, t... |
+| `api-gateway-troubleshooting` | `safe` | Diagnoses failing requests and deployment errors on Google Cloud API Gateway.... |
+| `application-design-center-design-deploy` | `safe` | Processes GCP infrastructure design and deployment workflows within Applicati... |
 | `aws-agentic-ai` | `critical` | AWS Bedrock AgentCore comprehensive expert for deploying and managing AI agen... |
 | `aws-cdk-development` | `critical` | AWS Cloud Development Kit (CDK) expert for building cloud infrastructure with... |
 | `aws-cost-cleanup` | `critical` | Automated cleanup of unused AWS resources to reduce costs |
@@ -1195,16 +1231,25 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `building-data-apps` | `safe` | Build modern data apps, dashboards, and interactive reports using either Reac... |
 | `cdk-patterns` | `critical` | Common AWS CDK patterns and constructs for building cloud infrastructure with... |
 | `cloud-architect` | `critical` | Expert cloud architect specializing in AWS/Azure/GCP multi-cloud infrastructu... |
+| `cloud-network-insights` | `safe` | Guides and automates setup, onboarding, and synthetic monitoring operations f... |
+| `cloud-operator` | `safe` | Google Cloud (GCP) assistant and operator via the autocloud MCP server. Use f... |
 | `cloud-penetration-testing` | `offensive` | Conduct comprehensive security assessments of cloud infrastructure across Mic... |
+| `cloud-run-alert-configuration` | `safe` | Configures best-practice, high-signal alerting policies for Cloud Run resourc... |
+| `cloud-run-basics` | `safe` | Manages Cloud Run services, jobs, and worker pools. Use when you need to depl... |
 | `cloudformation-best-practices` | `critical` | CloudFormation template optimization, nested stacks, drift detection, and pro... |
+| `compute-future-reservations` | `safe` | Evaluates future GPU and TPU reservation feasibility and calendar-mode bookin... |
+| `compute-on-demand-reservations` | `safe` | Inspects, verifies, and manages Google Compute Engine (GCE) On-Demand reserva... |
 | `cost-optimization` | `critical` | Strategies and patterns for optimizing cloud costs across AWS, Azure, and GCP. |
 | `dak-setup` | `safe` | Configures (or reconfigures) the Google Cloud Data Agent Kit (DAK) plugin by ... |
 | `data-autocleaning` | `safe` | Automated data quality and transformation capabilities for Dataform/dbt/BigQuery |
 | `dataform-bigquery` | `safe` | Expertise in generating clean, correct, and efficient Dataform pipeline |
 | `dbt-bigquery` | `safe` | Expert guidance for creating, modifying, and optimizing dbt pipelines |
+| `developer-device-platform-basics` | `safe` | Provides guidance and instructions on managing remote devices on Developer De... |
 | `discovering-gcp-data-assets` | `safe` | Finds and inspects data assets within Google Cloud. Relevant when any of the ... |
 | `enforcing-resource-attribution` | `safe` | Enforces resource attribution for CLI commands. Use this skill whenever you a... |
+| `finding-google-skills` | `safe` | Google platform decision and setup guidance, loaded on demand from Google's s... |
 | `firebase` | `critical` | Firebase gives you a complete backend in minutes - auth, database, |
+| `gcloud` | `safe` | Provides safety-critical validation, guardrails, and data reduction for gclou... |
 | `gcp-cloud-run` | `critical` | Specialized skill for building production-ready serverless |
 | `gcp-data-pipelines` | `safe` | Primary entry point for building, managing, and orchestrating data pipelines ... |
 | `gcp-dataflow` | `safe` | Guides writing, packaging, executing, and troubleshooting Apache Beam pipelin... |
@@ -1212,7 +1257,37 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `gcp-pipeline-resource-provisioning` | `safe` | Automates declarative resource creation and provisioning for data pipelines, ... |
 | `gcp-spark` | `safe` | Develops, optimizes and runs PySpark/Spark code on Managed Spark (Dataproc cl... |
 | `gcp-spark-troubleshooting` | `safe` | Provides expert guidance for troubleshooting Google Cloud Spark and Dataproc |
+| `gke-alert-configuration` | `safe` | Configures alerting policies in Terraform for Google Kubernetes Engine (GKE) ... |
+| `gke-backup-dr` | `safe` | Configures Backup for GKE: the BackupRestore cluster addon, BackupPlan and Re... |
+| `gke-networking` | `safe` | Plans, configures, and manages core GKE cluster networking. Covers private cl... |
+| `gke-service-networking` | `safe` | Configures GKE edge networking, traffic routing, load balancing, and private ... |
+| `gke-storage` | `safe` | Manages GKE storage, including PVCs, PersistentVolumes, and Filestore. Use wh... |
+| `gke-storage-troubleshooting` | `safe` | Diagnoses GKE persistent-storage failures \u2014 volume attach/mount errors (... |
 | `google-cloud-auth-verification` | `safe` | Mandatory Step 0 pre-flight execution order and authentication verification |
+| `google-cloud-filestore-auditing` | `safe` | Audits Filestore instances on Google Cloud across projects for disaster recov... |
+| `google-cloud-filestore-autoscale` | `safe` | Inspects Filestore capacity and utilization on Google Cloud, evaluates storag... |
+| `google-cloud-filestore-log-troubleshooting` | `safe` | Diagnoses and resolves Filestore client mount failures on Google Cloud, permi... |
+| `google-cloud-filestore-nfs-browser` | `safe` | Inspects, searches, and reads files and POSIX metadata on Filestore (NFS) ins... |
+| `google-cloud-global-frontend-configuration` | `safe` | Guides agents through a 6-step discovery process to design and deploy Google ... |
+| `google-cloud-networking-observability` | `safe` | Investigates Google Cloud networking issues by analyzing GCP logs, metrics, a... |
+| `google-cloud-recipe-auth` | `safe` | Provides expert guidance on Identity and Access Management (IAM) and authenti... |
+| `google-cloud-recipe-foundation-builder` | `safe` | Deploys a baseline landing zone foundation for a Google Cloud Organization, e... |
+| `google-cloud-recipe-onboarding` | `safe` | Guides a developer's first steps on Google Cloud, covering account creation, ... |
+| `google-cloud-solution-agentic-ai-bidirectional-streaming` | `safe` | Guides agents to interactively discover customer requirements for live, bidir... |
+| `google-cloud-solution-agentic-ai-borderless-data-lakehouse` | `safe` | Discovers requirements and designs a borderless open data lakehouse using Lak... |
+| `google-cloud-solution-agentic-ai-data-science-workflow` | `safe` | Designs a tailored multi-product agentic data science architecture on Google ... |
+| `google-cloud-solution-agentic-analytics-spark-knowledge-catalog` | `safe` | Discovers requirements and designs an end-to-end governed agentic analytics s... |
+| `google-cloud-solution-architecture` | `safe` | Interactively discovers requirements and designs holistic, multi-product syst... |
+| `google-cloud-solution-build-deploy-agents` | `safe` | Designs, builds, and deploys AI agents or multi-agent systems on Google Cloud... |
+| `google-cloud-solution-guided-gke-ai-migration` | `safe` | Guides the migration of existing AI workloads (Cloud Run, Gemini API, Gemini ... |
+| `google-cloud-solution-hybrid-search-alloydb` | `safe` | Discovers requirements and generates architectural, design, and deployment gu... |
+| `google-cloud-solution-multi-agent-security` | `safe` | Designs, deploys, and secures Google Cloud Agent Gateway solutions. Use when ... |
+| `google-cloud-solution-n-tier-serverless-web-app` | `safe` | Assists in designing and implementing secure n-tier serverless web applicatio... |
+| `google-cloud-solution-rag-enterprise-search-gke-sqldb` | `safe` | Discovers requirements, and generates architectural, design, and deployment g... |
+| `google-cloud-storage-basics` | `safe` | Stores, retrieves, and manages data as objects in Cloud Storage on Google Clo... |
+| `google-cloud-storage-bucket-architect` | `safe` | Creates Cloud Storage on Google Cloud (also known colloquially as GCS) bucket... |
+| `google-cloud-storage-diagnostic` | `safe` | Troubleshoots and diagnoses Cloud Storage on Google Cloud (also known colloqu... |
+| `google-cloud-storage-fuse` | `safe` | Mounts Cloud Storage buckets on Google Cloud as a POSIX file system with Clou... |
 | `hf-cloud-aws-context-discovery` | `safe` | Discover the effective local AWS profile, region, account, and caller identit... |
 | `hybrid-cloud-architect` | `critical` | Expert hybrid cloud architect specializing in complex multi-cloud solutions a... |
 | `hybrid-cloud-networking` | `critical` | Configure secure, high-performance connectivity between on-premises and cloud... |
@@ -1453,7 +1528,7 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `modellix` | `critical` | Integrate the Modellix API/CLI for async AI image, video, and speech generati... |
 | `p5js` | `safe` | Generative visuals, algorithmic art, and creative coding with p5.js. Covers s... |
 
-### DATA (56 skills)
+### DATA (58 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
@@ -1478,6 +1553,8 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `footval-stats-and-transfer-news` | `safe` | Football season leaderboards and transfer news from FootVal: top scorers, ass... |
 | `footval-value-and-compare-players` | `safe` | Explain what a footballer is worth with FootVal: its own transfer value next ... |
 | `glasser` | `critical` | Search, inspect, and run third-party data APIs through one CLI when the envir... |
+| `google-analytics-admin-api-basics` | `safe` | Manages Google Analytics account and property settings, enables the Analytics... |
+| `google-analytics-data-api-basics` | `safe` | Manages Google Analytics reporting data, enables the Analytics Data API via t... |
 | `huggingface-datasets` | `unknown` | Use this skill for Hugging Face Dataset Viewer API workflows that fetch |
 | `invokely-statistics` | `safe` | Use Invokely MCP to find official statistics, retrieve values and series, com... |
 | `looot` | `critical` | Search, price and run 2,500+ data API endpoints (work emails, company search,... |
@@ -1533,10 +1610,24 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `vector-database-engineer` | `critical` | Expert in vector databases, embedding strategies, and semantic search impleme... |
 | `vector-index-tuning` | `safe` | Optimize vector index performance for latency, recall, and memory. Use when t... |
 
-### DATA-ENGINEERING (1 skills)
+### DATA-ENGINEERING (15 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
+| `bigquery-basics` | `safe` | Manages datasets, tables, and jobs in BigQuery. Use when you need to interact... |
+| `bigquery-bigframes` | `safe` | Generates Python code using BigQuery DataFrames (BigFrames). Use by default f... |
+| `bigquery-migration-sql-translator` | `safe` | Translates SQL queries, DDL schemas, and stored procedures from legacy databa... |
+| `bigquery-observability` | `safe` | Provides data-retrieval best practices, tool selection guidance, and performa... |
+| `bigquery-optimization` | `safe` | Provides workflows to optimize BigQuery environments (capacity planning, edit... |
+| `bigquery-troubleshooting` | `safe` | Provides diagnostic workflows and step-by-step root-cause analysis procedures... |
+| `bigquery-udfs` | `safe` | Creates, deploys, and troubleshoots BigQuery User-Defined Functions (UDFs) an... |
+| `datalineage-bigquery-asset-impact-analysis` | `safe` | Analyzes the downstream impact (blast radius) using data lineage on Google Cl... |
+| `datalineage-summary` | `safe` | Summarizes data lineage graphs on Google Cloud to help users debug data quali... |
+| `dbt-sf-to-bq-translator` | `safe` | Translates Snowflake dbt SQL models to Standardized BigQuery SQL. Handles SQL... |
+| `managed-airflow-dag-authoring` | `safe` | Provides guidance for authoring Apache Airflow DAGs in Managed Service for Ap... |
+| `managed-airflow-dag-troubleshooting` | `safe` | Provides guidance for troubleshooting Apache Airflow DAGs (failed DAG runs an... |
+| `managed-airflow-migrations` | `safe` | Provides guidance for migrating Apache Airflow DAGs in Managed Service for Ap... |
+| `managed-airflow-recommendations` | `safe` | Provides recommendations and best practices for creating, configuring, tuning... |
 | `snowflake-development` | `safe` | Comprehensive Snowflake development assistant covering SQL best practices, da... |
 
 ### DATA-SCIENCE (7 skills)
@@ -1551,11 +1642,15 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `data-structure-protocol` | `safe` | Give agents persistent structural memory of a codebase — navigate dependencie... |
 | `plotly` | `critical` | Interactive visualization library. Use when you need hover info, zoom, pan, o... |
 
-### DATABASE (19 skills)
+### DATABASE (24 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
+| `alloydb-basics` | `safe` | Manages clusters, instances, and backups for AlloyDB for PostgreSQL, and inte... |
+| `bigtable-basics` | `safe` | Assists in provisioning instances/tables, designing performant schemas, and q... |
 | `claimable-postgres` | `critical` | Provision instant temporary Postgres databases via Claimable Postgres by Neon... |
+| `cloud-databases-onboarding` | `safe` | Guides users through discovering their database requirements, recommends a Go... |
+| `cloud-sql-basics` | `safe` | This file generates or explains Cloud SQL resources. Use this file when the u... |
 | `database-cloud-optimization-cost-optimize` | `critical` | You are a cloud cost optimization expert specializing in reducing infrastruct... |
 | `database-migration` | `critical` | Master database schema and data migrations across ORMs (Sequelize, TypeORM, P... |
 | `database-migrations-migration-observability` | `critical` | Migration monitoring, CDC, and observability infrastructure |
@@ -1571,6 +1666,7 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `prisma-expert` | `critical` | You are an expert in Prisma ORM with deep knowledge of schema design, migrati... |
 | `redis-cli` | `critical` | Redis command-line interface (redis-cli) reference and usage guide. Use this ... |
 | `saas-multi-tenant` | `critical` | Design and implement multi-tenant SaaS architectures with row-level security,... |
+| `spanner-basics` | `safe` | Assists in provisioning instances and databases, designing performant schemas... |
 | `sql-optimization-patterns` | `critical` | Diagnose slow SQL with query plans, preserve query results, and verify indexi... |
 | `sqlmap-database-pentesting` | `offensive` | Provide systematic methodologies for automated SQL injection detection and ex... |
 | `supabase-postgres-best-practices` | `critical` | Postgres performance optimization and best practices from Supabase. Use this ... |
@@ -1729,17 +1825,22 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `design-it/widget-based-design` | `safe` | Web and App implementation guide for Widget-Based Design. Trigger when user w... |
 | `design-it/y2k-design` | `safe` | Web and App implementation guide for Y2K Design. Trigger when user wants chro... |
 
-### DEVELOPER-TOOLS (9 skills)
+### DEVELOPER-TOOLS (14 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
 | `agents-generator` | `critical` | Generate project-specific AGENTS.md and companion rules by analyzing a codeba... |
 | `agy-powerline` | `critical` | Install, check and restyle the agy-powerline statusline for Antigravity CLI (... |
+| `api-gateway-openapi-spec-authoring` | `safe` | Writes, migrates, and fixes OpenAPI specs for Google Cloud API Gateway. Use w... |
+| `application-integration-authoring` | `safe` | Builds, versions, publishes, tests, and executes Google Cloud Application Int... |
+| `application-integration-basics` | `safe` | Explains Google Cloud Application Integration concepts, region provisioning, ... |
+| `application-integration-troubleshooting` | `safe` | Diagnoses failed, stuck, or silent Google Cloud Application Integration runs ... |
 | `gh-attach` | `critical` | Upload and download GitHub user-attachments (screenshots, PDFs, zips, videos)... |
 | `gh-image` | `critical` | Upload local images to GitHub and get canonical user-attachments embed URLs; ... |
 | `github` | `safe` | Use the `gh` CLI for issues, pull requests, Actions runs, and GitHub API quer... |
 | `google-maps-platform` | `safe` | A collection of skills for architecting and implementing production-ready cod... |
 | `mcp-tool-developer` | `safe` | Build Model Context Protocol (MCP) servers and tools from scratch. Full-stack... |
+| `migrate-to-rust` | `safe` | Clones, analyzes, plans, and migrates legacy codebases (C++, Fortran, Java, P... |
 | `skill-porter` | `critical` | Preview conservative tool-name translations and copy complete local skill bun... |
 | `tokenwise` | `critical` | Measurement-driven model router for Claude Code. Routes Haiku/Sonnet/Opus per... |
 
@@ -1989,7 +2090,7 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `systematic-debugging` | `critical` | Use when encountering any bug, test failure, or unexpected behavior, before p... |
 | `test-fixing` | `critical` | Systematically identify and fix all failing tests using smart grouping strate... |
 
-### DEVOPS (169 skills)
+### DEVOPS (215 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
@@ -2024,6 +2125,18 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `cdn-setup` | `critical` | Configure CDNs for content delivery. Set up CloudFront, Cloudflare, and |
 | `ci-cd-and-automation` | `critical` | Automates CI/CD pipeline setup. Use when setting up or modifying build and de... |
 | `circleci` | `critical` | Configure CircleCI workflows and orbs for continuous integration and |
+| `cloud-build-basics` | `safe` | Teaches the fundamentals of Cloud Build on Google Cloud. Covers core concepts... |
+| `cloud-logging-configuration-basics` | `safe` | Configure single-project Cloud Logging on Google Cloud: regional log buckets,... |
+| `cloud-logging-cross-project-configuration` | `safe` | Configure and troubleshoot Google Cloud cross-project centralized logging and... |
+| `cloud-logging-finops` | `safe` | Audits Cloud Logging costs for a Google Cloud project: the charges for log en... |
+| `cloud-logging-query-generation` | `safe` | Generates Logging Query Language (LQL) queries for Cloud Logging on Google Cl... |
+| `cloud-monitoring-alert-configuration` | `safe` | Configures Cloud Monitoring alerting policies using Terraform and PromQL acro... |
+| `cloud-monitoring-chart-generation` | `safe` | Generates Cloud Monitoring Server-Driven UI (SDUI) Widget and XyChart Protoco... |
+| `cloud-monitoring-list-time-series-request` | `safe` | Generates valid Cloud Monitoring ListTimeSeries requests and aggregation spec... |
+| `cloud-monitoring-metric-selection` | `safe` | Retrieve, query, and identify relevant Cloud Monitoring metric descriptors on... |
+| `cloud-monitoring-notification-channels-configuration` | `safe` | Generates Terraform HCL configurations for Cloud Monitoring notification chan... |
+| `cloud-monitoring-promql-query` | `safe` | Generates valid PromQL queries from Cloud Monitoring metric descriptors and r... |
+| `cloud-trace-querying` | `safe` | Query Cloud Trace spans, filter by latency thresholds or error status, correl... |
 | `cloudflare-pages` | `critical` | Deploy static sites and full-stack apps on Cloudflare Pages with previews, |
 | `cloudflare-r2` | `critical` | Manage Cloudflare R2 buckets, lifecycle, and signed URLs. Use for low-egress |
 | `cloudflare-workers` | `critical` | Build and deploy edge functions with Cloudflare Workers and Wrangler. |
@@ -2070,6 +2183,39 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `github-actions-debugger` | `critical` | Specialized skill for diagnosing, analyzing, and fixing failing GitHub Action... |
 | `gitlab-ci` | `critical` | Configure GitLab CI/CD pipelines and runners for automated building, |
 | `gitops-workflow` | `critical` | Complete guide to implementing GitOps workflows with ArgoCD and Flux for auto... |
+| `gke-ai-troubleshooting-handle-disruption-gpu-tpu` | `safe` | Diagnoses, predicts, and mitigates node disruptions during Compute Engine hos... |
+| `gke-ai-troubleshooting-jobset-interruption` | `safe` | Diagnoses GKE JobSet interruptions, restarts, and preemptions for AI/ML train... |
+| `gke-ai-troubleshooting-node-unresponsive-timeout` | `safe` | Diagnose and mitigate GKE TPU or GPU nodes stuck in NotReady / NodeStatusUnkn... |
+| `gke-ai-troubleshooting-tpu-dynamic-slices-monitoring` | `safe` | Monitors, troubleshoots, and manages GKE TPU Dynamic Slices custom resources.... |
+| `gke-ai-troubleshooting-tpu-metrics-monitoring` | `safe` | Monitors and troubleshoots GKE TPU workloads, nodes, and node pools using GKE... |
+| `gke-ai-troubleshooting-tpu-partition-overlap` | `safe` | Diagnose and resolve GKE TPU slice creation failures (SliceCreationFailed) ca... |
+| `gke-ai-troubleshooting-tpu-reservation-stockout` | `safe` | Diagnose and resolve cluster-wide GKE TPU node pool creation or scale-up fail... |
+| `gke-ai-troubleshooting-tpu-slice-mig-stuck-updating` | `safe` | Diagnose and resolve GKE TPU Dynamic Slice creation and JobSet scheduling fai... |
+| `gke-ai-troubleshooting-tpu-vbar-oom` | `safe` | Diagnoses and prevents vbar_control_agent segfaults, out-of-memory (OOM) erro... |
+| `gke-ai-troubleshooting-tpu-vm-repair-stuck` | `safe` | Diagnose GKE TPU VM instances stuck in Compute Engine repair (REPAIRING state... |
+| `gke-app-onboarding` | `safe` | Manages GKE application onboarding, covering containerization, deployment man... |
+| `gke-basics` | `safe` | Manages core GKE cluster provisioning, credentials, Autopilot vs Standard sel... |
+| `gke-batch-hpc` | `safe` | Runs batch and HPC workloads on GKE, utilizing job queues and parallel proces... |
+| `gke-cluster-autoscaler` | `safe` | Trigger on mention of GKE cluster autoscaler, node autoscaling, node pool aut... |
+| `gke-cluster-creation` | `safe` | Plans and executes GKE cluster creation, provisioning, and production readine... |
+| `gke-compute-classes` | `safe` | Configures, optimizes, and troubleshoots GKE ComputeClasses. Use when configu... |
+| `gke-cost-analysis` | `safe` | Answer natural language questions and perform analysis on GKE cluster and wor... |
+| `gke-cost-optimization` | `safe` | Optimizes GKE costs, rightsizes workloads, and configures Spot VMs, CUDs, cos... |
+| `gke-custom-golden-image-discovery` | `safe` | Discovers golden base images for creating GKE custom node images based on tec... |
+| `gke-golden-path` | `safe` | Provides GKE golden path configuration defaults, production readiness checkli... |
+| `gke-inference` | `safe` | Deploys and optimizes AI/ML inference workloads on GKE, using GPUs, TPUs, and... |
+| `gke-manifest-generation` | `safe` | Generates and updates secure, production-ready Kubernetes YAML manifests opti... |
+| `gke-multitenancy` | `safe` | Plans and configures multi-tenancy on GKE. Covers namespace isolation, RBAC p... |
+| `gke-node-notready` | `safe` | Diagnoses GKE nodes reporting NotReady or Unknown status by inspecting node c... |
+| `gke-observability` | `safe` | Configures GKE observability, including Cloud Logging, Cloud Monitoring, and ... |
+| `gke-productionize` | `safe` | Orchestrates comprehensive production readiness reviews and assessments for G... |
+| `gke-reliability` | `safe` | Improves GKE workload reliability, using PDBs, health probes, and topology sp... |
+| `gke-upgrades` | `safe` | Plans, executes, and validates Google Kubernetes Engine (GKE) cluster upgrade... |
+| `gke-workload-scaling` | `safe` | Manages scaling for GKE workloads using HPA and VPA. Use when configuring Hor... |
+| `gke-workload-scaling-troubleshooting` | `safe` | Diagnoses GKE HorizontalPodAutoscaler (HPA) failures \u2014 metrics showing a... |
+| `gke-workload-troubleshooting` | `safe` | Diagnoses GKE workload failures (CrashLoopBackOff, OOMKilled, ImagePullBackOf... |
+| `google-agents-cli-onboarding` | `safe` | Onboarding entrypoint for agents-cli in Agent Platform. It should be used whe... |
+| `google-cloud-slo-alert-configuration` | `safe` | Configures Cloud Monitoring PromQL-based Service Level Objective (SLO) alerti... |
 | `gpu-kubernetes-operations` | `critical` | Operate GPU-backed Kubernetes clusters for AI inference and training |
 | `gpu-server-management` | `critical` | Set up and manage NVIDIA GPU servers for AI workloads |
 | `grafana-dashboards` | `critical` | Create and manage production-ready Grafana dashboards for comprehensive syste... |
@@ -2162,6 +2308,7 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `vllm-server` | `critical` | Deploy and manage vLLM for high-throughput LLM inference. Configure continuous |
 | `windows-server` | `critical` | Administer Windows Server systems. Manage IIS, Active Directory, and |
 | `wizard` | `critical` | Generate an interactive bash wizard that walks a human through steps only the... |
+| `workload-manager-basics` | `safe` | Use this skill to manage Google Cloud Workload Manager evaluations, rules, sc... |
 
 ### DEVTOOLS (6 skills)
 
@@ -2934,7 +3081,7 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | :--- | :---: | :--- |
 | `party-planning` | `safe` | Estimate party food and drink quantities, select games, and draft hosting tim... |
 
-### MARKETING (312 skills)
+### MARKETING (326 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
@@ -3078,6 +3225,9 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `customer-research` | `critical` | When the user wants to conduct, analyze, or synthesize customer research. |
 | `danh-gia-hieu-suat` | `safe` | Dùng khi số liệu marketing đang xấu và cần biết TẠI SAO — chan doan theo 5 lo... |
 | `data-analysis-global` | `safe` | Use when raw data exists — Meta, Google, TikTok, GA4, Shopify, a CRM export, ... |
+| `data-manager-api-audience-ingestion` | `safe` | Guides developers through managing (adding, removing, and clearing) audience ... |
+| `data-manager-api-event-ingestion` | `safe` | Guides developers through implementing event and conversion ingestion to Goog... |
+| `data-manager-api-setup` | `safe` | Guides developers through client library installation and authentication setu... |
 | `define-my-content-pillars` | `safe` | Find the three to five subjects someone can post about repeatedly, from what ... |
 | `design-master-global` | `safe` | Use when the user wants a marketing image GENERATED or an image prompt writte... |
 | `design-review-global` | `safe` | Use when a finished DESIGN needs scoring and feedback — brand consistency, hi... |
@@ -3105,6 +3255,15 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `giu-chan-khach-hang` | `safe` | Xay he thong giu chan khach hang cho SME VN — phan nhanh theo mo hinh kinh do... |
 | `go-to-market` | `safe` | Dùng khi sap ra mat san pham, dich vu hoac khoa hoc MOI va can duong di ra th... |
 | `go-to-market-global` | `safe` | Use when a NEW product, offer, or course is going to market — beachhead segme... |
+| `google-ads-api-account-diagnostics` | `safe` | Diagnoses Google Ads account performance issues such as conversion loss (valu... |
+| `google-ads-api-mcp-setup` | `safe` | Guides developers through downloading, configuring, and installing the offici... |
+| `google-ads-api-quickstart` | `safe` | Guides developers through Google Ads API quickstart: credential setup, choosi... |
+| `google-mobile-ads-android-migrate-to-next-gen` | `safe` | Migrates Android applications from the old, legacy Google Mobile Ads (GMA) SD... |
+| `google-mobile-ads-banner` | `safe` | Provides instructions to implement, integrate, or configure Google Mobile Ads... |
+| `google-mobile-ads-get-started` | `safe` | Provides instructions for integrating the Google Mobile Ads (GMA) SDK. Use th... |
+| `google-mobile-ads-interstitial` | `safe` | Provides instructions for implementing, integrating, or configuring Google Mo... |
+| `google-mobile-ads-rewarded` | `safe` | Provides instructions for implementing, integrating, or configuring Google Mo... |
+| `google-mobile-ads-validate` | `safe` | Validates a project's Google Mobile Ads (GMA) SDK integration for iOS, Androi... |
 | `growth-engine` | `none` | Motor de crescimento para produtos digitais -- growth hacking, SEO, ASO, vira... |
 | `headline-psychologist` | `safe` | Draft and compare audience-aware headlines when copy needs clearer relevance ... |
 | `hoi-dong-marketing` | `safe` | Mo phong hoi dong co van marketing bang nam archetype an danh de chong kieu t... |
@@ -3112,6 +3271,8 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `html-email-template` | `safe` | Dùng khi cần FILE HTML email chay duoc tren moi email client — cau truc table... |
 | `html-email-template-global` | `safe` | Use when responsive HTML email has to render correctly in every client — tabl... |
 | `identity-mirror` | `safe` | Map an audience's current and aspirational identity into credible messaging w... |
+| `ima-dai-sdk` | `safe` | Integrates the Google Interactive Media Ads (IMA) Dynamic Ad Insertion (DAI) ... |
+| `ima-sdk-client-side` | `safe` | Supports Interactive Media Ads (IMA) SDK. Use this skill for client-side ad i... |
 | `image-brief-global` | `safe` | Use when ONE static image needs a full brief for a designer or photographer —... |
 | `influencer-prospecting` | `safe` | Use when the user wants to find creators, influencers, affiliates, or social ... |
 | `insight-khach-hang` | `safe` | Dùng khi cần hieu khach hang du sau de viet duoc content va chon duoc tep — p... |
@@ -3927,7 +4088,7 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `uv` | `safe` | Checks whether the uv Python package manager is installed and installs it if ... |
 | `workflow-skill-creator` | `safe` | Distills a completed user workflow or interaction into a reusable agent skill... |
 
-### SECURITY (279 skills)
+### SECURITY (302 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
@@ -3953,9 +4114,14 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `ai-security-hardening` | `safe` | Harden AI/LLM deployments against prompt injection, data exfiltration, |
 | `akf-trust-metadata` | `critical` | The AI native file format. EXIF for AI — stamps every file with trust scores,... |
 | `anti-reversing-techniques` | `offensive` | Analyze anti-debugging, obfuscation, and anti-tamper techniques during author... |
+| `api-gateway-backend-security-and-rate-limiting` | `safe` | Secures and rate limits backend services behind Google Cloud API Gateway acro... |
 | `apk-redteam-pipeline` | `offensive` | End-to-end Android APK red-team pipeline |
 | `apk-reverse` | `offensive` | Android APK reverse engineering: unpacking, Java decompilation, smali modific... |
 | `asset-inventory` | `critical` | Maintain IT asset inventory and configuration management database. Track |
+| `assured-workloads-basics` | `safe` | Provisions, inspects, updates, and deletes Google Cloud Assured Workloads V1 ... |
+| `assuredworkloads-environment-assessor` | `safe` | Discover Google Cloud resource telemetry and effective Org Policies, evaluate... |
+| `assuredworkloads-frameworks-author` | `safe` | Authors custom cloud controls and customized frameworks for Assured Workloads... |
+| `assuredworkloads-frameworks-navigator` | `safe` | Acts as a Data Boundary Compliance Analyst that maps user compliance queries ... |
 | `attack-chain` | `offensive` | Authorized multi-stage attack-path planning and orchestration spanning reconn... |
 | `attack-tree-construction` | `offensive` | Build comprehensive attack trees to visualize threat paths. Use when mapping ... |
 | `audit-logging` | `safe` | Implement centralized audit logging and SIEM integration. Configure log |
@@ -3980,6 +4146,7 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `cis-benchmarks` | `critical` | Audit and remediate CIS benchmark violations. |
 | `clerk-auth` | `safe` | Expert patterns for Clerk auth implementation, middleware, |
 | `client-secret-exposure-audit` | `critical` | Audit a deployed web app for secrets exposed to the browser: hardcoded API ke... |
+| `cloud-armor-crs-rule-upgrader` | `safe` | Upgrades Google Cloud Armor security policies from OWASP CRS 3.0 and 3.3 to O... |
 | `cloud-iam-deep` | `offensive` | Cloud IAM red-team attack chain across AWS, Azure, GCP |
 | `cloud-k8s` | `offensive` | Authorized cloud, container, and Kubernetes security assessment: metadata SSR... |
 | `cloudflare-security-audit` | `offensive` | Security guidance and vulnerability review for codebases, APIs, services, CLI... |
@@ -3993,11 +4160,13 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `dast-scanning` | `offensive` | Perform dynamic application security testing with OWASP ZAP, Burp Suite, |
 | `dependency-management-deps-audit` | `critical` | You are a dependency security expert specializing in vulnerability scanning, ... |
 | `dependency-scanning` | `safe` | Scan package dependencies for known vulnerabilities using Snyk, Dependabot, |
+| `detection-engineering-coverage-evaluation` | `safe` | Automates the end-to-end detection engineering workflow in Google SecOps usin... |
 | `differential-review` | `critical` | Security-focused code review for PRs, commits, and diffs. |
 | `digital-forensics` | `safe` | Authorized digital forensics: memory dumps, disk timelines, PCAP investigatio... |
 | `disaster-recovery` | `critical` | Implement disaster recovery strategies and runbooks. Configure RPO/RTO |
 | `doomsday-escrow` | `critical` | Verify cryptographic Proof-of-Escrow collateral (L1 UTXO outpoint proofs and ... |
 | `dotnet-reverse` | `offensive` | .NET/C# binary reverse engineering: managed PE analysis, dnSpyEx debugging, d... |
+| `dpop-adoption` | `safe` | Implement and debug OAuth 2.0 DPoP (RFC 9449) refresh token sender-constraini... |
 | `edr-bypass-re` | `offensive` | Review EDR telemetry and known defense-evasion classes using offline evidence... |
 | `email-security` | `offensive` | Authorized email security review: phishing analysis, SPF/DKIM/DMARC header au... |
 | `enterprise-vpn-attack` | `offensive` | External SSL VPN / remote-access appliance attack matrix |
@@ -4020,6 +4189,11 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `gdpr-data-handling` | `critical` | Practical implementation guide for GDPR-oriented data-processing design, cons... |
 | `gha-security-review` | `critical` | Review GitHub Actions workflows for exploitable vulnerabilities with concrete... |
 | `ghidra-reverse` | `safe` | Free/open reverse engineering with Ghidra (headless or GUI): decompilation, c... |
+| `gke-platform-security` | `safe` | Plans, configures, and hardens platform-level Google Kubernetes Engine (GKE) ... |
+| `gke-workload-identity` | `safe` | Configures and diagnoses Workload Identity Federation for GKE authentication ... |
+| `gke-workload-security` | `safe` | Audits, configures, and hardens workload-level security controls for Google K... |
+| `google-cloud-scc-query` | `safe` | Queries and retrieves active security findings, external exposures, toxic com... |
+| `google-cloud-scc-remediation` | `safe` | Remediates Google Cloud Security Command Center findings, including IAM permi... |
 | `hardware-security` | `offensive` | Authorized hardware and embedded interface security research: UART/JTAG disco... |
 | `hashicorp-vault` | `critical` | Manage secrets and PKI with HashiCorp Vault. |
 | `hipaa-compliance` | `critical` | Implement HIPAA security and privacy rules. Configure PHI protections |
@@ -4082,6 +4256,10 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `hunt-websocket` | `offensive` | Hunt WebSocket vulnerabilities |
 | `hunt-xss` | `offensive` | Hunting skill for xss vulnerabilities. |
 | `hunt-xxe` | `offensive` | Hunting skill for xxe vulnerabilities. |
+| `iam-helper-for-policy-management` | `safe` | Streamlines the creation, modification, and management of IAM allow policies ... |
+| `iam-helper-for-policy-simulator` | `safe` | Safely simulates and applies Identity and Access Management (IAM) v1 (Allow) ... |
+| `iam-helper-for-privileged-access-management` | `safe` | Manages the end-to-end lifecycle of on-demand, temporary access using Privile... |
+| `iam-helper-for-troubleshooting` | `safe` | Diagnoses, remediates, and manages Identity and Access Management (IAM) acces... |
 | `ida-reverse` | `critical` | Reverse engineer binaries with IDA Pro: decompilation, disassembly, data-flow... |
 | `identity-federation` | `offensive` | Authorized assessment of federated identity systems: SAML, OIDC, OAuth2 flows... |
 | `idor-testing` | `offensive` | Provide systematic methodologies for identifying and exploiting Insecure Dire... |
@@ -4148,6 +4326,11 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `sast-scanning` | `safe` | Perform static application security testing with tools like Semgrep, |
 | `sbom-supply-chain` | `critical` | Generate, sign, and verify SBOMs and provenance attestations to secure |
 | `scanning-tools` | `offensive` | Master essential security scanning tools for network discovery, vulnerability... |
+| `secops-cases` | `safe` | Manage Google Security Operations (SecOps) SOAR cases throughout their lifecy... |
+| `secops-detection-engineering` | `safe` | Author, validate, test, and deploy YARA-L 2.0 detection rules and evaluate en... |
+| `secops-hunt` | `safe` | Expert guidance for proactive threat hunting in Google SecOps. Use when proac... |
+| `secops-investigate` | `safe` | Expert guidance for deep security incident and entity investigations in Googl... |
+| `secops-triage` | `safe` | Expert guidance for security alert triage in Google SecOps. Use when investig... |
 | `secrets-management` | `critical` | Secure secrets management practices for CI/CD pipelines using Vault, AWS Secr... |
 | `security-and-hardening` | `critical` | Hardens code against vulnerabilities. Use when auditing an input handler for ... |
 | `security-arsenal` | `offensive` | Security payloads, bypass tables, wordlists, gf pattern names, always-rejected |
@@ -4167,6 +4350,7 @@ Tổng hợp **3,889** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `semgrep-rule-variant-creator` | `critical` | Creates language variants of existing Semgrep rules. Use when porting a Semgr... |
 | `sharp-edges` | `critical` | Review misuse-prone security APIs, configuration defaults, cryptographic inte... |
 | `shodan-reconnaissance` | `offensive` | Provide systematic methodologies for leveraging Shodan as a reconnaissance to... |
+| `sign-in-with-google-web` | `safe` | Implement, configure, and secure Sign In With Google (SiwG) using Google Iden... |
 | `skill-audit` | `safe` | Pre-install review framework for AI agent skills: inspect complete content, p... |
 | `skill-security-audit` | `safe` | Audit an Agent Skill, MCP server, connector, or desktop extension before inst... |
 | `smtp-penetration-testing` | `offensive` | Conduct comprehensive security assessments of SMTP (Simple Mail Transfer Prot... |
