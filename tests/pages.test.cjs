@@ -640,7 +640,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
   const youtube = catalog.filterSkills(skills, { sources: ['youtube'] });
   assert.equal(youtube.length, 11);
   assert.equal(catalog.filterSkills(skills, { query: 'youtube-agent-skill' }).length, 11);
-  assert.equal(skills.length, 4073);
+  assert.equal(skills.length, 4074);
   for (const skill of youtube) {
     assert.ok(skill.id.startsWith('youtube-agent-skill/'));
     assert.equal(skill.source_repo, 'Jakeschincariol/youtube-agent-skill');
@@ -655,7 +655,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
     assert.deepEqual(state.sources, ['youtube']);
     assert.equal(state.selected, youtube[0].id);
     assert.ok(i18n.translate('collections.youtube', language).startsWith('11 '));
-    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '4.073' : '4,073'));
+    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '4.074' : '4,074'));
   }
   assert.equal(catalog.filterSkills(skills, { sources: ['youtube'], category: 'security' }).length, 0);
   const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
@@ -1843,5 +1843,36 @@ test('googleskills retains exact source filtering, Apache-2.0 license and agent 
   assert.ok(html.includes('data-source-count="googleskills">184<'));
   assert.ok(html.includes('id="googleskills-collection"'));
 });
+
+test('headless retains exact source filtering, MIT license and agent prompts', () => {
+  const hSkills = catalog.filterSkills(skills, { sources: ['headless'] });
+  assert.equal(hSkills.length, 1);
+  assert.equal(catalog.filterSkills(skills, { query: 'kunchenguid/headless' }).length, 1);
+  const [headlessSkill] = hSkills;
+  assert.ok(headlessSkill);
+  assert.equal(headlessSkill.id, 'headless');
+  assert.equal(headlessSkill.source_repo, 'kunchenguid/headless');
+  assert.equal(headlessSkill.author, 'Kun Chen (kunchenguid)');
+  assert.equal(headlessSkill.license, 'MIT');
+  assert.equal(headlessSkill.category, 'devops');
+  assert.equal(headlessSkill.risk, 'safe');
+
+  for (const language of ['vi', 'en']) {
+    assert.ok(i18n.translate('collections.headless', language).startsWith('1 '));
+    for (const [agent] of catalog.agents.filter(([key]) => key !== 'all')) {
+      const prompt = catalog.agentInstallPrompt(headlessSkill, agent, language);
+      assert.ok(prompt.includes(`/install-manifests/${headlessSkill.id}.json`));
+      assert.ok(prompt.includes(catalog.targetFolders[agent]));
+      assert.ok(prompt.includes('SHA-256'));
+      assert.ok(prompt.includes('.vas-manifest.json'));
+    }
+  }
+
+  const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
+  assert.ok(html.includes('name="source" value="headless"'));
+  assert.ok(html.includes('data-source-count="headless">1<'));
+  assert.ok(html.includes('id="headless-collection"'));
+});
+
 
 

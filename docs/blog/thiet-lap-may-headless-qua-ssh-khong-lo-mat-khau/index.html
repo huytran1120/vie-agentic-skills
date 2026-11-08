@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="vi" data-theme="light">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thiết lập máy không màn hình qua SSH mà không lộ mật khẩu quản trị — VAS</title>
+<meta name="description" content="Hướng dẫn cấu hình Mac mini, máy chủ Linux và PC Windows chạy không màn hình qua SSH bằng AI agent với cơ chế truyền mật khẩu qua file descriptor 3.">
+<meta name="robots" content="index, follow"><meta name="theme-color" content="#f3efea">
+<link rel="canonical" href="https://vie-agentic-skills.vercel.app/blog/thiet-lap-may-headless-qua-ssh-khong-lo-mat-khau/">
+<link rel="icon" href="../../assets/brand/vas-icon.png"><link rel="stylesheet" href="../../catalog.css"><link rel="stylesheet" href="../blog.css">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Vie Agentic Skill"><meta property="og:title" content="Thiết lập máy không màn hình qua SSH mà không lộ mật khẩu quản trị"><meta property="og:description" content="Hướng dẫn cấu hình Mac mini, máy chủ Linux và PC Windows chạy không màn hình qua SSH bằng AI agent với cơ chế truyền mật khẩu qua file descriptor 3."><meta property="og:url" content="https://vie-agentic-skills.vercel.app/blog/thiet-lap-may-headless-qua-ssh-khong-lo-mat-khau/"><meta property="og:image" content="https://vie-agentic-skills.vercel.app/assets/social-preview.png"><meta property="og:image:width" content="1280"><meta property="og:image:height" content="640">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Thiết lập máy không màn hình qua SSH mà không lộ mật khẩu quản trị"><meta name="twitter:description" content="Hướng dẫn cấu hình Mac mini, máy chủ Linux và PC Windows chạy không màn hình qua SSH bằng AI agent với cơ chế truyền mật khẩu qua file descriptor 3."><meta name="twitter:image" content="https://vie-agentic-skills.vercel.app/assets/social-preview.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Thiết lập máy không màn hình qua SSH mà không lộ mật khẩu quản trị","description":"Hướng dẫn cấu hình Mac mini, máy chủ Linux và PC Windows chạy không màn hình qua SSH bằng AI agent với cơ chế truyền mật khẩu qua file descriptor 3.","url":"https://vie-agentic-skills.vercel.app/blog/thiet-lap-may-headless-qua-ssh-khong-lo-mat-khau/","mainEntityOfPage":"https://vie-agentic-skills.vercel.app/blog/thiet-lap-may-headless-qua-ssh-khong-lo-mat-khau/","inLanguage":"vi-VN","datePublished":"2026-11-08","dateModified":"2026-11-08","author":{"@type":"Organization","name":"Vie Agentic Skill"},"publisher":{"@type":"Organization","name":"Vie Agentic Skill","url":"https://vie-agentic-skills.vercel.app/"},"image":"https://vie-agentic-skills.vercel.app/assets/social-preview.png"}</script>
+<script src="../blog.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#guide-main"><span data-language="vi">Đến nội dung chính</span><span data-language="en" hidden>Skip to content</span></a>
+<header class="site-header guide-header"><div class="shell header-inner"><a class="brand" href="../../" data-home><span class="brand-mark" aria-hidden="true">&gt;_</span><span class="brand-short">VAS</span></a><nav class="guide-nav" aria-label="Điều hướng"><a class="guide-library-return" href="../../#catalog" data-home data-library-return><span data-language="vi">← Về thư viện <span data-catalog-count="vi">4.074</span> skill</span><span data-language="en" hidden>← Back to <span data-catalog-count="en">4,074</span> skills</span></a><a href="../" data-blog><span data-language="vi">Blog / Hướng dẫn</span><span data-language="en" hidden>Blog / Guides</span></a></nav><div class="header-actions"><button id="blog-language" class="icon-button" type="button" aria-label="Switch to English" lang="en">EN</button><button id="blog-theme" class="icon-button" type="button" aria-label="Bật giao diện tối" aria-pressed="false">◐</button></div></div></header>
+<main id="guide-main" class="shell guide-main" tabindex="-1" data-page-titles='{&quot;vi&quot;: &quot;Thiết lập máy không màn hình qua SSH mà không lộ mật khẩu quản trị — VAS&quot;, &quot;en&quot;: &quot;Set up unattended machines over SSH without exposing admin passwords — VAS&quot;}' data-page-descriptions='{&quot;vi&quot;: &quot;Hướng dẫn cấu hình Mac mini, máy chủ Linux và PC Windows chạy không màn hình qua SSH bằng AI agent với cơ chế truyền mật khẩu qua file descriptor 3.&quot;, &quot;en&quot;: &quot;Provision unattended Mac mini, Linux and Windows machines over SSH with AI agents using file-descriptor-3 secret piping and idempotent Nix workflows.&quot;}'>
+<nav class="guide-breadcrumb" aria-label="Breadcrumb"><a href="../../" data-home>VAS</a><span>/</span><a href="../" data-blog><span data-language="vi">Blog / Hướng dẫn</span><span data-language="en" hidden>Blog / Guides</span></a></nav>
+<header class="guide-heading"><p class="guide-eyebrow"><span data-language="vi">Hạ tầng / Quản trị từ xa</span><span data-language="en" hidden>Infrastructure / Unattended Provisioning</span></p><h1><span data-language="vi">Thiết lập máy không màn hình qua SSH mà không lộ mật khẩu quản trị</span><span data-language="en" hidden>Set up unattended machines over SSH without exposing admin passwords</span></h1><p class="guide-byline"><span data-language="vi">Biên soạn bởi Vie Agentic Skill · Dựa trên runbook và mã nguồn từ Kun Chen</span><span data-language="en" hidden>Prepared by Vie Agentic Skill · Based on runbooks and scripts by Kun Chen</span></p></header>
+<div class="guide-layout"><article class="guide-prose">
+<div data-language="vi">
+<p class="guide-lead">Biến một chiếc Mac mini đặt góc bàn, một máy chủ Linux hay một PC Windows thành trạm làm việc từ xa chạy 24/7 mà không cần cắm màn hình hay bàn phím là nhu cầu phổ biến của kỹ sư phần mềm. Tuy nhiên, nếu nhờ AI agent tự động cấu hình qua SSH theo cách thông thường, bạn rất dễ phải dán mật khẩu quản trị vào khung chat hoặc truyền qua tham số dòng lệnh — khiến mật khẩu bị lưu vĩnh viễn trong lịch sử hội thoại và nhật ký tiến trình. Kỹ năng <a data-catalog-skill="headless" href="../../?lang=vi&amp;skill=headless&amp;agent=antigravity">headless</a> giải quyết triệt để bài toán này bằng cơ chế cách ly bí mật qua file descriptor và quy trình cấu hình bất biến.</p>
+<p>Bài viết này phân tích kiến trúc bảo mật của công cụ <code>secret-run.sh</code>, quy trình 7 bước cấu hình từ xa cho macOS, Linux và Windows, những đánh đổi an toàn khi bật tự động đăng nhập sau khởi động lại, cũng như phạm vi kiểm chứng thực tế trong thư viện VAS.</p>
+</div>
+<div data-language="en" hidden>
+<p class="guide-lead">Turning a spare Mac mini, a Linux box, or a Windows PC into a 24/7 unattended remote workstation without a monitor or keyboard is a common engineering task. However, delegating SSH provisioning to an AI coding agent normally tempts users to paste admin passwords into chat prompts or pass them on the command line—leaking credentials into model logs, shell history, and process tables. The <a data-catalog-skill="headless" href="../../?lang=en&amp;skill=headless&amp;agent=antigravity">headless</a> skill eliminates this risk through file-descriptor secret piping and idempotent provisioning scripts.</p>
+<p>This guide examines the architecture of <code>secret-run.sh</code>, the seven-step remote setup workflow across macOS, Linux, and Windows, the security trade-offs of unattended reboot configuration, and the verification boundaries recorded in the VAS catalog.</p>
+</div>
+<details><summary><span data-language="vi">Nội dung bài viết</span><span data-language="en" hidden>On this page</span></summary><ul><li><a href="#secret-fd3"><span data-language="vi">1. Cách ly mật khẩu khỏi AI agent bằng File Descriptor 3</span><span data-language="en" hidden>1. Isolating secrets from AI agents via File Descriptor 3</span></a></li><li><a href="#platform-matrix"><span data-language="vi">2. Lựa chọn nền tảng: macOS, Linux/NixOS và Windows</span><span data-language="en" hidden>2. Platform architecture: macOS, Linux/NixOS and Windows</span></a></li><li><a href="#seven-steps"><span data-language="vi">3. Quy trình 7 bước thiết lập bất biến và quy tắc khóa SSH</span><span data-language="en" hidden>3. The 7-step idempotent workflow and SSH key lockout guards</span></a></li><li><a href="#reboot-tradeoffs"><span data-language="vi">4. Đánh đổi bảo mật khi tự động đăng nhập sau khởi động lại</span><span data-language="en" hidden>4. Security trade-offs of unattended reboot and auto-login</span></a></li><li><a href="#verification"><span data-language="vi">5. Phạm vi kiểm chứng và cách cài đặt trong VAS</span><span data-language="en" hidden>5. Verification scope and installation in VAS</span></a></li></ul></details>
+<h2 id="secret-fd3"><span data-language="vi">1. Cách ly mật khẩu khỏi AI agent bằng File Descriptor 3</span><span data-language="en" hidden>1. Isolating secrets from AI agents via File Descriptor 3</span></h2>
+<div data-language="vi">
+<p>Quy tắc cốt lõi của bộ kỹ năng <a data-catalog-skill="headless" href="../../?lang=vi&amp;skill=headless&amp;agent=antigravity">headless</a> là <strong>AI agent chỉ được biết tên tham chiếu của bí mật, tuyệt đối không bao giờ nhìn thấy giá trị mật khẩu thật</strong>. Thay vì yêu cầu người dùng nhập mật khẩu vào cửa sổ chat, người dùng lưu mật khẩu vào trình quản lý bí mật cục bộ (Automic Vault, 1Password CLI, Bitwarden CLI hoặc macOS Keychain) và chỉ cung cấp chuỗi định danh (ví dụ <code>av:mac-mini-admin</code> hoặc <code>op://Private/mac-mini/password</code>).</p>
+<p>Khi cần chạy lệnh quản trị từ xa hoặc mở kết nối SSH lần đầu, agent gọi wrapper <code>scripts/secret-run.sh</code>. Kịch bản này đọc giá trị mật khẩu từ kho lưu trữ và mở <strong>file descriptor 3 (FD 3)</strong> chỉ tồn tại trong bộ nhớ của tiến trình con:</p>
+<pre><code># Agent chỉ truyền tham chiếu bí mật (ví dụ av:mac-mini-admin), không có mật khẩu trên dòng lệnh
+scripts/secret-run.sh av:mac-mini-admin \
+  scripts/mac/connect.sh --host 192.168.1.50 --user admin
+
+# Bên trong secret-run.sh: truyền qua FD 3 tới sudo -S hoặc SSH_ASKPASS tạm thời
+exec 3&lt; &lt;(produce_secret "$SPEC")
+"$@"
+exec 3&lt;&amp;-</code></pre>
+<p>Nhờ cơ chế này, giá trị mật khẩu không xuất hiện trong <code>ps aux</code>, không lưu vào <code>~/.zsh_history</code>, không bị ghi vào tệp cấu hình trên đĩa và không bao giờ đi vào context window của mô hình ngôn ngữ lớn.</p>
+</div>
+<div data-language="en" hidden>
+<p>The foundational security rule of the <a data-catalog-skill="headless" href="../../?lang=en&amp;skill=headless&amp;agent=antigravity">headless</a> skill is strict credential isolation: <strong>the AI agent only ever handles a secret reference name, never the plaintext password</strong>. Before starting, the human operator stores the target machine's admin password in a local secret store (Automic Vault, 1Password CLI, Bitwarden CLI, or macOS Keychain) and gives the agent only the reference URI (such as <code>av:mac-mini-admin</code> or <code>op://Private/mac-mini/password</code>).</p>
+<p>Whenever a remote <code>sudo</code> prompt or initial SSH password exchange is required, the agent invokes <code>scripts/secret-run.sh</code>. This wrapper resolves the secret locally and pipes it exclusively through <strong>file descriptor 3 (FD 3)</strong> to child utilities:</p>
+<pre><code># The agent passes only the secret reference URI; no password appears in argv
+scripts/secret-run.sh av:mac-mini-admin \
+  scripts/mac/connect.sh --host 192.168.1.50 --user admin
+
+# Inside secret-run.sh: secret bytes flow over FD 3 to sudo -S or an ephemeral SSH_ASKPASS
+exec 3&lt; &lt;(produce_secret "$SPEC")
+"$@"
+exec 3&lt;&amp;-</code></pre>
+<p>Because the secret is consumed directly from FD 3 in memory, it never appears in process arguments (<code>ps aux</code>), shell history files, repository configuration files, or the LLM's conversation transcript.</p>
+</div>
+<h2 id="platform-matrix"><span data-language="vi">2. Lựa chọn nền tảng: macOS, Linux/NixOS và Windows</span><span data-language="en" hidden>2. Platform architecture: macOS, Linux/NixOS and Windows</span></h2>
+<div data-language="vi">
+<p>Bộ kỹ năng <a data-catalog-skill="headless" href="../../?lang=vi&amp;skill=headless&amp;agent=antigravity">headless</a> hỗ trợ ba hệ điều hành mục tiêu với chiến lược quản lý cấu hình phù hợp từng nền tảng:</p>
+<ul>
+<li><strong>macOS (Apple silicon hoặc Intel):</strong> Sử dụng Determinate Nix kết hợp với <code>nix-darwin</code> và mô-đun khai báo <code>modules/darwin/headless.nix</code>. Toàn bộ thiết lập nguồn điện (<code>pmset</code> chống ngủ máy), khóa màn hình, tường lửa, SSH daemon, chia sẻ màn hình (Screen Sharing) và Homebrew được khai báo tập trung trong một flake duy nhất.</li>
+<li><strong>Linux (NixOS hoặc bản phân phối truyền thống):</strong> Hỗ trợ hai nhánh rõ ràng. Với <strong>NixOS</strong>, skill dùng mô-đun <code>modules/nixos/headless.nix</code> (và hỗ trợ cài mới từ xa bằng <code>nixos-anywhere</code>). Với <strong>Ubuntu, Debian, Fedora, Arch hoặc RHEL</strong>, skill cung cấp bộ kịch bản POSIX <code>scripts/linux/</code> không phụ thuộc bản phân phối, tác động trực tiếp vào <code>systemd-logind</code>, targets ngủ của systemd và <code>/etc/ssh/sshd_config.d/headless.conf</code>.</li>
+<li><strong>Windows 11 và Windows Server 2025:</strong> Sử dụng tập lệnh PowerShell từ xa thông qua OpenSSH Server để tắt chế độ ngủ (<code>powercfg</code>), cấu hình <code>sshd_config</code>, bật Remote Desktop (RDP) kèm Network Level Authentication (NLA), và tùy chọn cài đặt gói phần mềm qua <code>winget</code>.</li>
+</ul>
+</div>
+<div data-language="en" hidden>
+<p>The <a data-catalog-skill="headless" href="../../?lang=en&amp;skill=headless&amp;agent=antigravity">headless</a> skill provides tailored provisioning pipelines for three major operating system families:</p>
+<ul>
+<li><strong>macOS (Apple silicon or Intel):</strong> Powered by Determinate Nix, <code>nix-darwin</code>, and the declarative <code>modules/darwin/headless.nix</code> module. Power management (<code>pmset</code> sleep disabling), screen lock policies, application firewall rules, SSH hardening, Screen Sharing, and Homebrew packages are managed cleanly through a single Nix flake.</li>
+<li><strong>Linux (NixOS or distro-neutral Linux):</strong> Supports two distinct tracks. The <strong>NixOS track</strong> uses <code>modules/nixos/headless.nix</code> (with optional bare-metal installation via <code>nixos-anywhere</code>). The <strong>distro-neutral track</strong> (Ubuntu, Debian, Fedora, Arch, RHEL) uses idempotent POSIX shell scripts under <code>scripts/linux/</code> to configure <code>systemd-logind</code>, mask systemd sleep targets, and write drop-in rules to <code>/etc/ssh/sshd_config.d/headless.conf</code>.</li>
+<li><strong>Windows 11 and Windows Server 2025:</strong> Uses remote PowerShell scripts over OpenSSH Server to disable standby timeouts via <code>powercfg</code>, harden <code>sshd_config</code>, enable Remote Desktop (RDP) with Network Level Authentication (NLA), and install baseline packages through <code>winget</code>.</li>
+</ul>
+</div>
+<h2 id="seven-steps"><span data-language="vi">3. Quy trình 7 bước thiết lập bất biến và quy tắc khóa SSH</span><span data-language="en" hidden>3. The 7-step idempotent workflow and SSH key lockout guards</span></h2>
+<div data-language="vi">
+<p>Một lỗi tai hại khi cấu hình máy từ xa là tắt xác thực mật khẩu SSH (<code>PasswordAuthentication no</code>) trước khi xác nhận khóa công khai (SSH public key) đã hoạt động, dẫn đến mất quyền truy cập hoàn toàn vào máy không có màn hình. Để ngăn chặn rủi ro này, <a data-catalog-skill="headless" href="../../?lang=vi&amp;skill=headless&amp;agent=antigravity">headless</a> chia quy trình thành 7 bước tuần tự và bất biến (idempotent — có thể chạy lại nhiều lần an toàn):</p>
+<ol>
+<li><strong>Bước 1 — Khám phá &amp; sinh cấu hình (<code>new-config.sh</code>):</strong> Thu thập thông tin máy đích và tạo thư mục cấu hình cục bộ từ mẫu chuẩn mà không ghi đè các chỉnh sửa của người dùng.</li>
+<li><strong>Bước 2 — Ghim host key &amp; kiểm tra khóa SSH (<code>connect.sh</code>):</strong> Quét khóa định danh máy chủ (ưu tiên <code>ssh-ed25519</code>), cài đặt khóa công khai của người dùng lên máy đích và kiểm tra đăng nhập không mật khẩu trước khi cho phép chuyển sang chế độ chỉ dùng khóa (key-before-key-only rule).</li>
+<li><strong>Bước 3 — Thiết lập quyền quản trị &amp; tự động đăng nhập (<code>admin.sh</code>):</strong> Cấu hình nhóm quản trị, chính sách <code>sudo</code> và các tác vụ một lần.</li>
+<li><strong>Bước 4 — Áp dụng cấu hình hệ thống (<code>apply.sh</code>):</strong> Đồng bộ cấu hình và kích hoạt thay đổi về nguồn điện, mạng, dịch vụ từ xa và gói phần mềm.</li>
+<li><strong>Bước 5 — Cài đặt lớp truy cập khẩn cấp (Escape Hatch):</strong> Luôn duy trì ít nhất hai đường truy cập độc lập (ví dụ SSH qua mạng LAN cùng với Tailscale SSH hoặc Screen Sharing / RDP) để phòng trường hợp một dịch vụ gặp sự cố.</li>
+<li><strong>Bước 6 — Kiểm tra trạng thái thực tế (<code>verify.sh</code>):</strong> Đối chiếu từng thông số hệ thống với cấu hình mong muốn và báo cáo kết quả Đạt/Lỗi rõ ràng.</li>
+<li><strong>Bước 7 — Khởi động lại có kiểm soát (<code>restart.sh</code>):</strong> Khởi động lại máy từ xa, chờ kết nối SSH phục hồi và tự động chạy lại <code>verify.sh</code> để chứng minh máy sống sót sau khi mất nguồn.</li>
+</ol>
+</div>
+<div data-language="en" hidden>
+<p>A classic failure mode in remote server administration is disabling SSH password authentication (<code>PasswordAuthentication no</code>) before verifying that public-key login actually succeeds—permanently locking the operator out of a monitorless machine. To prevent lockouts, <a data-catalog-skill="headless" href="../../?lang=en&amp;skill=headless&amp;agent=antigravity">headless</a> enforces a seven-step idempotent sequence:</p>
+<ol>
+<li><strong>Step 1 — Discovery &amp; Config Generation (<code>new-config.sh</code>):</strong> Gather target facts and scaffold a local configuration directory without clobbering existing user customizations.</li>
+<li><strong>Step 2 — Host-Key Pinning &amp; Key Enrollment (<code>connect.sh</code>):</strong> Pin the server's <code>ssh-ed25519</code> host key, install the operator's public key, and verify passwordless key login before any sshd lockdown occurs (the key-before-key-only rule).</li>
+<li><strong>Step 3 — Admin Privileges &amp; One-Shot Setup (<code>admin.sh</code>):</strong> Configure admin group membership, <code>sudo</code> policy, and OS-specific bootstrap settings.</li>
+<li><strong>Step 4 — Declarative Apply (<code>apply.sh</code>):</strong> Sync configuration files and converge power settings, sleep prevention, remote desktop services, and packages.</li>
+<li><strong>Step 5 — Escape Hatch Provisioning:</strong> Maintain at least two independent remote access paths (for example, LAN OpenSSH plus Tailscale SSH or Screen Sharing / RDP) so a single service failure never bricks remote access.</li>
+<li><strong>Step 6 — Live State Verification (<code>verify.sh</code>):</strong> Audit actual system settings against expected state with explicit pass/fail checks.</li>
+<li><strong>Step 7 — Verified Reboot (<code>restart.sh</code>):</strong> Trigger a clean reboot, poll until SSH returns, and automatically re-run <code>verify.sh</code> to prove the machine survives unattended power cycles.</li>
+</ol>
+</div>
+<h2 id="reboot-tradeoffs"><span data-language="vi">4. Đánh đổi bảo mật khi tự động đăng nhập sau khởi động lại</span><span data-language="en" hidden>4. Security trade-offs of unattended reboot and auto-login</span></h2>
+<div data-language="vi">
+<p>Khi cấu hình máy chạy không màn hình, câu hỏi quan trọng nhất mà agent phải hỏi người dùng là: <strong>Máy có cần tự khởi động lại hoàn toàn sau khi mất điện hoặc cập nhật hệ điều hành mà không cần gắn bàn phím hay không?</strong></p>
+<ul>
+<li><strong>Trên macOS:</strong> Nếu bật mã hóa ổ đĩa FileVault, sau khi khởi động lại máy sẽ dừng ở màn hình mở khóa Pre-boot (trước khi hệ điều hành và mạng Wi-Fi/SSH kịp chạy). Do đó, nếu chọn chế độ tự phục hồi hoàn toàn sau mất điện (<code>autoLogin = true</code>), người dùng buộc phải tắt FileVault và cho phép tạo tệp <code>/etc/kcpassword</code> (mã hóa XOR). Để bù đắp rủi ro vật lý khi máy đặt ở nơi không an toàn, <a data-catalog-skill="headless" href="../../?lang=vi&amp;skill=headless&amp;agent=antigravity">headless</a> tự động kích hoạt một LaunchAgent khóa màn hình ngay lập tức sau khi phiên đăng nhập khởi tạo xong.</li>
+<li><strong>Trên Windows:</strong> Để các tác vụ cấp người dùng chạy ngay sau khi bật máy kết hợp với khóa màn hình tức thời, hệ thống lưu thông tin đăng nhập tự động vào kho LSA secret của Windows kèm theo Scheduled Task gọi <code>rundll32.exe user32.dll,LockWorkStation</code> ngay khi đăng nhập. Nếu chỉ cần truy cập SSH hoặc RDP thông thường, người dùng nên tắt <code>autoLogin</code> vì dịch vụ <code>sshd</code> và <code>TermService</code> vốn đã chạy ở cấp hệ thống trước khi đăng nhập.</li>
+</ul>
+</div>
+<div data-language="en" hidden>
+<p>When provisioning an unattended machine, the most critical architectural decision the agent must clarify with the user is: <strong>Must the machine return online automatically after a power outage or OS update without anyone attaching a physical keyboard?</strong></p>
+<ul>
+<li><strong>On macOS:</strong> When FileVault full-disk encryption is active, a cold boot halts at the pre-boot unlock screen before macOS loads networking or <code>sshd</code>. Enabling true unattended recovery (<code>autoLogin = true</code>) therefore requires disabling FileVault and writing an obfuscated <code>/etc/kcpassword</code> file. To mitigate physical console exposure once booted, <a data-catalog-skill="headless" href="../../?lang=en&amp;skill=headless&amp;agent=antigravity">headless</a> pairs auto-login with a LaunchAgent that immediately locks the GUI session upon login.</li>
+<li><strong>On Windows:</strong> Both OpenSSH Server (<code>sshd</code>) and Remote Desktop (<code>TermService</code>) run as system services before any user logs in. Auto-login (which stores credentials in a Windows LSA secret and triggers an immediate <code>LockWorkStation</code> scheduled task) is only necessary when user-session tray apps must start on boot. For pure SSH or RDP servers, keeping <code>autoLogin</code> disabled is the safer default.</li>
+</ul>
+</div>
+<h2 id="verification"><span data-language="vi">5. Phạm vi kiểm chứng và cách cài đặt trong VAS</span><span data-language="en" hidden>5. Verification scope and installation in VAS</span></h2>
+<div data-language="vi">
+<p>Trong thư viện VAS, gói kỹ năng <a data-catalog-skill="headless" href="../../?lang=vi&amp;skill=headless&amp;agent=antigravity">headless</a> được nhập nguyên bản từ commit <code>fe1a381c6f382ec3c9822da0e706484414bc63e0</code> của tác giả Kun Chen (giấy phép MIT), bao gồm đầy đủ 55 tệp: runbook chính, 5 tài liệu tham chiếu nền tảng (macOS, Linux, Windows, Tailscale, quản lý bí mật), các mô-đun Nix khai báo và 29 kịch bản shell giữ nguyên quyền thực thi (<code>0755</code>). Trong quá trình nhập kho, VAS đã kiểm chứng tĩnh toàn bộ cây tệp, mã băm SHA-256, cú pháp đóng gói và manifest cài đặt mà không tự ý thực thi các lệnh cấp quyền hay kết nối SSH ra ngoài. Khi áp dụng vào máy thật, bạn nên đọc kỹ các tệp trong <code>references/</code> và kiểm tra từng bước với <code>verify.sh</code>.</p>
+<p>Bạn có thể cài đặt kỹ năng này vào không gian làm việc của mình bằng VAS CLI:</p>
+<pre><code># Cài đặt skill cho Antigravity hoặc bất kỳ AI agent nào được hỗ trợ
+./vas install headless --target antigravity --mode link
+
+# Xem chi tiết cấu trúc tệp và hướng dẫn sử dụng
+./vas show headless</code></pre>
+</div>
+<div data-language="en" hidden>
+<p>In the VAS catalog, the <a data-catalog-skill="headless" href="../../?lang=en&amp;skill=headless&amp;agent=antigravity">headless</a> skill is packaged from upstream commit <code>fe1a381c6f382ec3c9822da0e706484414bc63e0</code> by Kun Chen under the MIT License. It includes all 55 files: the primary runbook, five platform reference guides (macOS, Linux, Windows, Tailscale, and secrets), declarative Nix modules, and 29 shell scripts with preserved executable permissions (<code>0755</code>). During catalog ingestion, VAS statically verified the complete file tree, SHA-256 digests, executable bits, and standalone installation manifest without running live SSH provisioning against external hosts. Always review the platform guides under <code>references/</code> and validate changes with <code>verify.sh</code> on your target hardware.</p>
+<p>Install the skill into your workspace using the local VAS CLI:</p>
+<pre><code># Install the skill for Antigravity or your preferred coding agent
+./vas install headless --target antigravity --mode link
+
+# Inspect the runbook and bundled scripts
+./vas show headless</code></pre>
+</div>
+</article>
+<aside class="guide-companion" aria-label="Skill liên quan">
+<p class="guide-eyebrow"><span data-language="vi">Áp dụng vào dự án</span><span data-language="en" hidden>Apply it to your project</span></p>
+<h2><a data-catalog-skill="headless" href="../../?lang=vi&amp;skill=headless&amp;agent=antigravity">headless</a></h2>
+<p><span data-language="vi">Đọc yêu cầu và giấy phép, chọn agent rồi sao chép prompt cài đặt trong thư viện.</span><span data-language="en" hidden>Read prerequisites and licensing, choose your agent, then copy an installation prompt in the library.</span></p>
+<a class="button primary" data-catalog-skill="headless" href="../../?lang=vi&amp;skill=headless&amp;agent=antigravity"><span data-language="vi">Xem skill và cài đặt →</span><span data-language="en" hidden>Read skill and install →</span></a>
+<a class="text-link" href="../../#quickstart" data-home><span data-language="vi">Cách sử dụng VAS</span><span data-language="en" hidden>How to use VAS</span></a>
+</aside>
+</div>
+<section class="guide-related" aria-labelledby="related-title">
+<h2 id="related-title"><span data-language="vi">Đọc tiếp</span><span data-language="en" hidden>Read next</span></h2>
+<div class="guide-related-links">
+<a href="../van-hanh-google-cloud-an-toan-gcloud-cli/" data-guide-link><span data-language="vi">Vận hành Google Cloud an toàn với AI Agent và bộ skill Google Cloud CLI</span><span data-language="en" hidden>Safely operate Google Cloud with AI agents and Google Cloud CLI</span></a>
+<a href="../trien-khai-n8n-docker-compose/" data-guide-link><span data-language="vi">Tự host n8n bằng Docker Compose và Caddy</span><span data-language="en" hidden>Self-host n8n with Docker Compose and Caddy</span></a>
+</div>
+</section>
+</main>
+<footer class="site-footer"><div class="shell footer-inner"><strong>VAS / Vie Agentic Skill</strong><p><span data-language="vi">Đọc hướng dẫn. Chọn skill. Áp dụng vào dự án.</span><span data-language="en" hidden>Read a guide. Choose a skill. Apply it to your project.</span></p><div><a href="../../#catalog" data-home><span data-language="vi">Thư viện</span><span data-language="en" hidden>Library</span></a><a href="https://github.com/huytran1120/vie-agentic-skills">GitHub ↗</a></div></div></footer>
+</body>
+</html>

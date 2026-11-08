@@ -1,6 +1,6 @@
 # Vie Agentic Skill (VAS) - Catalog
 
-Tổng hợp **4,073** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
+Tổng hợp **4,074** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
 
 | Danh mục | Số lượng | Lệnh cài đặt nhanh |
 | :--- | :---: | :--- |
@@ -54,7 +54,7 @@ Tổng hợp **4,073** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **developer-tools** | 14 skills | `./vas install --category developer-tools --target codex` |
 | **development** | 230 skills | `./vas install --category development --target codex` |
 | **development-and-testing** | 6 skills | `./vas install --category development-and-testing --target codex` |
-| **devops** | 215 skills | `./vas install --category devops --target codex` |
+| **devops** | 216 skills | `./vas install --category devops --target codex` |
 | **devtools** | 6 skills | `./vas install --category devtools --target codex` |
 | **document-processing** | 4 skills | `./vas install --category document-processing --target codex` |
 | **document-verification** | 7 skills | `./vas install --category document-verification --target codex` |
@@ -2090,7 +2090,7 @@ Tổng hợp **4,073** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `systematic-debugging` | `critical` | Use when encountering any bug, test failure, or unexpected behavior, before p... |
 | `test-fixing` | `critical` | Systematically identify and fix all failing tests using smart grouping strate... |
 
-### DEVOPS (215 skills)
+### DEVOPS (216 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
@@ -2219,6 +2219,7 @@ Tổng hợp **4,073** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `gpu-kubernetes-operations` | `critical` | Operate GPU-backed Kubernetes clusters for AI inference and training |
 | `gpu-server-management` | `critical` | Set up and manage NVIDIA GPU servers for AI workloads |
 | `grafana-dashboards` | `critical` | Create and manage production-ready Grafana dashboards for comprehensive syste... |
+| `headless` | `safe` | Set up a headless Mac (Apple silicon), Linux or Windows machine over SSH, ste... |
 | `helm-chart-scaffolding` | `critical` | Comprehensive guidance for creating, organizing, and managing Helm charts for... |
 | `helm-charts` | `critical` | Create, manage, and deploy Helm charts for Kubernetes package management. |
 | `identity-access-management` | `critical` | Set up and manage SSO, SCIM provisioning, and MFA for startup teams using |

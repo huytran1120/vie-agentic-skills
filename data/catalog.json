@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-11-05T00:00:00Z",
-  "total": 3893,
+  "total": 3894,
   "skills": [
     {
       "id": "00-andruia-consultant",
@@ -54727,6 +54727,35 @@
         "cabal"
       ],
       "path": "skills/haskell-pro/SKILL.md"
+    },
+    {
+      "id": "headless",
+      "canonical_id": "headless",
+      "name": "headless",
+      "path": "skills/headless",
+      "description": "Set up a headless Mac (Apple silicon), Linux or Windows machine over SSH, step by step, from \"an admin account with a password and SSH on\" to a configured machine with key-only SSH, automatic sign-in, never-sleep settings and optional Tailscale - on a Mac with Determinate Nix and nix-darwin, on Linux with a NixOS module (installing NixOS with nixos-anywhere if the user wants) or a distro-neutral script for Debian, Ubuntu and Fedora, on Windows 11 or Windows Server with a rerunnable PowerShell configuration - then restart it and confirm it comes back. Use when the user wants to set up, configure, update or check a headless Mac mini, Linux server, Windows PC or other machine they reach only over SSH. The admin password stays in the user's secret store (Automic Vault, 1Password, Bitwarden, any command, or a private env file); you only ever name the store entry.",
+      "category": "devops",
+      "tags": [
+        "headless",
+        "ssh",
+        "macos",
+        "linux",
+        "windows",
+        "nixos",
+        "nix-darwin",
+        "tailscale",
+        "devops",
+        "security"
+      ],
+      "risk": "safe",
+      "author": "Kun Chen (kunchenguid)",
+      "author_url": "https://github.com/kunchenguid",
+      "source": "https://github.com/kunchenguid/headless/tree/fe1a381c6f382ec3c9822da0e706484414bc63e0/skills/headless",
+      "source_repo": "kunchenguid/headless",
+      "source_revision": "fe1a381c6f382ec3c9822da0e706484414bc63e0",
+      "source_path": "skills/headless/SKILL.md",
+      "license": "MIT",
+      "license_source": "https://github.com/kunchenguid/headless/blob/fe1a381c6f382ec3c9822da0e706484414bc63e0/LICENSE"
     },
     {
       "id": "headline-psychologist",

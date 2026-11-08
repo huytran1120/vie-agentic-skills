@@ -539,6 +539,13 @@
       "- Standalone payloads preserve upstream Agent Skills specification SKILL.md, references, diagnostic scripts, rule sets, and templates.",
       "- Licensing: Apache License 2.0 (Copyright 2026 Google LLC); see individual LICENSE and NOTICE.md files.",
       "- Installation via `./vas install` only links or copies static files and writes `.vas-manifest.json`. No runtime/dependency is installed, and no cloud accounts or credentials are connected during installation."
+    ],
+    "headless": [
+      "- **[kunchenguid/headless](https://github.com/kunchenguid/headless/tree/fe1a381c6f382ec3c9822da0e706484414bc63e0)**: Unattended headless macOS, Linux, and Windows setup over SSH by Kun Chen (kunchenguid) at revision `fe1a381c6f382ec3c9822da0e706484414bc63e0` under the MIT License.",
+      "- Configures key-only SSH, automatic sign-in, never-sleep power policies, and optional Tailscale across Apple silicon Macs (Determinate Nix + nix-darwin), Linux (NixOS module, nixos-anywhere, or distro-neutral script for Debian/Ubuntu/Fedora), and Windows 11 / Windows Server 2025 (OpenSSH + PowerShell), then verifies every setting across a reboot.",
+      "- Keeps the admin password in the user's secret store (Automic Vault, 1Password, Bitwarden, custom command, or mode-0600 env file) and pipes it on file descriptor 3 via `scripts/secret-run.sh` so the agent only ever handles the store entry name.",
+      "- Standalone payload includes `SKILL.md`, `LICENSE`, `NOTICE.md`, `references/`, `scripts/`, `assets/`, and bundled `modules/darwin/headless.nix` and `modules/nixos/headless.nix`.",
+      "- Installation via `./vas install` only links or copies static files and writes `.vas-manifest.json`. No script, SSH session, or secret store command is executed during installation."
     ]
   }
 }
