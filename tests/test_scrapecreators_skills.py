@@ -44,7 +44,7 @@ class ScrapeCreatorsSkillsTests(unittest.TestCase):
         # Verify category taxonomy remains exactly 119
         categories = {s.get("category", "general") for s in self.index}
         self.assertEqual(len(categories), 119)
-        self.assertEqual(len(self.index), 4074)
+        self.assertEqual(len(self.index), 4075)
 
         expected_skills = [
             ("ad-library-teardown", "marketing"),

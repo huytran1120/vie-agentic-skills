@@ -38,6 +38,7 @@ SLUGS = (
     "kien-truc-agentic-ai-agent-skills",
     "van-hanh-google-cloud-an-toan-gcloud-cli",
     "thiet-lap-may-headless-qua-ssh-khong-lo-mat-khau",
+    "thu-vien-motion-prompt-192-hieu-ung-canvas-2d",
 )
 LINKED_SKILLS = {
     "webapp-testing",
@@ -60,6 +61,7 @@ LINKED_SKILLS = {
     "ui-ux-pro-max",
     "gcloud",
     "headless",
+    "motion-prompt",
 }
 VOID_ELEMENTS = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"}
 

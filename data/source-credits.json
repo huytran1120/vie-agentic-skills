@@ -546,6 +546,13 @@
       "- Keeps the admin password in the user's secret store (Automic Vault, 1Password, Bitwarden, custom command, or mode-0600 env file) and pipes it on file descriptor 3 via `scripts/secret-run.sh` so the agent only ever handles the store entry name.",
       "- Standalone payload includes `SKILL.md`, `LICENSE`, `NOTICE.md`, `references/`, `scripts/`, `assets/`, and bundled `modules/darwin/headless.nix` and `modules/nixos/headless.nix`.",
       "- Installation via `./vas install` only links or copies static files and writes `.vas-manifest.json`. No script, SSH session, or secret store command is executed during installation."
+    ],
+    "motionprompt": [
+      "- **[showheyohtaki/motion-prompt](https://github.com/showheyohtaki/motion-prompt/tree/7819d3879eb7d5a1475c11c001bedffb5cab64af)**: Library of 192 named visual and motion effects (`#001`–`#192`) with runnable Canvas 2D reference implementations by Shohei Ohtaki (showheyohtaki) at revision `7819d3879eb7d5a1475c11c001bedffb5cab64af` under the MIT License.",
+      "- Covers 8 packs (24 elements each): Motion graphics moves (`motion`, `motion2`), Camera moves & transitions (`camera`, `camera2`), UI component names (`ui`), Landing page & web effects (`lp`, `lp2`), and Photo looks, lighting & styles (`photo`).",
+      "- Includes `scripts/motion-prompt.mjs` (zero-dependency Node.js 18+ CLI supporting `pick`, `search`, `list`, `get`, `prompt`, `kit`, and `info`) and `references/porting.md` for porting Canvas 2D time functions `cells[i](k, w, h, u)` to HTML/Canvas, Remotion, CSS/WAAPI, GSAP/Motion, ffmpeg/Manim, After Effects/Premiere, and video/image generation prompts.",
+      "- Standalone payload includes `SKILL.md`, `LICENSE`, `THIRD-PARTY-NOTICES.md`, `NOTICE.md`, `references/porting.md`, and `scripts/motion-prompt.mjs`.",
+      "- Installation via `./vas install` only links or copies static files and writes `.vas-manifest.json`. No script, callback server, or network request is executed during installation."
     ]
   }
 }

@@ -2,7 +2,7 @@
 
 **Thư viện kỹ năng cho trợ lý AI lập trình, có hướng dẫn sử dụng bằng tiếng Việt.**
 
-VAS tập hợp **4.074 skill** thuộc **119 danh mục**, do [Huy Tran](https://github.com/huytran1120) tuyển chọn và duy trì. Bạn có thể tìm quy trình phù hợp với công việc, đọc nội dung rồi cài vào dự án đang dùng với Antigravity, Codex, Claude Code, Cursor, Windsurf, Cline hoặc GitHub Copilot CLI.
+VAS tập hợp **4.075 skill** thuộc **119 danh mục**, do [Huy Tran](https://github.com/huytran1120) tuyển chọn và duy trì. Bạn có thể tìm quy trình phù hợp với công việc, đọc nội dung rồi cài vào dự án đang dùng với Antigravity, Codex, Claude Code, Cursor, Windsurf, Cline hoặc GitHub Copilot CLI.
 
 **[Mở thư viện skill trên Vercel](https://vie-agentic-skills.vercel.app/)** · [Blog / Hướng dẫn](https://vie-agentic-skills.vercel.app/blog/) · [GitHub Pages — bản cũ](https://huytran1120.github.io/vie-agentic-skills/?lang=vi) · [Xem toàn bộ danh mục](CATALOG.md) · [Báo lỗi hoặc đề xuất](https://github.com/huytran1120/vie-agentic-skills/issues)
 
@@ -223,6 +223,7 @@ Các hướng dẫn chi tiết được tách riêng để bạn chỉ mở ph�
 | Research Explainer & Manim | 4 | Quy trình chuyển bài báo và ý tưởng khoa học thành video hoạt họa toán/lý/tin phong cách 3Blue1Brown (ManimCE, ManimGL, paper diorama); xem [nguồn và bản ghi nhập](data/research-explainer-import.json) |
 | Google Skills | 184 | Bộ kỹ năng chính thức từ Google dành cho Google Cloud (GCP), GKE, BigQuery, Cloud Run, SecOps, Gemini API, Genkit, Google Ads; xem [nguồn và bản ghi nhập](data/google-skills-import.json) |
 | Headless | 1 | Thiết lập máy Mac (Apple silicon), Linux (NixOS/Debian/Ubuntu/Fedora) hoặc Windows 11/Server không màn hình qua SSH mà không lộ mật khẩu admin cho agent; xem [nguồn và bản ghi nhập](data/headless-import.json) |
+| Motion Prompt | 1 | Từ điển 192 hiệu ứng chuyển động, góc máy, thành phần UI, hiệu ứng landing page và phong cách nhiếp ảnh (`#001`–`#192`) kèm hàm chuẩn Canvas 2D và thông số timing/easing; xem [nguồn và bản ghi nhập](data/motion-prompt-import.json) |
 
 Các tài liệu kiểm tra kỹ thuật dùng chung nằm trong [references/](references/), gồm kiểm thử, bảo mật, hiệu năng, khả năng tiếp cận, vận hành và điều phối agent.
 

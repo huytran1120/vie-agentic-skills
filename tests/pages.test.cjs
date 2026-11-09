@@ -640,7 +640,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
   const youtube = catalog.filterSkills(skills, { sources: ['youtube'] });
   assert.equal(youtube.length, 11);
   assert.equal(catalog.filterSkills(skills, { query: 'youtube-agent-skill' }).length, 11);
-  assert.equal(skills.length, 4074);
+  assert.equal(skills.length, 4075);
   for (const skill of youtube) {
     assert.ok(skill.id.startsWith('youtube-agent-skill/'));
     assert.equal(skill.source_repo, 'Jakeschincariol/youtube-agent-skill');
@@ -655,7 +655,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
     assert.deepEqual(state.sources, ['youtube']);
     assert.equal(state.selected, youtube[0].id);
     assert.ok(i18n.translate('collections.youtube', language).startsWith('11 '));
-    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '4.074' : '4,074'));
+    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '4.075' : '4,075'));
   }
   assert.equal(catalog.filterSkills(skills, { sources: ['youtube'], category: 'security' }).length, 0);
   const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
@@ -1873,6 +1873,37 @@ test('headless retains exact source filtering, MIT license and agent prompts', (
   assert.ok(html.includes('data-source-count="headless">1<'));
   assert.ok(html.includes('id="headless-collection"'));
 });
+
+test('motionprompt retains exact source filtering, MIT license and agent prompts', () => {
+  const mpSkills = catalog.filterSkills(skills, { sources: ['motionprompt'] });
+  assert.equal(mpSkills.length, 1);
+  assert.equal(catalog.filterSkills(skills, { query: 'showheyohtaki/motion-prompt' }).length, 1);
+  const [motionSkill] = mpSkills;
+  assert.ok(motionSkill);
+  assert.equal(motionSkill.id, 'motion-prompt');
+  assert.equal(motionSkill.source_repo, 'showheyohtaki/motion-prompt');
+  assert.equal(motionSkill.author, 'Shohei Ohtaki (showheyohtaki)');
+  assert.equal(motionSkill.license, 'MIT');
+  assert.equal(motionSkill.category, 'design');
+  assert.equal(motionSkill.risk, 'safe');
+
+  for (const language of ['vi', 'en']) {
+    assert.ok(i18n.translate('collections.motionprompt', language).startsWith('1 '));
+    for (const [agent] of catalog.agents.filter(([key]) => key !== 'all')) {
+      const prompt = catalog.agentInstallPrompt(motionSkill, agent, language);
+      assert.ok(prompt.includes(`/install-manifests/${motionSkill.id}.json`));
+      assert.ok(prompt.includes(catalog.targetFolders[agent]));
+      assert.ok(prompt.includes('SHA-256'));
+      assert.ok(prompt.includes('.vas-manifest.json'));
+    }
+  }
+
+  const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
+  assert.ok(html.includes('name="source" value="motionprompt"'));
+  assert.ok(html.includes('data-source-count="motionprompt">1<'));
+  assert.ok(html.includes('id="motionprompt-collection"'));
+});
+
 
 
 

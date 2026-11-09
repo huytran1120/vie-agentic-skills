@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-11-05T00:00:00Z",
-  "total": 3894,
+  "total": 3895,
   "skills": [
     {
       "id": "00-andruia-consultant",
@@ -70368,6 +70368,35 @@
       "license": "CC-BY-NC-4.0",
       "license_source": "https://github.com/appariciojunior/video-editor-skills/blob/6709678d7d5b169149e13480428e12b0f09a47f0/LICENSE",
       "path": "skills/motion-overlays/SKILL.md"
+    },
+    {
+      "id": "motion-prompt",
+      "canonical_id": "motion-prompt",
+      "name": "motion-prompt",
+      "path": "skills/motion-prompt",
+      "description": "Vocabulary of 192 named visual effects (#001-#192) across motion graphics, camera work & transitions, UI components, landing-page & web effects, and photo looks/lighting/styles, each with a runnable dependency-free Canvas 2D reference implementation and timing/easing spec. Use whenever the user names motion-prompt or any element/pack, asks to browse/pick/list visual effects, or asks to make, animate, edit, or style a video, motion graphic, title card, caption, camera move, transition, UI animation, landing page, hero section, scroll/hover effect, or photo look.",
+      "category": "design",
+      "tags": [
+        "motion-prompt",
+        "motion-graphics",
+        "animation",
+        "canvas-2d",
+        "camera-moves",
+        "ui-components",
+        "landing-page",
+        "photo-effects",
+        "remotion",
+        "design"
+      ],
+      "risk": "safe",
+      "author": "Shohei Ohtaki (showheyohtaki)",
+      "author_url": "https://github.com/showheyohtaki",
+      "source": "https://github.com/showheyohtaki/motion-prompt/tree/7819d3879eb7d5a1475c11c001bedffb5cab64af/skills/motion-prompt",
+      "source_repo": "showheyohtaki/motion-prompt",
+      "source_revision": "7819d3879eb7d5a1475c11c001bedffb5cab64af",
+      "source_path": "skills/motion-prompt/SKILL.md",
+      "license": "MIT",
+      "license_source": "https://github.com/showheyohtaki/motion-prompt/blob/7819d3879eb7d5a1475c11c001bedffb5cab64af/LICENSE"
     },
     {
       "id": "movie-coupon",
