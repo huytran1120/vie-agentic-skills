@@ -1,6 +1,6 @@
 # Vie Agentic Skill (VAS) - Catalog
 
-Tổng hợp **4,076** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
+Tổng hợp **4,077** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
 
 | Danh mục | Số lượng | Lệnh cài đặt nhanh |
 | :--- | :---: | :--- |
@@ -67,7 +67,7 @@ Tổng hợp **4,076** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **frontend** | 48 skills | `./vas install --category frontend --target codex` |
 | **fullstack** | 1 skills | `./vas install --category fullstack --target codex` |
 | **game-development** | 284 skills | `./vas install --category game-development --target codex` |
-| **general** | 65 skills | `./vas install --category general --target codex` |
+| **general** | 66 skills | `./vas install --category general --target codex` |
 | **granular-workflow-bundle** | 16 skills | `./vas install --category granular-workflow-bundle --target codex` |
 | **graphics-processing** | 10 skills | `./vas install --category graphics-processing --target codex` |
 | **growth** | 3 skills | `./vas install --category growth --target codex` |
@@ -2906,11 +2906,12 @@ Tổng hợp **4,076** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `vertical-slice` | `safe` | Pre-production validation — end-to-end build to confirm the full loop is achi... |
 | `visual-novel` | `unknown` | Build a visual novel: a branching script, character and background display, a... |
 
-### GENERAL (65 skills)
+### GENERAL (66 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
 | `academy-guide` | `safe` | Stop and check this skill before finishing any reply to a question about how ... |
+| `animated-motion-diagram` | `safe` | Tạo sơ đồ kiến trúc động (Animated Motion Diagram) phong cách bản vẽ kỹ thuật... |
 | `antigravity-agent-manager` | `critical` | Configure and orchestrate parallel agents using the standalone Antigravity 2.... |
 | `banner-design` | `safe` | Design banners for social media, ads, website heroes, creative assets, and pr... |
 | `brand` | `safe` | Brand voice, visual identity, messaging frameworks, asset management, brand c... |
