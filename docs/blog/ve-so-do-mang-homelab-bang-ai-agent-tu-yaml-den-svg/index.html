@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="vi" data-theme="light">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vẽ sơ đồ mạng Homelab chuẩn r/homelab bằng AI Agent: từ YAML đến SVG/PNG — VAS</title>
+<meta name="description" content="Phân tích quy trình kết hợp AI Agent, CLAUDE.md, inventory.yaml và Python để dựng sơ đồ kiến trúc mạng Homelab chuẩn r/homelab có kiểm chứng tọa độ và ẩn thông tin nhạy cảm.">
+<meta name="robots" content="index, follow"><meta name="theme-color" content="#f3efea">
+<link rel="canonical" href="https://vie-agentic-skills.vercel.app/blog/ve-so-do-mang-homelab-bang-ai-agent-tu-yaml-den-svg/">
+<link rel="icon" href="../../assets/brand/vas-icon.png"><link rel="stylesheet" href="../../catalog.css"><link rel="stylesheet" href="../blog.css">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Vie Agentic Skill"><meta property="og:title" content="Vẽ sơ đồ mạng Homelab chuẩn r/homelab bằng AI Agent: từ YAML đến SVG/PNG"><meta property="og:description" content="Phân tích quy trình kết hợp AI Agent, CLAUDE.md, inventory.yaml và Python để dựng sơ đồ kiến trúc mạng Homelab chuẩn r/homelab có kiểm chứng tọa độ và ẩn thông tin nhạy cảm."><meta property="og:url" content="https://vie-agentic-skills.vercel.app/blog/ve-so-do-mang-homelab-bang-ai-agent-tu-yaml-den-svg/"><meta property="og:image" content="https://vie-agentic-skills.vercel.app/assets/social-preview.png"><meta property="og:image:width" content="1280"><meta property="og:image:height" content="640">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Vẽ sơ đồ mạng Homelab chuẩn r/homelab bằng AI Agent: từ YAML đến SVG/PNG"><meta name="twitter:description" content="Phân tích quy trình kết hợp AI Agent, CLAUDE.md, inventory.yaml và Python để dựng sơ đồ kiến trúc mạng Homelab chuẩn r/homelab có kiểm chứng tọa độ và ẩn thông tin nhạy cảm."><meta name="twitter:image" content="https://vie-agentic-skills.vercel.app/assets/social-preview.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Vẽ sơ đồ mạng Homelab chuẩn r/homelab bằng AI Agent: từ YAML đến SVG/PNG","description":"Phân tích quy trình kết hợp AI Agent, CLAUDE.md, inventory.yaml và Python để dựng sơ đồ kiến trúc mạng Homelab chuẩn r/homelab có kiểm chứng tọa độ và ẩn thông tin nhạy cảm.","url":"https://vie-agentic-skills.vercel.app/blog/ve-so-do-mang-homelab-bang-ai-agent-tu-yaml-den-svg/","mainEntityOfPage":"https://vie-agentic-skills.vercel.app/blog/ve-so-do-mang-homelab-bang-ai-agent-tu-yaml-den-svg/","inLanguage":"vi-VN","datePublished":"2026-11-10","dateModified":"2026-11-10","author":{"@type":"Organization","name":"Vie Agentic Skill"},"publisher":{"@type":"Organization","name":"Vie Agentic Skill","url":"https://vie-agentic-skills.vercel.app/"},"image":"https://vie-agentic-skills.vercel.app/assets/social-preview.png"}</script>
+<script src="../blog.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#guide-main"><span data-language="vi">Đến nội dung chính</span><span data-language="en" hidden>Skip to content</span></a>
+<header class="site-header guide-header"><div class="shell header-inner"><a class="brand" href="../../" data-home><span class="brand-mark" aria-hidden="true">&gt;_</span><span class="brand-short">VAS</span></a><nav class="guide-nav" aria-label="Điều hướng"><a class="guide-library-return" href="../../#catalog" data-home data-library-return><span data-language="vi">← Về thư viện <span data-catalog-count="vi">4.077</span> skill</span><span data-language="en" hidden>← Back to <span data-catalog-count="en">4,077</span> skills</span></a><a href="../" data-blog><span data-language="vi">Blog / Hướng dẫn</span><span data-language="en" hidden>Blog / Guides</span></a></nav><div class="header-actions"><button id="blog-language" class="icon-button" type="button" aria-label="Switch to English" lang="en">EN</button><button id="blog-theme" class="icon-button" type="button" aria-label="Bật giao diện tối" aria-pressed="false">◐</button></div></div></header>
+<main id="guide-main" class="shell guide-main" tabindex="-1" data-page-titles='{&quot;vi&quot;: &quot;Vẽ sơ đồ mạng Homelab chuẩn r/homelab bằng AI Agent: từ YAML đến SVG/PNG — VAS&quot;, &quot;en&quot;: &quot;Render r/homelab Network Diagrams with AI Agents: From YAML to Deterministic SVG/PNG — VAS&quot;}' data-page-descriptions='{&quot;vi&quot;: &quot;Phân tích quy trình kết hợp AI Agent, CLAUDE.md, inventory.yaml và Python để dựng sơ đồ kiến trúc mạng Homelab chuẩn r/homelab có kiểm chứng tọa độ và ẩn thông tin nhạy cảm.&quot;, &quot;en&quot;: &quot;How to combine AI coding agents, CLAUDE.md interview loops, declarative YAML inventories and deterministic Python SVG rendering to build r/homelab-grade network topology diagrams.&quot;}'>
+<nav class="guide-breadcrumb" aria-label="Breadcrumb"><a href="../../" data-home>VAS</a><span>/</span><a href="../" data-blog><span data-language="vi">Blog / Hướng dẫn</span><span data-language="en" hidden>Blog / Guides</span></a></nav>
+<header class="guide-heading"><p class="guide-eyebrow"><span data-language="vi">Kiến trúc hạ tầng / Sơ đồ mạng bằng mã</span><span data-language="en" hidden>Infrastructure Architecture / Diagram-as-Code</span></p><h1><span data-language="vi">Vẽ sơ đồ mạng Homelab chuẩn r/homelab bằng AI Agent: từ YAML đến SVG/PNG</span><span data-language="en" hidden>Render r/homelab Network Diagrams with AI Agents: From YAML to Deterministic SVG/PNG</span></h1><p class="guide-byline"><span data-language="vi">Biên soạn bởi Vie Agentic Skill · Phân tích từ dự án mã nguồn mở Goblinmine/homelab-diagram (MIT License)</span><span data-language="en" hidden>Prepared by Vie Agentic Skill · Case study based on Goblinmine/homelab-diagram (MIT License)</span></p></header>
+<div class="guide-layout"><article class="guide-prose">
+<div data-language="vi">
+<p class="guide-lead">Những sơ đồ mạng chi tiết trên cộng đồng <code>r/homelab</code> — nơi thể hiện trọn vẹn chuỗi kết nối từ Internet qua Router nhà mạng, tường lửa OPNsense, từng cổng Switch mang nhãn VLAN, độ dày cáp tỷ lệ với tốc độ liên kết (10G / 2.5G / 1G / 100M) cho tới cụm máy chủ Proxmox, ZFS pool trên TrueNAS và hàng chục container trong vùng DMZ — thường tốn nhiều ngày kéo thả thủ công trên Draw.io hoặc Excalidraw. Tuy nhiên, nếu chỉ yêu cầu mô hình ngôn ngữ lớn (LLM) sinh trực tiếp mã SVG hoặc Graphviz từ một câu nhắc ngắn, kết quả gần như luôn bị đè chữ, dây cáp cắt ngang thẻ thiết bị và sai lệch bố cục.</p>
+<p>Dự án mã nguồn mở <a href="https://github.com/Goblinmine/homelab-diagram" target="_blank" rel="noopener noreferrer">Goblinmine/homelab-diagram</a> giải quyết bài toán này bằng một kiến trúc rất đáng học hỏi cho mọi kỹ sư dùng AI Agent: <strong>tách bạch hoàn toàn dữ liệu hạ tầng trong <code>inventory.yaml</code> khỏi bộ dựng tọa độ Python <code>build.py</code></strong>, kết hợp với kịch bản hướng dẫn agent <code>CLAUDE.md</code> và nguyên tắc tự kiểm tra hình ảnh giống hệt kỹ năng <a data-catalog-skill="stack-diagram" href="../../?lang=vi&amp;skill=stack-diagram&amp;agent=antigravity">stack-diagram</a> trong thư viện VAS.</p>
+</div>
+<div data-language="en" hidden>
+<p class="guide-lead">The detailed network topology diagrams celebrated on <code>r/homelab</code>—mapping everything from the ISP modem and OPNsense firewall down to per-port switch VLAN bars, speed-proportional cables (10G / 2.5G / 1G / 100M), Proxmox hardware passthrough, TrueNAS ZFS vdevs, and multi-app DMZ containers—typically take days of manual dragging in Draw.io or Visio. Yet asking an LLM to emit raw SVG or Graphviz DOT from a single prompt almost always produces overlapping text, crossed wires, and broken card heights.</p>
+<p>The open-source repository <a href="https://github.com/Goblinmine/homelab-diagram" target="_blank" rel="noopener noreferrer">Goblinmine/homelab-diagram</a> demonstrates an effective agentic engineering pattern: <strong>strictly separating declarative infrastructure data in <code>inventory.yaml</code> from deterministic coordinate geometry in <code>build.py</code></strong>, orchestrated by an interview-and-inspection playbook in <code>CLAUDE.md</code> that mirrors the design philosophy of the <a data-catalog-skill="stack-diagram" href="../../?lang=en&amp;skill=stack-diagram&amp;agent=antigravity">stack-diagram</a> skill in the VAS catalog.</p>
+</div>
+
+<details><summary><span data-language="vi">Nội dung bài viết</span><span data-language="en" hidden>On this page</span></summary><ul>
+<li><a href="#yaml-vs-layout"><span data-language="vi">1. Tách biệt dữ liệu khai báo (inventory.yaml) và hình học tọa độ (build.py)</span><span data-language="en" hidden>1. Separating declarative data (inventory.yaml) from coordinate geometry (build.py)</span></a></li>
+<li><a href="#visual-grammar"><span data-language="vi">2. Ngữ pháp thị giác chuẩn r/homelab: tốc độ cáp, cổng VLAN và thẻ thiết bị</span><span data-language="en" hidden>2. The r/homelab visual grammar: link-speed cables, VLAN ticks and device cards</span></a></li>
+<li><a href="#agent-interview-loop"><span data-language="vi">3. Quy trình 4 bước trong CLAUDE.md: phỏng vấn, khảo sát chỉ đọc và tự cắt ảnh kiểm tra</span><span data-language="en" hidden>3. The 4-stage CLAUDE.md loop: structured interview, read-only discovery and visual crop checks</span></a></li>
+<li><a href="#privacy-redaction"><span data-language="vi">4. Bảo mật khi chia sẻ công khai: cơ chế Redaction mặc định và kiểm tra rò rỉ</span><span data-language="en" hidden>4. Safe public sharing: default redaction and pre-publish leak verification</span></a></li>
+<li><a href="#vas-workflow"><span data-language="vi">5. Kết hợp cùng các kỹ năng trong thư viện VAS</span><span data-language="en" hidden>5. Combining this pattern with skills in the VAS catalog</span></a></li>
+</ul></details>
+
+<figure style="margin:28px 0;padding:18px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow-x:auto">
+<svg viewBox="0 0 880 320" width="100%" height="auto" role="img" aria-label="Minh họa ngữ pháp thị giác sơ đồ mạng Homelab: chuỗi thiết bị đầu nguồn, cổng Switch kèm thanh VLAN, độ dày cáp theo tốc độ và vùng máy chủ">
+  <rect x="0" y="0" width="880" height="320" rx="8" fill="#181617"/>
+  <!-- Top Edge Chain -->
+  <rect x="24" y="24" width="136" height="68" rx="6" fill="#211e1f" stroke="#71676a" stroke-width="1.5"/>
+  <text x="38" y="46" fill="#bdb3b2" font-family="monospace" font-size="11">WAN · FIBER</text>
+  <text x="38" y="66" fill="#ebe5e2" font-family="sans-serif" font-size="13" font-weight="600">ISP ONT / Modem</text>
+  <text x="38" y="82" fill="#71676a" font-family="monospace" font-size="10">Bridge Mode</text>
+
+  <!-- 2.5G Cable ISP -> Firewall -->
+  <line x1="160" y1="58" x2="228" y2="58" stroke="#58a6ff" stroke-width="3.5"/>
+  <rect x="174" y="40" width="40" height="14" rx="3" fill="#211e1f" stroke="#58a6ff" stroke-width="1"/>
+  <text x="194" y="50" text-anchor="middle" fill="#58a6ff" font-family="monospace" font-size="9">2.5G</text>
+
+  <!-- Firewall Card -->
+  <rect x="228" y="20" width="176" height="76" rx="6" fill="#211e1f" stroke="#d9b093" stroke-width="1.8"/>
+  <text x="242" y="42" fill="#d9b093" font-family="monospace" font-size="11">edge · firewall</text>
+  <text x="242" y="61" fill="#ebe5e2" font-family="sans-serif" font-size="13" font-weight="600">OPNsense Router</text>
+  <text x="242" y="77" fill="#bdb3b2" font-family="monospace" font-size="10">10.0.1.1 · DNS / WireGuard</text>
+  <text x="242" y="90" fill="#71676a" font-family="monospace" font-size="9">Intel N100 · 4× i226-V 2.5GbE</text>
+
+  <!-- 10G Trunk Cable (White outer + dark core) Firewall -> Core Switch -->
+  <line x1="404" y1="58" x2="482" y2="58" stroke="#ebe5e2" stroke-width="6"/>
+  <line x1="404" y1="58" x2="482" y2="58" stroke="#181617" stroke-width="2"/>
+  <rect x="415" y="36" width="56" height="15" rx="3" fill="#211e1f" stroke="#ebe5e2" stroke-width="1"/>
+  <text x="443" y="47" text-anchor="middle" fill="#ebe5e2" font-family="monospace" font-size="9">10G TRUNK</text>
+
+  <!-- Core Switch with Port VLAN Bars -->
+  <rect x="482" y="18" width="374" height="84" rx="6" fill="#211e1f" stroke="#bdb3b2" stroke-width="1.8"/>
+  <text x="498" y="38" fill="#bdb3b2" font-family="monospace" font-size="11">core-sw · MikroTik CRS310 (8×2.5G + 2×SFP+ 10G)</text>
+  <!-- Port boxes -->
+  <g transform="translate(498, 48)">
+    <rect x="0" y="0" width="54" height="42" rx="4" fill="#181617" stroke="#40383b"/>
+    <text x="27" y="13" text-anchor="middle" fill="#ebe5e2" font-family="monospace" font-size="9">sfp+1</text>
+    <rect x="8" y="20" width="6" height="16" fill="#58a6ff"/>
+    <rect x="17" y="26" width="6" height="10" fill="#3fb950"/>
+    <rect x="26" y="26" width="6" height="10" fill="#f0883e"/>
+    <rect x="35" y="26" width="6" height="10" fill="#bc8cff"/>
+
+    <rect x="64" y="0" width="54" height="42" rx="4" fill="#181617" stroke="#40383b"/>
+    <text x="91" y="13" text-anchor="middle" fill="#ebe5e2" font-family="monospace" font-size="9">sfp+2</text>
+    <rect x="72" y="20" width="6" height="16" fill="#58a6ff"/>
+    <rect x="81" y="26" width="6" height="10" fill="#3fb950"/>
+    <rect x="90" y="26" width="6" height="10" fill="#f0883e"/>
+    <rect x="99" y="26" width="6" height="10" fill="#bc8cff"/>
+
+    <rect x="128" y="0" width="54" height="42" rx="4" fill="#181617" stroke="#40383b"/>
+    <text x="155" y="13" text-anchor="middle" fill="#ebe5e2" font-family="monospace" font-size="9">eth1 · AP</text>
+    <rect x="138" y="20" width="6" height="16" fill="#3fb950"/>
+    <rect x="148" y="26" width="6" height="10" fill="#f0883e"/>
+
+    <rect x="192" y="0" width="54" height="42" rx="4" fill="#181617" stroke="#40383b"/>
+    <text x="219" y="13" text-anchor="middle" fill="#ebe5e2" font-family="monospace" font-size="9">eth2 · PC</text>
+    <rect x="216" y="20" width="6" height="16" fill="#3fb950"/>
+
+    <rect x="256" y="0" width="84" height="42" rx="4" fill="#181617" stroke="#40383b"/>
+    <text x="298" y="15" text-anchor="middle" fill="#bdb3b2" font-family="monospace" font-size="9">VLAN Ticks:</text>
+    <text x="298" y="28" text-anchor="middle" fill="#3fb950" font-family="monospace" font-size="8">Cao = Untagged</text>
+    <text x="298" y="38" text-anchor="middle" fill="#f0883e" font-family="monospace" font-size="8">Thấp = Tagged</text>
+  </g>
+
+  <!-- Vertical 10G Trunk from sfp+2 to Proxmox Host -->
+  <line x1="589" y1="102" x2="589" y2="146" stroke="#ebe5e2" stroke-width="6"/>
+  <line x1="589" y1="102" x2="589" y2="146" stroke="#181617" stroke-width="2"/>
+
+  <!-- Bottom Row: VLAN Legend + Proxmox Server Card -->
+  <rect x="24" y="146" width="236" height="150" rx="6" fill="#211e1f" stroke="#40383b" stroke-width="1.5"/>
+  <text x="40" y="170" fill="#dcc3c8" font-family="monospace" font-size="11" font-weight="600">BẢNG PHÂN VÙNG VLAN &amp; CÁP</text>
+  <circle cx="44" cy="192" r="5" fill="#58a6ff"/><text x="58" y="196" fill="#ebe5e2" font-family="monospace" font-size="10">VLAN 10 · Mgmt (10.0.10.0/24)</text>
+  <circle cx="44" cy="212" r="5" fill="#3fb950"/><text x="58" y="216" fill="#ebe5e2" font-family="monospace" font-size="10">VLAN 20 · LAN (10.0.20.0/24)</text>
+  <circle cx="44" cy="232" r="5" fill="#f0883e"/><text x="58" y="236" fill="#ebe5e2" font-family="monospace" font-size="10">VLAN 30 · IoT (No WAN)</text>
+  <circle cx="44" cy="252" r="5" fill="#bc8cff"/><text x="58" y="256" fill="#ebe5e2" font-family="monospace" font-size="10">VLAN 40 · DMZ Services</text>
+  <text x="40" y="280" fill="#71676a" font-family="monospace" font-size="9">Domain: *.redacted.com (Safe Mode)</text>
+
+  <!-- Proxmox Host Card -->
+  <rect x="282" y="146" width="574" height="150" rx="6" fill="#211e1f" stroke="#58a6ff" stroke-width="1.8"/>
+  <text x="300" y="169" fill="#58a6ff" font-family="monospace" font-size="11" font-weight="600">pve-node01 · Proxmox VE 8.3 · 10.0.10.10</text>
+  <!-- Hardware Column -->
+  <rect x="300" y="180" width="168" height="102" rx="4" fill="#181617" stroke="#40383b"/>
+  <rect x="300" y="180" width="5" height="102" fill="#d9b093"/>
+  <text x="314" y="198" fill="#d9b093" font-family="monospace" font-size="10">HARDWARE &amp; ZFS</text>
+  <text x="314" y="216" fill="#ebe5e2" font-family="monospace" font-size="9">CPU: Ryzen 9 · 128 GB ECC</text>
+  <text x="314" y="232" fill="#ebe5e2" font-family="monospace" font-size="9">HBA → passthrough TrueNAS</text>
+  <text x="314" y="248" fill="#bdb3b2" font-family="monospace" font-size="9">tank: RAIDZ2 4×16 TB</text>
+  <text x="314" y="264" fill="#3fb950" font-family="monospace" font-size="9">Used: 18.4 TiB / 41.2 TiB</text>
+
+  <!-- DMZ Containers Column -->
+  <rect x="482" y="180" width="174" height="102" rx="4" fill="#181617" stroke="#bc8cff"/>
+  <text x="494" y="198" fill="#bc8cff" font-family="monospace" font-size="10">DMZ · CT 104 (.42)</text>
+  <text x="494" y="215" fill="#ebe5e2" font-family="sans-serif" font-size="11" font-weight="600">Reverse Proxy &amp; Auth</text>
+  <text x="494" y="232" fill="#58a6ff" font-family="monospace" font-size="9">proxy.redacted.com</text>
+  <text x="494" y="248" fill="#bdb3b2" font-family="monospace" font-size="9">+ Caddy · CrowdSec</text>
+  <text x="494" y="266" fill="#71676a" font-family="monospace" font-size="9">Port Forward: 443/tcp</text>
+
+  <rect x="668" y="180" width="172" height="102" rx="4" fill="#181617" stroke="#bc8cff"/>
+  <text x="680" y="198" fill="#bc8cff" font-family="monospace" font-size="10">DMZ · CT 112 (.58)</text>
+  <text x="680" y="215" fill="#ebe5e2" font-family="sans-serif" font-size="11" font-weight="600">Automation &amp; Media</text>
+  <text x="680" y="232" fill="#58a6ff" font-family="monospace" font-size="9">n8n.redacted.com [LAN]</text>
+  <text x="680" y="248" fill="#bdb3b2" font-family="monospace" font-size="9">+ Jellyfin · Immich</text>
+  <text x="680" y="266" fill="#71676a" font-family="monospace" font-size="9">NFS mount ← tank/media</text>
+</svg>
+<figcaption style="margin-top:10px;font-size:12.5px;color:var(--muted)"><span data-language="vi">Minh họa các quy ước thị giác trong <code>Goblinmine/homelab-diagram</code>: cáp trunk 10G có lõi tối màu, cổng switch hiển thị thanh VLAN cao (untagged) và thấp (tagged), thẻ phần cứng có viền trái màu vàng cát và tên miền tự động được che thành <code>redacted.com</code>.</span><span data-language="en" hidden>Visual conventions in <code>Goblinmine/homelab-diagram</code>: 10G trunk cables drawn with a dark core, switch ports showing tall (untagged) and short (tagged) VLAN bars, hardware tiles with a tan accent bar, and automatic <code>redacted.com</code> domain masking.</span></figcaption>
+</figure>
+
+<h2 id="yaml-vs-layout"><span data-language="vi">1. Tách biệt dữ liệu khai báo (inventory.yaml) và hình học tọa độ (build.py)</span><span data-language="en" hidden>1. Separating declarative data (inventory.yaml) from coordinate geometry (build.py)</span></h2>
+<div data-language="vi">
+<p>Sai lầm phổ biến nhất khi nhờ AI vẽ sơ đồ kiến trúc phức tạp là gộp chung <em>dữ liệu thiết bị</em> và <em>lệnh vẽ đồ họa</em> vào một tệp duy nhất hoặc yêu cầu mô hình tự đoán tọa độ trong một lần sinh văn bản. Trong <a href="https://github.com/Goblinmine/homelab-diagram" target="_blank" rel="noopener noreferrer">Goblinmine/homelab-diagram</a>, kiến trúc được chia làm ba tầng rõ rệt:</p>
+<ul>
+<li><strong>Tầng dữ liệu (<code>inventory.yaml</code>):</strong> Chứa toàn bộ sự thật về hệ thống mạng mà không hề có một con số tọa độ pixel nào: danh sách VLAN kèm mã màu và chính sách, cấu hình tường lửa OPNsense, ánh xạ từng cổng Switch, thông số phần cứng máy chủ Proxmox, các vdev/pool ZFS của TrueNAS và danh sách container theo từng nhóm chức năng.</li>
+<li><strong>Tầng tài nguyên biểu tượng (<code>fetch_icons.py</code> và <code>icons/</code>):</strong> Tự động tải các biểu tượng dịch vụ self-hosted (Proxmox, Jellyfin, Home Assistant, WireGuard...) từ kho <code>homarr-labs/dashboard-icons</code> (có cơ chế tự động chuyển sang raw GitHub nếu jsDelivr trả về lỗi 403), kết hợp với bộ biểu tượng phần cứng tối giản (<code>glyph-cpu.svg</code>, <code>glyph-ram.svg</code>, <code>glyph-ssd.svg</code>, <code>glyph-nic.svg</code>) rồi nhúng thẳng dạng Base64 vào SVG.</li>
+<li><strong>Tầng bố cục xác định (<code>build.py</code>):</strong> Đọc <code>inventory.yaml</code>, dùng thư viện <strong>Pillow</strong> cùng font chữ thực tế (<em>Fira Sans</em> và <em>Fira Code</em>) để đo chính xác chiều rộng từng nhãn văn bản (hàm <code>measure()</code>), tính toán tọa độ trên khung vẽ logic <code>W = 2400</code> rồi xuất ra SVG và gọi <code>rsvg-convert -z 1.6</code> để tạo ảnh PNG sắc nét.</li>
+</ul>
+<pre><code># Cấu trúc khai báo tách biệt hoàn toàn khỏi tọa độ vẽ trong inventory.yaml
+vlans:
+  10: { name: "MGMT", subnet: "10.0.10.0/24", color: "#58a6ff", policy: "Hạ tầng quản trị" }
+  20: { name: "LAN",  subnet: "10.0.20.0/24", color: "#3fb950", policy: "Thiết bị cá nhân" }
+  40: { name: "DMZ",  subnet: "10.0.40.0/24", color: "#bc8cff", policy: "Dịch vụ công khai, cô lập LAN" }
+
+switch_ports:
+  - port: "sfp+1"
+    device: "OPNsense Firewall"
+    speed: "10G"
+    untagged: 10
+    tagged: [20, 30, 40]</code></pre>
+</div>
+<div data-language="en" hidden>
+<p>The most common failure mode in AI-assisted diagramming is mixing <em>infrastructure inventory</em> with <em>pixel rendering instructions</em> inside a single prompt. In <a href="https://github.com/Goblinmine/homelab-diagram" target="_blank" rel="noopener noreferrer">Goblinmine/homelab-diagram</a>, the pipeline is cleanly divided into three deterministic layers:</p>
+<ul>
+<li><strong>Declarative Inventory Layer (<code>inventory.yaml</code>):</strong> Holds every factual detail of the lab without a single pixel coordinate: VLAN IDs, colors, and policies; ISP modem and OPNsense firewall specs; switch port mappings; Proxmox server hardware; TrueNAS ZFS pools; and DMZ container groups.</li>
+<li><strong>Icon Resolution Layer (<code>fetch_icons.py</code> and <code>icons/</code>):</strong> Downloads self-hosted application icons from <code>homarr-labs/dashboard-icons</code> (with an automatic raw GitHub fallback if jsDelivr returns HTTP 403) alongside custom hardware glyphs (<code>glyph-cpu.svg</code>, <code>glyph-ram.svg</code>, <code>glyph-ssd.svg</code>, <code>glyph-nic.svg</code>) and embeds them as Base64 data URIs inside the SVG.</li>
+<li><strong>Deterministic Geometry Layer (<code>build.py</code>):</strong> Parses <code>inventory.yaml</code>, measures exact label widths using <strong>Pillow</strong> against the installed <em>Fira Sans</em> and <em>Fira Code</em> fonts (<code>measure()</code>), places panels on a <code>W = 2400</code> logical canvas, and invokes <code>rsvg-convert -z 1.6</code> to rasterize a high-DPI PNG.</li>
+</ul>
+<pre><code># Declarative network state in inventory.yaml (zero layout coordinates)
+vlans:
+  10: { name: "MGMT", subnet: "10.0.10.0/24", color: "#58a6ff", policy: "Management plane" }
+  20: { name: "LAN",  subnet: "10.0.20.0/24", color: "#3fb950", policy: "Trusted workstations" }
+  40: { name: "DMZ",  subnet: "10.0.40.0/24", color: "#bc8cff", policy: "Public services, no LAN access" }
+
+switch_ports:
+  - port: "sfp+1"
+    device: "OPNsense Firewall"
+    speed: "10G"
+    untagged: 10
+    tagged: [20, 30, 40]</code></pre>
+</div>
+
+<h2 id="visual-grammar"><span data-language="vi">2. Ngữ pháp thị giác chuẩn r/homelab: tốc độ cáp, cổng VLAN và thẻ thiết bị</span><span data-language="en" hidden>2. The r/homelab visual grammar: link-speed cables, VLAN ticks and device cards</span></h2>
+<div data-language="vi">
+<p>Điểm làm nên giá trị của một sơ đồ mạng kỹ thuật là người đọc có thể nhìn ra ngay băng thông, phân vùng bảo mật và phụ thuộc phần cứng mà không cần đọc bảng chú giải dài dòng. Tệp <code>CLAUDE.md</code> của dự án định nghĩa một bộ quy tắc thị giác chặt chẽ để AI agent tuân thủ khi chỉnh sửa <code>build.py</code>:</p>
+<ol>
+<li><strong>Độ dày nét vẽ tỷ lệ với tốc độ đàm phán (Negotiated Link Speed):</strong> Mỗi đường cáp vật lý có độ dày được tra từ bảng <code>SPEED_W</code> (<code>10G</code> dày nhất, tiếp đến <code>2.5G</code>, <code>1G</code> và <code>100M</code>) kèm nhãn tốc độ nhỏ tại điểm tiếp xúc thiết bị. Cáp <strong>Trunk</strong> (mang nhiều VLAN tagged) được vẽ bằng một đường viền trắng có lõi tối màu ở giữa, trong khi cáp <strong>Access</strong> lấy trực tiếp màu của VLAN tương ứng. Đường chấm bi (dotted) chỉ dùng cho kết nối logic qua Internet (VPN, Cloud), còn đường đứt nét xám (dashed) biểu thị kết nối điều khiển KVM.</li>
+<li><strong>Biểu đồ thanh VLAN ngay trên từng cổng Switch:</strong> Trong khung Switch trung tâm, mỗi cổng RJ45 hoặc SFP+ hiển thị các vạch màu tương ứng với các VLAN đi qua cổng đó: <strong>vạch cao là Untagged VLAN (Native VLAN)</strong>, còn <strong>các vạch thấp là Tagged VLANs</strong>.</li>
+<li><strong>Thẻ thiết bị hình bìa hồ sơ (Folder-tab Cards) và điểm neo cáp:</strong> Các thiết bị vật lý có phần tai (tab) ở góc trên bên trái ghi <code>tên · loại thiết bị</code>. Khi dây cáp đi từ Switch phía trên cắm xuống thiết bị, điểm chạm X bắt buộc phải tính toán qua hàm <code>tab_width()</code> để nằm bên phải phần tai này, tránh lỗi dây cáp đâm xuyên qua chữ tiêu đề.</li>
+<li><strong>Thẻ container đa dịch vụ và trạng thái công khai:</strong> Các container chạy nhiều ứng dụng Docker được gom thành một thẻ cao duy nhất với từng dòng cho mỗi dịch vụ. Dịch vụ mở ra Internet qua Reverse Proxy được tô màu xanh (<code>app.domain</code>), dịch vụ chỉ truy cập nội bộ hoặc qua VPN gắn thêm nhãn <code>LAN</code>, và chỉ những cổng thực sự mở từ ngoài Internet mới xuất hiện trong bảng <em>Open to the internet</em>.</li>
+</ol>
+</div>
+<div data-language="en" hidden>
+<p>What makes an engineering topology diagram immediately legible is how it encodes bandwidth, security zones, and hardware passthrough directly into visual primitives. The project's <code>CLAUDE.md</code> codifies strict visual rules that the AI agent must preserve when adapting <code>build.py</code>:</p>
+<ol>
+<li><strong>Line width encodes negotiated link speed:</strong> Every physical cable uses a stroke width mapped from <code>SPEED_W</code> (<code>10G</code> thickest, down through <code>2.5G</code>, <code>1G</code>, and <code>100M</code>) with a compact speed badge at the device termination point. <strong>Trunk links</strong> (carrying multiple tagged VLANs) are rendered as a white outer stroke with a dark inner core, whereas <strong>access links</strong> use the target VLAN's color. Dotted lines are reserved for logical tunnels over the internet (VPN, cloud backup), and dashed grey lines denote KVM console links.</li>
+<li><strong>Per-port VLAN bar charts on switches:</strong> Inside the core switch block, each RJ45 or SFP+ port renders color-coded vertical ticks for its assigned VLANs: a <strong>tall bar indicates the untagged (native) VLAN</strong>, and <strong>short bars indicate tagged VLANs</strong>.</li>
+<li><strong>Folder-tab device cards and cable entry offsets:</strong> Physical appliances use a folder-tab header displaying <code>name · type</code>. Any cable entering a card from above must offset its X coordinate using <code>tab_width()</code> so the wire lands cleanly to the right of the folder tab rather than colliding with the label text.</li>
+<li><strong>Multi-app container cards and exposure badges:</strong> Containers hosting multiple Docker workloads render as a single stacked card with one row per app. Services exposed through the reverse proxy appear in blue as <code>app.domain</code>, internal-only hostnames appear as <code>name.internal</code>, and VPN/LAN-restricted domains carry a <code>LAN</code> pill.</li>
+</ol>
+</div>
+
+<h2 id="agent-interview-loop"><span data-language="vi">3. Quy trình 4 bước trong CLAUDE.md: phỏng vấn, khảo sát chỉ đọc và tự cắt ảnh kiểm tra</span><span data-language="en" hidden>3. The 4-stage CLAUDE.md loop: structured interview, read-only discovery and visual crop checks</span></h2>
+<div data-language="vi">
+<p>Vì mỗi phòng lab cá nhân có số lượng máy chủ, bộ chia mạng và phân vùng DMZ hoàn toàn khác nhau, tác giả không cố viết một thuật toán tự động dàn trang vạn năng (vốn thường tạo ra các sơ đồ rối rắm). Thay vào đó, tệp <code>CLAUDE.md</code> biến AI coding agent thành một kỹ sư thiết kế sơ đồ làm việc theo vòng lặp 4 bước có rào chắn kiểm chứng:</p>
+<ol>
+<li><strong>Bước 1 — Phỏng vấn theo từng đợt ngắn (3–6 câu hỏi) hoặc khảo sát chỉ đọc (Read-only Discovery):</strong> Agent không hỏi dồn toàn bộ 11 hạng mục cùng lúc mà chia thành từng vòng nhỏ (Mục đích &amp; Quyền riêng tư → Đường truyền ISP → Firewall → Switch &amp; VLAN → Máy chủ Proxmox &amp; ZFS → Container DMZ). Nếu người dùng cấp quyền đọc tài liệu hoặc truy cập SSH (ví dụ thông qua quy trình an toàn của skill <a data-catalog-skill="headless" href="../../?lang=vi&amp;skill=headless&amp;agent=antigravity">headless</a>), agent chỉ được phép chạy các lệnh <strong>chỉ đọc (read-only)</strong> sau khi xin phép để tự thu thập thông số:</li>
+</ol>
+<pre><code># Các lệnh chỉ đọc (read-only) giúp AI Agent tự động thu thập cấu hình Homelab
+ip -br a                                   # Liệt kê giao diện mạng và địa chỉ IP
+pct list &amp;&amp; qm list                        # Liệt kê LXC containers và máy ảo trên Proxmox
+docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Ports}}"
+zpool list -v &amp;&amp; zfs list                  # Kiểm tra cấu trúc vdev và dung lượng ZFS
+lsblk -o NAME,MODEL,SIZE                   # Lấy đúng tên model ổ cứng vật lý</code></pre>
+<ol start="2">
+<li><strong>Bước 2 — Cập nhật <code>inventory.yaml</code> và tải biểu tượng:</strong> Agent viết lại tệp YAML theo cấu trúc mạng của người dùng, bổ sung ánh xạ biểu tượng mới vào <code>ICON_MAP</code> trong <code>fetch_icons.py</code> (tự động chọn biến thể <code>-light</code> hoặc tô lại màu trong <code>RECOLOR</code> cho các icon tối màu trên nền thẻ tối).</li>
+<li><strong>Bước 3 — Căn chỉnh tọa độ <code>build.py</code> với chốt chặn <code>assert</code>:</strong> Cuối mỗi phân vùng trong <code>build.py</code> đều có các câu lệnh <code>assert</code> kiểm tra tràn khung (ví dụ chiều cao tổng các thẻ con không được vượt quá chiều cao khung máy chủ <code>ZH</code>). Nếu thêm nhiều container khiến cột bị tràn, chương trình sẽ báo lỗi ngay lập tức kèm vị trí cần tăng chiều cao <code>H</code> hoặc cân bằng lại số cột <code>NCOL</code>.</li>
+<li><strong>Bước 4 — Tự cắt ảnh phóng to (Visual Crop Inspection) trước khi gửi người dùng:</strong> Đây là quy tắc quan trọng nhất trong cả <code>Goblinmine/homelab-diagram</code> lẫn skill <a data-catalog-skill="stack-diagram" href="../../?lang=vi&amp;skill=stack-diagram&amp;agent=antigravity">stack-diagram</a>. Sau khi chạy <code>python3 build.py</code>, AI agent <strong>bắt buộc phải tự mở ảnh PNG kết quả để kiểm tra bằng thị giác</strong>, đồng thời dùng ImageMagick cắt riêng các vùng dày đặc (như cụm cổng Switch hoặc vùng DMZ) để soi lỗi đè chữ hay dây cáp cắt ngang hộp:</li>
+</ol>
+<pre><code># Dựng SVG + PNG và cắt riêng vùng có mật độ cao (tọa độ PNG = tọa độ SVG × 1.6) để Agent tự soi lỗi
+python3 fetch_icons.py
+python3 build.py
+magick out/homelab.png -crop 1400x600+0+0 +repage -resize 70% /tmp/crop-top-edge.png</code></pre>
+</div>
+<div data-language="en" hidden>
+<p>Because every homelab has a different number of switches, servers, and DMZ groups, the author intentionally avoided writing a generic force-directed layout engine. Instead, <code>CLAUDE.md</code> turns the AI coding agent into an interactive diagrammer operating a four-stage verification loop:</p>
+<ol>
+<li><strong>Stage 1 — Batched Interview (3–6 questions per round) &amp; Read-Only Discovery:</strong> Rather than overwhelming the user with an 11-part questionnaire at once, the agent asks 3–6 focused questions per round (Privacy &amp; Purpose → Internet Edge → Firewall → Switches &amp; VLANs → Hypervisor Hardware → DMZ Guests &amp; Storage). When the user grants shell access (for example, over a hardened SSH session managed with <a data-catalog-skill="headless" href="../../?lang=en&amp;skill=headless&amp;agent=antigravity">headless</a>), the agent asks permission to run strictly <strong>read-only inspection commands</strong>:</li>
+</ol>
+<pre><code># Read-only discovery commands used by the AI agent to populate inventory.yaml
+ip -br a                                   # Inspect network interfaces and addresses
+pct list &amp;&amp; qm list                        # List Proxmox LXC containers and QEMU VMs
+docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Ports}}"
+zpool list -v &amp;&amp; zfs list                  # Inspect ZFS pool topology, vdevs and TiB usage
+lsblk -o NAME,MODEL,SIZE                   # Read exact physical disk models and capacities</code></pre>
+<ol start="2">
+<li><strong>Stage 2 — Populate <code>inventory.yaml</code> &amp; Resolve Icons:</strong> The agent rewrites the YAML inventory, maps any new self-hosted services in <code>ICON_MAP</code> inside <code>fetch_icons.py</code>, and assigns <code>-light</code> variants or <code>RECOLOR</code> overrides so dark logos remain visible against dark card backgrounds.</li>
+<li><strong>Stage 3 — Adapt <code>build.py</code> Coordinates with <code>assert</code> Safety Nets:</strong> Every major section of <code>build.py</code> ends with explicit Python <code>assert</code> statements that fail loudly if a column or card overflows its bounding box. When adding containers causes a DMZ column to exceed <code>ZH</code>, the assertion pinpoints the exact section height or column balance (<code>NCOL</code>) that needs adjustment.</li>
+<li><strong>Stage 4 — Mandatory Visual Crop Inspection Before Delivery:</strong> Just like the <a data-catalog-skill="stack-diagram" href="../../?lang=en&amp;skill=stack-diagram&amp;agent=antigravity">stack-diagram</a> skill, <code>CLAUDE.md</code> forbids delivering a render blindly. After running <code>python3 build.py</code>, the agent must inspect <code>out/homelab.png</code> and crop high-density regions (where PNG pixels equal SVG coordinates × 1.6) to catch overlapping labels or crossed cables before showing the user:</li>
+</ol>
+<pre><code># Render SVG + PNG and crop busy regions (PNG pixels = SVG units × 1.6) for visual QA
+python3 fetch_icons.py
+python3 build.py
+magick out/homelab.png -crop 1400x600+0+0 +repage -resize 70% /tmp/crop-top-edge.png</code></pre>
+</div>
+
+<h2 id="privacy-redaction"><span data-language="vi">4. Bảo mật khi chia sẻ công khai: cơ chế Redaction mặc định và kiểm tra rò rỉ</span><span data-language="en" hidden>4. Safe public sharing: default redaction and pre-publish leak verification</span></h2>
+<div data-language="vi">
+<p>Một rủi ro lớn khi đăng sơ đồ mạng lên diễn đàn, blog kỹ thuật hoặc kho tài liệu công khai là vô tình làm lộ tên miền thật, tên mạng Wi-Fi (SSID) hoặc các cổng dịch vụ nhạy cảm. Thiết kế của <code>Goblinmine/homelab-diagram</code> áp dụng nguyên tắc <strong>An toàn mặc định (Secure by Default)</strong>:</p>
+<ul>
+<li>Khi chạy lệnh mặc định <code>python3 build.py</code>, kịch bản tự động thay thế tên miền thật bằng <code>redacted.com</code> và đổi tên các SSID Wi-Fi thành nhãn chung trước khi vẽ SVG và xuất <code>out/homelab.png</code>.</li>
+<li>Chỉ khi người quản trị chủ động truyền cờ <code>python3 build.py --unredacted</code> để lưu tài liệu vận hành nội bộ, sơ đồ mới hiển thị tên miền và SSID thật vào tệp riêng <code>out/homelab-unredacted.png</code>.</li>
+<li>Trước khi người dùng đăng ảnh công khai, <code>CLAUDE.md</code> yêu cầu agent chạy bước kiểm tra cuối cùng bằng lệnh <code>grep</code> trực tiếp trên tệp văn bản <code>out/homelab.svg</code> để đảm bảo không còn sót bất kỳ chuỗi tên miền thật hay thông tin nhạy cảm nào.</li>
+</ul>
+<pre><code># Xuất bản mặc định đã ẩn thông tin nhạy cảm và kiểm tra rò rỉ trên tệp SVG
+python3 build.py
+grep -iE "ten-mien-that\.vn|MyHomeWiFi" out/homelab.svg || echo "An toàn để chia sẻ công khai!"</code></pre>
+</div>
+<div data-language="en" hidden>
+<p>Sharing a comprehensive homelab diagram on Reddit, a personal blog, or a public repository carries an obvious operational security risk: leaking your real domain name, Wi-Fi SSIDs, or external attack surface. <code>Goblinmine/homelab-diagram</code> enforces <strong>redaction by default</strong>:</p>
+<ul>
+<li>Running <code>python3 build.py</code> with no flags automatically substitutes the real domain with <code>redacted.com</code> and replaces real Wi-Fi SSIDs with generic placeholders in <code>out/homelab.svg</code> and <code>out/homelab.png</code>.</li>
+<li>Only when explicitly invoked with <code>python3 build.py --unredacted</code> does the script emit <code>out/homelab-unredacted.png</code> containing private production hostnames for internal documentation.</li>
+<li>Before the user shares the diagram publicly, <code>CLAUDE.md</code> instructs the agent to run a final <code>grep</code> check against <code>out/homelab.svg</code> to verify that no real domain strings, SSIDs, or secrets remain in the vector output.</li>
+</ul>
+<pre><code># Build the redacted public diagram and verify zero sensitive strings remain in the SVG
+python3 build.py
+grep -iE "my-real-domain\.com|HomeWiFiSSID" out/homelab.svg || echo "Verified safe for public sharing!"</code></pre>
+</div>
+
+<h2 id="vas-workflow"><span data-language="vi">5. Kết hợp cùng các kỹ năng trong thư viện VAS</span><span data-language="en" hidden>5. Combining this pattern with skills in the VAS catalog</span></h2>
+<div data-language="vi">
+<p>Bạn có thể áp dụng ngay kiến trúc vẽ sơ đồ và quản trị Homelab này vào dự án của mình bằng cách kết hợp với các kỹ năng đã được kiểm chứng trong thư viện VAS:</p>
+<ul>
+<li><strong>Vẽ sơ đồ kiến trúc hệ thống &amp; hạ tầng bằng <a data-catalog-skill="stack-diagram" href="../../?lang=vi&amp;skill=stack-diagram&amp;agent=antigravity">stack-diagram</a> và <a data-catalog-skill="animated-motion-diagram" href="../../?lang=vi&amp;skill=animated-motion-diagram&amp;agent=antigravity">animated-motion-diagram</a>:</strong> Nếu bạn muốn tạo sơ đồ kiến trúc đám mây, luồng kết nối dịch vụ (Service Topology) hoặc hạ tầng kỹ thuật kèm logo thương hiệu thực tế và đường nối vuông góc (orthogonal arrows) xuất ra HTML tự chứa, PNG hoặc React/TSX, hãy cài đặt <a data-catalog-skill="stack-diagram" href="../../?lang=vi&amp;skill=stack-diagram&amp;agent=antigravity">stack-diagram</a>. Khi muốn nâng cấp sơ đồ tĩnh đó thành bản vẽ kỹ thuật có dòng chảy dữ liệu chuyển động, hạt xung năng lượng phát sáng và thanh lọc luồng tương tác chạy offline 100%, hãy kết hợp thêm <a data-catalog-skill="animated-motion-diagram" href="../../?lang=vi&amp;skill=animated-motion-diagram&amp;agent=antigravity">animated-motion-diagram</a>.</li>
+<li><strong>Quản trị máy chủ Homelab qua SSH an toàn bằng <a data-catalog-skill="headless" href="../../?lang=vi&amp;skill=headless&amp;agent=antigravity">headless</a>:</strong> Khi để AI agent kết nối SSH vào máy chủ Proxmox, Linux hoặc Mac mini trong Homelab để chạy các lệnh khảo sát cấu hình mạng hay thiết lập máy chạy 24/7 không màn hình, hãy dùng <a data-catalog-skill="headless" href="../../?lang=vi&amp;skill=headless&amp;agent=antigravity">headless</a> để truyền mật khẩu qua file descriptor 3 mà không bao giờ làm lộ mật khẩu trong lịch sử chat.</li>
+<li><strong>Triển khai dịch vụ tự host trong vùng DMZ với <a data-catalog-skill="n8n-self-hosting" href="../../?lang=vi&amp;skill=n8n-self-hosting&amp;agent=antigravity">n8n-self-hosting</a>:</strong> Khi dựng các container dịch vụ thực tế phía sau Reverse Proxy Caddy như trong sơ đồ Homelab, <a data-catalog-skill="n8n-self-hosting" href="../../?lang=vi&amp;skill=n8n-self-hosting&amp;agent=antigravity">n8n-self-hosting</a> cung cấp khuôn mẫu Docker Compose, quản lý biến môi trường và sao lưu dữ liệu chuẩn chỉnh.</li>
+</ul>
+<pre><code># Cài đặt bộ kỹ năng vẽ sơ đồ kiến trúc và vận hành Homelab từ VAS CLI
+./vas install stack-diagram --target antigravity --mode link
+./vas install animated-motion-diagram --target antigravity --mode link
+./vas install headless --target antigravity --mode link
+./vas install n8n-self-hosting --target antigravity --mode link</code></pre>
+</div>
+<div data-language="en" hidden>
+<p>You can immediately apply this declarative diagramming and homelab operations workflow in your own workspace using curated skills from the VAS catalog:</p>
+<ul>
+<li><strong>Generate static and animated topology diagrams with <a data-catalog-skill="stack-diagram" href="../../?lang=en&amp;skill=stack-diagram&amp;agent=antigravity">stack-diagram</a> and <a data-catalog-skill="animated-motion-diagram" href="../../?lang=en&amp;skill=animated-motion-diagram&amp;agent=antigravity">animated-motion-diagram</a>:</strong> When you need a clean architecture diagram, service topology, or infrastructure layout with real brand logos, grouped containers, and orthogonal arrows delivered as self-contained HTML, PNG, or React/TSX, install <a data-catalog-skill="stack-diagram" href="../../?lang=en&amp;skill=stack-diagram&amp;agent=antigravity">stack-diagram</a>. To turn static engineering diagrams into interactive HTML flow diagrams with glowing data particles, speed controls, and light/dark mode toggles, pair it with <a data-catalog-skill="animated-motion-diagram" href="../../?lang=en&amp;skill=animated-motion-diagram&amp;agent=antigravity">animated-motion-diagram</a>.</li>
+<li><strong>Provision and inspect homelab hosts safely over SSH with <a data-catalog-skill="headless" href="../../?lang=en&amp;skill=headless&amp;agent=antigravity">headless</a>:</strong> When granting an AI agent SSH access to your Proxmox nodes, Linux servers, or Mac mini hosts for read-only inventory discovery or 24/7 unattended setup, use <a data-catalog-skill="headless" href="../../?lang=en&amp;skill=headless&amp;agent=antigravity">headless</a> so admin passwords flow strictly over file descriptor 3 and never enter the chat transcript.</li>
+<li><strong>Deploy self-hosted DMZ containers with <a data-catalog-skill="n8n-self-hosting" href="../../?lang=en&amp;skill=n8n-self-hosting&amp;agent=antigravity">n8n-self-hosting</a>:</strong> When setting up multi-app Docker containers behind a Caddy reverse proxy as depicted in your homelab diagram, <a data-catalog-skill="n8n-self-hosting" href="../../?lang=en&amp;skill=n8n-self-hosting&amp;agent=antigravity">n8n-self-hosting</a> provides production-ready Docker Compose, secret isolation, and backup runbooks.</li>
+</ul>
+<pre><code># Install the architecture diagramming and homelab infrastructure skills via VAS CLI
+./vas install stack-diagram --target antigravity --mode link
+./vas install animated-motion-diagram --target antigravity --mode link
+./vas install headless --target antigravity --mode link
+./vas install n8n-self-hosting --target antigravity --mode link</code></pre>
+</div>
+</article>
+<aside class="guide-companion" aria-label="Skill liên quan">
+<p class="guide-eyebrow"><span data-language="vi">Áp dụng vào dự án</span><span data-language="en" hidden>Apply it to your project</span></p>
+<h2><a data-catalog-skill="stack-diagram" href="../../?lang=vi&amp;skill=stack-diagram&amp;agent=antigravity">stack-diagram</a></h2>
+<p><span data-language="vi">Tạo sơ đồ kiến trúc hệ thống, hạ tầng đám mây và luồng dịch vụ kèm logo thực tế, kiểm tra bố cục trực quan rồi xuất ra HTML, PNG hoặc React/TSX.</span><span data-language="en" hidden>Create system architecture and infrastructure topology diagrams with real logos, deterministic geometry checks, and HTML/PNG/TSX output.</span></p>
+<a class="button primary" data-catalog-skill="stack-diagram" href="../../?lang=vi&amp;skill=stack-diagram&amp;agent=antigravity"><span data-language="vi">Xem skill và cài đặt →</span><span data-language="en" hidden>Read skill and install →</span></a>
+<a class="text-link" href="../../#quickstart" data-home><span data-language="vi">Cách sử dụng VAS</span><span data-language="en" hidden>How to use VAS</span></a>
+</aside>
+</div>
+<section class="guide-related" aria-labelledby="related-title">
+<h2 id="related-title"><span data-language="vi">Đọc tiếp</span><span data-language="en" hidden>Read next</span></h2>
+<div class="guide-related-links">
+<a href="../thiet-lap-may-headless-qua-ssh-khong-lo-mat-khau/" data-guide-link><span data-language="vi">Thiết lập máy không màn hình qua SSH mà không lộ mật khẩu quản trị</span><span data-language="en" hidden>Set up unattended machines over SSH without exposing admin passwords</span></a>
+<a href="../agent-skills-mcp-agents-md/" data-guide-link><span data-language="vi">Agent Skills, MCP và AGENTS.md khác nhau thế nào?</span><span data-language="en" hidden>Agent Skills, MCP and AGENTS.md: what belongs where?</span></a>
+</div>
+</section>
+</main>
+<footer class="site-footer"><div class="shell footer-inner"><strong>VAS / Vie Agentic Skill</strong><p><span data-language="vi">Đọc hướng dẫn. Chọn skill. Áp dụng vào dự án.</span><span data-language="en" hidden>Read a guide. Choose a skill. Apply it to your project.</span></p><div><a href="../../#catalog" data-home><span data-language="vi">Thư viện</span><span data-language="en" hidden>Library</span></a><a href="https://github.com/huytran1120/vie-agentic-skills">GitHub ↗</a></div></div></footer>
+</body>
+</html>

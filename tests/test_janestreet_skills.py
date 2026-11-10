@@ -58,10 +58,10 @@ class TestJaneStreetSkills(unittest.TestCase):
         self.assertIn("janestreet/agent_skills", self.credits["sections"]["janestreet"][0])
         self.assertIn("7c6715c29548a3b39d4a9545c698ee4fd17a7213", self.credits["sections"]["janestreet"][0])
 
-        # Verify category taxonomy remains 119 and catalog has 4,076 skills
+        # Verify category taxonomy remains 119 and catalog has 4,077 skills
         categories = {s.get("category", "general") for s in self.index}
         self.assertEqual(len(categories), 119)
-        self.assertEqual(len(self.index), 4076)
+        self.assertEqual(len(self.index), 4077)
 
         self.assertIn("socratic-tutor", self.skills_by_id)
         skill = self.skills_by_id["socratic-tutor"]

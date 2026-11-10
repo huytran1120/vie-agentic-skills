@@ -39,7 +39,7 @@ class EffectiveHtmlSkillsTests(unittest.TestCase):
         # Verify category taxonomy remains exactly 119
         categories = {s.get("category", "general") for s in self.index}
         self.assertEqual(len(categories), 119)
-        self.assertEqual(len(self.index), 4076)
+        self.assertEqual(len(self.index), 4077)
 
         expected_skills = [
             "big-pics-little-words",

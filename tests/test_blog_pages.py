@@ -40,6 +40,7 @@ SLUGS = (
     "thiet-lap-may-headless-qua-ssh-khong-lo-mat-khau",
     "thu-vien-motion-prompt-192-hieu-ung-canvas-2d",
     "phuong-phap-socratic-cho-ai-agent-gia-su-hoc-tap",
+    "ve-so-do-mang-homelab-bang-ai-agent-tu-yaml-den-svg",
 )
 LINKED_SKILLS = {
     "webapp-testing",
@@ -64,6 +65,8 @@ LINKED_SKILLS = {
     "headless",
     "motion-prompt",
     "socratic-tutor",
+    "stack-diagram",
+    "animated-motion-diagram",
 }
 VOID_ELEMENTS = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"}
 
