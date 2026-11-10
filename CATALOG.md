@@ -1,6 +1,6 @@
 # Vie Agentic Skill (VAS) - Catalog
 
-Tổng hợp **4,075** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
+Tổng hợp **4,076** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
 
 | Danh mục | Số lượng | Lệnh cài đặt nhanh |
 | :--- | :---: | :--- |
@@ -59,7 +59,7 @@ Tổng hợp **4,075** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **document-processing** | 4 skills | `./vas install --category document-processing --target codex` |
 | **document-verification** | 7 skills | `./vas install --category document-verification --target codex` |
 | **ecommerce** | 4 skills | `./vas install --category ecommerce --target codex` |
-| **education** | 12 skills | `./vas install --category education --target codex` |
+| **education** | 13 skills | `./vas install --category education --target codex` |
 | **engineering** | 100 skills | `./vas install --category engineering --target codex` |
 | **finance** | 38 skills | `./vas install --category finance --target codex` |
 | **framework** | 13 skills | `./vas install --category framework --target codex` |
@@ -2353,7 +2353,7 @@ Tổng hợp **4,075** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `etsy-shop-sales-history` | `critical` | Read Etsy shop sales counters, deltas, and breakout flags from Apify Actor pu... |
 | `woo-guard` | `critical` | Review generated or changed WooCommerce extensions, payment and shipping inte... |
 
-### EDUCATION (12 skills)
+### EDUCATION (13 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
@@ -2368,6 +2368,7 @@ Tổng hợp **4,075** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `lesson-generator` | `safe` | Build compact, standalone multi-lesson course artifacts with lesson navigatio... |
 | `puzzle-activity-planner` | `safe` | Plan puzzle-based activities for classrooms, parties, and events with pre-con... |
 | `scaffold-exercises` | `safe` | Create exercise directory structures with sections, problems, solutions, and ... |
+| `socratic-tutor` | `safe` | Structured Socratic tutoring when the user explicitly asks to be taught, quiz... |
 | `teach` | `safe` | Teach the user a new skill or concept, within this workspace. |
 
 ### ENGINEERING (100 skills)

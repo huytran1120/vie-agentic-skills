@@ -553,6 +553,12 @@
       "- Includes `scripts/motion-prompt.mjs` (zero-dependency Node.js 18+ CLI supporting `pick`, `search`, `list`, `get`, `prompt`, `kit`, and `info`) and `references/porting.md` for porting Canvas 2D time functions `cells[i](k, w, h, u)` to HTML/Canvas, Remotion, CSS/WAAPI, GSAP/Motion, ffmpeg/Manim, After Effects/Premiere, and video/image generation prompts.",
       "- Standalone payload includes `SKILL.md`, `LICENSE`, `THIRD-PARTY-NOTICES.md`, `NOTICE.md`, `references/porting.md`, and `scripts/motion-prompt.mjs`.",
       "- Installation via `./vas install` only links or copies static files and writes `.vas-manifest.json`. No script, callback server, or network request is executed during installation."
+    ],
+    "janestreet": [
+      "- **[janestreet/agent_skills](https://github.com/janestreet/agent_skills/tree/7c6715c29548a3b39d4a9545c698ee4fd17a7213)**: Structured Socratic tutoring skill (`socratic-tutor`) by Jane Street Group, LLC at revision `7c6715c29548a3b39d4a9545c698ee4fd17a7213` under the MIT License.",
+      "- Turns an LLM into a rigorous personal tutor using the Socratic method: intent confirmation guard, 4-10 subskill decomposition, 3-5 diagnostic probing questions, levels 0-5 skill mapping (unaware to mastery), one-question-at-a-time teaching loop, spaced recall review, adversarial devil advocate checks, and a comprehensive final assessment.",
+      "- Standalone payload includes `SKILL.md`, `LICENSE`, and `NOTICE.md`.",
+      "- Installation via `./vas install` only links or copies static files and writes `.vas-manifest.json`. No external scripts or network requests are executed during installation."
     ]
   }
 }

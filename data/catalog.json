@@ -110605,6 +110605,34 @@
         "middleware"
       ],
       "path": "skills/zustand-store-ts/SKILL.md"
+    },
+    {
+      "id": "socratic-tutor",
+      "canonical_id": "socratic-tutor",
+      "name": "socratic-tutor",
+      "path": "skills/socratic-tutor",
+      "description": "Structured Socratic tutoring when the user explicitly asks to be taught, quizzed, or drilled to mastery on a topic: diagnostic placement, a skill map with levels 0-5, spaced review, and a final assessment. Trigger phrases: 'teach me', 'tutor me', 'quiz me', 'drill me', 'help me master'. Not for one-off 'explain X' or 'what is X' questions.",
+      "category": "education",
+      "tags": [
+        "socratic-tutor",
+        "tutoring",
+        "socratic-method",
+        "education",
+        "learning",
+        "mastery",
+        "quiz",
+        "drill",
+        "jane-street"
+      ],
+      "risk": "safe",
+      "author": "Jane Street Group, LLC",
+      "author_url": "https://github.com/janestreet",
+      "source": "https://github.com/janestreet/agent_skills/tree/7c6715c29548a3b39d4a9545c698ee4fd17a7213/socratic-tutor",
+      "source_repo": "janestreet/agent_skills",
+      "source_revision": "7c6715c29548a3b39d4a9545c698ee4fd17a7213",
+      "source_path": "socratic-tutor/SKILL.md",
+      "license": "MIT",
+      "license_source": "https://github.com/janestreet/agent_skills/blob/7c6715c29548a3b39d4a9545c698ee4fd17a7213/LICENSE.md"
     }
   ]
 }

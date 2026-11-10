@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="vi" data-theme="light">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biến AI Agent thành gia sư nghiêm khắc theo phương pháp Socratic — VAS</title>
+<meta name="description" content="Hướng dẫn sử dụng skill socratic-tutor từ Jane Street để biến LLM thành gia sư Socratic: chẩn đoán ban đầu, bản đồ năng lực 0-5, hỏi từng câu một và ôn tập ngắt quãng.">
+<meta name="robots" content="index, follow"><meta name="theme-color" content="#f3efea">
+<link rel="canonical" href="https://vie-agentic-skills.vercel.app/blog/phuong-phap-socratic-cho-ai-agent-gia-su-hoc-tap/">
+<link rel="icon" href="../../assets/brand/vas-icon.png"><link rel="stylesheet" href="../../catalog.css"><link rel="stylesheet" href="../blog.css">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Vie Agentic Skill"><meta property="og:title" content="Biến AI Agent thành gia sư nghiêm khắc theo phương pháp Socratic"><meta property="og:description" content="Hướng dẫn sử dụng skill socratic-tutor từ Jane Street để biến LLM thành gia sư Socratic: chẩn đoán ban đầu, bản đồ năng lực 0-5, hỏi từng câu một và ôn tập ngắt quãng."><meta property="og:url" content="https://vie-agentic-skills.vercel.app/blog/phuong-phap-socratic-cho-ai-agent-gia-su-hoc-tap/"><meta property="og:image" content="https://vie-agentic-skills.vercel.app/assets/social-preview.png"><meta property="og:image:width" content="1280"><meta property="og:image:height" content="640">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Biến AI Agent thành gia sư nghiêm khắc theo phương pháp Socratic"><meta name="twitter:description" content="Hướng dẫn sử dụng skill socratic-tutor từ Jane Street để biến LLM thành gia sư Socratic: chẩn đoán ban đầu, bản đồ năng lực 0-5, hỏi từng câu một và ôn tập ngắt quãng."><meta name="twitter:image" content="https://vie-agentic-skills.vercel.app/assets/social-preview.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Biến AI Agent thành gia sư nghiêm khắc theo phương pháp Socratic","description":"Hướng dẫn sử dụng skill socratic-tutor từ Jane Street để biến LLM thành gia sư Socratic: chẩn đoán ban đầu, bản đồ năng lực 0-5, hỏi từng câu một và ôn tập ngắt quãng.","url":"https://vie-agentic-skills.vercel.app/blog/phuong-phap-socratic-cho-ai-agent-gia-su-hoc-tap/","mainEntityOfPage":"https://vie-agentic-skills.vercel.app/blog/phuong-phap-socratic-cho-ai-agent-gia-su-hoc-tap/","inLanguage":"vi-VN","datePublished":"2026-11-10","dateModified":"2026-11-10","author":{"@type":"Organization","name":"Vie Agentic Skill"},"publisher":{"@type":"Organization","name":"Vie Agentic Skill","url":"https://vie-agentic-skills.vercel.app/"},"image":"https://vie-agentic-skills.vercel.app/assets/social-preview.png"}</script>
+<script src="../blog.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#guide-main"><span data-language="vi">Đến nội dung chính</span><span data-language="en" hidden>Skip to content</span></a>
+<header class="site-header guide-header"><div class="shell header-inner"><a class="brand" href="../../" data-home><span class="brand-mark" aria-hidden="true">&gt;_</span><span class="brand-short">VAS</span></a><nav class="guide-nav" aria-label="Điều hướng"><a class="guide-library-return" href="../../#catalog" data-home data-library-return><span data-language="vi">← Về thư viện <span data-catalog-count="vi">4.076</span> skill</span><span data-language="en" hidden>← Back to <span data-catalog-count="en">4,076</span> skills</span></a><a href="../" data-blog><span data-language="vi">Blog / Hướng dẫn</span><span data-language="en" hidden>Blog / Guides</span></a></nav><div class="header-actions"><button id="blog-language" class="icon-button" type="button" aria-label="Switch to English" lang="en">EN</button><button id="blog-theme" class="icon-button" type="button" aria-label="Bật giao diện tối" aria-pressed="false">◐</button></div></div></header>
+<main id="guide-main" class="shell guide-main" tabindex="-1" data-page-titles='{&quot;vi&quot;: &quot;Biến AI Agent thành gia sư nghiêm khắc theo phương pháp Socratic — VAS&quot;, &quot;en&quot;: &quot;Turn AI agents into rigorous Socratic tutors with Jane Street skill — VAS&quot;}' data-page-descriptions='{&quot;vi&quot;: &quot;Hướng dẫn sử dụng skill socratic-tutor từ Jane Street để biến LLM thành gia sư Socratic: chẩn đoán ban đầu, bản đồ năng lực 0-5, hỏi từng câu một và ôn tập ngắt quãng.&quot;, &quot;en&quot;: &quot;Master technical topics with Jane Street Socratic tutoring: intent confirmation guards, level 0-5 skill maps, single-question loops, spaced review and adversarial testing.&quot;}'>
+<nav class="guide-breadcrumb" aria-label="Breadcrumb"><a href="../../" data-home>VAS</a><span>/</span><a href="../" data-blog><span data-language="vi">Blog / Hướng dẫn</span><span data-language="en" hidden>Blog / Guides</span></a></nav>
+<header class="guide-heading"><p class="guide-eyebrow"><span data-language="vi">Giáo dục / Phương pháp học chủ động</span><span data-language="en" hidden>Education / Active Learning</span></p><h1><span data-language="vi">Biến AI Agent thành gia sư nghiêm khắc theo phương pháp Socratic</span><span data-language="en" hidden>Turn AI agents into rigorous Socratic tutors with Jane Street skill</span></h1><p class="guide-byline"><span data-language="vi">Biên soạn bởi Vie Agentic Skill · Dựa trên quy chuẩn từ Jane Street</span><span data-language="en" hidden>Prepared by Vie Agentic Skill · Based on specifications by Jane Street</span></p></header>
+<div class="guide-layout"><article class="guide-prose">
+<div data-language="vi">
+<p class="guide-lead">Khi muốn học một khái niệm kỹ thuật phức tạp (như OCaml type system, cơ chế concurrency trong Rust hay thuật toán đồng thuận Raft), hầu hết người dùng thường bảo AI: <em>"Hãy giải thích X cho tôi"</em>. Mô hình sẽ lập tức tuôn ra nhiều trang tài liệu chi tiết. Người đọc lướt qua thấy rất hợp lý và nghĩ mình đã hiểu, nhưng đến khi tự viết mã hay vào phỏng vấn thì không nhớ nổi hoặc không thể tự chứng minh giải pháp. Bộ kỹ năng <a data-catalog-skill="socratic-tutor" href="../../?lang=vi&amp;skill=socratic-tutor&amp;agent=antigravity">socratic-tutor</a> do các kỹ sư tại Jane Street phát triển thay đổi hoàn toàn cách tiếp cận này bằng phương pháp vấn đáp Socratic có cấu trúc chặt chẽ.</p>
+<p>Bài viết này phân tích nghịch lý tiếp thu thụ động với mô hình ngôn ngữ lớn, cơ chế kiểm soát ý định (Intent Guard), thang đo năng lực 6 cấp độ từ 0 đến 5, chu trình hỏi một câu nghiêm ngặt và cách áp dụng vào không gian làm việc của bạn.</p>
+</div>
+<div data-language="en" hidden>
+<p class="guide-lead">When learning a difficult technical subject—such as OCaml type systems, Rust memory ownership, or distributed consensus protocols—the standard prompt is <em>"Explain X to me"</em>. The model immediately emits pages of clear documentation. The engineer reads along, nods in agreement, and falls into the illusion of competence. Yet when faced with a blank terminal or a live interview problem, they cannot reconstruct the solution. The <a data-catalog-skill="socratic-tutor" href="../../?lang=en&amp;skill=socratic-tutor&amp;agent=antigravity">socratic-tutor</a> skill developed by engineers at Jane Street replaces passive lecturing with a disciplined maieutic dialogue.</p>
+<p>This guide breaks down the illusion of explanatory depth in LLM chats, the intent confirmation guard, the 6-tier level 0-5 skill taxonomy, the single-question teaching loop, and runtime integration across coding agents.</p>
+</div>
+<details><summary><span data-language="vi">Nội dung bài viết</span><span data-language="en" hidden>On this page</span></summary><ul><li><a href="#illusion"><span data-language="vi">1. Ảo tưởng tiếp thu khi nghe AI diễn thuyết</span><span data-language="en" hidden>1. The illusion of explanatory depth in AI conversations</span></a></li><li><a href="#intent-guard"><span data-language="vi">2. Rào chắn xác nhận ý định người học</span><span data-language="en" hidden>2. The intent confirmation guard</span></a></li><li><a href="#skill-map"><span data-language="vi">3. Bản đồ năng lực 6 cấp độ (Level 0–5)</span><span data-language="en" hidden>3. The six-tier skill map (Level 0–5)</span></a></li><li><a href="#teaching-loop"><span data-language="vi">4. Chu trình hỏi một câu và bài kiểm tra phản biện</span><span data-language="en" hidden>4. The single-question loop and adversarial testing</span></a></li><li><a href="#state-persistence"><span data-language="vi">5. Lưu trạng thái học tập và cài đặt trong VAS</span><span data-language="en" hidden>5. State persistence and installing via VAS</span></a></li></ul></details>
+<h2 id="illusion"><span data-language="vi">1. Ảo tưởng tiếp thu khi nghe AI diễn thuyết</span><span data-language="en" hidden>1. The illusion of explanatory depth in AI conversations</span></h2>
+<div data-language="vi">
+<p>Các nghiên cứu về tâm lý học nhận thức từ lâu đã chỉ ra hiện tượng <em>Illusion of Explanatory Depth</em>: người học thường nhầm lẫn giữa việc "nhận diện một câu trả lời mạch lạc" với "khả năng tự tạo ra câu trả lời đó". Khi một mô hình ngôn ngữ lớn giải thích toàn bộ bài toán, bộ não của người đọc chỉ đang thực hiện thao tác nhận dạng thụ động. Não không phải chịu tải nhận thức (cognitive load) để tìm kiếm dữ kiện trong trí nhớ hay phát hiện mâu thuẫn logic.</p>
+<p>Phương pháp Socratic (hay Maieutics) đảo ngược hoàn toàn luồng giao tiếp: người dạy đóng vai trò là người đặt câu hỏi dẫn dắt, buộc người học phải tự quan sát, tự đưa ra giả định, tự chứng minh và tự tìm ra lỗ hổng trong suy luận của chính mình. Kỹ năng <a data-catalog-skill="socratic-tutor" href="../../?lang=vi&amp;skill=socratic-tutor&amp;agent=antigravity">socratic-tutor</a> ép agent không bao giờ đưa ra bài giảng dài dòng, mà chỉ hỏi từng câu một để kích hoạt tư duy chủ động.</p>
+</div>
+<div data-language="en" hidden>
+<p>Cognitive science has long documented the <em>Illusion of Explanatory Depth</em>: humans systematically mistake fluency in recognizing an explanation for the ability to produce one. When an LLM lectures at length, the user's brain operates in passive recognition mode. It incurs zero cognitive load to retrieve memory traces or resolve logical contradictions.</p>
+<p>The Socratic method inverts this paradigm. The teacher acts as an inquisitor who forces the student to formulate predictions, explain causality, and confront false assumptions. The <a data-catalog-skill="socratic-tutor" href="../../?lang=en&amp;skill=socratic-tutor&amp;agent=antigravity">socratic-tutor</a> skill constrains the model to emit one targeted question at a time, enforcing active recall and genuine mastery.</p>
+</div>
+<h2 id="intent-guard"><span data-language="vi">2. Rào chắn xác nhận ý định người học</span><span data-language="en" hidden>2. The intent confirmation guard</span></h2>
+<div data-language="vi">
+<p>Một vấn đề thường gặp của các prompt tạo gia sư thông thường là sự quá đà: khi người dùng chỉ muốn tra cứu nhanh cú pháp (ví dụ <em>"cú pháp match trong OCaml viết thế nào?"</em>), agent lại bật chế độ gia sư và bắt đầu một bài kiểm tra 10 câu hỏi không mong muốn. Để giải quyết việc này, <a data-catalog-skill="socratic-tutor" href="../../?lang=vi&amp;skill=socratic-tutor&amp;agent=antigravity">socratic-tutor</a> thiết lập một quy tắc phân luồng rõ ràng:</p>
+<ul>
+<li><strong>Không kích hoạt khi hỏi một lần:</strong> Nếu người dùng chỉ hỏi các câu hỏi thông thường như <em>"giải thích X"</em>, <em>"X là gì"</em> hoặc <em>"làm sao để dùng X"</em>, agent trả lời ngắn gọn trực tiếp như bình thường và tuyệt đối không khởi động vòng lặp gia sư.</li>
+<li><strong>Chỉ kích hoạt khi có yêu cầu rõ ràng:</strong> Kỹ năng chỉ khởi chạy khi có các từ khóa chỉ định ý định học tập như <code>teach me</code>, <code>tutor me</code>, <code>quiz me</code>, <code>drill me</code> hoặc <code>help me master</code>.</li>
+<li><strong>Xác nhận khi không rõ ràng:</strong> Nếu ý định mơ hồ, agent chỉ hỏi đúng một câu trước khi khởi tạo bài kiểm tra: <em>"Bạn muốn câu trả lời nhanh hay muốn tôi kèm cặp chuyên sâu theo phương pháp Socratic?"</em>.</li>
+</ul>
+</div>
+<div data-language="en" hidden>
+<p>A fatal flaw of naive tutor prompts is unwarranted aggressiveness. When a software developer asks a quick reference question (such as <em>"how does pattern matching syntax look in OCaml?"</em>), an overzealous prompt immediately launches an unwanted quiz. The <a data-catalog-skill="socratic-tutor" href="../../?lang=en&amp;skill=socratic-tutor&amp;agent=antigravity">socratic-tutor</a> skill enforces an explicit Intent Guard:</p>
+<ul>
+<li><strong>Bypass on reference lookups:</strong> One-off questions ("explain X", "what is X", "how do I use X") receive direct, concise answers without triggering the tutoring engine.</li>
+<li><strong>Explicit trigger contract:</strong> The skill activates only upon explicit learning directives such as <code>teach me</code>, <code>tutor me</code>, <code>quiz me</code>, <code>drill me</code>, or <code>help me master</code>.</li>
+<li><strong>Single confirmation for ambiguity:</strong> If the user's intent is unclear, the agent asks a single clarifying question: <em>"Want a quick answer, or should I actually teach you this properly?"</em> before launching any diagnostic.</li>
+</ul>
+</div>
+<h2 id="skill-map"><span data-language="vi">3. Bản đồ năng lực 6 cấp độ (Level 0–5)</span><span data-language="en" hidden>3. The six-tier skill map (Level 0–5)</span></h2>
+<div data-language="vi">
+<p>Thay vì đưa ra nhận xét định tính chung chung như "bạn học tốt lắm", <a data-catalog-skill="socratic-tutor" href="../../?lang=vi&amp;skill=socratic-tutor&amp;agent=antigravity">socratic-tutor</a> chia chủ đề thành 4 đến 10 kỹ năng thành phần và theo dõi tiến độ của từng kỹ năng theo thang điểm chuẩn từ 0 đến 5:</p>
+<pre><code># Thang đo năng lực 6 cấp độ từ Jane Street
+0: Chưa từng nghe qua (Unaware)
+1: Đã nghe qua nhưng chưa hiểu (Heard of it)
+2: Có thể đọc hiểu khi có người khác làm mẫu (Can follow along)
+3: Có thể tự làm được khi có gợi ý hoặc trợ giúp (Can do with help)
+4: Tự giải quyết bài toán độc lập hoàn toàn (Can do independently)
+5: Xử lý được các ca biên hiểm hóc và đủ khả năng dạy lại người khác (Can teach / edge cases)</code></pre>
+<p>Mỗi khi người học thay đổi cấp độ hoặc yêu cầu xem tiến trình, agent hiển thị bảng điều khiển trực quan bằng ký tự khối ASCII:</p>
+<pre><code>Topic: Concurrency &amp; Thread Safety       overall: ######.... 58%
+-----------------------------------------------------------------
+Mutex &amp; Lock Ordering    [########..]  4/5  * independent
+Deadlock Prevention      [######....]  3/5  &lt;- current focus
+Atomic Operations        [##........]  1/5
+-----------------------------------------------------------------</code></pre>
+</div>
+<div data-language="en" hidden>
+<p>Rather than providing vague praise, <a data-catalog-skill="socratic-tutor" href="../../?lang=en&amp;skill=socratic-tutor&amp;agent=antigravity">socratic-tutor</a> decomposes any complex technical domain into 4–10 subskills and tracks competence across an objective six-level scale:</p>
+<pre><code># Jane Street 6-tier mastery scale
+0: Unaware
+1: Heard of it
+2: Can follow along
+3: Can do with help
+4: Can do independently
+5: Can teach it / handle adversarial edge cases</code></pre>
+<p>Whenever a mastery tier changes or the user types <code>show progress</code>, the agent renders an ASCII progress chart using solid and shaded block characters:</p>
+<pre><code>Topic: Concurrency &amp; Thread Safety       overall: ######.... 58%
+-----------------------------------------------------------------
+Mutex &amp; Lock Ordering    [########..]  4/5  * independent
+Deadlock Prevention      [######....]  3/5  &lt;- current focus
+Atomic Operations        [##........]  1/5
+-----------------------------------------------------------------</code></pre>
+</div>
+<h2 id="teaching-loop"><span data-language="vi">4. Chu trình hỏi một câu và bài kiểm tra phản biện</span><span data-language="en" hidden>4. The single-question loop and adversarial testing</span></h2>
+<div data-language="vi">
+<p>Quy trình tương tác của <a data-catalog-skill="socratic-tutor" href="../../?lang=vi&amp;skill=socratic-tutor&amp;agent=antigravity">socratic-tutor</a> đặt ra các kỷ luật bắt buộc đối với mô hình ngôn ngữ lớn:</p>
+<ol>
+<li><strong>Chỉ hỏi đúng một câu tại một thời điểm:</strong> Agent kết thúc tin nhắn ngay sau dấu chấm hỏi và dừng lại chờ câu trả lời của người học. Không thêm gợi ý trước, không kèm ví dụ mẫu hay nội dung giảng giải thừa thãi.</li>
+<li><strong>Khi trả lời sai — Không đưa ra đáp án:</strong> Agent đặt một câu hỏi hẹp hơn để chỉ ra sự mâu thuẫn trong chính suy luận của người học. Chỉ giải thích ngắn gọn khi người học đã thất bại sau 2 đến 3 lần thử, sau đó kiểm tra lại khái niệm đó từ một góc nhìn khác.</li>
+<li><strong>Khi trả lời đúng — Đóng vai kẻ phản biện (Devil's Advocate):</strong> Thỉnh thoảng agent sẽ đặt câu hỏi nghi vấn ngược lại (<em>"Bạn có chắc không? Nếu trong trường hợp Y thì kết quả có còn đúng không?"</em>) để đảm bảo người học có thể bảo vệ lập luận của mình dưới áp lực.</li>
+<li><strong>Ôn tập ngắt quãng không báo trước (Spaced Review):</strong> Trong quá trình học kỹ năng mới, agent sẽ định kỳ hỏi lại các kỹ năng cũ một cách bất ngờ. Nếu trả lời sai, cấp độ sẽ bị hạ xuống để ôn lại.</li>
+</ol>
+</div>
+<div data-language="en" hidden>
+<p>The teaching loop within <a data-catalog-skill="socratic-tutor" href="../../?lang=en&amp;skill=socratic-tutor&amp;agent=antigravity">socratic-tutor</a> imposes strict conversational constraints on the underlying agent:</p>
+<ol>
+<li><strong>One question at a time:</strong> The message terminates immediately after the question mark. Adding hints, previews, or preemptive explanations is prohibited.</li>
+<li><strong>Contradiction exposure on error:</strong> When the user submits an incorrect answer, the agent never blurts out the solution. It asks a narrower probing question that exposes the internal contradiction. Direct explanations are allowed only after 2–3 failed attempts, followed immediately by re-testing from a different angle.</li>
+<li><strong>Devil's advocate pressure testing:</strong> When the user answers correctly, the agent periodically challenges their confidence (<em>"Are you certain? What happens if condition Y holds?"</em>) to verify genuine comprehension under adversarial scrutiny.</li>
+<li><strong>Interleaved spaced recall:</strong> The agent periodically injects surprise review questions from earlier subskills. Failing a review demotes the recorded skill level and triggers remediation.</li>
+</ol>
+</div>
+<h2 id="state-persistence"><span data-language="vi">5. Lưu trạng thái học tập và cài đặt trong VAS</span><span data-language="en" hidden>5. State persistence and installing via VAS</span></h2>
+<div data-language="vi">
+<p>Một điểm mạnh lớn của quy chuẩn này là tính năng lưu trạng thái để tiếp tục học ở các phiên làm việc khác nhau mà không sợ mất dấu vết. Bất kỳ lúc nào, bạn chỉ cần gõ lệnh <code>save state</code>. Agent sẽ xuất ra một khối văn bản gọn gàng ghi nhận chủ đề, điểm số từng kỹ năng thành phần và các hiểu lầm thường gặp đã được sửa đổi. Trong một phiên chat mới hoặc trên một thiết bị khác, bạn chỉ cần dán đoạn mã đó sau lệnh <code>resume from:</code> để tiếp tục lộ trình học tập.</p>
+<p>Bạn có thể cài đặt ngay kỹ năng <a data-catalog-skill="socratic-tutor" href="../../?lang=vi&amp;skill=socratic-tutor&amp;agent=antigravity">socratic-tutor</a> vào không gian làm việc của mình bằng công cụ dòng lệnh VAS:</p>
+<pre><code># Cài đặt qua VAS CLI cho Antigravity, Codex hoặc Claude Code
+./vas install socratic-tutor --target antigravity --mode link
+
+# Xem chi tiết nội dung runbook
+./vas show socratic-tutor</code></pre>
+<p>Toàn bộ gói kỹ năng được đóng gói độc lập theo chuẩn Open Agent Skills, giữ nguyên giấy phép MIT và không yêu cầu cài đặt thêm bất kỳ thư viện bên ngoài nào.</p>
+</div>
+<div data-language="en" hidden>
+<p>A key engineering feature of this skill is portable state persistence across agent conversations. At any point during a study session, typing <code>save state</code> instructs the agent to serialize the topic, subskill scores, and diagnostic notes into a compact text block. In a new session or on another computer, typing <code>resume from: [block]</code> restores the skill map and resumes instruction seamlessly.</p>
+<p>Install the <a data-catalog-skill="socratic-tutor" href="../../?lang=en&amp;skill=socratic-tutor&amp;agent=antigravity">socratic-tutor</a> skill into your workspace using the local VAS CLI:</p>
+<pre><code># Install via VAS CLI for Antigravity, Codex, or Claude Code
+./vas install socratic-tutor --target antigravity --mode link
+
+# Inspect the complete runbook
+./vas show socratic-tutor</code></pre>
+<p>The skill bundle is fully self-contained under the Open Agent Skills specification, retains its original MIT License, and operates with zero runtime dependencies.</p>
+</div>
+</article>
+<aside class="guide-companion" aria-label="Skill liên quan">
+<p class="guide-eyebrow"><span data-language="vi">Áp dụng vào dự án</span><span data-language="en" hidden>Apply it to your project</span></p>
+<h2><a data-catalog-skill="socratic-tutor" href="../../?lang=vi&amp;skill=socratic-tutor&amp;agent=antigravity">socratic-tutor</a></h2>
+<p><span data-language="vi">Đọc yêu cầu và giấy phép, chọn agent rồi sao chép prompt cài đặt trong thư viện.</span><span data-language="en" hidden>Read prerequisites and licensing, choose your agent, then copy an installation prompt in the library.</span></p>
+<a class="button primary" data-catalog-skill="socratic-tutor" href="../../?lang=vi&amp;skill=socratic-tutor&amp;agent=antigravity"><span data-language="vi">Xem skill và cài đặt →</span><span data-language="en" hidden>Read skill and install →</span></a>
+<a class="text-link" href="../../#quickstart" data-home><span data-language="vi">Cách sử dụng VAS</span><span data-language="en" hidden>How to use VAS</span></a>
+</aside>
+</div>
+<section class="guide-related" aria-labelledby="related-title">
+<h2 id="related-title"><span data-language="vi">Đọc tiếp</span><span data-language="en" hidden>Read next</span></h2>
+<div class="guide-related-links">
+<a href="../kien-truc-agentic-ai-agent-skills/" data-guide-link><span data-language="vi">Agent Skills trong kiến trúc Agentic AI</span><span data-language="en" hidden>Agent Skills in agentic AI architecture</span></a>
+<a href="../tao-video-khoa-hoc-manim-3b1b/" data-guide-link><span data-language="vi">Tạo video giải thích khoa học phong cách 3Blue1Brown bằng Manim và AI</span><span data-language="en" hidden>Create 3Blue1Brown-Style Explainer Videos with Manim and AI</span></a>
+</div>
+</section>
+</main>
+<footer class="site-footer"><div class="shell footer-inner"><strong>VAS / Vie Agentic Skill</strong><p><span data-language="vi">Đọc hướng dẫn. Chọn skill. Áp dụng vào dự án.</span><span data-language="en" hidden>Read a guide. Choose a skill. Apply it to your project.</span></p><div><a href="../../#catalog" data-home><span data-language="vi">Thư viện</span><span data-language="en" hidden>Library</span></a><a href="https://github.com/huytran1120/vie-agentic-skills">GitHub ↗</a></div></div></footer>
+</body>
+</html>

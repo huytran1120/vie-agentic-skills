@@ -640,7 +640,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
   const youtube = catalog.filterSkills(skills, { sources: ['youtube'] });
   assert.equal(youtube.length, 11);
   assert.equal(catalog.filterSkills(skills, { query: 'youtube-agent-skill' }).length, 11);
-  assert.equal(skills.length, 4075);
+  assert.equal(skills.length, 4076);
   for (const skill of youtube) {
     assert.ok(skill.id.startsWith('youtube-agent-skill/'));
     assert.equal(skill.source_repo, 'Jakeschincariol/youtube-agent-skill');
@@ -655,7 +655,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
     assert.deepEqual(state.sources, ['youtube']);
     assert.equal(state.selected, youtube[0].id);
     assert.ok(i18n.translate('collections.youtube', language).startsWith('11 '));
-    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '4.075' : '4,075'));
+    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '4.076' : '4,076'));
   }
   assert.equal(catalog.filterSkills(skills, { sources: ['youtube'], category: 'security' }).length, 0);
   const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
@@ -1907,3 +1907,33 @@ test('motionprompt retains exact source filtering, MIT license and agent prompts
 
 
 
+
+test('janestreet retains exact source filtering, MIT license and agent prompts', () => {
+  const jsSkills = catalog.filterSkills(skills, { sources: ['janestreet'] });
+  assert.equal(jsSkills.length, 1);
+  assert.equal(catalog.filterSkills(skills, { query: 'janestreet/agent_skills' }).length, 1);
+  const [socraticSkill] = jsSkills;
+  assert.ok(socraticSkill);
+  assert.equal(socraticSkill.id, 'socratic-tutor');
+  assert.equal(socraticSkill.source_repo, 'janestreet/agent_skills');
+  assert.equal(socraticSkill.author, 'Jane Street Group, LLC');
+  assert.equal(socraticSkill.license, 'MIT');
+  assert.equal(socraticSkill.category, 'education');
+  assert.equal(socraticSkill.risk, 'safe');
+
+  for (const language of ['vi', 'en']) {
+    assert.ok(i18n.translate('collections.janestreet', language).startsWith('1 '));
+    for (const [agent] of catalog.agents.filter(([key]) => key !== 'all')) {
+      const prompt = catalog.agentInstallPrompt(socraticSkill, agent, language);
+      assert.ok(prompt.includes(`/install-manifests/${socraticSkill.id}.json`));
+      assert.ok(prompt.includes(catalog.targetFolders[agent]));
+      assert.ok(prompt.includes('SHA-256'));
+      assert.ok(prompt.includes('.vas-manifest.json'));
+    }
+  }
+
+  const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
+  assert.ok(html.includes('name="source" value="janestreet"'));
+  assert.ok(html.includes('data-source-count="janestreet">1<'));
+  assert.ok(html.includes('id="janestreet-collection"'));
+});
