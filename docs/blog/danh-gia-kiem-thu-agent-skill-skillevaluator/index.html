@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="vi" data-theme="light">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Đánh giá và kiểm thử AI Agent Skill chuẩn NVIDIA với SkillEvaluator — VAS</title>
+<meta name="description" content="Hướng dẫn sử dụng skill skillevaluator từ NVIDIA để kiểm thử toàn diện agent skill: từ chấm điểm chất lượng và quét bảo mật tĩnh (Tier 1), chống trùng lặp kiến thức (Tier 2), đến đo lường Skill Lift trong sandbox thực nghiệm (Tier 3).">
+<meta name="robots" content="index, follow"><meta name="theme-color" content="#f3efea">
+<link rel="canonical" href="https://vie-agentic-skills.vercel.app/blog/danh-gia-kiem-thu-agent-skill-skillevaluator/">
+<link rel="icon" href="../../assets/brand/vas-icon.png"><link rel="stylesheet" href="../../catalog.css"><link rel="stylesheet" href="../blog.css">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Vie Agentic Skill"><meta property="og:title" content="Đánh giá và kiểm thử AI Agent Skill chuẩn NVIDIA với SkillEvaluator"><meta property="og:description" content="Hướng dẫn sử dụng skill skillevaluator từ NVIDIA để kiểm thử toàn diện agent skill: từ chấm điểm chất lượng và quét bảo mật tĩnh (Tier 1), chống trùng lặp kiến thức (Tier 2), đến đo lường Skill Lift trong sandbox thực nghiệm (Tier 3)."><meta property="og:url" content="https://vie-agentic-skills.vercel.app/blog/danh-gia-kiem-thu-agent-skill-skillevaluator/"><meta property="og:image" content="https://vie-agentic-skills.vercel.app/assets/social-preview.png"><meta property="og:image:width" content="1280"><meta property="og:image:height" content="640">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Đánh giá và kiểm thử AI Agent Skill chuẩn NVIDIA với SkillEvaluator"><meta name="twitter:description" content="Hướng dẫn sử dụng skill skillevaluator từ NVIDIA để kiểm thử toàn diện agent skill: từ chấm điểm chất lượng và quét bảo mật tĩnh (Tier 1), chống trùng lặp kiến thức (Tier 2), đến đo lường Skill Lift trong sandbox thực nghiệm (Tier 3)."><meta name="twitter:image" content="https://vie-agentic-skills.vercel.app/assets/social-preview.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Đánh giá và kiểm thử AI Agent Skill chuẩn NVIDIA với SkillEvaluator","description":"Hướng dẫn sử dụng skill skillevaluator từ NVIDIA để kiểm thử toàn diện agent skill: từ chấm điểm chất lượng và quét bảo mật tĩnh (Tier 1), chống trùng lặp kiến thức (Tier 2), đến đo lường Skill Lift trong sandbox thực nghiệm (Tier 3).","url":"https://vie-agentic-skills.vercel.app/blog/danh-gia-kiem-thu-agent-skill-skillevaluator/","mainEntityOfPage":"https://vie-agentic-skills.vercel.app/blog/danh-gia-kiem-thu-agent-skill-skillevaluator/","inLanguage":"vi-VN","datePublished":"2026-11-11","dateModified":"2026-11-11","author":{"@type":"Organization","name":"Vie Agentic Skill"},"publisher":{"@type":"Organization","name":"Vie Agentic Skill","url":"https://vie-agentic-skills.vercel.app/"},"image":"https://vie-agentic-skills.vercel.app/assets/social-preview.png"}</script>
+<script src="../blog.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#guide-main"><span data-language="vi">Đến nội dung chính</span><span data-language="en" hidden>Skip to content</span></a>
+<header class="site-header guide-header"><div class="shell header-inner"><a class="brand" href="../../" data-home><span class="brand-mark" aria-hidden="true">&gt;_</span><span class="brand-short">VAS</span></a><nav class="guide-nav" aria-label="Điều hướng"><a class="guide-library-return" href="../../#catalog" data-home data-library-return><span data-language="vi">← Về thư viện <span data-catalog-count="vi">4.079</span> skill</span><span data-language="en" hidden>← Back to <span data-catalog-count="en">4,079</span> skills</span></a><a href="../" data-blog><span data-language="vi">Blog / Hướng dẫn</span><span data-language="en" hidden>Blog / Guides</span></a></nav><div class="header-actions"><button id="blog-language" class="icon-button" type="button" aria-label="Switch to English" lang="en">EN</button><button id="blog-theme" class="icon-button" type="button" aria-label="Bật giao diện tối" aria-pressed="false">◐</button></div></div></header>
+<main id="guide-main" class="shell guide-main" tabindex="-1" data-page-titles='{&quot;vi&quot;: &quot;Đánh giá và kiểm thử AI Agent Skill chuẩn NVIDIA với SkillEvaluator — VAS&quot;, &quot;en&quot;: &quot;Evaluating and Benchmarking AI Agent Skills the NVIDIA Way with SkillEvaluator — VAS&quot;}' data-page-descriptions='{&quot;vi&quot;: &quot;Hướng dẫn sử dụng skill skillevaluator từ NVIDIA để kiểm thử toàn diện agent skill: từ chấm điểm chất lượng và quét bảo mật tĩnh (Tier 1), chống trùng lặp kiến thức (Tier 2), đến đo lường Skill Lift trong sandbox thực nghiệm (Tier 3).&quot;, &quot;en&quot;: &quot;Guide to using the skillevaluator skill by NVIDIA to evaluate agent skills: static quality scoring and security scanning (Tier 1), deduplication (Tier 2), and live sandbox Skill Lift benchmarking (Tier 3).&quot;}'>
+<nav class="guide-breadcrumb" aria-label="Breadcrumb"><a href="../../" data-home>VAS</a><span aria-hidden="true">/</span><a href="../" data-blog><span data-language="vi">Blog / Hướng dẫn</span><span data-language="en" hidden>Blog / Guides</span></a></nav>
+<header class="guide-heading">
+<p class="guide-eyebrow"><span data-language="vi">Kiểm thử &amp; Đánh giá Agent</span><span data-language="en" hidden>Agent Testing &amp; Benchmarking</span></p>
+<h1><span data-language="vi">Đánh giá và kiểm thử AI Agent Skill chuẩn NVIDIA với SkillEvaluator</span><span data-language="en" hidden>Evaluating and Benchmarking AI Agent Skills the NVIDIA Way with SkillEvaluator</span></h1>
+<p class="guide-byline"><span data-language="vi">Biên soạn bởi Vie Agentic Skill · Dựa trên runbook trong catalog</span><span data-language="en" hidden>Prepared by Vie Agentic Skill · Based on catalog runbooks</span></p>
+</header>
+<div class="guide-layout">
+<article class="guide-prose">
+<div data-language="vi">
+<p class="guide-lead">Khi kho kỹ năng dành cho AI coding agent phát triển lên hàng nghìn quy trình, câu hỏi quan trọng nhất không còn là "làm sao viết thêm một skill", mà là "làm sao chứng minh skill đó thực sự giúp agent giải quyết bài toán tốt hơn mà không gây xung đột hay rủi ro bảo mật".</p>
+</div>
+<div data-language="en" hidden>
+<p class="guide-lead">As catalogs of AI coding agent skills expand into thousands of runbooks, the critical challenge shifts from authoring new skills to proving that a skill genuinely improves task outcomes without introducing collisions or security vulnerabilities.</p>
+</div>
+<nav class="guide-toc" aria-label="Mục lục bài viết">
+<p class="guide-toc-title"><span data-language="vi">Mục lục</span><span data-language="en" hidden>Table of contents</span></p>
+<ol>
+<li><a href="#challenge-skill-lift"><span data-language="vi">1. Thách thức: Làm sao biết một Agent Skill có thực sự hiệu quả?</span><span data-language="en" hidden>1. The Challenge: Does a Skill Actually Improve Agent Outcomes?</span></a></li>
+<li><a href="#three-tiers"><span data-language="vi">2. Kiến trúc 3 tầng của NVIDIA SkillEvaluator</span><span data-language="en" hidden>2. The 3-Tier Architecture of NVIDIA SkillEvaluator</span></a></li>
+<li><a href="#tier1-static"><span data-language="vi">3. Tier 1: Kiểm tra tĩnh, quét bảo mật không cần API Key</span><span data-language="en" hidden>3. Tier 1: Static Quality, Security, and Keyless Scanning</span></a></li>
+<li><a href="#tier2-tier3"><span data-language="vi">4. Tier 2 &amp; Tier 3: Chống trùng lặp và đo lường Skill Lift trong Sandbox</span><span data-language="en" hidden>4. Tier 2 &amp; 3: Deduplication and Live Sandbox Skill Lift</span></a></li>
+<li><a href="#vas-integration"><span data-language="vi">5. Tích hợp CI/CD và cài đặt qua VAS</span><span data-language="en" hidden>5. CI/CD Gating and Installing via VAS</span></a></li>
+</ol>
+</nav>
+
+<h2 id="challenge-skill-lift"><span data-language="vi">1. Thách thức: Làm sao biết một Agent Skill có thực sự hiệu quả?</span><span data-language="en" hidden>1. The Challenge: Does a Skill Actually Improve Agent Outcomes?</span></h2>
+<div data-language="vi">
+<p>Một runbook kỹ năng có thể được viết rất trau chuốt, nhưng điều đó không đảm bảo agent sẽ kích hoạt đúng lúc hoặc thực hiện thành công. Trong thực tế, các đội ngũ phát triển agent thường gặp phải ba vấn đề nan giải:</p>
+<ul>
+<li><strong>Ảo giác kích hoạt (Trigger Hallucination):</strong> Phần mô tả (description) trong tệp <code>SKILL.md</code> quá chung chung khiến agent gọi bừa bãi khi không cần thiết, hoặc quá hẹp khiến agent bỏ qua khi gặp bài toán liên quan.</li>
+<li><strong>Ô nhiễm ngữ cảnh và trùng lặp:</strong> Hai kỹ năng cùng hướng dẫn một chủ đề nhưng dùng chỉ dẫn trái ngược nhau (ví dụ một skill khuyên dùng tool A, skill khác cấm tool A), làm agent bị bối rối hoặc rơi vào vòng lặp vô tận.</li>
+<li><strong>Thụt lùi hiệu năng (Negative Skill Lift):</strong> Khi cài thêm skill, độ dài prompt tăng lên khiến agent mất tập trung vào nhiệm vụ chính, làm tỉ lệ hoàn thành nhiệm vụ thực tế giảm xuống so với khi không cài skill.</li>
+</ul>
+<p>Để giải quyết bài toán này, các kỹ sư tại NVIDIA đã công bố bộ công cụ mã nguồn mở <strong>SkillEvaluator</strong> (nghiên cứu <em>arXiv:2608.20614</em>) cùng kỹ năng chính thức <a data-catalog-skill="skillevaluator" href="../../?lang=vi&amp;skill=skillevaluator&amp;agent=antigravity">skillevaluator</a>, biến việc đánh giá chất lượng kỹ năng thành một quy trình kỹ thuật định lượng và hoàn toàn tự động.</p>
+</div>
+<div data-language="en" hidden>
+<p>A skill runbook may be eloquently written, but that offers no guarantee that an agent will activate it reliably or execute tasks successfully. In production, agent engineering teams routinely face three failure modes:</p>
+<ul>
+<li><strong>Trigger Hallucination:</strong> A vague frontmatter description prompts spurious activations, while an overly narrow description leaves the skill dormant when genuinely needed.</li>
+<li><strong>Context Pollution and Overlap:</strong> Two skills provide contradictory guidance on the same workflow, confusing the agent and degrading instruction-following accuracy.</li>
+<li><strong>Negative Skill Lift:</strong> Inflated context windows diminish agent attention on primary instructions, reducing end-to-end task completion rates relative to baseline runs without the skill.</li>
+</ul>
+<p>To establish rigorous benchmarks, NVIDIA engineers released the open-source <strong>SkillEvaluator</strong> framework (detailed in <em>arXiv:2608.20614</em>) and the official <a data-catalog-skill="skillevaluator" href="../../?lang=en&amp;skill=skillevaluator&amp;agent=antigravity">skillevaluator</a> agent skill, transforming skill verification into an automated, quantitative engineering practice.</p>
+</div>
+
+<h2 id="three-tiers"><span data-language="vi">2. Kiến trúc 3 tầng của NVIDIA SkillEvaluator</span><span data-language="en" hidden>2. The 3-Tier Architecture of NVIDIA SkillEvaluator</span></h2>
+<div data-language="vi">
+<p>Kỹ năng <a data-catalog-skill="skillevaluator" href="../../?lang=vi&amp;skill=skillevaluator&amp;agent=antigravity">skillevaluator</a> hướng dẫn agent lựa chọn và thực thi chính xác 3 tầng kiểm định theo mô hình lũy tiến:</p>
+<table>
+<thead>
+<tr>
+<th>Tầng kiểm định</th>
+<th>Mục tiêu &amp; Phương pháp</th>
+<th>Yêu cầu tài nguyên</th>
+<th>Đầu ra chính</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Tier 1: Tĩnh &amp; Cú pháp</strong></td>
+<td>Kiểm tra lược đồ, quét bảo mật SkillSpector, rà soát PII, chấm điểm cấu trúc và rubric ngữ nghĩa</td>
+<td>Chạy tức thì trên máy cục bộ; không bắt buộc API key (chỉ cần key khi bật rubric LLM)</td>
+<td>Điểm chất lượng (0–100), danh sách phát hiện bảo mật, báo cáo SARIF/JSON</td>
+</tr>
+<tr>
+<td><strong>Tier 2: Trùng lặp &amp; Giao thoa</strong></td>
+<td>Phân tích embedding ngữ nghĩa để tìm đoạn lặp trong nội bộ skill và đối chiếu chồng chéo với toàn bộ kho lưu trữ</td>
+<td>Mô hình embedding (như NVIDIA Build API hoặc provider tương thích)</td>
+<td>Tỉ lệ trùng lặp, ma trận tương đồng, gợi ý tinh gọn nội dung</td>
+</tr>
+<tr>
+<td><strong>Tier 3: Thực nghiệm A/B</strong></td>
+<td>Chạy agent thật (OpenCode, Codex, Claude Code) giải quyết bài toán trong sandbox cô lập (Docker / Seatbelt)</td>
+<td>Docker daemon (hoặc sandbox máy chủ), provider LLM, bộ test cases <code>evals/evals.json</code></td>
+<td>Chỉ số <strong>Skill Lift</strong> (%), tỉ lệ <code>pass@k</code>, phân tích trajectory đường đi của agent</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div data-language="en" hidden>
+<p>The <a data-catalog-skill="skillevaluator" href="../../?lang=en&amp;skill=skillevaluator&amp;agent=antigravity">skillevaluator</a> skill guides agents through a progressive 3-tier evaluation framework:</p>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Methodology</th>
+<th>Prerequisites</th>
+<th>Primary Artifacts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Tier 1: Static &amp; Syntactic</strong></td>
+<td>Schema validation, SkillSpector security checks, PII scanning, deterministic quality scoring, and rubric evaluation</td>
+<td>Local execution; keyless by default (provider key only required for LLM rubric)</td>
+<td>Quality score (0–100), security findings, SARIF/JSON reports</td>
+</tr>
+<tr>
+<td><strong>Tier 2: Deduplication</strong></td>
+<td>Semantic embedding analysis to detect internal repetition and collection-wide overlaps</td>
+<td>Embedding provider (e.g. NVIDIA Build API or OpenAI compatible)</td>
+<td>Duplicate findings, similarity matrix, deduplication suggestions</td>
+</tr>
+<tr>
+<td><strong>Tier 3: Live Benchmarking</strong></td>
+<td>Dual-arm A/B trials of coding agents (OpenCode, Codex, Claude Code) in isolated sandboxes (Docker / Seatbelt)</td>
+<td>Docker daemon or local sandbox, LLM credentials, <code>evals/evals.json</code> test suite</td>
+<td><strong>Skill Lift</strong> (%), <code>pass@k</code> success metrics, trajectory execution logs</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h2 id="tier1-static"><span data-language="vi">3. Tier 1: Kiểm tra tĩnh, quét bảo mật không cần API Key</span><span data-language="en" hidden>3. Tier 1: Static Quality, Security, and Keyless Scanning</span></h2>
+<div data-language="vi">
+<p>Một điểm xuất sắc của SkillEvaluator là bạn có thể thực hiện kiểm định Tier 1 hoàn toàn không cần tài khoản hay khóa API trả phí. Lệnh <code>quality-check</code> phân tích cấu trúc tài liệu của <code>SKILL.md</code> theo các tiêu chí khách quan:</p>
+<ul>
+<li>Có đầy đủ các phần bắt buộc như <code>## Prerequisites</code>, <code>## Limitations</code>, <code>## Troubleshooting</code> không?</li>
+<li>Phần <code>description</code> có nêu rõ tác vụ cụ thể hay chỉ nhồi nhét từ khóa quảng cáo?</li>
+<li>Các đoạn code mẫu và cờ lệnh có được giải thích rõ ràng không?</li>
+</ul>
+<p>Đồng thời, bộ quét bảo mật tích hợp (SkillSpector và PII scanner) kiểm tra toàn bộ script và tệp tham chiếu để ngăn chặn:</p>
+<ul>
+<li>Nguy cơ thực thi lệnh độc hại (command injection, chuỗi lệnh shell không an toàn).</li>
+<li>Vô tình để lộ token xác thực, private key hoặc thông tin định danh nhạy cảm.</li>
+</ul>
+<div class="guide-example"><div class="guide-example-header"><span class="guide-example-label">Bash: Chạy kiểm định Tier 1 không cần API Key</span></div>
+<pre><code># Kiểm tra chất lượng tĩnh và tính điểm cho một thư mục skill
+skillevaluator quality-check ./skills/my-skill
+
+# Chạy toàn bộ cổng kiểm soát Tier 1 (chất lượng + bảo mật + PII + lint script)
+skillevaluator tier1 ./skills/my-skill --no-llm
+
+# Xuất báo cáo đa định dạng phục vụ kiểm định CI
+skillevaluator validate ./skills/my-skill --tiers 1 -r json,markdown,sarif -o ./reports</code></pre>
+</div>
+</div>
+<div data-language="en" hidden>
+<p>A major advantage of SkillEvaluator is that Tier 1 validation runs entirely offline without paid API accounts. The <code>quality-check</code> command scores <code>SKILL.md</code> against objective structural criteria:</p>
+<ul>
+<li>Presence of mandatory sections including <code>## Prerequisites</code>, <code>## Limitations</code>, and <code>## Troubleshooting</code>.</li>
+<li>Whether the frontmatter <code>description</code> defines clear task boundaries rather than speculative keyword stuffing.</li>
+<li>Actionable CLI examples with documented flags and expected exit codes.</li>
+</ul>
+<p>Integrated security analyzers (SkillSpector and PII detection) simultaneously audit scripts and references against vulnerabilities:</p>
+<ul>
+<li>Command injection, arbitrary shell chaining, or unsanitized subprocess invocations.</li>
+<li>Hardcoded bearer tokens, API keys, private certificates, or sensitive personal data.</li>
+</ul>
+<div class="guide-example"><div class="guide-example-header"><span class="guide-example-label">Bash: Running Keyless Tier 1 Validation</span></div>
+<pre><code># Evaluate deterministic quality score for a skill directory
+skillevaluator quality-check ./skills/my-skill
+
+# Run full Tier 1 gate (quality, security, PII, and script linting) without an LLM
+skillevaluator tier1 ./skills/my-skill --no-llm
+
+# Export structured multi-format reports for CI review
+skillevaluator validate ./skills/my-skill --tiers 1 -r json,markdown,sarif -o ./reports</code></pre>
+</div>
+</div>
+
+<h2 id="tier2-tier3"><span data-language="vi">4. Tier 2 &amp; Tier 3: Chống trùng lặp và đo lường Skill Lift trong Sandbox</span><span data-language="en" hidden>4. Tier 2 &amp; 3: Deduplication and Live Sandbox Skill Lift</span></h2>
+<div data-language="vi">
+<p>Khi một kỹ năng vượt qua Tier 1, bước tiếp theo là đảm bảo nó không xung đột với các kỹ năng khác trong kho (Tier 2) và thực sự cải thiện kết quả làm việc của agent (Tier 3):</p>
+<p>Trong <strong>Tier 3</strong>, SkillEvaluator thiết lập thử nghiệm A/B hai nhánh đối chứng:</p>
+<ul>
+<li><strong>Nhánh Baseline (Without Skill):</strong> Agent nhận đề bài trong môi trường cô lập không có skill được cài đặt.</li>
+<li><strong>Nhánh Thử nghiệm (With Skill):</strong> Agent nhận cùng đề bài trong môi trường có skill được nạp vào context.</li>
+</ul>
+<p>Công cụ ghi lại toàn bộ trajectory (các bước suy luận, lệnh shell đã chạy, tệp đã sửa) và giao cho bộ chấm điểm độc lập (hoặc bộ kiểm thử tùy biến BYOG). Kết quả tính toán ra <strong>Skill Lift</strong>:</p>
+<p><em>Nếu Skill Lift dương và có ý nghĩa thống kê, kỹ năng được chứng minh là có giá trị thực tế. Nếu Skill Lift bằng 0 hoặc âm, kỹ năng cần được tinh chỉnh lại trước khi phát hành.</em></p>
+<div class="guide-example"><div class="guide-example-header"><span class="guide-example-label">Bash: Kiểm tra trùng lặp và đánh giá thực nghiệm A/B</span></div>
+<pre><code># Đo độ trùng lặp giữa skill mới và toàn bộ kho lưu trữ
+skillevaluator similarity-check ./skills
+
+# Chạy thử nghiệm Tier 3 với agent OpenCode trong Docker sandbox
+export SKILL_EVAL_LLM_PROVIDER=nv_build
+export NVIDIA_API_KEY="your-api-key"
+skillevaluator tier3 evaluate ./skills/my-skill -a opencode --n-attempts 3
+
+# Hoặc chạy thử nghiệm trên máy Mac với cơ chế sandbox Seatbelt (không cần Docker)
+skillevaluator tier3 evaluate ./skills/my-skill -a opencode --env-mode local</code></pre>
+</div>
+</div>
+<div data-language="en" hidden>
+<p>Once a skill passes Tier 1, subsequent tiers verify catalog harmony (Tier 2) and empirical utility (Tier 3):</p>
+<p>In <strong>Tier 3</strong>, SkillEvaluator executes dual-arm randomized controlled trials:</p>
+<ul>
+<li><strong>Baseline Arm (Without Skill):</strong> The agent attempts the benchmark task without access to the skill.</li>
+<li><strong>Treatment Arm (With Skill):</strong> The agent attempts the identical task with the skill installed in its workspace.</li>
+</ul>
+<p>The runner records end-to-end trajectories (reasoning traces, tool calls, and file diffs) and scores outputs via deterministic rubrics or Bring-Your-Own-Grader (BYOG) test suites, computing <strong>Skill Lift</strong>:</p>
+<p><em>A positive, statistically significant Skill Lift proves real-world capability. A zero or negative Lift signals prompt bloat or guidance interference that requires revision before release.</em></p>
+<div class="guide-example"><div class="guide-example-header"><span class="guide-example-label">Bash: Overlap Analysis and Live A/B Benchmarking</span></div>
+<pre><code># Check semantic similarity across the entire catalog
+skillevaluator similarity-check ./skills
+
+# Execute Tier 3 live trials using OpenCode inside a Docker sandbox
+export SKILL_EVAL_LLM_PROVIDER=nv_build
+export NVIDIA_API_KEY="your-api-key"
+skillevaluator tier3 evaluate ./skills/my-skill -a opencode --n-attempts 3
+
+# Run locally on macOS using native Seatbelt isolation without Docker
+skillevaluator tier3 evaluate ./skills/my-skill -a opencode --env-mode local</code></pre>
+</div>
+</div>
+
+<h2 id="vas-integration"><span data-language="vi">5. Tích hợp CI/CD và cài đặt qua VAS</span><span data-language="en" hidden>5. CI/CD Gating and Installing via VAS</span></h2>
+<div data-language="vi">
+<p>Kỹ năng <a data-catalog-skill="skillevaluator" href="../../?lang=vi&amp;skill=skillevaluator&amp;agent=antigravity">skillevaluator</a> được tích hợp sẵn vào Vie Agentic Skill với đầy đủ 9 tập tài liệu tham khảo chi tiết trong thư mục <code>references/</code>, bao gồm bảng tra cứu cờ lệnh, cấu hình provider, định dạng test dataset và cẩm nang xử lý sự cố.</p>
+<p>Để cài đặt trực tiếp vào dự án mà không cần clone cả kho VAS, bạn chỉ cần sử dụng tính năng <strong>Copy Agent Prompt</strong>:</p>
+<div class="guide-example"><div class="guide-example-header"><span class="guide-example-label">Prompt cài đặt nhanh cho Agent</span></div>
+<pre><code>Read the installation manifest at https://vie-agentic-skills.vercel.app/install-manifests/skillevaluator.json and install its declared files into .agents/skills/skillevaluator/.</code></pre>
+</div>
+<p>Hoặc quản lý thông qua CLI nội bộ của VAS:</p>
+<div class="guide-example"><div class="guide-example-header"><span class="guide-example-label">CLI: Quản lý kỹ năng bằng ./vas</span></div>
+<pre><code># Tìm kiếm kỹ năng
+./vas search skillevaluator
+
+# Cài đặt chế độ link cho Antigravity / Universal
+./vas install skillevaluator --target antigravity --mode link
+
+# Cài đặt chế độ copy độc lập vào dự án Claude Code
+./vas install skillevaluator --target claude --mode copy --dest "/path/to/project/.claude/skills"
+
+# Kiểm tra trạng thái cài đặt
+./vas status --target claude --dest "/path/to/project/.claude/skills"</code></pre>
+</div>
+</div>
+<div data-language="en" hidden>
+<p>The <a data-catalog-skill="skillevaluator" href="../../?lang=en&amp;skill=skillevaluator&amp;agent=antigravity">skillevaluator</a> skill is bundled in Vie Agentic Skill alongside all 9 comprehensive reference runbooks in its <code>references/</code> directory, covering flag tables, provider setups, dataset schemas, and diagnostic recipes.</p>
+<p>To install directly into any project workspace without cloning the entire repository, use the <strong>Copy Agent Prompt</strong> feature:</p>
+<div class="guide-example"><div class="guide-example-header"><span class="guide-example-label">Agent Installation Prompt</span></div>
+<pre><code>Read the installation manifest at https://vie-agentic-skills.vercel.app/install-manifests/skillevaluator.json and install its declared files into .agents/skills/skillevaluator/.</code></pre>
+</div>
+<p>Or install via the native VAS CLI:</p>
+<div class="guide-example"><div class="guide-example-header"><span class="guide-example-label">CLI: Managing with ./vas</span></div>
+<pre><code># Search for the skill
+./vas search skillevaluator
+
+# Link install into Antigravity / Universal workspace
+./vas install skillevaluator --target antigravity --mode link
+
+# Copy install into Claude Code workspace
+./vas install skillevaluator --target claude --mode copy --dest "/path/to/project/.claude/skills"
+
+# Verify installation status
+./vas status --target claude --dest "/path/to/project/.claude/skills"</code></pre>
+</div>
+</div>
+</article>
+<aside class="guide-companion" aria-label="Skill liên quan">
+<p class="guide-eyebrow"><span data-language="vi">Áp dụng vào dự án</span><span data-language="en" hidden>Apply it to your project</span></p>
+<h2><a data-catalog-skill="skillevaluator" href="../../?lang=vi&amp;skill=skillevaluator&amp;agent=antigravity">skillevaluator</a></h2>
+<p><span data-language="vi">Đọc yêu cầu và giấy phép, chọn agent rồi sao chép prompt cài đặt trong thư viện.</span><span data-language="en" hidden>Read prerequisites and licensing, choose your agent, then copy an installation prompt in the library.</span></p>
+<a class="button primary" data-catalog-skill="skillevaluator" href="../../?lang=vi&amp;skill=skillevaluator&amp;agent=antigravity"><span data-language="vi">Xem skill và cài đặt →</span><span data-language="en" hidden>Read skill and install →</span></a>
+<a class="text-link" href="../../#quickstart" data-home><span data-language="vi">Cách sử dụng VAS</span><span data-language="en" hidden>How to use VAS</span></a>
+</aside>
+</div>
+<section class="guide-related" aria-labelledby="related-title">
+<h2 id="related-title"><span data-language="vi">Đọc tiếp</span><span data-language="en" hidden>Read next</span></h2>
+<div class="guide-related-links">
+<a href="../kiem-thu-dang-nhap-playwright/" data-guide-link><span data-language="vi">Kiểm thử đăng nhập và luồng web bằng Playwright</span><span data-language="en" hidden>Authentication and Web Testing with Playwright</span></a>
+<a href="../debug-voi-ai-agent/" data-guide-link><span data-language="vi">Gỡ lỗi hệ thống có phương pháp cùng AI Agent</span><span data-language="en" hidden>Systematic Debugging with AI Agents</span></a>
+</div>
+</section>
+</main>
+<footer class="site-footer"><div class="shell footer-inner"><strong>VAS / Vie Agentic Skill</strong><p><span data-language="vi">Đọc hướng dẫn. Chọn skill. Áp dụng vào dự án.</span><span data-language="en" hidden>Read a guide. Choose a skill. Apply it to your project.</span></p><div><a href="../../#catalog" data-home><span data-language="vi">Thư viện</span><span data-language="en" hidden>Library</span></a><a href="https://github.com/huytran1120/vie-agentic-skills">GitHub ↗</a></div></div></footer>
+</body>
+</html>

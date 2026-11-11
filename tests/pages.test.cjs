@@ -640,7 +640,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
   const youtube = catalog.filterSkills(skills, { sources: ['youtube'] });
   assert.equal(youtube.length, 11);
   assert.equal(catalog.filterSkills(skills, { query: 'youtube-agent-skill' }).length, 11);
-  assert.equal(skills.length, 4078);
+  assert.equal(skills.length, 4079);
   for (const skill of youtube) {
     assert.ok(skill.id.startsWith('youtube-agent-skill/'));
     assert.equal(skill.source_repo, 'Jakeschincariol/youtube-agent-skill');
@@ -655,7 +655,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
     assert.deepEqual(state.sources, ['youtube']);
     assert.equal(state.selected, youtube[0].id);
     assert.ok(i18n.translate('collections.youtube', language).startsWith('11 '));
-    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '4.078' : '4,078'));
+    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '4.079' : '4,079'));
   }
   assert.equal(catalog.filterSkills(skills, { sources: ['youtube'], category: 'security' }).length, 0);
   const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
@@ -1966,4 +1966,34 @@ test('claudevideo retains exact source filtering, MIT license and agent prompts'
   assert.ok(html.includes('name="source" value="claudevideo"'));
   assert.ok(html.includes('data-source-count="claudevideo">1<'));
   assert.ok(html.includes('id="claudevideo-collection"'));
+});
+
+test('skillevaluator retains exact source filtering, Apache-2.0 license and agent prompts', () => {
+  const seSkills = catalog.filterSkills(skills, { sources: ['skillevaluator'] });
+  assert.equal(seSkills.length, 1);
+  assert.equal(catalog.filterSkills(skills, { query: 'NVIDIA/SkillEvaluator' }).length, 1);
+  const [evalSkill] = seSkills;
+  assert.ok(evalSkill);
+  assert.equal(evalSkill.id, 'skillevaluator');
+  assert.equal(evalSkill.canonical_id, 'skillevaluator');
+  assert.equal(evalSkill.source_repo, 'NVIDIA/SkillEvaluator');
+  assert.equal(evalSkill.license, 'Apache-2.0');
+  assert.equal(evalSkill.category, 'agent-evaluation');
+  assert.equal(evalSkill.risk, 'safe');
+
+  for (const language of ['vi', 'en']) {
+    assert.ok(i18n.translate('collections.skillevaluator', language).startsWith('1 '));
+    for (const [agent] of catalog.agents.filter(([key]) => key !== 'all')) {
+      const prompt = catalog.agentInstallPrompt(evalSkill, agent, language);
+      assert.ok(prompt.includes(`/install-manifests/${evalSkill.id}.json`));
+      assert.ok(prompt.includes(catalog.targetFolders[agent]));
+      assert.ok(prompt.includes('SHA-256'));
+      assert.ok(prompt.includes('.vas-manifest.json'));
+    }
+  }
+
+  const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
+  assert.ok(html.includes('name="source" value="skillevaluator"'));
+  assert.ok(html.includes('data-source-count="skillevaluator">1<'));
+  assert.ok(html.includes('id="skillevaluator-collection"'));
 });

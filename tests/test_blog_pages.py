@@ -42,6 +42,7 @@ SLUGS = (
     "phuong-phap-socratic-cho-ai-agent-gia-su-hoc-tap",
     "ve-so-do-mang-homelab-bang-ai-agent-tu-yaml-den-svg",
     "de-ai-agent-xem-video",
+    "danh-gia-kiem-thu-agent-skill-skillevaluator",
 )
 LINKED_SKILLS = {
     "webapp-testing",
@@ -69,6 +70,7 @@ LINKED_SKILLS = {
     "stack-diagram",
     "animated-motion-diagram",
     "watch",
+    "skillevaluator",
 }
 VOID_ELEMENTS = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"}
 

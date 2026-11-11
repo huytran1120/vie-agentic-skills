@@ -64903,6 +64903,33 @@
     "source": "community"
   },
   {
+    "id": "skillevaluator",
+    "canonical_id": "skillevaluator",
+    "name": "skillevaluator",
+    "path": "skills/skillevaluator",
+    "description": "Run and interpret SkillEvaluator for agent skills. Use for any skill benchmark or eval - validating or scoring a SKILL.md, writing evals.json test cases or evals config, explaining benchmark reports, verdicts and exit codes, or gating skills in CI.",
+    "category": "agent-evaluation",
+    "tags": [
+      "skills",
+      "evaluation",
+      "benchmarking",
+      "ci",
+      "security",
+      "nvidia",
+      "agent-evaluation",
+      "rubric",
+      "harbor"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/NVIDIA/SkillEvaluator/tree/7ae25d2522c9c3b151111fedaa67b814cc3dc5c5/skills/skillevaluator",
+    "source_repo": "NVIDIA/SkillEvaluator",
+    "author": "Christopher Kevin <christopherk@nvidia.com>",
+    "license": "Apache-2.0",
+    "license_source": "https://github.com/NVIDIA/SkillEvaluator/blob/7ae25d2522c9c3b151111fedaa67b814cc3dc5c5/LICENSE",
+    "source_revision": "7ae25d2522c9c3b151111fedaa67b814cc3dc5c5",
+    "source_path": "skills/skillevaluator"
+  },
+  {
     "id": "skills-manager",
     "canonical_id": "skills-manager",
     "name": "skills-manager",

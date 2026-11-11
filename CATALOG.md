@@ -1,11 +1,11 @@
 # Vie Agentic Skill (VAS) - Catalog
 
-Tổng hợp **4,078** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
+Tổng hợp **4,079** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
 
 | Danh mục | Số lượng | Lệnh cài đặt nhanh |
 | :--- | :---: | :--- |
 | **agent-behavior** | 5 skills | `./vas install --category agent-behavior --target codex` |
-| **agent-evaluation** | 2 skills | `./vas install --category agent-evaluation --target codex` |
+| **agent-evaluation** | 3 skills | `./vas install --category agent-evaluation --target codex` |
 | **agent-orchestration** | 37 skills | `./vas install --category agent-orchestration --target codex` |
 | **agent-persona** | 64 skills | `./vas install --category agent-persona --target codex` |
 | **agent-squad** | 8 skills | `./vas install --category agent-squad --target codex` |
@@ -138,12 +138,13 @@ Tổng hợp **4,078** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `fable-safe-prompt` | `safe` | Rewrite allowed prompts to reduce false-positive safety triggers without bypa... |
 | `zipai-optimizer` | `safe` | Ultra-dense token optimizer skill for prompt caching, log pruning, AST-based ... |
 
-### AGENT-EVALUATION (2 skills)
+### AGENT-EVALUATION (3 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
 | `agent-evaluation-reporting` | `none` | Use when summarizing agent evaluations where autonomous, assisted, failed, ti... |
 | `run-deep-swe` | `critical` | Run reproducible DeepSWE coding-agent benchmark evaluations through OpenRoute... |
+| `skillevaluator` | `safe` | Run and interpret SkillEvaluator for agent skills. Use for any skill benchmar... |
 
 ### AGENT-ORCHESTRATION (37 skills)
 

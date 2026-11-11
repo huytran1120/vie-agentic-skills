@@ -1,0 +1,219 @@
+{
+  "source_repo": "NVIDIA/SkillEvaluator",
+  "source_url": "https://github.com/NVIDIA/SkillEvaluator",
+  "revision": "7ae25d2522c9c3b151111fedaa67b814cc3dc5c5",
+  "author": "Christopher Kevin <christopherk@nvidia.com>",
+  "author_url": "https://github.com/NVIDIA",
+  "license": "Apache-2.0",
+  "license_source": "https://github.com/NVIDIA/SkillEvaluator/blob/7ae25d2522c9c3b151111fedaa67b814cc3dc5c5/LICENSE",
+  "skill_count": 1,
+  "skipped": [
+    {
+      "id": "calculator",
+      "path": "src/skillevaluator/tier3/reference_skills/calculator",
+      "reason": "Internal test fixture / decoy skill for Harbor runner, placeholder author maintainers@example.com."
+    },
+    {
+      "id": "task-list",
+      "path": "src/skillevaluator/tier3/reference_skills/task-list",
+      "reason": "Internal test fixture / decoy skill for Harbor runner, placeholder author maintainers@example.com."
+    },
+    {
+      "id": "text-analyzer",
+      "path": "src/skillevaluator/tier3/reference_skills/text-analyzer",
+      "reason": "Internal quickstart starter / decoy skill, placeholder author maintainers@example.com."
+    },
+    {
+      "id": "api-caller",
+      "path": "src/skillevaluator/tier3/reference_skills/api-caller",
+      "reason": "Internal test fixture / decoy skill for Harbor runner, placeholder author maintainers@example.com."
+    },
+    {
+      "id": "create-custom-grader",
+      "path": "src/skillevaluator/tier3/reference_skills/create-custom-grader",
+      "reason": "Internal benchmark reference fixture; functionality fully incorporated into skillevaluator's references/custom-graders.md."
+    }
+  ],
+  "namespaces": {},
+  "duplicate_check": {
+    "catalog_count_before": 4078,
+    "upstream_is_fork": false,
+    "methods": [
+      "canonical-id/name",
+      "source-repo/path",
+      "raw-sha256",
+      "normalized-body",
+      "renamed-body",
+      "body-containment",
+      "7-word-shingles"
+    ],
+    "collision_rationale": "Exact and shingle similarity comparison against all 4,078 catalog skills identified zero existing duplicates (0.0028 max 7-word shingle Jaccard similarity). `skillevaluator` is the genuinely new, official Agent Skill published by NVIDIA Corporation & Affiliates for operating NVIDIA SkillEvaluator across Tier 1, Tier 2, and Tier 3 evaluation pipelines."
+  },
+  "adaptations": [
+    "Preserve upstream payload structure: SKILL.md, evals/, and references/ under Open Agent Skills format.",
+    "Include upstream Apache-2.0 LICENSE and add NOTICE.md clarifying standalone operation and provenance.",
+    "Append reversible VAS installation, attribution, and prerequisites notes to SKILL.md.",
+    "Map `skillevaluator` to the existing `agent-evaluation` category to preserve the 119-category taxonomy.",
+    "Operates via skillevaluator CLI with zero external package manager dependencies (no NPX)."
+  ],
+  "skills": [
+    {
+      "id": "skillevaluator",
+      "canonical_id": "skillevaluator",
+      "name": "skillevaluator",
+      "path": "skills/skillevaluator",
+      "description": "Run and interpret SkillEvaluator for agent skills. Use for any skill benchmark or eval - validating or scoring a SKILL.md, writing evals.json test cases or evals config, explaining benchmark reports, verdicts and exit codes, or gating skills in CI.",
+      "category": "agent-evaluation",
+      "tags": [
+        "skills",
+        "evaluation",
+        "benchmarking",
+        "ci",
+        "security",
+        "nvidia",
+        "agent-evaluation",
+        "rubric",
+        "harbor"
+      ],
+      "risk": "safe",
+      "author": "Christopher Kevin <christopherk@nvidia.com>",
+      "author_url": "https://github.com/NVIDIA",
+      "source": "https://github.com/NVIDIA/SkillEvaluator/tree/7ae25d2522c9c3b151111fedaa67b814cc3dc5c5/skills/skillevaluator",
+      "source_repo": "NVIDIA/SkillEvaluator",
+      "source_revision": "7ae25d2522c9c3b151111fedaa67b814cc3dc5c5",
+      "source_path": "skills/skillevaluator",
+      "license": "Apache-2.0",
+      "license_source": "https://github.com/NVIDIA/SkillEvaluator/blob/7ae25d2522c9c3b151111fedaa67b814cc3dc5c5/LICENSE"
+    }
+  ],
+  "files": [
+    {
+      "skill_id": "skillevaluator",
+      "source_path": "skills/skillevaluator/.gitattributes",
+      "path": "skills/skillevaluator/.gitattributes",
+      "source_sha256": "d60f352d0db1404c70afb4bb8b2ca3fd1c610572aa40720e8a0b7baa7885418c",
+      "sha256": "d60f352d0db1404c70afb4bb8b2ca3fd1c610572aa40720e8a0b7baa7885418c",
+      "executable": false
+    },
+    {
+      "skill_id": "skillevaluator",
+      "source_path": "skills/skillevaluator/.skillignore",
+      "path": "skills/skillevaluator/.skillignore",
+      "source_sha256": "f332fa75fa3f14fa387d0a0c58de4b4ae5e564d6110807e320f34bca7ea970dc",
+      "sha256": "f332fa75fa3f14fa387d0a0c58de4b4ae5e564d6110807e320f34bca7ea970dc",
+      "executable": false
+    },
+    {
+      "skill_id": "skillevaluator",
+      "source_path": "LICENSE",
+      "path": "skills/skillevaluator/LICENSE",
+      "source_sha256": "61423261b7a3f50cbeef78c828dafc95fbc24e0f228e53ce3f31c101cb62eb7b",
+      "sha256": "61423261b7a3f50cbeef78c828dafc95fbc24e0f228e53ce3f31c101cb62eb7b",
+      "executable": false
+    },
+    {
+      "skill_id": "skillevaluator",
+      "source_path": "skills/skillevaluator/NOTICE.md",
+      "path": "skills/skillevaluator/NOTICE.md",
+      "source_sha256": "0a1335c3ac666fd40e480f2cc7de50c332db961560a61e8251ce9df3dba0cea3",
+      "sha256": "0a1335c3ac666fd40e480f2cc7de50c332db961560a61e8251ce9df3dba0cea3",
+      "executable": false
+    },
+    {
+      "skill_id": "skillevaluator",
+      "source_path": "skills/skillevaluator/SKILL.md",
+      "path": "skills/skillevaluator/SKILL.md",
+      "source_sha256": "5153d4f7d313a1984d651fb85dd003f1facfd98c55eef941f2041df04f5dfd33",
+      "sha256": "ac4f671a1af5fb2ec3b2ae4a7c49c5a44ba632692e6642527f5c149105772cb9",
+      "executable": false
+    },
+    {
+      "skill_id": "skillevaluator",
+      "source_path": "skills/skillevaluator/evals/config.yml",
+      "path": "skills/skillevaluator/evals/config.yml",
+      "source_sha256": "aacbe7d376e67cae7dba124244ea1b1270a11ac652004b98bf7a06db177cd462",
+      "sha256": "aacbe7d376e67cae7dba124244ea1b1270a11ac652004b98bf7a06db177cd462",
+      "executable": false
+    },
+    {
+      "skill_id": "skillevaluator",
+      "source_path": "skills/skillevaluator/evals/evals.json",
+      "path": "skills/skillevaluator/evals/evals.json",
+      "source_sha256": "abaa2e8a8b7e9afc835565ae7c39c73d41cdb598f884aa35611a3188f41ee7f9",
+      "sha256": "abaa2e8a8b7e9afc835565ae7c39c73d41cdb598f884aa35611a3188f41ee7f9",
+      "executable": false
+    },
+    {
+      "skill_id": "skillevaluator",
+      "source_path": "skills/skillevaluator/references/commands-tier1.md",
+      "path": "skills/skillevaluator/references/commands-tier1.md",
+      "source_sha256": "b54d947b18e1e19ccac270cdfc248d2723ce2d1bd5594b6c6496c8b2bd0b43b5",
+      "sha256": "b54d947b18e1e19ccac270cdfc248d2723ce2d1bd5594b6c6496c8b2bd0b43b5",
+      "executable": false
+    },
+    {
+      "skill_id": "skillevaluator",
+      "source_path": "skills/skillevaluator/references/commands-tier2-tier3.md",
+      "path": "skills/skillevaluator/references/commands-tier2-tier3.md",
+      "source_sha256": "03f560c33073738c915c3d32e2636791b1feb626c73e790e75d48b2b2b68264c",
+      "sha256": "03f560c33073738c915c3d32e2636791b1feb626c73e790e75d48b2b2b68264c",
+      "executable": false
+    },
+    {
+      "skill_id": "skillevaluator",
+      "source_path": "skills/skillevaluator/references/commands-validate.md",
+      "path": "skills/skillevaluator/references/commands-validate.md",
+      "source_sha256": "14d5d6895e836d0cd218620128b17468975c6af89ff8f9fff03f6eaa4795d2aa",
+      "sha256": "14d5d6895e836d0cd218620128b17468975c6af89ff8f9fff03f6eaa4795d2aa",
+      "executable": false
+    },
+    {
+      "skill_id": "skillevaluator",
+      "source_path": "skills/skillevaluator/references/custom-graders.md",
+      "path": "skills/skillevaluator/references/custom-graders.md",
+      "source_sha256": "5dfe8491be29a49e2390239d846b78bf807752dff21497fafe43c3d3b50720d4",
+      "sha256": "5dfe8491be29a49e2390239d846b78bf807752dff21497fafe43c3d3b50720d4",
+      "executable": false
+    },
+    {
+      "skill_id": "skillevaluator",
+      "source_path": "skills/skillevaluator/references/providers.md",
+      "path": "skills/skillevaluator/references/providers.md",
+      "source_sha256": "080ce23e23ff46c6247abd30bff73f889dcf077fe0a4fc85e4e30c14e9cd7930",
+      "sha256": "080ce23e23ff46c6247abd30bff73f889dcf077fe0a4fc85e4e30c14e9cd7930",
+      "executable": false
+    },
+    {
+      "skill_id": "skillevaluator",
+      "source_path": "skills/skillevaluator/references/reports-and-ci.md",
+      "path": "skills/skillevaluator/references/reports-and-ci.md",
+      "source_sha256": "4017a12581ea6083210667e4adc514a954e419765a5907966c5ff56ae8262072",
+      "sha256": "4017a12581ea6083210667e4adc514a954e419765a5907966c5ff56ae8262072",
+      "executable": false
+    },
+    {
+      "skill_id": "skillevaluator",
+      "source_path": "skills/skillevaluator/references/tier3-datasets.md",
+      "path": "skills/skillevaluator/references/tier3-datasets.md",
+      "source_sha256": "8f35961b37e7566c164d419e546b9a9244273674066098c7b742d44c62b4496a",
+      "sha256": "8f35961b37e7566c164d419e546b9a9244273674066098c7b742d44c62b4496a",
+      "executable": false
+    },
+    {
+      "skill_id": "skillevaluator",
+      "source_path": "skills/skillevaluator/references/tier3-running.md",
+      "path": "skills/skillevaluator/references/tier3-running.md",
+      "source_sha256": "949319d537f3893781696f655e2919126adb4c26c8fa56371519cd50f30a8116",
+      "sha256": "949319d537f3893781696f655e2919126adb4c26c8fa56371519cd50f30a8116",
+      "executable": false
+    },
+    {
+      "skill_id": "skillevaluator",
+      "source_path": "skills/skillevaluator/references/troubleshooting.md",
+      "path": "skills/skillevaluator/references/troubleshooting.md",
+      "source_sha256": "ea3e024bb8a7fe31415c20072225aeaf33e6bad4b61772b12a31485aa5f99051",
+      "sha256": "ea3e024bb8a7fe31415c20072225aeaf33e6bad4b61772b12a31485aa5f99051",
+      "executable": false
+    }
+  ]
+}

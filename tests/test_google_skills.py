@@ -65,7 +65,7 @@ class TestGoogleSkills(unittest.TestCase):
         # Verify category taxonomy remains exactly 119 and catalog has 4,078 skills
         categories = {s.get("category", "general") for s in self.index}
         self.assertEqual(len(categories), 119)
-        self.assertEqual(len(self.index), 4078)
+        self.assertEqual(len(self.index), 4079)
 
         sample_skills = [
             ("gcloud", "cloud"),
