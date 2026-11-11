@@ -158,6 +158,8 @@ Tìm theo công việc bạn cần làm trước, sau đó đọc mô tả và y
 | Xử lý tài liệu | [`pdf`](skills/pdf/SKILL.md), [`docx`](skills/docx/SKILL.md), [`pptx`](skills/pptx/SKILL.md), [`xlsx`](skills/xlsx/SKILL.md) |
 | Làm việc với truy vấn BigQuery | [`bigquery-sql`](skills/bigquery-sql/SKILL.md) |
 | Xử lý video và âm thanh với FFmpeg | [`ffmpeg-skill`](skills/ffmpeg-skill/SKILL.md) |
+| Tạo sơ đồ kiến trúc động | [`animated-motion-diagram`](skills/animated-motion-diagram/SKILL.md) |
+| Ôn luyện và học tập phương pháp Socrates | [`socratic-tutor`](skills/socratic-tutor/SKILL.md) |
 
 Một số danh mục để tra cứu:
 
@@ -224,6 +226,9 @@ Các hướng dẫn chi tiết được tách riêng để bạn chỉ mở ph�
 | Google Skills | 184 | Bộ kỹ năng chính thức từ Google dành cho Google Cloud (GCP), GKE, BigQuery, Cloud Run, SecOps, Gemini API, Genkit, Google Ads; xem [nguồn và bản ghi nhập](data/google-skills-import.json) |
 | Headless | 1 | Thiết lập máy Mac (Apple silicon), Linux (NixOS/Debian/Ubuntu/Fedora) hoặc Windows 11/Server không màn hình qua SSH mà không lộ mật khẩu admin cho agent; xem [nguồn và bản ghi nhập](data/headless-import.json) |
 | Motion Prompt | 1 | Từ điển 192 hiệu ứng chuyển động, góc máy, thành phần UI, hiệu ứng landing page và phong cách nhiếp ảnh (`#001`–`#192`) kèm hàm chuẩn Canvas 2D và thông số timing/easing; xem [nguồn và bản ghi nhập](data/motion-prompt-import.json) |
+| Socratic Tutor | 1 | Gia sư đàm thoại theo phương pháp Socrates (Jane Street) giúp người học làm chủ chủ đề qua câu hỏi gợi mở; xem [nguồn và bản ghi nhập](data/janestreet-import.json) và [bài viết hướng dẫn](docs/blog/phuong-phap-socratic-cho-ai-agent-gia-su-hoc-tap/index.html) |
+| Animated Motion Diagram | 1 | Thiết kế sơ đồ kiến trúc động chuẩn SVG / SMIL / Canvas 2D với logo thương hiệu, dòng chảy dữ liệu trực giao và hiệu ứng hạt năng lượng; xem [hướng dẫn Animated Motion Diagram](skills/animated-motion-diagram/README.md) |
+| Homelab Diagram | 1 | Quy trình thiết kế sơ đồ hạ tầng tự host Homelab dạng code trực quan từ YAML sang SVG; xem [bài viết hướng dẫn Homelab](docs/blog/ve-so-do-mang-homelab-bang-ai-agent-tu-yaml-den-svg/index.html) |
 
 Các tài liệu kiểm tra kỹ thuật dùng chung nằm trong [references/](references/), gồm kiểm thử, bảo mật, hiệu năng, khả năng tiếp cận, vận hành và điều phối agent.
 
