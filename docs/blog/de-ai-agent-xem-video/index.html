@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="vi" data-theme="light">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Để AI Agent xem video: Trích xuất khung hình, phụ đề và phân tích đa phương thức — VAS</title>
+<meta name="description" content="Hướng dẫn sử dụng skill watch từ Bradley Bonanno để cung cấp bằng chứng video cho AI agent: trích xuất khung hình tự thích ứng bằng ffmpeg, bóc tách phụ đề VTT, WhisperX cục bộ và phân tích toàn diện qua Google Gemini.">
+<meta name="robots" content="index, follow"><meta name="theme-color" content="#f3efea">
+<link rel="canonical" href="https://vie-agentic-skills.vercel.app/blog/de-ai-agent-xem-video/">
+<link rel="icon" href="../../assets/brand/vas-icon.png"><link rel="stylesheet" href="../../catalog.css"><link rel="stylesheet" href="../blog.css">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Vie Agentic Skill"><meta property="og:title" content="Để AI Agent xem video: Trích xuất khung hình, phụ đề và phân tích đa phương thức"><meta property="og:description" content="Hướng dẫn sử dụng skill watch từ Bradley Bonanno để cung cấp bằng chứng video cho AI agent: trích xuất khung hình tự thích ứng bằng ffmpeg, bóc tách phụ đề VTT, WhisperX cục bộ và phân tích toàn diện qua Google Gemini."><meta property="og:url" content="https://vie-agentic-skills.vercel.app/blog/de-ai-agent-xem-video/"><meta property="og:image" content="https://vie-agentic-skills.vercel.app/assets/social-preview.png"><meta property="og:image:width" content="1280"><meta property="og:image:height" content="640">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Để AI Agent xem video: Trích xuất khung hình, phụ đề và phân tích đa phương thức"><meta name="twitter:description" content="Hướng dẫn sử dụng skill watch từ Bradley Bonanno để cung cấp bằng chứng video cho AI agent: trích xuất khung hình tự thích ứng bằng ffmpeg, bóc tách phụ đề VTT, WhisperX cục bộ và phân tích toàn diện qua Google Gemini."><meta name="twitter:image" content="https://vie-agentic-skills.vercel.app/assets/social-preview.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Để AI Agent xem video: Trích xuất khung hình, phụ đề và phân tích đa phương thức","description":"Hướng dẫn sử dụng skill watch từ Bradley Bonanno để cung cấp bằng chứng video cho AI agent: trích xuất khung hình tự thích ứng bằng ffmpeg, bóc tách phụ đề VTT, WhisperX cục bộ và phân tích toàn diện qua Google Gemini.","url":"https://vie-agentic-skills.vercel.app/blog/de-ai-agent-xem-video/","mainEntityOfPage":"https://vie-agentic-skills.vercel.app/blog/de-ai-agent-xem-video/","inLanguage":"vi-VN","datePublished":"2026-11-11","dateModified":"2026-11-11","author":{"@type":"Organization","name":"Vie Agentic Skill"},"publisher":{"@type":"Organization","name":"Vie Agentic Skill","url":"https://vie-agentic-skills.vercel.app/"},"image":"https://vie-agentic-skills.vercel.app/assets/social-preview.png"}</script>
+<script src="../blog.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#guide-main"><span data-language="vi">Đến nội dung chính</span><span data-language="en" hidden>Skip to content</span></a>
+<header class="site-header guide-header"><div class="shell header-inner"><a class="brand" href="../../" data-home><span class="brand-mark" aria-hidden="true">&gt;_</span><span class="brand-short">VAS</span></a><nav class="guide-nav" aria-label="Điều hướng"><a class="guide-library-return" href="../../#catalog" data-home data-library-return><span data-language="vi">← Về thư viện <span data-catalog-count="vi">4.078</span> skill</span><span data-language="en" hidden>← Back to <span data-catalog-count="en">4,078</span> skills</span></a><a href="../" data-blog><span data-language="vi">Blog / Hướng dẫn</span><span data-language="en" hidden>Blog / Guides</span></a></nav><div class="header-actions"><button id="blog-language" class="icon-button" type="button" aria-label="Switch to English" lang="en">EN</button><button id="blog-theme" class="icon-button" type="button" aria-label="Bật giao diện tối" aria-pressed="false">◐</button></div></div></header>
+<main id="guide-main" class="shell guide-main" tabindex="-1" data-page-titles='{&quot;vi&quot;: &quot;Để AI Agent xem video: Trích xuất khung hình, phụ đề và phân tích đa phương thức — VAS&quot;, &quot;en&quot;: &quot;Let AI Agents Inspect Videos: Frame Extraction, Captions, and Multimodal Analysis — VAS&quot;}' data-page-descriptions='{&quot;vi&quot;: &quot;Hướng dẫn sử dụng skill watch từ Bradley Bonanno để cung cấp bằng chứng video cho AI agent: trích xuất khung hình tự thích ứng bằng ffmpeg, bóc tách phụ đề VTT, WhisperX cục bộ và phân tích toàn diện qua Google Gemini.&quot;, &quot;en&quot;: &quot;Guide to using the watch skill by Bradley Bonanno to ground AI agents in video evidence: adaptive frame extraction with ffmpeg, native VTT captions, local WhisperX, and full multimodal Gemini analysis.&quot;}'>
+<nav class="guide-breadcrumb" aria-label="Breadcrumb"><a href="../../" data-home>VAS</a><span aria-hidden="true">/</span><a href="../" data-blog><span data-language="vi">Blog / Hướng dẫn</span><span data-language="en" hidden>Blog / Guides</span></a></nav>
+<header class="guide-heading">
+<p class="guide-eyebrow"><span data-language="vi">Đa phương thức &amp; Video</span><span data-language="en" hidden>Multimodal &amp; Video</span></p>
+<h1><span data-language="vi">Để AI Agent xem video: Trích xuất khung hình, phụ đề và phân tích đa phương thức</span><span data-language="en" hidden>Let AI Agents Inspect Videos: Frame Extraction, Captions, and Multimodal Analysis</span></h1>
+<p class="guide-byline"><span data-language="vi">Biên soạn bởi Vie Agentic Skill · Dựa trên runbook trong catalog</span><span data-language="en" hidden>Prepared by Vie Agentic Skill · Based on catalog runbooks</span></p>
+</header>
+<div class="guide-layout">
+<article class="guide-prose">
+<div data-language="vi">
+<p class="guide-lead">Khi bạn đưa cho AI coding agent một liên kết YouTube hoặc video ghi màn hình, phần lớn công cụ hiện nay chỉ bóc tách phụ đề chữ để trả lời. Nhưng với video kỹ thuật, slide bài giảng hay thao tác giao diện, phụ đề chữ không thể diễn tả được những gì thực sự hiển thị trên màn hình.</p>
+</div>
+<div data-language="en" hidden>
+<p class="guide-lead">When you hand an AI coding agent a YouTube URL or a local screen recording, most tooling only extracts text captions. Yet for software tutorials, lecture slides, and UI walkthroughs, transcript alone cannot establish what actually appeared on screen.</p>
+</div>
+<nav class="guide-toc" aria-label="Mục lục bài viết">
+<p class="guide-toc-title"><span data-language="vi">Mục lục</span><span data-language="en" hidden>Table of contents</span></p>
+<ol>
+<li><a href="#transcript-limits"><span data-language="vi">1. Giới hạn khi chỉ đọc phụ đề video</span><span data-language="en" hidden>1. The limits of transcript-only video reasoning</span></a></li>
+<li><a href="#two-engines"><span data-language="vi">2. Hai engine linh hoạt: Gemini Model và Local Pipeline</span><span data-language="en" hidden>2. Two engines: Gemini Multimodal and Local Pipeline</span></a></li>
+<li><a href="#detail-levels"><span data-language="vi">3. Bốn cấp độ trích xuất khung hình và kiểm soát token</span><span data-language="en" hidden>3. Four detail levels and image token budgeting</span></a></li>
+<li><a href="#timestamp-focus"><span data-language="vi">4. Phân tích mốc thời gian cụ thể và xử lý lỗi</span><span data-language="en" hidden>4. Focused timestamp intervals and failure recovery</span></a></li>
+<li><a href="#install-vas"><span data-language="vi">5. Cài đặt và sử dụng trong dự án với VAS</span><span data-language="en" hidden>5. Installing and running with VAS</span></a></li>
+</ol>
+</nav>
+
+<h2 id="transcript-limits"><span data-language="vi">1. Giới hạn khi chỉ đọc phụ đề video</span><span data-language="en" hidden>1. The limits of transcript-only video reasoning</span></h2>
+<div data-language="vi">
+<p>Một ảo tưởng phổ biến trong các quy trình AI là cho rằng một bản transcript đầy đủ là đủ để "hiểu" video. Thực tế chứng minh ngược lại trong các tình huống kỹ thuật phổ biến:</p>
+<ul>
+<li><strong>Người nói không đọc toàn bộ slide:</strong> Diễn giả chỉ nói <em>"như các bạn thấy trên sơ đồ này"</em> hoặc <em>"hãy chú ý vào thông số ở góc phải"</em> mà không đọc tên thành phần hay giá trị đo lường.</li>
+<li><strong>Sửa lỗi và code trực tiếp:</strong> Khi một lập trình viên gõ code trên màn hình, họ thường im lặng hoặc chỉ giải thích ý niệm chung. Phụ đề không thể cung cấp cú pháp, tên hàm hay đường dẫn file thật.</li>
+<li><strong>Minh họa giao diện ứng dụng:</strong> Trong các buổi demo sản phẩm hoặc video kiểm thử, sự sai lệch màu sắc, layout vỡ hay thông báo lỗi popup chỉ tồn tại ở dạng pixel hình ảnh.</li>
+</ul>
+<p>Kỹ năng <a data-catalog-skill="watch" href="../../?lang=vi&amp;skill=watch&amp;agent=antigravity">watch</a> do Bradley Bonanno phát triển giải quyết triệt để vấn đề này bằng cách kết hợp song song cả phụ đề chữ lẫn khung hình thị giác có mốc thời gian đồng bộ, hoặc ủy quyền cho mô hình đa phương thức chuyên dụng.</p>
+</div>
+<div data-language="en" hidden>
+<p>A common fallacy in AI workflows is assuming an audio transcript is sufficient to understand a video. In practice, technical workflows quickly break down:</p>
+<ul>
+<li><strong>Speakers rarely read slides aloud:</strong> A presenter says <em>"as illustrated in this diagram"</em> or <em>"notice the metric on the top right"</em> without speaking the actual component names or values.</li>
+<li><strong>Live coding and debugging:</strong> When an engineer codes on screen, they often type in silence. Captions omit the exact syntax, identifiers, and configuration paths shown.</li>
+<li><strong>Visual UI inspection:</strong> In product walkthroughs or QA bug reports, broken layouts, styling regressions, or ephemeral toast warnings exist purely as pixels.</li>
+</ul>
+<p>The <a data-catalog-skill="watch" href="../../?lang=en&amp;skill=watch&amp;agent=antigravity">watch</a> skill created by Bradley Bonanno bridges this gap by marrying timestamped frames with caption streams, or offloading the entire video to a dedicated multimodal foundation model.</p>
+</div>
+
+<h2 id="two-engines"><span data-language="vi">2. Hai engine linh hoạt: Gemini Model và Local Pipeline</span><span data-language="en" hidden>2. Two engines: Gemini Multimodal and Local Pipeline</span></h2>
+<div data-language="vi">
+<p>Skill <a data-catalog-skill="watch" href="../../?lang=vi&amp;skill=watch&amp;agent=antigravity">watch</a> được thiết kế với hai kiến trúc phân tách rõ ràng, phù hợp cho cả môi trường làm việc đám mây lẫn máy trạm cục bộ:</p>
+<table>
+<thead>
+<tr>
+<th>Tiêu chí</th>
+<th>Gemini Engine (<code>--engine gemini</code>)</th>
+<th>Local Engine (<code>--engine local</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cơ chế xử lý</strong></td>
+<td>Mô hình Gemini của Google "xem" trực tiếp cả audio và video</td>
+<td>Trích xuất khung hình bằng FFmpeg + Phụ đề WebVTT / Whisper</td>
+</tr>
+<tr>
+<td><strong>Yêu cầu mạng &amp; API Key</strong></td>
+<td>Cần <code>GEMINI_API_KEY</code> (miễn phí từ AI Studio)</td>
+<td>Không cần API key (hoạt động 100% offline nếu có model)</td>
+</tr>
+<tr>
+<td><strong>Tài nguyên máy trạm</strong></td>
+<td>Gần như bằng 0; URL YouTube gửi thẳng đến Google</td>
+<td>Cần cài <code>yt-dlp</code>, <code>ffmpeg</code>, tùy chọn RAM cho WhisperX</td>
+</tr>
+<tr>
+<td><strong>Xử lý tệp cục bộ</strong></td>
+<td>Tải lên Google Files API và tự xóa ngay sau khi trả lời</td>
+<td>Xử lý hoàn toàn trong thư mục tạm trên ổ cứng của bạn</td>
+</tr>
+</tbody>
+</table>
+<p>Khi sử dụng engine Gemini, với video YouTube, URL được gửi trực tiếp mà không cần tải file về máy. Đối với video cục bộ, script upload qua Files API của Google, chờ mô hình xem xong, nhận câu trả lời có mốc thời gian và lập tức xóa tệp trên đám mây.</p>
+</div>
+<div data-language="en" hidden>
+<p>The <a data-catalog-skill="watch" href="../../?lang=en&amp;skill=watch&amp;agent=antigravity">watch</a> skill is architected around two explicit engines tailored for cloud or local workstations:</p>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Gemini Engine (<code>--engine gemini</code>)</th>
+<th>Local Engine (<code>--engine local</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Mechanism</strong></td>
+<td>Google Gemini model directly ingests full audio and video tracks</td>
+<td>FFmpeg frame extraction + WebVTT / Whisper speech transcription</td>
+</tr>
+<tr>
+<td><strong>Network &amp; Keys</strong></td>
+<td>Requires <code>GEMINI_API_KEY</code> (free from Google AI Studio)</td>
+<td>Zero API keys required (fully offline with local binaries)</td>
+</tr>
+<tr>
+<td><strong>Host Footprint</strong></td>
+<td>Near-zero local CPU/GPU; YouTube URLs are relayed directly</td>
+<td>Requires local <code>yt-dlp</code>, <code>ffmpeg</code>, and disk/RAM for WhisperX</td>
+</tr>
+<tr>
+<td><strong>Local Media Files</strong></td>
+<td>Uploaded to Google Files API, then purged after answer generation</td>
+<td>Processed strictly within a local disposable temporary directory</td>
+</tr>
+</tbody>
+</table>
+<p>With the Gemini engine, YouTube links skip downloading entirely. For local videos, the script uploads media through Google's Files API, fetches the timestamped response, and promptly deletes the uploaded artifact.</p>
+</div>
+
+<h2 id="detail-levels"><span data-language="vi">3. Bốn cấp độ trích xuất khung hình và kiểm soát token</span><span data-language="en" hidden>3. Four detail levels and image token budgeting</span></h2>
+<div data-language="vi">
+<p>Khi chạy engine cục bộ, đưa hàng nghìn ảnh chụp màn hình vào context của LLM sẽ gây tốn kém chi phí token và làm chậm tốc độ phản hồi. <a data-catalog-skill="watch" href="../../?lang=vi&amp;skill=watch&amp;agent=antigravity">watch</a> chia nhỏ thành 4 cấp độ chi tiết với thuật toán phát hiện chuyển cảnh thông minh:</p>
+<ul>
+<li><strong><code>transcript</code></strong>: Không xuất ảnh. Chỉ tải phụ đề native khi có sẵn, không tải media tốn dung lượng mạng.</li>
+<li><strong><code>efficient</code></strong>: Trích xuất keyframe tốc độ cao, giới hạn cứng tối đa 50 khung hình.</li>
+<li><strong><code>balanced</code> (Khuyên dùng)</strong>: Thuật toán nhận diện cảnh chuyển động (scene detection), tự động co giãn FPS (<code>auto_fps</code>) và chặn trên tối đa 100 khung hình.</li>
+<li><strong><code>token-burner</code></strong>: Trích xuất cảnh chuyển động không giới hạn khung hình, chỉ dùng khi cần soi chi tiết từng bước phức tạp.</li>
+</ul>
+<pre><code># Chạy xem video với mức chi tiết cân bằng mặc định
+python3 scripts/watch.py "https://www.youtube.com/watch?v=EXAMPLE" --detail balanced
+
+# Chỉ lấy phụ đề chữ để duyệt nhanh nội dung
+python3 scripts/watch.py "https://www.youtube.com/watch?v=EXAMPLE" --detail transcript</code></pre>
+</div>
+<div data-language="en" hidden>
+<p>When running locally, dumping hundreds of raw frames into an LLM context exhausts image token budgets and increases latency. <a data-catalog-skill="watch" href="../../?lang=en&amp;skill=watch&amp;agent=antigravity">watch</a> structures extraction into four tiered detail modes backed by scene-change heuristics:</p>
+<ul>
+<li><strong><code>transcript</code></strong>: Zero image frames. Extracts native captions without pulling heavy video binaries.</li>
+<li><strong><code>efficient</code></strong>: Fast I-frame keyframe extraction, strictly capped at 50 frames.</li>
+<li><strong><code>balanced</code> (Default / Recommended)</strong>: Scene-aware frame sampling with adaptive <code>auto_fps</code>, capped at 100 frames.</li>
+<li><strong><code>token-burner</code></strong>: Uncapped scene detection for granular, frame-by-frame visual inspection.</li>
+</ul>
+<pre><code># Run balanced visual inspection
+python3 scripts/watch.py "https://www.youtube.com/watch?v=EXAMPLE" --detail balanced
+
+# Rapid transcript-only intake
+python3 scripts/watch.py "https://www.youtube.com/watch?v=EXAMPLE" --detail transcript</code></pre>
+</div>
+
+<h2 id="timestamp-focus"><span data-language="vi">4. Phân tích mốc thời gian cụ thể và xử lý lỗi</span><span data-language="en" hidden>4. Focused timestamp intervals and failure recovery</span></h2>
+<div data-language="vi">
+<p>Trong thực tế, bạn thường chỉ quan tâm đến một đoạn ngắn trong bài giảng dài 2 tiếng. <a data-catalog-skill="watch" href="../../?lang=vi&amp;skill=watch&amp;agent=antigravity">watch</a> hỗ trợ tinh chỉnh phạm vi cực kỳ chính xác:</p>
+<ul>
+<li><strong>Khoảng thời gian (Focus range)</strong>: Dùng <code>--start 14:20 --end 18:30</code> để chỉ bóc tách phụ đề và khung hình trong 4 phút quan trọng.</li>
+<li><strong>Các mốc thời gian cụ thể (Discrete cues)</strong>: Dùng <code>--timestamps 4:32,7:10,9:55</code> để lấy đúng các frame tại các điểm thời gian người nói chuyển chủ đề.</li>
+<li><strong>Xử lý lỗi 403 / YouTube CDN</strong>: Khi gặp lỗi chặn từ nguồn tải, nâng cấp `yt-dlp` bằng lệnh của package manager (ví dụ <code>brew upgrade yt-dlp</code> hoặc <code>pipx upgrade yt-dlp</code>) và chạy lại. Script tuyệt đối không can thiệp tắt kiểm tra chứng chỉ TLS hay can thiệp cookie trái phép.</li>
+</ul>
+<pre><code># Soi kỹ đoạn demo từ phút 12:00 đến 14:30
+python3 scripts/watch.py video.mp4 --start 12:00 --end 14:30 --timestamps 12:45,13:10</code></pre>
+</div>
+<div data-language="en" hidden>
+<p>Technical users rarely inspect an entire two-hour recording when diagnosing an issue. <a data-catalog-skill="watch" href="../../?lang=en&amp;skill=watch&amp;agent=antigravity">watch</a> provides focused slicing:</p>
+<ul>
+<li><strong>Focus windows</strong>: Use <code>--start 14:20 --end 18:30</code> to isolate frames and captions within the exact four-minute window.</li>
+<li><strong>Discrete cue timestamps</strong>: Use <code>--timestamps 4:32,7:10,9:55</code> to pinpoint exact slides or UI transitions.</li>
+<li><strong>403 CDN errors</strong>: When download CDNs return access errors, upgrade <code>yt-dlp</code> via your system package manager (e.g. <code>brew upgrade yt-dlp</code> or <code>pipx upgrade yt-dlp</code>). The tool maintains security hygiene without disabling TLS verification or cycling cookies insecurely.</li>
+</ul>
+<pre><code># Inspect an exact local demonstration segment
+python3 scripts/watch.py video.mp4 --start 12:00 --end 14:30 --timestamps 12:45,13:10</code></pre>
+</div>
+
+<h2 id="install-vas"><span data-language="vi">5. Cài đặt và sử dụng trong dự án với VAS</span><span data-language="en" hidden>5. Installing and running with VAS</span></h2>
+<div data-language="vi">
+<p>Kỹ năng <a data-catalog-skill="watch" href="../../?lang=vi&amp;skill=watch&amp;agent=antigravity">watch</a> đã được đóng gói độc lập theo chuẩn Open Agent Skills, giữ nguyên giấy phép MIT và được quản lý hoàn toàn bằng Python CLI:</p>
+<pre><code># Cài đặt chế độ link cho Antigravity (Universal)
+./vas install watch --target antigravity --mode link
+
+# Cài đặt chế độ copy độc lập cho Claude Code hoặc Cursor
+./vas install watch --target claude --mode copy --dest "/path/to/project/.claude/skills"
+
+# Kiểm tra trạng thái cài đặt
+./vas status --target claude --dest "/path/to/project/.claude/skills"</code></pre>
+<p>Sau khi cài đặt, bạn chỉ cần ra lệnh cho agent: <em>"Hãy xem video tại liên kết này và tóm tắt các điểm kiến trúc chính cùng hình ảnh minh họa tương ứng"</em>. Agent sẽ tự động gọi <code>scripts/watch.py</code>, đọc các khung hình và trả lời chính xác dựa trên bằng chứng thực tế.</p>
+</div>
+<div data-language="en" hidden>
+<p>The <a data-catalog-skill="watch" href="../../?lang=en&amp;skill=watch&amp;agent=antigravity">watch</a> skill is packaged as an independent module under the Open Agent Skills specification, preserving its MIT license and managed via the dependency-free VAS CLI:</p>
+<pre><code># Install in link mode for Antigravity (Universal)
+./vas install watch --target antigravity --mode link
+
+# Install in standalone copy mode for Claude Code or Cursor
+./vas install watch --target claude --mode copy --dest "/path/to/project/.claude/skills"
+
+# Verify installation status
+./vas status --target claude --dest "/path/to/project/.claude/skills"</code></pre>
+<p>Once installed, instruct your coding agent: <em>"Inspect the video at this URL and summarize the architectural changes with matching visual evidence"</em>. The agent invokes <code>scripts/watch.py</code>, inspects the extracted frames, and delivers grounded answers.</p>
+</div>
+</article>
+<aside class="guide-companion" aria-label="Skill liên quan">
+<p class="guide-eyebrow"><span data-language="vi">Áp dụng vào dự án</span><span data-language="en" hidden>Apply it to your project</span></p>
+<h2><a data-catalog-skill="watch" href="../../?lang=vi&amp;skill=watch&amp;agent=antigravity">watch</a></h2>
+<p><span data-language="vi">Đọc yêu cầu và giấy phép, chọn agent rồi sao chép prompt cài đặt trong thư viện.</span><span data-language="en" hidden>Read prerequisites and licensing, choose your agent, then copy an installation prompt in the library.</span></p>
+<a class="button primary" data-catalog-skill="watch" href="../../?lang=vi&amp;skill=watch&amp;agent=antigravity"><span data-language="vi">Xem skill và cài đặt →</span><span data-language="en" hidden>Read skill and install →</span></a>
+<a class="text-link" href="../../#quickstart" data-home><span data-language="vi">Cách sử dụng VAS</span><span data-language="en" hidden>How to use VAS</span></a>
+</aside>
+</div>
+<section class="guide-related" aria-labelledby="related-title">
+<h2 id="related-title"><span data-language="vi">Đọc tiếp</span><span data-language="en" hidden>Read next</span></h2>
+<div class="guide-related-links">
+<a href="../tao-video-voi-claude-code-remotion/" data-guide-link><span data-language="vi">Tạo video hướng dẫn với Claude Code và Remotion</span><span data-language="en" hidden>Create a tutorial video with Claude Code and Remotion</span></a>
+<a href="../tu-readme-den-video-demo/" data-guide-link><span data-language="vi">Từ README đến video demo sản phẩm với AI</span><span data-language="en" hidden>From README to Product Demo Video with AI</span></a>
+</div>
+</section>
+</main>
+<footer class="site-footer"><div class="shell footer-inner"><strong>VAS / Vie Agentic Skill</strong><p><span data-language="vi">Đọc hướng dẫn. Chọn skill. Áp dụng vào dự án.</span><span data-language="en" hidden>Read a guide. Choose a skill. Apply it to your project.</span></p><div><a href="../../#catalog" data-home><span data-language="vi">Thư viện</span><span data-language="en" hidden>Library</span></a><a href="https://github.com/huytran1120/vie-agentic-skills">GitHub ↗</a></div></div></footer>
+</body>
+</html>

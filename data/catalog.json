@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-11-05T00:00:00Z",
-  "total": 3895,
+  "total": 3897,
   "skills": [
     {
       "id": "00-andruia-consultant",
@@ -110633,7 +110633,35 @@
       "source_path": "socratic-tutor/SKILL.md",
       "license": "MIT",
       "license_source": "https://github.com/janestreet/agent_skills/blob/7c6715c29548a3b39d4a9545c698ee4fd17a7213/LICENSE.md"
+    },
+    {
+      "id": "watch",
+      "canonical_id": "watch",
+      "name": "watch",
+      "path": "skills/watch",
+      "description": "Watch a video (URL or local path). Downloads with yt-dlp, extracts auto-scaled frames with ffmpeg, pulls the transcript from captions (or local WhisperX / cloud Whisper fallback), and hands the result to the agent so it can answer questions about what's in the video. With a Gemini API key, Google's agentic video model watches the full video instead.",
+      "category": "media",
+      "tags": [
+        "video",
+        "watch",
+        "youtube",
+        "multimodal",
+        "transcription",
+        "whisper",
+        "gemini",
+        "ffmpeg",
+        "yt-dlp"
+      ],
+      "risk": "safe",
+      "author": "Bradley Bonanno",
+      "author_url": "https://github.com/bradautomates",
+      "source": "https://github.com/bradautomates/claude-video/tree/03ceb42f7fa2c4439aca01752118044baabffb8f/skills/watch",
+      "source_repo": "bradautomates/claude-video",
+      "source_revision": "03ceb42f7fa2c4439aca01752118044baabffb8f",
+      "source_path": "skills/watch",
+      "license": "MIT",
+      "license_source": "https://github.com/bradautomates/claude-video/blob/03ceb42f7fa2c4439aca01752118044baabffb8f/LICENSE"
     }
   ],
-  "total_skills": 4077
+  "total_skills": 3897
 }

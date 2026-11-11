@@ -72927,6 +72927,33 @@
     "author": "renat"
   },
   {
+    "id": "watch",
+    "canonical_id": "watch",
+    "name": "watch",
+    "path": "skills/watch",
+    "description": "Watch a video (URL or local path). Downloads with yt-dlp, extracts auto-scaled frames with ffmpeg, pulls the transcript from captions (or local WhisperX / cloud Whisper fallback), and hands the result to the agent so it can answer questions about what's in the video. With a Gemini API key, Google's agentic video model watches the full video instead.",
+    "category": "media",
+    "tags": [
+      "video",
+      "watch",
+      "youtube",
+      "multimodal",
+      "transcription",
+      "whisper",
+      "gemini",
+      "ffmpeg",
+      "yt-dlp"
+    ],
+    "risk": "safe",
+    "source": "https://github.com/bradautomates/claude-video/tree/03ceb42f7fa2c4439aca01752118044baabffb8f/skills/watch",
+    "source_repo": "bradautomates/claude-video",
+    "author": "Bradley Bonanno",
+    "license": "MIT",
+    "license_source": "https://github.com/bradautomates/claude-video/blob/03ceb42f7fa2c4439aca01752118044baabffb8f/LICENSE",
+    "source_revision": "03ceb42f7fa2c4439aca01752118044baabffb8f",
+    "source_path": "skills/watch"
+  },
+  {
     "id": "watch-igaming",
     "canonical_id": "watch-igaming",
     "name": "watch-igaming",

@@ -58,10 +58,10 @@ class TestMotionPromptSkills(unittest.TestCase):
         self.assertIn("showheyohtaki/motion-prompt", self.credits["sections"]["motionprompt"][0])
         self.assertIn("7819d3879eb7d5a1475c11c001bedffb5cab64af", self.credits["sections"]["motionprompt"][0])
 
-        # Verify category taxonomy remains 119 and catalog has 4,077 skills
+        # Verify category taxonomy remains 119 and catalog has 4,078 skills
         categories = {s.get("category", "general") for s in self.index}
         self.assertEqual(len(categories), 119)
-        self.assertEqual(len(self.index), 4077)
+        self.assertEqual(len(self.index), 4078)
 
         self.assertIn("motion-prompt", self.skills_by_id)
         skill = self.skills_by_id["motion-prompt"]

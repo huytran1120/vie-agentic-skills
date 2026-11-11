@@ -58,10 +58,10 @@ class TestHeadlessSkills(unittest.TestCase):
         self.assertIn("kunchenguid/headless", self.credits["sections"]["headless"][0])
         self.assertIn("fe1a381c6f382ec3c9822da0e706484414bc63e0", self.credits["sections"]["headless"][0])
 
-        # Verify category taxonomy remains 119 and catalog has 4,077 skills
+        # Verify category taxonomy remains 119 and catalog has 4,078 skills
         categories = {s.get("category", "general") for s in self.index}
         self.assertEqual(len(categories), 119)
-        self.assertEqual(len(self.index), 4077)
+        self.assertEqual(len(self.index), 4078)
 
         self.assertIn("headless", self.skills_by_id)
         skill = self.skills_by_id["headless"]

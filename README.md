@@ -2,7 +2,7 @@
 
 **Thư viện kỹ năng cho trợ lý AI lập trình, có hướng dẫn sử dụng bằng tiếng Việt.**
 
-VAS tập hợp **4.077 skill** thuộc **119 danh mục**, do [Huy Tran](https://github.com/huytran1120) tuyển chọn và duy trì. Bạn có thể tìm quy trình phù hợp với công việc, đọc nội dung rồi cài vào dự án đang dùng với Antigravity, Codex, Claude Code, Cursor, Windsurf, Cline hoặc GitHub Copilot CLI.
+VAS tập hợp **4.078 skill** thuộc **119 danh mục**, do [Huy Tran](https://github.com/huytran1120) tuyển chọn và duy trì. Bạn có thể tìm quy trình phù hợp với công việc, đọc nội dung rồi cài vào dự án đang dùng với Antigravity, Codex, Claude Code, Cursor, Windsurf, Cline hoặc GitHub Copilot CLI.
 
 **[Mở thư viện skill trên Vercel](https://vie-agentic-skills.vercel.app/)** · [Blog / Hướng dẫn](https://vie-agentic-skills.vercel.app/blog/) · [GitHub Pages — bản cũ](https://huytran1120.github.io/vie-agentic-skills/?lang=vi) · [Xem toàn bộ danh mục](CATALOG.md) · [Báo lỗi hoặc đề xuất](https://github.com/huytran1120/vie-agentic-skills/issues)
 
@@ -229,6 +229,7 @@ Các hướng dẫn chi tiết được tách riêng để bạn chỉ mở ph�
 | Socratic Tutor | 1 | Gia sư đàm thoại theo phương pháp Socrates (Jane Street) giúp người học làm chủ chủ đề qua câu hỏi gợi mở; xem [nguồn và bản ghi nhập](data/janestreet-import.json) và [bài viết hướng dẫn](docs/blog/phuong-phap-socratic-cho-ai-agent-gia-su-hoc-tap/index.html) |
 | Animated Motion Diagram | 1 | Thiết kế sơ đồ kiến trúc động chuẩn SVG / SMIL / Canvas 2D với logo thương hiệu, dòng chảy dữ liệu trực giao và hiệu ứng hạt năng lượng; xem [hướng dẫn Animated Motion Diagram](skills/animated-motion-diagram/README.md) |
 | Homelab Diagram | 1 | Quy trình thiết kế sơ đồ hạ tầng tự host Homelab dạng code trực quan từ YAML sang SVG; xem [bài viết hướng dẫn Homelab](docs/blog/ve-so-do-mang-homelab-bang-ai-agent-tu-yaml-den-svg/index.html) |
+| Claude Video | 1 | Xem và bóc tách video bằng hình ảnh và phụ đề (khung hình ffmpeg, phụ đề VTT, WhisperX cục bộ hoặc mô hình đa phương thức Gemini); xem [hướng dẫn Claude Video](docs/claude-video.md) |
 
 Các tài liệu kiểm tra kỹ thuật dùng chung nằm trong [references/](references/), gồm kiểm thử, bảo mật, hiệu năng, khả năng tiếp cận, vận hành và điều phối agent.
 

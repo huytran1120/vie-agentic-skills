@@ -1,6 +1,6 @@
 # Vie Agentic Skill (VAS) - Catalog
 
-Tổng hợp **4,077** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
+Tổng hợp **4,078** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
 
 | Danh mục | Số lượng | Lệnh cài đặt nhanh |
 | :--- | :---: | :--- |
@@ -78,7 +78,7 @@ Tổng hợp **4,077** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **lifestyle** | 1 skills | `./vas install --category lifestyle --target codex` |
 | **marketing** | 326 skills | `./vas install --category marketing --target codex` |
 | **mcp** | 8 skills | `./vas install --category mcp --target codex` |
-| **media** | 150 skills | `./vas install --category media --target codex` |
+| **media** | 151 skills | `./vas install --category media --target codex` |
 | **media-processing** | 2 skills | `./vas install --category media-processing --target codex` |
 | **memory** | 7 skills | `./vas install --category memory --target codex` |
 | **meta** | 38 skills | `./vas install --category meta --target codex` |
@@ -3429,7 +3429,7 @@ Tổng hợp **4,077** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `protect-mcp-governance` | `critical` | Agent governance skill for MCP tool calls — Cedar policy authoring, shadow-to... |
 | `serply-search-mcp` | `safe` | Search Google, Bing, Google News and Google Scholar, and read public pages, w... |
 
-### MEDIA (150 skills)
+### MEDIA (151 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
@@ -3578,6 +3578,7 @@ Tổng hợp **4,077** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `voice-and-audio` | `safe` | Voice treatment for creator videos in DaVinci Resolve - loudness normalizatio... |
 | `voice-cloning-studio` | `critical` | Install and use the official AI Voice Cloning package, pinned by digest, for ... |
 | `voiceover-narration-studio` | `critical` | Install and use the official AI Voiceover Generator package, pinned by digest... |
+| `watch` | `safe` | Watch a video (URL or local path). Downloads with yt-dlp, extracts auto-scale... |
 | `watch-igaming` | `safe` | Reviews a video link or local screen recording from transcript and scene-chan... |
 | `web-media-getter` | `safe` | One query across free image / video / GIF APIs (stock + historical/archival +... |
 | `wechat-cover-maker` | `critical` | Install and use the official WeChat Article Cover package, pinned by digest, ... |

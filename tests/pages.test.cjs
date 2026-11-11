@@ -640,7 +640,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
   const youtube = catalog.filterSkills(skills, { sources: ['youtube'] });
   assert.equal(youtube.length, 11);
   assert.equal(catalog.filterSkills(skills, { query: 'youtube-agent-skill' }).length, 11);
-  assert.equal(skills.length, 4077);
+  assert.equal(skills.length, 4078);
   for (const skill of youtube) {
     assert.ok(skill.id.startsWith('youtube-agent-skill/'));
     assert.equal(skill.source_repo, 'Jakeschincariol/youtube-agent-skill');
@@ -655,7 +655,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
     assert.deepEqual(state.sources, ['youtube']);
     assert.equal(state.selected, youtube[0].id);
     assert.ok(i18n.translate('collections.youtube', language).startsWith('11 '));
-    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '4.077' : '4,077'));
+    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '4.078' : '4,078'));
   }
   assert.equal(catalog.filterSkills(skills, { sources: ['youtube'], category: 'security' }).length, 0);
   const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
@@ -1936,4 +1936,34 @@ test('janestreet retains exact source filtering, MIT license and agent prompts',
   assert.ok(html.includes('name="source" value="janestreet"'));
   assert.ok(html.includes('data-source-count="janestreet">1<'));
   assert.ok(html.includes('id="janestreet-collection"'));
+});
+
+test('claudevideo retains exact source filtering, MIT license and agent prompts', () => {
+  const cvSkills = catalog.filterSkills(skills, { sources: ['claudevideo'] });
+  assert.equal(cvSkills.length, 1);
+  assert.equal(catalog.filterSkills(skills, { query: 'bradautomates/claude-video' }).length, 1);
+  const [watchSkill] = cvSkills;
+  assert.ok(watchSkill);
+  assert.equal(watchSkill.id, 'watch');
+  assert.equal(watchSkill.source_repo, 'bradautomates/claude-video');
+  assert.equal(watchSkill.author, 'Bradley Bonanno');
+  assert.equal(watchSkill.license, 'MIT');
+  assert.equal(watchSkill.category, 'media');
+  assert.equal(watchSkill.risk, 'safe');
+
+  for (const language of ['vi', 'en']) {
+    assert.ok(i18n.translate('collections.claudevideo', language).startsWith('1 '));
+    for (const [agent] of catalog.agents.filter(([key]) => key !== 'all')) {
+      const prompt = catalog.agentInstallPrompt(watchSkill, agent, language);
+      assert.ok(prompt.includes(`/install-manifests/${watchSkill.id}.json`));
+      assert.ok(prompt.includes(catalog.targetFolders[agent]));
+      assert.ok(prompt.includes('SHA-256'));
+      assert.ok(prompt.includes('.vas-manifest.json'));
+    }
+  }
+
+  const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
+  assert.ok(html.includes('name="source" value="claudevideo"'));
+  assert.ok(html.includes('data-source-count="claudevideo">1<'));
+  assert.ok(html.includes('id="claudevideo-collection"'));
 });

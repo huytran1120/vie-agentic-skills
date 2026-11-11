@@ -62,10 +62,10 @@ class TestGoogleSkills(unittest.TestCase):
         self.assertIn("google/skills", self.credits["sections"]["googleskills"][0])
         self.assertIn("2194d3b8b1f31975fef2f1a0ae6b9ab55bd7ceee", self.credits["sections"]["googleskills"][0])
 
-        # Verify category taxonomy remains exactly 119 and catalog has 4,077 skills
+        # Verify category taxonomy remains exactly 119 and catalog has 4,078 skills
         categories = {s.get("category", "general") for s in self.index}
         self.assertEqual(len(categories), 119)
-        self.assertEqual(len(self.index), 4077)
+        self.assertEqual(len(self.index), 4078)
 
         sample_skills = [
             ("gcloud", "cloud"),

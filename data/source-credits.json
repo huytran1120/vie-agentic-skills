@@ -559,6 +559,13 @@
       "- Turns an LLM into a rigorous personal tutor using the Socratic method: intent confirmation guard, 4-10 subskill decomposition, 3-5 diagnostic probing questions, levels 0-5 skill mapping (unaware to mastery), one-question-at-a-time teaching loop, spaced recall review, adversarial devil advocate checks, and a comprehensive final assessment.",
       "- Standalone payload includes `SKILL.md`, `LICENSE`, and `NOTICE.md`.",
       "- Installation via `./vas install` only links or copies static files and writes `.vas-manifest.json`. No external scripts or network requests are executed during installation."
+    ],
+    "claudevideo": [
+      "- **[bradautomates/claude-video](https://github.com/bradautomates/claude-video/tree/03ceb42f7fa2c4439aca01752118044baabffb8f)**: Video inspection, frame extraction, caption parsing, and multimodal video understanding skill (`watch`) by Bradley Bonanno at revision `03ceb42f7fa2c4439aca01752118044baabffb8f` under the MIT License.",
+      "- Gives AI agents multimodal video evidence: downloads via yt-dlp, extracts auto-scaled scene-aware frames with ffmpeg, parses native captions (VTT) or transcribes speech via local WhisperX or cloud Whisper (Groq/OpenAI), and supports full-video direct analysis via Google Gemini API.",
+      "- Standalone payload preserves upstream Agent Skills specification SKILL.md with complete scripts (`watch.py`, `setup.py`, `frames.py`, `download.py`, `transcribe.py`, `whisper.py`, `local_whisperx.py`, `gemini.py`, `config.py`, `runtime.py`, `build-skill.sh`).",
+      "- Base runtime operates entirely on Python's standard library (Python 3.10+). External binaries (`ffmpeg`, `yt-dlp`) and optional models (`whisperx`, `groq`, `openai`, `gemini`) run as user-configured prerequisites.",
+      "- Installation via `./vas install` only links or copies static files and writes `.vas-manifest.json`. No runtime/dependency is installed, and no external accounts are connected."
     ]
   }
 }

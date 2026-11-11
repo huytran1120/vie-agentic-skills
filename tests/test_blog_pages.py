@@ -41,6 +41,7 @@ SLUGS = (
     "thu-vien-motion-prompt-192-hieu-ung-canvas-2d",
     "phuong-phap-socratic-cho-ai-agent-gia-su-hoc-tap",
     "ve-so-do-mang-homelab-bang-ai-agent-tu-yaml-den-svg",
+    "de-ai-agent-xem-video",
 )
 LINKED_SKILLS = {
     "webapp-testing",
@@ -67,6 +68,7 @@ LINKED_SKILLS = {
     "socratic-tutor",
     "stack-diagram",
     "animated-motion-diagram",
+    "watch",
 }
 VOID_ELEMENTS = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"}
 
