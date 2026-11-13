@@ -44,6 +44,7 @@ SLUGS = (
     "de-ai-agent-xem-video",
     "danh-gia-kiem-thu-agent-skill-skillevaluator",
     "lam-video-quang-cao-san-pham-remotion-video-shotcraft",
+    "lam-chu-claude-api-prompt-engineering-tool-use",
 )
 LINKED_SKILLS = {
     "webapp-testing",
@@ -73,6 +74,7 @@ LINKED_SKILLS = {
     "watch",
     "skillevaluator",
     "video-shotcraft",
+    "prompt-engineering",
 }
 VOID_ELEMENTS = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"}
 
