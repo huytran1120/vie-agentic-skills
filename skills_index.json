@@ -10508,6 +10508,28 @@
     "source": "community"
   },
   {
+    "id": "anatomy",
+    "canonical_id": "anatomy",
+    "name": "anatomy",
+    "path": "skills/anatomy",
+    "description": "Build crafted, highly detailed, interactive isometric SVG figures that explain a technical idea as a real physical object (a test rig, a dial gauge, a cabinet of drawers, a plotter, a lock), with many small precise solid parts, four-tone shading, correct painter's order, a framed card with title, hint and live readout, and calm eased motion. Use this whenever someone wants an isometric illustration, an explanatory diagram or figure for docs, a blog post, a landing page or an article, a \"Linear-style\" or \"premium\" technical drawing, an interactive explainer, or an SVG that shows how a system, algorithm or component works, even if they never say \"isometric\". Works framework-free (TypeScript/JS that writes SVG and HTML) and in React/Next.js, and can add realistic WebGL shaders (fire, exhaust, water, caustics, lamp light) that live inside the drawing in the same isometric perspective. Also prints a figure as an A4 PDF (poster, drawing or handout) and publishes it to the Anatomy community gallery when asked.",
+    "category": "general",
+    "tags": [],
+    "risk": "safe",
+    "license": "MIT"
+  },
+  {
+    "id": "anatomy-reveal",
+    "canonical_id": "anatomy-reveal",
+    "name": "anatomy-reveal",
+    "path": "skills/anatomy-reveal",
+    "description": "Build any physical object (a product, a tool, furniture, an instrument, a shoe, a vehicle, a piece of jewellery, kitchenware, a toy, even a fruit or a flower) as a crafted isometric \"anatomy\" figure made of many small convex parts, then turn it into (1) an interactive dissection page you can drag, turn and take apart, and (2) a product-reveal film (MP4, 9:16, 4:5, 1:1 or 16:9, 30 fps, motion blur, white paper look, 10 s by default, any length from 3 to 60 s). The film tumbles in, whips to macro shots of the object's details, shows one feature working, explodes into its parts and snaps back together for a hero shot. Works from a photo of the object or from just its name. Use it when someone asks for an exploded view, a teardown or dissection drawing, an anatomy figure, or a product reveal or product motion video of an object.",
+    "category": "general",
+    "tags": [],
+    "risk": "safe",
+    "license": "MIT"
+  },
+  {
     "id": "andrej-karpathy",
     "canonical_id": "andrej-karpathy",
     "name": "andrej-karpathy",
@@ -38421,6 +38443,26 @@
     "risk": "safe"
   },
   {
+    "id": "hairline-adopt",
+    "canonical_id": "hairline-adopt",
+    "name": "hairline-adopt",
+    "path": "skills/hairline-adopt",
+    "description": "Use when someone has an SVG (an icon, a logo, an illustration) and wants it as a Hairline figure, or runs /hairline-adopt with a file. Reads the drawing, rebuilds its object as an isometric line figure on the engine of @lucasmarkes/hairline, and gives it a gesture that answers the pointer.",
+    "category": "general",
+    "tags": [],
+    "risk": "safe"
+  },
+  {
+    "id": "hairline-create",
+    "canonical_id": "hairline-create",
+    "name": "hairline-create",
+    "path": "skills/hairline-create",
+    "description": "Use when someone asks for a new Hairline figure, or runs /hairline-create with an idea. Draws one isometric line figure that answers the pointer, in the style and on the engine of @lucasmarkes/hairline, and hands it over as a single self-contained HTML file.",
+    "category": "general",
+    "tags": [],
+    "risk": "safe"
+  },
+  {
     "id": "hallmark",
     "canonical_id": "hallmark",
     "name": "hallmark",
@@ -48277,6 +48319,17 @@
     ],
     "risk": "critical",
     "source": "community"
+  },
+  {
+    "id": "motion-design",
+    "canonical_id": "motion-design",
+    "name": "motion-design",
+    "path": "skills/motion-design",
+    "description": "Applies motion design principles to create emotionally-driven, technically sound animations and transitions. Provides timing, easing, choreography, and Disney animation principles adapted for UI. Use when creating animations, transitions, micro-interactions, loading states, page transitions, scroll-triggered effects, or any motion work. Works with CSS, Framer Motion, GSAP, Lottie, Spring, or any animation system.",
+    "category": "general",
+    "tags": [],
+    "risk": "safe",
+    "license": "MIT"
   },
   {
     "id": "motion-doctrine",

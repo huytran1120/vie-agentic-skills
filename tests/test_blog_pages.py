@@ -46,6 +46,7 @@ SLUGS = (
     "lam-video-quang-cao-san-pham-remotion-video-shotcraft",
     "lam-chu-claude-api-prompt-engineering-tool-use",
     "thiet-ke-ui-tu-prompt-den-code-voi-google-stitch",
+    "minh-hoa-isometric-animation-phan-cung-anatomy",
 )
 LINKED_SKILLS = {
     "webapp-testing",
@@ -77,6 +78,7 @@ LINKED_SKILLS = {
     "video-shotcraft",
     "prompt-engineering",
     "generate-design",
+    "anatomy",
 }
 VOID_ELEMENTS = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"}
 

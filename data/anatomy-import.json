@@ -1,0 +1,37 @@
+{
+  "sources": [
+    {
+      "source_repo": "wheresryan22/anatomy",
+      "source_url": "https://github.com/wheresryan22/anatomy",
+      "revision": "1482e8469b0a9e0d8cc18ea2740a01423d29ae80",
+      "author": "Ryan",
+      "author_url": "https://github.com/wheresryan22",
+      "license": "MIT",
+      "license_source": "https://github.com/wheresryan22/anatomy/blob/main/LICENSE",
+      "skill": "anatomy"
+    },
+    {
+      "source_repo": "annnguyentt/anatomy-reveal-skill",
+      "source_url": "https://github.com/annnguyentt/anatomy-reveal-skill",
+      "revision": "dd01e1c04559d79002da07862e26f8a5c2a07644",
+      "author": "An Nguyen",
+      "author_url": "https://github.com/annnguyentt",
+      "license": "MIT",
+      "license_source": "https://github.com/annnguyentt/anatomy-reveal-skill/blob/main/LICENSE",
+      "skill": "anatomy-reveal"
+    }
+  ],
+  "skill_count": 2,
+  "skills": [
+    {
+      "id": "anatomy",
+      "source_repo": "wheresryan22/anatomy",
+      "file_count": 163
+    },
+    {
+      "id": "anatomy-reveal",
+      "source_repo": "annnguyentt/anatomy-reveal-skill",
+      "file_count": 40
+    }
+  ]
+}

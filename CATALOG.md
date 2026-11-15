@@ -1,6 +1,6 @@
 # Vie Agentic Skill (VAS) - Catalog
 
-Tổng hợp **4,091** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
+Tổng hợp **4,096** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
 
 | Danh mục | Số lượng | Lệnh cài đặt nhanh |
 | :--- | :---: | :--- |
@@ -67,7 +67,7 @@ Tổng hợp **4,091** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **frontend** | 48 skills | `./vas install --category frontend --target codex` |
 | **fullstack** | 1 skills | `./vas install --category fullstack --target codex` |
 | **game-development** | 284 skills | `./vas install --category game-development --target codex` |
-| **general** | 78 skills | `./vas install --category general --target codex` |
+| **general** | 83 skills | `./vas install --category general --target codex` |
 | **granular-workflow-bundle** | 16 skills | `./vas install --category granular-workflow-bundle --target codex` |
 | **graphics-processing** | 10 skills | `./vas install --category graphics-processing --target codex` |
 | **growth** | 3 skills | `./vas install --category growth --target codex` |
@@ -2907,11 +2907,13 @@ Tổng hợp **4,091** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `vertical-slice` | `safe` | Pre-production validation — end-to-end build to confirm the full loop is achi... |
 | `visual-novel` | `unknown` | Build a visual novel: a branching script, character and background display, a... |
 
-### GENERAL (78 skills)
+### GENERAL (83 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
 | `academy-guide` | `safe` | Stop and check this skill before finishing any reply to a question about how ... |
+| `anatomy` | `safe` | Build crafted, highly detailed, interactive isometric SVG figures that explai... |
+| `anatomy-reveal` | `safe` | Build any physical object (a product, a tool, furniture, an instrument, a sho... |
 | `animated-motion-diagram` | `safe` | Tạo sơ đồ kiến trúc động (Animated Motion Diagram) phong cách bản vẽ kỹ thuật... |
 | `antigravity-agent-manager` | `critical` | Configure and orchestrate parallel agents using the standalone Antigravity 2.... |
 | `banner-design` | `safe` | Design banners for social media, ads, website heroes, creative assets, and pr... |
@@ -2940,6 +2942,8 @@ Tổng hợp **4,091** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `firebase-security-rules-auditor` | `safe` | Audits Firebase (Firestore, Cloud Storage) security rules for vulnerabilities... |
 | `firestore-rules-creation` | `safe` | Designs, authors, refactors, and hardens production-grade Cloud Firestore Sec... |
 | `generate-design` | `safe` | Generate new screens from text prompts or images, edit existing screens with ... |
+| `hairline-adopt` | `safe` | Use when someone has an SVG (an icon, a logo, an illustration) and wants it a... |
+| `hairline-create` | `safe` | Use when someone asks for a new Hairline figure, or runs /hairline-create wit... |
 | `hyperframes` | `safe` | Read first to make, edit, animate or render any video with HyperFrames (HTML ... |
 | `hyperframes-cli` | `safe` | The HyperFrames CLI by job - scaffold, check, look at frames, edit the timeli... |
 | `hyperframes-figma` | `safe` | Bring Figma into a HyperFrames video - rendered assets, brand tokens, compone... |
@@ -2949,6 +2953,7 @@ Tổng hợp **4,091** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `lemo-opuscar` | `safe` | Direct and produce a short film made entirely in code, in one of the styles o... |
 | `manage-design-system` | `safe` | Manage design systems in Stitch using MCP tools. Includes retrieval of assets... |
 | `media-use` | `safe` | Get or make any media for a HyperFrames video - music, sound effects, images,... |
+| `motion-design` | `safe` | Applies motion design principles to create emotionally-driven, technically so... |
 | `motion-doctrine` | `safe` | GATEWAY — load FIRST before composing any HyperFrames animation or video. The... |
 | `oversized-cursor` | `safe` | House-style oversized macOS cursor technique for HyperFrames launch videos. L... |
 | `pdf` | `safe` | Read text from ordinary PDF files or create a simple PDF with Python. Use for... |
