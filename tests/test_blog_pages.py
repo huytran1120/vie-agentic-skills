@@ -78,7 +78,6 @@ LINKED_SKILLS = {
     "video-shotcraft",
     "prompt-engineering",
     "generate-design",
-    "anatomy",
 }
 VOID_ELEMENTS = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"}
 
