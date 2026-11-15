@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="vi" data-theme="light">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thiết kế UI từ Prompt đến Code với bộ skill Google Stitch — VAS</title>
+<meta name="description" content="Hướng dẫn quy trình AI UI/UX Design-to-Code với 12 agent skill mới từ Google Labs (stitch-skills): sinh giao diện, trích xuất DESIGN.md, quản lý design system và xuất code React, React Native, shadcn/ui.">
+<meta name="robots" content="index, follow"><meta name="theme-color" content="#f3efea">
+<link rel="canonical" href="https://vie-agentic-skills.vercel.app/blog/thiet-ke-ui-tu-prompt-den-code-voi-google-stitch/">
+<link rel="icon" href="../../assets/brand/vas-icon.png"><link rel="stylesheet" href="../../catalog.css"><link rel="stylesheet" href="../blog.css">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Vie Agentic Skill"><meta property="og:title" content="Thiết kế UI từ Prompt đến Code với bộ skill Google Stitch"><meta property="og:description" content="Hướng dẫn quy trình AI UI/UX Design-to-Code với 12 agent skill mới từ Google Labs (stitch-skills): sinh giao diện, trích xuất DESIGN.md, quản lý design system và xuất code React, React Native, shadcn/ui."><meta property="og:url" content="https://vie-agentic-skills.vercel.app/blog/thiet-ke-ui-tu-prompt-den-code-voi-google-stitch/"><meta property="og:image" content="https://vie-agentic-skills.vercel.app/assets/social-preview.png"><meta property="og:image:width" content="1280"><meta property="og:image:height" content="640">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Thiết kế UI từ Prompt đến Code với bộ skill Google Stitch"><meta name="twitter:description" content="Hướng dẫn quy trình AI UI/UX Design-to-Code với 12 agent skill mới từ Google Labs (stitch-skills): sinh giao diện, trích xuất DESIGN.md, quản lý design system và xuất code React, React Native, shadcn/ui."><meta name="twitter:image" content="https://vie-agentic-skills.vercel.app/assets/social-preview.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Thiết kế UI từ Prompt đến Code với bộ skill Google Stitch","description":"Hướng dẫn quy trình AI UI/UX Design-to-Code với 12 agent skill mới từ Google Labs (stitch-skills): sinh giao diện, trích xuất DESIGN.md, quản lý design system và xuất code React, React Native, shadcn/ui.","url":"https://vie-agentic-skills.vercel.app/blog/thiet-ke-ui-tu-prompt-den-code-voi-google-stitch/","mainEntityOfPage":"https://vie-agentic-skills.vercel.app/blog/thiet-ke-ui-tu-prompt-den-code-voi-google-stitch/","inLanguage":"vi-VN","datePublished":"2026-11-15","dateModified":"2026-11-15","author":{"@type":"Organization","name":"Vie Agentic Skill"},"publisher":{"@type":"Organization","name":"Vie Agentic Skill","url":"https://vie-agentic-skills.vercel.app/"},"image":"https://vie-agentic-skills.vercel.app/assets/social-preview.png"}</script>
+<script src="../blog.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#guide-main"><span data-language="vi">Đến nội dung chính</span><span data-language="en" hidden>Skip to content</span></a>
+<header class="site-header guide-header"><div class="shell header-inner"><a class="brand" href="../../" data-home><span class="brand-mark" aria-hidden="true">&gt;_</span><span class="brand-short">VAS</span></a><nav class="guide-nav" aria-label="Điều hướng"><a class="guide-library-return" href="../../#catalog" data-home data-library-return><span data-language="vi">← Về thư viện <span data-catalog-count="vi">4.091</span> skill</span><span data-language="en" hidden>← Back to <span data-catalog-count="en">4,091</span> skills</span></a><a href="../" data-blog><span data-language="vi">Blog / Hướng dẫn</span><span data-language="en" hidden>Blog / Guides</span></a></nav><div class="header-actions"><button id="blog-language" class="icon-button" type="button" aria-label="Switch to English" lang="en">EN</button><button id="blog-theme" class="icon-button" type="button" aria-label="Bật giao diện tối" aria-pressed="false">◐</button></div></div></header>
+<main id="guide-main" class="shell guide-main" tabindex="-1" data-page-titles='{&quot;vi&quot;: &quot;Thiết kế UI từ Prompt đến Code với bộ skill Google Stitch — VAS&quot;, &quot;en&quot;: &quot;Design-to-Code UI Workflows with Google Stitch Skills — VAS&quot;}' data-page-descriptions='{&quot;vi&quot;: &quot;Hướng dẫn quy trình AI UI/UX Design-to-Code với 12 agent skill mới từ Google Labs (stitch-skills): sinh giao diện, trích xuất DESIGN.md, quản lý design system và xuất code React, React Native, shadcn/ui.&quot;, &quot;en&quot;: &quot;End-to-end AI UI/UX Design-to-Code guide using 12 new Google Labs stitch-skills: generating designs, extracting DESIGN.md tokens, managing design systems, and building React, React Native, and shadcn/ui apps.&quot;}'>
+<nav class="guide-breadcrumb" aria-label="Breadcrumb"><a href="../../" data-home>VAS</a><span aria-hidden="true">/</span><a href="../" data-blog><span data-language="vi">Blog / Hướng dẫn</span><span data-language="en" hidden>Blog / Guides</span></a></nav>
+<header class="guide-heading">
+<p class="guide-eyebrow"><span data-language="vi">UI/UX &amp; Design-to-Code</span><span data-language="en" hidden>UI/UX &amp; Design-to-Code</span></p>
+<h1><span data-language="vi">Thiết kế UI từ Prompt đến Code với bộ skill Google Stitch</span><span data-language="en" hidden>Design-to-Code UI Workflows with Google Stitch Skills</span></h1>
+<p class="guide-byline"><span data-language="vi">Biên soạn bởi Vie Agentic Skill · Nguồn Google Labs (Apache-2.0)</span><span data-language="en" hidden>Prepared by Vie Agentic Skill · Sourced from Google Labs (Apache-2.0)</span></p>
+</header>
+<div class="guide-layout">
+<article class="guide-prose">
+<div data-language="vi">
+<p class="guide-lead">Khi dùng AI coding agent để dựng giao diện, thách thức lớn nhất không nằm ở việc viết từng thẻ JSX, mà là giữ tính nhất quán về màu sắc, typography, spacing và cấu trúc màn hình xuyên suốt dự án. Bộ 12 kỹ năng mới từ <strong>google-labs-code/stitch-skills</strong> (giấy phép Apache-2.0) chuẩn hóa toàn bộ vòng đời từ ý tưởng thiết kế trên Google Stitch đến mã nguồn React, React Native và shadcn/ui.</p>
+</div>
+<div data-language="en" hidden>
+<p class="guide-lead">When building user interfaces with AI coding agents, the hardest problem is rarely writing individual JSX tags—it is preserving visual consistency across colors, typography, spacing, and screen layouts. The 12 newly imported skills from <strong>google-labs-code/stitch-skills</strong> (Apache-2.0) standardize the entire lifecycle from Google Stitch designs to production React, React Native, and shadcn/ui codebases.</p>
+</div>
+<nav class="guide-toc" aria-label="Mục lục bài viết">
+<p class="guide-toc-title"><span data-language="vi">Mục lục</span><span data-language="en" hidden>Table of contents</span></p>
+<ol>
+<li><a href="#stitch-workflow"><span data-language="vi">1. Kiến trúc 3 nhóm kỹ năng của Google Stitch</span><span data-language="en" hidden>1. The 3-Layer Architecture of Google Stitch Skills</span></a></li>
+<li><a href="#design-tokens"><span data-language="vi">2. Chuẩn hóa Design System và trích xuất DESIGN.md</span><span data-language="en" hidden>2. Standardizing Design Systems and Extracting DESIGN.md</span></a></li>
+<li><a href="#build-targets"><span data-language="vi">3. Chuyển đổi sang React, Vite Dashboard, shadcn/ui và React Native</span><span data-language="en" hidden>3. Building for React, Vite Dashboards, shadcn/ui, and React Native</span></a></li>
+<li><a href="#install-vas"><span data-language="vi">4. Yêu cầu tiên quyết, giới hạn và cách cài đặt qua VAS</span><span data-language="en" hidden>4. Prerequisites, Limits, and Installing via VAS</span></a></li>
+</ol>
+</nav>
+
+<h2 id="stitch-workflow"><span data-language="vi">1. Kiến trúc 3 nhóm kỹ năng của Google Stitch</span><span data-language="en" hidden>1. The 3-Layer Architecture of Google Stitch Skills</span></h2>
+<div data-language="vi">
+<p>Bộ kỹ năng được chia thành ba giai đoạn nối tiếp nhau rõ ràng:</p>
+<ul>
+<li><strong>Thiết kế &amp; Đồng bộ (Stitch Design):</strong> <a data-catalog-skill="generate-design" href="../../?lang=vi&amp;skill=generate-design&amp;agent=universal">generate-design</a> sinh giao diện mới từ prompt; <a data-catalog-skill="code-to-design" href="../../?lang=vi&amp;skill=code-to-design&amp;agent=universal">code-to-design</a> và <a data-catalog-skill="upload-to-stitch" href="../../?lang=vi&amp;skill=upload-to-stitch&amp;agent=universal">upload-to-stitch</a> đẩy mã nguồn hoặc ảnh chụp ngược lên Stitch; <a data-catalog-skill="extract-static-html" href="../../?lang=vi&amp;skill=extract-static-html&amp;agent=universal">extract-static-html</a> xuất HTML tĩnh sạch để kiểm tra.</li>
+<li><strong>Quản trị hệ thống thiết kế (Design System &amp; Utilities):</strong> <a data-catalog-skill="extract-design-md" href="../../?lang=vi&amp;skill=extract-design-md&amp;agent=universal">extract-design-md</a> và <a data-catalog-skill="manage-design-system" href="../../?lang=vi&amp;skill=manage-design-system&amp;agent=universal">manage-design-system</a> trích xuất và đồng bộ token thiết kế; <a data-catalog-skill="site-md" href="../../?lang=vi&amp;skill=site-md&amp;agent=universal">site-md</a> lập bản đồ cấu trúc trang; <a data-catalog-skill="taste-design" href="../../?lang=vi&amp;skill=taste-design&amp;agent=universal">taste-design</a> áp dụng các nguyên tắc thẩm mỹ UI hiện đại.</li>
+<li><strong>Triển khai mã nguồn (Stitch Build):</strong> <a data-catalog-skill="react-components" href="../../?lang=vi&amp;skill=react-components&amp;agent=universal">react-components</a>, <a data-catalog-skill="react-vite-dashboard" href="../../?lang=vi&amp;skill=react-vite-dashboard&amp;agent=universal">react-vite-dashboard</a>, <a data-catalog-skill="shadcn-ui" href="../../?lang=vi&amp;skill=shadcn-ui&amp;agent=universal">shadcn-ui</a> và <a data-catalog-skill="react-native" href="../../?lang=vi&amp;skill=react-native&amp;agent=universal">react-native</a> chuyển đổi bản thiết kế thành component thực tế.</li>
+</ul>
+</div>
+<div data-language="en" hidden>
+<p>The collection is organized into three sequential workflow stages:</p>
+<ul>
+<li><strong>Stitch Design:</strong> <a data-catalog-skill="generate-design" href="../../?lang=en&amp;skill=generate-design&amp;agent=universal">generate-design</a> creates screens from prompts; <a data-catalog-skill="code-to-design" href="../../?lang=en&amp;skill=code-to-design&amp;agent=universal">code-to-design</a> and <a data-catalog-skill="upload-to-stitch" href="../../?lang=en&amp;skill=upload-to-stitch&amp;agent=universal">upload-to-stitch</a> sync existing codebases or screenshots back into Stitch; <a data-catalog-skill="extract-static-html" href="../../?lang=en&amp;skill=extract-static-html&amp;agent=universal">extract-static-html</a> exports clean static HTML previews.</li>
+<li><strong>Design System &amp; Utilities:</strong> <a data-catalog-skill="extract-design-md" href="../../?lang=en&amp;skill=extract-design-md&amp;agent=universal">extract-design-md</a> and <a data-catalog-skill="manage-design-system" href="../../?lang=en&amp;skill=manage-design-system&amp;agent=universal">manage-design-system</a> maintain semantic design tokens; <a data-catalog-skill="site-md" href="../../?lang=en&amp;skill=site-md&amp;agent=universal">site-md</a> maps multi-page site architecture; <a data-catalog-skill="taste-design" href="../../?lang=en&amp;skill=taste-design&amp;agent=universal">taste-design</a> enforces visual craft and hierarchy.</li>
+<li><strong>Stitch Build:</strong> <a data-catalog-skill="react-components" href="../../?lang=en&amp;skill=react-components&amp;agent=universal">react-components</a>, <a data-catalog-skill="react-vite-dashboard" href="../../?lang=en&amp;skill=react-vite-dashboard&amp;agent=universal">react-vite-dashboard</a>, <a data-catalog-skill="shadcn-ui" href="../../?lang=en&amp;skill=shadcn-ui&amp;agent=universal">shadcn-ui</a>, and <a data-catalog-skill="react-native" href="../../?lang=en&amp;skill=react-native&amp;agent=universal">react-native</a> compile designs into production components.</li>
+</ul>
+</div>
+
+<h2 id="design-tokens"><span data-language="vi">2. Chuẩn hóa Design System và trích xuất DESIGN.md</span><span data-language="en" hidden>2. Standardizing Design Systems and Extracting DESIGN.md</span></h2>
+<div data-language="vi">
+<p>Thay vì để agent tự đoán mã màu hex hay kích thước bo góc, quy trình của Stitch sử dụng tệp <code>DESIGN.md</code> làm nguồn chân lý duy nhất. Khi chạy <a data-catalog-skill="extract-design-md" href="../../?lang=vi&amp;skill=extract-design-md&amp;agent=universal">extract-design-md</a>, agent sẽ rút trích bảng màu, hệ thống font chữ và quy tắc khoảng cách từ dự án Stitch hiện có, sau đó dùng <a data-catalog-skill="manage-design-system" href="../../?lang=vi&amp;skill=manage-design-system&amp;agent=universal">manage-design-system</a> để áp dụng đồng bộ lên toàn bộ các màn hình mới.</p>
+</div>
+<div data-language="en" hidden>
+<p>Instead of letting agents guess hex codes or border radii, Stitch workflows rely on <code>DESIGN.md</code> as a single source of truth. Running <a data-catalog-skill="extract-design-md" href="../../?lang=en&amp;skill=extract-design-md&amp;agent=universal">extract-design-md</a> captures color palettes, typography scales, and spacing rules from Stitch projects, while <a data-catalog-skill="manage-design-system" href="../../?lang=en&amp;skill=manage-design-system&amp;agent=universal">manage-design-system</a> applies those tokens consistently across new screens.</p>
+</div>
+
+<h2 id="build-targets"><span data-language="vi">3. Chuyển đổi sang React, Vite Dashboard, shadcn/ui và React Native</span><span data-language="en" hidden>3. Building for React, Vite Dashboards, shadcn/ui, and React Native</span></h2>
+<div data-language="vi">
+<p>Sau khi chốt thiết kế, bạn chọn đúng kỹ năng đích theo nền tảng của mình: <a data-catalog-skill="shadcn-ui" href="../../?lang=vi&amp;skill=shadcn-ui&amp;agent=universal">shadcn-ui</a> cho ứng dụng web dùng Tailwind và Radix UI, <a data-catalog-skill="react-vite-dashboard" href="../../?lang=vi&amp;skill=react-vite-dashboard&amp;agent=universal">react-vite-dashboard</a> cho trang quản trị dữ liệu, <a data-catalog-skill="react-components" href="../../?lang=vi&amp;skill=react-components&amp;agent=universal">react-components</a> cho thư viện UI thuần, hoặc <a data-catalog-skill="react-native" href="../../?lang=vi&amp;skill=react-native&amp;agent=universal">react-native</a> cho ứng dụng di động.</p>
+</div>
+<div data-language="en" hidden>
+<p>Once the design is finalized, select the target build skill matching your stack: <a data-catalog-skill="shadcn-ui" href="../../?lang=en&amp;skill=shadcn-ui&amp;agent=universal">shadcn-ui</a> for Tailwind and Radix web apps, <a data-catalog-skill="react-vite-dashboard" href="../../?lang=en&amp;skill=react-vite-dashboard&amp;agent=universal">react-vite-dashboard</a> for analytics dashboards, <a data-catalog-skill="react-components" href="../../?lang=en&amp;skill=react-components&amp;agent=universal">react-components</a> for modular component libraries, or <a data-catalog-skill="react-native" href="../../?lang=en&amp;skill=react-native&amp;agent=universal">react-native</a> for mobile targets.</p>
+</div>
+
+<h2 id="install-vas"><span data-language="vi">4. Yêu cầu tiên quyết, giới hạn và cách cài đặt qua VAS</span><span data-language="en" hidden>4. Prerequisites, Limits, and Installing via VAS</span></h2>
+<div data-language="vi">
+<p><strong>Yêu cầu &amp; giới hạn:</strong> Các kỹ năng tương tác trực tiếp với Google Stitch yêu cầu người dùng tự cấu hình Stitch MCP server và tài khoản Google Stitch hợp lệ trong môi trường agent. Việc cài đặt qua VAS chỉ sao chép hoặc liên kết tệp tĩnh và không tự động cài đặt MCP hay thực thi mã nguồn ngoài.</p>
+<div class="guide-example"><div class="guide-example-header"><span class="guide-example-label">CLI: Cài đặt bộ skill Stitch bằng ./vas</span></div>
+<pre><code># Cài đặt skill sinh thiết kế và quản lý design system
+./vas install generate-design extract-design-md manage-design-system --target workspace --mode link
+
+# Cài đặt skill xuất code đích (ví dụ shadcn-ui)
+./vas install shadcn-ui --target claude --mode link
+
+# Kiểm tra trạng thái cài đặt
+./vas status --target workspace</code></pre>
+</div>
+</div>
+<div data-language="en" hidden>
+<p><strong>Prerequisites &amp; limits:</strong> Skills that interact directly with Google Stitch require the user to configure a Stitch MCP server and authenticate their Google Stitch account in the agent runtime. Installing via VAS only links or copies static skill files without installing MCP servers or executing external scripts.</p>
+<div class="guide-example"><div class="guide-example-header"><span class="guide-example-label">CLI: Installing Stitch Skills with ./vas</span></div>
+<pre><code># Install design generation and design system skills
+./vas install generate-design extract-design-md manage-design-system --target workspace --mode link
+
+# Install target build skill (e.g. shadcn-ui)
+./vas install shadcn-ui --target claude --mode link
+
+# Verify installation status
+./vas status --target workspace</code></pre>
+</div>
+</div>
+</article>
+<aside class="guide-companion" aria-label="Skill liên quan">
+<p class="guide-eyebrow"><span data-language="vi">Áp dụng vào dự án</span><span data-language="en" hidden>Apply it to your project</span></p>
+<h2><a data-catalog-skill="generate-design" href="../../?lang=vi&amp;skill=generate-design&amp;agent=universal">generate-design</a></h2>
+<p><span data-language="vi">Xem hướng dẫn chi tiết, giấy phép Apache-2.0 và sao chép prompt cài đặt.</span><span data-language="en" hidden>Inspect runbook details, Apache-2.0 license, and copy the install prompt.</span></p>
+<a class="button primary" data-catalog-skill="generate-design" href="../../?lang=vi&amp;skill=generate-design&amp;agent=universal"><span data-language="vi">Xem skill và cài đặt →</span><span data-language="en" hidden>Read skill and install →</span></a>
+<a class="text-link" href="../../#quickstart" data-home><span data-language="vi">Cách sử dụng VAS</span><span data-language="en" hidden>How to use VAS</span></a>
+</aside>
+</div>
+<section class="guide-related" aria-labelledby="related-title">
+<h2 id="related-title"><span data-language="vi">Đọc tiếp</span><span data-language="en" hidden>Read next</span></h2>
+<div class="guide-related-links">
+<a href="../lam-chu-claude-api-prompt-engineering-tool-use/" data-guide-link><span data-language="vi">Làm chủ Claude API: Từ Prompt Engineering đến Tool Use chuẩn Anthropic</span><span data-language="en" hidden>Mastering Claude API: From Prompt Engineering to Tool Use the Anthropic Way</span></a>
+<a href="../cai-skill-cho-claude-code/" data-guide-link><span data-language="vi">Cài đặt và quản lý Agent Skills cho Claude Code</span><span data-language="en" hidden>Installing and Managing Agent Skills in Claude Code</span></a>
+</div>
+</section>
+</main>
+<footer class="site-footer"><div class="shell footer-inner"><strong>VAS / Vie Agentic Skill</strong><p><span data-language="vi">Đọc hướng dẫn. Chọn skill. Áp dụng vào dự án.</span><span data-language="en" hidden>Read a guide. Choose a skill. Apply it to your project.</span></p><div><a href="../../#catalog" data-home><span data-language="vi">Thư viện</span><span data-language="en" hidden>Library</span></a><a href="https://github.com/huytran1120/vie-agentic-skills">GitHub ↗</a></div></div></footer>
+</body>
+</html>

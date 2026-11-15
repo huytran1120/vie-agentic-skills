@@ -23015,6 +23015,16 @@
     "source": "community"
   },
   {
+    "id": "code-to-design",
+    "canonical_id": "code-to-design",
+    "name": "stitch::code-to-design",
+    "path": "skills/code-to-design",
+    "description": "Convert frontend code (Vite, React, Angular, Vue, etc.) to a Stitch Design by chaining static HTML extraction, design system extraction, and file upload. **ALWAYS** use this skill when the user's intent is to move existing web apps or React/Angular/Vue components into Stitch (e.g., requests to \"save\", \"migrate\", or \"upload\"). You must use this skill even for simple \"save\" operations, as it is the only way to ensure the design system is extracted and assets are properly linked.",
+    "category": "general",
+    "tags": [],
+    "risk": "safe"
+  },
+  {
     "id": "codebase-audit-pre-push",
     "canonical_id": "codebase-audit-pre-push",
     "name": "codebase-audit-pre-push",
@@ -31264,6 +31274,16 @@
     "risk": "safe"
   },
   {
+    "id": "extract-design-md",
+    "canonical_id": "extract-design-md",
+    "name": "stitch::extract-design-md",
+    "path": "skills/extract-design-md",
+    "description": "Extract a comprehensive design system (DESIGN.md) directly from frontend source code — React, Vue, Svelte, Angular, plain HTML/CSS, or any web framework. Analyzes component files, stylesheets, Tailwind configs, theme definitions, and design tokens to produce a rich, Stitch-compatible design system document. Use this skill whenever the user wants to reverse-engineer a design system from an existing codebase, audit the visual language of a project, extract design tokens from source files, or understand the styling patterns in a frontend repo — even if they just say \"what does this app look like?\" or \"pull out the design from this code.\"",
+    "category": "general",
+    "tags": [],
+    "risk": "safe"
+  },
+  {
     "id": "extract-document-data",
     "canonical_id": "extract-document-data",
     "name": "extract-document-data",
@@ -31282,6 +31302,16 @@
     "license": "Apache-2.0",
     "license_source": "https://github.com/Sketchjar/stipple-agent-skills/blob/main/LICENSE",
     "author": "Sketchjar"
+  },
+  {
+    "id": "extract-static-html",
+    "canonical_id": "extract-static-html",
+    "name": "stitch::extract-static-html",
+    "path": "skills/extract-static-html",
+    "description": "Extract self-contained static HTML from a built web application or React components by inlining CSS and images. Use this skill whenever you need to capture a specific UI state, share a static version of a page, or prepare assets for Stitch upload, even if the user just asks to 'save the HTML' or 'mock the view'.",
+    "category": "general",
+    "tags": [],
+    "risk": "safe"
   },
   {
     "id": "faber-language",
@@ -34300,6 +34330,16 @@
     "license": "MIT",
     "license_source": "https://github.com/iradoweck/antigravity-awesome-skills/blob/main/LICENSE",
     "author": "iradoweck"
+  },
+  {
+    "id": "generate-design",
+    "canonical_id": "generate-design",
+    "name": "stitch::generate-design",
+    "path": "skills/generate-design",
+    "description": "Generate new screens from text prompts or images, edit existing screens with prompts and design system tokens, and generate design variants using Stitch MCP. Includes prompt enhancement pipeline, design mappings, professional UI/UX terminology, design tokens and theme system capabilities.",
+    "category": "general",
+    "tags": [],
+    "risk": "safe"
   },
   {
     "id": "generate-nanobanana",
@@ -45922,6 +45962,16 @@
     "source": "community"
   },
   {
+    "id": "manage-design-system",
+    "canonical_id": "manage-design-system",
+    "name": "stitch::manage-design-system",
+    "path": "skills/manage-design-system",
+    "description": "Manage design systems in Stitch using MCP tools. Includes retrieval of assets, creating/updating design systems in Stitch, and applying them to screens.",
+    "category": "general",
+    "tags": [],
+    "risk": "safe"
+  },
+  {
     "id": "manage-skills",
     "canonical_id": "manage-skills",
     "name": "manage-skills",
@@ -55761,6 +55811,16 @@
     "source": "Dimillian/Skills (MIT)"
   },
   {
+    "id": "react-components",
+    "canonical_id": "react-components",
+    "name": "stitch::react-components",
+    "path": "skills/react-components",
+    "description": "Converts Stitch designs into modular Vite and React components, or syncs/updates existing React components to align with the latest Stitch designs, using system-level networking and AST-based validation.",
+    "category": "general",
+    "tags": [],
+    "risk": "safe"
+  },
+  {
     "id": "react-flow-architect",
     "canonical_id": "react-flow-architect",
     "name": "react-flow-architect",
@@ -55803,6 +55863,16 @@
     ],
     "risk": "safe",
     "source": "community"
+  },
+  {
+    "id": "react-native",
+    "canonical_id": "react-native",
+    "name": "stitch::react-native",
+    "path": "skills/react-native",
+    "description": "Convert Stitch HTML designs to React Native components, or syncs/updates existing native components to align with the latest Stitch designs, using StyleSheet.",
+    "category": "general",
+    "tags": [],
+    "risk": "safe"
   },
   {
     "id": "react-native-architecture",
@@ -55909,6 +55979,16 @@
     ],
     "risk": "critical",
     "source": "community"
+  },
+  {
+    "id": "react-vite-dashboard",
+    "canonical_id": "react-vite-dashboard",
+    "name": "react-vite-dashboard",
+    "path": "skills/react-vite-dashboard",
+    "description": "Convert Stitch designs into production React + Vite dashboards with TanStack Query, accessible tokens from DESIGN.md, and Web3-ready patterns (ethers/viem).",
+    "category": "general",
+    "tags": [],
+    "risk": "safe"
   },
   {
     "id": "reactome-database",
@@ -64153,6 +64233,16 @@
     "source": "https://github.com/shadcn-ui/ui/tree/main/skills/shadcn"
   },
   {
+    "id": "shadcn-ui",
+    "canonical_id": "shadcn-ui",
+    "name": "shadcn-ui",
+    "path": "skills/shadcn-ui",
+    "description": "Expert guidance for integrating and building applications with shadcn/ui components, including component discovery, installation, customization, and best practices.",
+    "category": "general",
+    "tags": [],
+    "risk": "safe"
+  },
+  {
     "id": "shader-programming",
     "canonical_id": "shader-programming",
     "name": "shader-programming",
@@ -64513,6 +64603,16 @@
     ],
     "risk": "safe",
     "source": "https://github.com/coreyhaines31/marketingskills"
+  },
+  {
+    "id": "site-md",
+    "canonical_id": "site-md",
+    "name": "site-md",
+    "path": "skills/site-md",
+    "description": "Analyze a project description or site requirements and synthesize a project constitution into SITE.md for the Stitch Build Loop",
+    "category": "general",
+    "tags": [],
+    "risk": "safe"
   },
   {
     "id": "skeleton-first",
@@ -67591,6 +67691,16 @@
     "risk": "critical",
     "source": "community",
     "author": "renat"
+  },
+  {
+    "id": "taste-design",
+    "canonical_id": "taste-design",
+    "name": "taste-design",
+    "path": "skills/taste-design",
+    "description": "Semantic Design System Skill for Google Stitch. Generates agent-friendly DESIGN.md files that enforce premium, anti-generic UI standards — strict typography, calibrated color, asymmetric layouts, perpetual micro-motion, and hardware-accelerated performance.",
+    "category": "general",
+    "tags": [],
+    "risk": "safe"
   },
   {
     "id": "tastegate",
@@ -71327,6 +71437,16 @@
     "source_repo": "expo/skills",
     "license": "MIT",
     "license_source": "https://github.com/expo/skills/blob/main/LICENSE"
+  },
+  {
+    "id": "upload-to-stitch",
+    "canonical_id": "upload-to-stitch",
+    "name": "stitch::upload-to-stitch",
+    "path": "skills/upload-to-stitch",
+    "description": "Upload local assets (images, mockups, extracted HTML, design markdown) to a Stitch project. ALWAYS use this skill when you need to upload visual assets, HTML pages, or design docs to Stitch, particularly when direct MCP tool calls fail or truncate due to base64 token limits.",
+    "category": "general",
+    "tags": [],
+    "risk": "safe"
   },
   {
     "id": "upstash-qstash",

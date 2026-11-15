@@ -640,7 +640,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
   const youtube = catalog.filterSkills(skills, { sources: ['youtube'] });
   assert.equal(youtube.length, 11);
   assert.equal(catalog.filterSkills(skills, { query: 'youtube-agent-skill' }).length, 11);
-  assert.equal(skills.length, 4079);
+  assert.equal(skills.length, 4091);
   for (const skill of youtube) {
     assert.ok(skill.id.startsWith('youtube-agent-skill/'));
     assert.equal(skill.source_repo, 'Jakeschincariol/youtube-agent-skill');

@@ -573,6 +573,13 @@
       "- Standalone payload preserves upstream Agent Skills specification SKILL.md, evals/ test cases, and references/ runbooks (`commands-tier1.md`, `commands-tier2-tier3.md`, `commands-validate.md`, `custom-graders.md`, `providers.md`, `reports-and-ci.md`, `tier3-datasets.md`, `tier3-running.md`, `troubleshooting.md`).",
       "- Licensing: Apache License 2.0 (Copyright (c) 2026 NVIDIA CORPORATION & AFFILIATES); see bundled LICENSE and NOTICE.md.",
       "- Installation via `./vas install` only links or copies static files and writes `.vas-manifest.json`. No runtime/dependency is installed, and no API keys or cloud credentials are connected during installation."
+    ],
+    "stitchskills": [
+      "- **[google-labs-code/stitch-skills](https://github.com/google-labs-code/stitch-skills/tree/0337446dadde6f8c94210444e2aa9d546126480f)**: Official Google Labs Stitch Agent Skills (`generate-design`, `code-to-design`, `extract-static-html`, `extract-design-md`, `manage-design-system`, `upload-to-stitch`, `site-md`, `taste-design`, `react-native`, `shadcn-ui`, `react-vite-dashboard`, `react-components`) at revision `0337446dadde6f8c94210444e2aa9d546126480f` under the Apache License 2.0.",
+      "- Covers end-to-end AI UI/UX design-to-code workflows with Google Stitch: generating designs, converting codebases to Stitch designs, extracting static HTML and `DESIGN.md` tokens, managing design systems, and scaffolding React, React Native, Vite, and shadcn/ui components.",
+      "- Existing catalog skills from earlier revisions (`design-md`, `enhance-prompt`, `stitch-loop`, `remotion`) were preserved unchanged per the CHỈ THÊM MỚI policy.",
+      "- Licensing: Apache License 2.0; each imported skill bundles `LICENSE` for standalone distribution.",
+      "- Installation via `./vas install` only links or copies static files and writes `.vas-manifest.json`. No runtime/MCP is installed automatically."
     ]
   }
 }

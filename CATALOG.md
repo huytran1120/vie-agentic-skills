@@ -1,6 +1,6 @@
 # Vie Agentic Skill (VAS) - Catalog
 
-Tổng hợp **4,079** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
+Tổng hợp **4,091** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
 
 | Danh mục | Số lượng | Lệnh cài đặt nhanh |
 | :--- | :---: | :--- |
@@ -67,7 +67,7 @@ Tổng hợp **4,079** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **frontend** | 48 skills | `./vas install --category frontend --target codex` |
 | **fullstack** | 1 skills | `./vas install --category fullstack --target codex` |
 | **game-development** | 284 skills | `./vas install --category game-development --target codex` |
-| **general** | 66 skills | `./vas install --category general --target codex` |
+| **general** | 78 skills | `./vas install --category general --target codex` |
 | **granular-workflow-bundle** | 16 skills | `./vas install --category granular-workflow-bundle --target codex` |
 | **graphics-processing** | 10 skills | `./vas install --category graphics-processing --target codex` |
 | **growth** | 3 skills | `./vas install --category growth --target codex` |
@@ -2907,7 +2907,7 @@ Tổng hợp **4,079** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `vertical-slice` | `safe` | Pre-production validation — end-to-end build to confirm the full loop is achi... |
 | `visual-novel` | `unknown` | Build a visual novel: a branching script, character and background display, a... |
 
-### GENERAL (66 skills)
+### GENERAL (78 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
@@ -2918,12 +2918,15 @@ Tổng hợp **4,079** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `brand` | `safe` | Brand voice, visual identity, messaging frameworks, asset management, brand c... |
 | `captions-overlay` | `safe` | Overlay doctrine for captions in HyperFrames videos — the caption MODEL (drop... |
 | `changelog-video` | `safe` | Turn a weekly changelog .md into a finished branded changelog video (square 1... |
+| `code-to-design` | `safe` | Convert frontend code (Vite, React, Angular, Vue, etc.) to a Stitch Design by... |
 | `cut-the-curve` | `safe` | The technique catalog: five velocity-matched SEAMS (zoom-through, INVERSE zoo... |
 | `design` | `safe` | Comprehensive design skill: brand identity, design tokens, UI styling, logo g... |
 | `diagram-design` | `safe` | Create branded architecture, architecture delta, IT current-state, flowchart,... |
 | `discernment-nudge` | `safe` | After you give a substantive answer or draft that the user may act on — advic... |
 | `docx` | `safe` | Create or inspect a local DOCX document using python-docx. Use for paragraphs... |
 | `extension-to-functions-codebase` | `safe` | Skill for converting an installed Firebase Extension (or extension source) in... |
+| `extract-design-md` | `safe` | Extract a comprehensive design system (DESIGN.md) directly from frontend sour... |
+| `extract-static-html` | `safe` | Extract self-contained static HTML from a built web application or React comp... |
 | `figma` | `safe` | Bring Figma into a HyperFrames video - rendered assets, brand tokens, compone... |
 | `firebase-ai-logic-basics` | `safe` | Official skill for integrating Firebase AI Logic (Gemini API) into web applic... |
 | `firebase-app-hosting-basics` | `safe` | Deploys and manages full-stack web applications (Next.js, Angular) with Serve... |
@@ -2936,6 +2939,7 @@ Tổng hợp **4,079** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `firebase-remote-config-basics` | `safe` | Manages Firebase Remote Config templates, feature flags, loading strategies, ... |
 | `firebase-security-rules-auditor` | `safe` | Audits Firebase (Firestore, Cloud Storage) security rules for vulnerabilities... |
 | `firestore-rules-creation` | `safe` | Designs, authors, refactors, and hardens production-grade Cloud Firestore Sec... |
+| `generate-design` | `safe` | Generate new screens from text prompts or images, edit existing screens with ... |
 | `hyperframes` | `safe` | Read first to make, edit, animate or render any video with HyperFrames (HTML ... |
 | `hyperframes-cli` | `safe` | The HyperFrames CLI by job - scaffold, check, look at frames, edit the timeli... |
 | `hyperframes-figma` | `safe` | Bring Figma into a HyperFrames video - rendered assets, brand tokens, compone... |
@@ -2943,6 +2947,7 @@ Tổng hợp **4,079** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `img2threejs` | `safe` | Turn an object or character reference image into a quality-gated, animation-r... |
 | `impeccable` | `safe` | Use when the user wants to design, redesign, shape, critique, audit, polish, ... |
 | `lemo-opuscar` | `safe` | Direct and produce a short film made entirely in code, in one of the styles o... |
+| `manage-design-system` | `safe` | Manage design systems in Stitch using MCP tools. Includes retrieval of assets... |
 | `media-use` | `safe` | Get or make any media for a HyperFrames video - music, sound effects, images,... |
 | `motion-doctrine` | `safe` | GATEWAY — load FIRST before composing any HyperFrames animation or video. The... |
 | `oversized-cursor` | `safe` | House-style oversized macOS cursor technique for HyperFrames launch videos. L... |
@@ -2962,6 +2967,9 @@ Tổng hợp **4,079** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `penpot-rename-layers` | `safe` | Semantically rename Penpot layers to HTML element names (nav, header, main, s... |
 | `penpot-router` | `safe` | Thin dispatcher / entry point for any Penpot request. Use FIRST on any Penpot... |
 | `pptx` | `safe` | Build or inspect a simple PowerPoint presentation with python-pptx. Use for l... |
+| `react-components` | `safe` | Converts Stitch designs into modular Vite and React components, or syncs/upda... |
+| `react-native` | `safe` | Convert Stitch HTML designs to React Native components, or syncs/updates exis... |
+| `react-vite-dashboard` | `safe` | Convert Stitch designs into production React + Vite dashboards with TanStack ... |
 | `remotion-maps` | `safe` | Remotion Map animation knowledge |
 | `remotion-markup` | `safe` | Content, animation and effects best practices |
 | `remotion-multimedia` | `safe` | Interacting with Mediabunny |
@@ -2971,9 +2979,13 @@ Tổng hợp **4,079** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `remotion-upgrade` | `safe` | Upgrade Remotion, and related packages |
 | `retrieving-developer-knowledge` | `safe` | Searches, retrieves, and synthesizes official Google developer documentation ... |
 | `seam-craft` | `safe` | Render-correctness doctrine for scene-to-scene seams in HyperFrames launch vi... |
+| `shadcn-ui` | `safe` | Expert guidance for integrating and building applications with shadcn/ui comp... |
+| `site-md` | `safe` | Analyze a project description or site requirements and synthesize a project c... |
 | `slides` | `safe` | Create strategic HTML presentations with Chart.js, design tokens, responsive ... |
 | `slideshow` | `safe` | Build a HyperFrames slideshow to present live - slides, fragment reveals, bra... |
+| `taste-design` | `safe` | Semantic Design System Skill for Google Stitch. Generates agent-friendly DESI... |
 | `ui-styling` | `safe` | Create beautiful, accessible user interfaces with shadcn/ui components (built... |
+| `upload-to-stitch` | `safe` | Upload local assets (images, mockups, extracted HTML, design markdown) to a S... |
 | `video-shotcraft` | `safe` | Create cinematic product videos from shot recipe cards, a validated template,... |
 | `xcode-project-setup` | `safe` | Safely modifies Xcode projects (.pbxproj) to add Swift Packages and link file... |
 | `xlsx` | `safe` | Inspect or create a local XLSX workbook with openpyxl. Use for tabular data, ... |

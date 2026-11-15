@@ -1,0 +1,193 @@
+{
+  "source_repo": "google-labs-code/stitch-skills",
+  "source_url": "https://github.com/google-labs-code/stitch-skills",
+  "revision": "0337446dadde6f8c94210444e2aa9d546126480f",
+  "author": "Google Labs",
+  "author_url": "https://github.com/google-labs-code",
+  "license": "Apache-2.0",
+  "license_source": "https://github.com/google-labs-code/stitch-skills/blob/0337446dadde6f8c94210444e2aa9d546126480f/LICENSE",
+  "skill_count": 12,
+  "skipped": [
+    {
+      "id": "design-md",
+      "source_path": "plugins/stitch-utilities/skills/design-md/SKILL.md",
+      "reason": "Already exists in VAS catalog from google-labs-code/stitch-skills; skipped per CHỈ THÊM MỚI rule."
+    },
+    {
+      "id": "enhance-prompt",
+      "source_path": "plugins/stitch-utilities/skills/enhance-prompt/SKILL.md",
+      "reason": "Already exists in VAS catalog from earlier stitch-skills import; skipped per CHỈ THÊM MỚI rule."
+    },
+    {
+      "id": "stitch-loop",
+      "source_path": "plugins/stitch-utilities/skills/stitch-loop/SKILL.md",
+      "reason": "Already exists in VAS catalog from earlier stitch-skills import; skipped per CHỈ THÊM MỚI rule."
+    },
+    {
+      "id": "remotion",
+      "source_path": "plugins/stitch-build/skills/remotion/SKILL.md",
+      "reason": "Already exists in VAS catalog from earlier stitch-skills import; skipped per CHỈ THÊM MỚI rule."
+    }
+  ],
+  "namespaces": {},
+  "duplicate_check": {
+    "catalog_count_before": 3898,
+    "upstream_is_fork": false,
+    "new_skills_accepted": 12,
+    "skipped_duplicates": 4
+  },
+  "skills": [
+    {
+      "id": "generate-design",
+      "source_path": "plugins/stitch-design/skills/generate-design/SKILL.md",
+      "file_count": 5,
+      "sha256_files": {
+        "LICENSE": "b4133a55232c0996713349891dc55469d46a16ec027c033c9e4108b2149abb42",
+        "SKILL.md": "d03d2de3a0cefbde2ca7b8cdc2c96e8164a8b9400fe3a9b97a3aa6ce37ee638d",
+        "examples/enhanced-prompt.md": "8ca345151e70d6067bd460fc63fcbd455d60cc87f066e7c70160e3f277f857f5",
+        "references/design-mappings.md": "add62a31b8507d7ce22f345f0104725962f0c62a484d4ff975821cefb28ad10b",
+        "references/prompt-keywords.md": "8ca5c0cf251a6801d0bdccf5cf59271be172f7c2fd83b298c54d9b3ceb498fdf"
+      }
+    },
+    {
+      "id": "code-to-design",
+      "source_path": "plugins/stitch-design/skills/code-to-design/SKILL.md",
+      "file_count": 2,
+      "sha256_files": {
+        "LICENSE": "b4133a55232c0996713349891dc55469d46a16ec027c033c9e4108b2149abb42",
+        "SKILL.md": "1daafb1d89d6e18574edc33818b992b7af59aaeb2960134dfc818ea0f53b2455"
+      }
+    },
+    {
+      "id": "extract-static-html",
+      "source_path": "plugins/stitch-design/skills/extract-static-html/SKILL.md",
+      "file_count": 5,
+      "sha256_files": {
+        "LICENSE": "b4133a55232c0996713349891dc55469d46a16ec027c033c9e4108b2149abb42",
+        "SKILL.md": "87ebabb29c37f903541bb6c32ee5f2c84e322d140d6b83bb3a0872943ebc1356",
+        "scripts/extract_inline_html.ts": "491378e7be6a70b0549e8b5bf286cef4107761ad2f5b21e8eccb231073b1e0b0",
+        "scripts/post_process.ts": "e1587e4658fde350d72e57a97d316bc5fe373f718a80dc5afa329752acbafe6e",
+        "scripts/snapshot.ts": "777e783cc1805a9b3511efb3268ed2e8eb8d000a22f843e00fa7bd3d8323bc40"
+      }
+    },
+    {
+      "id": "extract-design-md",
+      "source_path": "plugins/stitch-design/skills/extract-design-md/SKILL.md",
+      "file_count": 8,
+      "sha256_files": {
+        "LICENSE": "b4133a55232c0996713349891dc55469d46a16ec027c033c9e4108b2149abb42",
+        "SKILL.md": "f9c32b30acd9fea3dba7306bf38e3a859f49c1f27bcf44f9cf16d3a60a730276",
+        "examples/DESIGN.md": "9a14478effd073d9fefc1f0e1084aab299078603d248406f1381462cd5a01c26",
+        "references/angular.md": "d43ea54ae1fb25d72f4d2ae28df73bf3c16b92d9da35a6638f5aa572ceeff8b3",
+        "references/plain-css.md": "a4e7a8efa8d8d7b33a214a4b146263bb029ba4ead478305436e7bb7ebeace80a",
+        "references/react-tailwind.md": "9b48abffd0240e7721edaa1526674699fbaaab5838efb5fac0276b7e5efc8e15",
+        "references/svelte.md": "f17530d1f2274ef5a8764355c979c992fe5c64a88a03270b69f43099fc117b9b",
+        "references/vue.md": "df8f4d1e166e4cca4d01a60f28a1ecf35ce45787669a79008ea0cad1ec709f9f"
+      }
+    },
+    {
+      "id": "manage-design-system",
+      "source_path": "plugins/stitch-design/skills/manage-design-system/SKILL.md",
+      "file_count": 4,
+      "sha256_files": {
+        "LICENSE": "b4133a55232c0996713349891dc55469d46a16ec027c033c9e4108b2149abb42",
+        "SKILL.md": "5ce0b8adb5261e8a926fc0942d679cda0421ac29e8159a6ee38e5d940bc9658e",
+        "examples/metadata.json": "4d93c7d897caa26a3b0f26e7b0312017555b2d8beb997c4edd1a3f6e478e8c90",
+        "reference/tool-schema.md": "b0d4f0d80127c3f576ddb3412543e7f99dcd08c3e88c9712987c3c7359c613f0"
+      }
+    },
+    {
+      "id": "upload-to-stitch",
+      "source_path": "plugins/stitch-design/skills/upload-to-stitch/SKILL.md",
+      "file_count": 3,
+      "sha256_files": {
+        "LICENSE": "b4133a55232c0996713349891dc55469d46a16ec027c033c9e4108b2149abb42",
+        "SKILL.md": "e8ddf11677a916e6a4ccf608fafcf0f2a03d548677763c0ca7de6671799c0f99",
+        "scripts/upload_to_stitch.py": "8a1313edc967b0edf37074184f43252ccccbf9353f02a7f51f9e8950f96a086a"
+      }
+    },
+    {
+      "id": "site-md",
+      "source_path": "plugins/stitch-utilities/skills/site-md/SKILL.md",
+      "file_count": 2,
+      "sha256_files": {
+        "LICENSE": "b4133a55232c0996713349891dc55469d46a16ec027c033c9e4108b2149abb42",
+        "SKILL.md": "679a0020ea2fbfdc4c4db84c32936eaea203263ebccb4d217eff1cf418d3de60"
+      }
+    },
+    {
+      "id": "taste-design",
+      "source_path": "plugins/stitch-utilities/skills/taste-design/SKILL.md",
+      "file_count": 3,
+      "sha256_files": {
+        "LICENSE": "b4133a55232c0996713349891dc55469d46a16ec027c033c9e4108b2149abb42",
+        "SKILL.md": "e425fdb7ab250764f6229c48941f97e20bd6a7ba9e25a628f1e0ebeb008e8bff",
+        "resources/DESIGN.md": "d6bd72a44725e0d8fe40642559863c4c2eae5e4a6bd3b5f204d1cc0c7c5482fa"
+      }
+    },
+    {
+      "id": "react-native",
+      "source_path": "plugins/stitch-build/skills/react-native/SKILL.md",
+      "file_count": 10,
+      "sha256_files": {
+        "LICENSE": "b4133a55232c0996713349891dc55469d46a16ec027c033c9e4108b2149abb42",
+        "README.md": "222dd15af84e8201a031f01a35fe8c17cc0f978d718b3d55e4fbdf8ba81f9d2e",
+        "SKILL.md": "fb83197d834142b89459d883c5029716387e73fb6441d32019f4f8ad3b8b3784",
+        "examples/gold-standard-card.tsx": "8db2586244125d2d7f34928c9730f83c8792f79f8b1d06f44832cd120e0f9c63",
+        "package-lock.json": "726f3d360d20d2b6fc328b9f42216abe0375b6bc17f4d1e27ac163468fa0c319",
+        "package.json": "f4464eadb50f7c327048680c2e68478f2d75a1797cc1afb20f8387e7edf4d193",
+        "resources/architecture-checklist.md": "0ee064b98ef7149ffa243e7be22a6622f709b709ad3e06af883d661847152b21",
+        "resources/component-template.tsx": "a66adef6966862da6812b04c346c4bc7814c73a5e5565319b2a0b8d32d4bfc3f",
+        "scripts/fetch-stitch.sh": "341f4c1b9d41e03af018f870297bdfb193f7f707a4f39096bc07abfc35288544",
+        "scripts/validate.js": "3cf129ef7b57dca3a4e6c41750dea7be25aa8140e44952bad585cd524aa821e9"
+      }
+    },
+    {
+      "id": "shadcn-ui",
+      "source_path": "plugins/stitch-build/skills/shadcn-ui/SKILL.md",
+      "file_count": 11,
+      "sha256_files": {
+        "LICENSE": "b4133a55232c0996713349891dc55469d46a16ec027c033c9e4108b2149abb42",
+        "README.md": "62cf99495c24670b4868c2f027172793a727107fe9b468914903c9ce2dc23de7",
+        "SKILL.md": "2ddfe599ac2ba631ca019f7b6e37ee5df9cd34f83fc016f6ea9d4ba5bbfa0304",
+        "examples/auth-layout.tsx": "31781d165e2e5098c68eabc089bccb653400fd106712e212f4e94e343c687f46",
+        "examples/data-table.tsx": "c86cb4872c1d4261a7b21590a273247d54c2f548ceb7b5c269a9e65785c4069a",
+        "examples/form-pattern.tsx": "8b4c2271d18368069cdfb94e1234a1654dacb530a328c695878f5328516ff03f",
+        "resources/component-catalog.md": "0215b4d9b04dca45040f68e24ad24ab7862aa1bfe7c0608fa69c012ba65e9650",
+        "resources/customization-guide.md": "c626feb69599bc0ec16ec67b06a0fae8a55c953138e6dd815e7e4986802fc650",
+        "resources/migration-guide.md": "81dabd227a1d180fdf2b8ac373a4baaecf421222a8da5885cd1c1703f67ad7a4",
+        "resources/setup-guide.md": "02ab4cc9e9c2f11e004ab0c79486fa46e7e05127d97ab2c8e48c6c587648a364",
+        "scripts/verify-setup.sh": "837f12ac6046527c255b8825d412ee4cc0b23d4f215691ffda0329dfb2f41ba0"
+      }
+    },
+    {
+      "id": "react-vite-dashboard",
+      "source_path": "plugins/stitch-build/skills/react-vite-dashboard/SKILL.md",
+      "file_count": 3,
+      "sha256_files": {
+        "LICENSE": "b4133a55232c0996713349891dc55469d46a16ec027c033c9e4108b2149abb42",
+        "README.md": "78ab5bdaf26ff573e2b6869c94f692f3cf13f4e5899d630b166bcaf73950f99b",
+        "SKILL.md": "87b624265ad4509ce8a3d31e7394749bce088a44f92498bfb65f096afb98701b"
+      }
+    },
+    {
+      "id": "react-components",
+      "source_path": "plugins/stitch-build/skills/react-components/SKILL.md",
+      "file_count": 12,
+      "sha256_files": {
+        "LICENSE": "b4133a55232c0996713349891dc55469d46a16ec027c033c9e4108b2149abb42",
+        "README.md": "f000ddbcecffe54f5615b61ccc796a7b01305e95283f8c03f0d025c576b8bab9",
+        "SKILL.md": "a978bf8fb135c69f944432dfa4166d6a88903c524ed4be51899a226f7daa223e",
+        "examples/gold-standard-card.tsx": "c7b168b1ad6e81dbdb06a5a1cc9e4598f14c97abfbb0d15cfe36b3f4152ac4b2",
+        "package-lock.json": "db75fd36cd675a30d144138d4711b74429bffca81cb4cd75b866d6cdafd6e4c9",
+        "package.json": "937a3476dceff2386e7828962f926bccdf4f936b4fa727703082ee7d0e8083bd",
+        "resources/architecture-checklist.md": "55c3407f307d557d3bd35eb3d653a18c6b2977f38efc71f6c33192ce37159c32",
+        "resources/component-template.tsx": "9d6edbca16724ebe83084ea8bb4ef0c03cace3c1773ee1b693412ac4efc30579",
+        "resources/stitch-api-reference.md": "f7cd8515705dcff420e40ee69609990b12c5e2c2c1489cea10244f177af31624",
+        "resources/style-guide.json": "9ac47e30d145bba43af7959e70cf1d8b96ba8b0e07a860ef98b1e05d50ced712",
+        "scripts/fetch-stitch.sh": "2b5939b68289d1eca1a616e7c4a4cbe6de09010941bb7756348d75509e5ef0ff",
+        "scripts/validate.js": "64e73219b05b0ccc049830be0cb890adf9388137177269665fd4bce52870d3a1"
+      }
+    }
+  ]
+}
