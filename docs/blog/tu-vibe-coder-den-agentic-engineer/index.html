@@ -1,0 +1,876 @@
+<!doctype html>
+<html lang="vi" data-theme="light">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Từ Vibe Coder đến Agentic Engineer: 7 nguyên tắc để AI không phá vỡ dự án — VAS</title>
+<meta name="description" content="Cẩm nang 7 nguyên tắc thực chiến kèm mô phỏng tương tác giúp chuyển mình từ Vibe Coder sang Agentic Engineer: nhánh Git an toàn, cô lập ngữ cảnh bằng Agent Skills, kiểm thử tự động, bảo vệ khóa bí mật và phân quyền dữ liệu.">
+<meta name="robots" content="index, follow"><meta name="theme-color" content="#f3efea">
+<link rel="canonical" href="https://vie-agentic-skills.vercel.app/blog/tu-vibe-coder-den-agentic-engineer/">
+<link rel="icon" href="../../assets/brand/vas-icon.png"><link rel="stylesheet" href="../../catalog.css"><link rel="stylesheet" href="../blog.css">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Vie Agentic Skill"><meta property="og:title" content="Từ Vibe Coder đến Agentic Engineer: 7 nguyên tắc để AI không phá vỡ dự án"><meta property="og:description" content="Cẩm nang 7 nguyên tắc thực chiến kèm mô phỏng tương tác giúp chuyển mình từ Vibe Coder sang Agentic Engineer: nhánh Git an toàn, cô lập ngữ cảnh bằng Agent Skills, kiểm thử tự động, bảo vệ khóa bí mật và phân quyền dữ liệu."><meta property="og:url" content="https://vie-agentic-skills.vercel.app/blog/tu-vibe-coder-den-agentic-engineer/"><meta property="og:image" content="https://vie-agentic-skills.vercel.app/assets/social-preview.png"><meta property="og:image:width" content="1280"><meta property="og:image:height" content="640">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Từ Vibe Coder đến Agentic Engineer: 7 nguyên tắc để AI không phá vỡ dự án"><meta name="twitter:description" content="Cẩm nang 7 nguyên tắc thực chiến kèm mô phỏng tương tác giúp chuyển mình từ Vibe Coder sang Agentic Engineer: nhánh Git an toàn, cô lập ngữ cảnh bằng Agent Skills, kiểm thử tự động, bảo vệ khóa bí mật và phân quyền dữ liệu."><meta name="twitter:image" content="https://vie-agentic-skills.vercel.app/assets/social-preview.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Từ Vibe Coder đến Agentic Engineer: 7 nguyên tắc để AI không phá vỡ dự án","description":"Cẩm nang 7 nguyên tắc thực chiến kèm mô phỏng tương tác giúp chuyển mình từ Vibe Coder sang Agentic Engineer: nhánh Git an toàn, cô lập ngữ cảnh bằng Agent Skills, kiểm thử tự động, bảo vệ khóa bí mật và phân quyền dữ liệu.","url":"https://vie-agentic-skills.vercel.app/blog/tu-vibe-coder-den-agentic-engineer/","mainEntityOfPage":"https://vie-agentic-skills.vercel.app/blog/tu-vibe-coder-den-agentic-engineer/","inLanguage":"vi-VN","datePublished":"2026-11-15","dateModified":"2026-11-15","author":{"@type":"Organization","name":"Vie Agentic Skill"},"publisher":{"@type":"Organization","name":"Vie Agentic Skill","url":"https://vie-agentic-skills.vercel.app/"},"image":"https://vie-agentic-skills.vercel.app/assets/social-preview.png"}</script>
+<script src="../blog.js" defer></script>
+<style>
+  svg [hidden] { display: none !important; }
+  .ae-stage-card {
+    margin-block: 28px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface);
+    overflow: hidden;
+  }
+  .ae-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--line);
+    background: rgba(127, 127, 127, 0.04);
+  }
+  .ae-status-pill {
+    font: 600 12px/1.4 var(--mono);
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .ae-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: inline-block;
+  }
+  .ae-btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .ae-btn {
+    appearance: none;
+    border: 1px solid var(--line);
+    background: var(--bg);
+    color: var(--ink);
+    font: 600 12px/1.2 var(--mono);
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    min-height: 36px;
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+  }
+  .ae-btn:hover {
+    border-color: var(--accent);
+  }
+  .ae-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .ae-btn[aria-pressed="true"], .ae-btn.ae-btn-active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  .ae-canvas-wrap {
+    padding: 20px 18px 16px;
+    background: #12161f;
+    color: #ecf1fa;
+  }
+  .ae-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-width: 100%;
+  }
+  .ae-caption {
+    padding: 12px 18px;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--muted);
+    border-top: 1px solid var(--line);
+    margin: 0;
+  }
+  /* Git Simulation Animations */
+  .ae-wire {
+    fill: none;
+    stroke-width: 3.5;
+    stroke-linecap: round;
+    stroke-dasharray: 700;
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.75s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease, stroke 0.35s ease;
+  }
+  .ae-wire-hidden {
+    stroke-dashoffset: 700;
+    opacity: 0.15;
+  }
+  .ae-node {
+    transition: opacity 0.4s ease, transform 0.45s cubic-bezier(0.3, 1.5, 0.5, 1);
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  .ae-node-dim {
+    opacity: 0.22;
+    transform: scale(0.78);
+  }
+  .ae-pulse-ring {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: aePulse 1.8s ease-out infinite;
+  }
+  @keyframes aePulse {
+    0% { transform: scale(0.85); opacity: 0.85; }
+    70% { transform: scale(1.65); opacity: 0; }
+    100% { transform: scale(1.65); opacity: 0; }
+  }
+  .ae-stream {
+    fill: none;
+    stroke-width: 2.5;
+    stroke-dasharray: 8 8;
+    animation: aeDash 1.2s linear infinite;
+  }
+  @keyframes aeDash {
+    from { stroke-dashoffset: 32; }
+    to { stroke-dashoffset: 0; }
+  }
+  .ae-compare-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-block: 20px;
+  }
+  .ae-compare-box {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 16px 18px;
+    background: var(--surface);
+  }
+  .ae-compare-box.ae-bad {
+    border-left: 4px solid #ff6f6b;
+  }
+  .ae-compare-box.ae-good {
+    border-left: 4px solid #3fb950;
+  }
+  .ae-compare-tag {
+    font: 600 11px/1.4 var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .ae-compare-box.ae-bad .ae-compare-tag { color: #e0524e; }
+  .ae-compare-box.ae-good .ae-compare-tag { color: #2ea043; }
+  .ae-compare-box h3 {
+    font-size: 16px;
+    margin: 0 0 8px;
+    color: var(--ink);
+  }
+  .ae-compare-box p {
+    font-size: 14px;
+    margin: 0;
+    line-height: 1.55;
+  }
+  @media (max-width: 640px) {
+    .ae-compare-grid { grid-template-columns: 1fr; }
+    .ae-toolbar { padding: 12px 14px; }
+    .ae-canvas-wrap { padding: 14px 10px 12px; }
+    .ae-btn { width: 100%; text-align: center; }
+    .ae-btn-group { width: 100%; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ae-wire, .ae-node, .ae-pulse-ring, .ae-stream {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#guide-main"><span data-language="vi">Đến nội dung chính</span><span data-language="en" hidden>Skip to content</span></a>
+<header class="site-header guide-header"><div class="shell header-inner"><a class="brand" href="../../" data-home><span class="brand-mark" aria-hidden="true">&gt;_</span><span class="brand-short">VAS</span></a><nav class="guide-nav" aria-label="Điều hướng"><a class="guide-library-return" href="../../#catalog" data-home data-library-return><span data-language="vi">← Về thư viện <span data-catalog-count="vi">4.096</span> skill</span><span data-language="en" hidden>← Back to <span data-catalog-count="en">4,096</span> skills</span></a><a href="../" data-blog><span data-language="vi">Blog / Hướng dẫn</span><span data-language="en" hidden>Blog / Guides</span></a></nav><div class="header-actions"><button id="blog-language" class="icon-button" type="button" aria-label="Switch to English" lang="en">EN</button><button id="blog-theme" class="icon-button" type="button" aria-label="Bật giao diện tối" aria-pressed="false">◐</button></div></div></header>
+<main id="guide-main" class="shell guide-main" tabindex="-1" data-page-titles='{&quot;vi&quot;: &quot;Từ Vibe Coder đến Agentic Engineer: 7 nguyên tắc để AI không phá vỡ dự án — VAS&quot;, &quot;en&quot;: &quot;From Vibe Coder to Agentic Engineer: 7 Guardrails to Keep AI from Breaking Projects — VAS&quot;}' data-page-descriptions='{&quot;vi&quot;: &quot;Cẩm nang 7 nguyên tắc thực chiến kèm mô phỏng tương tác giúp chuyển mình từ Vibe Coder sang Agentic Engineer: nhánh Git an toàn, cô lập ngữ cảnh bằng Agent Skills, kiểm thử tự động, bảo vệ khóa bí mật và phân quyền dữ liệu.&quot;, &quot;en&quot;: &quot;Practical guide with interactive simulations for evolving from Vibe Coder to Agentic Engineer: Git save-point branches, progressive context disclosure, test-first guardrails, secret isolation, and database row-level security.&quot;}'>
+<nav class="guide-breadcrumb" aria-label="Breadcrumb"><a href="../../" data-home>VAS</a><span aria-hidden="true">/</span><a href="../" data-blog><span data-language="vi">Blog / Hướng dẫn</span><span data-language="en" hidden>Blog / Guides</span></a></nav>
+<header class="guide-heading">
+<p class="guide-eyebrow"><span data-language="vi">Kỹ thuật phần mềm AI · Cẩm nang tương tác</span><span data-language="en" hidden>AI Software Engineering · Interactive Field Guide</span></p>
+<h1><span data-language="vi">Từ Vibe Coder đến Agentic Engineer: 7 nguyên tắc để AI không phá vỡ dự án</span><span data-language="en" hidden>From Vibe Coder to Agentic Engineer: 7 Guardrails to Keep AI from Breaking Projects</span></h1>
+<p class="guide-byline"><span data-language="vi">Biên soạn bởi Vie Agentic Skill · Tích hợp sơ đồ mô phỏng tương tác trực tiếp</span><span data-language="en" hidden>Prepared by Vie Agentic Skill · Includes live interactive workflow simulations</span></p>
+</header>
+<div class="guide-layout">
+<article class="guide-prose">
+<div data-language="vi">
+<p class="guide-lead">Ra lệnh bằng ngôn ngữ tự nhiên để trợ lý AI tự sinh hàng ngàn dòng mã mang lại cảm giác tốc độ chưa từng có. Nhưng khoảng cách từ một bản mẫu chạy được trên máy cá nhân đến một hệ thống vận hành ổn định ngoài đời thực lại nằm ở những <strong>lan can kỹ thuật (engineering guardrails)</strong>: nơi một câu lệnh thiếu kiểm soát không thể làm mất mã nguồn, làm tràn cửa sổ ngữ cảnh hay làm lộ khóa bí mật của hệ thống.</p>
+<p>Bài hướng dẫn này đúc kết <strong>7 nguyên tắc thực chiến</strong> giúp bạn chuyển mình từ lối làm việc hoàn toàn dựa vào cảm hứng (<em>Vibe Coding</em>) sang tư duy điều phối có kiểm chứng (<em>Agentic Engineering</em>), đi kèm các mô hình trực quan tương tác để bạn bấm thử ngay trên trang.</p>
+</div>
+<div data-language="en" hidden>
+<p class="guide-lead">Prompting an AI assistant in natural language to generate thousands of lines of code feels effortless at first. Yet the gap between a flashy local prototype and a resilient production service comes down to <strong>engineering guardrails</strong>: ensuring that a single unverified prompt can never wipe out working code, pollute the context window, or leak production credentials.</p>
+<p>This guide distills <strong>7 practical guardrails</strong> to transition from purely improvisational <em>Vibe Coding</em> to disciplined <em>Agentic Engineering</em>, paired with interactive diagrams you can test directly in the browser.</p>
+</div>
+
+<nav class="guide-toc" aria-label="Mục lục bài viết">
+<p class="guide-toc-title"><span data-language="vi">Mục lục &amp; Mô phỏng tương tác</span><span data-language="en" hidden>Table of contents &amp; Interactive simulations</span></p>
+<ol>
+<li><a href="#git-save-game"><span data-language="vi">1. Coi Git là nút “Save Game” và cô lập nhánh thử nghiệm cho AI</span><span data-language="en" hidden>1. Treat Git as Your Save Point and Isolate AI Branches</span></a></li>
+<li><a href="#context-disclosure"><span data-language="vi">2. Chống thối rữa ngữ cảnh (Context Rot) bằng nạp kỹ năng theo nhu cầu</span><span data-language="en" hidden>2. Prevent Context Rot with Progressive Skill Disclosure</span></a></li>
+<li><a href="#test-guardrails"><span data-language="vi">3. Dựng lan can kiểm thử tự động trước khi cho AI sửa logic</span><span data-language="en" hidden>3. Build Automated Test Guardrails Before Letting AI Refactor</span></a></li>
+<li><a href="#data-and-storage"><span data-language="vi">4. Đặt dữ liệu đúng chỗ: Quan hệ vào SQL, tệp nhị phân vào Object Storage</span><span data-language="en" hidden>4. Store Relational Data in SQL and Binary Files in Object Storage</span></a></li>
+<li><a href="#secrets-and-rls"><span data-language="vi">5. Bảo mật từ gốc: Tách biệt khóa bí mật và khóa phân quyền tại tầng dữ liệu</span><span data-language="en" hidden>5. Security by Design: Secret Isolation and Database Row-Level Security</span></a></li>
+<li><a href="#ux-and-resilience"><span data-language="vi">6. Giao diện có phản hồi tức thì và xóa mềm (Soft Delete) chống mất mát</span><span data-language="en" hidden>6. Responsive UI Feedback States and Non-Destructive Soft Deletes</span></a></li>
+<li><a href="#responsible-shipping"><span data-language="vi">7. Đưa sản phẩm ra thực tế có trách nhiệm: CI/CD và tuân thủ dữ liệu</span><span data-language="en" hidden>7. Ship Responsibly: Automated CI/CD and Data Privacy Compliance</span></a></li>
+</ol>
+</nav>
+
+<h2 id="git-save-game"><span data-language="vi">1. Coi Git là nút “Save Game” và cô lập nhánh thử nghiệm cho AI</span><span data-language="en" hidden>1. Treat Git as Your Save Point and Isolate AI Branches</span></h2>
+<div data-language="vi">
+<p>Tai nạn phổ biến nhất khi làm việc với AI là yêu cầu sửa thêm một tính năng nhỏ ngay trên nhánh đang chạy ổn định mà chưa lưu lại trạng thái trước đó. Khi mô hình hiểu sai ý đồ và sửa đè lên hàng chục tệp liên quan, việc hoàn tác bằng tay gần như bất khả thi.</p>
+<p>Hãy áp dụng kỷ luật <strong>Save Point &amp; Sandbox Branch</strong>: luôn tạo một điểm lưu (<code>git commit</code>) khi mã nguồn đang chạy tốt, sau đó tách nhánh riêng (<code>git switch -c feat/...</code>) để AI làm việc. Bấm vào các nút trên sơ đồ tương tác dưới đây để xem cách nhánh <code>main</code> được bảo vệ tuyệt đối ngay cả khi AI viết lỗi:</p>
+</div>
+<div data-language="en" hidden>
+<p>The most common casualty in AI-assisted coding happens when you ask an agent to tweak one more feature directly on a working branch with uncommitted changes. When the model misinterprets the prompt and rewrites a dozen files, untangling the mess manually is painful.</p>
+<p>Adopt a strict <strong>Save Point &amp; Sandbox Branch</strong> habit: commit every working state, then branch off (<code>git switch -c feat/...</code>) before delegating experimental edits to the agent. Use the interactive simulator below to see how <code>main</code> stays untouched even when an AI experiment breaks:</p>
+</div>
+
+<figure class="ae-stage-card" aria-labelledby="git-sim-caption">
+  <div class="ae-toolbar" role="region" aria-label="Điều khiển mô phỏng nhánh Git">
+    <span id="git-sim-status" class="ae-status-pill" role="status" aria-live="polite">
+      <span class="ae-status-dot"></span>
+      <span data-language="vi">Trạng thái: Luồng hoàn chỉnh (Tách nhánh → Sửa lỗi → Gộp về main)</span>
+      <span data-language="en" hidden>State: Full cycle (Branch → Fix → Merge to main)</span>
+    </span>
+    <div class="ae-btn-group">
+      <button id="git-btn-all" type="button" class="ae-btn ae-btn-active" aria-pressed="true">
+        <span data-language="vi">▶ Toàn bộ chu trình</span><span data-language="en" hidden>▶ Full Workflow</span>
+      </button>
+      <button id="git-btn-fail" type="button" class="ae-btn" aria-pressed="false">
+        <span data-language="vi">✕ Khi AI làm hỏng (Hủy nhánh)</span><span data-language="en" hidden>✕ AI Breaks Code (Drop Branch)</span>
+      </button>
+      <button id="git-btn-save" type="button" class="ae-btn" aria-pressed="false">
+        <span data-language="vi">✓ Chỉ xem điểm Save trên main</span><span data-language="en" hidden>✓ Inspect Save Points on main</span>
+      </button>
+    </div>
+  </div>
+  <div class="ae-canvas-wrap">
+    <svg class="ae-svg" viewBox="0 0 880 250" role="img" aria-label="Sơ đồ động minh họa nhánh main và nhánh thử nghiệm feature/ai-checkout trong Git">
+      <defs>
+        <pattern id="ae-grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#243049" stroke-width="0.7" opacity="0.55"/>
+        </pattern>
+      </defs>
+      <rect x="0" y="0" width="880" height="250" fill="url(#ae-grid-pattern)"/>
+
+      <!-- Labels -->
+      <text x="24" y="75" fill="#ffb347" font-family="monospace" font-size="14" font-weight="700">main</text>
+      <text id="git-branch-label" x="395" y="162" fill="#56cfc5" font-family="monospace" font-size="13" font-weight="600">feat/ai-checkout</text>
+
+      <!-- Base Main Track -->
+      <path d="M 82 70 H 830" stroke="#2b3b5c" stroke-width="3" stroke-dasharray="6 6" fill="none"/>
+      <path id="git-wire-main" class="ae-wire" d="M 82 70 H 830" stroke="#ffb347"/>
+
+      <!-- Feature Branch Track -->
+      <path id="git-wire-branch" class="ae-wire" d="M 350 70 C 395 70, 405 188, 455 188 H 640" stroke="#56cfc5"/>
+      <path id="git-wire-merge" class="ae-wire" d="M 640 188 C 690 188, 700 70, 745 70" stroke="#3fb950"/>
+      <path id="git-stream-active" class="ae-stream" d="M 82 70 H 350 C 395 70, 405 188, 455 188 H 640 C 690 188, 700 70, 745 70 H 830" stroke="#ffffff" opacity="0.45"/>
+
+      <!-- Main Nodes -->
+      <g id="git-node-1" class="ae-node">
+        <circle cx="125" cy="70" r="13" fill="#ffb347"/>
+        <text x="125" y="42" text-anchor="middle" fill="#ecf1fa" font-family="sans-serif" font-size="12" font-weight="600" data-language="vi">Đăng nhập ổn</text>
+        <text x="125" y="42" text-anchor="middle" fill="#ecf1fa" font-family="sans-serif" font-size="12" font-weight="600" data-language="en" hidden>Login works</text>
+      </g>
+      <g id="git-node-2" class="ae-node">
+        <circle cx="240" cy="70" r="13" fill="#ffb347"/>
+        <text x="240" y="42" text-anchor="middle" fill="#ecf1fa" font-family="sans-serif" font-size="12" font-weight="600" data-language="vi">Xong giỏ hàng</text>
+        <text x="240" y="42" text-anchor="middle" fill="#ecf1fa" font-family="sans-serif" font-size="12" font-weight="600" data-language="en" hidden>Cart ready</text>
+      </g>
+      <g id="git-node-3" class="ae-node">
+        <circle cx="350" cy="70" r="15" fill="#ffb347" stroke="#ffffff" stroke-width="2"/>
+        <text x="350" y="40" text-anchor="middle" fill="#ffb347" font-family="monospace" font-size="12" font-weight="700" data-language="vi">★ SAVE POINT</text>
+        <text x="350" y="40" text-anchor="middle" fill="#ffb347" font-family="monospace" font-size="12" font-weight="700" data-language="en" hidden>★ SAVE POINT</text>
+      </g>
+
+      <!-- Feature Nodes -->
+      <g id="git-node-fail" class="ae-node">
+        <circle class="ae-pulse-ring" cx="490" cy="188" r="18" fill="none" stroke="#ff6f6b" stroke-width="2.5"/>
+        <circle cx="490" cy="188" r="13" fill="#ff6f6b"/>
+        <text x="490" y="224" text-anchor="middle" fill="#ff6f6b" font-family="sans-serif" font-size="12" font-weight="600" data-language="vi">AI sửa lỗi → Vỡ API!</text>
+        <text x="490" y="224" text-anchor="middle" fill="#ff6f6b" font-family="sans-serif" font-size="12" font-weight="600" data-language="en" hidden>AI breaks API!</text>
+      </g>
+
+      <g id="git-node-fix" class="ae-node">
+        <circle cx="640" cy="188" r="13" fill="#3fb950"/>
+        <text x="640" y="224" text-anchor="middle" fill="#3fb950" font-family="sans-serif" font-size="12" font-weight="600" data-language="vi">Rà soát &amp; Test Xanh</text>
+        <text x="640" y="224" text-anchor="middle" fill="#3fb950" font-family="sans-serif" font-size="12" font-weight="600" data-language="en" hidden>Reviewed &amp; Green</text>
+      </g>
+
+      <!-- Merged Node on Main -->
+      <g id="git-node-merge" class="ae-node">
+        <circle cx="745" cy="70" r="14" fill="#3fb950" stroke="#ffffff" stroke-width="2"/>
+        <text x="745" y="42" text-anchor="middle" fill="#3fb950" font-family="sans-serif" font-size="12" font-weight="700" data-language="vi">Gộp vào main an toàn</text>
+        <text x="745" y="42" text-anchor="middle" fill="#3fb950" font-family="sans-serif" font-size="12" font-weight="700" data-language="en" hidden>Safely merged to main</text>
+      </g>
+
+      <!-- Safety Banner inside SVG -->
+      <rect x="470" y="54" width="215" height="32" rx="6" fill="#1b263b" stroke="#ffb347" stroke-width="1"/>
+      <text x="577" y="74" text-anchor="middle" fill="#ffb347" font-family="monospace" font-size="11" data-language="vi">main luôn chạy ổn định 100%</text>
+      <text x="577" y="74" text-anchor="middle" fill="#ffb347" font-family="monospace" font-size="11" data-language="en" hidden>main stays 100% runnable</text>
+    </svg>
+  </div>
+  <figcaption id="git-sim-caption" class="ae-caption">
+    <span data-language="vi"><strong>Nguyên tắc cốt lõi:</strong> Nhánh <code>main</code> luôn ở trạng thái sẵn sàng triển khai. Trước khi gộp nhánh thử nghiệm của AI về <code>main</code>, hãy chạy skill <a data-catalog-skill="code-review" href="../../?lang=vi&amp;skill=code-review&amp;agent=universal">code-review</a> để đối chiếu toàn bộ thay đổi.</span>
+    <span data-language="en" hidden><strong>Core rule:</strong> Keep <code>main</code> deployable at all times. Before merging an AI feature branch back into <code>main</code>, run the <a data-catalog-skill="code-review" href="../../?lang=en&amp;skill=code-review&amp;agent=universal">code-review</a> skill to audit every diff.</span>
+  </figcaption>
+</figure>
+
+<div data-language="vi">
+<pre><code># Quy trình 4 lệnh bảo vệ mã nguồn trước mọi phiên làm việc với AI
+git commit -am "chore: lưu trạng thái ổn định trước khi thêm cổng thanh toán"
+git switch -c feat/ai-checkout
+
+# (Sau khi AI viết xong và vượt qua bài kiểm thử)
+git switch main &amp;&amp; git merge feat/ai-checkout</code></pre>
+</div>
+<div data-language="en" hidden>
+<pre><code># 4-command safety habit before delegating a feature to an AI agent
+git commit -am "chore: save stable state before adding payment gateway"
+git switch -c feat/ai-checkout
+
+# (Once the agent finishes and automated tests pass)
+git switch main &amp;&amp; git merge feat/ai-checkout</code></pre>
+</div>
+
+<h2 id="context-disclosure"><span data-language="vi">2. Chống thối rữa ngữ cảnh (Context Rot) bằng nạp kỹ năng theo nhu cầu</span><span data-language="en" hidden>2. Prevent Context Rot with Progressive Skill Disclosure</span></h2>
+<div data-language="vi">
+<p>Một sai lầm phổ biến khác là đính kèm hàng chục tệp mã nguồn hoặc dán một tệp hướng dẫn khổng lồ vào mọi cuộc trò chuyện. Khi cửa sổ ngữ cảnh (<em>context window</em>) bị lấp đầy bởi những thông tin không liên quan đến tác vụ hiện tại, độ chính xác của mô hình suy giảm nhanh chóng — hiện tượng này được gọi là <strong>Context Rot (thối rữa ngữ cảnh)</strong>.</p>
+<p>Kiến trúc của <strong>Agent Skills</strong> giải quyết triệt để bài toán này bằng cơ chế <strong>Tiết lộ tăng dần (Progressive Disclosure)</strong>: ở trạng thái chờ, agent chỉ đọc phần mô tả ngắn gọn (<code>name</code> và <code>description</code> trong YAML frontmatter). Chỉ khi bạn yêu cầu một công việc cụ thể — chẳng hạn tinh chỉnh câu lệnh với <a data-catalog-skill="prompt-engineering" href="../../?lang=vi&amp;skill=prompt-engineering&amp;agent=universal">prompt-engineering</a> hoặc đo lường chất lượng kỹ năng bằng <a data-catalog-skill="skillevaluator" href="../../?lang=vi&amp;skill=skillevaluator&amp;agent=universal">skillevaluator</a> — agent mới nạp đúng tệp <code>SKILL.md</code> của quy trình đó vào bộ nhớ làm việc.</p>
+</div>
+<div data-language="en" hidden>
+<p>Dumping dozens of source files or pasting a monolithic instruction manual into every chat session quickly saturates the model's <em>context window</em>. As irrelevant tokens accumulate, reasoning accuracy degrades—a failure mode known as <strong>Context Rot</strong>.</p>
+<p><strong>Agent Skills</strong> solve this through <strong>Progressive Disclosure</strong>: at idle, the agent only scans compact YAML frontmatter (<code>name</code> and <code>description</code>). Only when your task matches a domain—such as structuring prompts with <a data-catalog-skill="prompt-engineering" href="../../?lang=en&amp;skill=prompt-engineering&amp;agent=universal">prompt-engineering</a> or benchmarking agent lift with <a data-catalog-skill="skillevaluator" href="../../?lang=en&amp;skill=skillevaluator&amp;agent=universal">skillevaluator</a>—does the agent load the full <code>SKILL.md</code> runbook into active memory.</p>
+</div>
+
+<figure class="ae-stage-card" aria-labelledby="ctx-sim-caption">
+  <div class="ae-toolbar" role="region" aria-label="So sánh quản lý ngữ cảnh">
+    <span id="ctx-sim-status" class="ae-status-pill" role="status" aria-live="polite">
+      <span class="ae-status-dot"></span>
+      <span data-language="vi">Đang xem: Agentic Engineer (Progressive Disclosure — 18% Context)</span>
+      <span data-language="en" hidden>Viewing: Agentic Engineer (Progressive Disclosure — 18% Context)</span>
+    </span>
+    <div class="ae-btn-group">
+      <button id="ctx-btn-good" type="button" class="ae-btn ae-btn-active" aria-pressed="true">
+        <span data-language="vi">✓ Chế độ Agentic (Nạp đúng SKILL.md)</span><span data-language="en" hidden>✓ Agentic Mode (On-Demand SKILL.md)</span>
+      </button>
+      <button id="ctx-btn-bad" type="button" class="ae-btn" aria-pressed="false">
+        <span data-language="vi">✕ Chế độ Nhồi ngữ cảnh (Context Rot)</span><span data-language="en" hidden>✕ Context Dumping (Context Rot)</span>
+      </button>
+    </div>
+  </div>
+  <div class="ae-canvas-wrap">
+    <svg class="ae-svg" viewBox="0 0 880 220" role="img" aria-label="Biểu đồ so sánh mức tiêu thụ cửa sổ ngữ cảnh giữa nhồi toàn bộ tệp và nạp kỹ năng theo nhu cầu">
+      <rect x="0" y="0" width="880" height="220" fill="#12161f"/>
+
+      <!-- Left Box: Input Sources -->
+      <rect x="24" y="30" width="230" height="160" rx="10" fill="#182235" stroke="#2b3b5c" stroke-width="1.5"/>
+      <text x="42" y="58" fill="#93a3c0" font-family="monospace" font-size="11" font-weight="600" data-language="vi">ĐẦU VÀO NGỮ CẢNH</text>
+      <text x="42" y="58" fill="#93a3c0" font-family="monospace" font-size="11" font-weight="600" data-language="en" hidden>CONTEXT INPUTS</text>
+
+      <g id="ctx-input-good">
+        <rect x="42" y="74" width="194" height="36" rx="6" fill="#122d2b" stroke="#56cfc5" stroke-width="1.5"/>
+        <text x="54" y="97" fill="#56cfc5" font-family="monospace" font-size="12" font-weight="600">SKILL.md (Đúng tác vụ)</text>
+        <rect x="42" y="122" width="194" height="36" rx="6" fill="#1c2840" stroke="#ffb347" stroke-width="1.2"/>
+        <text x="54" y="145" fill="#ffb347" font-family="monospace" font-size="12">2 tệp mã nguồn liên quan</text>
+      </g>
+
+      <g id="ctx-input-bad" class="ae-node-dim">
+        <rect x="42" y="72" width="194" height="102" rx="6" fill="#331a20" stroke="#ff6f6b" stroke-width="1.5"/>
+        <text x="54" y="98" fill="#ff6f6b" font-family="monospace" font-size="12" font-weight="700" data-language="vi">50+ tệp không liên quan</text>
+        <text x="54" y="98" fill="#ff6f6b" font-family="monospace" font-size="12" font-weight="700" data-language="en" hidden>50+ unrelated files</text>
+        <text x="54" y="122" fill="#ecf1fa" font-family="sans-serif" font-size="11" data-language="vi">+ Lịch sử chat dài 40 lượt</text>
+        <text x="54" y="122" fill="#ecf1fa" font-family="sans-serif" font-size="11" data-language="en" hidden>+ 40-turn stale chat history</text>
+        <text x="54" y="146" fill="#ecf1fa" font-family="sans-serif" font-size="11" data-language="vi">+ Log lỗi cũ chồng chéo</text>
+        <text x="54" y="146" fill="#ecf1fa" font-family="sans-serif" font-size="11" data-language="en" hidden>+ Unfiltered stack traces</text>
+      </g>
+
+      <!-- Connecting Stream -->
+      <path id="ctx-stream-line" class="ae-stream" d="M 254 110 H 324" stroke="#56cfc5"/>
+
+      <!-- Center Box: Context Window Meter -->
+      <rect x="324" y="30" width="240" height="160" rx="10" fill="#182235" stroke="#2b3b5c" stroke-width="1.5"/>
+      <text x="344" y="58" fill="#93a3c0" font-family="monospace" font-size="11" font-weight="600" data-language="vi">BỘ NHỚ NGỮ CẢNH (CONTEXT)</text>
+      <text x="344" y="58" fill="#93a3c0" font-family="monospace" font-size="11" font-weight="600" data-language="en" hidden>CONTEXT WINDOW LOAD</text>
+
+      <rect x="344" y="82" width="200" height="24" rx="6" fill="#0d1422" stroke="#2b3b5c"/>
+      <rect id="ctx-meter-bar" x="344" y="82" width="44" height="24" rx="6" fill="#3fb950"/>
+      <text id="ctx-meter-text" x="344" y="132" fill="#3fb950" font-family="monospace" font-size="15" font-weight="700">18% · Tinh gọn &amp; Sắc bén</text>
+      <text id="ctx-meter-sub" x="344" y="158" fill="#93a3c0" font-family="sans-serif" font-size="12" data-language="vi">Toàn bộ sự chú ý dồn vào quy trình</text>
+      <text id="ctx-meter-sub-en" x="344" y="158" fill="#93a3c0" font-family="sans-serif" font-size="12" data-language="en" hidden>100% attention on target runbook</text>
+
+      <!-- Connecting Stream 2 -->
+      <path id="ctx-stream-out" class="ae-stream" d="M 564 110 H 634" stroke="#3fb950"/>
+
+      <!-- Right Box: Result -->
+      <rect x="634" y="30" width="222" height="160" rx="10" fill="#182235" stroke="#2b3b5c" stroke-width="1.5"/>
+      <text x="652" y="58" fill="#93a3c0" font-family="monospace" font-size="11" font-weight="600" data-language="vi">KẾT QUẢ ĐẦU RA</text>
+      <text x="652" y="58" fill="#93a3c0" font-family="monospace" font-size="11" font-weight="600" data-language="en" hidden>AGENT OUTPUT</text>
+
+      <g id="ctx-out-good">
+        <circle cx="666" cy="96" r="8" fill="#3fb950"/>
+        <text x="684" y="100" fill="#ecf1fa" font-family="sans-serif" font-size="13" font-weight="600" data-language="vi">Đúng kiến trúc dự án</text>
+        <text x="684" y="100" fill="#ecf1fa" font-family="sans-serif" font-size="13" font-weight="600" data-language="en" hidden>Follows architecture</text>
+        <circle cx="666" cy="130" r="8" fill="#3fb950"/>
+        <text x="684" y="134" fill="#ecf1fa" font-family="sans-serif" font-size="13" font-weight="600" data-language="vi">Không tự bịa thư viện</text>
+        <text x="684" y="134" fill="#ecf1fa" font-family="sans-serif" font-size="13" font-weight="600" data-language="en" hidden>Zero hallucinated APIs</text>
+        <circle cx="666" cy="162" r="8" fill="#3fb950"/>
+        <text x="684" y="166" fill="#ecf1fa" font-family="sans-serif" font-size="13" font-weight="600" data-language="vi">Tiết kiệm 75% chi phí token</text>
+        <text x="684" y="166" fill="#ecf1fa" font-family="sans-serif" font-size="13" font-weight="600" data-language="en" hidden>Saves 75% token budget</text>
+      </g>
+    </svg>
+  </div>
+  <figcaption id="ctx-sim-caption" class="ae-caption">
+    <span data-language="vi"><strong>Mẹo thực hành:</strong> Khi xong một tính năng, hãy mở phiên trò chuyện mới hoặc tóm tắt ngắn gọn thay vì giữ một luồng chat kéo dài hàng trăm tin nhắn.</span>
+    <span data-language="en" hidden><strong>Pro tip:</strong> Start a fresh session or compact the context once a feature is complete instead of dragging a single thread across hundreds of turns.</span>
+  </figcaption>
+</figure>
+
+<h2 id="test-guardrails"><span data-language="vi">3. Dựng lan can kiểm thử tự động trước khi cho AI sửa logic</span><span data-language="en" hidden>3. Build Automated Test Guardrails Before Letting AI Refactor</span></h2>
+<div data-language="vi">
+<p>Vòng lặp gây ức chế nhất khi lập trình với AI là <em>“sửa lỗi A thì hỏng tính năng B, sửa xong B lại quay về lỗi A”</em>. Nguyên nhân là AI không có một tiêu chuẩn khách quan để tự biết khi nào bản sửa đã thực sự hoàn tất mà không làm gãy các luồng sẵn có.</p>
+<p>Thay vì ngồi bấm thử thủ công trên trình duyệt sau mỗi câu lệnh, hãy kết hợp <a data-catalog-skill="systematic-debugging" href="../../?lang=vi&amp;skill=systematic-debugging&amp;agent=universal">systematic-debugging</a> để khoanh vùng nguyên nhân gốc rễ và dùng <a data-catalog-skill="webapp-testing" href="../../?lang=vi&amp;skill=webapp-testing&amp;agent=universal">webapp-testing</a> để khóa chặt hành vi mong đợi bằng kịch bản kiểm thử tự động:</p>
+<ol>
+<li><strong>Viết bài kiểm thử tái hiện lỗi trước (Red):</strong> Yêu cầu agent viết một bài test chứng minh lỗi đang tồn tại hoặc mô tả tính năng mới.</li>
+<li><strong>Giao nhiệm vụ có điều kiện dừng rõ ràng (Green):</strong> Yêu cầu agent sửa mã nguồn và tự chạy lại bộ test cho đến khi toàn bộ bài kiểm thử đều đạt.</li>
+<li><strong>Giữ lại bài kiểm thử làm rào chắn hồi quy (Regression Guard):</strong> Mọi lần chỉnh sửa về sau nếu vô tình làm hỏng tính năng cũ sẽ bị phát hiện ngay lập tức.</li>
+</ol>
+</div>
+<div data-language="en" hidden>
+<p>The most frustrating loop in AI coding is watching the model <em>“fix bug A by breaking feature B, then fix B by reintroducing bug A.”</em> Without an objective verification oracle, the agent cannot tell whether its patch preserved existing behavior.</p>
+<p>Instead of clicking through the browser manually after every prompt, pair <a data-catalog-skill="systematic-debugging" href="../../?lang=en&amp;skill=systematic-debugging&amp;agent=universal">systematic-debugging</a> to isolate the root cause with <a data-catalog-skill="webapp-testing" href="../../?lang=en&amp;skill=webapp-testing&amp;agent=universal">webapp-testing</a> to lock down expected behavior in an automated test suite:</p>
+<ol>
+<li><strong>Write a Failing Reproduction Test First (Red):</strong> Have the agent author a test case that reproduces the bug or specifies the new contract.</li>
+<li><strong>Enforce a Verifiable Exit Condition (Green):</strong> Instruct the agent to iterate on the implementation until the test runner passes cleanly.</li>
+<li><strong>Retain the Test as a Regression Guardrail:</strong> Any future AI edit that breaks earlier functionality is caught immediately.</li>
+</ol>
+</div>
+
+<figure class="ae-stage-card" aria-labelledby="tdd-sim-caption">
+  <div class="ae-toolbar" role="region" aria-label="Điều khiển mô phỏng vòng lặp kiểm thử">
+    <span class="ae-status-pill" role="status" aria-live="polite">
+      <span class="ae-status-dot"></span>
+      <span data-language="vi">Mô phỏng: Chu trình kiểm thử tự động khóa hành vi của AI</span>
+      <span data-language="en" hidden>Simulation: Automated test harness locking AI behavior</span>
+    </span>
+    <div class="ae-btn-group">
+      <button id="tdd-btn-guard" type="button" class="ae-btn ae-btn-active" aria-pressed="true">
+        <span data-language="vi">✓ Có lan can Test (Red → Green)</span><span data-language="en" hidden>✓ Test-Driven Guardrail (Red → Green)</span>
+      </button>
+      <button id="tdd-btn-loop" type="button" class="ae-btn" aria-pressed="false">
+        <span data-language="vi">✕ Không có Test (Sửa A vỡ B)</span><span data-language="en" hidden>✕ No Tests (Fix A, Break B Loop)</span>
+      </button>
+    </div>
+  </div>
+  <div class="ae-canvas-wrap">
+    <svg class="ae-svg" viewBox="0 0 880 215" role="img" aria-label="Sơ đồ động so sánh chu trình kiểm thử tự động và vòng lặp sửa lỗi quẩn quanh">
+      <rect x="0" y="0" width="880" height="215" fill="#12161f"/>
+
+      <!-- Step 1 -->
+      <g id="tdd-step-1" class="ae-node">
+        <rect x="28" y="48" width="180" height="86" rx="10" fill="#2b1922" stroke="#ff6f6b" stroke-width="1.8"/>
+        <text x="44" y="74" fill="#ff6f6b" font-family="monospace" font-size="11" font-weight="700" data-language="vi">01 · TEST TÁI HIỆN (ĐỎ)</text>
+        <text x="44" y="74" fill="#ff6f6b" font-family="monospace" font-size="11" font-weight="700" data-language="en" hidden>01 · FAILING TEST (RED)</text>
+        <text x="44" y="98" fill="#ecf1fa" font-family="sans-serif" font-size="12" data-language="vi">Khóa rõ điều kiện đúng</text>
+        <text x="44" y="98" fill="#ecf1fa" font-family="sans-serif" font-size="12" data-language="en" hidden>Specify exact assertion</text>
+        <text x="44" y="118" fill="#93a3c0" font-family="monospace" font-size="11">expect(res).toBe(200)</text>
+      </g>
+
+      <path id="tdd-wire-1" class="ae-stream" d="M 208 91 H 248" stroke="#ffb347"/>
+
+      <!-- Step 2 -->
+      <g id="tdd-step-2" class="ae-node">
+        <rect x="248" y="48" width="180" height="86" rx="10" fill="#182235" stroke="#ffb347" stroke-width="1.8"/>
+        <text x="264" y="74" fill="#ffb347" font-family="monospace" font-size="11" font-weight="700" data-language="vi">02 · AI VIẾT BẢN VÁ</text>
+        <text x="264" y="74" fill="#ffb347" font-family="monospace" font-size="11" font-weight="700" data-language="en" hidden>02 · AGENT PATCHES CODE</text>
+        <text x="264" y="98" fill="#ecf1fa" font-family="sans-serif" font-size="12" data-language="vi">Sửa đúng phạm vi hàm</text>
+        <text x="264" y="98" fill="#ecf1fa" font-family="sans-serif" font-size="12" data-language="en" hidden>Scoped implementation</text>
+        <text x="264" y="118" fill="#93a3c0" font-family="monospace" font-size="11">diff: +14 / -5 lines</text>
+      </g>
+
+      <path id="tdd-wire-2" class="ae-stream" d="M 428 91 H 468" stroke="#56cfc5"/>
+
+      <!-- Step 3 -->
+      <g id="tdd-step-3" class="ae-node">
+        <rect x="468" y="48" width="180" height="86" rx="10" fill="#182235" stroke="#56cfc5" stroke-width="1.8"/>
+        <text x="484" y="74" fill="#56cfc5" font-family="monospace" font-size="11" font-weight="700" data-language="vi">03 · CHẠY BỘ TEST</text>
+        <text x="484" y="74" fill="#56cfc5" font-family="monospace" font-size="11" font-weight="700" data-language="en" hidden>03 · RUN TEST SUITE</text>
+        <text x="484" y="98" fill="#ecf1fa" font-family="sans-serif" font-size="12" data-language="vi">Kiểm tra cả tính năng cũ</text>
+        <text x="484" y="98" fill="#ecf1fa" font-family="sans-serif" font-size="12" data-language="en" hidden>Verify zero regressions</text>
+        <text x="484" y="118" fill="#93a3c0" font-family="monospace" font-size="11">Playwright + Unittest</text>
+      </g>
+
+      <path id="tdd-wire-3" class="ae-stream" d="M 648 91 H 688" stroke="#3fb950"/>
+
+      <!-- Step 4 -->
+      <g id="tdd-step-4" class="ae-node">
+        <rect x="688" y="48" width="164" height="86" rx="10" fill="#132c23" stroke="#3fb950" stroke-width="1.8"/>
+        <text x="704" y="74" fill="#3fb950" font-family="monospace" font-size="11" font-weight="700" data-language="vi">04 · ĐẠT CHUẨN (XANH)</text>
+        <text x="704" y="74" fill="#3fb950" font-family="monospace" font-size="11" font-weight="700" data-language="en" hidden>04 · VERIFIED (GREEN)</text>
+        <text x="704" y="98" fill="#ecf1fa" font-family="sans-serif" font-size="12" data-language="vi">Sẵn sàng gộp nhánh</text>
+        <text x="704" y="98" fill="#ecf1fa" font-family="sans-serif" font-size="12" data-language="en" hidden>Safe to merge branch</text>
+        <text x="704" y="118" fill="#3fb950" font-family="monospace" font-size="11">✓ 42/42 tests pass</text>
+      </g>
+
+      <!-- Regression Loop Track (shown in bad mode) -->
+      <g id="tdd-bad-loop" class="ae-node-dim">
+        <path class="ae-stream" d="M 558 134 C 558 188, 338 188, 338 134" stroke="#ff6f6b" fill="none"/>
+        <rect x="335" y="158" width="226" height="32" rx="6" fill="#381820" stroke="#ff6f6b" stroke-width="1.2"/>
+        <text x="448" y="178" text-anchor="middle" fill="#ff6f6b" font-family="monospace" font-size="11" font-weight="700" data-language="vi">↺ Sửa lỗi A → Làm hỏng tính năng B!</text>
+        <text x="448" y="178" text-anchor="middle" fill="#ff6f6b" font-family="monospace" font-size="11" font-weight="700" data-language="en" hidden>↺ Fixes bug A → Breaks feature B!</text>
+      </g>
+    </svg>
+  </div>
+  <figcaption id="tdd-sim-caption" class="ae-caption">
+    <span data-language="vi"><strong>Nguyên lý:</strong> Bài kiểm thử tự động đóng vai trò “trọng tài độc lập”. AI không được tự tuyên bố hoàn thành nếu bộ kiểm thử vẫn báo đỏ.</span>
+    <span data-language="en" hidden><strong>Principle:</strong> Automated tests act as an objective referee. The agent cannot declare victory while any assertion is failing.</span>
+  </figcaption>
+</figure>
+
+<h2 id="data-and-storage"><span data-language="vi">4. Đặt dữ liệu đúng chỗ: Quan hệ vào SQL, tệp nhị phân vào Object Storage</span><span data-language="en" hidden>4. Store Relational Data in SQL and Binary Files in Object Storage</span></h2>
+<div data-language="vi">
+<p>Khi bạn yêu cầu tạo nhanh một tính năng lưu trữ mà không nêu rõ kiến trúc, AI đôi khi chọn cách ngắn nhất cho bản demo: lưu dữ liệu vào tệp JSON trên ổ đĩa tạm, hoặc nhét thẳng chuỗi ảnh Base64 hàng megabyte vào bảng cơ sở dữ liệu. Cách làm này khiến ứng dụng sập ngay khi có hai người dùng cùng lúc hoặc khi máy chủ khởi động lại.</p>
+</div>
+<div data-language="en" hidden>
+<p>When asked to spin up storage quickly without architectural constraints, an AI assistant will often take the shortest path to a working demo: writing state to a local JSON file or stuffing multi-megabyte Base64 images directly into database rows. That shortcut collapses as soon as two users write concurrently or the container restarts.</p>
+</div>
+
+<div class="ae-compare-grid">
+  <div class="ae-compare-box ae-bad">
+    <span class="ae-compare-tag"><span data-language="vi">✕ Cách làm dễ vỡ trận</span><span data-language="en" hidden>✕ Fragile Shortcut</span></span>
+    <h3><span data-language="vi">Lưu tạm bợ &amp; Nhét file vào DB</span><span data-language="en" hidden>Local Files &amp; Blobs in DB</span></h3>
+    <p><span data-language="vi">Ghi trạng thái vào tệp cục bộ hoặc lưu ảnh/video trực tiếp trong bảng dữ liệu khiến truy vấn chậm gấp hàng chục lần và tràn bộ nhớ.</span><span data-language="en" hidden>Persisting user state to ephemeral disk or storing raw media inside relational tables bloats backups and stalls queries.</span></p>
+  </div>
+  <div class="ae-compare-box ae-good">
+    <span class="ae-compare-tag"><span data-language="vi">✓ Chuẩn Agentic Engineer</span><span data-language="en" hidden>✓ Production Standard</span></span>
+    <h3><span data-language="vi">SQL có ràng buộc + Object Storage</span><span data-language="en" hidden>Relational SQL + Object Storage</span></h3>
+    <p><span data-language="vi">Dữ liệu có cấu trúc đặt trong PostgreSQL (hoặc phân tích lớn với <a data-catalog-skill="bigquery-sql" href="../../?lang=vi&amp;skill=bigquery-sql&amp;agent=universal">bigquery-sql</a>); ảnh và tệp tải lên đặt ở S3 / Cloudflare R2 và chỉ lưu đường dẫn URL trong bảng.</span><span data-language="en" hidden>Keep structured records in PostgreSQL (or analytical workloads in <a data-catalog-skill="bigquery-sql" href="../../?lang=en&amp;skill=bigquery-sql&amp;agent=universal">bigquery-sql</a>); upload media to S3 / Cloudflare R2 and store only the object URL in the table.</span></p>
+  </div>
+</div>
+
+<h2 id="secrets-and-rls"><span data-language="vi">5. Bảo mật từ gốc: Tách biệt khóa bí mật và khóa phân quyền tại tầng dữ liệu</span><span data-language="en" hidden>5. Security by Design: Secret Isolation and Database Row-Level Security</span></h2>
+<div data-language="vi">
+<p>Có hai lỗ hổng bảo mật nghiêm trọng nhất thường xuất hiện trong các dự án viết vội bằng AI:</p>
+<ul>
+<li><strong>Lộ khóa API trong mã nguồn hoặc phía trình duyệt:</strong> Đặt biến có tiền tố <code>NEXT_PUBLIC_</code> hoặc <code>VITE_</code> cho khóa bí mật khiến bất kỳ ai mở trình duyệt (F12) cũng lấy được toàn quyền gọi API của bạn. Luôn giữ khóa bí mật ở phía máy chủ (Server-side environment variables), đưa <code>.env</code> vào <code>.gitignore</code> và chỉ commit tệp mẫu <code>.env.example</code>.</li>
+<li><strong>Chỉ ẩn nút bấm trên giao diện thay vì chặn quyền ở Backend:</strong> Việc ẩn nút “Xóa” bằng CSS hoặc React state không ngăn được người dùng gửi trực tiếp một yêu cầu HTTP <code>DELETE</code>. Hãy bật <strong>Row-Level Security (RLS)</strong> ngay trong cơ sở dữ liệu và dùng kỹ năng kiểm tra bảo mật như <a data-catalog-skill="cloudflare-security-audit" href="../../?lang=vi&amp;skill=cloudflare-security-audit&amp;agent=universal">cloudflare-security-audit</a> để rà soát toàn bộ bề mặt tấn công.</li>
+</ul>
+</div>
+<div data-language="en" hidden>
+<p>Two critical security vulnerabilities surface repeatedly in rushed AI-generated apps:</p>
+<ul>
+<li><strong>Exposing Secret Keys in Client Bundles:</strong> Prefixing private keys with <code>NEXT_PUBLIC_</code> or <code>VITE_</code> ships them straight to every visitor's browser DevTools. Keep secrets strictly server-side, add <code>.env</code> to <code>.gitignore</code>, and commit only a sanitized <code>.env.example</code> template.</li>
+<li><strong>Hiding UI Buttons Instead of Enforcing Backend Authorization:</strong> Hiding a “Delete” button in React does nothing to stop an attacker from firing a raw HTTP <code>DELETE</code> request. Enforce <strong>Row-Level Security (RLS)</strong> at the database layer and audit edge configurations with <a data-catalog-skill="cloudflare-security-audit" href="../../?lang=en&amp;skill=cloudflare-security-audit&amp;agent=universal">cloudflare-security-audit</a>.</li>
+</ul>
+</div>
+
+<figure class="ae-stage-card" aria-labelledby="rls-sim-caption">
+  <div class="ae-toolbar" role="region" aria-label="Điều khiển mô phỏng phân quyền RLS">
+    <span class="ae-status-pill" role="status" aria-live="polite">
+      <span class="ae-status-dot"></span>
+      <span data-language="vi">Mô phỏng: Tấn công gọi thẳng API xóa dữ liệu của người khác</span>
+      <span data-language="en" hidden>Simulation: Direct API request attempting to delete another user's row</span>
+    </span>
+    <div class="ae-btn-group">
+      <button id="rls-btn-on" type="button" class="ae-btn ae-btn-active" aria-pressed="true">
+        <span data-language="vi">✓ Bật RLS tại Database (Chặn đứng)</span><span data-language="en" hidden>✓ Database RLS Enabled (Blocked)</span>
+      </button>
+      <button id="rls-btn-off" type="button" class="ae-btn" aria-pressed="false">
+        <span data-language="vi">✕ Chỉ ẩn nút trên Giao diện (Bị lọt!)</span><span data-language="en" hidden>✕ UI Button Hidden Only (Breached!)</span>
+      </button>
+    </div>
+  </div>
+  <div class="ae-canvas-wrap">
+    <svg class="ae-svg" viewBox="0 0 880 205" role="img" aria-label="Sơ đồ động minh họa cơ chế Row-Level Security chặn truy cập trái phép tại tầng cơ sở dữ liệu">
+      <rect x="0" y="0" width="880" height="205" fill="#12161f"/>
+
+      <!-- Attacker Client -->
+      <rect x="28" y="42" width="215" height="118" rx="10" fill="#2b1922" stroke="#ff6f6b" stroke-width="1.6"/>
+      <text x="44" y="68" fill="#ff6f6b" font-family="monospace" font-size="11" font-weight="700" data-language="vi">TRÌNH DUYỆT (USER B)</text>
+      <text x="44" y="68" fill="#ff6f6b" font-family="monospace" font-size="11" font-weight="700" data-language="en" hidden>CLIENT (USER B)</text>
+      <text x="44" y="92" fill="#ecf1fa" font-family="sans-serif" font-size="12" data-language="vi">Bỏ qua giao diện, mở F12 gửi:</text>
+      <text x="44" y="92" fill="#ecf1fa" font-family="sans-serif" font-size="12" data-language="en" hidden>Bypasses UI, sends raw request:</text>
+      <text x="44" y="116" fill="#ffb347" font-family="monospace" font-size="11">DELETE /orders/99</text>
+      <text x="44" y="138" fill="#93a3c0" font-family="monospace" font-size="11">(owner_id = User A)</text>
+
+      <path class="ae-stream" d="M 243 101 H 335" stroke="#ff6f6b"/>
+
+      <!-- RLS Shield / Gate -->
+      <g id="rls-gate-box" class="ae-node">
+        <rect id="rls-gate-rect" x="335" y="36" width="225" height="130" rx="10" fill="#132c23" stroke="#3fb950" stroke-width="2"/>
+        <text id="rls-gate-title" x="447" y="66" text-anchor="middle" fill="#3fb950" font-family="monospace" font-size="12" font-weight="700" data-language="vi">🛡️ TẦNG DATABASE RLS</text>
+        <text id="rls-gate-title-en" x="447" y="66" text-anchor="middle" fill="#3fb950" font-family="monospace" font-size="12" font-weight="700" data-language="en" hidden>🛡️ DATABASE RLS POLICY</text>
+        <text x="447" y="94" text-anchor="middle" fill="#ecf1fa" font-family="monospace" font-size="11">auth.uid() == owner_id</text>
+        <text id="rls-gate-verdict" x="447" y="124" text-anchor="middle" fill="#3fb950" font-family="monospace" font-size="12" font-weight="700" data-language="vi">User B != User A → TỪ CHỐI!</text>
+        <text id="rls-gate-verdict-en" x="447" y="124" text-anchor="middle" fill="#3fb950" font-family="monospace" font-size="12" font-weight="700" data-language="en" hidden>User B != User A → DENIED!</text>
+        <text x="447" y="148" text-anchor="middle" fill="#93a3c0" font-family="monospace" font-size="10">0 rows affected (403)</text>
+      </g>
+
+      <path id="rls-wire-db" class="ae-stream" d="M 560 101 H 642" stroke="#3fb950" opacity="0.25"/>
+
+      <!-- Target Database Row -->
+      <rect id="rls-db-rect" x="642" y="42" width="210" height="118" rx="10" fill="#182235" stroke="#56cfc5" stroke-width="1.6"/>
+      <text x="660" y="68" fill="#56cfc5" font-family="monospace" font-size="11" font-weight="700" data-language="vi">DỮ LIỆU CỦA USER A</text>
+      <text x="660" y="68" fill="#56cfc5" font-family="monospace" font-size="11" font-weight="700" data-language="en" hidden>USER A'S RECORD</text>
+      <text x="660" y="96" fill="#ecf1fa" font-family="monospace" font-size="12">Order #99 · $450.00</text>
+      <text id="rls-db-state" x="660" y="126" fill="#3fb950" font-family="sans-serif" font-size="13" font-weight="700" data-language="vi">✓ An toàn nguyên vẹn</text>
+      <text id="rls-db-state-en" x="660" y="126" fill="#3fb950" font-family="sans-serif" font-size="13" font-weight="700" data-language="en" hidden>✓ Intact &amp; Protected</text>
+    </svg>
+  </div>
+  <figcaption id="rls-sim-caption" class="ae-caption">
+    <span data-language="vi"><strong>Quy tắc bảo mật:</strong> Giao diện chỉ dành cho trải nghiệm người dùng; phân quyền thực sự luôn phải nằm ở máy chủ và cơ sở dữ liệu.</span>
+    <span data-language="en" hidden><strong>Security rule:</strong> Client UI is strictly for convenience; real access control must be enforced on the server and database.</span>
+  </figcaption>
+</figure>
+
+<h2 id="ux-and-resilience"><span data-language="vi">6. Giao diện có phản hồi tức thì và xóa mềm (Soft Delete) chống mất mát</span><span data-language="en" hidden>6. Responsive UI Feedback States and Non-Destructive Soft Deletes</span></h2>
+<div data-language="vi">
+<p>Mã nguồn do AI sinh tự động thường chỉ xử lý “luồng màu hồng” (<em>happy path</em>) khi mạng nhanh và dữ liệu luôn có sẵn. Để sản phẩm đạt độ hoàn thiện cao, hãy yêu cầu agent tuân thủ các tiêu chuẩn từ <a data-catalog-skill="frontend-design" href="../../?lang=vi&amp;skill=frontend-design&amp;agent=universal">frontend-design</a> và <a data-catalog-skill="ui-ux-pro-max" href="../../?lang=vi&amp;skill=ui-ux-pro-max&amp;agent=universal">ui-ux-pro-max</a>:</p>
+<ul>
+<li><strong>Luôn có trạng thái chờ (Loading &amp; Disabled State):</strong> Khi người dùng bấm nút “Thanh toán” hoặc “Gửi đơn”, nút đó phải lập tức khóa lại và hiển thị chỉ báo đang xử lý để tránh việc bấm đúp tạo ra 5 giao dịch trùng lặp.</li>
+<li><strong>Ưu tiên Xóa mềm (Soft Delete) thay vì Xóa vĩnh viễn (Hard Delete):</strong> Thay vì dùng lệnh <code>DELETE FROM orders</code> làm biến mất dữ liệu mãi mãi, hãy thêm cột <code>deleted_at</code> (kiểu thời gian). Khi có sự cố hoặc thao tác nhầm, bạn có thể khôi phục dữ liệu chỉ trong vài giây.</li>
+</ul>
+</div>
+<div data-language="en" hidden>
+<p>Default AI-generated UI code usually covers only the <em>happy path</em> on a zero-latency local connection. To deliver a resilient user experience, direct your agent with <a data-catalog-skill="frontend-design" href="../../?lang=en&amp;skill=frontend-design&amp;agent=universal">frontend-design</a> and <a data-catalog-skill="ui-ux-pro-max" href="../../?lang=en&amp;skill=ui-ux-pro-max&amp;agent=universal">ui-ux-pro-max</a> standards:</p>
+<ul>
+<li><strong>Explicit Loading &amp; Idempotent Submit States:</strong> Immediately disable action buttons and show progress indicators on click so impatient users cannot trigger five duplicate charges.</li>
+<li><strong>Prefer Soft Deletes Over Hard Deletes:</strong> Instead of running destructive <code>DELETE FROM orders</code> statements, mark records with a nullable <code>deleted_at</code> timestamp. When an automated script or user makes a mistake, recovery takes seconds.</li>
+</ul>
+</div>
+
+<h2 id="responsible-shipping"><span data-language="vi">7. Đưa sản phẩm ra thực tế có trách nhiệm: CI/CD và tuân thủ dữ liệu</span><span data-language="en" hidden>7. Ship Responsibly: Automated CI/CD and Data Privacy Compliance</span></h2>
+<div data-language="vi">
+<p>Khi đưa ứng dụng từ máy cá nhân lên môi trường thực tế, hãy thiết lập quy trình xuất bản tự động và minh bạch hóa kiến trúc hệ thống:</p>
+<ul>
+<li><strong>Trực quan hóa kiến trúc trước khi triển khai:</strong> Dùng <a data-catalog-skill="stack-diagram" href="../../?lang=vi&amp;skill=stack-diagram&amp;agent=universal">stack-diagram</a> hoặc <a data-catalog-skill="animated-motion-diagram" href="../../?lang=vi&amp;skill=animated-motion-diagram&amp;agent=universal">animated-motion-diagram</a> để vẽ sơ đồ luồng dữ liệu rõ ràng giữa trình duyệt, máy chủ API, hàng đợi và cơ sở dữ liệu.</li>
+<li><strong>Tôn trọng quyền riêng tư và dữ liệu cá nhân:</strong> Chỉ thu thập những trường thông tin thực sự cần thiết cho tính năng, mã hóa dữ liệu nhạy cảm, cung cấp cơ chế cho phép người dùng xuất hoặc yêu cầu xóa dữ liệu của họ theo quy định pháp luật hiện hành (như Nghị định 13/2023/NĐ-CP tại Việt Nam).</li>
+<li><strong>Rèn luyện tư duy hệ thống mỗi ngày:</strong> Thay vì chỉ nhận mã nguồn thụ động, bạn có thể dùng <a data-catalog-skill="socratic-tutor" href="../../?lang=vi&amp;skill=socratic-tutor&amp;agent=universal">socratic-tutor</a> để yêu cầu AI đóng vai người hướng dẫn đặt câu hỏi ngược lại, giúp bạn nắm vững từng quyết định kiến trúc trong chính dự án của mình.</li>
+</ul>
+<div class="guide-example"><div class="guide-example-header"><span class="guide-example-label">CLI: Trang bị bộ kỹ năng Agentic Engineering qua ./vas</span></div>
+<pre><code># Cài đặt nhóm skill kiểm thử, rà soát mã nguồn và gỡ lỗi có hệ thống
+./vas install code-review systematic-debugging webapp-testing --target workspace --mode link
+
+# Cài đặt nhóm skill thiết kế giao diện, bảo mật và sơ đồ kiến trúc động
+./vas install frontend-design cloudflare-security-audit animated-motion-diagram --target workspace --mode link
+
+# Kiểm tra danh sách skill đã sẵn sàng trong dự án
+./vas status --target workspace</code></pre>
+</div>
+</div>
+<div data-language="en" hidden>
+<p>Moving from localhost to production requires automated release pipelines and clear architectural visibility:</p>
+<ul>
+<li><strong>Visualize System Boundaries Before Launch:</strong> Use <a data-catalog-skill="stack-diagram" href="../../?lang=en&amp;skill=stack-diagram&amp;agent=universal">stack-diagram</a> or <a data-catalog-skill="animated-motion-diagram" href="../../?lang=en&amp;skill=animated-motion-diagram&amp;agent=universal">animated-motion-diagram</a> to map data flows across clients, API gateways, workers, and databases.</li>
+<li><strong>Respect User Privacy and Data Regulations:</strong> Collect only the minimum personal data required, encrypt sensitive fields, and provide clear data export and deletion workflows in compliance with local data protection laws (such as Vietnam's Decree 13/2023/ND-CP and GDPR).</li>
+<li><strong>Sharpen Your Architectural Intuition:</strong> Rather than passively accepting generated code, invoke <a data-catalog-skill="socratic-tutor" href="../../?lang=en&amp;skill=socratic-tutor&amp;agent=universal">socratic-tutor</a> so the agent questions your design assumptions and helps you master every layer of your stack.</li>
+</ul>
+<div class="guide-example"><div class="guide-example-header"><span class="guide-example-label">CLI: Equip Your Workspace with Agentic Engineering Skills via ./vas</span></div>
+<pre><code># Install code review, systematic debugging, and Playwright testing skills
+./vas install code-review systematic-debugging webapp-testing --target workspace --mode link
+
+# Install UI craft, security auditing, and animated architecture diagram skills
+./vas install frontend-design cloudflare-security-audit animated-motion-diagram --target workspace --mode link
+
+# Verify installed skills in your project workspace
+./vas status --target workspace</code></pre>
+</div>
+</div>
+</article>
+<aside class="guide-companion" aria-label="Skill liên quan">
+<p class="guide-eyebrow"><span data-language="vi">Áp dụng vào dự án</span><span data-language="en" hidden>Apply it to your project</span></p>
+<h2><a data-catalog-skill="code-review" href="../../?lang=vi&amp;skill=code-review&amp;agent=universal">code-review</a></h2>
+<p><span data-language="vi">Rà soát từng thay đổi mã nguồn, phát hiện sớm lỗi logic và bảo mật trước khi gộp nhánh của AI vào dự án chính.</span><span data-language="en" hidden>Audit every pull request diff, catch logic regressions and security flaws before merging AI branches into main.</span></p>
+<a class="button primary" data-catalog-skill="code-review" href="../../?lang=vi&amp;skill=code-review&amp;agent=universal"><span data-language="vi">Xem skill và cài đặt →</span><span data-language="en" hidden>Read skill and install →</span></a>
+<a class="text-link" href="../../#quickstart" data-home><span data-language="vi">Cách sử dụng VAS</span><span data-language="en" hidden>How to use VAS</span></a>
+</aside>
+</div>
+<section class="guide-related" aria-labelledby="related-title">
+<h2 id="related-title"><span data-language="vi">Đọc tiếp</span><span data-language="en" hidden>Read next</span></h2>
+<div class="guide-related-links">
+<a href="../review-pull-request-bang-ai/" data-guide-link><span data-language="vi">Review pull request bằng AI: diff, bằng chứng và kiểm thử</span><span data-language="en" hidden>Review pull requests with AI: diffs, evidence and verification</span></a>
+<a href="../debug-voi-ai-agent/" data-guide-link><span data-language="vi">Debug với AI agent: tái hiện lỗi, tìm nguyên nhân, kiểm thử</span><span data-language="en" hidden>Debug with an AI agent: reproduce, explain and verify</span></a>
+</div>
+</section>
+</main>
+<footer class="site-footer"><div class="shell footer-inner"><strong>VAS / Vie Agentic Skill</strong><p><span data-language="vi">Đọc hướng dẫn. Chọn skill. Áp dụng vào dự án.</span><span data-language="en" hidden>Read a guide. Choose a skill. Apply it to your project.</span></p><div><a href="../../#catalog" data-home><span data-language="vi">Thư viện</span><span data-language="en" hidden>Library</span></a><a href="https://github.com/huytran1120/vie-agentic-skills">GitHub ↗</a></div></div></footer>
+<script>
+(function () {
+  'use strict';
+  // 1. Interactive Git Branch Simulator
+  const btnAll = document.getElementById('git-btn-all');
+  const btnFail = document.getElementById('git-btn-fail');
+  const btnSave = document.getElementById('git-btn-save');
+  const wireBranch = document.getElementById('git-wire-branch');
+  const wireMerge = document.getElementById('git-wire-merge');
+  const streamActive = document.getElementById('git-stream-active');
+  const nodeFail = document.getElementById('git-node-fail');
+  const nodeFix = document.getElementById('git-node-fix');
+  const nodeMerge = document.getElementById('git-node-merge');
+  const branchLabel = document.getElementById('git-branch-label');
+
+  function setGitMode(mode) {
+    [btnAll, btnFail, btnSave].forEach(b => {
+      if (!b) return;
+      const active = (mode === 'all' && b === btnAll) || (mode === 'fail' && b === btnFail) || (mode === 'save' && b === btnSave);
+      b.classList.toggle('ae-btn-active', active);
+      b.setAttribute('aria-pressed', String(active));
+    });
+    if (mode === 'all') {
+      wireBranch.classList.remove('ae-wire-hidden');
+      wireMerge.classList.remove('ae-wire-hidden');
+      nodeFail.classList.remove('ae-node-dim');
+      nodeFix.classList.remove('ae-node-dim');
+      nodeMerge.classList.remove('ae-node-dim');
+      branchLabel.style.opacity = '1';
+      streamActive.setAttribute('d', 'M 82 70 H 350 C 395 70, 405 188, 455 188 H 640 C 690 188, 700 70, 745 70 H 830');
+    } else if (mode === 'fail') {
+      wireBranch.classList.remove('ae-wire-hidden');
+      wireMerge.classList.add('ae-wire-hidden');
+      nodeFail.classList.remove('ae-node-dim');
+      nodeFix.classList.add('ae-node-dim');
+      nodeMerge.classList.add('ae-node-dim');
+      branchLabel.style.opacity = '1';
+      streamActive.setAttribute('d', 'M 82 70 H 830');
+    } else if (mode === 'save') {
+      wireBranch.classList.add('ae-wire-hidden');
+      wireMerge.classList.add('ae-wire-hidden');
+      nodeFail.classList.add('ae-node-dim');
+      nodeFix.classList.add('ae-node-dim');
+      nodeMerge.classList.add('ae-node-dim');
+      branchLabel.style.opacity = '0.25';
+      streamActive.setAttribute('d', 'M 82 70 H 830');
+    }
+  }
+  if (btnAll && btnFail && btnSave) {
+    btnAll.addEventListener('click', () => setGitMode('all'));
+    btnFail.addEventListener('click', () => setGitMode('fail'));
+    btnSave.addEventListener('click', () => setGitMode('save'));
+  }
+
+  // 2. Interactive Context Disclosure Simulator
+  const ctxGood = document.getElementById('ctx-btn-good');
+  const ctxBad = document.getElementById('ctx-btn-bad');
+  const inputGood = document.getElementById('ctx-input-good');
+  const inputBad = document.getElementById('ctx-input-bad');
+  const meterBar = document.getElementById('ctx-meter-bar');
+  const meterText = document.getElementById('ctx-meter-text');
+  const streamLine = document.getElementById('ctx-stream-line');
+  const streamOut = document.getElementById('ctx-stream-out');
+
+  function setCtxMode(good) {
+    ctxGood.classList.toggle('ae-btn-active', good);
+    ctxGood.setAttribute('aria-pressed', String(good));
+    ctxBad.classList.toggle('ae-btn-active', !good);
+    ctxBad.setAttribute('aria-pressed', String(!good));
+    if (good) {
+      inputGood.classList.remove('ae-node-dim');
+      inputBad.classList.add('ae-node-dim');
+      meterBar.setAttribute('width', '44');
+      meterBar.setAttribute('fill', '#3fb950');
+      meterText.textContent = document.documentElement.lang === 'en' ? '18% · Focused & Sharp' : '18% · Tinh gọn & Sắc bén';
+      meterText.setAttribute('fill', '#3fb950');
+      streamLine.setAttribute('stroke', '#56cfc5');
+      streamOut.setAttribute('stroke', '#3fb950');
+    } else {
+      inputGood.classList.add('ae-node-dim');
+      inputBad.classList.remove('ae-node-dim');
+      meterBar.setAttribute('width', '188');
+      meterBar.setAttribute('fill', '#ff6f6b');
+      meterText.textContent = document.documentElement.lang === 'en' ? '94% · Context Rot / Noise' : '94% · Quá tải & Nhiễu loạn';
+      meterText.setAttribute('fill', '#ff6f6b');
+      streamLine.setAttribute('stroke', '#ff6f6b');
+      streamOut.setAttribute('stroke', '#ff6f6b');
+    }
+  }
+  if (ctxGood && ctxBad) {
+    ctxGood.addEventListener('click', () => setCtxMode(true));
+    ctxBad.addEventListener('click', () => setCtxMode(false));
+  }
+
+  // 3. Interactive TDD Guardrail Loop Simulator
+  const tddGuard = document.getElementById('tdd-btn-guard');
+  const tddLoop = document.getElementById('tdd-btn-loop');
+  const tddStep1 = document.getElementById('tdd-step-1');
+  const tddStep4 = document.getElementById('tdd-step-4');
+  const tddBadLoop = document.getElementById('tdd-bad-loop');
+
+  function setTddMode(guarded) {
+    tddGuard.classList.toggle('ae-btn-active', guarded);
+    tddGuard.setAttribute('aria-pressed', String(guarded));
+    tddLoop.classList.toggle('ae-btn-active', !guarded);
+    tddLoop.setAttribute('aria-pressed', String(!guarded));
+    if (guarded) {
+      tddStep1.classList.remove('ae-node-dim');
+      tddStep4.classList.remove('ae-node-dim');
+      tddBadLoop.classList.add('ae-node-dim');
+    } else {
+      tddStep1.classList.add('ae-node-dim');
+      tddStep4.classList.add('ae-node-dim');
+      tddBadLoop.classList.remove('ae-node-dim');
+    }
+  }
+  if (tddGuard && tddLoop) {
+    tddGuard.addEventListener('click', () => setTddMode(true));
+    tddLoop.addEventListener('click', () => setTddMode(false));
+  }
+
+  // 4. Interactive RLS Security Shield Simulator
+  const rlsOn = document.getElementById('rls-btn-on');
+  const rlsOff = document.getElementById('rls-btn-off');
+  const rlsGateRect = document.getElementById('rls-gate-rect');
+  const rlsVerdict = document.getElementById('rls-gate-verdict');
+  const rlsVerdictEn = document.getElementById('rls-gate-verdict-en');
+  const rlsWireDb = document.getElementById('rls-wire-db');
+  const rlsDbRect = document.getElementById('rls-db-rect');
+  const rlsDbState = document.getElementById('rls-db-state');
+  const rlsDbStateEn = document.getElementById('rls-db-state-en');
+
+  function setRlsMode(enabled) {
+    rlsOn.classList.toggle('ae-btn-active', enabled);
+    rlsOn.setAttribute('aria-pressed', String(enabled));
+    rlsOff.classList.toggle('ae-btn-active', !enabled);
+    rlsOff.setAttribute('aria-pressed', String(!enabled));
+    if (enabled) {
+      rlsGateRect.setAttribute('fill', '#132c23');
+      rlsGateRect.setAttribute('stroke', '#3fb950');
+      rlsVerdict.textContent = 'User B != User A → TỪ CHỐI!';
+      rlsVerdict.setAttribute('fill', '#3fb950');
+      rlsVerdictEn.textContent = 'User B != User A → DENIED!';
+      rlsVerdictEn.setAttribute('fill', '#3fb950');
+      rlsWireDb.setAttribute('opacity', '0.25');
+      rlsWireDb.setAttribute('stroke', '#3fb950');
+      rlsDbRect.setAttribute('stroke', '#56cfc5');
+      rlsDbState.textContent = '✓ An toàn nguyên vẹn';
+      rlsDbState.setAttribute('fill', '#3fb950');
+      rlsDbStateEn.textContent = '✓ Intact & Protected';
+      rlsDbStateEn.setAttribute('fill', '#3fb950');
+    } else {
+      rlsGateRect.setAttribute('fill', '#381820');
+      rlsGateRect.setAttribute('stroke', '#ff6f6b');
+      rlsVerdict.textContent = 'Không kiểm tra → CHO QUA!';
+      rlsVerdict.setAttribute('fill', '#ff6f6b');
+      rlsVerdictEn.textContent = 'No policy check → BYPASSED!';
+      rlsVerdictEn.setAttribute('fill', '#ff6f6b');
+      rlsWireDb.setAttribute('opacity', '1');
+      rlsWireDb.setAttribute('stroke', '#ff6f6b');
+      rlsDbRect.setAttribute('stroke', '#ff6f6b');
+      rlsDbState.textContent = '✕ ĐÃ BỊ XÓA TRÁI PHÉP!';
+      rlsDbState.setAttribute('fill', '#ff6f6b');
+      rlsDbStateEn.textContent = '✕ DELETED BY ATTACKER!';
+      rlsDbStateEn.setAttribute('fill', '#ff6f6b');
+    }
+  }
+  if (rlsOn && rlsOff) {
+    rlsOn.addEventListener('click', () => setRlsMode(true));
+    rlsOff.addEventListener('click', () => setRlsMode(false));
+  }
+}());
+</script>
+</body>
+</html>

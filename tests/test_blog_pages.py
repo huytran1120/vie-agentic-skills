@@ -47,6 +47,7 @@ SLUGS = (
     "lam-chu-claude-api-prompt-engineering-tool-use",
     "thiet-ke-ui-tu-prompt-den-code-voi-google-stitch",
     "minh-hoa-isometric-animation-phan-cung-anatomy",
+    "tu-vibe-coder-den-agentic-engineer",
 )
 LINKED_SKILLS = {
     "webapp-testing",
