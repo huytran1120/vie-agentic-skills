@@ -1,0 +1,227 @@
+{
+  "source_repo": "NiazMorshed2007/reanimate",
+  "source_url": "https://github.com/NiazMorshed2007/reanimate",
+  "revision": "3f7a55a2986a84ca2173e86ee9127eefe31d046d",
+  "author": "Niaz Morshed",
+  "author_url": "https://github.com/NiazMorshed2007",
+  "license": "MIT",
+  "license_source": "https://github.com/NiazMorshed2007/reanimate/blob/3f7a55a2986a84ca2173e86ee9127eefe31d046d/LICENSE",
+  "skill_count": 1,
+  "skipped": [],
+  "namespaces": {},
+  "duplicate_check": {
+    "catalog_count_before": 4096,
+    "upstream_is_fork": false,
+    "methods": [
+      "canonical-id/name",
+      "source-repo/path",
+      "raw-sha256",
+      "normalized-body",
+      "7-word-shingles"
+    ],
+    "collision_rationale": "Zero ID or content collisions against all 4,096 catalog skills (0.0003 max 7-word shingle Jaccard similarity)."
+  },
+  "adaptations": [
+    "Preserve complete upstream skills/reanimate payload including LICENSE, references/, scripts/, and executable permission on scripts/setup.sh.",
+    "Exclude optional repository showcase site/ and .github/ assets not needed by the standalone skill.",
+    "Add NOTICE.md and append reversible VAS installation/prerequisites notes to SKILL.md.",
+    "Map reanimate to the existing media category to preserve the 119-category taxonomy."
+  ],
+  "skills": [
+    {
+      "id": "reanimate",
+      "canonical_id": "reanimate",
+      "name": "reanimate",
+      "path": "skills/reanimate",
+      "description": "Clone a section, widget, page or animation from any reference (a live website URL, a screen recording, an mp4/mov/webm, a gif, a Lottie file, a prototype export) frame by frame into the user's own codebase, then record the clone and verify it against the reference frame by frame, iterating until timing, easing, sequence and layout match. Use whenever the user wants to clone, copy, replicate, recreate, reverse-engineer, port or \"steal\" a hero, section, widget, marquee, carousel, hover effect, page transition, loader, scroll animation or interaction from a site or video, says \"make it look/feel/move like this\", \"same animation as\", \"match this exactly\", or hands over a gif/video and asks to build it, including when they also want to add their own content, colours or extra features on top, or only want part of the reference (one section, one widget, a few seconds). Covers canvas, WebGL, WebGPU and three.js / 3D scenes (shaders, particles, globes, glTF models) as well as CSS and JS motion. Pixel-level matching of fonts, colours and spacing is done only when they ask for it.",
+      "category": "media",
+      "tags": [
+        "animation",
+        "motion",
+        "clone",
+        "frame-by-frame",
+        "css",
+        "webgl",
+        "threejs",
+        "reanimate"
+      ],
+      "triggers": [
+        "reanimate",
+        "clone animation",
+        "rebuild animation frame by frame",
+        "match animation timing"
+      ],
+      "risk": "safe",
+      "author": "Niaz Morshed",
+      "author_url": "https://github.com/NiazMorshed2007",
+      "source": "https://github.com/NiazMorshed2007/reanimate/tree/3f7a55a2986a84ca2173e86ee9127eefe31d046d/skills/reanimate",
+      "source_repo": "NiazMorshed2007/reanimate",
+      "source_revision": "3f7a55a2986a84ca2173e86ee9127eefe31d046d",
+      "source_path": "skills/reanimate",
+      "license": "MIT",
+      "license_source": "https://github.com/NiazMorshed2007/reanimate/blob/3f7a55a2986a84ca2173e86ee9127eefe31d046d/LICENSE"
+    }
+  ],
+  "files": [
+    {
+      "skill_id": "reanimate",
+      "source_path": "skills/reanimate/LICENSE",
+      "path": "skills/reanimate/LICENSE",
+      "source_sha256": "6bce4169a631cbe6d18089ed7e15d7ffe2afd736272d0ed9dc0e40e7f98d6f41",
+      "sha256": "6bce4169a631cbe6d18089ed7e15d7ffe2afd736272d0ed9dc0e40e7f98d6f41",
+      "executable": false
+    },
+    {
+      "skill_id": "reanimate",
+      "source_path": "skills/reanimate/NOTICE.md",
+      "path": "skills/reanimate/NOTICE.md",
+      "source_sha256": "965fc365816b3513858752bf4f507ef3d40c51795f45b8dba7e2eb2e7efe40ff",
+      "sha256": "965fc365816b3513858752bf4f507ef3d40c51795f45b8dba7e2eb2e7efe40ff",
+      "executable": false
+    },
+    {
+      "skill_id": "reanimate",
+      "source_path": "skills/reanimate/SKILL.md",
+      "path": "skills/reanimate/SKILL.md",
+      "source_sha256": "dec8499d220918750de9d5ca14162f7fe5bf96edda84dbf851355545e1adedc8",
+      "sha256": "1a163455064c41f55dc5a86b068fd0ceda21151fc47905a3ba5ea624804001eb",
+      "executable": false
+    },
+    {
+      "skill_id": "reanimate",
+      "source_path": "skills/reanimate/references/analysis.md",
+      "path": "skills/reanimate/references/analysis.md",
+      "source_sha256": "859fc52aa2b606e8be50406b026adaa40a222c7407388ff05faddf2449685081",
+      "sha256": "859fc52aa2b606e8be50406b026adaa40a222c7407388ff05faddf2449685081",
+      "executable": false
+    },
+    {
+      "skill_id": "reanimate",
+      "source_path": "skills/reanimate/references/capture.md",
+      "path": "skills/reanimate/references/capture.md",
+      "source_sha256": "9b2251a8c06a3fc240f472e079f6a4e35bcf603d0b78b2ad8ef4877e5814c3e7",
+      "sha256": "9b2251a8c06a3fc240f472e079f6a4e35bcf603d0b78b2ad8ef4877e5814c3e7",
+      "executable": false
+    },
+    {
+      "skill_id": "reanimate",
+      "source_path": "skills/reanimate/references/implementation.md",
+      "path": "skills/reanimate/references/implementation.md",
+      "source_sha256": "91b5ce233c673fddd2b704ddf4c19f9e385b57265063fa576cba7998cfdcbb48",
+      "sha256": "91b5ce233c673fddd2b704ddf4c19f9e385b57265063fa576cba7998cfdcbb48",
+      "executable": false
+    },
+    {
+      "skill_id": "reanimate",
+      "source_path": "skills/reanimate/references/verify.md",
+      "path": "skills/reanimate/references/verify.md",
+      "source_sha256": "068a7bbea01f0ea3f76342a2ab632eae2fe336689c1236ad65baf2779e77e216",
+      "sha256": "068a7bbea01f0ea3f76342a2ab632eae2fe336689c1236ad65baf2779e77e216",
+      "executable": false
+    },
+    {
+      "skill_id": "reanimate",
+      "source_path": "skills/reanimate/references/webgl.md",
+      "path": "skills/reanimate/references/webgl.md",
+      "source_sha256": "f3ea47e59c03557d1b39509dc5584d45707018f874289ef52cdf2cca51f7ad56",
+      "sha256": "f3ea47e59c03557d1b39509dc5584d45707018f874289ef52cdf2cca51f7ad56",
+      "executable": false
+    },
+    {
+      "skill_id": "reanimate",
+      "source_path": "skills/reanimate/scripts/bun.lock",
+      "path": "skills/reanimate/scripts/bun.lock",
+      "source_sha256": "4dced96ffc7dd38a78ae55914375a55112e468b28620f1bf9a8c31679f9419bd",
+      "sha256": "4dced96ffc7dd38a78ae55914375a55112e468b28620f1bf9a8c31679f9419bd",
+      "executable": false
+    },
+    {
+      "skill_id": "reanimate",
+      "source_path": "skills/reanimate/scripts/capture.ts",
+      "path": "skills/reanimate/scripts/capture.ts",
+      "source_sha256": "605ceb44ff627c038f12d402a908b3f6df042391e2f85025cabd3e0a6e12730c",
+      "sha256": "605ceb44ff627c038f12d402a908b3f6df042391e2f85025cabd3e0a6e12730c",
+      "executable": false
+    },
+    {
+      "skill_id": "reanimate",
+      "source_path": "skills/reanimate/scripts/compare.ts",
+      "path": "skills/reanimate/scripts/compare.ts",
+      "source_sha256": "c907d1a8a131bc7af8e9114e9eb06e0ba001ee2c26b4c300b55335918738ddb5",
+      "sha256": "c907d1a8a131bc7af8e9114e9eb06e0ba001ee2c26b4c300b55335918738ddb5",
+      "executable": false
+    },
+    {
+      "skill_id": "reanimate",
+      "source_path": "skills/reanimate/scripts/easing.ts",
+      "path": "skills/reanimate/scripts/easing.ts",
+      "source_sha256": "0bb9ad7833c4b4c9e1b1dcfe9b1223ee22d74424f44b33a2d5724cd44ffa2656",
+      "sha256": "0bb9ad7833c4b4c9e1b1dcfe9b1223ee22d74424f44b33a2d5724cd44ffa2656",
+      "executable": false
+    },
+    {
+      "skill_id": "reanimate",
+      "source_path": "skills/reanimate/scripts/frames.ts",
+      "path": "skills/reanimate/scripts/frames.ts",
+      "source_sha256": "52dee2562900069c6814f830939b892d949bd59537929b3a6313f0695207015c",
+      "sha256": "52dee2562900069c6814f830939b892d949bd59537929b3a6313f0695207015c",
+      "executable": false
+    },
+    {
+      "skill_id": "reanimate",
+      "source_path": "skills/reanimate/scripts/gl.ts",
+      "path": "skills/reanimate/scripts/gl.ts",
+      "source_sha256": "912a23070bc5ea772c1714410a4493262dac35c42d16c557044a85297c02de1b",
+      "sha256": "912a23070bc5ea772c1714410a4493262dac35c42d16c557044a85297c02de1b",
+      "executable": false
+    },
+    {
+      "skill_id": "reanimate",
+      "source_path": "skills/reanimate/scripts/inpage/clock.js",
+      "path": "skills/reanimate/scripts/inpage/clock.js",
+      "source_sha256": "52b34d5267432a3eca342eb57dcb09084841055b8e62ce707c199afc50d0d5ff",
+      "sha256": "52b34d5267432a3eca342eb57dcb09084841055b8e62ce707c199afc50d0d5ff",
+      "executable": false
+    },
+    {
+      "skill_id": "reanimate",
+      "source_path": "skills/reanimate/scripts/inpage/gl-hooks.js",
+      "path": "skills/reanimate/scripts/inpage/gl-hooks.js",
+      "source_sha256": "5ef67551eb7060f0415b33519fcdba8687e5382745ff4d3d73e069467b94f7c6",
+      "sha256": "5ef67551eb7060f0415b33519fcdba8687e5382745ff4d3d73e069467b94f7c6",
+      "executable": false
+    },
+    {
+      "skill_id": "reanimate",
+      "source_path": "skills/reanimate/scripts/lib.ts",
+      "path": "skills/reanimate/scripts/lib.ts",
+      "source_sha256": "1ec9f75dab68894ac4c7f91197f13b80f1417bdaffe1b7dfa1382918c913d680",
+      "sha256": "1ec9f75dab68894ac4c7f91197f13b80f1417bdaffe1b7dfa1382918c913d680",
+      "executable": false
+    },
+    {
+      "skill_id": "reanimate",
+      "source_path": "skills/reanimate/scripts/package.json",
+      "path": "skills/reanimate/scripts/package.json",
+      "source_sha256": "97c500cccee5fb44bd50571a3e6e690d236e611804fa175371fbb4657bce8320",
+      "sha256": "97c500cccee5fb44bd50571a3e6e690d236e611804fa175371fbb4657bce8320",
+      "executable": false
+    },
+    {
+      "skill_id": "reanimate",
+      "source_path": "skills/reanimate/scripts/setup.sh",
+      "path": "skills/reanimate/scripts/setup.sh",
+      "source_sha256": "4fe14d84d87f6627961eacbe0a85c65378289edacf67cb86555de48599580d7c",
+      "sha256": "4fe14d84d87f6627961eacbe0a85c65378289edacf67cb86555de48599580d7c",
+      "executable": true
+    },
+    {
+      "skill_id": "reanimate",
+      "source_path": "skills/reanimate/scripts/sheet.ts",
+      "path": "skills/reanimate/scripts/sheet.ts",
+      "source_sha256": "6267c057d808eb8cfc68052fb7ca097834930a7aa995d7afccb1cd2a3d9c921c",
+      "sha256": "6267c057d808eb8cfc68052fb7ca097834930a7aa995d7afccb1cd2a3d9c921c",
+      "executable": false
+    }
+  ]
+}

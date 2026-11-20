@@ -595,6 +595,36 @@
       "- **[wheresryan22/anatomy](https://github.com/wheresryan22/anatomy/tree/1482e8469b0a9e0d8cc18ea2740a01423d29ae80)** and **[annnguyentt/anatomy-reveal-skill](https://github.com/annnguyentt/anatomy-reveal-skill/tree/dd01e1c04559d79002da07862e26f8a5c2a07644)**: Isometric hardware anatomy illustration (anatomy) and exploded-view product reveal animations (anatomy-reveal) under the MIT License.",
       "- Standalone payloads provide multi-part isometric assemblies, shading, disassembly kinematics, and interactive inspection.",
       "- Installation via ./vas install only links or copies static files and writes .vas-manifest.json."
+    ],
+    "reanimate": [
+      "- **[NiazMorshed2007/reanimate](https://github.com/NiazMorshed2007/reanimate/tree/3f7a55a2986a84ca2173e86ee9127eefe31d046d)**: Frame-by-frame animation reverse-engineering and verification skill (`reanimate`) by Niaz Morshed at revision `3f7a55a2986a84ca2173e86ee9127eefe31d046d` under the MIT License.",
+      "- Captures live URLs, videos, GIFs, or WebGL/Three.js scenes frame by frame, extracts timing/easing curves, rebuilds the motion in the target codebase, and verifies fidelity side by side.",
+      "- Standalone payload preserves `SKILL.md`, `LICENSE`, `NOTICE.md`, `references/`, and `scripts/` (with executable bit on `scripts/setup.sh`).",
+      "- Installation via `./vas install` only links or copies static files and writes `.vas-manifest.json`."
+    ],
+    "huashuartmotion": [
+      "- **[alchaincyf/huashu-art-motion](https://github.com/alchaincyf/huashu-art-motion/tree/a97c45018d46e950d56d61981138e08f4e092909)**: Multi-style art painting and explainer motion film skill (`huashu-art-motion`) by alchaincyf (花叔 · 花生) at revision `a97c45018d46e950d56d61981138e08f4e092909` under the MIT License (bundled Three.js under MIT; bundled fonts under SIL OFL 1.1).",
+      "- Provides 36 production art styles, 16 transferable research recipes, 9 explainer motion grammars, storyboard linting, and a self-contained Canvas/WebGL rendering engine.",
+      "- Optional repository showcase media (`assets/`, ~51 MB) was omitted; all runtime code, style recipes, fonts, schemas, and license notices are preserved.",
+      "- Installation via `./vas install` only links or copies static files and writes `.vas-manifest.json`."
+    ],
+    "anidoodle": [
+      "- **[alexgreensh/anidoodle](https://github.com/alexgreensh/anidoodle/tree/4ae27d2c281fcfd01bce87ab13dc5ad4df81a795)**: Code-drawn 2D/3D stills, doodles, loops, and scored explainer films (`anidoodle`) by Alex Greenshpun (10x Company) at revision `4ae27d2c281fcfd01bce87ab13dc5ad4df81a795` under the Apache License 2.0.",
+      "- Bundles canonical `skills/anidoodle/` payload, root `LICENSE` and `NOTICE`, vendored Three.js 0.170.0 (MIT), Poppins Bold font (SIL OFL 1.1), and Public Domain Van Gogh reference.",
+      "- Optional sound pack (VCSL CC0 & OpenAIR CC BY 4.0) is not bundled and only fetched if explicitly approved by the user.",
+      "- Installation via `./vas install` only links or copies static files and writes `.vas-manifest.json`."
+    ],
+    "cinetic": [
+      "- **[Leonxlnx/cinetic](https://github.com/Leonxlnx/cinetic/tree/f4bbfc844877891fe92279d47b7874fb44d485ae)**: Launch films, update videos, and product teasers straight from code (`cinetic`) by Leonxlnx at revision `f4bbfc844877891fe92279d47b7874fb44d485ae` under the MIT License (bundled fonts under SIL OFL 1.1).",
+      "- Supports Remotion 4 (React) and HyperFrames (HTML/GSAP) with unified timeline contracts, brand kits, audio sync, and verification scripts.",
+      "- Standalone payload preserves `SKILL.md`, `LICENSE`, `LICENSE.txt`, `NOTICE.md`, `assets/`, `references/`, and `scripts/` with executable permissions.",
+      "- Installation via `./vas install` only links or copies static files and writes `.vas-manifest.json`."
+    ],
+    "el4cteoblender": [
+      "- **[EL4CTEO/blender-skills](https://github.com/EL4CTEO/blender-skills/tree/9e7e04a603c125a0d17447ab97112fa70a865067)**: 28 modular Blender 5.2 LTS / 5.3 `bpy` engineering skills (`blender-core`, `blender-animation`, `blender-geometry-nodes`, `blender-pbr-materials`, `blender-rendering`, etc.) by EL4CTEO at revision `9e7e04a603c125a0d17447ab97112fa70a865067` under the MIT License.",
+      "- Independent collection targeting Blender 5.x slotted/layered Action APIs, locale-safe node lookups, procedural rigging, baking, weather FX, and pipeline automation; preserves existing `arjun988/blender-skills` (`blender-skills/*`) untouched.",
+      "- Each standalone skill folder bundles its `scripts/_bpyx.py` helper, `references/`, `LICENSE`, and `NOTICE.md`.",
+      "- Installation via `./vas install` only links or copies static files and writes `.vas-manifest.json`."
     ]
   }
 }

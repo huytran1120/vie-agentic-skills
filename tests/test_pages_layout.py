@@ -66,7 +66,7 @@ class PagesLayoutTests(unittest.TestCase):
                 CHROME, "--headless", "--no-first-run", "--no-default-browser-check",
                 "--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu",
                 f"--user-data-dir={temp}", "--dump-dom", "--window-size=1600,1100",
-                "--virtual-time-budget=25000",
+                f"--virtual-time-budget={max(25000, page_count * 1500)}",
             ]
             if reduced_motion:
                 command.append("--force-prefers-reduced-motion")

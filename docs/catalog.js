@@ -183,7 +183,7 @@
   function escapeHtml(value) {
     return String(value == null ? '' : value).replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
   }
-  const sourceNames = { mattpocock: 'Matt Pocock', addy: 'Addy Osmani', blender: 'Blender Skills', youtube: 'YouTube Skills', hallmark: 'Hallmark', typesafe: 'TypeSafe AI', android: 'Android Skills', gamedev: 'GameDev Skills', heydamir: 'UI Unslop · Damir Sokolovsky', videoeditor: 'Video Editor · DaVinci Resolve', editonny: 'editonny · Matheus Gomes', teardown: 'Teardown · 3D Simulator', scenario: 'Scenario · Creative AI & DCC', stageshow: 'Stageshow · Benji Taylor', stackdiagram: 'Stack Diagram · caru-ini', gamestudios: 'Claude Code Game Studios · Donchitos', aibusiness: 'AI Business Skills', agency: 'The Agency · AI Specialists', scrapecreators: 'Social Media Research · ScrapeCreators', n8nmcp: 'n8n Self-Hosting · n8n-mcp', appllama: 'Appllama Mobile Design · Appllama', storescreenshots: 'Store Screenshots · thearkxd', effectivehtml: 'Effective HTML · Plannotator', videocreation: 'Video Creation · Haochen SHI', researchexplainer: 'Research Explainer & Manim · sepi2p', googleskills: 'Google Skills · Google', headless: 'Headless · Kun Chen', motionprompt: 'Motion Prompt · Shohei Ohtaki', janestreet: 'Jane Street · Socratic Tutor', claudevideo: 'Claude Video · Bradley Bonanno', skillevaluator: 'NVIDIA SkillEvaluator · NVIDIA' };
+  const sourceNames = { mattpocock: 'Matt Pocock', addy: 'Addy Osmani', blender: 'Blender Skills', youtube: 'YouTube Skills', hallmark: 'Hallmark', typesafe: 'TypeSafe AI', android: 'Android Skills', gamedev: 'GameDev Skills', heydamir: 'UI Unslop · Damir Sokolovsky', videoeditor: 'Video Editor · DaVinci Resolve', editonny: 'editonny · Matheus Gomes', teardown: 'Teardown · 3D Simulator', scenario: 'Scenario · Creative AI & DCC', stageshow: 'Stageshow · Benji Taylor', stackdiagram: 'Stack Diagram · caru-ini', gamestudios: 'Claude Code Game Studios · Donchitos', aibusiness: 'AI Business Skills', agency: 'The Agency · AI Specialists', scrapecreators: 'Social Media Research · ScrapeCreators', n8nmcp: 'n8n Self-Hosting · n8n-mcp', appllama: 'Appllama Mobile Design · Appllama', storescreenshots: 'Store Screenshots · thearkxd', effectivehtml: 'Effective HTML · Plannotator', videocreation: 'Video Creation · Haochen SHI', researchexplainer: 'Research Explainer & Manim · sepi2p', googleskills: 'Google Skills · Google', headless: 'Headless · Kun Chen', motionprompt: 'Motion Prompt · Shohei Ohtaki', janestreet: 'Jane Street · Socratic Tutor', claudevideo: 'Claude Video · Bradley Bonanno', skillevaluator: 'NVIDIA SkillEvaluator · NVIDIA', reanimate: 'Reanimate · Niaz Morshed', huashuartmotion: 'Huashu Art Motion · alchaincyf', anidoodle: 'Anidoodle · Alex Greenshpun', cinetic: 'Cinetic · Leonxlnx', el4cteoblender: 'Blender 5.x Skills · EL4CTEO' };
   function matchesSource(skill, source) {
     if (source === 'mattpocock') return skill.source_repo === 'mattpocock/skills';
     if (source === 'addy') return normalize(skill.author).includes('addy osmani');
@@ -216,6 +216,11 @@
     if (source === 'janestreet') return skill.source_repo === 'janestreet/agent_skills';
     if (source === 'claudevideo') return skill.source_repo === 'bradautomates/claude-video';
     if (source === 'skillevaluator') return skill.source_repo === 'NVIDIA/SkillEvaluator';
+    if (source === 'reanimate') return skill.source_repo === 'NiazMorshed2007/reanimate';
+    if (source === 'huashuartmotion') return skill.source_repo === 'alchaincyf/huashu-art-motion';
+    if (source === 'anidoodle') return skill.source_repo === 'alexgreensh/anidoodle';
+    if (source === 'cinetic') return skill.source_repo === 'Leonxlnx/cinetic';
+    if (source === 'el4cteoblender') return skill.source_repo === 'EL4CTEO/blender-skills';
     return false;
   }
 
@@ -763,6 +768,11 @@
   byId('janestreet-collection').addEventListener('click', () => selectSource('janestreet'));
   byId('claudevideo-collection').addEventListener('click', () => selectSource('claudevideo'));
   byId('skillevaluator-collection').addEventListener('click', () => selectSource('skillevaluator'));
+  byId('reanimate-collection').addEventListener('click', () => selectSource('reanimate'));
+  byId('huashuartmotion-collection').addEventListener('click', () => selectSource('huashuartmotion'));
+  byId('anidoodle-collection').addEventListener('click', () => selectSource('anidoodle'));
+  byId('cinetic-collection').addEventListener('click', () => selectSource('cinetic'));
+  byId('el4cteoblender-collection').addEventListener('click', () => selectSource('el4cteoblender'));
   byId('menu-toggle').addEventListener('click', () => { const menu = byId('mobile-menu'); menu.hidden = !menu.hidden; byId('menu-toggle').setAttribute('aria-expanded', String(!menu.hidden)); });
   byId('mobile-menu').addEventListener('click', event => { if (event.target.closest('a')) { byId('mobile-menu').hidden = true; byId('menu-toggle').setAttribute('aria-expanded', 'false'); } });
   byId('theme-toggle').addEventListener('click', event => {

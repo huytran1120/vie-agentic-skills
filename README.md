@@ -2,7 +2,7 @@
 
 **Thư viện kỹ năng cho trợ lý AI lập trình, có hướng dẫn sử dụng bằng tiếng Việt.**
 
-VAS tập hợp **4.079 skill** thuộc **119 danh mục**, do [Huy Tran](https://github.com/huytran1120) tuyển chọn và duy trì. Bạn có thể tìm quy trình phù hợp với công việc, đọc nội dung rồi cài vào dự án đang dùng với Antigravity, Codex, Claude Code, Cursor, Windsurf, Cline hoặc GitHub Copilot CLI.
+VAS tập hợp **4.128 skill** thuộc **119 danh mục**, do [Huy Tran](https://github.com/huytran1120) tuyển chọn và duy trì. Bạn có thể tìm quy trình phù hợp với công việc, đọc nội dung rồi cài vào dự án đang dùng với Antigravity, Codex, Claude Code, Cursor, Windsurf, Cline hoặc GitHub Copilot CLI.
 
 **[Mở thư viện skill trên Vercel](https://vie-agentic-skills.vercel.app/)** · [Blog / Hướng dẫn](https://vie-agentic-skills.vercel.app/blog/) · [GitHub Pages — bản cũ](https://huytran1120.github.io/vie-agentic-skills/?lang=vi) · [Xem toàn bộ danh mục](CATALOG.md) · [Báo lỗi hoặc đề xuất](https://github.com/huytran1120/vie-agentic-skills/issues)
 
@@ -231,6 +231,11 @@ Các hướng dẫn chi tiết được tách riêng để bạn chỉ mở ph�
 | Homelab Diagram | 1 | Quy trình thiết kế sơ đồ hạ tầng tự host Homelab dạng code trực quan từ YAML sang SVG; xem [bài viết hướng dẫn Homelab](docs/blog/ve-so-do-mang-homelab-bang-ai-agent-tu-yaml-den-svg/index.html) |
 | Claude Video | 1 | Xem và bóc tách video bằng hình ảnh và phụ đề (khung hình ffmpeg, phụ đề VTT, WhisperX cục bộ hoặc mô hình đa phương thức Gemini); xem [hướng dẫn Claude Video](docs/claude-video.md) |
 | NVIDIA SkillEvaluator | 1 | Đánh giá, chấm điểm và kiểm thử agent skill chuẩn NVIDIA (Tier 1 chất lượng/bảo mật tĩnh, Tier 2 chống trùng lặp, Tier 3 thử nghiệm sandbox với Skill Lift và pass@k); xem [hướng dẫn SkillEvaluator](docs/skillevaluator.md) |
+| Reanimate | 1 | Tái tạo từng khung hình (frame-by-frame) hiệu ứng chuyển động từ URL web, video, GIF hoặc cảnh WebGL/Three.js kèm đối chiếu sai lệch tự động; xem [nguồn và bản ghi nhập](data/reanimate-import.json) |
+| Huashu Art Motion | 1 | Làm phim đồ họa nghệ thuật đa phong cách (36 phong cách thực chiến + 16 công thức nghiên cứu, 9 ngữ pháp giải thích, engine Canvas/WebGL); xem [nguồn và bản ghi nhập](data/huashu-art-motion-import.json) |
+| Anidoodle | 1 | Vẽ tranh tĩnh, doodle động, vòng lặp và phim giải thích 2D/3D hoàn toàn bằng mã nguồn kèm nhạc nền Apache-2.0; xem [nguồn và bản ghi nhập](data/anidoodle-import.json) |
+| Cinetic | 1 | Đạo diễn và dựng phim ra mắt sản phẩm (launch films, promo clips) trực tiếp từ mã nguồn với Remotion 4 và HyperFrames; xem [nguồn và bản ghi nhập](data/cinetic-import.json) |
+| Blender 5.x Skills (EL4CTEO) | 28 | 28 quy trình kỹ thuật chuyên sâu cho Blender 5.2 LTS / 5.3 `bpy` (slotted actions, geometry nodes, rigging, baking, PBR, weather FX, pipeline automation); xem [nguồn và bản ghi nhập](data/el4cteo-blender-import.json) |
 
 Các tài liệu kiểm tra kỹ thuật dùng chung nằm trong [references/](references/), gồm kiểm thử, bảo mật, hiệu năng, khả năng tiếp cận, vận hành và điều phối agent.
 

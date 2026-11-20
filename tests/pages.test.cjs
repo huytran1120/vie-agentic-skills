@@ -640,7 +640,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
   const youtube = catalog.filterSkills(skills, { sources: ['youtube'] });
   assert.equal(youtube.length, 11);
   assert.equal(catalog.filterSkills(skills, { query: 'youtube-agent-skill' }).length, 11);
-  assert.equal(skills.length, 4096);
+  assert.equal(skills.length, 4128);
   for (const skill of youtube) {
     assert.ok(skill.id.startsWith('youtube-agent-skill/'));
     assert.equal(skill.source_repo, 'Jakeschincariol/youtube-agent-skill');
@@ -655,7 +655,7 @@ test('YouTube collection retains its pinned source, standalone install paths and
     assert.deepEqual(state.sources, ['youtube']);
     assert.equal(state.selected, youtube[0].id);
     assert.ok(i18n.translate('collections.youtube', language).startsWith('11 '));
-    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '4.079' : '4,079'));
+    assert.ok(i18n.translate('stats.runbooks', language).includes(language === 'vi' ? '4.128' : '4,128'));
   }
   assert.equal(catalog.filterSkills(skills, { sources: ['youtube'], category: 'security' }).length, 0);
   const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
@@ -1996,4 +1996,42 @@ test('skillevaluator retains exact source filtering, Apache-2.0 license and agen
   assert.ok(html.includes('name="source" value="skillevaluator"'));
   assert.ok(html.includes('data-source-count="skillevaluator">1<'));
   assert.ok(html.includes('id="skillevaluator-collection"'));
+});
+
+test('motion graphics and Blender 5.x batch retains exact source filtering, licenses and agent prompts', () => {
+  const html = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
+  const checks = [
+    { source: 'reanimate', repo: 'NiazMorshed2007/reanimate', count: 1, sampleId: 'reanimate', license: 'MIT', category: 'media' },
+    { source: 'huashuartmotion', repo: 'alchaincyf/huashu-art-motion', count: 1, sampleId: 'huashu-art-motion', license: 'MIT', category: 'media' },
+    { source: 'anidoodle', repo: 'alexgreensh/anidoodle', count: 1, sampleId: 'anidoodle', license: 'Apache-2.0', category: 'media' },
+    { source: 'cinetic', repo: 'Leonxlnx/cinetic', count: 1, sampleId: 'cinetic', license: 'MIT', category: 'media' },
+    { source: 'el4cteoblender', repo: 'EL4CTEO/blender-skills', count: 28, sampleId: 'blender-core', license: 'MIT', category: 'graphics-processing' },
+  ];
+
+  for (const item of checks) {
+    const filtered = catalog.filterSkills(skills, { sources: [item.source] });
+    assert.equal(filtered.length, item.count, item.source);
+    assert.equal(catalog.filterSkills(skills, { query: item.repo }).length, item.count, item.repo);
+    const sample = filtered.find(s => s.id === item.sampleId);
+    assert.ok(sample, item.sampleId);
+    assert.equal(sample.canonical_id, item.sampleId);
+    assert.equal(sample.source_repo, item.repo);
+    assert.equal(sample.license, item.license);
+    assert.equal(sample.category, item.category);
+
+    for (const language of ['vi', 'en']) {
+      assert.ok(i18n.translate(`collections.${item.source}`, language).startsWith(`${item.count} `));
+      for (const [agent] of catalog.agents.filter(([key]) => key !== 'all')) {
+        const prompt = catalog.agentInstallPrompt(sample, agent, language);
+        assert.ok(prompt.includes(`/install-manifests/${sample.id}.json`));
+        assert.ok(prompt.includes(catalog.targetFolders[agent]));
+        assert.ok(prompt.includes('SHA-256'));
+        assert.ok(prompt.includes('.vas-manifest.json'));
+      }
+    }
+
+    assert.ok(html.includes(`name="source" value="${item.source}"`));
+    assert.ok(html.includes(`data-source-count="${item.source}">${item.count}<`));
+    assert.ok(html.includes(`id="${item.source}-collection"`));
+  }
 });

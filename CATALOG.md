@@ -1,6 +1,6 @@
 # Vie Agentic Skill (VAS) - Catalog
 
-Tổng hợp **4,096** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
+Tổng hợp **4,128** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** danh mục chuyên biệt.
 
 | Danh mục | Số lượng | Lệnh cài đặt nhanh |
 | :--- | :---: | :--- |
@@ -69,7 +69,7 @@ Tổng hợp **4,096** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **game-development** | 284 skills | `./vas install --category game-development --target codex` |
 | **general** | 83 skills | `./vas install --category general --target codex` |
 | **granular-workflow-bundle** | 16 skills | `./vas install --category granular-workflow-bundle --target codex` |
-| **graphics-processing** | 10 skills | `./vas install --category graphics-processing --target codex` |
+| **graphics-processing** | 38 skills | `./vas install --category graphics-processing --target codex` |
 | **growth** | 3 skills | `./vas install --category growth --target codex` |
 | **health** | 21 skills | `./vas install --category health --target codex` |
 | **knowledge-management** | 2 skills | `./vas install --category knowledge-management --target codex` |
@@ -78,7 +78,7 @@ Tổng hợp **4,096** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | **lifestyle** | 1 skills | `./vas install --category lifestyle --target codex` |
 | **marketing** | 326 skills | `./vas install --category marketing --target codex` |
 | **mcp** | 8 skills | `./vas install --category mcp --target codex` |
-| **media** | 151 skills | `./vas install --category media --target codex` |
+| **media** | 155 skills | `./vas install --category media --target codex` |
 | **media-processing** | 2 skills | `./vas install --category media-processing --target codex` |
 | **memory** | 7 skills | `./vas install --category memory --target codex` |
 | **meta** | 38 skills | `./vas install --category meta --target codex` |
@@ -3016,11 +3016,39 @@ Tổng hợp **4,096** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `wordpress-theme-development` | `safe` | WordPress theme development workflow covering theme architecture, template hi... |
 | `wordpress-woocommerce-development` | `critical` | WooCommerce store development workflow covering store setup, payment integrat... |
 
-### GRAPHICS-PROCESSING (10 skills)
+### GRAPHICS-PROCESSING (38 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
 | `algorithmic-art` | `critical` | Creating algorithmic art using p5.js with seeded randomness and interactive p... |
+| `blender-addon-development` | `safe` | Write Blender 5.3 add-ons as extensions - blender_manifest.toml, operators/pa... |
+| `blender-animation` | `safe` | Animation in Blender 5.3 - slotted/layered actions and the channelbag API, Py... |
+| `blender-asset-qa` | `safe` | Mandatory review gate for any mesh or asset created or edited in Blender. Det... |
+| `blender-character-rigging` | `safe` | Character rigging in Blender 5.3 - Rigify metarig fit/generate, bone naming/r... |
+| `blender-clothing` | `safe` | Game clothing in Blender 5.3 - garments from body regions (ease offset, thick... |
+| `blender-core` | `safe` | Foundation for any Blender 5.2+ task an agent drives - running bpy via MCP (l... |
+| `blender-environment-kits` | `safe` | Game environments in Blender 5.3 - terrain from noise or heightmaps (erosion,... |
+| `blender-export-pipelines` | `safe` | Export from Blender 5.3 with verified presets - Roblox (FBX/glTF, cages, R15,... |
+| `blender-facial-shapekeys` | `safe` | Facial rigs and shape keys in Blender 5.3 - ARKit 52 blendshapes, visemes for... |
+| `blender-game-optimization` | `safe` | Optimize Blender assets for real-time engines - triangle/material/texture/bon... |
+| `blender-geometry-nodes` | `safe` | Geometry Nodes in Blender 5.3 - fields, domains, attributes, instancing, zone... |
+| `blender-hair-grooming` | `safe` | Hair and fur in Blender 5.3 - hair curves on a surface, guides + interpolated... |
+| `blender-hardsurface-modeling` | `safe` | Hard-surface and prop modeling in Blender 5.3 - blockout-to-detail flow, non-... |
+| `blender-lighting-lookdev` | `safe` | Lighting, cameras and look-dev in Blender 5.3 - studio 3-point and product li... |
+| `blender-pbr-materials` | `safe` | Physically based materials in Blender 5.3 - metal/roughness rules, Principled... |
+| `blender-pipeline-automation` | `safe` | Automate Blender 5.3 at scale - headless CLI flags, batch convert/inventory/r... |
+| `blender-rendering` | `safe` | Render with Blender 5.3 Cycles/EEVEE/Workbench - quality presets, GPU setup, ... |
+| `blender-retopology-uv` | `safe` | Retopology and UVs in Blender 5.3 - auto retopo (Quadriflow, Decimate, planar... |
+| `blender-scene-setup` | `safe` | Set up and audit Blender scenes the way studios do - units and real-world sca... |
+| `blender-sculpting` | `safe` | Sculpting in Blender 5.3 - base-to-detail workflow, voxel remesh, dyntopo, mu... |
+| `blender-simulation` | `safe` | Physics in Blender 5.3 - rigid bodies (density mass, shapes, bake to keys), c... |
+| `blender-stylized-npr` | `safe` | Stylized / NPR looks in Blender 5.3 - toon and cel shading (bands, shadow tin... |
+| `blender-texture-baking` | `safe` | Bake texture maps in Blender 5.3 Cycles - high-to-low normal maps with cage/e... |
+| `blender-texturing` | `safe` | Texture authoring in Blender 5.3 - smart-material layers (edge wear, cavity g... |
+| `blender-time-of-day` | `safe` | Time of day and atmosphere in Blender 5.3 - measured sky + sun for dawn, morn... |
+| `blender-video-editing` | `safe` | Video in Blender 5.3 - Video Sequencer edits from Python (clips, image sequen... |
+| `blender-weather-fx` | `safe` | Weather effects in Blender 5.3 - looping Geometry Nodes rain, snow, dust, ash... |
+| `blender-workflow-recipes` | `safe` | End-to-end Blender 5.3 playbooks chaining the blender-* skills with QA gates ... |
 | `canvas-design` | `critical` | Create beautiful visual art in .png and .pdf documents using design philosoph... |
 | `gl-transitions` | `safe` | Open-source GLSL shader transitions for web video, HTML5 Canvas, Remotion (@r... |
 | `gltf-transform` | `safe` | CLI and TypeScript SDK for 3D glTF/GLB asset optimization, compression, and a... |
@@ -3447,7 +3475,7 @@ Tổng hợp **4,096** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `protect-mcp-governance` | `critical` | Agent governance skill for MCP tool calls — Cedar policy authoring, shadow-to... |
 | `serply-search-mcp` | `safe` | Search Google, Bing, Google News and Google Scholar, and read public pages, w... |
 
-### MEDIA (151 skills)
+### MEDIA (155 skills)
 
 | Skill ID | Rủi ro | Mô tả tóm tắt |
 | :--- | :---: | :--- |
@@ -3460,11 +3488,13 @@ Tổng hợp **4,096** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `ai-photo-restyler` | `critical` | Install and use the official Photo to Anime package, pinned by digest, for pa... |
 | `ai-podcast-voiceover` | `critical` | Install and use the official AI Podcast Voiceover package, pinned by digest, ... |
 | `ai-storyboard-generator` | `critical` | Install and use the official AI Storyboard Generator package, pinned by diges... |
+| `anidoodle` | `safe` | Code-drawn stills, films, 3D motion graphics, explainers and web animations i... |
 | `atlas-cloud-media` | `critical` | Generate Atlas Cloud images and videos through its asynchronous media API wit... |
 | `beatra` | `critical` | Install and use the official AI Media Generator package, pinned by digest, fo... |
 | `beatra-ai-video-studio` | `critical` | Install and use the official Beatra AI Video Studio package, pinned by digest... |
 | `broll` | `safe` | How to find, watch and cut B-roll in a vlog - clips with no speech placed by ... |
 | `captions` | `safe` | Clean, readable burned-in style subtitles from the verbatim transcript - stut... |
+| `cinetic` | `safe` | Direct, build and render premium motion films from code - launch films, updat... |
 | `claude-awesome-video-creation` | `safe` | Make a complete, follow-along tutorial or explainer video from code with Clau... |
 | `ecommerce-listing-image-set` | `critical` | Install and use the official Ecommerce Product Images package, pinned by dige... |
 | `edit-video` | `safe` | The one-command first-pass edit. Takes footage from raw video/, transcribes i... |
@@ -3474,6 +3504,7 @@ Tổng hợp **4,096** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `film-crew` | `safe` | Turn a one-line AI video idea into a shot list and per-shot, model-ready prom... |
 | `gemini-omni-flash-api` | `critical` | Use this skill for generative video editing, text-to-video, image-referenced ... |
 | `generate-nanobanana` | `critical` | Generate and edit images/video with Google's Gemini media models (Nano Banana... |
+| `huashu-art-motion` | `safe` | 艺术与视频动画：拆解复刻动画；36种既有实做风格＋16种可迁移研究配方；9种解说动画语法，8种可按口播参数渲片段；含口播整片参考代码及框景检查；人用AI生... |
 | `image-generator` | `critical` | Generate and edit images using Gemini's Nano Banana Pro model (gemini-3-pro-i... |
 | `ingest-youtube` | `critical` | Pull a YouTube video transcript into a queryable markdown vault with yt-dlp s... |
 | `lanshu-create-ai-presenter-video` | `critical` | Turn a topic or script into a publish-ready explainer video, led by an AI pre... |
@@ -3492,6 +3523,7 @@ Tổng hợp **4,096** kỹ năng Agentic tiêu chuẩn hóa, chia theo **119** 
 | `podcast-generation` | `critical` | Generate real audio narratives from text content using Azure OpenAI's Realtim... |
 | `poster-design-studio` | `critical` | Install and use the official AI Poster Maker package, pinned by digest, for p... |
 | `product-photo-studio` | `critical` | Install and use the official AI Product Photography package, pinned by digest... |
+| `reanimate` | `safe` | Clone a section, widget, page or animation from any reference (a live website... |
 | `remotion` | `critical` | Generate walkthrough videos from Stitch projects using Remotion with smooth t... |
 | `remotion-best-practices` | `critical` | Router for all Remotion skills |
 | `remotion-captions` | `critical` | Transcribing, displaying and animating captions |

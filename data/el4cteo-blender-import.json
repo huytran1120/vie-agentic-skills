@@ -1,0 +1,2242 @@
+{
+  "source_repo": "EL4CTEO/blender-skills",
+  "source_url": "https://github.com/EL4CTEO/blender-skills",
+  "revision": "9e7e04a603c125a0d17447ab97112fa70a865067",
+  "author": "EL4CTEO",
+  "author_url": "https://github.com/EL4CTEO",
+  "license": "MIT",
+  "license_source": "https://github.com/EL4CTEO/blender-skills/blob/9e7e04a603c125a0d17447ab97112fa70a865067/LICENSE",
+  "skill_count": 28,
+  "skipped": [],
+  "namespaces": {},
+  "duplicate_check": {
+    "catalog_count_before": 4096,
+    "upstream_is_fork": false,
+    "methods": [
+      "canonical-id/name",
+      "source-repo/path",
+      "raw-sha256",
+      "normalized-body",
+      "7-word-shingles"
+    ],
+    "collision_rationale": "All 28 EL4CTEO/blender-skills entries are independent Blender 5.2+/5.3 bpy workflows with zero ID collisions against the 94 arjun988/blender-skills entries (namespaced under blender-skills/*) and max 7-word shingle Jaccard similarity <= 0.0012."
+  },
+  "adaptations": [
+    "Preserve all 28 standalone skill folders with their bundled scripts/_bpyx.py helpers and references/.",
+    "Include upstream MIT LICENSE and NOTICE.md inside each standalone skill folder.",
+    "Map all 28 skills to the existing graphics-processing category to preserve the 94-skill arjun988/blender-skills blender category and the 119-category taxonomy.",
+    "Append reversible VAS installation/prerequisites notes to each SKILL.md."
+  ],
+  "skills": [
+    {
+      "id": "blender-addon-development",
+      "canonical_id": "blender-addon-development",
+      "name": "blender-addon-development",
+      "path": "skills/blender-addon-development",
+      "description": "Write Blender 5.3 add-ons as extensions - blender_manifest.toml, operators/panels/menus/property groups/preferences, bpy.props rules after 5.0, undo/redo, modal and timer patterns, gpu drawing (no bgl), bundling Python wheels, CLI validate/build/install, testing headless, extensions platform publishing. Use when creating or fixing a Blender add-on, tool, or UI.",
+      "category": "graphics-processing",
+      "tags": [
+        "blender",
+        "blender-5",
+        "bpy",
+        "3d",
+        "dcc",
+        "addon-development"
+      ],
+      "triggers": [
+        "blender-addon-development",
+        "blender addon development",
+        "blender 5.3 bpy"
+      ],
+      "risk": "safe",
+      "author": "EL4CTEO",
+      "author_url": "https://github.com/EL4CTEO",
+      "source": "https://github.com/EL4CTEO/blender-skills/tree/9e7e04a603c125a0d17447ab97112fa70a865067/skills/blender-addon-development",
+      "source_repo": "EL4CTEO/blender-skills",
+      "source_revision": "9e7e04a603c125a0d17447ab97112fa70a865067",
+      "source_path": "skills/blender-addon-development",
+      "license": "MIT",
+      "license_source": "https://github.com/EL4CTEO/blender-skills/blob/9e7e04a603c125a0d17447ab97112fa70a865067/LICENSE"
+    },
+    {
+      "id": "blender-animation",
+      "canonical_id": "blender-animation",
+      "name": "blender-animation",
+      "path": "skills/blender-animation",
+      "description": "Animation in Blender 5.3 - slotted/layered actions and the channelbag API, Python keyframing, F-curves, game loops with pop/hitch checks, NLA clips, pose library, mocap/BVH/Mixamo retargeting with auto bone maps, baking control rigs to export skeletons, root motion, per-clip export. Use for any keyframe, action, NLA, mocap, or animation-export task.",
+      "category": "graphics-processing",
+      "tags": [
+        "blender",
+        "blender-5",
+        "bpy",
+        "3d",
+        "dcc",
+        "animation"
+      ],
+      "triggers": [
+        "blender-animation",
+        "blender animation",
+        "blender 5.3 bpy"
+      ],
+      "risk": "safe",
+      "author": "EL4CTEO",
+      "author_url": "https://github.com/EL4CTEO",
+      "source": "https://github.com/EL4CTEO/blender-skills/tree/9e7e04a603c125a0d17447ab97112fa70a865067/skills/blender-animation",
+      "source_repo": "EL4CTEO/blender-skills",
+      "source_revision": "9e7e04a603c125a0d17447ab97112fa70a865067",
+      "source_path": "skills/blender-animation",
+      "license": "MIT",
+      "license_source": "https://github.com/EL4CTEO/blender-skills/blob/9e7e04a603c125a0d17447ab97112fa70a865067/LICENSE"
+    },
+    {
+      "id": "blender-asset-qa",
+      "canonical_id": "blender-asset-qa",
+      "name": "blender-asset-qa",
+      "path": "skills/blender-asset-qa",
+      "description": "Mandatory review gate for any mesh or asset created or edited in Blender. Detects z-fighting, floating/detached parts, inverted or inconsistent normals, non-manifold/open geometry, degenerate faces, duplicate verts, n-gons, unapplied scale, UV problems, bad skin weights, material/texture errors, and renders multi-angle review sheets. Use before calling any modeling, export or delivery task done.",
+      "category": "graphics-processing",
+      "tags": [
+        "blender",
+        "blender-5",
+        "bpy",
+        "3d",
+        "dcc",
+        "asset-qa"
+      ],
+      "triggers": [
+        "blender-asset-qa",
+        "blender asset qa",
+        "blender 5.3 bpy"
+      ],
+      "risk": "safe",
+      "author": "EL4CTEO",
+      "author_url": "https://github.com/EL4CTEO",
+      "source": "https://github.com/EL4CTEO/blender-skills/tree/9e7e04a603c125a0d17447ab97112fa70a865067/skills/blender-asset-qa",
+      "source_repo": "EL4CTEO/blender-skills",
+      "source_revision": "9e7e04a603c125a0d17447ab97112fa70a865067",
+      "source_path": "skills/blender-asset-qa",
+      "license": "MIT",
+      "license_source": "https://github.com/EL4CTEO/blender-skills/blob/9e7e04a603c125a0d17447ab97112fa70a865067/LICENSE"
+    },
+    {
+      "id": "blender-character-rigging",
+      "canonical_id": "blender-character-rigging",
+      "name": "blender-character-rigging",
+      "path": "skills/blender-character-rigging",
+      "description": "Character rigging in Blender 5.3 - Rigify metarig fit/generate, bone naming/roll/collections, DEF/MCH/control layers, IK/FK, robust skinning (heat + proxy fallback), weight-painting rules, correctives, engine game skeletons (Unity, Unreal, Roblox R15), rig validation and deformation stress tests. Use for armature, skinning or weights tasks.",
+      "category": "graphics-processing",
+      "tags": [
+        "blender",
+        "blender-5",
+        "bpy",
+        "3d",
+        "dcc",
+        "character-rigging"
+      ],
+      "triggers": [
+        "blender-character-rigging",
+        "blender character rigging",
+        "blender 5.3 bpy"
+      ],
+      "risk": "safe",
+      "author": "EL4CTEO",
+      "author_url": "https://github.com/EL4CTEO",
+      "source": "https://github.com/EL4CTEO/blender-skills/tree/9e7e04a603c125a0d17447ab97112fa70a865067/skills/blender-character-rigging",
+      "source_repo": "EL4CTEO/blender-skills",
+      "source_revision": "9e7e04a603c125a0d17447ab97112fa70a865067",
+      "source_path": "skills/blender-character-rigging",
+      "license": "MIT",
+      "license_source": "https://github.com/EL4CTEO/blender-skills/blob/9e7e04a603c125a0d17447ab97112fa70a865067/LICENSE"
+    },
+    {
+      "id": "blender-clothing",
+      "canonical_id": "blender-clothing",
+      "name": "blender-clothing",
+      "path": "skills/blender-clothing",
+      "description": "Game clothing in Blender 5.3 - garments from body regions (ease offset, thickness), skin-weight transfer, hiding covered body faces, cloth-sim draping for folds, body-morph shape keys on garments, layered clothing, pose-aware poke-through checks, sim-to-game-mesh cleanup. Use for shirts, pants, armor, outfits, layered or swappable clothing.",
+      "category": "graphics-processing",
+      "tags": [
+        "blender",
+        "blender-5",
+        "bpy",
+        "3d",
+        "dcc",
+        "clothing"
+      ],
+      "triggers": [
+        "blender-clothing",
+        "blender clothing",
+        "blender 5.3 bpy"
+      ],
+      "risk": "safe",
+      "author": "EL4CTEO",
+      "author_url": "https://github.com/EL4CTEO",
+      "source": "https://github.com/EL4CTEO/blender-skills/tree/9e7e04a603c125a0d17447ab97112fa70a865067/skills/blender-clothing",
+      "source_repo": "EL4CTEO/blender-skills",
+      "source_revision": "9e7e04a603c125a0d17447ab97112fa70a865067",
+      "source_path": "skills/blender-clothing",
+      "license": "MIT",
+      "license_source": "https://github.com/EL4CTEO/blender-skills/blob/9e7e04a603c125a0d17447ab97112fa70a865067/LICENSE"
+    },
+    {
+      "id": "blender-core",
+      "canonical_id": "blender-core",
+      "name": "blender-core",
+      "path": "skills/blender-core",
+      "description": "Foundation for any Blender 5.2+ task an agent drives - running bpy via MCP (live) or headless CLI, context overrides, locale-safe node lookup, enum discovery, 5.x API changes, verification. Use first for any Blender, bpy, .blend or 3D-asset request; routes to the specialized blender-* skills.",
+      "category": "graphics-processing",
+      "tags": [
+        "blender",
+        "blender-5",
+        "bpy",
+        "3d",
+        "dcc",
+        "core"
+      ],
+      "triggers": [
+        "blender-core",
+        "blender core",
+        "blender 5.3 bpy"
+      ],
+      "risk": "safe",
+      "author": "EL4CTEO",
+      "author_url": "https://github.com/EL4CTEO",
+      "source": "https://github.com/EL4CTEO/blender-skills/tree/9e7e04a603c125a0d17447ab97112fa70a865067/skills/blender-core",
+      "source_repo": "EL4CTEO/blender-skills",
+      "source_revision": "9e7e04a603c125a0d17447ab97112fa70a865067",
+      "source_path": "skills/blender-core",
+      "license": "MIT",
+      "license_source": "https://github.com/EL4CTEO/blender-skills/blob/9e7e04a603c125a0d17447ab97112fa70a865067/LICENSE"
+    },
+    {
+      "id": "blender-environment-kits",
+      "canonical_id": "blender-environment-kits",
+      "name": "blender-environment-kits",
+      "path": "skills/blender-environment-kits",
+      "description": "Game environments in Blender 5.3 - terrain from noise or heightmaps (erosion, terraces, play areas, slope/height materials, 16-bit heightmaps + splat maps for UE/Unity), biome scatter by slope/height/mask with Poisson spacing, modular kit metrics and validation (grid, pivots, seams, texel density). Use for levels, landscapes, forests, modular buildings, dungeons.",
+      "category": "graphics-processing",
+      "tags": [
+        "blender",
+        "blender-5",
+        "bpy",
+        "3d",
+        "dcc",
+        "environment-kits"
+      ],
+      "triggers": [
+        "blender-environment-kits",
+        "blender environment kits",
+        "blender 5.3 bpy"
+      ],
+      "risk": "safe",
+      "author": "EL4CTEO",
+      "author_url": "https://github.com/EL4CTEO",
+      "source": "https://github.com/EL4CTEO/blender-skills/tree/9e7e04a603c125a0d17447ab97112fa70a865067/skills/blender-environment-kits",
+      "source_repo": "EL4CTEO/blender-skills",
+      "source_revision": "9e7e04a603c125a0d17447ab97112fa70a865067",
+      "source_path": "skills/blender-environment-kits",
+      "license": "MIT",
+      "license_source": "https://github.com/EL4CTEO/blender-skills/blob/9e7e04a603c125a0d17447ab97112fa70a865067/LICENSE"
+    },
+    {
+      "id": "blender-export-pipelines",
+      "canonical_id": "blender-export-pipelines",
+      "name": "blender-export-pipelines",
+      "path": "skills/blender-export-pipelines",
+      "description": "Export from Blender 5.3 with verified presets - Roblox (FBX/glTF, cages, R15, SurfaceAppearance), Unity (FBX, Humanoid), Unreal (FBX skeletal, Nanite, UCX), Godot/web (GLB, meshopt/Draco, WebP), USD. Scale/axes, smoothing, tangents, leaf bones, clips, batch export, post-export verification. Use whenever an asset leaves Blender.",
+      "category": "graphics-processing",
+      "tags": [
+        "blender",
+        "blender-5",
+        "bpy",
+        "3d",
+        "dcc",
+        "export-pipelines"
+      ],
+      "triggers": [
+        "blender-export-pipelines",
+        "blender export pipelines",
+        "blender 5.3 bpy"
+      ],
+      "risk": "safe",
+      "author": "EL4CTEO",
+      "author_url": "https://github.com/EL4CTEO",
+      "source": "https://github.com/EL4CTEO/blender-skills/tree/9e7e04a603c125a0d17447ab97112fa70a865067/skills/blender-export-pipelines",
+      "source_repo": "EL4CTEO/blender-skills",
+      "source_revision": "9e7e04a603c125a0d17447ab97112fa70a865067",
+      "source_path": "skills/blender-export-pipelines",
+      "license": "MIT",
+      "license_source": "https://github.com/EL4CTEO/blender-skills/blob/9e7e04a603c125a0d17447ab97112fa70a865067/LICENSE"
+    },
+    {
+      "id": "blender-facial-shapekeys",
+      "canonical_id": "blender-facial-shapekeys",
+      "name": "blender-facial-shapekeys",
+      "path": "skills/blender-facial-shapekeys",
+      "description": "Facial rigs and shape keys in Blender 5.3 - ARKit 52 blendshapes, visemes for lip-sync, sculpting expressions, splitting symmetric shapes into Left/Right, mirroring, corrective and combination shapes, drivers and control rigs, bone+blendshape hybrids, export to engines (Unity, Unreal, Roblox dynamic heads, VRM/web). Use for faces, expressions, lip-sync, or any shape-key work.",
+      "category": "graphics-processing",
+      "tags": [
+        "blender",
+        "blender-5",
+        "bpy",
+        "3d",
+        "dcc",
+        "facial-shapekeys"
+      ],
+      "triggers": [
+        "blender-facial-shapekeys",
+        "blender facial shapekeys",
+        "blender 5.3 bpy"
+      ],
+      "risk": "safe",
+      "author": "EL4CTEO",
+      "author_url": "https://github.com/EL4CTEO",
+      "source": "https://github.com/EL4CTEO/blender-skills/tree/9e7e04a603c125a0d17447ab97112fa70a865067/skills/blender-facial-shapekeys",
+      "source_repo": "EL4CTEO/blender-skills",
+      "source_revision": "9e7e04a603c125a0d17447ab97112fa70a865067",
+      "source_path": "skills/blender-facial-shapekeys",
+      "license": "MIT",
+      "license_source": "https://github.com/EL4CTEO/blender-skills/blob/9e7e04a603c125a0d17447ab97112fa70a865067/LICENSE"
+    },
+    {
+      "id": "blender-game-optimization",
+      "canonical_id": "blender-game-optimization",
+      "name": "blender-game-optimization",
+      "path": "skills/blender-game-optimization",
+      "description": "Optimize Blender assets for real-time engines - triangle/material/texture/bone budgets per platform (mobile, Roblox, web, VR, console, PC), LOD chains, decimation modes, mesh cleanup, draw-call reduction (material merging, atlases, trim sheets), instancing, vertex-split costs, collision proxies, texture memory. Use when an asset is too heavy, before export, or when targeting a platform budget.",
+      "category": "graphics-processing",
+      "tags": [
+        "blender",
+        "blender-5",
+        "bpy",
+        "3d",
+        "dcc",
+        "game-optimization"
+      ],
+      "triggers": [
+        "blender-game-optimization",
+        "blender game optimization",
+        "blender 5.3 bpy"
+      ],
+      "risk": "safe",
+      "author": "EL4CTEO",
+      "author_url": "https://github.com/EL4CTEO",
+      "source": "https://github.com/EL4CTEO/blender-skills/tree/9e7e04a603c125a0d17447ab97112fa70a865067/skills/blender-game-optimization",
+      "source_repo": "EL4CTEO/blender-skills",
+      "source_revision": "9e7e04a603c125a0d17447ab97112fa70a865067",
+      "source_path": "skills/blender-game-optimization",
+      "license": "MIT",
+      "license_source": "https://github.com/EL4CTEO/blender-skills/blob/9e7e04a603c125a0d17447ab97112fa70a865067/LICENSE"
+    },
+    {
+      "id": "blender-geometry-nodes",
+      "canonical_id": "blender-geometry-nodes",
+      "name": "blender-geometry-nodes",
+      "path": "skills/blender-geometry-nodes",
+      "description": "Geometry Nodes in Blender 5.3 - fields, domains, attributes, instancing, zones (simulation/repeat/for-each), closures/bundles, lists, SDF grids, node tools, baking, plus a JSON-to-node-tree builder and socket inspector. Use for scattering, procedural assets/environments, parametric tools and modifier inputs.",
+      "category": "graphics-processing",
+      "tags": [
+        "blender",
+        "blender-5",
+        "bpy",
+        "3d",
+        "dcc",
+        "geometry-nodes"
+      ],
+      "triggers": [
+        "blender-geometry-nodes",
+        "blender geometry nodes",
+        "blender 5.3 bpy"
+      ],
+      "risk": "safe",
+      "author": "EL4CTEO",
+      "author_url": "https://github.com/EL4CTEO",
+      "source": "https://github.com/EL4CTEO/blender-skills/tree/9e7e04a603c125a0d17447ab97112fa70a865067/skills/blender-geometry-nodes",
+      "source_repo": "EL4CTEO/blender-skills",
+      "source_revision": "9e7e04a603c125a0d17447ab97112fa70a865067",
+      "source_path": "skills/blender-geometry-nodes",
+      "license": "MIT",
+      "license_source": "https://github.com/EL4CTEO/blender-skills/blob/9e7e04a603c125a0d17447ab97112fa70a865067/LICENSE"
+    },
+    {
+      "id": "blender-hair-grooming",
+      "canonical_id": "blender-hair-grooming",
+      "name": "blender-hair-grooming",
+      "path": "skills/blender-hair-grooming",
+      "description": "Hair and fur in Blender 5.3 - hair curves on a surface, guides + interpolated children with the bundled hair node assets (clump, curl, noise, droop), density masks, Principled Hair BSDF (melanin), Curves Sculpt combing, 5.2 node Hair Dynamics, game hair cards with a rendered strand atlas, Alembic/USD groom export. Use for hair, fur, beards, eyebrows, grass tufts.",
+      "category": "graphics-processing",
+      "tags": [
+        "blender",
+        "blender-5",
+        "bpy",
+        "3d",
+        "dcc",
+        "hair-grooming"
+      ],
+      "triggers": [
+        "blender-hair-grooming",
+        "blender hair grooming",
+        "blender 5.3 bpy"
+      ],
+      "risk": "safe",
+      "author": "EL4CTEO",
+      "author_url": "https://github.com/EL4CTEO",
+      "source": "https://github.com/EL4CTEO/blender-skills/tree/9e7e04a603c125a0d17447ab97112fa70a865067/skills/blender-hair-grooming",
+      "source_repo": "EL4CTEO/blender-skills",
+      "source_revision": "9e7e04a603c125a0d17447ab97112fa70a865067",
+      "source_path": "skills/blender-hair-grooming",
+      "license": "MIT",
+      "license_source": "https://github.com/EL4CTEO/blender-skills/blob/9e7e04a603c125a0d17447ab97112fa70a865067/LICENSE"
+    },
+    {
+      "id": "blender-hardsurface-modeling",
+      "canonical_id": "blender-hardsurface-modeling",
+      "name": "blender-hardsurface-modeling",
+      "path": "skills/blender-hardsurface-modeling",
+      "description": "Hard-surface and prop modeling in Blender 5.3 - blockout-to-detail flow, non-destructive modifier stacks (Mirror, Boolean Exact/Manifold, Bevel, Weighted Normal, Smooth by Angle), mid-poly vs subdivision vs high-to-low workflows, shading/custom normals, cylinder segment budgets, edge attributes from Python. Use for weapons, vehicles, props, architecture, mechanical parts.",
+      "category": "graphics-processing",
+      "tags": [
+        "blender",
+        "blender-5",
+        "bpy",
+        "3d",
+        "dcc",
+        "hardsurface-modeling"
+      ],
+      "triggers": [
+        "blender-hardsurface-modeling",
+        "blender hardsurface modeling",
+        "blender 5.3 bpy"
+      ],
+      "risk": "safe",
+      "author": "EL4CTEO",
+      "author_url": "https://github.com/EL4CTEO",
+      "source": "https://github.com/EL4CTEO/blender-skills/tree/9e7e04a603c125a0d17447ab97112fa70a865067/skills/blender-hardsurface-modeling",
+      "source_repo": "EL4CTEO/blender-skills",
+      "source_revision": "9e7e04a603c125a0d17447ab97112fa70a865067",
+      "source_path": "skills/blender-hardsurface-modeling",
+      "license": "MIT",
+      "license_source": "https://github.com/EL4CTEO/blender-skills/blob/9e7e04a603c125a0d17447ab97112fa70a865067/LICENSE"
+    },
+    {
+      "id": "blender-lighting-lookdev",
+      "canonical_id": "blender-lighting-lookdev",
+      "name": "blender-lighting-lookdev",
+      "path": "skills/blender-lighting-lookdev",
+      "description": "Lighting, cameras and look-dev in Blender 5.3 - studio 3-point and product lighting, HDRI environments, sun/sky exteriors, interiors, light linking, physically based light units, camera focal lengths/composition/DOF, cyclorama backdrops, looping turntables for asset presentation. Use when presenting assets, setting up scenes for rendering, or judging materials under consistent light.",
+      "category": "graphics-processing",
+      "tags": [
+        "blender",
+        "blender-5",
+        "bpy",
+        "3d",
+        "dcc",
+        "lighting-lookdev"
+      ],
+      "triggers": [
+        "blender-lighting-lookdev",
+        "blender lighting lookdev",
+        "blender 5.3 bpy"
+      ],
+      "risk": "safe",
+      "author": "EL4CTEO",
+      "author_url": "https://github.com/EL4CTEO",
+      "source": "https://github.com/EL4CTEO/blender-skills/tree/9e7e04a603c125a0d17447ab97112fa70a865067/skills/blender-lighting-lookdev",
+      "source_repo": "EL4CTEO/blender-skills",
+      "source_revision": "9e7e04a603c125a0d17447ab97112fa70a865067",
+      "source_path": "skills/blender-lighting-lookdev",
+      "license": "MIT",
+      "license_source": "https://github.com/EL4CTEO/blender-skills/blob/9e7e04a603c125a0d17447ab97112fa70a865067/LICENSE"
+    },
+    {
+      "id": "blender-pbr-materials",
+      "canonical_id": "blender-pbr-materials",
+      "name": "blender-pbr-materials",
+      "path": "skills/blender-pbr-materials",
+      "description": "Physically based materials in Blender 5.3 - metal/roughness rules, Principled BSDF inputs, color spaces (sRGB vs Non-Color), measured albedo/F0 values, texture-set auto-wiring, ORM channel packing, DirectX vs OpenGL normals, alpha modes, displacement, view transforms (AgX, Khronos PBR Neutral), engine-ready material rules. Use when creating, fixing, or exporting materials and textures.",
+      "category": "graphics-processing",
+      "tags": [
+        "blender",
+        "blender-5",
+        "bpy",
+        "3d",
+        "dcc",
+        "pbr-materials"
+      ],
+      "triggers": [
+        "blender-pbr-materials",
+        "blender pbr materials",
+        "blender 5.3 bpy"
+      ],
+      "risk": "safe",
+      "author": "EL4CTEO",
+      "author_url": "https://github.com/EL4CTEO",
+      "source": "https://github.com/EL4CTEO/blender-skills/tree/9e7e04a603c125a0d17447ab97112fa70a865067/skills/blender-pbr-materials",
+      "source_repo": "EL4CTEO/blender-skills",
+      "source_revision": "9e7e04a603c125a0d17447ab97112fa70a865067",
+      "source_path": "skills/blender-pbr-materials",
+      "license": "MIT",
+      "license_source": "https://github.com/EL4CTEO/blender-skills/blob/9e7e04a603c125a0d17447ab97112fa70a865067/LICENSE"
+    },
+    {
+      "id": "blender-pipeline-automation",
+      "canonical_id": "blender-pipeline-automation",
+      "name": "blender-pipeline-automation",
+      "path": "skills/blender-pipeline-automation",
+      "description": "Automate Blender 5.3 at scale - headless CLI flags, batch convert/inventory/run-any-skill-script over folders of .blend/.fbx/.glb/.obj/.usd, sharding, bpy pip module, library linking, path management, render-farm and CI patterns. Use for batch jobs, format conversion, library maintenance and pipeline tooling.",
+      "category": "graphics-processing",
+      "tags": [
+        "blender",
+        "blender-5",
+        "bpy",
+        "3d",
+        "dcc",
+        "pipeline-automation"
+      ],
+      "triggers": [
+        "blender-pipeline-automation",
+        "blender pipeline automation",
+        "blender 5.3 bpy"
+      ],
+      "risk": "safe",
+      "author": "EL4CTEO",
+      "author_url": "https://github.com/EL4CTEO",
+      "source": "https://github.com/EL4CTEO/blender-skills/tree/9e7e04a603c125a0d17447ab97112fa70a865067/skills/blender-pipeline-automation",
+      "source_repo": "EL4CTEO/blender-skills",
+      "source_revision": "9e7e04a603c125a0d17447ab97112fa70a865067",
+      "source_path": "skills/blender-pipeline-automation",
+      "license": "MIT",
+      "license_source": "https://github.com/EL4CTEO/blender-skills/blob/9e7e04a603c125a0d17447ab97112fa70a865067/LICENSE"
+    },
+    {
+      "id": "blender-rendering",
+      "canonical_id": "blender-rendering",
+      "name": "blender-rendering",
+      "path": "skills/blender-rendering",
+      "description": "Render with Blender 5.3 Cycles/EEVEE/Workbench - quality presets, GPU setup, adaptive sampling, denoising, light paths, color management (AgX, Khronos PBR Neutral, ACES), PNG/EXR/MP4 output, passes, the 5.0 compositor API, CLI and multi-camera batch rendering. Use for any still, animation or turntable render.",
+      "category": "graphics-processing",
+      "tags": [
+        "blender",
+        "blender-5",
+        "bpy",
+        "3d",
+        "dcc",
+        "rendering"
+      ],
+      "triggers": [
+        "blender-rendering",
+        "blender rendering",
+        "blender 5.3 bpy"
+      ],
+      "risk": "safe",
+      "author": "EL4CTEO",
+      "author_url": "https://github.com/EL4CTEO",
+      "source": "https://github.com/EL4CTEO/blender-skills/tree/9e7e04a603c125a0d17447ab97112fa70a865067/skills/blender-rendering",
+      "source_repo": "EL4CTEO/blender-skills",
+      "source_revision": "9e7e04a603c125a0d17447ab97112fa70a865067",
+      "source_path": "skills/blender-rendering",
+      "license": "MIT",
+      "license_source": "https://github.com/EL4CTEO/blender-skills/blob/9e7e04a603c125a0d17447ab97112fa70a865067/LICENSE"
+    },
+    {
+      "id": "blender-retopology-uv",
+      "canonical_id": "blender-retopology-uv",
+      "name": "blender-retopology-uv",
+      "path": "skills/blender-retopology-uv",
+      "description": "Retopology and UVs in Blender 5.3 - auto retopo (Quadriflow, Decimate, planar), deformation edge flow, seams, unwrap (Angle Based, Minimum Stretch, Smart), pixel-margin packing, texel density measure/set, lightmap UV2, UDIMs, mirrored UVs. Use to turn sculpts/scans/AI meshes into game meshes or prep UVs for texturing/baking.",
+      "category": "graphics-processing",
+      "tags": [
+        "blender",
+        "blender-5",
+        "bpy",
+        "3d",
+        "dcc",
+        "retopology-uv"
+      ],
+      "triggers": [
+        "blender-retopology-uv",
+        "blender retopology uv",
+        "blender 5.3 bpy"
+      ],
+      "risk": "safe",
+      "author": "EL4CTEO",
+      "author_url": "https://github.com/EL4CTEO",
+      "source": "https://github.com/EL4CTEO/blender-skills/tree/9e7e04a603c125a0d17447ab97112fa70a865067/skills/blender-retopology-uv",
+      "source_repo": "EL4CTEO/blender-skills",
+      "source_revision": "9e7e04a603c125a0d17447ab97112fa70a865067",
+      "source_path": "skills/blender-retopology-uv",
+      "license": "MIT",
+      "license_source": "https://github.com/EL4CTEO/blender-skills/blob/9e7e04a603c125a0d17447ab97112fa70a865067/LICENSE"
+    },
+    {
+      "id": "blender-scene-setup",
+      "canonical_id": "blender-scene-setup",
+      "name": "blender-scene-setup",
+      "path": "skills/blender-scene-setup",
+      "description": "Set up and audit Blender scenes the way studios do - units and real-world scale, collection layout, naming conventions (SM_/SK_/T_/M_), origins, linking vs appending, library overrides, asset libraries and catalogs, collection exporters, orphan/path cleanup. Use when starting a project, organizing a .blend, or before handoff/export.",
+      "category": "graphics-processing",
+      "tags": [
+        "blender",
+        "blender-5",
+        "bpy",
+        "3d",
+        "dcc",
+        "scene-setup"
+      ],
+      "triggers": [
+        "blender-scene-setup",
+        "blender scene setup",
+        "blender 5.3 bpy"
+      ],
+      "risk": "safe",
+      "author": "EL4CTEO",
+      "author_url": "https://github.com/EL4CTEO",
+      "source": "https://github.com/EL4CTEO/blender-skills/tree/9e7e04a603c125a0d17447ab97112fa70a865067/skills/blender-scene-setup",
+      "source_repo": "EL4CTEO/blender-skills",
+      "source_revision": "9e7e04a603c125a0d17447ab97112fa70a865067",
+      "source_path": "skills/blender-scene-setup",
+      "license": "MIT",
+      "license_source": "https://github.com/EL4CTEO/blender-skills/blob/9e7e04a603c125a0d17447ab97112fa70a865067/LICENSE"
+    },
+    {
+      "id": "blender-sculpting",
+      "canonical_id": "blender-sculpting",
+      "name": "blender-sculpting",
+      "path": "skills/blender-sculpting",
+      "description": "Sculpting in Blender 5.3 - base-to-detail workflow, voxel remesh, dyntopo, multires, 5.x brush types, masks/face sets, symmetry, plus headless-safe procedural ops for agents (remesh, symmetrize, multires, inflate, noise detail, smooth) and the sculpt-to-game handoff. Use for organic models, characters, creatures, rocks and bake sources.",
+      "category": "graphics-processing",
+      "tags": [
+        "blender",
+        "blender-5",
+        "bpy",
+        "3d",
+        "dcc",
+        "sculpting"
+      ],
+      "triggers": [
+        "blender-sculpting",
+        "blender sculpting",
+        "blender 5.3 bpy"
+      ],
+      "risk": "safe",
+      "author": "EL4CTEO",
+      "author_url": "https://github.com/EL4CTEO",
+      "source": "https://github.com/EL4CTEO/blender-skills/tree/9e7e04a603c125a0d17447ab97112fa70a865067/skills/blender-sculpting",
+      "source_repo": "EL4CTEO/blender-skills",
+      "source_revision": "9e7e04a603c125a0d17447ab97112fa70a865067",
+      "source_path": "skills/blender-sculpting",
+      "license": "MIT",
+      "license_source": "https://github.com/EL4CTEO/blender-skills/blob/9e7e04a603c125a0d17447ab97112fa70a865067/LICENSE"
+    },
+    {
+      "id": "blender-simulation",
+      "canonical_id": "blender-simulation",
+      "name": "blender-simulation",
+      "path": "skills/blender-simulation",
+      "description": "Physics in Blender 5.3 - rigid bodies (density mass, shapes, bake to keys), classic cloth presets and pinning, new node-based Cloth/Hair Dynamics (XPBD, Collider, effectors), Mantaflow fluids, hair curves, GN simulation zones, headless baking. Use for destruction, drapes, flags, falling objects, liquids, smoke, hair motion.",
+      "category": "graphics-processing",
+      "tags": [
+        "blender",
+        "blender-5",
+        "bpy",
+        "3d",
+        "dcc",
+        "simulation"
+      ],
+      "triggers": [
+        "blender-simulation",
+        "blender simulation",
+        "blender 5.3 bpy"
+      ],
+      "risk": "safe",
+      "author": "EL4CTEO",
+      "author_url": "https://github.com/EL4CTEO",
+      "source": "https://github.com/EL4CTEO/blender-skills/tree/9e7e04a603c125a0d17447ab97112fa70a865067/skills/blender-simulation",
+      "source_repo": "EL4CTEO/blender-skills",
+      "source_revision": "9e7e04a603c125a0d17447ab97112fa70a865067",
+      "source_path": "skills/blender-simulation",
+      "license": "MIT",
+      "license_source": "https://github.com/EL4CTEO/blender-skills/blob/9e7e04a603c125a0d17447ab97112fa70a865067/LICENSE"
+    },
+    {
+      "id": "blender-stylized-npr",
+      "canonical_id": "blender-stylized-npr",
+      "name": "blender-stylized-npr",
+      "path": "skills/blender-stylized-npr",
+      "description": "Stylized / NPR looks in Blender 5.3 - toon and cel shading (bands, shadow tint, rim, hard specular), anime faces with custom normals, inverted-hull outlines with smoothed outline normals for game engines, Line Art and Freestyle lines, Grease Pencil drawing, unlit export. Use for anime, cartoon, comic, cel-shaded or outlined styles.",
+      "category": "graphics-processing",
+      "tags": [
+        "blender",
+        "blender-5",
+        "bpy",
+        "3d",
+        "dcc",
+        "stylized-npr"
+      ],
+      "triggers": [
+        "blender-stylized-npr",
+        "blender stylized npr",
+        "blender 5.3 bpy"
+      ],
+      "risk": "safe",
+      "author": "EL4CTEO",
+      "author_url": "https://github.com/EL4CTEO",
+      "source": "https://github.com/EL4CTEO/blender-skills/tree/9e7e04a603c125a0d17447ab97112fa70a865067/skills/blender-stylized-npr",
+      "source_repo": "EL4CTEO/blender-skills",
+      "source_revision": "9e7e04a603c125a0d17447ab97112fa70a865067",
+      "source_path": "skills/blender-stylized-npr",
+      "license": "MIT",
+      "license_source": "https://github.com/EL4CTEO/blender-skills/blob/9e7e04a603c125a0d17447ab97112fa70a865067/LICENSE"
+    },
+    {
+      "id": "blender-texture-baking",
+      "canonical_id": "blender-texture-baking",
+      "name": "blender-texture-baking",
+      "path": "skills/blender-texture-baking",
+      "description": "Bake texture maps in Blender 5.3 Cycles - high-to-low normal maps with cage/extrusion, AO, curvature, ID, thickness, base color/roughness/metallic from procedurals, ORM packing, OpenGL vs DirectX, margins, GPU baking, fixing skewing/waviness/seams. Use when transferring sculpt or high-poly detail to game meshes or converting procedural materials to textures.",
+      "category": "graphics-processing",
+      "tags": [
+        "blender",
+        "blender-5",
+        "bpy",
+        "3d",
+        "dcc",
+        "texture-baking"
+      ],
+      "triggers": [
+        "blender-texture-baking",
+        "blender texture baking",
+        "blender 5.3 bpy"
+      ],
+      "risk": "safe",
+      "author": "EL4CTEO",
+      "author_url": "https://github.com/EL4CTEO",
+      "source": "https://github.com/EL4CTEO/blender-skills/tree/9e7e04a603c125a0d17447ab97112fa70a865067/skills/blender-texture-baking",
+      "source_repo": "EL4CTEO/blender-skills",
+      "source_revision": "9e7e04a603c125a0d17447ab97112fa70a865067",
+      "source_path": "skills/blender-texture-baking",
+      "license": "MIT",
+      "license_source": "https://github.com/EL4CTEO/blender-skills/blob/9e7e04a603c125a0d17447ab97112fa70a865067/LICENSE"
+    },
+    {
+      "id": "blender-texturing",
+      "canonical_id": "blender-texturing",
+      "name": "blender-texturing",
+      "path": "skills/blender-texturing",
+      "description": "Texture authoring in Blender 5.3 - smart-material layers (edge wear, cavity grime, dust, rust, roughness breakup) from curvature/AO masks, z-fight-safe decal and sticker placement, trim sheets, tiling + vertex-color blends, texture painting, baking the look to game texture sets. Use when a material needs wear, dirt, a decal, trims or hand painting, not just wiring.",
+      "category": "graphics-processing",
+      "tags": [
+        "blender",
+        "blender-5",
+        "bpy",
+        "3d",
+        "dcc",
+        "texturing"
+      ],
+      "triggers": [
+        "blender-texturing",
+        "blender texturing",
+        "blender 5.3 bpy"
+      ],
+      "risk": "safe",
+      "author": "EL4CTEO",
+      "author_url": "https://github.com/EL4CTEO",
+      "source": "https://github.com/EL4CTEO/blender-skills/tree/9e7e04a603c125a0d17447ab97112fa70a865067/skills/blender-texturing",
+      "source_repo": "EL4CTEO/blender-skills",
+      "source_revision": "9e7e04a603c125a0d17447ab97112fa70a865067",
+      "source_path": "skills/blender-texturing",
+      "license": "MIT",
+      "license_source": "https://github.com/EL4CTEO/blender-skills/blob/9e7e04a603c125a0d17447ab97112fa70a865067/LICENSE"
+    },
+    {
+      "id": "blender-time-of-day",
+      "canonical_id": "blender-time-of-day",
+      "name": "blender-time-of-day",
+      "path": "skills/blender-time-of-day",
+      "description": "Time of day and atmosphere in Blender 5.3 - measured sky + sun for dawn, morning, noon, golden hour, sunset, blue hour, overcast, night/moonlight with stars and city glow, exposure balance, height fog from visibility, god rays, Cycles vs EEVEE volumes, compositor grade, stylized moods (cyberpunk neon, horror, underwater, desert). Use for any day/night, sunset, foggy or mood lighting scene.",
+      "category": "graphics-processing",
+      "tags": [
+        "blender",
+        "blender-5",
+        "bpy",
+        "3d",
+        "dcc",
+        "time-of-day"
+      ],
+      "triggers": [
+        "blender-time-of-day",
+        "blender time of day",
+        "blender 5.3 bpy"
+      ],
+      "risk": "safe",
+      "author": "EL4CTEO",
+      "author_url": "https://github.com/EL4CTEO",
+      "source": "https://github.com/EL4CTEO/blender-skills/tree/9e7e04a603c125a0d17447ab97112fa70a865067/skills/blender-time-of-day",
+      "source_repo": "EL4CTEO/blender-skills",
+      "source_revision": "9e7e04a603c125a0d17447ab97112fa70a865067",
+      "source_path": "skills/blender-time-of-day",
+      "license": "MIT",
+      "license_source": "https://github.com/EL4CTEO/blender-skills/blob/9e7e04a603c125a0d17447ab97112fa70a865067/LICENSE"
+    },
+    {
+      "id": "blender-video-editing",
+      "canonical_id": "blender-video-editing",
+      "name": "blender-video-editing",
+      "path": "skills/blender-video-editing",
+      "description": "Video in Blender 5.3 - Video Sequencer edits from Python (clips, image sequences, crossfades, titles, music fades, proxies, color management, H.264/AAC output) and motion tracking (feature detection, camera solve, scene orientation, tripod and plane tracking, stabilization) for VFX shots. Use to cut renders/footage together or match-move a camera.",
+      "category": "graphics-processing",
+      "tags": [
+        "blender",
+        "blender-5",
+        "bpy",
+        "3d",
+        "dcc",
+        "video-editing"
+      ],
+      "triggers": [
+        "blender-video-editing",
+        "blender video editing",
+        "blender 5.3 bpy"
+      ],
+      "risk": "safe",
+      "author": "EL4CTEO",
+      "author_url": "https://github.com/EL4CTEO",
+      "source": "https://github.com/EL4CTEO/blender-skills/tree/9e7e04a603c125a0d17447ab97112fa70a865067/skills/blender-video-editing",
+      "source_repo": "EL4CTEO/blender-skills",
+      "source_revision": "9e7e04a603c125a0d17447ab97112fa70a865067",
+      "source_path": "skills/blender-video-editing",
+      "license": "MIT",
+      "license_source": "https://github.com/EL4CTEO/blender-skills/blob/9e7e04a603c125a0d17447ab97112fa70a865067/LICENSE"
+    },
+    {
+      "id": "blender-weather-fx",
+      "canonical_id": "blender-weather-fx",
+      "name": "blender-weather-fx",
+      "path": "skills/blender-weather-fx",
+      "description": "Weather effects in Blender 5.3 - looping Geometry Nodes rain, snow, dust, ash and embers with ground hits and splashes, wet surfaces, puddles with animated ripples, wall streaks, snow cover (shader + real snow geometry), storm lightning with multi-stroke flashes and bolts, engine-ready weather masks. Use for rain, storm, snow, wet street, puddle, dust or ember scenes.",
+      "category": "graphics-processing",
+      "tags": [
+        "blender",
+        "blender-5",
+        "bpy",
+        "3d",
+        "dcc",
+        "weather-fx"
+      ],
+      "triggers": [
+        "blender-weather-fx",
+        "blender weather fx",
+        "blender 5.3 bpy"
+      ],
+      "risk": "safe",
+      "author": "EL4CTEO",
+      "author_url": "https://github.com/EL4CTEO",
+      "source": "https://github.com/EL4CTEO/blender-skills/tree/9e7e04a603c125a0d17447ab97112fa70a865067/skills/blender-weather-fx",
+      "source_repo": "EL4CTEO/blender-skills",
+      "source_revision": "9e7e04a603c125a0d17447ab97112fa70a865067",
+      "source_path": "skills/blender-weather-fx",
+      "license": "MIT",
+      "license_source": "https://github.com/EL4CTEO/blender-skills/blob/9e7e04a603c125a0d17447ab97112fa70a865067/LICENSE"
+    },
+    {
+      "id": "blender-workflow-recipes",
+      "canonical_id": "blender-workflow-recipes",
+      "name": "blender-workflow-recipes",
+      "path": "skills/blender-workflow-recipes",
+      "description": "End-to-end Blender 5.3 playbooks chaining the blender-* skills with QA gates - game props (mid-poly, high-to-low), game characters (sculpt/AI mesh to rigged, animated export), Roblox props/accessories/avatars, AI or downloaded asset cleanup, procedural environments, web/AR assets, product turntables, mood/weather shots (night, rain, snow, fog). Use for complete multi-stage asset requests.",
+      "category": "graphics-processing",
+      "tags": [
+        "blender",
+        "blender-5",
+        "bpy",
+        "3d",
+        "dcc",
+        "workflow-recipes"
+      ],
+      "triggers": [
+        "blender-workflow-recipes",
+        "blender workflow recipes",
+        "blender 5.3 bpy"
+      ],
+      "risk": "safe",
+      "author": "EL4CTEO",
+      "author_url": "https://github.com/EL4CTEO",
+      "source": "https://github.com/EL4CTEO/blender-skills/tree/9e7e04a603c125a0d17447ab97112fa70a865067/skills/blender-workflow-recipes",
+      "source_repo": "EL4CTEO/blender-skills",
+      "source_revision": "9e7e04a603c125a0d17447ab97112fa70a865067",
+      "source_path": "skills/blender-workflow-recipes",
+      "license": "MIT",
+      "license_source": "https://github.com/EL4CTEO/blender-skills/blob/9e7e04a603c125a0d17447ab97112fa70a865067/LICENSE"
+    }
+  ],
+  "files": [
+    {
+      "skill_id": "blender-addon-development",
+      "source_path": "LICENSE",
+      "path": "skills/blender-addon-development/LICENSE",
+      "source_sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-addon-development",
+      "source_path": "skills/blender-addon-development/NOTICE.md",
+      "path": "skills/blender-addon-development/NOTICE.md",
+      "source_sha256": "15126e3c26420393b1a9debc3847ea0ae6895962aa6a0f963b4d0a39500d5452",
+      "sha256": "15126e3c26420393b1a9debc3847ea0ae6895962aa6a0f963b4d0a39500d5452",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-addon-development",
+      "source_path": "skills/blender-addon-development/SKILL.md",
+      "path": "skills/blender-addon-development/SKILL.md",
+      "source_sha256": "a403767c213489b6c0c37b1e94acd44e3f26c006da33dfc966d26bbb644a7388",
+      "sha256": "bf56e5bcf42230b4a82afef6c1ebbf80cd61fb305b825cc0616f72dbfbd54335",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-addon-development",
+      "source_path": "skills/blender-addon-development/assets/addon_template/__init__.py",
+      "path": "skills/blender-addon-development/assets/addon_template/__init__.py",
+      "source_sha256": "ce4eae22539c59537797ccbaa93490101cf4a2cce9da6993e28492044f77137f",
+      "sha256": "ce4eae22539c59537797ccbaa93490101cf4a2cce9da6993e28492044f77137f",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-addon-development",
+      "source_path": "skills/blender-addon-development/assets/addon_template/blender_manifest.toml",
+      "path": "skills/blender-addon-development/assets/addon_template/blender_manifest.toml",
+      "source_sha256": "18ad0365a8239ace1924bf81073111db4b42caecc70b968c0aa127776707e155",
+      "sha256": "18ad0365a8239ace1924bf81073111db4b42caecc70b968c0aa127776707e155",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-addon-development",
+      "source_path": "skills/blender-addon-development/assets/addon_template/operators.py",
+      "path": "skills/blender-addon-development/assets/addon_template/operators.py",
+      "source_sha256": "b8ff4aa706c666a814451bf016a6c533e89540bc7168d953b1f9d84d6468eb3f",
+      "sha256": "b8ff4aa706c666a814451bf016a6c533e89540bc7168d953b1f9d84d6468eb3f",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-addon-development",
+      "source_path": "skills/blender-addon-development/assets/addon_template/ui.py",
+      "path": "skills/blender-addon-development/assets/addon_template/ui.py",
+      "source_sha256": "50e3083d3c94f69d065ee8b8cf05fa9e8b1e86675285d0d6c144307473f19a0f",
+      "sha256": "50e3083d3c94f69d065ee8b8cf05fa9e8b1e86675285d0d6c144307473f19a0f",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-animation",
+      "source_path": "LICENSE",
+      "path": "skills/blender-animation/LICENSE",
+      "source_sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-animation",
+      "source_path": "skills/blender-animation/NOTICE.md",
+      "path": "skills/blender-animation/NOTICE.md",
+      "source_sha256": "82ab0c58775b0fff954353e652f0b4bdc3e97c842e11c0330e41ce24c9b5e09b",
+      "sha256": "82ab0c58775b0fff954353e652f0b4bdc3e97c842e11c0330e41ce24c9b5e09b",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-animation",
+      "source_path": "skills/blender-animation/SKILL.md",
+      "path": "skills/blender-animation/SKILL.md",
+      "source_sha256": "f2ec65cdf89f36dbf4066223a68e29990d031f1f9bc3a99ec72f14b51c0861d5",
+      "sha256": "6d6d221f3f60bca51c56b6f00522f2e53af4f7b5e3e7d20446473c9bc525a07f",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-animation",
+      "source_path": "skills/blender-animation/scripts/_bpyx.py",
+      "path": "skills/blender-animation/scripts/_bpyx.py",
+      "source_sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-animation",
+      "source_path": "skills/blender-animation/scripts/bake_action.py",
+      "path": "skills/blender-animation/scripts/bake_action.py",
+      "source_sha256": "ff0e602c9f432872ebe4f34f368d92e36988abf4159c525981708caa962f349c",
+      "sha256": "ff0e602c9f432872ebe4f34f368d92e36988abf4159c525981708caa962f349c",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-animation",
+      "source_path": "skills/blender-animation/scripts/loop_check.py",
+      "path": "skills/blender-animation/scripts/loop_check.py",
+      "source_sha256": "02d4301f890a09fdd1057eb728aad1eb001fe87583da864ad5d869971074644d",
+      "sha256": "02d4301f890a09fdd1057eb728aad1eb001fe87583da864ad5d869971074644d",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-animation",
+      "source_path": "skills/blender-animation/scripts/retarget.py",
+      "path": "skills/blender-animation/scripts/retarget.py",
+      "source_sha256": "37f90283ebd72212af135ec25d866ad92f2537425472ec943a216eca1926bafa",
+      "sha256": "37f90283ebd72212af135ec25d866ad92f2537425472ec943a216eca1926bafa",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-asset-qa",
+      "source_path": "LICENSE",
+      "path": "skills/blender-asset-qa/LICENSE",
+      "source_sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-asset-qa",
+      "source_path": "skills/blender-asset-qa/NOTICE.md",
+      "path": "skills/blender-asset-qa/NOTICE.md",
+      "source_sha256": "3f709e56115406f5dce0d484a04d56443e85fbcf4377443c1b25d41b40cd9371",
+      "sha256": "3f709e56115406f5dce0d484a04d56443e85fbcf4377443c1b25d41b40cd9371",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-asset-qa",
+      "source_path": "skills/blender-asset-qa/SKILL.md",
+      "path": "skills/blender-asset-qa/SKILL.md",
+      "source_sha256": "968e4435eeba040f0952cc335c8e9e7182e1d7008aa4295f202ddb836fa49ec9",
+      "sha256": "2730efc010e2c8e230b188927226d736729afded1ca866bd5eeafd82618b598a",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-asset-qa",
+      "source_path": "skills/blender-asset-qa/scripts/_bpyx.py",
+      "path": "skills/blender-asset-qa/scripts/_bpyx.py",
+      "source_sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-asset-qa",
+      "source_path": "skills/blender-asset-qa/scripts/qa_check.py",
+      "path": "skills/blender-asset-qa/scripts/qa_check.py",
+      "source_sha256": "37d01051f98fdafd3a9f13f7525804174c68a7bacb446d5bd5b2f43fc2785cca",
+      "sha256": "37d01051f98fdafd3a9f13f7525804174c68a7bacb446d5bd5b2f43fc2785cca",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-asset-qa",
+      "source_path": "skills/blender-asset-qa/scripts/review_shots.py",
+      "path": "skills/blender-asset-qa/scripts/review_shots.py",
+      "source_sha256": "63da4d7a3a42e81b51773071bdad3eba74fcacd3cf54df4364bd5676ef24a647",
+      "sha256": "63da4d7a3a42e81b51773071bdad3eba74fcacd3cf54df4364bd5676ef24a647",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-character-rigging",
+      "source_path": "LICENSE",
+      "path": "skills/blender-character-rigging/LICENSE",
+      "source_sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-character-rigging",
+      "source_path": "skills/blender-character-rigging/NOTICE.md",
+      "path": "skills/blender-character-rigging/NOTICE.md",
+      "source_sha256": "3646acdf8209a7d9f569f0aa20bf4c786fb4e4b996b68b8804ee5030ebf9dc38",
+      "sha256": "3646acdf8209a7d9f569f0aa20bf4c786fb4e4b996b68b8804ee5030ebf9dc38",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-character-rigging",
+      "source_path": "skills/blender-character-rigging/SKILL.md",
+      "path": "skills/blender-character-rigging/SKILL.md",
+      "source_sha256": "c10ccac932b023af9c3252e2a46b0bb9c8bb2cd706ecfcad0ae3ac8eba0a1a3d",
+      "sha256": "dcc114a6956cca5638853f329c8fd71e747f1f90acfdb7e3e9e9ee192aab898c",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-character-rigging",
+      "source_path": "skills/blender-character-rigging/scripts/_bpyx.py",
+      "path": "skills/blender-character-rigging/scripts/_bpyx.py",
+      "source_sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-character-rigging",
+      "source_path": "skills/blender-character-rigging/scripts/bind_mesh.py",
+      "path": "skills/blender-character-rigging/scripts/bind_mesh.py",
+      "source_sha256": "1da27ab64d659ee624ca4682ecba508b85fc9b3be32726279c74a689520b12b5",
+      "sha256": "1da27ab64d659ee624ca4682ecba508b85fc9b3be32726279c74a689520b12b5",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-character-rigging",
+      "source_path": "skills/blender-character-rigging/scripts/rig_check.py",
+      "path": "skills/blender-character-rigging/scripts/rig_check.py",
+      "source_sha256": "64de8edd97891c13a9b40d9111e71269358b342af458a35c47adf58b1287e552",
+      "sha256": "64de8edd97891c13a9b40d9111e71269358b342af458a35c47adf58b1287e552",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-character-rigging",
+      "source_path": "skills/blender-character-rigging/scripts/rigify_build.py",
+      "path": "skills/blender-character-rigging/scripts/rigify_build.py",
+      "source_sha256": "66c242c512da7b10222feb859e11deb10a3c6273652eceb275357ccd7c8a6efc",
+      "sha256": "66c242c512da7b10222feb859e11deb10a3c6273652eceb275357ccd7c8a6efc",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-character-rigging",
+      "source_path": "skills/blender-character-rigging/scripts/stress_poses.py",
+      "path": "skills/blender-character-rigging/scripts/stress_poses.py",
+      "source_sha256": "71998a915aa95e20c20ab64bd6faff97e2bb95f8a7e7d7a832fa7973567b6bb8",
+      "sha256": "71998a915aa95e20c20ab64bd6faff97e2bb95f8a7e7d7a832fa7973567b6bb8",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-clothing",
+      "source_path": "LICENSE",
+      "path": "skills/blender-clothing/LICENSE",
+      "source_sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-clothing",
+      "source_path": "skills/blender-clothing/NOTICE.md",
+      "path": "skills/blender-clothing/NOTICE.md",
+      "source_sha256": "03404a4fa59619a695283ea480c9451d3d2cb88da331dd8d44103b06f8bb0a8e",
+      "sha256": "03404a4fa59619a695283ea480c9451d3d2cb88da331dd8d44103b06f8bb0a8e",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-clothing",
+      "source_path": "skills/blender-clothing/SKILL.md",
+      "path": "skills/blender-clothing/SKILL.md",
+      "source_sha256": "90d6d9704addb022b3f002eeec74c737ecf76d077c84a86b20d5d87ba411c85f",
+      "sha256": "24f5010cbf40279c7996ea2747ee977e70d1c0620dd1c2202cc33a033432c233",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-clothing",
+      "source_path": "skills/blender-clothing/scripts/_bpyx.py",
+      "path": "skills/blender-clothing/scripts/_bpyx.py",
+      "source_sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-clothing",
+      "source_path": "skills/blender-clothing/scripts/garment.py",
+      "path": "skills/blender-clothing/scripts/garment.py",
+      "source_sha256": "de7d18e85d9cf622624df7c47fb79a75099ad2b9aa76d35d7892f679149ed0c2",
+      "sha256": "de7d18e85d9cf622624df7c47fb79a75099ad2b9aa76d35d7892f679149ed0c2",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-core",
+      "source_path": "LICENSE",
+      "path": "skills/blender-core/LICENSE",
+      "source_sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-core",
+      "source_path": "skills/blender-core/NOTICE.md",
+      "path": "skills/blender-core/NOTICE.md",
+      "source_sha256": "d8ae054ae1cae274485756d9855fde603d8c7dea59edae948ebb083f987ac9ee",
+      "sha256": "d8ae054ae1cae274485756d9855fde603d8c7dea59edae948ebb083f987ac9ee",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-core",
+      "source_path": "skills/blender-core/SKILL.md",
+      "path": "skills/blender-core/SKILL.md",
+      "source_sha256": "85c6161bf7a8e648735bd04957caba76f5e9c7b8506b38afd8496cc795563789",
+      "sha256": "1af2deb45fb0166dd369d717afc52b59888991f32241540103970ae0a8cc3f3d",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-core",
+      "source_path": "skills/blender-core/references/api-changes-5x.md",
+      "path": "skills/blender-core/references/api-changes-5x.md",
+      "source_sha256": "e34f2e39a97833d75b6177c2e281ff9481405efd88bfd2d67003560f0c421fe1",
+      "sha256": "e34f2e39a97833d75b6177c2e281ff9481405efd88bfd2d67003560f0c421fe1",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-core",
+      "source_path": "skills/blender-core/references/bpy-patterns.md",
+      "path": "skills/blender-core/references/bpy-patterns.md",
+      "source_sha256": "ba7bbc708bf198bdcdfa59d9d41d830a4ae119c24ae9457830b73d9e818e2af8",
+      "sha256": "ba7bbc708bf198bdcdfa59d9d41d830a4ae119c24ae9457830b73d9e818e2af8",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-core",
+      "source_path": "skills/blender-core/scripts/_bpyx.py",
+      "path": "skills/blender-core/scripts/_bpyx.py",
+      "source_sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-core",
+      "source_path": "skills/blender-core/scripts/env_report.py",
+      "path": "skills/blender-core/scripts/env_report.py",
+      "source_sha256": "e628feed806dd265e0c1ce803d92591aac208a9f463d8c47cbb939476d3b347a",
+      "sha256": "e628feed806dd265e0c1ce803d92591aac208a9f463d8c47cbb939476d3b347a",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-core",
+      "source_path": "skills/blender-core/scripts/run_in_blender.py",
+      "path": "skills/blender-core/scripts/run_in_blender.py",
+      "source_sha256": "e97e078c1b52475d386af2b8f9d27c7578a55c250ccd43ff50bed9c33d380355",
+      "sha256": "e97e078c1b52475d386af2b8f9d27c7578a55c250ccd43ff50bed9c33d380355",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-environment-kits",
+      "source_path": "LICENSE",
+      "path": "skills/blender-environment-kits/LICENSE",
+      "source_sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-environment-kits",
+      "source_path": "skills/blender-environment-kits/NOTICE.md",
+      "path": "skills/blender-environment-kits/NOTICE.md",
+      "source_sha256": "83846760d45d9e6dbbdb4db0ae4dbbad29386d32159b0580bfd0ce67a8260edb",
+      "sha256": "83846760d45d9e6dbbdb4db0ae4dbbad29386d32159b0580bfd0ce67a8260edb",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-environment-kits",
+      "source_path": "skills/blender-environment-kits/SKILL.md",
+      "path": "skills/blender-environment-kits/SKILL.md",
+      "source_sha256": "11dbeb81d04722bee6413b796546da87761c7460299ab2fb8ae1027e35ec510a",
+      "sha256": "6da0dc92aa9db5a636408279778a5b32f19b4811ca8b52536f9ac095a104bfd0",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-environment-kits",
+      "source_path": "skills/blender-environment-kits/scripts/_bpyx.py",
+      "path": "skills/blender-environment-kits/scripts/_bpyx.py",
+      "source_sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-environment-kits",
+      "source_path": "skills/blender-environment-kits/scripts/kit_check.py",
+      "path": "skills/blender-environment-kits/scripts/kit_check.py",
+      "source_sha256": "5130ad74e2c19dd1839e354a06abd204bafeead277cc447107db017f359e20e5",
+      "sha256": "5130ad74e2c19dd1839e354a06abd204bafeead277cc447107db017f359e20e5",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-environment-kits",
+      "source_path": "skills/blender-environment-kits/scripts/scatter.py",
+      "path": "skills/blender-environment-kits/scripts/scatter.py",
+      "source_sha256": "bebb83449a88e1672ab4b41f007169de2f341a90b620106b55721262ac66b0e4",
+      "sha256": "bebb83449a88e1672ab4b41f007169de2f341a90b620106b55721262ac66b0e4",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-environment-kits",
+      "source_path": "skills/blender-environment-kits/scripts/terrain.py",
+      "path": "skills/blender-environment-kits/scripts/terrain.py",
+      "source_sha256": "f86d6e9132e924e7c1877845ab134317a7e77da32180bbede5fab62f2f79ba8f",
+      "sha256": "f86d6e9132e924e7c1877845ab134317a7e77da32180bbede5fab62f2f79ba8f",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-export-pipelines",
+      "source_path": "LICENSE",
+      "path": "skills/blender-export-pipelines/LICENSE",
+      "source_sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-export-pipelines",
+      "source_path": "skills/blender-export-pipelines/NOTICE.md",
+      "path": "skills/blender-export-pipelines/NOTICE.md",
+      "source_sha256": "3d4031d64e57431f08c9623b683136a661fcbfe5768b7d763191332252693067",
+      "sha256": "3d4031d64e57431f08c9623b683136a661fcbfe5768b7d763191332252693067",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-export-pipelines",
+      "source_path": "skills/blender-export-pipelines/SKILL.md",
+      "path": "skills/blender-export-pipelines/SKILL.md",
+      "source_sha256": "300f2f9d0632744ea73ce68eccd2fbdb485febef0d1743a773b34d2f13080c16",
+      "sha256": "9ea85e7b62e88214768ba173df3e6903b9753ea81c5f412e80c4f25110c7deaf",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-export-pipelines",
+      "source_path": "skills/blender-export-pipelines/references/godot-web.md",
+      "path": "skills/blender-export-pipelines/references/godot-web.md",
+      "source_sha256": "67d2f57f75c40466039346d770ff8e622844c1f2d171d98fdef2ed300d2c2dfd",
+      "sha256": "67d2f57f75c40466039346d770ff8e622844c1f2d171d98fdef2ed300d2c2dfd",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-export-pipelines",
+      "source_path": "skills/blender-export-pipelines/references/roblox.md",
+      "path": "skills/blender-export-pipelines/references/roblox.md",
+      "source_sha256": "9079cd534349ce5ea0034abd983cf849a19c0a08676b88486393fe8caab7e263",
+      "sha256": "9079cd534349ce5ea0034abd983cf849a19c0a08676b88486393fe8caab7e263",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-export-pipelines",
+      "source_path": "skills/blender-export-pipelines/references/unity.md",
+      "path": "skills/blender-export-pipelines/references/unity.md",
+      "source_sha256": "6ed7fbaa57f6d8d0bdf87438bfc442bb536465b05459ffebf72b75dfa238d080",
+      "sha256": "6ed7fbaa57f6d8d0bdf87438bfc442bb536465b05459ffebf72b75dfa238d080",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-export-pipelines",
+      "source_path": "skills/blender-export-pipelines/references/unreal.md",
+      "path": "skills/blender-export-pipelines/references/unreal.md",
+      "source_sha256": "377e784aa26bf0f634039f31d33b8d47800708f5d280cc518030db4e0d7005bc",
+      "sha256": "377e784aa26bf0f634039f31d33b8d47800708f5d280cc518030db4e0d7005bc",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-export-pipelines",
+      "source_path": "skills/blender-export-pipelines/scripts/_bpyx.py",
+      "path": "skills/blender-export-pipelines/scripts/_bpyx.py",
+      "source_sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-export-pipelines",
+      "source_path": "skills/blender-export-pipelines/scripts/export_asset.py",
+      "path": "skills/blender-export-pipelines/scripts/export_asset.py",
+      "source_sha256": "58534892042e5c954f0875b3b41b45c2609b7a4ec5dc44f6c06922b06cbd6c88",
+      "sha256": "58534892042e5c954f0875b3b41b45c2609b7a4ec5dc44f6c06922b06cbd6c88",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-facial-shapekeys",
+      "source_path": "LICENSE",
+      "path": "skills/blender-facial-shapekeys/LICENSE",
+      "source_sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-facial-shapekeys",
+      "source_path": "skills/blender-facial-shapekeys/NOTICE.md",
+      "path": "skills/blender-facial-shapekeys/NOTICE.md",
+      "source_sha256": "ba80c9ecc792da64f073e2f5b1d76d45760eec8be28e79ab0bd34bd0441bedaa",
+      "sha256": "ba80c9ecc792da64f073e2f5b1d76d45760eec8be28e79ab0bd34bd0441bedaa",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-facial-shapekeys",
+      "source_path": "skills/blender-facial-shapekeys/SKILL.md",
+      "path": "skills/blender-facial-shapekeys/SKILL.md",
+      "source_sha256": "8d86473487e06ddc97a745baa794573a2cc36319c28a426079fd328e0c35b7ea",
+      "sha256": "a09625eaa85eb07260330d6d3f231ef3949de24ee7517a118e1ad915bdd92840",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-facial-shapekeys",
+      "source_path": "skills/blender-facial-shapekeys/scripts/_bpyx.py",
+      "path": "skills/blender-facial-shapekeys/scripts/_bpyx.py",
+      "source_sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-facial-shapekeys",
+      "source_path": "skills/blender-facial-shapekeys/scripts/shapekeys.py",
+      "path": "skills/blender-facial-shapekeys/scripts/shapekeys.py",
+      "source_sha256": "ae309ebf193346df73628789529563a43269a4b629674f17c0dfc237e4bcc661",
+      "sha256": "ae309ebf193346df73628789529563a43269a4b629674f17c0dfc237e4bcc661",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-game-optimization",
+      "source_path": "LICENSE",
+      "path": "skills/blender-game-optimization/LICENSE",
+      "source_sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-game-optimization",
+      "source_path": "skills/blender-game-optimization/NOTICE.md",
+      "path": "skills/blender-game-optimization/NOTICE.md",
+      "source_sha256": "cae47587993ffacb6a526ee890e491f34a83bee50ba419925f5af20d7da7fe44",
+      "sha256": "cae47587993ffacb6a526ee890e491f34a83bee50ba419925f5af20d7da7fe44",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-game-optimization",
+      "source_path": "skills/blender-game-optimization/SKILL.md",
+      "path": "skills/blender-game-optimization/SKILL.md",
+      "source_sha256": "15c900a72556e1a638c95ff78e03021601affa315d710bbdb55429247ffd9b96",
+      "sha256": "4c0d1901c04e37a583b0ae2f3e790700c402c6ec21a8ca633bd8756248199f36",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-game-optimization",
+      "source_path": "skills/blender-game-optimization/scripts/_bpyx.py",
+      "path": "skills/blender-game-optimization/scripts/_bpyx.py",
+      "source_sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-game-optimization",
+      "source_path": "skills/blender-game-optimization/scripts/make_lods.py",
+      "path": "skills/blender-game-optimization/scripts/make_lods.py",
+      "source_sha256": "61076e02df93cfa8126a54466540db5a87d763a9910c9e650d441608678c15de",
+      "sha256": "61076e02df93cfa8126a54466540db5a87d763a9910c9e650d441608678c15de",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-game-optimization",
+      "source_path": "skills/blender-game-optimization/scripts/mesh_stats.py",
+      "path": "skills/blender-game-optimization/scripts/mesh_stats.py",
+      "source_sha256": "6f48790b87b90cd15d4c20e6884dcfedf9aa65292f4afcc7fad9fcf7eb8216bc",
+      "sha256": "6f48790b87b90cd15d4c20e6884dcfedf9aa65292f4afcc7fad9fcf7eb8216bc",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-geometry-nodes",
+      "source_path": "LICENSE",
+      "path": "skills/blender-geometry-nodes/LICENSE",
+      "source_sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-geometry-nodes",
+      "source_path": "skills/blender-geometry-nodes/NOTICE.md",
+      "path": "skills/blender-geometry-nodes/NOTICE.md",
+      "source_sha256": "985ae96e5ab4fbaf0a89f38074a7cafdde93092edfdda7df53c133d867a48e49",
+      "sha256": "985ae96e5ab4fbaf0a89f38074a7cafdde93092edfdda7df53c133d867a48e49",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-geometry-nodes",
+      "source_path": "skills/blender-geometry-nodes/SKILL.md",
+      "path": "skills/blender-geometry-nodes/SKILL.md",
+      "source_sha256": "64cf885688c36a25ae00d8cf7bed2a0ae4c1641f46a16f5904856fbd67818b06",
+      "sha256": "be3bf0ee774bd512e07bf6b8753901911c3da9cab34ce7fa2c85fd33c6e021ae",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-geometry-nodes",
+      "source_path": "skills/blender-geometry-nodes/references/recipes.md",
+      "path": "skills/blender-geometry-nodes/references/recipes.md",
+      "source_sha256": "9c2438db79ca4bcab6a89b62ef0e65868ccf140b4ffc7a7fb42d3ee0265cf976",
+      "sha256": "9c2438db79ca4bcab6a89b62ef0e65868ccf140b4ffc7a7fb42d3ee0265cf976",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-geometry-nodes",
+      "source_path": "skills/blender-geometry-nodes/scripts/_bpyx.py",
+      "path": "skills/blender-geometry-nodes/scripts/_bpyx.py",
+      "source_sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-geometry-nodes",
+      "source_path": "skills/blender-geometry-nodes/scripts/gn_builder.py",
+      "path": "skills/blender-geometry-nodes/scripts/gn_builder.py",
+      "source_sha256": "6dcdd041451d99037b095f1de71356307a02959ab794d01e48a27fbf5aba139a",
+      "sha256": "6dcdd041451d99037b095f1de71356307a02959ab794d01e48a27fbf5aba139a",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-hair-grooming",
+      "source_path": "LICENSE",
+      "path": "skills/blender-hair-grooming/LICENSE",
+      "source_sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-hair-grooming",
+      "source_path": "skills/blender-hair-grooming/NOTICE.md",
+      "path": "skills/blender-hair-grooming/NOTICE.md",
+      "source_sha256": "c6432b4a8429a7faba6cb87e4654721057059edb3943c153eb3a26f0ee9e5125",
+      "sha256": "c6432b4a8429a7faba6cb87e4654721057059edb3943c153eb3a26f0ee9e5125",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-hair-grooming",
+      "source_path": "skills/blender-hair-grooming/SKILL.md",
+      "path": "skills/blender-hair-grooming/SKILL.md",
+      "source_sha256": "4708ab11848b8f3a7fbf2ec887174d0db2a1756a2db718dee831c6e7236569a9",
+      "sha256": "256c628b22e6e0e9a94f3e51846c05403a6a2fda58653c11e358a2d49cceedd1",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-hair-grooming",
+      "source_path": "skills/blender-hair-grooming/scripts/_bpyx.py",
+      "path": "skills/blender-hair-grooming/scripts/_bpyx.py",
+      "source_sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-hair-grooming",
+      "source_path": "skills/blender-hair-grooming/scripts/groom.py",
+      "path": "skills/blender-hair-grooming/scripts/groom.py",
+      "source_sha256": "d4c7789d1fa67c436c6f74a50c56b76585a812b7cb9dc7dac38235f579cfee0f",
+      "sha256": "d4c7789d1fa67c436c6f74a50c56b76585a812b7cb9dc7dac38235f579cfee0f",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-hardsurface-modeling",
+      "source_path": "LICENSE",
+      "path": "skills/blender-hardsurface-modeling/LICENSE",
+      "source_sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-hardsurface-modeling",
+      "source_path": "skills/blender-hardsurface-modeling/NOTICE.md",
+      "path": "skills/blender-hardsurface-modeling/NOTICE.md",
+      "source_sha256": "4916bbf15bd9d59c4486e4805f5245661062d24f6c7325b262d6abc4362f850e",
+      "sha256": "4916bbf15bd9d59c4486e4805f5245661062d24f6c7325b262d6abc4362f850e",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-hardsurface-modeling",
+      "source_path": "skills/blender-hardsurface-modeling/SKILL.md",
+      "path": "skills/blender-hardsurface-modeling/SKILL.md",
+      "source_sha256": "558d18dc0641975d45f80f48c9371c2c0bef1f3c087a2da38cd2738a9659498f",
+      "sha256": "4be4316b4edd5e2b76d98cd414d9768f2fd0779cdca0514be36228a87a80ed21",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-hardsurface-modeling",
+      "source_path": "skills/blender-hardsurface-modeling/scripts/_bpyx.py",
+      "path": "skills/blender-hardsurface-modeling/scripts/_bpyx.py",
+      "source_sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-hardsurface-modeling",
+      "source_path": "skills/blender-hardsurface-modeling/scripts/apply_stack.py",
+      "path": "skills/blender-hardsurface-modeling/scripts/apply_stack.py",
+      "source_sha256": "95127944b90646b75c73c55cb47d2a4a8e9616b4edd1c0489b94132bcd7f24e9",
+      "sha256": "95127944b90646b75c73c55cb47d2a4a8e9616b4edd1c0489b94132bcd7f24e9",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-lighting-lookdev",
+      "source_path": "LICENSE",
+      "path": "skills/blender-lighting-lookdev/LICENSE",
+      "source_sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-lighting-lookdev",
+      "source_path": "skills/blender-lighting-lookdev/NOTICE.md",
+      "path": "skills/blender-lighting-lookdev/NOTICE.md",
+      "source_sha256": "eca55cdd293f4886eca07401ab8743deea34f5ef69b200d6771e575896537c05",
+      "sha256": "eca55cdd293f4886eca07401ab8743deea34f5ef69b200d6771e575896537c05",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-lighting-lookdev",
+      "source_path": "skills/blender-lighting-lookdev/SKILL.md",
+      "path": "skills/blender-lighting-lookdev/SKILL.md",
+      "source_sha256": "adce74e508559230cd078bf658374a66ed1faa8a975eccfa196ea6d5a59e1e54",
+      "sha256": "39e8d3fb319c34175062348386e48e5a950fa48ffc342c7e67dd51063b44bd10",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-lighting-lookdev",
+      "source_path": "skills/blender-lighting-lookdev/scripts/_bpyx.py",
+      "path": "skills/blender-lighting-lookdev/scripts/_bpyx.py",
+      "source_sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-lighting-lookdev",
+      "source_path": "skills/blender-lighting-lookdev/scripts/turntable.py",
+      "path": "skills/blender-lighting-lookdev/scripts/turntable.py",
+      "source_sha256": "ed3db9b538fda3bd6852ea1ce83aea32e0b3e99c258577b3dd000c50a847cd93",
+      "sha256": "ed3db9b538fda3bd6852ea1ce83aea32e0b3e99c258577b3dd000c50a847cd93",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-pbr-materials",
+      "source_path": "LICENSE",
+      "path": "skills/blender-pbr-materials/LICENSE",
+      "source_sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-pbr-materials",
+      "source_path": "skills/blender-pbr-materials/NOTICE.md",
+      "path": "skills/blender-pbr-materials/NOTICE.md",
+      "source_sha256": "7657087464738e30e596037e5feeed19bc70c48473bb2199a13223d0889503ba",
+      "sha256": "7657087464738e30e596037e5feeed19bc70c48473bb2199a13223d0889503ba",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-pbr-materials",
+      "source_path": "skills/blender-pbr-materials/SKILL.md",
+      "path": "skills/blender-pbr-materials/SKILL.md",
+      "source_sha256": "6c02bc13dc33e71d816dc6b498bf38312ed7e17aa2bfcc57446a45efc7c1f318",
+      "sha256": "60969cdd7e483ca3d267dd7fe3d8e7ff70c05ab7e1bdba0a3fa47964fd9a5630",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-pbr-materials",
+      "source_path": "skills/blender-pbr-materials/references/pbr-values.md",
+      "path": "skills/blender-pbr-materials/references/pbr-values.md",
+      "source_sha256": "d92f53568ea1525c84d68fc7077abfa9cc64a517ac9472fdc18b873784b84d40",
+      "sha256": "d92f53568ea1525c84d68fc7077abfa9cc64a517ac9472fdc18b873784b84d40",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-pbr-materials",
+      "source_path": "skills/blender-pbr-materials/scripts/_bpyx.py",
+      "path": "skills/blender-pbr-materials/scripts/_bpyx.py",
+      "source_sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-pbr-materials",
+      "source_path": "skills/blender-pbr-materials/scripts/build_pbr_material.py",
+      "path": "skills/blender-pbr-materials/scripts/build_pbr_material.py",
+      "source_sha256": "c8dfd0487b4cd73b42e24de3c14da5a26979bc5ea8bfea59c8f45fcc545a4400",
+      "sha256": "c8dfd0487b4cd73b42e24de3c14da5a26979bc5ea8bfea59c8f45fcc545a4400",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-pipeline-automation",
+      "source_path": "LICENSE",
+      "path": "skills/blender-pipeline-automation/LICENSE",
+      "source_sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-pipeline-automation",
+      "source_path": "skills/blender-pipeline-automation/NOTICE.md",
+      "path": "skills/blender-pipeline-automation/NOTICE.md",
+      "source_sha256": "ad81072262a07a7486d304682ce767934f0dfb798003e339cb56bcd8c6003057",
+      "sha256": "ad81072262a07a7486d304682ce767934f0dfb798003e339cb56bcd8c6003057",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-pipeline-automation",
+      "source_path": "skills/blender-pipeline-automation/SKILL.md",
+      "path": "skills/blender-pipeline-automation/SKILL.md",
+      "source_sha256": "1b59d80395ebb270347c64f3e148f873a782c2ff68c64e2239720517c15e8abb",
+      "sha256": "10528322876de2745a06fbe7b24ea538545f488beb38b6e0bf26fb002bc79bbf",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-pipeline-automation",
+      "source_path": "skills/blender-pipeline-automation/scripts/_bpyx.py",
+      "path": "skills/blender-pipeline-automation/scripts/_bpyx.py",
+      "source_sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-pipeline-automation",
+      "source_path": "skills/blender-pipeline-automation/scripts/batch_process.py",
+      "path": "skills/blender-pipeline-automation/scripts/batch_process.py",
+      "source_sha256": "baedf17711a939981f3796879e1f32be3203c197c41d9dc3fad8a104b82bfe8e",
+      "sha256": "baedf17711a939981f3796879e1f32be3203c197c41d9dc3fad8a104b82bfe8e",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-rendering",
+      "source_path": "LICENSE",
+      "path": "skills/blender-rendering/LICENSE",
+      "source_sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-rendering",
+      "source_path": "skills/blender-rendering/NOTICE.md",
+      "path": "skills/blender-rendering/NOTICE.md",
+      "source_sha256": "f926b037a2437535a1d48de1970c6767776e2105921406288c21e6d7082df56c",
+      "sha256": "f926b037a2437535a1d48de1970c6767776e2105921406288c21e6d7082df56c",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-rendering",
+      "source_path": "skills/blender-rendering/SKILL.md",
+      "path": "skills/blender-rendering/SKILL.md",
+      "source_sha256": "0c1a3b2c9537868dda84d981f26060eeeb159d26769c6344f608641ac6fc1b6f",
+      "sha256": "2ade713b785578f55910ed52d5218eca7f1dc8fac9b7b4386b656a27fba630ef",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-rendering",
+      "source_path": "skills/blender-rendering/scripts/_bpyx.py",
+      "path": "skills/blender-rendering/scripts/_bpyx.py",
+      "source_sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-rendering",
+      "source_path": "skills/blender-rendering/scripts/render_batch.py",
+      "path": "skills/blender-rendering/scripts/render_batch.py",
+      "source_sha256": "2ee9043b297148b9d76b54fc22390e1e6062e2e27c33ab0386dcfa2fdb59c432",
+      "sha256": "2ee9043b297148b9d76b54fc22390e1e6062e2e27c33ab0386dcfa2fdb59c432",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-retopology-uv",
+      "source_path": "LICENSE",
+      "path": "skills/blender-retopology-uv/LICENSE",
+      "source_sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-retopology-uv",
+      "source_path": "skills/blender-retopology-uv/NOTICE.md",
+      "path": "skills/blender-retopology-uv/NOTICE.md",
+      "source_sha256": "9eb978f5148e781892bbb9ba8c2d8cf289345d154ebf52a4bfcee85c02044106",
+      "sha256": "9eb978f5148e781892bbb9ba8c2d8cf289345d154ebf52a4bfcee85c02044106",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-retopology-uv",
+      "source_path": "skills/blender-retopology-uv/SKILL.md",
+      "path": "skills/blender-retopology-uv/SKILL.md",
+      "source_sha256": "54c4ff16de9873c819ff4ab60dee3b10a2e0bf2c29301a1b2ff1575b5abd7e06",
+      "sha256": "b101df0739f51878c90c97955873ad127088aa2fb8fa3ea0b59e76f83988bd26",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-retopology-uv",
+      "source_path": "skills/blender-retopology-uv/scripts/_bpyx.py",
+      "path": "skills/blender-retopology-uv/scripts/_bpyx.py",
+      "source_sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-retopology-uv",
+      "source_path": "skills/blender-retopology-uv/scripts/auto_retopo.py",
+      "path": "skills/blender-retopology-uv/scripts/auto_retopo.py",
+      "source_sha256": "dfa69d072a1323a99fbd45fc0beda0ff1b30c40a2faeb2823998db9953b02f00",
+      "sha256": "dfa69d072a1323a99fbd45fc0beda0ff1b30c40a2faeb2823998db9953b02f00",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-retopology-uv",
+      "source_path": "skills/blender-retopology-uv/scripts/texel_density.py",
+      "path": "skills/blender-retopology-uv/scripts/texel_density.py",
+      "source_sha256": "9fd15366aa20aa3005163745b12aae216c0b23a5fdafa0bbec98c1786f0c3cd6",
+      "sha256": "9fd15366aa20aa3005163745b12aae216c0b23a5fdafa0bbec98c1786f0c3cd6",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-retopology-uv",
+      "source_path": "skills/blender-retopology-uv/scripts/uv_pack.py",
+      "path": "skills/blender-retopology-uv/scripts/uv_pack.py",
+      "source_sha256": "863fd392d1eecb79f4ca918deb12de5a3e58561de3795b07b5a4936794de855b",
+      "sha256": "863fd392d1eecb79f4ca918deb12de5a3e58561de3795b07b5a4936794de855b",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-scene-setup",
+      "source_path": "LICENSE",
+      "path": "skills/blender-scene-setup/LICENSE",
+      "source_sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-scene-setup",
+      "source_path": "skills/blender-scene-setup/NOTICE.md",
+      "path": "skills/blender-scene-setup/NOTICE.md",
+      "source_sha256": "3da6682374757300d702925314f7f001ad5178bf8301f0a101b126090c6afdb9",
+      "sha256": "3da6682374757300d702925314f7f001ad5178bf8301f0a101b126090c6afdb9",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-scene-setup",
+      "source_path": "skills/blender-scene-setup/SKILL.md",
+      "path": "skills/blender-scene-setup/SKILL.md",
+      "source_sha256": "fbfc9b4fb42fd3434d4112700eeda86049908cd65e5f9d939f043e5358d69a25",
+      "sha256": "b875d2c00177791a2e08ca595134f1325aab775e6e864ac069bb99947a9b440c",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-scene-setup",
+      "source_path": "skills/blender-scene-setup/scripts/_bpyx.py",
+      "path": "skills/blender-scene-setup/scripts/_bpyx.py",
+      "source_sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-scene-setup",
+      "source_path": "skills/blender-scene-setup/scripts/scene_audit.py",
+      "path": "skills/blender-scene-setup/scripts/scene_audit.py",
+      "source_sha256": "a7baf10fb5a25acaf87d1024e5ec5fb89aee43b7ebff0f8598c4667cef64ae5b",
+      "sha256": "a7baf10fb5a25acaf87d1024e5ec5fb89aee43b7ebff0f8598c4667cef64ae5b",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-sculpting",
+      "source_path": "LICENSE",
+      "path": "skills/blender-sculpting/LICENSE",
+      "source_sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-sculpting",
+      "source_path": "skills/blender-sculpting/NOTICE.md",
+      "path": "skills/blender-sculpting/NOTICE.md",
+      "source_sha256": "9f8d48b43cd0b36e20f55bdb550ec548b604c67b4214a4a5ec0cd2483067d9d1",
+      "sha256": "9f8d48b43cd0b36e20f55bdb550ec548b604c67b4214a4a5ec0cd2483067d9d1",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-sculpting",
+      "source_path": "skills/blender-sculpting/SKILL.md",
+      "path": "skills/blender-sculpting/SKILL.md",
+      "source_sha256": "cc5fe10def24140f78a0911b5338c87c489cf38fe6c735385c64330705e1c738",
+      "sha256": "51c64cbd7fb746c9e23e3964c7ead77225c924d73f3fd0bdcdd5ab232607dc35",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-sculpting",
+      "source_path": "skills/blender-sculpting/references/forms-and-bake-sources.md",
+      "path": "skills/blender-sculpting/references/forms-and-bake-sources.md",
+      "source_sha256": "e55ecdd43201ec1bc530e0a8529c405ea53b94e79bf0dfde8b67d9995f52815e",
+      "sha256": "e55ecdd43201ec1bc530e0a8529c405ea53b94e79bf0dfde8b67d9995f52815e",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-sculpting",
+      "source_path": "skills/blender-sculpting/scripts/_bpyx.py",
+      "path": "skills/blender-sculpting/scripts/_bpyx.py",
+      "source_sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-sculpting",
+      "source_path": "skills/blender-sculpting/scripts/sculpt_ops.py",
+      "path": "skills/blender-sculpting/scripts/sculpt_ops.py",
+      "source_sha256": "6adb0bcb4322900dad1b6f00c17c0f14507085e44017a3c162e26f29bcf8c7aa",
+      "sha256": "6adb0bcb4322900dad1b6f00c17c0f14507085e44017a3c162e26f29bcf8c7aa",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-simulation",
+      "source_path": "LICENSE",
+      "path": "skills/blender-simulation/LICENSE",
+      "source_sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-simulation",
+      "source_path": "skills/blender-simulation/NOTICE.md",
+      "path": "skills/blender-simulation/NOTICE.md",
+      "source_sha256": "b04ad6ec5ec9b7b260883a57ceb7cd690d86c8f204555c7cbe01952034db6b59",
+      "sha256": "b04ad6ec5ec9b7b260883a57ceb7cd690d86c8f204555c7cbe01952034db6b59",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-simulation",
+      "source_path": "skills/blender-simulation/SKILL.md",
+      "path": "skills/blender-simulation/SKILL.md",
+      "source_sha256": "b4c80843a7bbc5e6e31266837f16cab973ed7d4cab45d204d8a7dedb9114f5ce",
+      "sha256": "f3b50bb7805371a11caa048095d0e92b338ef06846b01cd76e67df662f59e122",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-simulation",
+      "source_path": "skills/blender-simulation/scripts/_bpyx.py",
+      "path": "skills/blender-simulation/scripts/_bpyx.py",
+      "source_sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-simulation",
+      "source_path": "skills/blender-simulation/scripts/sim_setup.py",
+      "path": "skills/blender-simulation/scripts/sim_setup.py",
+      "source_sha256": "8c9f7cf99b4539343873caf707dd1b8eff8d78c55ccd19f9aa2dae26ef7150f2",
+      "sha256": "8c9f7cf99b4539343873caf707dd1b8eff8d78c55ccd19f9aa2dae26ef7150f2",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-stylized-npr",
+      "source_path": "LICENSE",
+      "path": "skills/blender-stylized-npr/LICENSE",
+      "source_sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-stylized-npr",
+      "source_path": "skills/blender-stylized-npr/NOTICE.md",
+      "path": "skills/blender-stylized-npr/NOTICE.md",
+      "source_sha256": "51264bad58f29c33c0a9296ce5233998ec748c1a69f20fadc1f78c34c0ab7917",
+      "sha256": "51264bad58f29c33c0a9296ce5233998ec748c1a69f20fadc1f78c34c0ab7917",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-stylized-npr",
+      "source_path": "skills/blender-stylized-npr/SKILL.md",
+      "path": "skills/blender-stylized-npr/SKILL.md",
+      "source_sha256": "78042e1fbfc1e095767e6c84657668c6e051014ab544d595e12016451e8746dd",
+      "sha256": "70c79fe9caabf4a8a58a4338882c0c86f3b0b1d0d3eebd9a77a4f02b417e8ac8",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-stylized-npr",
+      "source_path": "skills/blender-stylized-npr/scripts/_bpyx.py",
+      "path": "skills/blender-stylized-npr/scripts/_bpyx.py",
+      "source_sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-stylized-npr",
+      "source_path": "skills/blender-stylized-npr/scripts/toon_setup.py",
+      "path": "skills/blender-stylized-npr/scripts/toon_setup.py",
+      "source_sha256": "17b311952b856a4c252b592373b43459f6dedab3deed7f48ca70ca7a6f26e1d9",
+      "sha256": "17b311952b856a4c252b592373b43459f6dedab3deed7f48ca70ca7a6f26e1d9",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-texture-baking",
+      "source_path": "LICENSE",
+      "path": "skills/blender-texture-baking/LICENSE",
+      "source_sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-texture-baking",
+      "source_path": "skills/blender-texture-baking/NOTICE.md",
+      "path": "skills/blender-texture-baking/NOTICE.md",
+      "source_sha256": "453bd1d69d9889a4d110ad19c5599a3e7bfd5a07c5f5aee9997a82033be646a8",
+      "sha256": "453bd1d69d9889a4d110ad19c5599a3e7bfd5a07c5f5aee9997a82033be646a8",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-texture-baking",
+      "source_path": "skills/blender-texture-baking/SKILL.md",
+      "path": "skills/blender-texture-baking/SKILL.md",
+      "source_sha256": "bf94f8054b6a9483214d2ceb3e160e44d2593b51154c553defa190272431ccb4",
+      "sha256": "607dcca27e4a9d8be9ae8ec8a3f6022388c890cbc715bc0b544af43a0f9e2de0",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-texture-baking",
+      "source_path": "skills/blender-texture-baking/scripts/_bpyx.py",
+      "path": "skills/blender-texture-baking/scripts/_bpyx.py",
+      "source_sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-texture-baking",
+      "source_path": "skills/blender-texture-baking/scripts/bake_maps.py",
+      "path": "skills/blender-texture-baking/scripts/bake_maps.py",
+      "source_sha256": "16b27115c8bb19f9d4b2162a67467df9b3f9f720dcc365497a7443be9cab5e0a",
+      "sha256": "16b27115c8bb19f9d4b2162a67467df9b3f9f720dcc365497a7443be9cab5e0a",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-texturing",
+      "source_path": "LICENSE",
+      "path": "skills/blender-texturing/LICENSE",
+      "source_sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-texturing",
+      "source_path": "skills/blender-texturing/NOTICE.md",
+      "path": "skills/blender-texturing/NOTICE.md",
+      "source_sha256": "f4e3e43d9e29ed195e0bd5b4b666cddf564b569a033633aeea0c1bb4c9d6df0c",
+      "sha256": "f4e3e43d9e29ed195e0bd5b4b666cddf564b569a033633aeea0c1bb4c9d6df0c",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-texturing",
+      "source_path": "skills/blender-texturing/SKILL.md",
+      "path": "skills/blender-texturing/SKILL.md",
+      "source_sha256": "d1df25354626165849dbaa8905715192318f6044bcdb82381aa4355d602e655d",
+      "sha256": "1339b43ea4b001da5db58c0ff64a625c1dd6b1d09daf8aa7ac8c50a9d784403b",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-texturing",
+      "source_path": "skills/blender-texturing/references/trims-tiling-painting.md",
+      "path": "skills/blender-texturing/references/trims-tiling-painting.md",
+      "source_sha256": "f5e17afe945dd3b489416ed9c1a7d2a0cd9e19b7f84920fcf0c9689275d0663f",
+      "sha256": "f5e17afe945dd3b489416ed9c1a7d2a0cd9e19b7f84920fcf0c9689275d0663f",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-texturing",
+      "source_path": "skills/blender-texturing/scripts/_bpyx.py",
+      "path": "skills/blender-texturing/scripts/_bpyx.py",
+      "source_sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-texturing",
+      "source_path": "skills/blender-texturing/scripts/decal.py",
+      "path": "skills/blender-texturing/scripts/decal.py",
+      "source_sha256": "46ce5673b4138087b74d04f8b254bdbd5f804698ed8885c055b2c25287fc1e2c",
+      "sha256": "46ce5673b4138087b74d04f8b254bdbd5f804698ed8885c055b2c25287fc1e2c",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-texturing",
+      "source_path": "skills/blender-texturing/scripts/smart_material.py",
+      "path": "skills/blender-texturing/scripts/smart_material.py",
+      "source_sha256": "4ace4d3820c042c6ee60223eb2d4e0a7d4151f9af0334724e1c2cda0c57d3cdb",
+      "sha256": "4ace4d3820c042c6ee60223eb2d4e0a7d4151f9af0334724e1c2cda0c57d3cdb",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-time-of-day",
+      "source_path": "LICENSE",
+      "path": "skills/blender-time-of-day/LICENSE",
+      "source_sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-time-of-day",
+      "source_path": "skills/blender-time-of-day/NOTICE.md",
+      "path": "skills/blender-time-of-day/NOTICE.md",
+      "source_sha256": "0365eb6b213c0a227ebb2849558144c9ea6b7d9494bbd28df2e813bd26cd6254",
+      "sha256": "0365eb6b213c0a227ebb2849558144c9ea6b7d9494bbd28df2e813bd26cd6254",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-time-of-day",
+      "source_path": "skills/blender-time-of-day/SKILL.md",
+      "path": "skills/blender-time-of-day/SKILL.md",
+      "source_sha256": "f85d1ca60f764cdab11845679fda5cb22190ea1353bf09a03256fb8b8ca6d7f9",
+      "sha256": "85662a3e9735ae6acc6b3e81c9377d5424d734206899f5168f80a2f702073cd4",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-time-of-day",
+      "source_path": "skills/blender-time-of-day/references/fog-volumetrics.md",
+      "path": "skills/blender-time-of-day/references/fog-volumetrics.md",
+      "source_sha256": "8371b4b7517363b97e8b023611a5ea8351c913d60205a09805bb47f76d62320c",
+      "sha256": "8371b4b7517363b97e8b023611a5ea8351c913d60205a09805bb47f76d62320c",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-time-of-day",
+      "source_path": "skills/blender-time-of-day/references/light-values.md",
+      "path": "skills/blender-time-of-day/references/light-values.md",
+      "source_sha256": "21569a5d3c92271f6e219ee77cf3982c9cde59d4d1f3090528086d608030a3a8",
+      "sha256": "21569a5d3c92271f6e219ee77cf3982c9cde59d4d1f3090528086d608030a3a8",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-time-of-day",
+      "source_path": "skills/blender-time-of-day/references/night-and-moods.md",
+      "path": "skills/blender-time-of-day/references/night-and-moods.md",
+      "source_sha256": "662299d09b341c70488a1e934ce07437610c2ad0dddc92bed93b348e94a76442",
+      "sha256": "662299d09b341c70488a1e934ce07437610c2ad0dddc92bed93b348e94a76442",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-time-of-day",
+      "source_path": "skills/blender-time-of-day/scripts/_bpyx.py",
+      "path": "skills/blender-time-of-day/scripts/_bpyx.py",
+      "source_sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-time-of-day",
+      "source_path": "skills/blender-time-of-day/scripts/scene_mood.py",
+      "path": "skills/blender-time-of-day/scripts/scene_mood.py",
+      "source_sha256": "c82cd0a010ac657df727301a89403cc9f5c599bda84349e2e80ed3c2f6d0b134",
+      "sha256": "c82cd0a010ac657df727301a89403cc9f5c599bda84349e2e80ed3c2f6d0b134",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-video-editing",
+      "source_path": "LICENSE",
+      "path": "skills/blender-video-editing/LICENSE",
+      "source_sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-video-editing",
+      "source_path": "skills/blender-video-editing/NOTICE.md",
+      "path": "skills/blender-video-editing/NOTICE.md",
+      "source_sha256": "df6afc704cda8cd49d4e368b7c52aacbf0c5ff88cd1b62c4754d5c07ebbaab2c",
+      "sha256": "df6afc704cda8cd49d4e368b7c52aacbf0c5ff88cd1b62c4754d5c07ebbaab2c",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-video-editing",
+      "source_path": "skills/blender-video-editing/SKILL.md",
+      "path": "skills/blender-video-editing/SKILL.md",
+      "source_sha256": "aa8c6d53e47b17666383f91497ba1564b5b2537dbca71880619c9ff81e0b82b4",
+      "sha256": "3b04c0f762cc22b86e5af8866d1f7d1bacff2813a786631846238ed6ff768057",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-video-editing",
+      "source_path": "skills/blender-video-editing/scripts/_bpyx.py",
+      "path": "skills/blender-video-editing/scripts/_bpyx.py",
+      "source_sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-video-editing",
+      "source_path": "skills/blender-video-editing/scripts/track_camera.py",
+      "path": "skills/blender-video-editing/scripts/track_camera.py",
+      "source_sha256": "0643bf9d1a258596bcb8f209c23526d5bb71c59b0c38bfffdd7dba7e05447b83",
+      "sha256": "0643bf9d1a258596bcb8f209c23526d5bb71c59b0c38bfffdd7dba7e05447b83",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-video-editing",
+      "source_path": "skills/blender-video-editing/scripts/vse_edit.py",
+      "path": "skills/blender-video-editing/scripts/vse_edit.py",
+      "source_sha256": "ec7897c62a48568ab18e266b9223a87e4463bafe0b5b92efba9fe6370fdd133d",
+      "sha256": "ec7897c62a48568ab18e266b9223a87e4463bafe0b5b92efba9fe6370fdd133d",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-weather-fx",
+      "source_path": "LICENSE",
+      "path": "skills/blender-weather-fx/LICENSE",
+      "source_sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-weather-fx",
+      "source_path": "skills/blender-weather-fx/NOTICE.md",
+      "path": "skills/blender-weather-fx/NOTICE.md",
+      "source_sha256": "7a121b3266f948146c9d9c6b8f440f9802b00c611d2d1a4cbcf54d738ce8d146",
+      "sha256": "7a121b3266f948146c9d9c6b8f440f9802b00c611d2d1a4cbcf54d738ce8d146",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-weather-fx",
+      "source_path": "skills/blender-weather-fx/SKILL.md",
+      "path": "skills/blender-weather-fx/SKILL.md",
+      "source_sha256": "7fa1633e5cfa5f183a6d5a451f9b021a305c53e5d14071708a503ecdac687dc7",
+      "sha256": "2572050b3c23310bf2d01c46bd0a83fb9a874f07bc51b83ddc901e33d5bc2b4b",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-weather-fx",
+      "source_path": "skills/blender-weather-fx/references/realtime-engines.md",
+      "path": "skills/blender-weather-fx/references/realtime-engines.md",
+      "source_sha256": "c7584f496ba56c115ab809034cbabee41afa008236553c9436f814c7341d78ec",
+      "sha256": "c7584f496ba56c115ab809034cbabee41afa008236553c9436f814c7341d78ec",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-weather-fx",
+      "source_path": "skills/blender-weather-fx/references/weather-values.md",
+      "path": "skills/blender-weather-fx/references/weather-values.md",
+      "source_sha256": "c8be7c985f3d28833b075e71257dd5130d8487ce0b63716a9f237f76592295c3",
+      "sha256": "c8be7c985f3d28833b075e71257dd5130d8487ce0b63716a9f237f76592295c3",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-weather-fx",
+      "source_path": "skills/blender-weather-fx/scripts/_bpyx.py",
+      "path": "skills/blender-weather-fx/scripts/_bpyx.py",
+      "source_sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "sha256": "90f44d70198b199cd922e4e57f7e55c56a3041d3a498ef7d444b019f9795d2ff",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-weather-fx",
+      "source_path": "skills/blender-weather-fx/scripts/lightning.py",
+      "path": "skills/blender-weather-fx/scripts/lightning.py",
+      "source_sha256": "68177d83b754e8140ea8807962c8d3c984667c32332ed6a258c15d271750854e",
+      "sha256": "68177d83b754e8140ea8807962c8d3c984667c32332ed6a258c15d271750854e",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-weather-fx",
+      "source_path": "skills/blender-weather-fx/scripts/precipitation.py",
+      "path": "skills/blender-weather-fx/scripts/precipitation.py",
+      "source_sha256": "063fde91806f683b01172a1478c946a6bf8fd7b7f451f76111017766873f047b",
+      "sha256": "063fde91806f683b01172a1478c946a6bf8fd7b7f451f76111017766873f047b",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-weather-fx",
+      "source_path": "skills/blender-weather-fx/scripts/surface_weather.py",
+      "path": "skills/blender-weather-fx/scripts/surface_weather.py",
+      "source_sha256": "9ab45b1e6b668d25956296595e4d617dbf553af2af1bd0523bf0cccb40baea77",
+      "sha256": "9ab45b1e6b668d25956296595e4d617dbf553af2af1bd0523bf0cccb40baea77",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-workflow-recipes",
+      "source_path": "LICENSE",
+      "path": "skills/blender-workflow-recipes/LICENSE",
+      "source_sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "sha256": "d81d0037e3a29a01ccfefaae420d5ba73e905cabf3995700e9075c7205c06cc5",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-workflow-recipes",
+      "source_path": "skills/blender-workflow-recipes/NOTICE.md",
+      "path": "skills/blender-workflow-recipes/NOTICE.md",
+      "source_sha256": "323d17484296ed3254cacf74b876795ebcd08d907f1742db1da310d9c38f287e",
+      "sha256": "323d17484296ed3254cacf74b876795ebcd08d907f1742db1da310d9c38f287e",
+      "executable": false
+    },
+    {
+      "skill_id": "blender-workflow-recipes",
+      "source_path": "skills/blender-workflow-recipes/SKILL.md",
+      "path": "skills/blender-workflow-recipes/SKILL.md",
+      "source_sha256": "94de00b0a0a7284cd9d997924478be5cc7a8c7e4d26cbdac56adc86634d15324",
+      "sha256": "bc3dfd046b9731f70b30118f1adf66a662c12d29858c72c57b561020f43a34a3",
+      "executable": false
+    }
+  ]
+}

@@ -58,10 +58,10 @@ class TestSkillEvaluatorSkills(unittest.TestCase):
         self.assertIn("NVIDIA/SkillEvaluator", self.credits["sections"]["skillevaluator"][0])
         self.assertIn("7ae25d2522c9c3b151111fedaa67b814cc3dc5c5", self.credits["sections"]["skillevaluator"][0])
 
-        # Verify category taxonomy remains 119 and catalog has 4,079 skills
+        # Verify category taxonomy remains 119 and catalog has 4,128 skills
         categories = {s.get("category", "general") for s in self.index}
         self.assertEqual(len(categories), 119)
-        self.assertEqual(len(self.index), 4079)
+        self.assertEqual(len(self.index), 4128)
 
         self.assertIn("skillevaluator", self.skills_by_id)
         skill = self.skills_by_id["skillevaluator"]
